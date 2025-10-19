@@ -283,7 +283,7 @@ target("swiftlys2")
         end
 
         local protoc = is_plat("windows") and sdk_path.."/devtools/bin/protoc.exe" or sdk_path.."/devtools/bin/linux/protoc" 
-        local args = "--proto_path="..sdk_path.."/thirdparty/protobuf-3.21.8/src --proto_path=./protobufs/cs2 --proto_path="..sdk_path.."/public --proto_path="..sdk_path.."/public/engine --proto_path="..sdk_path.."/public/mathlib --proto_path="..sdk_path.."/public/tier0 --proto_path="..sdk_path.."/public/tier1 --proto_path="..sdk_path.."/public/entity2 --proto_path="..sdk_path.."/public/game/server --proto_path="..sdk_path.."/game/shared --proto_path="..sdk_path.."/game/server --proto_path="..sdk_path.."/common --cpp_out=build/proto"
+        local args = "--proto_path="..sdk_path.."/thirdparty/protobuf-3.21.8/src --proto_path=./protobufs/cs2 --cpp_out=build/proto"
 
         function mysplit (inputstr, sep)
             if sep == nil then sep = "%s" end
