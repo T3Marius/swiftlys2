@@ -109,6 +109,11 @@ public class EventDelegates
   public delegate void OnItemServicesCanAcquireHook(IOnItemServicesCanAcquireHookEvent @event);
 
   /// <summary>
+  /// Called when a weapon services can use hook is triggered.
+  /// </summary>
+  public delegate void OnWeaponServicesCanUseHook(IOnWeaponServicesCanUseHookEvent @event);
+
+  /// <summary>
   /// Called when a console output is received.
   /// </summary>
   public delegate void OnConsoleOutput(IOnConsoleOutputEvent @event);

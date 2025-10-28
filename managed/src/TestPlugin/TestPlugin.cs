@@ -57,6 +57,12 @@ public class TestPlugin : BasePlugin
   public TestPlugin(ISwiftlyCore core) : base(core)
   {
     Console.WriteLine("[TestPlugin] TestPlugin constructed successfully!");
+
+    Core.Event.OnWeaponServicesCanUseHook += (@event) =>
+    {
+      // Console.WriteLine($"WeaponServicesCanUse: {@event.Weapon.WeaponBaseVData.AttackMovespeedFactor} {@event.OriginalResult}");
+
+    };
   }
 
 

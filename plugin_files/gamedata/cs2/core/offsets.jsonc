@@ -23,10 +23,6 @@
         "windows": 191,
         "linux": 190
     },
-    "CCSPlayer_WeaponServices::DropWeapon": {
-        "windows": 23,
-        "linux": 24
-    },
     "CGameSceneNode::GetSkeletonInstance": {
         "windows": 8,
         "linux": 8
@@ -74,7 +70,11 @@
         "windows": 18,
         "linux": 19
     },
-    "CCSPlayer_WeaponServices_DropWeapon": {
+    "CCSPlayer_WeaponServices::CanUse": {
+        "windows": 22,
+        "linux": 23
+    },
+    "CCSPlayer_WeaponServices::DropWeapon": {
         "windows": 23,
         "linux": 24
     },

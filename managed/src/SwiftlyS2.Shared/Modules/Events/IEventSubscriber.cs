@@ -109,6 +109,11 @@ public interface IEventSubscriber
   public event EventDelegates.OnItemServicesCanAcquireHook? OnItemServicesCanAcquireHook;
 
   /// <summary>
+  /// Called when a weapon services can use hook is triggered.
+  /// </summary>
+  public event EventDelegates.OnWeaponServicesCanUseHook? OnWeaponServicesCanUseHook;
+
+  /// <summary>
   /// Called when the game outputs a console message.
   /// </summary>
   public event EventDelegates.OnConsoleOutput? OnConsoleOutput;

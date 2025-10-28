@@ -10,6 +10,7 @@ using SwiftlyS2.Shared.Memory;
 using SwiftlyS2.Shared.Misc;
 using SwiftlyS2.Shared.SchemaDefinitions;
 using SwiftlyS2.Shared.Natives;
+using SwiftlyS2.Core.SchemaDefinitions;
 
 namespace SwiftlyS2.Core.Services;
 
@@ -26,6 +27,7 @@ internal class CoreHookService : IDisposable
     HookCanAcquire();
     HookCommandExecute();
     HookICVarFindConCommand();
+    HookCCSPlayer_WeaponServices_CanUse();
   }
 
   private delegate int CanAcquireDelegate(nint pItemServices, nint pEconItemView, nint acquireMethod, nint unk1);
@@ -54,10 +56,53 @@ internal class CoreHookService : IDisposable
     So we model it as a fixed 5-parameter function for interop purposes
   */
   private delegate nint ExecuteCommandDelegate(nint a1, int a2, uint a3, nint a4, nint a5);
+
+  private delegate byte CCSPlayer_WeaponServices_CanUse(nint pWeaponServices, nint pBasePlayerWeapon);
+
   private IUnmanagedFunction<ExecuteCommandDelegate>? _ExecuteCommand;
   private Guid _ExecuteCommandGuid;
   private IUnmanagedFunction<CanAcquireDelegate>? _CanAcquire;
   private Guid _CanAcquireGuid;
+  private IUnmanagedFunction<CCSPlayer_WeaponServices_CanUse>? _CCSPlayer_WeaponServices_CanUse;
+  private Guid _CCSPlayer_WeaponServices_CanUseGuid;
+
+  private void HookCCSPlayer_WeaponServices_CanUse()
+  {
+    var offset = _Core.GameData.GetOffset("CCSPlayer_WeaponServices::CanUse");
+    var pVtable = _Core.Memory.GetVTableAddress(Library.Server, "CCSPlayer_WeaponServices");
+
+    if (pVtable == null) {
+      _Logger.LogError("Failed to get CCSPlayer_WeaponServices vtable.");
+      return;
+    }
+    _CCSPlayer_WeaponServices_CanUse = _Core.Memory.GetUnmanagedFunctionByVTable<CCSPlayer_WeaponServices_CanUse>(pVtable!.Value, offset);
+    _Logger.LogInformation("Hooking CCSPlayer_WeaponServices::CanUse at {Address}", _CCSPlayer_WeaponServices_CanUse.Address);
+    _CCSPlayer_WeaponServices_CanUseGuid = _CCSPlayer_WeaponServices_CanUse.AddHook(next =>
+    {
+      return (pWeaponServices, pBasePlayerWeapon) => {
+
+        var result = next()(pWeaponServices, pBasePlayerWeapon);
+
+        var weaponServices = new CCSPlayer_WeaponServicesImpl(pWeaponServices);
+        var basePlayerWeapon = new CCSWeaponBaseImpl(pBasePlayerWeapon);
+
+        var @event = new OnWeaponServicesCanUseHookEvent
+        {
+          WeaponServices = weaponServices,
+          Weapon = basePlayerWeapon,
+          OriginalResult = result != 0
+        };
+        EventPublisher.InvokeOnWeaponServicesCanUseHook(@event);
+
+        if (@event.Intercepted)
+        {
+          return @event.OriginalResult ? (byte)1 : (byte)0;
+        }
+
+        return result;
+      };
+    });
+  }
 
   private void HookCanAcquire()
   {

@@ -535,6 +535,22 @@ internal static class EventPublisher
     }
   }
 
+  public static void InvokeOnWeaponServicesCanUseHook(OnWeaponServicesCanUseHookEvent @event)
+  {
+    if (_subscribers.Count == 0) return;
+    try
+    {
+      foreach (var subscriber in _subscribers)
+      {
+        subscriber.InvokeOnWeaponServicesCanUseHook(@event);
+      }
+    }
+    catch (Exception e)
+    {
+      AnsiConsole.WriteException(e);
+    }
+  }
+
   [UnmanagedCallersOnly]
   public static void OnConsoleOutput(nint messagePtr)
   {

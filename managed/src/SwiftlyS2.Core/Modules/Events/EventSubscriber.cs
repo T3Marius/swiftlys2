@@ -47,6 +47,7 @@ internal class EventSubscriber : IEventSubscriber, IDisposable
   public event EventDelegates.OnEntityTakeDamage? OnEntityTakeDamage;
   public event EventDelegates.OnPrecacheResource? OnPrecacheResource;
   public event EventDelegates.OnItemServicesCanAcquireHook? OnItemServicesCanAcquireHook;
+  public event EventDelegates.OnWeaponServicesCanUseHook? OnWeaponServicesCanUseHook;
   public event EventDelegates.OnConsoleOutput? OnConsoleOutput;
   public event EventDelegates.OnCommandExecuteHook? OnCommandExecuteHook;
 
@@ -357,6 +358,24 @@ internal class EventSubscriber : IEventSubscriber, IDisposable
     finally
     {
       _Profiler.StopRecording("Event::OnItemServicesCanAcquireHook");
+    }
+  }
+
+  public void InvokeOnWeaponServicesCanUseHook(OnWeaponServicesCanUseHookEvent @event)
+  {
+    try
+    {
+      if (OnWeaponServicesCanUseHook == null) return;
+      _Profiler.StartRecording("Event::OnWeaponServicesCanUseHook");
+      OnWeaponServicesCanUseHook?.Invoke(@event);
+    }
+    catch (Exception e)
+    {
+      _Logger.LogError(e, "Error invoking OnWeaponServicesCanUseHook.");
+    }
+    finally
+    {
+      _Profiler.StopRecording("Event::OnWeaponServicesCanUseHook");
     }
   }
 
