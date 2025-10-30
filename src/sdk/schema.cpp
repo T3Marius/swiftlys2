@@ -195,8 +195,9 @@ void CSDKSchema::SetStateChanged(void* pEntity, uint64_t uHash)
 	auto logger = g_ifaceService.FetchInterface<ILogger>(LOGGER_INTERFACE_VERSION);
 
 	auto uncheckedNetworkVar = reinterpret_cast<NetworkVar*>(pEntity);
-	if (inlineNetworkVarVtbs.contains(uncheckedNetworkVar->pVtable())) {
-		auto index = inlineNetworkVarVtbs[uncheckedNetworkVar->pVtable()];
+	auto it = inlineNetworkVarVtbs.find(uncheckedNetworkVar->pVtable());
+	if (it != inlineNetworkVarVtbs.end()) {
+		auto index = it->second;
 		uncheckedNetworkVar->StateChanged(index, NetworkStateChangedData(fieldInfo.m_uOffset));
 		return;
 	}
