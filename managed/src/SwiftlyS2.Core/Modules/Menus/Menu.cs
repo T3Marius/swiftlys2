@@ -66,6 +66,9 @@ internal class Menu : IMenu
             Initialized = false;
             _Core.Event.OnTick -= OnTickRender;
         }
+
+        ScrollOffsets.Clear();
+        ScrollCallCounts.Clear();
     }
 
     public void MoveSelection(IPlayer player, int offset)
@@ -277,6 +280,9 @@ internal class Menu : IMenu
                 Close(player);
             });
         }
+
+        ScrollOffsets.Clear();
+        ScrollCallCounts.Clear();
     }
 
     public void UseSelection(IPlayer player)
@@ -442,7 +448,8 @@ internal class Menu : IMenu
 
         ScrollCallCounts[textKey]++;
 
-        if (ScrollCallCounts[textKey] >= 16)
+        var ticksPerScroll = HorizontalStyle?.TicksPerScroll ?? 16;
+        if (ScrollCallCounts[textKey] >= ticksPerScroll)
         {
             ScrollCallCounts[textKey] = 0;
             ScrollOffsets[textKey] = (ScrollOffsets[textKey] + 1) % text.Length;
@@ -506,7 +513,8 @@ internal class Menu : IMenu
 
         ScrollCallCounts[textKey]++;
 
-        if (ScrollCallCounts[textKey] >= 16)
+        var ticksPerScroll = HorizontalStyle?.TicksPerScroll ?? 16;
+        if (ScrollCallCounts[textKey] >= ticksPerScroll)
         {
             ScrollCallCounts[textKey] = 0;
             ScrollOffsets[textKey] = (ScrollOffsets[textKey] + 1) % text.Length;
