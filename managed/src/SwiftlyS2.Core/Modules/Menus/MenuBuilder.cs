@@ -9,6 +9,9 @@ internal class MenuBuilder : IMenuBuilder
 {
     private IMenu? _menu;
     private IMenu? _parent;
+    private MenuDesign? _design;
+
+    public IMenuDesign Design => _design ??= new MenuDesign(_menu!);
 
     public IMenuBuilder SetMenu(IMenu menu)
     {
@@ -286,25 +289,28 @@ internal class MenuBuilder : IMenuBuilder
         return this;
     }
 
+    [Obsolete("Use Design.OverrideSelectButton instead")]
     public IMenuBuilder OverrideSelectButton(params string[] buttonNames)
     {
-        _menu!.ButtonOverrides.Select = MenuButtonOverrides.ParseButtons(buttonNames);
+        _menu!.ButtonOverrides!.Select = MenuButtonOverrides.ParseButtons(buttonNames);
         return this;
     }
 
+    [Obsolete("Use Design.OverrideMoveButton instead")]
     public IMenuBuilder OverrideMoveButton(params string[] buttonNames)
     {
-        _menu!.ButtonOverrides.Move = MenuButtonOverrides.ParseButtons(buttonNames);
+        _menu!.ButtonOverrides!.Move = MenuButtonOverrides.ParseButtons(buttonNames);
         return this;
     }
 
-
+    [Obsolete("Use Design.OverrideExitButton instead")]
     public IMenuBuilder OverrideExitButton(params string[] buttonNames)
     {
-        _menu!.ButtonOverrides.Exit = MenuButtonOverrides.ParseButtons(buttonNames);
+        _menu!.ButtonOverrides!.Exit = MenuButtonOverrides.ParseButtons(buttonNames);
         return this;
     }
 
+    [Obsolete("Use Design.MaxVisibleItems instead")]
     public IMenuBuilder MaxVisibleItems(int count)
     {
         if (count < 1 || count > 5)
@@ -333,6 +339,7 @@ internal class MenuBuilder : IMenuBuilder
         return this;
     }
 
+    [Obsolete("Use Design.SetColor instead")]
     public IMenuBuilder SetColor(Color color)
     {
         _menu!.RenderColor = color;

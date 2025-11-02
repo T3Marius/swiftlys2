@@ -561,8 +561,8 @@ public class TestPlugin : BasePlugin
 
     IMenu settingsMenu = Core.Menus.CreateMenu("Settings");
 
-    settingsMenu.Builder.MaxVisibleItems(5);
-    // settingsMenu.Builder.MaxVisibleItems(Random.Shared.Next(-2, 8));
+    settingsMenu.Builder.Design.MaxVisibleItems(5);
+    // settingsMenu.Builder.Design.MaxVisibleItems(Random.Shared.Next(-2, 8));
 
     if (!int.TryParse(context.Args[0], out int type)) type = 0;
 
@@ -645,10 +645,11 @@ public class TestPlugin : BasePlugin
       })
       .AddSeparator()
       .AddText("hello!", size: IMenuTextSize.ExtraLarge)
-      .SetColor(new(0, 186, 105, 255))
       .AutoClose(15f)
       .HasSound(true)
       .ForceFreeze();
+
+    menu.Builder.Design.SetColor(new(0, 186, 105, 255));
 
     Core.Menus.OpenMenu(player, menu);
   }

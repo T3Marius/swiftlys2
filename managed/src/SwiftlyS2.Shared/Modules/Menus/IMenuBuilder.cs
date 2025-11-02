@@ -9,6 +9,8 @@ namespace SwiftlyS2.Shared.Menus;
 /// </summary>
 public interface IMenuBuilder
 {
+    IMenuDesign Design { get; }
+
     /// <summary>
     /// Sets the menu instance that this builder will modify.
     /// This method is typically called internally to associate the builder with a specific menu.
@@ -270,6 +272,7 @@ public interface IMenuBuilder
     /// </summary>
     /// <param name="buttonNames">The names of the buttons to use for selection.</param>
     /// <returns>The current menu builder instance for method chaining.</returns>
+    [Obsolete("Use Design.OverrideSelectButton instead")]
     IMenuBuilder OverrideSelectButton(params string[] buttonNames);
 
     /// <summary>
@@ -278,6 +281,7 @@ public interface IMenuBuilder
     /// </summary>
     /// <param name="buttonNames">The names of the buttons to use for movement.</param>
     /// <returns>The current menu builder instance for method chaining.</returns>
+    [Obsolete("Use Design.OverrideMoveButton instead")]
     IMenuBuilder OverrideMoveButton(params string[] buttonNames);
 
     /// <summary>
@@ -286,6 +290,7 @@ public interface IMenuBuilder
     /// </summary>
     /// <param name="buttonNames">The names of the buttons to use for exiting.</param>
     /// <returns>The current menu builder instance for method chaining.</returns>
+    [Obsolete("Use Design.OverrideExitButton instead")]
     IMenuBuilder OverrideExitButton(params string[] buttonNames);
 
     /// <summary>
@@ -299,6 +304,7 @@ public interface IMenuBuilder
     /// If the provided count is greater than 5, it will be clamped to 5.
     /// A warning will be logged when clamping occurs.
     /// </remarks>
+    [Obsolete("Use Design.MaxVisibleItems instead")]
     IMenuBuilder MaxVisibleItems(int count);
 
     /// <summary>
@@ -321,6 +327,7 @@ public interface IMenuBuilder
     /// </summary>
     /// <param name="color">The color to use for menu rendering.</param>
     /// <returns>The current menu builder instance for method chaining.</returns>
+    [Obsolete("Use Design.SetColor instead")]
     IMenuBuilder SetColor(Color color);
 
     /// <summary>
