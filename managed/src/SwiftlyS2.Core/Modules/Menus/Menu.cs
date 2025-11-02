@@ -40,6 +40,8 @@ internal class Menu : IMenu
     private ConcurrentDictionary<IPlayer, string> RenderedText { get; set; } = new();
     private ConcurrentDictionary<IPlayer, int> SelectedIndex { get; set; } = new();
     private List<IPlayer> PlayersWithMenuOpen { get; set; } = new();
+    private ConcurrentDictionary<string, int> ScrollOffsets { get; set; } = new();
+    private ConcurrentDictionary<string, int> ScrollCallCounts { get; set; } = new();
     internal ISwiftlyCore _Core { get; set; }
     public bool HasSound { get; set; } = true;
     public bool RenderOntick { get; set; } = false;
@@ -55,7 +57,11 @@ internal class Menu : IMenu
 
         PlayersWithMenuOpen.Remove(player);
 
-        if (Initialized && PlayersWithMenuOpen.Count == 0 && RenderOntick)
+        if (Initialized && PlayersWithMenuOpen.Count == 0 && (RenderOntick ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollLeftFade ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollRightFade ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollLeftLoop ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollRightLoop))
         {
             Initialized = false;
             _Core.Event.OnTick -= OnTickRender;
@@ -250,7 +256,11 @@ internal class Menu : IMenu
             PlayersWithMenuOpen.Add(player);
         }
 
-        if (!Initialized && RenderOntick)
+        if (!Initialized && (RenderOntick ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollLeftFade ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollRightFade ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollLeftLoop ||
+            HorizontalStyle?.OverflowStyle == MenuHorizontalOverflowStyle.ScrollRightLoop))
         {
             Initialized = true;
             _Core.Event.OnTick += OnTickRender;
@@ -412,12 +422,99 @@ internal class Menu : IMenu
         {
             MenuHorizontalOverflowStyle.TruncateEnd => TruncateTextEnd(text, HorizontalStyle.Value.MaxWidth),
             MenuHorizontalOverflowStyle.TruncateBothEnds => TruncateTextBothEnds(text, HorizontalStyle.Value.MaxWidth),
-            MenuHorizontalOverflowStyle.ScrollLeftFade => text,
-            MenuHorizontalOverflowStyle.ScrollRightFade => text,
+            MenuHorizontalOverflowStyle.ScrollLeftFade => ScrollTextWithFade(text, HorizontalStyle.Value.MaxWidth, true),
+            MenuHorizontalOverflowStyle.ScrollRightFade => ScrollTextWithFade(text, HorizontalStyle.Value.MaxWidth, false),
             MenuHorizontalOverflowStyle.ScrollLeftLoop => text,
             MenuHorizontalOverflowStyle.ScrollRightLoop => text,
             _ => text
         };
+    }
+
+    private string ScrollTextWithFade(string text, float maxWidth, bool scrollLeft)
+    {
+        var textKey = $"{text}_{scrollLeft}";
+
+        if (!ScrollOffsets.ContainsKey(textKey))
+            ScrollOffsets[textKey] = 0;
+
+        if (!ScrollCallCounts.ContainsKey(textKey))
+            ScrollCallCounts[textKey] = 0;
+
+        ScrollCallCounts[textKey]++;
+
+        if (ScrollCallCounts[textKey] >= 16)
+        {
+            ScrollCallCounts[textKey] = 0;
+            ScrollOffsets[textKey] = (ScrollOffsets[textKey] + 1) % text.Length;
+        }
+
+        var offset = ScrollOffsets[textKey];
+
+        static float GetCharWidth(char c) => c switch
+        {
+            >= '\u4E00' and <= '\u9FFF' => 2.0f,
+            >= '\u3000' and <= '\u303F' => 2.0f,
+            >= '\uFF00' and <= '\uFFEF' => 2.0f,
+            >= 'A' and <= 'Z' => 1.2f,
+            >= 'a' and <= 'z' => 1.0f,
+            >= '0' and <= '9' => 1.0f,
+            ' ' => 0.5f,
+            >= '!' and <= '/' => 0.8f,
+            >= ':' and <= '@' => 0.8f,
+            >= '[' and <= '`' => 0.8f,
+            >= '{' and <= '~' => 0.8f,
+            _ => 1.0f
+        };
+
+        var currentWidth = 0f;
+        var visibleChars = 0;
+
+        for (var i = 0; i < text.Length && currentWidth < maxWidth; i++)
+        {
+            currentWidth += GetCharWidth(text[i]);
+            if (currentWidth <= maxWidth)
+                visibleChars++;
+        }
+
+        if (visibleChars >= text.Length)
+            return text;
+
+        var startIndex = scrollLeft ? offset : Math.Max(0, text.Length - visibleChars - offset);
+        if (startIndex >= text.Length)
+            startIndex = 0;
+
+        var result = new StringBuilder();
+        // var fadeZone = Math.Max(1, visibleChars / 5);
+
+        for (var i = 0; i < visibleChars && startIndex + i < text.Length; i++)
+        {
+            var ch = text[startIndex + i];
+
+            // var opacity = 1.0;
+
+            // if (scrollLeft && i < fadeZone)
+            // {
+            //     opacity = (double)i / fadeZone;
+            // }
+            // else if (!scrollLeft && i >= visibleChars - fadeZone)
+            // {
+            //     opacity = (double)(visibleChars - i) / fadeZone;
+            // }
+
+            // if (opacity < 1.0)
+            // {
+            //     var alpha = (int)(opacity * 255);
+            //     result.Append($"<font color='#{alpha:X2}FFFFFF'>{ch}</font>");
+            // }
+            // else
+            // {
+            //     result.Append(ch);
+            // }
+
+            result.Append(ch);
+        }
+
+        return result.ToString();
     }
 
     private static string TruncateTextEnd(string text, float maxWidth, string suffix = "...")
