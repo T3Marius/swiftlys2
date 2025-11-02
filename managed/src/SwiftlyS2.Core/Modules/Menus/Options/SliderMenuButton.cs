@@ -87,7 +87,7 @@ internal class SliderMenuButton : IOption
 
     private static float Wrap(float value, float min, float max)
     {
-        float range = max - min + 1;
+        float range = max - min;
         return ((value - min) % range + range) % range + min;
     }
 
