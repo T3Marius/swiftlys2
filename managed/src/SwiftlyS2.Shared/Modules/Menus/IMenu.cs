@@ -198,4 +198,35 @@ public interface IMenu
     /// <param name="player">The player to set the freeze state for.</param>
     /// <param name="freeze">True to freeze the player, false to unfreeze.</param>
     public void SetFreezeState(IPlayer player, bool freeze);
+
+    /// <summary>
+    /// Gets or sets the scroll style for the menu navigation.
+    /// Determines how the selection arrow moves when navigating through options.
+    /// </summary>
+    public MenuScrollStyle ScrollStyle { get; set; }
+}
+
+/// <summary>
+/// Defines the scroll behavior style for menu navigation.
+/// </summary>
+public enum MenuScrollStyle
+{
+    /// <summary>
+    /// Arrow follows the selected item as it moves through the list.
+    /// Selection arrow moves up and down within the visible area.
+    /// </summary>
+    ArrowFollow,
+
+    /// <summary>
+    /// Arrow stays centered (or as centered as possible) while content scrolls.
+    /// Selection arrow remains in a fixed position while menu options scroll past it.
+    /// </summary>
+    CenterFixed,
+
+    /// <summary>
+    /// Arrow always stays at the exact center position.
+    /// Content scrolls to keep the selected item at center.
+    /// Similar to CenterFixed but stricter about center positioning.
+    /// </summary>
+    WaitingCenter
 }

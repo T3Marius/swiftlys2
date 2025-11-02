@@ -44,6 +44,7 @@ internal class Menu : IMenu
     public bool HasSound { get; set; } = true;
     public bool RenderOntick { get; set; } = false;
     private bool Initialized { get; set; } = false;
+    public MenuScrollStyle ScrollStyle { get; set; } = MenuScrollStyle.WaitingCenter;
 
     public void Close(IPlayer player)
     {
@@ -126,11 +127,54 @@ internal class Menu : IMenu
                 var selectedIdx = SelectedIndex[player];
                 var halfVisible = maxVisibleOptions / 2;
 
-                for (int offset = -halfVisible; offset <= halfVisible && offset < maxVisibleOptions - halfVisible; offset++)
+                int startIndex;
+                int arrowPosition;
+
+                if (ScrollStyle == MenuScrollStyle.WaitingCenter)
                 {
-                    var actualIndex = (selectedIdx + offset + totalOptions) % totalOptions;
+                    if (selectedIdx < halfVisible)
+                    {
+                        startIndex = 0;
+                        arrowPosition = selectedIdx;
+                    }
+                    else if (selectedIdx >= totalOptions - halfVisible)
+                    {
+                        startIndex = totalOptions - maxVisibleOptions;
+                        arrowPosition = selectedIdx - startIndex;
+                    }
+                    else
+                    {
+                        startIndex = selectedIdx - halfVisible;
+                        arrowPosition = halfVisible;
+                    }
+                }
+                else if (ScrollStyle == MenuScrollStyle.CenterFixed)
+                {
+                    startIndex = Math.Max(0, Math.Min(selectedIdx - halfVisible, totalOptions - maxVisibleOptions));
+                    arrowPosition = halfVisible;
+                }
+                else
+                {
+                    if (selectedIdx < maxVisibleOptions - 1)
+                    {
+                        startIndex = 0;
+                    }
+                    else if (selectedIdx >= totalOptions - (maxVisibleOptions - 1))
+                    {
+                        startIndex = totalOptions - maxVisibleOptions;
+                    }
+                    else
+                    {
+                        startIndex = selectedIdx - (maxVisibleOptions - 2);
+                    }
+                    arrowPosition = selectedIdx - startIndex;
+                }
+
+                for (int i = 0; i < maxVisibleOptions; i++)
+                {
+                    var actualIndex = startIndex + i;
                     var option = visibleOptions[actualIndex];
-                    var isSelected = offset == 0;
+                    var isSelected = i == arrowPosition;
                     var arrowSizeClass = MenuSizeHelper.GetSizeClass(option.GetTextSize());
 
                     if (isSelected)

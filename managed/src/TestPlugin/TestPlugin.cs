@@ -28,6 +28,7 @@ using BenchmarkDotNet.Toolchains.InProcess.NoEmit;
 using BenchmarkDotNet.Toolchains.InProcess.Emit;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
+using SwiftlyS2.Shared.Menus;
 
 namespace TestPlugin;
 
@@ -553,6 +554,44 @@ public class TestPlugin : BasePlugin
     return HookResult.Continue;
   }
 
+  [Command("mtest")]
+  public void MenuTestCommand(ICommandContext context)
+  {
+    var player = context.Sender!;
+
+    IMenu settingsMenu = Core.Menus.CreateMenu("Settings");
+    
+    settingsMenu.Builder.SetScrollStyle(MenuScrollStyle.WaitingCenter);
+    
+    settingsMenu.Builder.AddButton("1. AButton",(p) =>
+    {
+      player.SendMessage(MessageType.Chat, "Button");
+    });
+
+    settingsMenu.Builder.AddToggle("2. Toggle", defaultValue: true, (p, value) =>
+    {
+      player.SendMessage(MessageType.Chat, $"AddToggle {value}");
+    });
+
+    settingsMenu.Builder.AddSlider("3. Slider", min: 0, max: 100, defaultValue: 10, step: 10, (p, value) =>
+    {
+      player.SendMessage(MessageType.Chat, $"AddSlider {value}");
+    });
+
+    settingsMenu.Builder.AddAsyncButton("4. AsyncButton", async (p) =>
+    {
+      await Task.Delay(2000);
+    });
+
+    settingsMenu.Builder.AddText("5. Text");
+    settingsMenu.Builder.AddText("6. Text");
+    settingsMenu.Builder.AddText("7. Text");
+
+    settingsMenu.Builder.AddProgressBar("8. ProgressBar", () => 0.5f);
+
+    Core.Menus.OpenMenu(player, settingsMenu);
+  }
+
   [Command("menu")]
   public void MenuCommand(ICommandContext context)
   {
@@ -593,7 +632,7 @@ public class TestPlugin : BasePlugin
         player.SendMessage(MessageType.Chat, "You clicked Button 8");
       })
       .AddSeparator()
-      .AddText("hello!", size: SwiftlyS2.Shared.Menus.IMenuTextSize.ExtraLarge)
+      .AddText("hello!", size: IMenuTextSize.ExtraLarge)
       .SetColor(new(0, 186, 105, 255))
       .AutoClose(15f)
       .HasSound(true)

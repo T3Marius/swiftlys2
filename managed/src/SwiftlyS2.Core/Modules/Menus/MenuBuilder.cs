@@ -334,4 +334,10 @@ internal class MenuBuilder : IMenuBuilder
         _menu!.RenderColor = color;
         return this;
     }
+
+    public IMenuBuilder SetScrollStyle(MenuScrollStyle style)
+    {
+        _menu!.ScrollStyle = style;
+        return this;
+    }
 }
