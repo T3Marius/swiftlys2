@@ -22,20 +22,22 @@ internal class ToggleMenuOption : IOption
     public bool Visible => true;
     public bool Enabled => true;
 
-    public ToggleMenuOption(string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public ToggleMenuOption(string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Value = defaultValue;
         OnToggle = onToggle;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
-    public ToggleMenuOption(string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium)
+    public ToggleMenuOption(string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Value = defaultValue;
         OnToggleWithOption = onToggle;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
     public bool ShouldShow(IPlayer player)

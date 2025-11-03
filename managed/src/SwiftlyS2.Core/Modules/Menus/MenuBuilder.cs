@@ -19,80 +19,80 @@ internal class MenuBuilder : IMenuBuilder
         return this;
     }
 
-    public IMenuBuilder AddButton(string text, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddButton(string text, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new ButtonMenuOption(text, onClick, size));
+        _menu!.Options.Add(new ButtonMenuOption(text, onClick, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddButton(string text, Action<IPlayer, IOption>? onClick, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddButton(string text, Action<IPlayer, IOption>? onClick, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new ButtonMenuOption(text, onClick, size));
+        _menu!.Options.Add(new ButtonMenuOption(text, onClick, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddButton(string text, Action<IPlayer>? onClick)
+    public IMenuBuilder AddButton(string text, Action<IPlayer>? onClick, MenuHorizontalStyle? overflowStyle = null)
     {
-        return AddButton(text, onClick, IMenuTextSize.Medium);
+        return AddButton(text, onClick, IMenuTextSize.Medium, overflowStyle);
     }
 
-    public IMenuBuilder AddToggle(string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddToggle(string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new ToggleMenuOption(text, defaultValue, onToggle, size));
+        _menu!.Options.Add(new ToggleMenuOption(text, defaultValue, onToggle, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddToggle(string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddToggle(string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new ToggleMenuOption(text, defaultValue, onToggle, size));
+        _menu!.Options.Add(new ToggleMenuOption(text, defaultValue, onToggle, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddToggle(string text, bool defaultValue, Action<IPlayer, bool>? onToggle)
+    public IMenuBuilder AddToggle(string text, bool defaultValue, Action<IPlayer, bool>? onToggle, MenuHorizontalStyle? overflowStyle = null)
     {
-        return AddToggle(text, defaultValue, onToggle, IMenuTextSize.Medium);
+        return AddToggle(text, defaultValue, onToggle, IMenuTextSize.Medium, overflowStyle);
     }
 
-    public IMenuBuilder AddSlider(string text, float min, float max, float defaultValue, float step = 1, Action<IPlayer, float>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddSlider(string text, float min, float max, float defaultValue, float step = 1, Action<IPlayer, float>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new SliderMenuButton(text, min, max, defaultValue, step, onChange, size));
+        _menu!.Options.Add(new SliderMenuButton(text, min, max, defaultValue, step, onChange, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddSlider(string text, float min, float max, float defaultValue, float step, Action<IPlayer, IOption, float>? onChange, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddSlider(string text, float min, float max, float defaultValue, float step, Action<IPlayer, IOption, float>? onChange, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new SliderMenuButton(text, min, max, defaultValue, step, onChange, size));
+        _menu!.Options.Add(new SliderMenuButton(text, min, max, defaultValue, step, onChange, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddSlider(string text, float min, float max, float defaultValue, float step, Action<IPlayer, float>? onChange)
+    public IMenuBuilder AddSlider(string text, float min, float max, float defaultValue, float step, Action<IPlayer, float>? onChange, MenuHorizontalStyle? overflowStyle = null)
     {
-        return AddSlider(text, min, max, defaultValue, step, onChange, IMenuTextSize.Medium);
+        return AddSlider(text, min, max, defaultValue, step, onChange, IMenuTextSize.Medium, overflowStyle);
     }
 
-    public IMenuBuilder AddAsyncButton(string text, Func<IPlayer, Task> onClickAsync, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddAsyncButton(string text, Func<IPlayer, Task> onClickAsync, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new AsyncButtonMenuOption(text, onClickAsync, size));
+        _menu!.Options.Add(new AsyncButtonMenuOption(text, onClickAsync, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddAsyncButton(string text, Func<IPlayer, IOption, Task> onClickAsync, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddAsyncButton(string text, Func<IPlayer, IOption, Task> onClickAsync, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new AsyncButtonMenuOption(text, onClickAsync, size));
+        _menu!.Options.Add(new AsyncButtonMenuOption(text, onClickAsync, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddAsyncButton(string text, Func<IPlayer, Task> onClickAsync)
+    public IMenuBuilder AddAsyncButton(string text, Func<IPlayer, Task> onClickAsync, MenuHorizontalStyle? overflowStyle = null)
     {
-        return AddAsyncButton(text, onClickAsync, IMenuTextSize.Medium);
+        return AddAsyncButton(text, onClickAsync, IMenuTextSize.Medium, overflowStyle);
     }
 
     public IMenuBuilder AddText(string text, ITextAlign alignment = ITextAlign.Left, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
@@ -131,41 +131,45 @@ internal class MenuBuilder : IMenuBuilder
     {
         return AddSubmenu(text, submenuBuilder, IMenuTextSize.Medium);
     }
-    public IMenuBuilder AddChoice(string text, string[] choices, string? defaultChoice = null, Action<IPlayer, string>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium)
+
+    public IMenuBuilder AddChoice(string text, string[] choices, string? defaultChoice = null, Action<IPlayer, string>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new ChoiceMenuOption(text, choices, defaultChoice, onChange, size));
+        _menu!.Options.Add(new ChoiceMenuOption(text, choices, defaultChoice, onChange, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddChoice(string text, string[] choices, string? defaultChoice, Action<IPlayer, IOption, string>? onChange, IMenuTextSize size = IMenuTextSize.Medium)
+    public IMenuBuilder AddChoice(string text, string[] choices, string? defaultChoice, Action<IPlayer, IOption, string>? onChange, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new ChoiceMenuOption(text, choices, defaultChoice, onChange, size));
+        _menu!.Options.Add(new ChoiceMenuOption(text, choices, defaultChoice, onChange, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
 
-    public IMenuBuilder AddChoice(string text, string[] choices, string? defaultChoice, Action<IPlayer, string>? onChange)
-    {
-        return AddChoice(text, choices, defaultChoice, onChange, IMenuTextSize.Medium);
-    }
+    // [Obsolete("This overload causes ambiguity. Use AddChoice(text, choices, defaultChoice, onChange, IMenuTextSize.Medium, overflowStyle) instead.")]
+    // public IMenuBuilder AddChoice(string text, string[] choices, string? defaultChoice, Action<IPlayer, string>? onChange, MenuHorizontalStyle? overflowStyle = null)
+    // {
+    //     return AddChoice(text, choices, defaultChoice, onChange, IMenuTextSize.Medium, overflowStyle);
+    // }
+
     public IMenuBuilder AddSeparator()
     {
         _menu!.Options.Add(new SeparatorMenuOption());
         _menu!.Options[^1].Menu = _menu;
         return this;
     }
-    public IMenuBuilder AddProgressBar(string text, Func<float> progressProvider, int barWidth = 20, IMenuTextSize size = IMenuTextSize.Medium)
+
+    public IMenuBuilder AddProgressBar(string text, Func<float> progressProvider, int barWidth = 20, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
-        _menu!.Options.Add(new ProgressBarMenuOption(text, progressProvider, barWidth, size));
+        _menu!.Options.Add(new ProgressBarMenuOption(text, progressProvider, barWidth, size, overflowStyle));
         _menu!.Options[^1].Menu = _menu;
         _menu!.RenderOntick = true;
         return this;
     }
 
-    public IMenuBuilder AddProgressBar(string text, Func<float> progressProvider, int barWidth)
+    public IMenuBuilder AddProgressBar(string text, Func<float> progressProvider, int barWidth, MenuHorizontalStyle? overflowStyle = null)
     {
-        return AddProgressBar(text, progressProvider, barWidth, IMenuTextSize.Medium);
+        return AddProgressBar(text, progressProvider, barWidth, IMenuTextSize.Medium, overflowStyle);
     }
     public IMenuBuilder WithParent(IMenu parent)
     {

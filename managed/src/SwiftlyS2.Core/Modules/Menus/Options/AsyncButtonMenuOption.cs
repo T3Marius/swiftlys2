@@ -24,18 +24,20 @@ internal class AsyncButtonMenuOption : IOption
 
     private string? _loadingText;
 
-    public AsyncButtonMenuOption(string text, Func<IPlayer, Task>? onClickAsync = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public AsyncButtonMenuOption(string text, Func<IPlayer, Task>? onClickAsync = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         OnClickAsync = onClickAsync;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
-    public AsyncButtonMenuOption(string text, Func<IPlayer, IOption, Task>? onClickAsync, IMenuTextSize size = IMenuTextSize.Medium)
+    public AsyncButtonMenuOption(string text, Func<IPlayer, IOption, Task>? onClickAsync, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         OnClickAsyncWithOption = onClickAsync;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
     public bool ShouldShow(IPlayer player)

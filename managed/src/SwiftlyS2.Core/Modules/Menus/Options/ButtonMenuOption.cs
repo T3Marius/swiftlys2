@@ -21,27 +21,32 @@ internal class ButtonMenuOption : IOption
     public bool Visible => true;
     public bool Enabled => true;
 
-    public ButtonMenuOption(string text, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public ButtonMenuOption(string text, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         OnClick = onClick;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
-    public ButtonMenuOption(string text, Action<IPlayer, IOption>? onClick, IMenuTextSize size = IMenuTextSize.Medium)
+    public ButtonMenuOption(string text, Action<IPlayer, IOption>? onClick, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         OnClickWithOption = onClick;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
+
     public bool ShouldShow(IPlayer player)
     {
         return VisibilityCheck?.Invoke(player) ?? true;
     }
+
     public bool CanInteract(IPlayer player)
     {
         return EnabledCheck?.Invoke(player) ?? true;
     }
+
     public string GetDisplayText(IPlayer player)
     {
         var sizeClass = MenuSizeHelper.GetSizeClass(Size);
@@ -54,6 +59,7 @@ internal class ButtonMenuOption : IOption
 
         return $"<font class='{sizeClass}'>{text}</font>";
     }
+
     public IMenuTextSize GetTextSize()
     {
         return Size;

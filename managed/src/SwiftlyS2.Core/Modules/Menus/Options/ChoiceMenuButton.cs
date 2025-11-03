@@ -23,7 +23,7 @@ internal class ChoiceMenuOption : IOption
 
     public string SelectedChoice => Choices.Count > 0 ? Choices[SelectedIndex] : "";
 
-    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice = null, Action<IPlayer, string>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice = null, Action<IPlayer, string>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Choices = [.. choices];
@@ -37,9 +37,10 @@ internal class ChoiceMenuOption : IOption
         }
 
         OnChange = onChange;
+        OverflowStyle = overflowStyle;
     }
 
-    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice, Action<IPlayer, IOption, string>? onChange, IMenuTextSize size = IMenuTextSize.Medium)
+    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice, Action<IPlayer, IOption, string>? onChange, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Choices = [.. choices];
@@ -53,6 +54,7 @@ internal class ChoiceMenuOption : IOption
         }
 
         OnChangeWithOption = onChange;
+        OverflowStyle = overflowStyle;
     }
 
     public bool ShouldShow(IPlayer player)

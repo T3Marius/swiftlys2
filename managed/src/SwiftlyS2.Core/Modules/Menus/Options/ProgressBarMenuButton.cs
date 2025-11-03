@@ -4,7 +4,7 @@ using SwiftlyS2.Core.Menus;
 
 namespace SwiftlyS2.Core.Menu.Options;
 
-internal class ProgressBarMenuOption(string text, Func<float> progressProvider, int barWidth = 20, IMenuTextSize size = IMenuTextSize.Medium) : IOption
+internal class ProgressBarMenuOption(string text, Func<float> progressProvider, int barWidth = 20, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null) : IOption
 {
     public string Text { get; set; } = text;
     public Func<float> ProgressProvider { get; set; } = progressProvider;
@@ -14,7 +14,7 @@ internal class ProgressBarMenuOption(string text, Func<float> progressProvider, 
     public bool ShowPercentage { get; set; } = true;
     public IMenuTextSize Size { get; set; } = size;
     public IMenu? Menu { get; set; }
-    public MenuHorizontalStyle? OverflowStyle { get; init; }
+    public MenuHorizontalStyle? OverflowStyle { get; init; } = overflowStyle;
 
     public bool Visible => true;
     public bool Enabled => false;

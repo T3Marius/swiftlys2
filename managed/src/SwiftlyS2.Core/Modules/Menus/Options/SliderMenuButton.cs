@@ -23,7 +23,7 @@ internal class SliderMenuButton : IOption
     public bool Visible => true;
     public bool Enabled => true;
 
-    public SliderMenuButton(string text, float min = 0, float max = 10, float defaultValue = 5, float step = 1, Action<IPlayer, float>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public SliderMenuButton(string text, float min = 0, float max = 10, float defaultValue = 5, float step = 1, Action<IPlayer, float>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Min = min;
@@ -32,9 +32,10 @@ internal class SliderMenuButton : IOption
         Step = step;
         OnChange = onChange;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
-    public SliderMenuButton(string text, float min, float max, float defaultValue, float step, Action<IPlayer, IOption, float>? onChange, IMenuTextSize size = IMenuTextSize.Medium)
+    public SliderMenuButton(string text, float min, float max, float defaultValue, float step, Action<IPlayer, IOption, float>? onChange, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Min = min;
@@ -43,6 +44,7 @@ internal class SliderMenuButton : IOption
         Step = step;
         OnChangeWithOption = onChange;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
     public bool ShouldShow(IPlayer player)

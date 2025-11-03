@@ -559,7 +559,7 @@ public class TestPlugin : BasePlugin
   {
     var player = context.Sender!;
 
-    IMenu settingsMenu = Core.Menus.CreateMenu("Settings");
+    IMenu settingsMenu = Core.Menus.CreateMenu("MenuTest");
 
     settingsMenu.Builder.Design.MaxVisibleItems(5);
 
@@ -608,6 +608,7 @@ public class TestPlugin : BasePlugin
     settingsMenu.Builder.AddText("7. Text");
     settingsMenu.Builder.AddText("8. Text");
     settingsMenu.Builder.AddText("9. Text");
+    settingsMenu.Builder.AddSeparator();
     // TODO: Fix ApplyHorizontalStyle - HTML tags get truncated incorrectly
     // Input: <font color='red'><b><garbage>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</garbage></b></font>
     // With ScrollLeftFade(26f) outputs: <font color='red'><b><garb
@@ -615,6 +616,7 @@ public class TestPlugin : BasePlugin
     // settingsMenu.Builder.AddText("<font color='red'><b><garbage>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</garbage></b></font>", overflowStyle: MenuHorizontalStyle.ScrollLeftFade(26f));
     settingsMenu.Builder.AddText("123456789012345678901234567890");
     settingsMenu.Builder.AddText("一二三四五六七八九十一二三四五六七八九十");
+    settingsMenu.Builder.AddSeparator();
     // settingsMenu.Builder.AddText("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     settingsMenu.Builder.AddText("Swiftlys2 向这广袤世界致以温柔问候", overflowStyle: MenuHorizontalStyle.ScrollRightLoop(26f, 8));
     settingsMenu.Builder.AddText("Swiftlys2 からこの広大なる世界へ温かい挨拶を");
@@ -626,9 +628,9 @@ public class TestPlugin : BasePlugin
     settingsMenu.Builder.AddSeparator();
     settingsMenu.Builder.AddAsyncButton("AsyncButton|AsyncButton|AsyncButton", async (p) => await Task.Delay(2000));
     settingsMenu.Builder.AddButton("Button|Button|Button|Button", (p) => { });
-    settingsMenu.Builder.AddChoice("Choice|Choice|Choice|Choice", ["Option 1", "Option 2", "Option 3"], "Option 1", (p, value) => { });
-    settingsMenu.Builder.AddProgressBar("ProgressBar|ProgressBar|ProgressBar", () => 0.5f);
-    settingsMenu.Builder.AddSlider("Slider|Slider|Slider|Slider", 0f, 100f, 0f, 1f, (p, value) => { });
+    settingsMenu.Builder.AddChoice("Choice|Choice|Choice|Choice", ["Option 1", "Option 2", "Option 3"], "Option 1", (p, value) => { }, overflowStyle: MenuHorizontalStyle.TruncateEnd(10f));
+    settingsMenu.Builder.AddProgressBar("ProgressBar|ProgressBar|ProgressBar", () => 0.5f, overflowStyle: MenuHorizontalStyle.ScrollRightFade(20f, 12));
+    settingsMenu.Builder.AddSlider("Slider|Slider|Slider|Slider", 0f, 100f, 0f, 1f, (p, value) => { }, overflowStyle: MenuHorizontalStyle.ScrollRightLoop(8f, 12));
     // settingsMenu.Builder.AddSubmenu("Submenu");
     settingsMenu.Builder.AddToggle("Toggle|Toggle|Toggle|Toggle", true, (p, value) => { });
     settingsMenu.Builder.AddSeparator();
