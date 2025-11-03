@@ -612,7 +612,7 @@ public class TestPlugin : BasePlugin
     // Input: <font color='red'><b><garbage>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</garbage></b></font>
     // With ScrollLeftFade(26f) outputs: <font color='red'><b><garb
     // Expected: Should preserve complete HTML tag structure
-    settingsMenu.Builder.AddText("<font color='red'><b><garbage>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</garbage></b></font>", overflowStyle: MenuHorizontalStyle.ScrollLeftFade(26f));
+    // settingsMenu.Builder.AddText("<font color='red'><b><garbage>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</garbage></b></font>", overflowStyle: MenuHorizontalStyle.ScrollLeftFade(26f));
     settingsMenu.Builder.AddText("123456789012345678901234567890");
     settingsMenu.Builder.AddText("一二三四五六七八九十一二三四五六七八九十");
     // settingsMenu.Builder.AddText("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");

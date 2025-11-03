@@ -435,10 +435,10 @@ internal partial class Menu : IMenu
         {
             MenuHorizontalOverflowStyle.TruncateEnd => TruncateTextEnd(text, activeStyle.Value.MaxWidth),
             MenuHorizontalOverflowStyle.TruncateBothEnds => TruncateTextBothEnds(text, activeStyle.Value.MaxWidth),
-            MenuHorizontalOverflowStyle.ScrollLeftFade => ScrollTextWithFade(text, activeStyle.Value.MaxWidth, true),
-            MenuHorizontalOverflowStyle.ScrollRightFade => ScrollTextWithFade(text, activeStyle.Value.MaxWidth, false),
-            MenuHorizontalOverflowStyle.ScrollLeftLoop => ScrollTextWithLoop($"{text.TrimEnd()} ", activeStyle.Value.MaxWidth, true),
-            MenuHorizontalOverflowStyle.ScrollRightLoop => ScrollTextWithLoop($" {text.TrimStart()}", activeStyle.Value.MaxWidth, false),
+            MenuHorizontalOverflowStyle.ScrollLeftFade => ScrollTextWithFade(text, activeStyle.Value.MaxWidth, true, activeStyle),
+            MenuHorizontalOverflowStyle.ScrollRightFade => ScrollTextWithFade(text, activeStyle.Value.MaxWidth, false, activeStyle),
+            MenuHorizontalOverflowStyle.ScrollLeftLoop => ScrollTextWithLoop($"{text.TrimEnd()} ", activeStyle.Value.MaxWidth, true, activeStyle),
+            MenuHorizontalOverflowStyle.ScrollRightLoop => ScrollTextWithLoop($" {text.TrimStart()}", activeStyle.Value.MaxWidth, false, activeStyle),
             _ => text
         };
     }
@@ -462,14 +462,15 @@ internal partial class Menu : IMenu
         return plainText.TakeWhile((c, i) => plainText[..i].Sum(Helper.GetCharWidth) + Helper.GetCharWidth(c) <= maxWidth).Count();
     }
 
-    private int UpdateScrollOffset(string text, bool scrollLeft)
+    private int UpdateScrollOffset(string text, bool scrollLeft, MenuHorizontalStyle? style = null)
     {
         var textKey = $"{text}_{scrollLeft}";
 
         ScrollOffsets.TryAdd(textKey, 0);
         ScrollCallCounts.TryAdd(textKey, 0);
 
-        if (++ScrollCallCounts[textKey] >= (HorizontalStyle?.TicksPerScroll ?? 16))
+        var ticksPerScroll = style?.TicksPerScroll ?? HorizontalStyle?.TicksPerScroll ?? 16;
+        if (++ScrollCallCounts[textKey] >= ticksPerScroll)
         {
             ScrollCallCounts[textKey] = 0;
             ScrollOffsets[textKey] = (ScrollOffsets[textKey] + 1) % text.Length;
@@ -478,7 +479,7 @@ internal partial class Menu : IMenu
         return ScrollOffsets[textKey];
     }
 
-    private string ScrollTextWithFade(string text, float maxWidth, bool scrollLeft)
+    private string ScrollTextWithFade(string text, float maxWidth, bool scrollLeft, MenuHorizontalStyle? style = null)
     {
         var visibleChars = CalculateVisibleChars(text, maxWidth);
         if (visibleChars >= text.Length)
@@ -486,7 +487,7 @@ internal partial class Menu : IMenu
             return text;
         }
 
-        var offset = UpdateScrollOffset(text, scrollLeft);
+        var offset = UpdateScrollOffset(text, scrollLeft, style);
         var startIndex = Math.Clamp(scrollLeft ? offset : text.Length - visibleChars - offset, 0, text.Length - 1);
 
         return new string(Enumerable.Range(0, visibleChars)
@@ -495,7 +496,7 @@ internal partial class Menu : IMenu
             .ToArray());
     }
 
-    private string ScrollTextWithLoop(string text, float maxWidth, bool scrollLeft)
+    private string ScrollTextWithLoop(string text, float maxWidth, bool scrollLeft, MenuHorizontalStyle? style = null)
     {
         var visibleChars = CalculateVisibleChars(text, maxWidth);
         if (visibleChars >= text.Length)
@@ -503,7 +504,7 @@ internal partial class Menu : IMenu
             return text;
         }
 
-        var offset = UpdateScrollOffset(text, scrollLeft);
+        var offset = UpdateScrollOffset(text, scrollLeft, style);
 
         return new string(Enumerable.Range(0, visibleChars)
             .Select(i => scrollLeft ? text[(offset + i) % text.Length] : text[(text.Length - offset + i) % text.Length])
