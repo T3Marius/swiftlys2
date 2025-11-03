@@ -2,7 +2,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace SwiftlyS2.Shared.Services;
 
-public interface IPluginConfigurationService {  
+public interface IPluginConfigurationService
+{
 
   /// <summary>
   /// Get the base path of plugin configuration.
@@ -33,7 +34,15 @@ public interface IPluginConfigurationService {
   /// <param name="name">The name of the configuration file.</param>
   /// <param name="sectionName">The name of the section in the configuration file.</param>
   public IPluginConfigurationService InitializeJsonWithModel<T>(string name, string sectionName) where T : class, new();
-  
+
+  /// <summary>
+  /// Initialize the TOML configuration file with a class as template.
+  /// </summary>
+  /// <typeparam name="T">The type of the configuration model.</typeparam>
+  /// <param name="name">The name of the configuration file.</param>
+  /// <param name="sectionName">The name of the section in the configuration file.</param>
+  public IPluginConfigurationService InitializeTomlWithModel<T>(string name, string sectionName) where T : class, new();
+
   /// <summary>
   /// Configure the internal configuration manager.
   /// </summary>
