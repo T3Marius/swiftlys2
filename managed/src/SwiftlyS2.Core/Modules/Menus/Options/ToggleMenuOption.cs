@@ -1,4 +1,4 @@
-﻿using SwiftlyS2.Core.Menus;
+using SwiftlyS2.Core.Menus;
 using SwiftlyS2.Shared.Menus;
 using SwiftlyS2.Shared.Players;
 
@@ -17,24 +17,27 @@ internal class ToggleMenuOption : IOption
     public IMenuTextSize Size { get; set; }
     public bool CloseOnSelect { get; set; }
     public IMenu? Menu { get; set; }
+    public MenuHorizontalStyle? OverflowStyle { get; init; }
 
     public bool Visible => true;
     public bool Enabled => true;
 
-    public ToggleMenuOption(string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public ToggleMenuOption(string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Value = defaultValue;
         OnToggle = onToggle;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
-    public ToggleMenuOption(string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium)
+    public ToggleMenuOption(string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Value = defaultValue;
         OnToggleWithOption = onToggle;
         Size = size;
+        OverflowStyle = overflowStyle;
     }
 
     public bool ShouldShow(IPlayer player)
@@ -53,12 +56,13 @@ internal class ToggleMenuOption : IOption
 
         var status = Value ? "<font color='#008000'>✔</font>" : "<font color='#FF0000'>✘</font>";
 
+        var text = (Menu as Menus.Menu)?.ApplyHorizontalStyle(Text, OverflowStyle) ?? Text;
         if (!CanInteract(player))
         {
-            return $"<font class='{sizeClass}' color='grey'>{Text}: {status}/</font>";
+            return $"<font class='{sizeClass}' color='grey'>{text}: {status}/</font>";
         }
 
-        return $"<font class='{sizeClass}'>{Text}: {status}</font>";
+        return $"<font class='{sizeClass}'>{text}: {status}</font>";
     }
 
     public IMenuTextSize GetTextSize()

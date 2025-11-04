@@ -47,6 +47,9 @@ internal class EventSubscriber : IEventSubscriber, IDisposable
   public event EventDelegates.OnEntityTakeDamage? OnEntityTakeDamage;
   public event EventDelegates.OnPrecacheResource? OnPrecacheResource;
   public event EventDelegates.OnEntityTouchHook? OnEntityTouchHook;
+  public event EventDelegates.OnEntityStartTouch? OnEntityStartTouch;
+  public event EventDelegates.OnEntityTouch? OnEntityTouch;
+  public event EventDelegates.OnEntityEndTouch? OnEntityEndTouch;
   public event EventDelegates.OnItemServicesCanAcquireHook? OnItemServicesCanAcquireHook;
   public event EventDelegates.OnWeaponServicesCanUseHook? OnWeaponServicesCanUseHook;
   public event EventDelegates.OnConsoleOutput? OnConsoleOutput;
@@ -344,6 +347,7 @@ internal class EventSubscriber : IEventSubscriber, IDisposable
     }
   }
 
+  [Obsolete("InvokeOnEntityTouchHook is deprecated. Use InvokeOnEntityStartTouch, InvokeOnEntityTouch, or InvokeOnEntityEndTouch instead.")]
   public void InvokeOnEntityTouchHook(OnEntityTouchHookEvent @event)
   {
     try
@@ -359,6 +363,60 @@ internal class EventSubscriber : IEventSubscriber, IDisposable
     finally
     {
       _Profiler.StopRecording("Event::OnEntityTouchHook");
+    }
+  }
+
+  public void InvokeOnEntityStartTouch(OnEntityStartTouchEvent @event)
+  {
+    try
+    {
+      if (OnEntityStartTouch == null) return;
+      _Profiler.StartRecording("Event::OnEntityStartTouch");
+      OnEntityStartTouch?.Invoke(@event);
+    }
+    catch (Exception e)
+    {
+      _Logger.LogError(e, "Error invoking OnEntityStartTouch.");
+    }
+    finally
+    {
+      _Profiler.StopRecording("Event::OnEntityStartTouch");
+    }
+  }
+
+  public void InvokeOnEntityTouch(OnEntityTouchEvent @event)
+  {
+    try
+    {
+      if (OnEntityTouch == null) return;
+      _Profiler.StartRecording("Event::OnEntityTouch");
+      OnEntityTouch?.Invoke(@event);
+    }
+    catch (Exception e)
+    {
+      _Logger.LogError(e, "Error invoking OnEntityTouch.");
+    }
+    finally
+    {
+      _Profiler.StopRecording("Event::OnEntityTouch");
+    }
+  }
+
+  public void InvokeOnEntityEndTouch(OnEntityEndTouchEvent @event)
+  {
+    try
+    {
+      if (OnEntityEndTouch == null) return;
+      _Profiler.StartRecording("Event::OnEntityEndTouch");
+      OnEntityEndTouch?.Invoke(@event);
+    }
+    catch (Exception e)
+    {
+      _Logger.LogError(e, "Error invoking OnEntityEndTouch.");
+    }
+    finally
+    {
+      _Profiler.StopRecording("Event::OnEntityEndTouch");
     }
   }
 

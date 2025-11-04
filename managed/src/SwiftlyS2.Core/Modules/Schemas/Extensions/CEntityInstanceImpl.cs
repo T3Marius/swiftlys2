@@ -75,6 +75,21 @@ internal partial class CEntityInstanceImpl : CEntityInstance {
     }
   }
 
+  public void SetTransmitState( bool transmitting , int playerId ) {
+    NativePlayer.ShouldBlockTransmitEntity(playerId, (int)Index, transmitting);
+
+  }
+
+  public void SetTransmitState( bool transmitting )
+  {
+    NativePlayerManager.ShouldBlockTransmitEntity((int)Index, transmitting);
+  }
+  
+  public bool IsTransmitting( int playerId )
+  {
+    return NativePlayer.IsTransmitEntityBlocked(playerId, (int)Index);
+  }
+
   public void DispatchSpawn(CEntityKeyValues? entityKV = null) {
     NativeEntitySystem.Spawn(Address, entityKV?.Address ?? nint.Zero);
   }

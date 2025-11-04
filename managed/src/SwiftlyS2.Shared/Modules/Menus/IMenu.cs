@@ -175,7 +175,8 @@ public interface IMenu
     /// Updates the menu display with current state and options.
     /// </summary>
     /// <param name="player">The player to re-render the menu for.</param>
-    public void Rerender(IPlayer player);
+    /// <param name="updateDisplayText">True to update display text, false to render without updating display text.</param>
+    public void Rerender(IPlayer player, bool updateDisplayText = false);
 
     /// <summary>
     /// Determines whether the currently selected option is selectable for the specified player.
@@ -198,4 +199,186 @@ public interface IMenu
     /// <param name="player">The player to set the freeze state for.</param>
     /// <param name="freeze">True to freeze the player, false to unfreeze.</param>
     public void SetFreezeState(IPlayer player, bool freeze);
+
+    /// <summary>
+    /// Gets or sets the vertical scroll style for the menu navigation.
+    /// Determines how the selection arrow moves when navigating through options.
+    /// </summary>
+    public MenuVerticalScrollStyle VerticalScrollStyle { get; set; }
+
+    /// <summary>
+    /// Gets or sets the horizontal text display style for menu options.
+    /// Controls maximum text width and overflow behavior. Null means no horizontal restrictions.
+    /// </summary>
+    public MenuHorizontalStyle? HorizontalStyle { get; set; }
+}
+
+/// <summary>
+/// Defines the vertical scroll behavior style for menu navigation.
+/// </summary>
+public enum MenuVerticalScrollStyle
+{
+    /// <summary>
+    /// Linear vertical scrolling mode where the selection indicator moves within the visible area.
+    /// Content displays linearly without wrapping, indicator adjusts position as selection changes.
+    /// </summary>
+    LinearScroll,
+
+    /// <summary>
+    /// Attempts to always keep the selection indicator at the preset center position.
+    /// Content scrolls vertically in a circular manner around the center, allowing wrap-around display (e.g., 7 8 1 2 3).
+    /// </summary>
+    CenterFixed,
+
+    /// <summary>
+    /// Waits for the selection indicator to reach the preset center, then maintains it there.
+    /// Indicator adjusts position at the edges but stays centered during mid-range vertical navigation.
+    /// </summary>
+    WaitingCenter
+}
+
+/// <summary>
+/// Defines the horizontal text overflow behavior for menu options.
+/// </summary>
+public enum MenuHorizontalOverflowStyle
+{
+    /// <summary>
+    /// Truncates text at the end when it exceeds the maximum width, keeping the start portion.
+    /// Example: "Very Long Text Item" becomes "Very Long..."
+    /// </summary>
+    TruncateEnd,
+
+    /// <summary>
+    /// Truncates text from both ends when it exceeds the maximum width, keeping the middle portion.
+    /// Example: "Very Long Text Item" becomes "Long Text"
+    /// </summary>
+    TruncateBothEnds,
+
+    /// <summary>
+    /// Scrolls text to the left with fade-out effect.
+    /// Text scrolls left and gradually fades out at the left edge.
+    /// </summary>
+    ScrollLeftFade,
+
+    /// <summary>
+    /// Scrolls text to the right with fade-out effect.
+    /// Text scrolls right and gradually fades out at the right edge.
+    /// </summary>
+    ScrollRightFade,
+
+    /// <summary>
+    /// Scrolls text to the left in a continuous loop.
+    /// Text exits from the left edge and re-enters from the right edge.
+    /// </summary>
+    ScrollLeftLoop,
+
+    /// <summary>
+    /// Scrolls text to the right in a continuous loop.
+    /// Text exits from the right edge and re-enters from the left edge.
+    /// </summary>
+    ScrollRightLoop
+}
+
+/// <summary>
+/// Horizontal text display style configuration for menu options.
+/// </summary>
+public readonly record struct MenuHorizontalStyle
+{
+    private readonly float maxWidth;
+
+    /// <summary>
+    /// The maximum display width for menu option text in relative units.
+    /// </summary>
+    public required float MaxWidth
+    {
+        get => maxWidth;
+        init
+        {
+            if (value < 1f)
+            {
+                Spectre.Console.AnsiConsole.WriteException(new ArgumentOutOfRangeException(nameof(MaxWidth), $"MaxWidth: value {value:F3} is out of range."));
+                maxWidth = 1f;
+            }
+            else
+            {
+                maxWidth = value;
+            }
+        }
+    }
+
+    /// <summary>
+    /// The overflow behavior to apply when text exceeds MaxWidth.
+    /// </summary>
+    public MenuHorizontalOverflowStyle OverflowStyle { get; init; }
+
+    /// <summary>
+    /// Number of ticks before scrolling by one character.
+    /// </summary>
+    public int TicksPerScroll { get; init; }
+
+    /// <summary>
+    /// Number of ticks to pause after completing one scroll loop.
+    /// </summary>
+    public int PauseTicks { get; init; }
+
+    public MenuHorizontalStyle()
+    {
+        OverflowStyle = MenuHorizontalOverflowStyle.TruncateEnd;
+        TicksPerScroll = 16;
+        PauseTicks = 0;
+    }
+
+    /// <summary>
+    /// Creates a horizontal style with default behavior.
+    /// </summary>
+    public static MenuHorizontalStyle Default =>
+        new() { MaxWidth = 26, OverflowStyle = MenuHorizontalOverflowStyle.TruncateEnd };
+
+    /// <summary>
+    /// Creates a horizontal style with truncate end behavior.
+    /// </summary>
+    public static MenuHorizontalStyle TruncateEnd(float maxWidth) =>
+        new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.TruncateEnd };
+
+    /// <summary>
+    /// Creates a horizontal style with truncate both ends behavior.
+    /// </summary>
+    public static MenuHorizontalStyle TruncateBothEnds(float maxWidth) =>
+        new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.TruncateBothEnds };
+
+    /// <summary>
+    /// Creates a horizontal style with scroll left fade behavior.
+    /// </summary>
+    /// <param name="maxWidth">Maximum display width for text.</param>
+    /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
+    /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
+    public static MenuHorizontalStyle ScrollLeftFade(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+        new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollLeftFade, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
+
+    /// <summary>
+    /// Creates a horizontal style with scroll right fade behavior.
+    /// </summary>
+    /// <param name="maxWidth">Maximum display width for text.</param>
+    /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
+    /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
+    public static MenuHorizontalStyle ScrollRightFade(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+        new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollRightFade, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
+
+    /// <summary>
+    /// Creates a horizontal style with scroll left loop behavior.
+    /// </summary>
+    /// <param name="maxWidth">Maximum display width for text.</param>
+    /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
+    /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
+    public static MenuHorizontalStyle ScrollLeftLoop(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+        new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollLeftLoop, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
+
+    /// <summary>
+    /// Creates a horizontal style with scroll right loop behavior.
+    /// </summary>
+    /// <param name="maxWidth">Maximum display width for text.</param>
+    /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
+    /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
+    public static MenuHorizontalStyle ScrollRightLoop(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+        new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollRightLoop, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
 }

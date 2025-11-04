@@ -103,10 +103,23 @@ public class EventDelegates
   /// </summary>
   public delegate void OnPrecacheResource(IOnPrecacheResourceEvent @event);
 
+  [Obsolete("OnEntityTouchHook is deprecated. Use OnEntityStartTouch, OnEntityTouch, or OnEntityEndTouch instead.")]
+  public delegate void OnEntityTouchHook(IOnEntityTouchHookEvent @event);
+
+  /// <summary>
+  /// Called when an entity starts touching another entity.
+  /// </summary>
+  public delegate void OnEntityStartTouch(IOnEntityStartTouchEvent @event);
+
   /// <summary>
   /// Called when an entity is touching another entity.
   /// </summary>
-  public delegate void OnEntityTouchHook(IOnEntityTouchHookEvent @event);
+  public delegate void OnEntityTouch(IOnEntityTouchEvent @event);
+
+  /// <summary>
+  /// Called when an entity ends touching another entity.
+  /// </summary>
+  public delegate void OnEntityEndTouch(IOnEntityEndTouchEvent @event);
 
   /// <summary>
   /// Called when an item services can acquire hook is triggered.

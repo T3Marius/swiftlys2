@@ -2,18 +2,20 @@ using System.Buffers;
 using System.Text;
 using Spectre.Console;
 using SwiftlyS2.Shared.Natives;
+using SwiftlyS2.Shared.SchemaDefinitions;
 
 namespace SwiftlyS2.Core.Natives;
 
 internal static class GameFunctions
 {
-    public static unsafe delegate* unmanaged<CTakeDamageInfo*, nint, nint, nint, Vector*, Vector*, float, int, int, void*, void> pCTakeDamageInfo_Constructor;
-    public static unsafe delegate* unmanaged<nint, Ray_t*, Vector, Vector, CTraceFilter*, CGameTrace*, void> pTraceShape;
-    public static unsafe delegate* unmanaged<Vector, Vector, BBox_t, CTraceFilter*, CGameTrace*, void> pTracePlayerBBox;
-    public static unsafe delegate* unmanaged<nint, IntPtr, void> pSetModel;
-    public static unsafe delegate* unmanaged<nint, nint, byte, byte, byte, byte, void> pSetPlayerControllerPawn;
-    public static unsafe delegate* unmanaged<nint, nint, float, void> pSetOrAddAttribute;
-    public static unsafe delegate* unmanaged<int, nint, nint> pGetWeaponCSDataFromKey;
+    public static unsafe delegate* unmanaged< CTakeDamageInfo*, nint, nint, nint, Vector*, Vector*, float, int, int, void*, void > pCTakeDamageInfo_Constructor;
+    public static unsafe delegate* unmanaged< nint, Ray_t*, Vector, Vector, CTraceFilter*, CGameTrace*, void > pTraceShape;
+    public static unsafe delegate* unmanaged< Vector, Vector, BBox_t, CTraceFilter*, CGameTrace*, void > pTracePlayerBBox;
+    public static unsafe delegate* unmanaged< nint, IntPtr, void > pSetModel;
+    public static unsafe delegate* unmanaged< nint, nint, byte, byte, byte, byte, void > pSetPlayerControllerPawn;
+    public static unsafe delegate* unmanaged< nint, nint, float, void > pSetOrAddAttribute;
+    public static unsafe delegate* unmanaged< int, nint, nint > pGetWeaponCSDataFromKey;
+    public static unsafe delegate* unmanaged< nint, uint, nint, byte, CUtlSymbolLarge, byte, int, nint, nint, void > pDispatchParticleEffect;
     public static int TeleportOffset => NativeOffsets.Fetch("CBaseEntity::Teleport");
     public static int CommitSuicideOffset => NativeOffsets.Fetch("CBasePlayerPawn::CommitSuicide");
     public static int GetSkeletonInstanceOffset => NativeOffsets.Fetch("CGameSceneNode::GetSkeletonInstance");
@@ -31,17 +33,42 @@ internal static class GameFunctions
     {
         unsafe
         {
-            pCTakeDamageInfo_Constructor = (delegate* unmanaged<CTakeDamageInfo*, nint, nint, nint, Vector*, Vector*, float, int, int, void*, void>)NativeSignatures.Fetch("CTakeDamageInfo::Constructor");
-            pTraceShape = (delegate* unmanaged<nint, Ray_t*, Vector, Vector, CTraceFilter*, CGameTrace*, void>)NativeSignatures.Fetch("TraceShape");
-            pTracePlayerBBox = (delegate* unmanaged<Vector, Vector, BBox_t, CTraceFilter*, CGameTrace*, void>)NativeSignatures.Fetch("TracePlayerBBox");
-            pSetModel = (delegate* unmanaged<nint, IntPtr, void>)NativeSignatures.Fetch("CBaseModelEntity::SetModel");
-            pSetPlayerControllerPawn = (delegate* unmanaged<nint, nint, byte, byte, byte, byte, void>)NativeSignatures.Fetch("CBasePlayerController::SetPawn");
-            pSetOrAddAttribute = (delegate* unmanaged<nint, IntPtr, float, void>)NativeSignatures.Fetch("CAttributeList::SetOrAddAttributeValueByName");
-            pGetWeaponCSDataFromKey = (delegate* unmanaged<int, nint, nint>)NativeSignatures.Fetch("GetWeaponCSDataFromKey");
+            pCTakeDamageInfo_Constructor = (delegate* unmanaged< CTakeDamageInfo*, nint, nint, nint, Vector*, Vector*, float, int, int, void*, void >)NativeSignatures.Fetch("CTakeDamageInfo::Constructor");
+            pTraceShape = (delegate* unmanaged< nint, Ray_t*, Vector, Vector, CTraceFilter*, CGameTrace*, void >)NativeSignatures.Fetch("TraceShape");
+            pTracePlayerBBox = (delegate* unmanaged< Vector, Vector, BBox_t, CTraceFilter*, CGameTrace*, void >)NativeSignatures.Fetch("TracePlayerBBox");
+            pSetModel = (delegate* unmanaged< nint, IntPtr, void >)NativeSignatures.Fetch("CBaseModelEntity::SetModel");
+            pSetPlayerControllerPawn = (delegate* unmanaged< nint, nint, byte, byte, byte, byte, void >)NativeSignatures.Fetch("CBasePlayerController::SetPawn");
+            pSetOrAddAttribute = (delegate* unmanaged< nint, IntPtr, float, void >)NativeSignatures.Fetch("CAttributeList::SetOrAddAttributeValueByName");
+            pGetWeaponCSDataFromKey = (delegate* unmanaged< int, nint, nint >)NativeSignatures.Fetch("GetWeaponCSDataFromKey");
+            pDispatchParticleEffect = (delegate* unmanaged< nint, uint, nint, byte, CUtlSymbolLarge, byte, int, nint, nint, void >)NativeSignatures.Fetch("DispatchParticleEffect");
         }
     }
 
-    public unsafe static nint GetWeaponCSDataFromKey(int unknown, string key)
+    public unsafe static void DispatchParticleEffect( string particleName, uint attachmentType, nint entity, byte attachmentPoint, CUtlSymbolLarge attachmentName, bool resetAllParticlesOnEntity, int splitScreenSlot, CRecipientFilter filter )
+    {
+        try
+        {
+            unsafe
+            {
+                var pool = ArrayPool<byte>.Shared;
+                var nameLength = Encoding.UTF8.GetByteCount(particleName);
+                var nameBuffer = pool.Rent(nameLength + 1);
+                _ = Encoding.UTF8.GetBytes(particleName, nameBuffer);
+                nameBuffer[nameLength] = 0;
+                fixed (byte* pParticleName = nameBuffer)
+                {
+                    pDispatchParticleEffect((nint)pParticleName, attachmentType, entity, attachmentPoint, attachmentName, (byte)(resetAllParticlesOnEntity ? 1 : 0), splitScreenSlot, (nint)(&filter), IntPtr.Zero);
+                    pool.Return(nameBuffer);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            AnsiConsole.WriteException(e);
+        }
+    }
+
+    public unsafe static nint GetWeaponCSDataFromKey( int unknown, string key )
     {
         try
         {
@@ -65,14 +92,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static nint FindPickerEntity(nint handle, nint controller)
+    public unsafe static nint FindPickerEntity( nint handle, nint controller )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)handle;
-                var pFindPickerEntity = (delegate* unmanaged<nint, nint, nint, nint>)ppVTable[0][FindPickerEntityOffset];
+                var pFindPickerEntity = (delegate* unmanaged< nint, nint, nint, nint >)ppVTable[0][FindPickerEntityOffset];
                 return pFindPickerEntity(handle, controller, IntPtr.Zero);
             }
         }
@@ -83,14 +110,14 @@ internal static class GameFunctions
         return 0;
     }
 
-    public unsafe static nint GetSkeletonInstance(nint handle)
+    public unsafe static nint GetSkeletonInstance( nint handle )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)handle;
-                var pSkeletonInstance = (delegate* unmanaged<nint, nint>)ppVTable[0][GetSkeletonInstanceOffset];
+                var pSkeletonInstance = (delegate* unmanaged< nint, nint >)ppVTable[0][GetSkeletonInstanceOffset];
                 return pSkeletonInstance(handle);
             }
         }
@@ -101,14 +128,14 @@ internal static class GameFunctions
         return 0;
     }
 
-    public unsafe static void PawnCommitSuicide(nint pPawn, bool bExplode, bool bForce)
+    public unsafe static void PawnCommitSuicide( nint pPawn, bool bExplode, bool bForce )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pPawn;
-                var pCommitSuicide = (delegate* unmanaged<nint, byte, byte, void>)ppVTable[0][CommitSuicideOffset];
+                var pCommitSuicide = (delegate* unmanaged< nint, byte, byte, void >)ppVTable[0][CommitSuicideOffset];
                 pCommitSuicide(pPawn, (byte)(bExplode ? 1 : 0), (byte)(bForce ? 1 : 0));
             }
         }
@@ -118,7 +145,7 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void SetPlayerControllerPawn(nint pController, nint pPawn, bool b1, bool b2, bool b3, bool b4)
+    public unsafe static void SetPlayerControllerPawn( nint pController, nint pPawn, bool b1, bool b2, bool b3, bool b4 )
     {
         try
         {
@@ -133,7 +160,7 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void SetModel(nint pEntity, string model)
+    public unsafe static void SetModel( nint pEntity, string model )
     {
         try
         {
@@ -169,7 +196,7 @@ internal static class GameFunctions
             unsafe
             {
                 void*** ppVTable = (void***)pEntity;
-                var pTeleport = (delegate* unmanaged<nint, Vector*, QAngle*, Vector*, void>)ppVTable[0][TeleportOffset];
+                var pTeleport = (delegate* unmanaged< nint, Vector*, QAngle*, Vector*, void >)ppVTable[0][TeleportOffset];
                 pTeleport(pEntity, vecPosition, vecAngle, vecVelocity);
             }
         }
@@ -248,14 +275,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void CCSPlayer_ItemServices_RemoveWeapons(nint pThis)
+    public unsafe static void CCSPlayer_ItemServices_RemoveWeapons( nint pThis )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pThis;
-                var pRemoveWeapons = (delegate* unmanaged<nint, void>)ppVTable[0][RemoveWeaponsOffset];
+                var pRemoveWeapons = (delegate* unmanaged< nint, void >)ppVTable[0][RemoveWeaponsOffset];
                 pRemoveWeapons(pThis);
             }
         }
@@ -265,14 +292,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static nint CCSPlayer_ItemServices_GiveNamedItem(nint pThis, string name)
+    public unsafe static nint CCSPlayer_ItemServices_GiveNamedItem( nint pThis, string name )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pThis;
-                var pGiveNamedItem = (delegate* unmanaged<nint, nint, nint>)ppVTable[0][GiveNamedItemOffset];
+                var pGiveNamedItem = (delegate* unmanaged< nint, nint, nint >)ppVTable[0][GiveNamedItemOffset];
                 var pool = ArrayPool<byte>.Shared;
                 var nameLength = Encoding.UTF8.GetByteCount(name);
                 var nameBuffer = pool.Rent(nameLength + 1);
@@ -291,14 +318,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void CCSPlayer_ItemServices_DropActiveItem(nint pThis, Vector momentum)
+    public unsafe static void CCSPlayer_ItemServices_DropActiveItem( nint pThis, Vector momentum )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pThis;
-                var pDropActiveItem = (delegate* unmanaged<nint, Vector*, void>)ppVTable[0][DropActiveItemOffset];
+                var pDropActiveItem = (delegate* unmanaged< nint, Vector*, void >)ppVTable[0][DropActiveItemOffset];
                 pDropActiveItem(pThis, &momentum);
             }
         }
@@ -308,14 +335,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void CCSPlayer_WeaponServices_DropWeapon(nint pThis, nint pWeapon)
+    public unsafe static void CCSPlayer_WeaponServices_DropWeapon( nint pThis, nint pWeapon )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pThis;
-                var pDropWeapon = (delegate* unmanaged<nint, nint, void>)ppVTable[0][DropWeaponOffset];
+                var pDropWeapon = (delegate* unmanaged< nint, nint, void >)ppVTable[0][DropWeaponOffset];
                 pDropWeapon(pThis, pWeapon);
             }
         }
@@ -325,14 +352,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void CCSPlayer_WeaponServices_SelectWeapon(nint pThis, nint pWeapon)
+    public unsafe static void CCSPlayer_WeaponServices_SelectWeapon( nint pThis, nint pWeapon )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pThis;
-                var pSelectWeapon = (delegate* unmanaged<nint, nint, void>)ppVTable[0][SelectWeaponOffset];
+                var pSelectWeapon = (delegate* unmanaged< nint, nint, void >)ppVTable[0][SelectWeaponOffset];
                 pSelectWeapon(pThis, pWeapon);
             }
         }
@@ -342,7 +369,7 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void CEntityResourceManifest_AddResource(nint pThis, string path)
+    public unsafe static void CEntityResourceManifest_AddResource( nint pThis, string path )
     {
         try
         {
@@ -354,7 +381,7 @@ internal static class GameFunctions
                 Encoding.UTF8.GetBytes(path, pathBuffer);
                 pathBuffer[pathLength] = 0;
                 void*** ppVTable = (void***)pThis;
-                var pAddResource = (delegate* unmanaged<nint, nint, void>)ppVTable[0][AddResourceOffset];
+                var pAddResource = (delegate* unmanaged< nint, nint, void >)ppVTable[0][AddResourceOffset];
                 fixed (byte* pPath = pathBuffer)
                 {
                     pAddResource(pThis, (IntPtr)pPath);
@@ -368,7 +395,7 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void SetOrAddAttribute(nint handle, string name, float value)
+    public unsafe static void SetOrAddAttribute( nint handle, string name, float value )
     {
         try
         {
@@ -392,14 +419,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void CBaseEntity_CollisionRulesChanged(nint pThis)
+    public unsafe static void CBaseEntity_CollisionRulesChanged( nint pThis )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pThis;
-                var pCollisionRulesChanged = (delegate* unmanaged<nint, void>)ppVTable[0][CollisionRulesChangedOffset];
+                var pCollisionRulesChanged = (delegate* unmanaged< nint, void >)ppVTable[0][CollisionRulesChangedOffset];
                 pCollisionRulesChanged(pThis);
             }
         }
@@ -409,14 +436,14 @@ internal static class GameFunctions
         }
     }
 
-    public unsafe static void CCSPlayerController_Respawn(nint pThis)
+    public unsafe static void CCSPlayerController_Respawn( nint pThis )
     {
         try
         {
             unsafe
             {
                 void*** ppVTable = (void***)pThis;
-                var pRespawn = (delegate* unmanaged<nint, void>)ppVTable[0][RespawnOffset];
+                var pRespawn = (delegate* unmanaged< nint, void >)ppVTable[0][RespawnOffset];
                 pRespawn(pThis);
             }
         }

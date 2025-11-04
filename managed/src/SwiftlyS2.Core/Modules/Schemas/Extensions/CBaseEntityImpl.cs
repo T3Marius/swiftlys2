@@ -10,7 +10,7 @@ internal partial class CBaseEntityImpl : CBaseEntity
     {
         get
         {
-            return new CEntitySubclassVDataBaseImpl((nint)NativeSchema.GetVData(_Handle));
+            return new CEntitySubclassVDataBaseImpl(NativeSchema.GetVData(_Handle));
         }
     }
 

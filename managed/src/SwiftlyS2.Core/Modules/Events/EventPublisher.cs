@@ -513,6 +513,7 @@ internal static class EventPublisher
     }
   }
 
+  [Obsolete("InvokeOnEntityTouchHook is deprecated. Use InvokeOnEntityStartTouch, InvokeOnEntityTouch, or InvokeOnEntityEndTouch instead.")]
   public static void InvokeOnEntityTouchHook(OnEntityTouchHookEvent @event)
   {
     if (_subscribers.Count == 0) return;
@@ -521,6 +522,60 @@ internal static class EventPublisher
       foreach (var subscriber in _subscribers)
       {
         subscriber.InvokeOnEntityTouchHook(@event);
+      }
+      return;
+    }
+    catch (Exception e)
+    {
+      AnsiConsole.WriteException(e);
+      return;
+    }
+  }
+
+  public static void InvokeOnEntityStartTouch(OnEntityStartTouchEvent @event)
+  {
+    if (_subscribers.Count == 0) return;
+    try
+    {
+      foreach (var subscriber in _subscribers)
+      {
+        subscriber.InvokeOnEntityStartTouch(@event);
+      }
+      return;
+    }
+    catch (Exception e)
+    {
+      AnsiConsole.WriteException(e);
+      return;
+    }
+  }
+
+  public static void InvokeOnEntityTouch(OnEntityTouchEvent @event)
+  {
+    if (_subscribers.Count == 0) return;
+    try
+    {
+      foreach (var subscriber in _subscribers)
+      {
+        subscriber.InvokeOnEntityTouch(@event);
+      }
+      return;
+    }
+    catch (Exception e)
+    {
+      AnsiConsole.WriteException(e);
+      return;
+    }
+  }
+
+  public static void InvokeOnEntityEndTouch(OnEntityEndTouchEvent @event)
+  {
+    if (_subscribers.Count == 0) return;
+    try
+    {
+      foreach (var subscriber in _subscribers)
+      {
+        subscriber.InvokeOnEntityEndTouch(@event);
       }
       return;
     }

@@ -6,7 +6,7 @@ public interface IPlayerManagerService
     /// Checks whether a specific player is currently online and connected to the server.
     /// </summary>
     /// <returns>True if the player is online, false otherwise.</returns>
-    bool IsPlayerOnline(int playerid);
+    public bool IsPlayerOnline(int playerid);
 
     /// <summary>
     /// Gets the number of players currently in the game.
@@ -23,17 +23,17 @@ public interface IPlayerManagerService
     /// </summary>
     /// <param name="kind">The type of message display.</param>
     /// <param name="message">The text content to send to players.</param>
-    void SendMessage(MessageType kind, string message);
+    public void SendMessage(MessageType kind, string message);
 
     /// <summary>
     /// Controls whether a specific entity should be blocked from being transmitted/synchronized to clients.
     /// </summary>
-    void ShouldBlockTransmitEntity(int entityid, bool shouldBlockTransmit);
+    public void ShouldBlockTransmitEntity(int entityid, bool shouldBlockTransmit);
 
     /// <summary>
     /// Removes all entity transmission blocks, allowing all previously blocked entities to be transmitted to clients again.
     /// </summary>
-    void ClearAllBlockedTransmitEntities();
+    public void ClearAllBlockedTransmitEntities();
 
     /// <summary>
     /// Retrieves the player associated with the specified player ID.
@@ -41,13 +41,13 @@ public interface IPlayerManagerService
     /// <param name="playerid">The unique identifier of the player to retrieve. Must be a valid player ID.</param>
     /// <returns>An <see cref="IPlayer"/> instance representing the player with the specified ID, or <c>null</c> if no such
     /// player exists.</returns>
-    IPlayer GetPlayer(int playerid);
+    public IPlayer GetPlayer(int playerid);
 
     /// <summary>
     /// Retrieves all players currently online.
     /// </summary>
     /// <returns>An enumerable collection of <see cref="IPlayer"/> instances representing all online players.</returns>
-    IEnumerable<IPlayer> GetAllPlayers();
+    public IEnumerable<IPlayer> GetAllPlayers();
 
     /// <summary>
     /// Finds targetted players based on the provided search criteria.
@@ -56,5 +56,5 @@ public interface IPlayerManagerService
     /// <param name="target">The target player name or identifier.</param>
     /// <param name="searchMode">The search mode to apply.</param>
     /// <returns>A collection of players matching the search criteria.</returns>
-    IEnumerable<IPlayer> FindTargettedPlayers(IPlayer player, string target, TargetSearchMode searchMode);
+    public IEnumerable<IPlayer> FindTargettedPlayers(IPlayer player, string target, TargetSearchMode searchMode);
 }

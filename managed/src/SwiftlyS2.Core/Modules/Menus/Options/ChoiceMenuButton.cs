@@ -1,4 +1,4 @@
-﻿using SwiftlyS2.Core.Menus;
+using SwiftlyS2.Core.Menus;
 using SwiftlyS2.Shared.Menus;
 using SwiftlyS2.Shared.Players;
 using SwiftlyS2.Shared.SchemaDefinitions;
@@ -16,13 +16,14 @@ internal class ChoiceMenuOption : IOption
     public Func<IPlayer, bool>? EnabledCheck { get; set; }
     public IMenuTextSize Size { get; set; }
     public IMenu? Menu { get; set; }
+    public MenuHorizontalStyle? OverflowStyle { get; init; }
 
     public bool Visible => true;
     public bool Enabled => true;
 
     public string SelectedChoice => Choices.Count > 0 ? Choices[SelectedIndex] : "";
 
-    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice = null, Action<IPlayer, string>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice = null, Action<IPlayer, string>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Choices = [.. choices];
@@ -36,9 +37,10 @@ internal class ChoiceMenuOption : IOption
         }
 
         OnChange = onChange;
+        OverflowStyle = overflowStyle;
     }
 
-    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice, Action<IPlayer, IOption, string>? onChange, IMenuTextSize size = IMenuTextSize.Medium)
+    public ChoiceMenuOption(string text, IEnumerable<string> choices, string? defaultChoice, Action<IPlayer, IOption, string>? onChange, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
     {
         Text = text;
         Choices = [.. choices];
@@ -52,6 +54,7 @@ internal class ChoiceMenuOption : IOption
         }
 
         OnChangeWithOption = onChange;
+        OverflowStyle = overflowStyle;
     }
 
     public bool ShouldShow(IPlayer player)
@@ -70,11 +73,12 @@ internal class ChoiceMenuOption : IOption
 
         var choice = $"<font color='{Menu!.RenderColor.ToHex(true)}'>[</font>{SelectedChoice}<font color='{Menu.RenderColor.ToHex(true)}'>]</font>";
 
+        var text = (Menu as Menus.Menu)?.ApplyHorizontalStyle(Text, OverflowStyle) ?? Text;
         if (!CanInteract(player))
         {
-            return $"<font class='{sizeClass}' color='grey'>{Text}: {choice}</font>";
+            return $"<font class='{sizeClass}' color='grey'>{text}: {choice}</font>";
         }
-        return $"<font class='{sizeClass}'>{Text}: {choice}</font>";
+        return $"<font class='{sizeClass}'>{text}: {choice}</font>";
     }
 
     public IMenuTextSize GetTextSize()

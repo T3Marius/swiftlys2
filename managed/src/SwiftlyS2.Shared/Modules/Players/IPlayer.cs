@@ -38,12 +38,18 @@ public interface IPlayer : IEquatable<IPlayer>
     /// Gets the unique identifier for the player.
     /// </summary>
     public int PlayerID { get; }
+
+    /// <summary>
+    /// Gets the slot of the player. Equals to the player ID.
+    /// </summary>
+    public int Slot { get; }
+
     /// <summary>
     /// Sends a message of the specified type to the player.
     /// </summary>
     /// <param name="kind">The type of message to send. Determines how the message is processed or displayed.</param>
     /// <param name="message">The content of the message to send. Cannot be null.</param>
-    void SendMessage(MessageType kind, string message);
+    public void SendMessage(MessageType kind, string message);
     /// <summary>
     /// Whether the client is a bot.
     /// </summary>

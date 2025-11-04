@@ -85,4 +85,39 @@ public static class Helper
   {
     return T.From(ptr);
   }
+
+  /// <summary>
+  /// Estimates the display width of a character based on its type.
+  /// Inspired by: https://github.com/spectreconsole/wcwidth
+  /// </summary>
+  /// <param name="c">The character to measure.</param>
+  /// <returns>The estimated display width in relative units.</returns>
+  public static float GetCharWidth(char c) => c switch
+  {
+    >= '\u4E00' and <= '\u9FFF' => 2.0f, // CJK Unified Ideographs
+    >= '\u3000' and <= '\u303F' => 2.0f, // CJK Symbols and Punctuation
+    >= '\uFF00' and <= '\uFFEF' => 2.0f, // Halfwidth and Fullwidth Forms
+    >= '\uAC00' and <= '\uD7AF' => 2.2f, // Hangul Syllables
+    >= '\u1100' and <= '\u11FF' => 2.2f, // Hangul Jamo
+    >= '\u3130' and <= '\u318F' => 2.2f, // Hangul Compatibility Jamo
+    >= '\u3040' and <= '\u309F' => 2.05f, // Hiragana
+    >= '\u30A0' and <= '\u30FF' => 2.05f, // Katakana
+    >= '\u31F0' and <= '\u31FF' => 2.05f, // Katakana Phonetic Extensions
+    >= 'A' and <= 'Z' => 1.2f,
+    >= 'a' and <= 'z' => 1.0f,
+    >= '0' and <= '9' => 1.0f,
+    ' ' => 0.5f,
+    >= '!' and <= '/' => 0.8f,
+    >= ':' and <= '@' => 0.8f,
+    >= '[' and <= '`' => 0.8f,
+    >= '{' and <= '~' => 0.8f,
+    _ => 1.0f
+  };
+
+  /// <summary>
+  /// Estimates the display width of a text string based on character types.
+  /// </summary>
+  /// <param name="text">The text string to measure.</param>
+  /// <returns>The estimated display width in relative units.</returns>
+  public static float EstimateTextWidth(string text) => text.Sum(GetCharWidth);
 }

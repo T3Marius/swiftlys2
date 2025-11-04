@@ -397,7 +397,7 @@ internal class PluginManager
     return context;
   }
 
-  public void UnloadPlugin(string id)
+  public bool UnloadPlugin(string id)
   {
     var context = _Plugins
       .Where(p => p.Status == PluginStatus.Loaded)
@@ -405,14 +405,15 @@ internal class PluginManager
     if (context == null)
     {
       _Logger.LogWarning("Plugin not found or not loaded: " + id);
-      return;
+      return false;
     }
 
     context.Dispose();
     context.Status = PluginStatus.Unloaded;
+    return true;
   }
 
-  public void LoadPluginById(string id)
+  public bool LoadPluginById(string id)
   {
     var context = _Plugins
       .Where(p => p.Status == PluginStatus.Unloaded)
@@ -433,7 +434,7 @@ internal class PluginManager
       if (context == null)
       {
         _Logger.LogWarning("Plugin not found: " + id);
-        return;
+        return false;
       }
     }
     else
@@ -444,15 +445,22 @@ internal class PluginManager
     }
 
     RebuildSharedServices();
+    return true;
   }
 
   public void ReloadPlugin(string id)
   {
     _Logger.LogInformation("Reloading plugin " + id);
-    UnloadPlugin(id);
-    LoadPluginById(id);
 
-    RebuildSharedServices();
+    if (!UnloadPlugin(id))
+    {
+      return;
+    }
+
+    if (!LoadPluginById(id))
+    {
+      RebuildSharedServices();
+    }
 
     _Logger.LogInformation("Reloaded plugin " + id);
   }

@@ -28,6 +28,7 @@ using BenchmarkDotNet.Toolchains.InProcess.NoEmit;
 using BenchmarkDotNet.Toolchains.InProcess.Emit;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
+using SwiftlyS2.Shared.Menus;
 
 namespace TestPlugin;
 
@@ -110,26 +111,31 @@ public class TestPlugin : BasePlugin
     //   Core.Logger.LogInformation("CommandExecute: {name} with {args}", @event.Command[0], @event.Command.ArgS);
     // };
 
-    Core.Event.OnEntityTouchHook += (@event) =>
-    {
-      switch (@event.TouchType)
-      {
-        case EntityTouchType.StartTouch:
-          Console.WriteLine($"EntityStartTouch: {@event.Entity.Entity?.DesignerName} -> {@event.OtherEntity.Entity?.DesignerName}");
-          break;
-        case EntityTouchType.Touch:
-          break;
-        case EntityTouchType.EndTouch:
-          if (@event.Entity.Entity?.DesignerName != "player" || @event.OtherEntity.Entity?.DesignerName != "player")
-          {
-            return;
-          }
-          var player = @event.Entity.As<CCSPlayerPawn>();
-          var otherPlayer = @event.OtherEntity.As<CCSPlayerPawn>();
-          Console.WriteLine($"EntityEndTouch: {(player.Controller.Value?.PlayerName ?? string.Empty)} -> {(otherPlayer.Controller.Value?.PlayerName ?? string.Empty)}");
-          break;
-      }
-    };
+    // Core.Event.OnEntityStartTouch += (@event) =>
+    // {
+    //   Console.WriteLine($"[New] EntityStartTouch: {@event.Entity.Entity?.DesignerName} -> {@event.OtherEntity.Entity?.DesignerName}");
+    // };
+
+    // Core.Event.OnEntityTouchHook += (@event) =>
+    // {
+    //   switch (@event.TouchType)
+    //   {
+    //     case EntityTouchType.StartTouch:
+    //       Console.WriteLine($"EntityStartTouch: {@event.Entity.Entity?.DesignerName} -> {@event.OtherEntity.Entity?.DesignerName}");
+    //       break;
+    //     case EntityTouchType.Touch:
+    //       break;
+    //     case EntityTouchType.EndTouch:
+    //       if (@event.Entity.Entity?.DesignerName != "player" || @event.OtherEntity.Entity?.DesignerName != "player")
+    //       {
+    //         return;
+    //       }
+    //       var player = @event.Entity.As<CCSPlayerPawn>();
+    //       var otherPlayer = @event.OtherEntity.As<CCSPlayerPawn>();
+    //       Console.WriteLine($"EntityEndTouch: {(player.Controller.Value?.PlayerName ?? string.Empty)} -> {(otherPlayer.Controller.Value?.PlayerName ?? string.Empty)}");
+    //       break;
+    //   }
+    // };
 
     Core.Engine.ExecuteCommandWithBuffer("@ping", (buffer) =>
     {
@@ -548,6 +554,88 @@ public class TestPlugin : BasePlugin
     return HookResult.Continue;
   }
 
+  [Command("mt")]
+  public void MenuTestCommand(ICommandContext context)
+  {
+    var player = context.Sender!;
+
+    IMenu settingsMenu = Core.Menus.CreateMenu("MenuTest");
+
+    settingsMenu.Builder.Design.MaxVisibleItems(5);
+
+    // settingsMenu.Builder.Design.MaxVisibleItems(Random.Shared.Next(-2, 8));
+    if (context.Args.Length < 1 || !int.TryParse(context.Args[0], out int vtype)) vtype = 0;
+    settingsMenu.Builder.Design.SetVerticalScrollStyle(vtype switch
+    {
+      1 => MenuVerticalScrollStyle.LinearScroll,
+      2 => MenuVerticalScrollStyle.WaitingCenter,
+      _ => MenuVerticalScrollStyle.CenterFixed
+    });
+
+    if (context.Args.Length < 2 || !int.TryParse(context.Args[1], out int htype)) htype = 0;
+    settingsMenu.Builder.Design.SetGlobalHorizontalStyle(htype switch
+    {
+      0 => MenuHorizontalStyle.Default,
+      1 => MenuHorizontalStyle.TruncateBothEnds(26f),
+      2 => MenuHorizontalStyle.ScrollLeftFade(26f, 8, 128),
+      3 => MenuHorizontalStyle.ScrollLeftLoop(26f, 8, 128),
+      1337 => MenuHorizontalStyle.TruncateEnd(0f),
+      _ => MenuHorizontalStyle.TruncateEnd(26f)
+    });
+    
+    settingsMenu.Builder.AddButton("1. AButton",(p) =>
+    {
+      player.SendMessage(MessageType.Chat, "Button");
+    });
+
+    settingsMenu.Builder.AddToggle("2. Toggle", defaultValue: true, (p, value) =>
+    {
+      player.SendMessage(MessageType.Chat, $"AddToggle {value}");
+    });
+
+    settingsMenu.Builder.AddSlider("3. Slider", min: 0, max: 100, defaultValue: 10, step: 10, (p, value) =>
+    {
+      player.SendMessage(MessageType.Chat, $"AddSlider {value}");
+    });
+
+    settingsMenu.Builder.AddAsyncButton("4. AsyncButton", async (p) =>
+    {
+      await Task.Delay(2000);
+    });
+
+    settingsMenu.Builder.AddText("5. Text");
+    settingsMenu.Builder.AddText("6. Text");
+    settingsMenu.Builder.AddText("7. Text");
+    settingsMenu.Builder.AddText("8. Text");
+    settingsMenu.Builder.AddText("9. Text");
+    settingsMenu.Builder.AddSeparator();
+    settingsMenu.Builder.AddText($"<b>{HtmlGradient.GenerateGradientText("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "#FFE4E1", "#FFC0CB", "#FF69B4")}</b>", overflowStyle: MenuHorizontalStyle.TruncateEnd(26f));
+    settingsMenu.Builder.AddText($"<b>{HtmlGradient.GenerateGradientText("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "#FFE5CC", "#FFAB91", "#FF7043")}</b>", overflowStyle: MenuHorizontalStyle.TruncateBothEnds(26f));
+    settingsMenu.Builder.AddText($"<b>{HtmlGradient.GenerateGradientText("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "#E6E6FA", "#00FFFF", "#FF1493")}</b>", overflowStyle: MenuHorizontalStyle.ScrollRightFade(26f, 8));
+    settingsMenu.Builder.AddText($"<b>{HtmlGradient.GenerateGradientText("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "#AFEEEE", "#7FFFD4", "#40E0D0")}</b>", overflowStyle: MenuHorizontalStyle.ScrollLeftLoop(26f, 8));
+    settingsMenu.Builder.AddText("<font color='#F5FFFA'><b><garbage>12345678901234567890<font color='#00FA9A'>split</font>12345678901234567890</garbage></b></font>", overflowStyle: MenuHorizontalStyle.ScrollLeftFade(26f, 8, 128));
+    settingsMenu.Builder.AddText("<font color='#00FA9A'><b><garbage>一二三四五六七八九十<font color='#F5FFFA'>分割</font>一二三四五六七八九十</garbage></b></font>", overflowStyle: MenuHorizontalStyle.ScrollRightLoop(26f, 8, 64));
+    settingsMenu.Builder.AddSeparator();
+    settingsMenu.Builder.AddText("Swiftlys2 向这广袤世界致以温柔问候", overflowStyle: MenuHorizontalStyle.ScrollRightLoop(26f, 8));
+    settingsMenu.Builder.AddText("Swiftlys2 からこの広大なる世界へ温かい挨拶を");
+    settingsMenu.Builder.AddText("Swiftlys2 가 이 넓은 세상에 따뜻한 인사를 전합니다");
+    settingsMenu.Builder.AddText("Swiftlys2 приветствует этот прекрасный мир");
+    settingsMenu.Builder.AddText("Swiftlys2 salută această lume minunată");
+    settingsMenu.Builder.AddText("Swiftlys2 extends warmest greetings to this wondrous world");
+    settingsMenu.Builder.AddText("Swiftlys2 sendas korajn salutojn al ĉi tiu mirinda mondo");
+    settingsMenu.Builder.AddSeparator();
+    settingsMenu.Builder.AddAsyncButton("AsyncButton|AsyncButton|AsyncButton", async (p) => await Task.Delay(2000));
+    settingsMenu.Builder.AddButton("Button|Button|Button|Button", (p) => { });
+    settingsMenu.Builder.AddChoice("Choice|Choice|Choice|Choice", ["Option 1", "Option 2", "Option 3"], "Option 1", (p, value) => { }, overflowStyle: MenuHorizontalStyle.TruncateEnd(8f));
+    settingsMenu.Builder.AddProgressBar("ProgressBar|ProgressBar|ProgressBar", () => (float)Random.Shared.NextDouble(), overflowStyle: MenuHorizontalStyle.ScrollLeftLoop(26f, 12));
+    settingsMenu.Builder.AddSlider("Slider|Slider|Slider|Slider", 0f, 100f, 0f, 1f, (p, value) => { }, overflowStyle: MenuHorizontalStyle.ScrollRightLoop(8f, 12));
+    // settingsMenu.Builder.AddSubmenu("Submenu");
+    settingsMenu.Builder.AddToggle("Toggle|Toggle|Toggle|Toggle", true, (p, value) => { });
+    settingsMenu.Builder.AddSeparator();
+
+    Core.Menus.OpenMenu(player, settingsMenu);
+  }
+
   [Command("menu")]
   public void MenuCommand(ICommandContext context)
   {
@@ -588,11 +676,12 @@ public class TestPlugin : BasePlugin
         player.SendMessage(MessageType.Chat, "You clicked Button 8");
       })
       .AddSeparator()
-      .AddText("hello!", size: SwiftlyS2.Shared.Menus.IMenuTextSize.ExtraLarge)
-      .SetColor(new(0, 186, 105, 255))
+      .AddText("hello!", size: IMenuTextSize.ExtraLarge)
       .AutoClose(15f)
       .HasSound(true)
       .ForceFreeze();
+
+    menu.Builder.Design.SetColor(new(0, 186, 105, 255));
 
     Core.Menus.OpenMenu(player, menu);
   }
