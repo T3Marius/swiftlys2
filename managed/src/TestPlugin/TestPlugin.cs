@@ -563,7 +563,23 @@ public class TestPlugin : BasePlugin
       //settingsMenu.Builder.AddText("123", overflowStyle: MenuHorizontalStyle.ScrollLeftLoop(25f));
       settingsMenu.Builder.AddText("123");
       settingsMenu.Builder.AddText("1234");
-      settingsMenu.Builder.AddText("12355");
+      settingsMenu.Builder.AddText("12345");
+
+      Core.Menus.OpenMenu(player, settingsMenu);
+  }
+
+  [Command("i78")]
+  public void TestIssue762Command(ICommandContext context)
+  {
+      var player = context.Sender!;
+      IMenu settingsMenu = Core.Menus.CreateMenu("Settings");
+      settingsMenu.Builder.AddButton("12345", (p) =>
+      {
+        player.SendMessage(MessageType.Chat, "Button");
+      });
+
+      settingsMenu.Builder.Design.OverrideExitButton("shift");
+      settingsMenu.Builder.Design.OverrideSelectButton("e");
 
       Core.Menus.OpenMenu(player, settingsMenu);
   }

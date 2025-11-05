@@ -47,13 +47,12 @@ internal class MenuManager : IMenuManager
     private SoundEvent _exitSound = new();
     private SoundEvent _scrollSound = new();
 
-    public MenuManager(ISwiftlyCore core)
+    public MenuManager( ISwiftlyCore core )
     {
         _Core = core;
         var settings = NativeEngineHelpers.GetMenuSettings();
         var parts = settings.Split('\x01');
-        Settings = new MenuSettings
-        {
+        Settings = new MenuSettings {
             NavigationPrefix = parts[0],
             InputMode = parts[1],
             ButtonsUse = parts[2],
@@ -92,7 +91,7 @@ internal class MenuManager : IMenuManager
         _Core.Event.OnMapUnload -= OnMapUnload;
     }
 
-    void KeyStateChange(IOnClientKeyStateChangedEvent @event)
+    void KeyStateChange( IOnClientKeyStateChangedEvent @event )
     {
         var player = _Core.PlayerManager.GetPlayer(@event.PlayerId);
         var menu = GetMenu(player);
@@ -105,6 +104,17 @@ internal class MenuManager : IMenuManager
             var scrollBackKey = menu.ButtonOverrides?.MoveBack ?? StringToKeyKind.GetValueOrDefault(Settings.ButtonsScrollBack);
             var exitKey = menu.ButtonOverrides?.Exit ?? StringToKeyKind.GetValueOrDefault(Settings.ButtonsExit);
             var useKey = menu.ButtonOverrides?.Select ?? StringToKeyKind.GetValueOrDefault(Settings.ButtonsUse);
+
+            new Dictionary<string, KeyKind> { { "Scroll", scrollKey }, { "ScrollBack", scrollBackKey }, { "Exit", exitKey }, { "Use", useKey } }
+                .GroupBy(kvp => kvp.Value)
+                .Where(g => g.Count() > 1)
+                .ToList()
+                .ForEach(group =>
+                {
+                    Spectre.Console.AnsiConsole.WriteException(
+                        new InvalidOperationException($"Duplicate key binding detected in menu '{menu.Title}': Key '{group.Key}' is used by: {string.Join(", ", group.Select(kvp => kvp.Key))}")
+                    );
+                });
 
             if (@event.Key == scrollKey)
             {
@@ -201,7 +211,7 @@ internal class MenuManager : IMenuManager
         }
     }
 
-    public void OnClientDisconnected(IOnClientDisconnectedEvent @event)
+    public void OnClientDisconnected( IOnClientDisconnectedEvent @event )
     {
         var player = _Core.PlayerManager.GetPlayer(@event.PlayerId);
         if (player == null)
@@ -221,7 +231,7 @@ internal class MenuManager : IMenuManager
         }
     }
 
-    public void OnMapUnload(IOnMapUnloadEvent _)
+    public void OnMapUnload( IOnMapUnloadEvent _ )
     {
         CloseAllMenus();
     }
@@ -242,7 +252,7 @@ internal class MenuManager : IMenuManager
         OpenMenus.Clear();
     }
 
-    public void CloseMenu(IMenu menu)
+    public void CloseMenu( IMenu menu )
     {
         foreach (var kvp in OpenMenus)
         {
@@ -256,7 +266,7 @@ internal class MenuManager : IMenuManager
         }
     }
 
-    public void CloseMenuByTitle(string title, bool exact = false)
+    public void CloseMenuByTitle( string title, bool exact = false )
     {
         foreach (var kvp in OpenMenus)
         {
@@ -270,7 +280,7 @@ internal class MenuManager : IMenuManager
         }
     }
 
-    public void CloseMenuForPlayer(IPlayer player)
+    public void CloseMenuForPlayer( IPlayer player )
     {
         if (OpenMenus.TryRemove(player, out var menu))
         {
@@ -283,17 +293,17 @@ internal class MenuManager : IMenuManager
         }
     }
 
-    public IMenu CreateMenu(string title)
+    public IMenu CreateMenu( string title )
     {
         return new Menu { Title = title, MenuManager = this, MaxVisibleOptions = Settings.ItemsPerPage, _Core = _Core };
     }
 
-    public IMenu? GetMenu(IPlayer player)
+    public IMenu? GetMenu( IPlayer player )
     {
         return OpenMenus.TryGetValue(player, out var menu) ? menu : null;
     }
 
-    public void OpenMenu(IPlayer player, IMenu menu)
+    public void OpenMenu( IPlayer player, IMenu menu )
     {
         if (OpenMenus.TryGetValue(player, out var currentMenu))
         {
@@ -306,7 +316,7 @@ internal class MenuManager : IMenuManager
         OnMenuOpened?.Invoke(player, menu);
     }
 
-    public bool HasMenuOpen(IPlayer player)
+    public bool HasMenuOpen( IPlayer player )
     {
         return NativePlayer.HasMenuShown(player.PlayerID);
     }
