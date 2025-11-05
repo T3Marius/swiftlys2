@@ -355,27 +355,15 @@ internal partial class Menu : IMenu
                 }
 
             case SubmenuMenuOption submenu:
-                if (submenu.AsyncSubmenuBuilder != null)
+                _ = Task.Run(async () =>
                 {
-                    _ = Task.Run(async () =>
-                    {
-                        var subMenu = await submenu.GetSubmenuAsync();
-                        if (subMenu != null && player.IsValid)
-                        {
-                            subMenu.Parent = this;
-                            MenuManager.OpenMenu(player, subMenu);
-                        }
-                    });
-                }
-                else
-                {
-                    var subMenu = submenu.GetSubmenu();
-                    if (subMenu != null)
+                    var subMenu = await submenu.GetSubmenuAsync();
+                    if (subMenu != null && player.IsValid && MenuManager.GetMenu(player) == this)
                     {
                         subMenu.Parent = this;
                         MenuManager.OpenMenu(player, subMenu);
                     }
-                }
+                });
                 break;
             default:
                 break;

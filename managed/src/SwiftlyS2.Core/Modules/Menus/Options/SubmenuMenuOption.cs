@@ -8,8 +8,7 @@ internal class SubmenuMenuOption : IOption
 {
     public string Text { get; set; }
     public IMenu? Submenu { get; set; }
-    public Func<IMenu>? SubmenuBuilder { get; set; }
-    public Func<Task<IMenu>>? AsyncSubmenuBuilder { get; set; }
+    public Func<Task<IMenu>>? SubmenuBuilderAsync { get; set; }
     public Func<IPlayer, bool>? VisibilityCheck { get; set; }
     public Func<IPlayer, bool>? EnabledCheck { get; set; }
     public IMenuTextSize Size { get; set; }
@@ -29,14 +28,14 @@ internal class SubmenuMenuOption : IOption
     public SubmenuMenuOption( string text, Func<IMenu> submenuBuilder, IMenuTextSize size = IMenuTextSize.Medium )
     {
         Text = text;
-        SubmenuBuilder = submenuBuilder;
+        SubmenuBuilderAsync = () => Task.FromResult(submenuBuilder());
         Size = size;
     }
 
     public SubmenuMenuOption( string text, Func<Task<IMenu>> asyncSubmenuBuilder, IMenuTextSize size = IMenuTextSize.Medium )
     {
         Text = text;
-        AsyncSubmenuBuilder = asyncSubmenuBuilder;
+        SubmenuBuilderAsync = asyncSubmenuBuilder;
         Size = size;
     }
 
@@ -69,11 +68,6 @@ internal class SubmenuMenuOption : IOption
         return Size;
     }
 
-    public IMenu? GetSubmenu()
-    {
-        return Submenu ?? SubmenuBuilder?.Invoke();
-    }
-
     public async Task<IMenu?> GetSubmenuAsync()
     {
         if (Submenu != null)
@@ -81,14 +75,9 @@ internal class SubmenuMenuOption : IOption
             return Submenu;
         }
 
-        if (AsyncSubmenuBuilder != null)
+        if (SubmenuBuilderAsync != null)
         {
-            return await AsyncSubmenuBuilder.Invoke();
-        }
-
-        if (SubmenuBuilder != null)
-        {
-            return SubmenuBuilder.Invoke();
+            return await SubmenuBuilderAsync.Invoke();
         }
 
         return null;

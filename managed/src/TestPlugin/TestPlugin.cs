@@ -584,7 +584,7 @@ public class TestPlugin : BasePlugin
 
       settingsMenu.Builder.AddSubmenu("Async Submenu", async () =>
       {
-        await Task.Delay(1000);
+        await Task.Delay(5000);
         var menu = Core.Menus.CreateMenu("Async Submenu");
         menu.Builder.AddText("12345");
         return menu;
