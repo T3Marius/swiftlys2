@@ -37,14 +37,14 @@ public interface IOption
     /// </summary>
     /// <param name="player">The player to check visibility for.</param>
     /// <returns>True if the option should be shown to the player; otherwise, false.</returns>
-    public bool ShouldShow(IPlayer player);
+    public bool ShouldShow( IPlayer player );
 
     /// <summary>
     /// Determines whether the specified player can interact with this option.
     /// </summary>
     /// <param name="player">The player to check interaction capability for.</param>
     /// <returns>True if the player can interact with the option; otherwise, false.</returns>
-    public bool CanInteract(IPlayer player);
+    public bool CanInteract( IPlayer player );
 
     /// <summary>
     /// Gets the display text for this option as it should appear to the specified player.
@@ -52,13 +52,19 @@ public interface IOption
     /// <param name="player">The player requesting the display text.</param>
     /// <param name="updateHorizontalStyle">Indicates whether to update the horizontal style of the text.</param>
     /// <returns>The formatted display text for the option.</returns>
-    public string GetDisplayText(IPlayer player, bool updateHorizontalStyle);
+    public string GetDisplayText( IPlayer player, bool updateHorizontalStyle );
 
     /// <summary>
     /// Gets the text size configuration for this option.
     /// </summary>
     /// <returns>The text size setting for the option.</returns>
     public IMenuTextSize GetTextSize();
+
+    /// <summary>
+    /// Determines whether this option should play a sound when selected.
+    /// </summary>
+    /// <returns>True if the option should play a sound; otherwise, false.</returns>
+    public bool HasSound();
 }
 
 /// <summary>

@@ -23,7 +23,7 @@ internal class SliderMenuButton : IOption
     public bool Visible => true;
     public bool Enabled => true;
 
-    public SliderMenuButton(string text, float min = 0, float max = 10, float defaultValue = 5, float step = 1, Action<IPlayer, float>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public SliderMenuButton( string text, float min = 0, float max = 10, float defaultValue = 5, float step = 1, Action<IPlayer, float>? onChange = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         Min = min;
@@ -35,7 +35,7 @@ internal class SliderMenuButton : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public SliderMenuButton(string text, float min, float max, float defaultValue, float step, Action<IPlayer, IOption, float>? onChange, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public SliderMenuButton( string text, float min, float max, float defaultValue, float step, Action<IPlayer, IOption, float>? onChange, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         Min = min;
@@ -47,17 +47,13 @@ internal class SliderMenuButton : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public bool ShouldShow(IPlayer player)
-    {
-        return VisibilityCheck?.Invoke(player) ?? true;
-    }
+    public bool ShouldShow( IPlayer player ) => VisibilityCheck?.Invoke(player) ?? true;
 
-    public bool CanInteract(IPlayer player)
-    {
-        return EnabledCheck?.Invoke(player) ?? true;
-    }
+    public bool CanInteract( IPlayer player ) => EnabledCheck?.Invoke(player) ?? true;
 
-    public string GetDisplayText(IPlayer player, bool updateHorizontalStyle = false)
+    public bool HasSound() => true;
+
+    public string GetDisplayText( IPlayer player, bool updateHorizontalStyle = false )
     {
         var sizeClass = MenuSizeHelper.GetSizeClass(Size);
 
@@ -89,15 +85,18 @@ internal class SliderMenuButton : IOption
         return Size;
     }
 
-    private static float Wrap(float value, float min, float max)
+    private static float Wrap( float value, float min, float max )
     {
         float range = max - min;
         return ((value - min) % range + range) % range + min;
     }
 
-    public void Increase(IPlayer player)
+    public void Increase( IPlayer player )
     {
-        if (!CanInteract(player)) return;
+        if (!CanInteract(player))
+        {
+            return;
+        }
 
         var newValue = Wrap(Value + Step, Min, Max);
 
@@ -108,9 +107,12 @@ internal class SliderMenuButton : IOption
             OnChangeWithOption?.Invoke(player, this, Value);
         }
     }
-    public void Decrease(IPlayer player)
+    public void Decrease( IPlayer player )
     {
-        if (!CanInteract(player)) return;
+        if (!CanInteract(player))
+        {
+            return;
+        }
 
         var newValue = Wrap(Value - Step, Min, Max);
 

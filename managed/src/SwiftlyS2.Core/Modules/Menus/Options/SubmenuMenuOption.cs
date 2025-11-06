@@ -39,15 +39,11 @@ internal class SubmenuMenuOption : IOption
         Size = size;
     }
 
-    public bool ShouldShow( IPlayer player )
-    {
-        return VisibilityCheck?.Invoke(player) ?? true;
-    }
+    public bool ShouldShow( IPlayer player ) => VisibilityCheck?.Invoke(player) ?? true;
 
-    public bool CanInteract( IPlayer player )
-    {
-        return EnabledCheck?.Invoke(player) ?? true;
-    }
+    public bool CanInteract( IPlayer player ) => EnabledCheck?.Invoke(player) ?? true;
+
+    public bool HasSound() => true;
 
     public string GetDisplayText( IPlayer player, bool updateHorizontalStyle = false )
     {

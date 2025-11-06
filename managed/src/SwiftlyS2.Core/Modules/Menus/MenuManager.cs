@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Globalization;
+using SwiftlyS2.Core.Menu.Options;
 using SwiftlyS2.Core.Natives;
 using SwiftlyS2.Shared;
 using SwiftlyS2.Shared.Events;
@@ -151,10 +152,17 @@ internal class MenuManager : IMenuManager
             }
             else if (@event.Key == useKey)
             {
-                if (menu.IsOptionSlider(player)) menu.UseSlideOption(player, true);
-                else menu.UseSelection(player);
+                var option = menu.GetCurrentOption(player);
+                if (option is SliderMenuButton || option is ChoiceMenuOption)
+                {
+                    menu.UseSlideOption(player, true);
+                }
+                else
+                {
+                    menu.UseSelection(player);
+                }
 
-                if (menu.HasSound)
+                if (menu.HasSound && (option?.HasSound() ?? false))
                 {
                     _useSound.Recipients.AddRecipient(@event.PlayerId);
                     _useSound.Emit();
@@ -198,10 +206,17 @@ internal class MenuManager : IMenuManager
             }
             else if (@event.Key == KeyKind.D)
             {
-                if (menu.IsOptionSlider(player)) menu.UseSlideOption(player, true);
-                else menu.UseSelection(player);
+                var option = menu.GetCurrentOption(player);
+                if (option is SliderMenuButton || option is ChoiceMenuOption)
+                {
+                    menu.UseSlideOption(player, true);
+                }
+                else
+                {
+                    menu.UseSelection(player);
+                }
 
-                if (menu.HasSound)
+                if (menu.HasSound && (option?.HasSound() ?? false))
                 {
                     _useSound.Recipients.AddRecipient(@event.PlayerId);
                     _useSound.Emit();

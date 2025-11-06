@@ -22,7 +22,7 @@ internal class ToggleMenuOption : IOption
     public bool Visible => true;
     public bool Enabled => true;
 
-    public ToggleMenuOption(string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public ToggleMenuOption( string text, bool defaultValue = false, Action<IPlayer, bool>? onToggle = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         Value = defaultValue;
@@ -31,7 +31,7 @@ internal class ToggleMenuOption : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public ToggleMenuOption(string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public ToggleMenuOption( string text, bool defaultValue, Action<IPlayer, IOption, bool>? onToggle, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         Value = defaultValue;
@@ -40,17 +40,13 @@ internal class ToggleMenuOption : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public bool ShouldShow(IPlayer player)
-    {
-        return VisibilityCheck?.Invoke(player) ?? true;
-    }
+    public bool ShouldShow( IPlayer player ) => VisibilityCheck?.Invoke(player) ?? true;
 
-    public bool CanInteract(IPlayer player)
-    {
-        return EnabledCheck?.Invoke(player) ?? true;
-    }
+    public bool CanInteract( IPlayer player ) => EnabledCheck?.Invoke(player) ?? true;
 
-    public string GetDisplayText(IPlayer player, bool updateHorizontalStyle = false)
+    public bool HasSound() => true;
+
+    public string GetDisplayText( IPlayer player, bool updateHorizontalStyle = false )
     {
         var sizeClass = MenuSizeHelper.GetSizeClass(Size);
 
@@ -70,7 +66,7 @@ internal class ToggleMenuOption : IOption
         return Size;
     }
 
-    public void Toggle(IPlayer player)
+    public void Toggle( IPlayer player )
     {
         if (!CanInteract(player)) return;
 

@@ -21,7 +21,7 @@ internal class ButtonMenuOption : IOption
     public bool Visible => true;
     public bool Enabled => true;
 
-    public ButtonMenuOption(string text, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public ButtonMenuOption( string text, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         OnClick = onClick;
@@ -29,7 +29,7 @@ internal class ButtonMenuOption : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public ButtonMenuOption(string text, Action<IPlayer, IOption>? onClick, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public ButtonMenuOption( string text, Action<IPlayer, IOption>? onClick, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         OnClickWithOption = onClick;
@@ -37,17 +37,13 @@ internal class ButtonMenuOption : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public bool ShouldShow(IPlayer player)
-    {
-        return VisibilityCheck?.Invoke(player) ?? true;
-    }
+    public bool ShouldShow( IPlayer player ) => VisibilityCheck?.Invoke(player) ?? true;
 
-    public bool CanInteract(IPlayer player)
-    {
-        return EnabledCheck?.Invoke(player) ?? true;
-    }
+    public bool CanInteract( IPlayer player ) => EnabledCheck?.Invoke(player) ?? true;
 
-    public string GetDisplayText(IPlayer player, bool updateHorizontalStyle = false)
+    public bool HasSound() => true;
+
+    public string GetDisplayText( IPlayer player, bool updateHorizontalStyle = false )
     {
         var sizeClass = MenuSizeHelper.GetSizeClass(Size);
 

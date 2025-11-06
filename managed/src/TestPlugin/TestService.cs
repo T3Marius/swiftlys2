@@ -10,29 +10,24 @@ namespace TestPlugin;
 
 public class TestService
 {
+    private ISwiftlyCore Core { get; init; }
 
-  private ISwiftlyCore Core { get; init; }
-
-  public TestService(ISwiftlyCore core, ILogger<TestService> logger, IOptionsMonitor<TestConfig> config)
-  {
-    Core = core;
-    logger.LogInformation("TestService created");
-    logger.LogInformation("Config: {Config}", config.CurrentValue.Age);
-
-    core.Registrator.Register(this);
-  }
-
-
-  [Command("test")]
-  public void TestCommand(ICommandContext context)
-  {
-    Core.NetMessage.Send<CUserMessageShake>(um =>
+    public TestService( ISwiftlyCore core, ILogger<TestService> logger, IOptionsMonitor<TestConfig> config )
     {
-      um.Frequency = 1f;
+        Core = core;
+        logger.LogInformation("TestService created");
+        logger.LogInformation("Config: {Config}", config.CurrentValue.Age);
+        core.Registrator.Register(this);
+    }
 
-
-      um.Recipients.AddAllPlayers();
-    });
-    context.Reply("Test command");
-  }
+    [Command("test")]
+    public void TestCommand( ICommandContext context )
+    {
+        Core.NetMessage.Send<CUserMessageShake>(um =>
+        {
+            um.Frequency = 1f;
+            um.Recipients.AddAllPlayers();
+        });
+        context.Reply("Test command");
+    }
 }

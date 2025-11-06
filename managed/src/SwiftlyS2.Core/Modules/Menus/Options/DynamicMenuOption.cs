@@ -21,8 +21,7 @@ internal class DynamicMenuOption : IOption
     public IMenu? Menu { get; set; }
     public MenuHorizontalStyle? OverflowStyle { get; init; }
 
-    public string Text
-    {
+    public string Text {
         get => _cachedText;
         set => _cachedText = value;
     }
@@ -30,7 +29,7 @@ internal class DynamicMenuOption : IOption
     public bool Visible => true;
     public bool Enabled => true;
 
-    public DynamicMenuOption(Func<IPlayer, string> textProvider, TimeSpan updateInterval, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public DynamicMenuOption( Func<IPlayer, string> textProvider, TimeSpan updateInterval, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium )
     {
         _textProvider = textProvider;
         _updateInterval = updateInterval;
@@ -38,7 +37,7 @@ internal class DynamicMenuOption : IOption
         _size = size;
     }
 
-    public DynamicMenuOption(Func<string> textProvider, TimeSpan updateInterval, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium)
+    public DynamicMenuOption( Func<string> textProvider, TimeSpan updateInterval, Action<IPlayer>? onClick = null, IMenuTextSize size = IMenuTextSize.Medium )
     {
         _textProvider = _ => textProvider();
         _updateInterval = updateInterval;
@@ -46,17 +45,13 @@ internal class DynamicMenuOption : IOption
         _size = size;
     }
 
-    public bool ShouldShow(IPlayer player)
-    {
-        return _visibilityCheck?.Invoke(player) ?? true;
-    }
+    public bool ShouldShow( IPlayer player ) => _visibilityCheck?.Invoke(player) ?? true;
 
-    public bool CanInteract(IPlayer player)
-    {
-        return _onClick != null && (_enabledCheck?.Invoke(player) ?? true);
-    }
+    public bool CanInteract( IPlayer player ) => _onClick != null && (_enabledCheck?.Invoke(player) ?? true);
 
-    public string GetDisplayText(IPlayer player, bool updateHorizontalStyle = false)
+    public bool HasSound() => false;
+
+    public string GetDisplayText( IPlayer player, bool updateHorizontalStyle = false )
     {
         var sizeClass = MenuSizeHelper.GetSizeClass(_size);
 
@@ -86,7 +81,7 @@ internal class DynamicMenuOption : IOption
         return _size;
     }
 
-    public void Click(IPlayer player)
+    public void Click( IPlayer player )
     {
         if (CanInteract(player))
         {
@@ -99,26 +94,26 @@ internal class DynamicMenuOption : IOption
         }
     }
 
-    public DynamicMenuOption WithVisibilityCheck(Func<IPlayer, bool> check)
+    public DynamicMenuOption WithVisibilityCheck( Func<IPlayer, bool> check )
     {
         _visibilityCheck = check;
         return this;
     }
 
-    public DynamicMenuOption WithEnabledCheck(Func<IPlayer, bool> check)
+    public DynamicMenuOption WithEnabledCheck( Func<IPlayer, bool> check )
     {
         _enabledCheck = check;
         return this;
     }
 
-    public DynamicMenuOption WithValidation(Func<IPlayer, bool> check, Action<IPlayer>? onFailed = null)
+    public DynamicMenuOption WithValidation( Func<IPlayer, bool> check, Action<IPlayer>? onFailed = null )
     {
         _validationCheck = check;
         _onValidationFailed = onFailed;
         return this;
     }
 
-    public DynamicMenuOption WithCloseOnSelect(bool close = true)
+    public DynamicMenuOption WithCloseOnSelect( bool close = true )
     {
         _closeOnSelect = close;
         return this;

@@ -138,14 +138,14 @@ public interface IMenu
     /// Displays the menu interface and begins player interaction.
     /// </summary>
     /// <param name="player">The player to show the menu to.</param>
-    public void Show(IPlayer player);
+    public void Show( IPlayer player );
 
     /// <summary>
     /// Closes the menu for the specified player.
     /// Hides the menu interface and ends player interaction.
     /// </summary>
     /// <param name="player">The player to close the menu for.</param>
-    public void Close(IPlayer player);
+    public void Close( IPlayer player );
 
     /// <summary>
     /// Moves the player's selection by the specified offset.
@@ -153,14 +153,14 @@ public interface IMenu
     /// </summary>
     /// <param name="player">The player whose selection to move.</param>
     /// <param name="offset">The number of positions to move the selection.</param>
-    public void MoveSelection(IPlayer player, int offset);
+    public void MoveSelection( IPlayer player, int offset );
 
     /// <summary>
     /// Activates the currently selected option for the specified player.
     /// Triggers the selected option's action or behavior.
     /// </summary>
     /// <param name="player">The player whose current selection to use.</param>
-    public void UseSelection(IPlayer player);
+    public void UseSelection( IPlayer player );
 
     /// <summary>
     /// Handles slide option interaction for the specified player.
@@ -168,7 +168,7 @@ public interface IMenu
     /// </summary>
     /// <param name="player">The player interacting with the slide option.</param>
     /// <param name="isRight">True if sliding right, false if sliding left.</param>
-    public void UseSlideOption(IPlayer player, bool isRight);
+    public void UseSlideOption( IPlayer player, bool isRight );
 
     /// <summary>
     /// Forces a re-render of the menu for the specified player.
@@ -176,21 +176,20 @@ public interface IMenu
     /// </summary>
     /// <param name="player">The player to re-render the menu for.</param>
     /// <param name="updateHorizontalStyle">True to update horizontal style, false to render without updating horizontal style.</param>
-    public void Rerender(IPlayer player, bool updateHorizontalStyle = false);
+    public void Rerender( IPlayer player, bool updateHorizontalStyle = false );
+
+    [Obsolete("Use GetCurrentOption instead")]
+    public bool IsCurrentOptionSelectable( IPlayer player );
+
+    [Obsolete("Use GetCurrentOption instead")]
+    public bool IsOptionSlider( IPlayer player );
 
     /// <summary>
-    /// Determines whether the currently selected option is selectable for the specified player.
-    /// Returns true if the option can be activated, false if it's disabled or non-interactive.
+    /// Gets the currently selected option for the specified player.
     /// </summary>
-    /// <param name="player">The player to check the current selection for.</param>
-    /// <returns>True if the current option is selectable, false otherwise.</returns>
-    public bool IsCurrentOptionSelectable(IPlayer player);
-
-    /// <summary>
-    /// Determines whether the currently selected option is a slider for the specified player.
-    /// Returns true if the option is a slider type, false otherwise.
-    /// </summary>
-    public bool IsOptionSlider(IPlayer player);
+    /// <param name="player">The player to get the current option for.</param>
+    /// <returns>The currently selected option, or null if no option is selected.</returns>
+    public IOption? GetCurrentOption( IPlayer player );
 
     /// <summary>
     /// Sets the freeze state for the specified player while the menu is active.
@@ -198,7 +197,7 @@ public interface IMenu
     /// </summary>
     /// <param name="player">The player to set the freeze state for.</param>
     /// <param name="freeze">True to freeze the player, false to unfreeze.</param>
-    public void SetFreezeState(IPlayer player, bool freeze);
+    public void SetFreezeState( IPlayer player, bool freeze );
 
     /// <summary>
     /// Gets or sets the vertical scroll style for the menu navigation.
@@ -289,11 +288,9 @@ public readonly record struct MenuHorizontalStyle
     /// <summary>
     /// The maximum display width for menu option text in relative units.
     /// </summary>
-    public required float MaxWidth
-    {
+    public required float MaxWidth {
         get => maxWidth;
-        init
-        {
+        init {
             if (value < 1f)
             {
                 Spectre.Console.AnsiConsole.WriteException(new ArgumentOutOfRangeException(nameof(MaxWidth), $"MaxWidth: value {value:F3} is out of range."));
@@ -337,13 +334,13 @@ public readonly record struct MenuHorizontalStyle
     /// <summary>
     /// Creates a horizontal style with truncate end behavior.
     /// </summary>
-    public static MenuHorizontalStyle TruncateEnd(float maxWidth) =>
+    public static MenuHorizontalStyle TruncateEnd( float maxWidth ) =>
         new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.TruncateEnd };
 
     /// <summary>
     /// Creates a horizontal style with truncate both ends behavior.
     /// </summary>
-    public static MenuHorizontalStyle TruncateBothEnds(float maxWidth) =>
+    public static MenuHorizontalStyle TruncateBothEnds( float maxWidth ) =>
         new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.TruncateBothEnds };
 
     /// <summary>
@@ -352,7 +349,7 @@ public readonly record struct MenuHorizontalStyle
     /// <param name="maxWidth">Maximum display width for text.</param>
     /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
     /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
-    public static MenuHorizontalStyle ScrollLeftFade(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+    public static MenuHorizontalStyle ScrollLeftFade( float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0 ) =>
         new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollLeftFade, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
 
     /// <summary>
@@ -361,7 +358,7 @@ public readonly record struct MenuHorizontalStyle
     /// <param name="maxWidth">Maximum display width for text.</param>
     /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
     /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
-    public static MenuHorizontalStyle ScrollRightFade(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+    public static MenuHorizontalStyle ScrollRightFade( float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0 ) =>
         new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollRightFade, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
 
     /// <summary>
@@ -370,7 +367,7 @@ public readonly record struct MenuHorizontalStyle
     /// <param name="maxWidth">Maximum display width for text.</param>
     /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
     /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
-    public static MenuHorizontalStyle ScrollLeftLoop(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+    public static MenuHorizontalStyle ScrollLeftLoop( float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0 ) =>
         new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollLeftLoop, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
 
     /// <summary>
@@ -379,6 +376,6 @@ public readonly record struct MenuHorizontalStyle
     /// <param name="maxWidth">Maximum display width for text.</param>
     /// <param name="ticksPerScroll">Number of ticks before scrolling by one character.</param>
     /// <param name="pauseTicks">Number of ticks to pause after completing one scroll loop.</param>
-    public static MenuHorizontalStyle ScrollRightLoop(float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0) =>
+    public static MenuHorizontalStyle ScrollRightLoop( float maxWidth, int ticksPerScroll = 16, int pauseTicks = 0 ) =>
         new() { MaxWidth = maxWidth, OverflowStyle = MenuHorizontalOverflowStyle.ScrollRightLoop, TicksPerScroll = ticksPerScroll, PauseTicks = pauseTicks };
 }

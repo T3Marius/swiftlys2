@@ -24,7 +24,7 @@ internal class AsyncButtonMenuOption : IOption
 
     private string? _loadingText;
 
-    public AsyncButtonMenuOption(string text, Func<IPlayer, Task>? onClickAsync = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public AsyncButtonMenuOption( string text, Func<IPlayer, Task>? onClickAsync = null, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         OnClickAsync = onClickAsync;
@@ -32,7 +32,7 @@ internal class AsyncButtonMenuOption : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public AsyncButtonMenuOption(string text, Func<IPlayer, IOption, Task>? onClickAsync, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null)
+    public AsyncButtonMenuOption( string text, Func<IPlayer, IOption, Task>? onClickAsync, IMenuTextSize size = IMenuTextSize.Medium, MenuHorizontalStyle? overflowStyle = null )
     {
         Text = text;
         OnClickAsyncWithOption = onClickAsync;
@@ -40,17 +40,13 @@ internal class AsyncButtonMenuOption : IOption
         OverflowStyle = overflowStyle;
     }
 
-    public bool ShouldShow(IPlayer player)
-    {
-        return VisibilityCheck?.Invoke(player) ?? true;
-    }
+    public bool ShouldShow( IPlayer player ) => VisibilityCheck?.Invoke(player) ?? true;
 
-    public bool CanInteract(IPlayer player)
-    {
-        return !IsLoading && (EnabledCheck?.Invoke(player) ?? true);
-    }
+    public bool CanInteract( IPlayer player ) => !IsLoading && (EnabledCheck?.Invoke(player) ?? true);
 
-    public string GetDisplayText(IPlayer player, bool updateHorizontalStyle = false)
+    public bool HasSound() => true;
+
+    public string GetDisplayText( IPlayer player, bool updateHorizontalStyle = false )
     {
         var sizeClass = MenuSizeHelper.GetSizeClass(Size);
 
@@ -73,7 +69,7 @@ internal class AsyncButtonMenuOption : IOption
         return Size;
     }
 
-    public async Task ExecuteAsync(IPlayer player, string? loadingText = null)
+    public async Task ExecuteAsync( IPlayer player, string? loadingText = null )
     {
         if (OnClickAsync == null && OnClickAsyncWithOption == null) return;
 
@@ -92,7 +88,7 @@ internal class AsyncButtonMenuOption : IOption
         }
     }
 
-    public void SetLoadingText(string? text)
+    public void SetLoadingText( string? text )
     {
         _loadingText = text;
     }

@@ -3,27 +3,27 @@ using SwiftlyS2.Shared.SchemaDefinitions;
 
 namespace TestPlugin;
 
-public class PlayerBenchmarks {
+public class PlayerBenchmarks
+{
+    private CCSPlayerController _controller;
 
-  private CCSPlayerController _controller;
-
-  [GlobalSetup]
-  public void Setup()
-  {
-    _controller = BenchContext.Controller;
-
-    if (_controller is null)
+    [GlobalSetup]
+    public void Setup()
     {
-      throw new InvalidOperationException("Controller is not set");
-    }
-  }
+        _controller = BenchContext.Controller;
 
-  [Benchmark] 
-  public void Test()
-  {
-    for (int i = 0; i < 10000; i++)
-    {
-      var a = _controller.Pawn.Value.WeaponServices.ActiveWeapon;
+        if (_controller is null)
+        {
+            throw new InvalidOperationException("Controller is not set");
+        }
     }
-  }
+
+    [Benchmark]
+    public void Test()
+    {
+        for (int i = 0; i < 10000; i++)
+        {
+            var a = _controller.Pawn.Value.WeaponServices.ActiveWeapon;
+        }
+    }
 }

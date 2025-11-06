@@ -390,16 +390,21 @@ internal partial class Menu : IMenu
         Rerender(player, false);
     }
 
+    [Obsolete("Use GetCurrentOption instead")]
     public bool IsOptionSlider( IPlayer player )
     {
-        var option = Options[SelectedIndex[player]];
-        return option is SliderMenuButton || option is ChoiceMenuOption;
+        return Options[SelectedIndex[player]] is SliderMenuButton || Options[SelectedIndex[player]] is ChoiceMenuOption;
     }
 
+    [Obsolete("Use GetCurrentOption instead")]
     public bool IsCurrentOptionSelectable( IPlayer player )
     {
-        var option = Options[SelectedIndex[player]];
-        return IsOptionSelectable(option);
+        return IsOptionSelectable(Options[SelectedIndex[player]]);
+    }
+
+    public IOption? GetCurrentOption( IPlayer player )
+    {
+        return !SelectedIndex.TryGetValue(player, out var index) || index < 0 || index >= Options.Count ? null : Options[index];
     }
 
     public bool IsOptionSelectable( IOption option )
