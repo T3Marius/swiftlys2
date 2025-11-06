@@ -478,7 +478,7 @@ void Bridge_NetMessages_AddDouble(void* pmsg, const char* fieldName, double valu
 
 int Bridge_NetMessages_GetString(char* out, void* pmsg, const char* fieldName)
 {
-    CNetMessagePB<google::protobuf::Message>* msg = (CNetMessagePB<google::protobuf::Message>*)pmsg;
+    google::protobuf::Message* msg = (google::protobuf::Message*)pmsg;
     GETCHECK_FIELD(0);
     CHECK_FIELD_NOT_REPEATED(0);
 
