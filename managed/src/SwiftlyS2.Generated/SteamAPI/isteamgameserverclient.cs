@@ -259,16 +259,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		}
 
 		/// <summary>
-		/// <para> returns app list interface, only available on specially registered apps</para>
-		/// </summary>
-		public static IntPtr GetISteamAppList(HSteamUser hSteamUser, HSteamPipe hSteamPipe, string pchVersion) {
-			InteropHelp.TestIfAvailableGameServer();
-			using (var pchVersion2 = new InteropHelp.UTF8StringHandle(pchVersion)) {
-				return NativeMethods.ISteamClient_GetISteamAppList(CSteamGameServerAPIContext.GetSteamClient(), hSteamUser, hSteamPipe, pchVersion2);
-			}
-		}
-
-		/// <summary>
 		/// <para> Music Player</para>
 		/// </summary>
 		public static IntPtr GetISteamMusic(HSteamUser hSteamuser, HSteamPipe hSteamPipe, string pchVersion) {

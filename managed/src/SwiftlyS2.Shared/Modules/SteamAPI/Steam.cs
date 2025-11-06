@@ -1,4 +1,6 @@
 using System.Runtime.InteropServices;
+using SwiftlyS2.Core.Extensions;
+using SwiftlyS2.Shared.Misc;
 using IntPtr = System.IntPtr;
 
 namespace SwiftlyS2.Shared.SteamAPI
@@ -284,7 +286,6 @@ namespace SwiftlyS2.Shared.SteamAPI
             m_pSteamMusic = IntPtr.Zero;
             m_pController = IntPtr.Zero;
             m_pSteamUGC = IntPtr.Zero;
-            m_pSteamAppList = IntPtr.Zero;
             m_pSteamMusic = IntPtr.Zero;
             m_pSteamMusicRemote = IntPtr.Zero;
             m_pSteamHTMLSurface = IntPtr.Zero;
@@ -297,6 +298,7 @@ namespace SwiftlyS2.Shared.SteamAPI
             m_pSteamNetworkingUtils = IntPtr.Zero;
             m_pSteamNetworkingSockets = IntPtr.Zero;
             m_pSteamNetworkingMessages = IntPtr.Zero;
+            m_pSteamTimeline = IntPtr.Zero;
         }
 
         internal static bool Init()
@@ -351,9 +353,6 @@ namespace SwiftlyS2.Shared.SteamAPI
             m_pSteamUGC = SteamClient.GetISteamUGC(hSteamUser, hSteamPipe, Constants.STEAMUGC_INTERFACE_VERSION);
             if (m_pSteamUGC == IntPtr.Zero) { return false; }
 
-            m_pSteamAppList = SteamClient.GetISteamAppList(hSteamUser, hSteamPipe, Constants.STEAMAPPLIST_INTERFACE_VERSION);
-            if (m_pSteamAppList == IntPtr.Zero) { return false; }
-
             m_pSteamMusic = SteamClient.GetISteamMusic(hSteamUser, hSteamPipe, Constants.STEAMMUSIC_INTERFACE_VERSION);
             if (m_pSteamMusic == IntPtr.Zero) { return false; }
 
@@ -403,6 +402,12 @@ namespace SwiftlyS2.Shared.SteamAPI
                     NativeMethods.SteamInternal_FindOrCreateUserInterface(hSteamUser, pchVersionString);
             }
             if (m_pSteamNetworkingMessages == IntPtr.Zero) { return false; }
+            using (var pchVersionString = new InteropHelp.UTF8StringHandle(Constants.STEAMTIMELINE_INTERFACE_VERSION))
+            {
+                m_pSteamTimeline =
+                    NativeMethods.SteamInternal_FindOrCreateUserInterface(hSteamUser, pchVersionString);
+            }
+            if (m_pSteamTimeline == IntPtr.Zero) { return false; }
 
             return true;
         }
@@ -422,7 +427,6 @@ namespace SwiftlyS2.Shared.SteamAPI
         internal static IntPtr GetSteamHTTP() { return m_pSteamHTTP; }
         internal static IntPtr GetSteamController() { return m_pController; }
         internal static IntPtr GetSteamUGC() { return m_pSteamUGC; }
-        internal static IntPtr GetSteamAppList() { return m_pSteamAppList; }
         internal static IntPtr GetSteamMusic() { return m_pSteamMusic; }
         internal static IntPtr GetSteamMusicRemote() { return m_pSteamMusicRemote; }
         internal static IntPtr GetSteamHTMLSurface() { return m_pSteamHTMLSurface; }
@@ -435,6 +439,7 @@ namespace SwiftlyS2.Shared.SteamAPI
         internal static IntPtr GetSteamNetworkingUtils() { return m_pSteamNetworkingUtils; }
         internal static IntPtr GetSteamNetworkingSockets() { return m_pSteamNetworkingSockets; }
         internal static IntPtr GetSteamNetworkingMessages() { return m_pSteamNetworkingMessages; }
+        internal static IntPtr GetSteamTimeline() { return m_pSteamTimeline; }
 
         private static IntPtr m_pSteamClient;
         private static IntPtr m_pSteamUser;
@@ -451,7 +456,6 @@ namespace SwiftlyS2.Shared.SteamAPI
         private static IntPtr m_pSteamHTTP;
         private static IntPtr m_pController;
         private static IntPtr m_pSteamUGC;
-        private static IntPtr m_pSteamAppList;
         private static IntPtr m_pSteamMusic;
         private static IntPtr m_pSteamMusicRemote;
         private static IntPtr m_pSteamHTMLSurface;
@@ -464,6 +468,7 @@ namespace SwiftlyS2.Shared.SteamAPI
         private static IntPtr m_pSteamNetworkingUtils;
         private static IntPtr m_pSteamNetworkingSockets;
         private static IntPtr m_pSteamNetworkingMessages;
+        private static IntPtr m_pSteamTimeline;
     }
 
     internal static class CSteamGameServerAPIContext

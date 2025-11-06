@@ -96,7 +96,13 @@ internal class CoreHookService : IDisposable
     {
       return ( pServer ) =>
       {
-        _ = CSteamGameServerAPIContext.Init();
+        if (!CSteamGameServerAPIContext.Init())
+        {
+          _Logger.LogError("Failed to initialize Steamworks GameServer API context.");
+          return;
+        }
+
+        
         EventPublisher.InvokeOnSteamAPIActivatedHook();
         next()(pServer);
       };

@@ -324,22 +324,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool SteamEncryptedAppTicket_BIsLicenseTemporary([In, Out] byte[] rgubTicketDecrypted, uint cubTicketDecrypted);
 #endregion
-#region SteamAppList
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamAppList_GetNumInstalledApps", CallingConvention = CallingConvention.Cdecl)]
-		public static extern uint ISteamAppList_GetNumInstalledApps(IntPtr instancePtr);
-
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamAppList_GetInstalledApps", CallingConvention = CallingConvention.Cdecl)]
-		public static extern uint ISteamAppList_GetInstalledApps(IntPtr instancePtr, [In, Out] AppId_t[] pvecAppID, uint unMaxAppIDs);
-
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamAppList_GetAppName", CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ISteamAppList_GetAppName(IntPtr instancePtr, AppId_t nAppID, IntPtr pchName, int cchNameMax);
-
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamAppList_GetAppInstallDir", CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ISteamAppList_GetAppInstallDir(IntPtr instancePtr, AppId_t nAppID, IntPtr pchDirectory, int cchNameMax);
-
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamAppList_GetAppBuildId", CallingConvention = CallingConvention.Cdecl)]
-		public static extern int ISteamAppList_GetAppBuildId(IntPtr instancePtr, AppId_t nAppID);
-#endregion
 #region SteamApps
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamApps_BIsSubscribed", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
@@ -445,6 +429,17 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamApps_SetDlcContext", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamApps_SetDlcContext(IntPtr instancePtr, AppId_t nAppID);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamApps_GetNumBetas", CallingConvention = CallingConvention.Cdecl)]
+		public static extern int ISteamApps_GetNumBetas(IntPtr instancePtr, out int pnAvailable, out int pnPrivate);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamApps_GetBetaInfo", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamApps_GetBetaInfo(IntPtr instancePtr, int iBetaIndex, out uint punFlags, out uint punBuildID, IntPtr pchBetaName, int cchBetaName, IntPtr pchDescription, int cchDescription);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamApps_SetActiveBeta", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamApps_SetActiveBeta(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchBetaName);
 #endregion
 #region SteamClient
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamClient_CreateSteamPipe", CallingConvention = CallingConvention.Cdecl)]
@@ -527,9 +522,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamClient_GetISteamUGC", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr ISteamClient_GetISteamUGC(IntPtr instancePtr, HSteamUser hSteamUser, HSteamPipe hSteamPipe, InteropHelp.UTF8StringHandle pchVersion);
 
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamClient_GetISteamAppList", CallingConvention = CallingConvention.Cdecl)]
-		public static extern IntPtr ISteamClient_GetISteamAppList(IntPtr instancePtr, HSteamUser hSteamUser, HSteamPipe hSteamPipe, InteropHelp.UTF8StringHandle pchVersion);
-
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamClient_GetISteamMusic", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr ISteamClient_GetISteamMusic(IntPtr instancePtr, HSteamUser hSteamuser, HSteamPipe hSteamPipe, InteropHelp.UTF8StringHandle pchVersion);
 
@@ -560,9 +552,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 #region SteamFriends
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamFriends_GetPersonaName", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr ISteamFriends_GetPersonaName(IntPtr instancePtr);
-
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamFriends_SetPersonaName", CallingConvention = CallingConvention.Cdecl)]
-		public static extern ulong ISteamFriends_SetPersonaName(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchPersonaName);
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamFriends_GetPersonaState", CallingConvention = CallingConvention.Cdecl)]
 		public static extern EPersonaState ISteamFriends_GetPersonaState(IntPtr instancePtr);
@@ -688,9 +677,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamFriends_GetClanOfficerByIndex", CallingConvention = CallingConvention.Cdecl)]
 		public static extern ulong ISteamFriends_GetClanOfficerByIndex(IntPtr instancePtr, CSteamID steamIDClan, int iOfficer);
-
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamFriends_GetUserRestrictions", CallingConvention = CallingConvention.Cdecl)]
-		public static extern uint ISteamFriends_GetUserRestrictions(IntPtr instancePtr);
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamFriends_SetRichPresence", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
@@ -1624,10 +1610,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamMatchmaking_SetLinkedLobby", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamMatchmaking_SetLinkedLobby(IntPtr instancePtr, CSteamID steamIDLobby, CSteamID steamIDLobbyDependent);
-#if _PS3
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamMatchmaking_CheckForPSNGameBootInvite", CallingConvention = CallingConvention.Cdecl)]
-		public static extern void ISteamMatchmaking_CheckForPSNGameBootInvite(IntPtr instancePtr, uint iGameBootAttributes);
-#endif
 #endregion
 #region SteamMatchmakingServers
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamMatchmakingServers_RequestInternetServerList", CallingConvention = CallingConvention.Cdecl)]
@@ -2322,13 +2304,35 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamRemotePlay_BGetSessionClientResolution(IntPtr instancePtr, RemotePlaySessionID_t unSessionID, out int pnResolutionX, out int pnResolutionY);
 
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_BStartRemotePlayTogether", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_ShowRemotePlayTogetherUI", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ISteamRemotePlay_BStartRemotePlayTogether(IntPtr instancePtr, [MarshalAs(UnmanagedType.I1)] bool bShowOverlay);
+		public static extern bool ISteamRemotePlay_ShowRemotePlayTogetherUI(IntPtr instancePtr);
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_BSendRemotePlayTogetherInvite", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamRemotePlay_BSendRemotePlayTogetherInvite(IntPtr instancePtr, CSteamID steamIDFriend);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_BEnableRemotePlayTogetherDirectInput", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamRemotePlay_BEnableRemotePlayTogetherDirectInput(IntPtr instancePtr);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_DisableRemotePlayTogetherDirectInput", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamRemotePlay_DisableRemotePlayTogetherDirectInput(IntPtr instancePtr);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_GetInput", CallingConvention = CallingConvention.Cdecl)]
+		public static extern uint ISteamRemotePlay_GetInput(IntPtr instancePtr, out RemotePlayInput_t pInput, uint unMaxEvents);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_SetMouseVisibility", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamRemotePlay_SetMouseVisibility(IntPtr instancePtr, RemotePlaySessionID_t unSessionID, [MarshalAs(UnmanagedType.I1)] bool bVisible);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_SetMousePosition", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamRemotePlay_SetMousePosition(IntPtr instancePtr, RemotePlaySessionID_t unSessionID, float flNormalizedX, float flNormalizedY);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_CreateMouseCursor", CallingConvention = CallingConvention.Cdecl)]
+		public static extern uint ISteamRemotePlay_CreateMouseCursor(IntPtr instancePtr, int nWidth, int nHeight, int nHotX, int nHotY, IntPtr pBGRA, int nPitch);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemotePlay_SetMouseCursor", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamRemotePlay_SetMouseCursor(IntPtr instancePtr, RemotePlaySessionID_t unSessionID, RemotePlayCursorID_t unCursorID);
 #endregion
 #region SteamRemoteStorage
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamRemoteStorage_FileWrite", CallingConvention = CallingConvention.Cdecl)]
@@ -2564,6 +2568,61 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamScreenshots_AddVRScreenshotToLibrary", CallingConvention = CallingConvention.Cdecl)]
 		public static extern uint ISteamScreenshots_AddVRScreenshotToLibrary(IntPtr instancePtr, EVRScreenshotType eType, InteropHelp.UTF8StringHandle pchFilename, InteropHelp.UTF8StringHandle pchVRFilename);
 #endregion
+#region SteamTimeline
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_SetTimelineTooltip", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_SetTimelineTooltip(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchDescription, float flTimeDelta);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_ClearTimelineTooltip", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_ClearTimelineTooltip(IntPtr instancePtr, float flTimeDelta);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_SetTimelineGameMode", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_SetTimelineGameMode(IntPtr instancePtr, ETimelineGameMode eMode);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_AddInstantaneousTimelineEvent", CallingConvention = CallingConvention.Cdecl)]
+		public static extern ulong ISteamTimeline_AddInstantaneousTimelineEvent(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchTitle, InteropHelp.UTF8StringHandle pchDescription, InteropHelp.UTF8StringHandle pchIcon, uint unIconPriority, float flStartOffsetSeconds, ETimelineEventClipPriority ePossibleClip);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_AddRangeTimelineEvent", CallingConvention = CallingConvention.Cdecl)]
+		public static extern ulong ISteamTimeline_AddRangeTimelineEvent(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchTitle, InteropHelp.UTF8StringHandle pchDescription, InteropHelp.UTF8StringHandle pchIcon, uint unIconPriority, float flStartOffsetSeconds, float flDuration, ETimelineEventClipPriority ePossibleClip);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_StartRangeTimelineEvent", CallingConvention = CallingConvention.Cdecl)]
+		public static extern ulong ISteamTimeline_StartRangeTimelineEvent(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchTitle, InteropHelp.UTF8StringHandle pchDescription, InteropHelp.UTF8StringHandle pchIcon, uint unPriority, float flStartOffsetSeconds, ETimelineEventClipPriority ePossibleClip);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_UpdateRangeTimelineEvent", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_UpdateRangeTimelineEvent(IntPtr instancePtr, TimelineEventHandle_t ulEvent, InteropHelp.UTF8StringHandle pchTitle, InteropHelp.UTF8StringHandle pchDescription, InteropHelp.UTF8StringHandle pchIcon, uint unPriority, ETimelineEventClipPriority ePossibleClip);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_EndRangeTimelineEvent", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_EndRangeTimelineEvent(IntPtr instancePtr, TimelineEventHandle_t ulEvent, float flEndOffsetSeconds);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_RemoveTimelineEvent", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_RemoveTimelineEvent(IntPtr instancePtr, TimelineEventHandle_t ulEvent);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_DoesEventRecordingExist", CallingConvention = CallingConvention.Cdecl)]
+		public static extern ulong ISteamTimeline_DoesEventRecordingExist(IntPtr instancePtr, TimelineEventHandle_t ulEvent);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_StartGamePhase", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_StartGamePhase(IntPtr instancePtr);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_EndGamePhase", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_EndGamePhase(IntPtr instancePtr);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_SetGamePhaseID", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_SetGamePhaseID(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchPhaseID);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_DoesGamePhaseRecordingExist", CallingConvention = CallingConvention.Cdecl)]
+		public static extern ulong ISteamTimeline_DoesGamePhaseRecordingExist(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchPhaseID);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_AddGamePhaseTag", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_AddGamePhaseTag(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchTagName, InteropHelp.UTF8StringHandle pchTagIcon, InteropHelp.UTF8StringHandle pchTagGroup, uint unPriority);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_SetGamePhaseAttribute", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_SetGamePhaseAttribute(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchAttributeGroup, InteropHelp.UTF8StringHandle pchAttributeValue, uint unPriority);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_OpenOverlayToGamePhase", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_OpenOverlayToGamePhase(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchPhaseID);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamTimeline_OpenOverlayToTimelineEvent", CallingConvention = CallingConvention.Cdecl)]
+		public static extern void ISteamTimeline_OpenOverlayToTimelineEvent(IntPtr instancePtr,  TimelineEventHandle_t ulEvent);
+#endregion
 #region SteamUGC
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_CreateQueryUserUGCRequest", CallingConvention = CallingConvention.Cdecl)]
 		public static extern ulong ISteamUGC_CreateQueryUserUGCRequest(IntPtr instancePtr, AccountID_t unAccountID, EUserUGCList eListType, EUGCMatchingUGCType eMatchingUGCType, EUserUGCListSortOrder eSortOrder, AppId_t nCreatorAppID, AppId_t nConsumerAppID, uint unPage);
@@ -2628,6 +2687,13 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetQueryFirstUGCKeyValueTag", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamUGC_GetQueryFirstUGCKeyValueTag(IntPtr instancePtr, UGCQueryHandle_t handle, uint index, InteropHelp.UTF8StringHandle pchKey, IntPtr pchValue, uint cchValueSize);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetNumSupportedGameVersions", CallingConvention = CallingConvention.Cdecl)]
+		public static extern uint ISteamUGC_GetNumSupportedGameVersions(IntPtr instancePtr, UGCQueryHandle_t handle, uint index);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetSupportedGameVersionData", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamUGC_GetSupportedGameVersionData(IntPtr instancePtr, UGCQueryHandle_t handle, uint index, uint versionIndex, IntPtr pchGameBranchMin, IntPtr pchGameBranchMax, uint cchGameBranchSize);
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetQueryUGCContentDescriptors", CallingConvention = CallingConvention.Cdecl)]
 		public static extern uint ISteamUGC_GetQueryUGCContentDescriptors(IntPtr instancePtr, UGCQueryHandle_t handle, uint index, out EUGCContentDescriptorID pvecDescriptors, uint cMaxEntries);
@@ -2805,6 +2871,10 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamUGC_RemoveContentDescriptor(IntPtr instancePtr, UGCUpdateHandle_t handle, EUGCContentDescriptorID descid);
 
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_SetRequiredGameVersions", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamUGC_SetRequiredGameVersions(IntPtr instancePtr, UGCUpdateHandle_t handle, InteropHelp.UTF8StringHandle pszGameBranchMin, InteropHelp.UTF8StringHandle pszGameBranchMax);
+
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_SubmitItemUpdate", CallingConvention = CallingConvention.Cdecl)]
 		public static extern ulong ISteamUGC_SubmitItemUpdate(IntPtr instancePtr, UGCUpdateHandle_t handle, InteropHelp.UTF8StringHandle pchChangeNote);
 
@@ -2830,10 +2900,10 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public static extern ulong ISteamUGC_UnsubscribeItem(IntPtr instancePtr, PublishedFileId_t nPublishedFileID);
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetNumSubscribedItems", CallingConvention = CallingConvention.Cdecl)]
-		public static extern uint ISteamUGC_GetNumSubscribedItems(IntPtr instancePtr);
+		public static extern uint ISteamUGC_GetNumSubscribedItems(IntPtr instancePtr, [MarshalAs(UnmanagedType.I1)] bool bIncludeLocallyDisabled);
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetSubscribedItems", CallingConvention = CallingConvention.Cdecl)]
-		public static extern uint ISteamUGC_GetSubscribedItems(IntPtr instancePtr, [In, Out] PublishedFileId_t[] pvecPublishedFileID, uint cMaxEntries);
+		public static extern uint ISteamUGC_GetSubscribedItems(IntPtr instancePtr, [In, Out] PublishedFileId_t[] pvecPublishedFileID, uint cMaxEntries, [MarshalAs(UnmanagedType.I1)] bool bIncludeLocallyDisabled);
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetItemState", CallingConvention = CallingConvention.Cdecl)]
 		public static extern uint ISteamUGC_GetItemState(IntPtr instancePtr, PublishedFileId_t nPublishedFileID);
@@ -2893,6 +2963,14 @@ namespace SwiftlyS2.Shared.SteamAPI {
 
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_GetUserContentDescriptorPreferences", CallingConvention = CallingConvention.Cdecl)]
 		public static extern uint ISteamUGC_GetUserContentDescriptorPreferences(IntPtr instancePtr, out EUGCContentDescriptorID pvecDescriptors, uint cMaxEntries);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_SetItemsDisabledLocally", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamUGC_SetItemsDisabledLocally(IntPtr instancePtr, out PublishedFileId_t pvecPublishedFileIDs, uint unNumPublishedFileIDs, [MarshalAs(UnmanagedType.I1)] bool bDisabledLocally);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUGC_SetSubscriptionsLoadOrder", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamUGC_SetSubscriptionsLoadOrder(IntPtr instancePtr, out PublishedFileId_t pvecPublishedFileIDs, uint unNumPublishedFileIDs);
 #endregion
 #region SteamUser
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUser_GetHSteamUser", CallingConvention = CallingConvention.Cdecl)]
@@ -3004,10 +3082,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public static extern bool ISteamUser_BSetDurationControlOnlineState(IntPtr instancePtr, EDurationControlOnlineState eNewState);
 #endregion
 #region SteamUserStats
-		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUserStats_RequestCurrentStats", CallingConvention = CallingConvention.Cdecl)]
-		[return: MarshalAs(UnmanagedType.I1)]
-		public static extern bool ISteamUserStats_RequestCurrentStats(IntPtr instancePtr);
-
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUserStats_GetStatInt32", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamUserStats_GetStatInt32(IntPtr instancePtr, InteropHelp.UTF8StringHandle pchName, out int pData);
@@ -3286,6 +3360,10 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUtils_DismissFloatingGamepadTextInput", CallingConvention = CallingConvention.Cdecl)]
 		[return: MarshalAs(UnmanagedType.I1)]
 		public static extern bool ISteamUtils_DismissFloatingGamepadTextInput(IntPtr instancePtr);
+
+		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamUtils_DismissGamepadTextInput", CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.I1)]
+		public static extern bool ISteamUtils_DismissGamepadTextInput(IntPtr instancePtr);
 #endregion
 #region SteamVideo
 		[DllImport(NativeLibraryName, EntryPoint = "SteamAPI_ISteamVideo_GetVideoURL", CallingConvention = CallingConvention.Cdecl)]

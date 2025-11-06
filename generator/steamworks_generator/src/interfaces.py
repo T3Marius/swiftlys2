@@ -562,13 +562,14 @@ def parse_interface(f, interface):
     if interface.name in g_SkippedInterfaces:
         return
 
-    print(" - " + interface.name)
-    g_Output.append('\tpublic static class ' + interface.name[1:] + ' {')
-
     if "GameServer" in interface.name and interface.name != "ISteamGameServer" and interface.name != "ISteamGameServerStats":
         bGameServerVersion = True
     else:
         bGameServerVersion = False
+
+    print(" - " + interface.name)
+    g_Output.append('\tpublic static class ' + interface.name[1:] + ' {')
+
 
 
     if not bGameServerVersion:
@@ -621,15 +622,15 @@ def parse_interface(f, interface):
 def parse_func(f, interface, func):
     strEntryPoint = interface.name + '_' + func.name
 
+    if "GameServer" in interface.name and interface.name != "ISteamGameServer" and interface.name != "ISteamGameServerStats":
+        bGameServerVersion = True
+    else:
+        bGameServerVersion = False
     for attr in func.attributes:
         if attr.name == "STEAM_FLAT_NAME":
             strEntryPoint = interface.name + '_' + attr.value
             break
 
-    if "GameServer" in interface.name and interface.name != "ISteamGameServer" and interface.name != "ISteamGameServerStats":
-        bGameServerVersion = True
-    else:
-        bGameServerVersion = False
 
     wrapperreturntype = None
     strCast = ""

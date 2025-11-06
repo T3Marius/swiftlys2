@@ -152,6 +152,26 @@ namespace SwiftlyS2.Shared.SteamAPI {
 			}
 		}
 
+		/// <summary>
+		/// <para> Some items can specify that they have a version that is valid for a range of game versions (Steam branch)</para>
+		/// </summary>
+		public static uint GetNumSupportedGameVersions(UGCQueryHandle_t handle, uint index) {
+			InteropHelp.TestIfAvailableGameServer();
+			return NativeMethods.ISteamUGC_GetNumSupportedGameVersions(CSteamGameServerAPIContext.GetSteamUGC(), handle, index);
+		}
+
+		public static bool GetSupportedGameVersionData(UGCQueryHandle_t handle, uint index, uint versionIndex, out string pchGameBranchMin, out string pchGameBranchMax, uint cchGameBranchSize) {
+			InteropHelp.TestIfAvailableGameServer();
+			IntPtr pchGameBranchMin2 = Marshal.AllocHGlobal((int)cchGameBranchSize);
+			IntPtr pchGameBranchMax2 = Marshal.AllocHGlobal((int)cchGameBranchSize);
+			bool ret = NativeMethods.ISteamUGC_GetSupportedGameVersionData(CSteamGameServerAPIContext.GetSteamUGC(), handle, index, versionIndex, pchGameBranchMin2, pchGameBranchMax2, cchGameBranchSize);
+			pchGameBranchMin = ret ? InteropHelp.PtrToStringUTF8(pchGameBranchMin2) : null;
+			Marshal.FreeHGlobal(pchGameBranchMin2);
+			pchGameBranchMax = ret ? InteropHelp.PtrToStringUTF8(pchGameBranchMax2) : null;
+			Marshal.FreeHGlobal(pchGameBranchMax2);
+			return ret;
+		}
+
 		public static uint GetQueryUGCContentDescriptors(UGCQueryHandle_t handle, uint index, out EUGCContentDescriptorID pvecDescriptors, uint cMaxEntries) {
 			InteropHelp.TestIfAvailableGameServer();
 			return NativeMethods.ISteamUGC_GetQueryUGCContentDescriptors(CSteamGameServerAPIContext.GetSteamUGC(), handle, index, out pvecDescriptors, cMaxEntries);
@@ -495,6 +515,17 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		}
 
 		/// <summary>
+		/// <para> an empty string for either parameter means that it will match any version on that end of the range. This will only be applied if the actual content has been changed.</para>
+		/// </summary>
+		public static bool SetRequiredGameVersions(UGCUpdateHandle_t handle, string pszGameBranchMin, string pszGameBranchMax) {
+			InteropHelp.TestIfAvailableGameServer();
+			using (var pszGameBranchMin2 = new InteropHelp.UTF8StringHandle(pszGameBranchMin))
+			using (var pszGameBranchMax2 = new InteropHelp.UTF8StringHandle(pszGameBranchMax)) {
+				return NativeMethods.ISteamUGC_SetRequiredGameVersions(CSteamGameServerAPIContext.GetSteamUGC(), handle, pszGameBranchMin2, pszGameBranchMax2);
+			}
+		}
+
+		/// <summary>
 		/// <para> commit update process started with StartItemUpdate()</para>
 		/// </summary>
 		public static SteamAPICall_t SubmitItemUpdate(UGCUpdateHandle_t handle, string pchChangeNote) {
@@ -551,17 +582,17 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		/// <summary>
 		/// <para> number of subscribed items</para>
 		/// </summary>
-		public static uint GetNumSubscribedItems() {
+		public static uint GetNumSubscribedItems(bool bIncludeLocallyDisabled = false) {
 			InteropHelp.TestIfAvailableGameServer();
-			return NativeMethods.ISteamUGC_GetNumSubscribedItems(CSteamGameServerAPIContext.GetSteamUGC());
+			return NativeMethods.ISteamUGC_GetNumSubscribedItems(CSteamGameServerAPIContext.GetSteamUGC(), bIncludeLocallyDisabled);
 		}
 
 		/// <summary>
 		/// <para> all subscribed item PublishFileIDs</para>
 		/// </summary>
-		public static uint GetSubscribedItems(PublishedFileId_t[] pvecPublishedFileID, uint cMaxEntries) {
+		public static uint GetSubscribedItems(PublishedFileId_t[] pvecPublishedFileID, uint cMaxEntries, bool bIncludeLocallyDisabled = false) {
 			InteropHelp.TestIfAvailableGameServer();
-			return NativeMethods.ISteamUGC_GetSubscribedItems(CSteamGameServerAPIContext.GetSteamUGC(), pvecPublishedFileID, cMaxEntries);
+			return NativeMethods.ISteamUGC_GetSubscribedItems(CSteamGameServerAPIContext.GetSteamUGC(), pvecPublishedFileID, cMaxEntries, bIncludeLocallyDisabled);
 		}
 
 		/// <summary>
@@ -705,6 +736,22 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public static uint GetUserContentDescriptorPreferences(out EUGCContentDescriptorID pvecDescriptors, uint cMaxEntries) {
 			InteropHelp.TestIfAvailableGameServer();
 			return NativeMethods.ISteamUGC_GetUserContentDescriptorPreferences(CSteamGameServerAPIContext.GetSteamUGC(), out pvecDescriptors, cMaxEntries);
+		}
+
+		/// <summary>
+		/// <para> Sets whether the item should be disabled locally or not. This means that it will not be returned in GetSubscribedItems() by default.</para>
+		/// </summary>
+		public static bool SetItemsDisabledLocally(out PublishedFileId_t pvecPublishedFileIDs, uint unNumPublishedFileIDs, bool bDisabledLocally) {
+			InteropHelp.TestIfAvailableGameServer();
+			return NativeMethods.ISteamUGC_SetItemsDisabledLocally(CSteamGameServerAPIContext.GetSteamUGC(), out pvecPublishedFileIDs, unNumPublishedFileIDs, bDisabledLocally);
+		}
+
+		/// <summary>
+		/// <para> Set the local load order for these items. If there are any items not in the given list, they will sort by the time subscribed.</para>
+		/// </summary>
+		public static bool SetSubscriptionsLoadOrder(out PublishedFileId_t pvecPublishedFileIDs, uint unNumPublishedFileIDs) {
+			InteropHelp.TestIfAvailableGameServer();
+			return NativeMethods.ISteamUGC_SetSubscriptionsLoadOrder(CSteamGameServerAPIContext.GetSteamUGC(), out pvecPublishedFileIDs, unNumPublishedFileIDs);
 		}
 	}
 }

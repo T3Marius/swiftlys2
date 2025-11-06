@@ -326,18 +326,8 @@ public class TestPlugin : BasePlugin
     [Command("w")]
     public void TestCommand1( ICommandContext context )
     {
-        var attacker = context.Sender!;
-        var weapons = attacker.Pawn!.WeaponServices!.MyWeapons;
-        foreach (var weaponHandle in weapons)
-        {
-            var weapon = weaponHandle.Value?.As<CCSWeaponBase>();
-            if (weapon == null)
-            {
-                continue;
-            }
-
-            Console.WriteLine($"Weapon: {weapon.DesignerName}");
-        }
+        var ret = SteamGameServerUGC.DownloadItem(new PublishedFileId_t(3596198331), true);
+        Console.WriteLine(ret);
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

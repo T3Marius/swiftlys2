@@ -3,29 +3,6 @@ using IntPtr = System.IntPtr;
 
 namespace SwiftlyS2.Shared.SteamAPI {
 	// callbacks
-	//---------------------------------------------------------------------------------
-	// Purpose: Sent when a new app is installed (not downloaded yet)
-	//---------------------------------------------------------------------------------
-	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
-	[CallbackIdentity(Constants.k_iSteamAppListCallbacks + 1)]
-	public struct SteamAppInstalled_t {
-		public const int k_iCallback = Constants.k_iSteamAppListCallbacks + 1;
-		public AppId_t m_nAppID;			// ID of the app that installs
-		public int m_iInstallFolderIndex; // library folder the app is installed
-	}
-
-	//---------------------------------------------------------------------------------
-	// Purpose: Sent when an app is uninstalled
-	//---------------------------------------------------------------------------------
-	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
-	[CallbackIdentity(Constants.k_iSteamAppListCallbacks + 2)]
-	public struct SteamAppUninstalled_t {
-		public const int k_iCallback = Constants.k_iSteamAppListCallbacks + 2;
-		public AppId_t m_nAppID;			// ID of the app that installs
-		public int m_iInstallFolderIndex; // library folder the app was installed
-	}
-
-	// callbacks
 	//-----------------------------------------------------------------------------
 	// Purpose: posted after the user gains ownership of DLC & that DLC is installed
 	//-----------------------------------------------------------------------------
@@ -159,10 +136,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public CSteamID m_steamIDLobby;
 		
 		// The friend they did the join via (will be invalid if not directly via a friend)
-		//
-		// On PS3, the friend will be invalid if this was triggered by a PSN invite via the XMB, but
-		// the account type will be console user so you can tell at least that this was from a PSN friend
-		// rather than a Steam friend.
 		public CSteamID m_steamIDFriend;
 	}
 
@@ -323,21 +296,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 	}
 
 	//-----------------------------------------------------------------------------
-	// Purpose: reports the result of an attempt to change the user's persona name
-	//-----------------------------------------------------------------------------
-	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
-	[CallbackIdentity(Constants.k_iSteamFriendsCallbacks + 47)]
-	public struct SetPersonaNameResponse_t {
-		public const int k_iCallback = Constants.k_iSteamFriendsCallbacks + 47;
-		
-		[MarshalAs(UnmanagedType.I1)]
-		public bool m_bSuccess; // true if name change succeeded completely.
-		[MarshalAs(UnmanagedType.I1)]
-		public bool m_bLocalSuccess; // true if name change was retained locally.  (We might not have been able to communicate with Steam)
-		public EResult m_result; // detailed result code
-	}
-
-	//-----------------------------------------------------------------------------
 	// Purpose: Invoked when the status of unread messages changes
 	//-----------------------------------------------------------------------------
 	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value, Size = 1)]
@@ -391,6 +349,8 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public bool m_bHasProfileBackground;
 		[MarshalAs(UnmanagedType.I1)]
 		public bool m_bHasMiniProfileBackground;
+		[MarshalAs(UnmanagedType.I1)]
+		public bool m_bFromCache;
 	}
 
 	// callbacks
@@ -824,7 +784,7 @@ namespace SwiftlyS2.Shared.SteamAPI {
 	public struct HTML_SetCursor_t {
 		public const int k_iCallback = Constants.k_iSteamHTMLSurfaceCallbacks + 22;
 		public HHTMLBrowser unBrowserHandle; // the handle of the surface
-		public uint eMouseCursor; // the EMouseCursor to display
+		public uint eMouseCursor; // the EHTMLMouseCursor to display
 	}
 
 	//-----------------------------------------------------------------------------
@@ -835,7 +795,7 @@ namespace SwiftlyS2.Shared.SteamAPI {
 	public struct HTML_StatusText_t {
 		public const int k_iCallback = Constants.k_iSteamHTMLSurfaceCallbacks + 23;
 		public HHTMLBrowser unBrowserHandle; // the handle of the surface
-		public string pchMsg; // the EMouseCursor to display
+		public string pchMsg; // the message text
 	}
 
 	//-----------------------------------------------------------------------------
@@ -846,7 +806,7 @@ namespace SwiftlyS2.Shared.SteamAPI {
 	public struct HTML_ShowToolTip_t {
 		public const int k_iCallback = Constants.k_iSteamHTMLSurfaceCallbacks + 24;
 		public HHTMLBrowser unBrowserHandle; // the handle of the surface
-		public string pchMsg; // the EMouseCursor to display
+		public string pchMsg; // the tooltip text
 	}
 
 	//-----------------------------------------------------------------------------
@@ -857,7 +817,7 @@ namespace SwiftlyS2.Shared.SteamAPI {
 	public struct HTML_UpdateToolTip_t {
 		public const int k_iCallback = Constants.k_iSteamHTMLSurfaceCallbacks + 25;
 		public HHTMLBrowser unBrowserHandle; // the handle of the surface
-		public string pchMsg; // the EMouseCursor to display
+		public string pchMsg; // the new tooltip text
 	}
 
 	//-----------------------------------------------------------------------------
@@ -1232,6 +1192,10 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public ulong m_ulSteamIDLobby;		// chat room, zero if failed
 	}
 
+	// used by now obsolete RequestFriendsLobbiesResponse_t
+	// enum { k_iCallback = k_iSteamMatchmakingCallbacks + 14 };
+	// used by now obsolete PSNGameBootInviteResult_t
+	// enum { k_iCallback = k_iSteamMatchmakingCallbacks + 15 };
 	//-----------------------------------------------------------------------------
 	// Purpose: Result of our request to create a Lobby
 	//			m_eResult == k_EResultOK on success
@@ -2142,6 +2106,38 @@ namespace SwiftlyS2.Shared.SteamAPI {
 	// Purpose: Callback for querying UGC
 	//-----------------------------------------------------------------------------
 	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
+	[CallbackIdentity(Constants.k_iSteamTimelineCallbacks + 1)]
+	public struct SteamTimelineGamePhaseRecordingExists_t {
+		public const int k_iCallback = Constants.k_iSteamTimelineCallbacks + 1;
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = Constants.k_cchMaxPhaseIDLength)]
+		private byte[] m_rgchPhaseID_;
+		public string m_rgchPhaseID
+		{
+			get { return InteropHelp.ByteArrayToStringUTF8(m_rgchPhaseID_); }
+			set { InteropHelp.StringToByteArrayUTF8(value, m_rgchPhaseID_, Constants.k_cchMaxPhaseIDLength); }
+		}
+		public ulong m_ulRecordingMS;
+		public ulong m_ulLongestClipMS;
+		public uint m_unClipCount;
+		public uint m_unScreenshotCount;
+	}
+
+	//-----------------------------------------------------------------------------
+	// Purpose: Callback for querying UGC
+	//-----------------------------------------------------------------------------
+	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
+	[CallbackIdentity(Constants.k_iSteamTimelineCallbacks + 2)]
+	public struct SteamTimelineEventRecordingExists_t {
+		public const int k_iCallback = Constants.k_iSteamTimelineCallbacks + 2;
+		public ulong m_ulEventID;
+		[MarshalAs(UnmanagedType.I1)]
+		public bool m_bRecordingExists;
+	}
+
+	//-----------------------------------------------------------------------------
+	// Purpose: Callback for querying UGC
+	//-----------------------------------------------------------------------------
+	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
 	[CallbackIdentity(Constants.k_iSteamUGCCallbacks + 1)]
 	public struct SteamUGCQueryCompleted_t {
 		public const int k_iCallback = Constants.k_iSteamUGCCallbacks + 1;
@@ -2883,6 +2879,21 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public const int k_iCallback = Constants.k_iSteamVideoCallbacks + 24;
 		public EResult m_eResult;
 		public AppId_t m_unVideoAppID;
+	}
+
+	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
+	[CallbackIdentity(Constants.k_iSteamVideoCallbacks + 4)]
+	public struct BroadcastUploadStart_t {
+		public const int k_iCallback = Constants.k_iSteamVideoCallbacks + 4;
+		[MarshalAs(UnmanagedType.I1)]
+		public bool m_bIsRTMP;
+	}
+
+	[StructLayout(LayoutKind.Sequential, Pack = Packsize.value)]
+	[CallbackIdentity(Constants.k_iSteamVideoCallbacks + 5)]
+	public struct BroadcastUploadStop_t {
+		public const int k_iCallback = Constants.k_iSteamVideoCallbacks + 5;
+		public EBroadcastUploadResult m_eResult;
 	}
 
 	/// Callback struct used to notify when a connection has changed state

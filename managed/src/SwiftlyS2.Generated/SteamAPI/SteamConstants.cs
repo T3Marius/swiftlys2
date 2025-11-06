@@ -3,11 +3,10 @@ using IntPtr = System.IntPtr;
 
 namespace SwiftlyS2.Shared.SteamAPI {
 	public static class Constants {
-		public const string STEAMAPPLIST_INTERFACE_VERSION = "STEAMAPPLIST_INTERFACE_VERSION001";
 		public const string STEAMAPPS_INTERFACE_VERSION = "STEAMAPPS_INTERFACE_VERSION008";
 		public const string STEAMAPPTICKET_INTERFACE_VERSION = "STEAMAPPTICKET_INTERFACE_VERSION001";
-		public const string STEAMCLIENT_INTERFACE_VERSION = "SteamClient020";
-		public const string STEAMFRIENDS_INTERFACE_VERSION = "SteamFriends017";
+		public const string STEAMCLIENT_INTERFACE_VERSION = "SteamClient021";
+		public const string STEAMFRIENDS_INTERFACE_VERSION = "SteamFriends018";
 		public const string STEAMGAMECOORDINATOR_INTERFACE_VERSION = "SteamGameCoordinator001";
 		public const string STEAMGAMESERVER_INTERFACE_VERSION = "SteamGameServer015";
 		public const string STEAMGAMESERVERSTATS_INTERFACE_VERSION = "SteamGameServerStats001";
@@ -28,20 +27,24 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		// Silence some warnings
 		public const string STEAMNETWORKINGUTILS_INTERFACE_VERSION = "SteamNetworkingUtils004";
 		public const string STEAMPARENTALSETTINGS_INTERFACE_VERSION = "STEAMPARENTALSETTINGS_INTERFACE_VERSION001";
-		public const string STEAMREMOTEPLAY_INTERFACE_VERSION = "STEAMREMOTEPLAY_INTERFACE_VERSION002";
+		public const string STEAMREMOTEPLAY_INTERFACE_VERSION = "STEAMREMOTEPLAY_INTERFACE_VERSION003";
 		public const string STEAMREMOTESTORAGE_INTERFACE_VERSION = "STEAMREMOTESTORAGE_INTERFACE_VERSION016";
 		public const string STEAMSCREENSHOTS_INTERFACE_VERSION = "STEAMSCREENSHOTS_INTERFACE_VERSION003";
-		public const string STEAMUGC_INTERFACE_VERSION = "STEAMUGC_INTERFACE_VERSION019";
+		public const string STEAMTIMELINE_INTERFACE_VERSION = "STEAMTIMELINE_INTERFACE_V004";
+		public const string STEAMUGC_INTERFACE_VERSION = "STEAMUGC_INTERFACE_VERSION021";
 		public const string STEAMUSER_INTERFACE_VERSION = "SteamUser023";
-		public const string STEAMUSERSTATS_INTERFACE_VERSION = "STEAMUSERSTATS_INTERFACE_VERSION012";
+		public const string STEAMUSERSTATS_INTERFACE_VERSION = "STEAMUSERSTATS_INTERFACE_VERSION013";
 		public const string STEAMUTILS_INTERFACE_VERSION = "SteamUtils010";
-		public const string STEAMVIDEO_INTERFACE_VERSION = "STEAMVIDEO_INTERFACE_V002";
+		public const string STEAMVIDEO_INTERFACE_VERSION = "STEAMVIDEO_INTERFACE_V007";
 		public const int k_cubAppProofOfPurchaseKeyMax = 240; // max supported length of a legacy cd key
 		// maximum length of friend group name (not including terminating nul!)
 		public const int k_cchMaxFriendsGroupName = 64;
 		// maximum number of groups a single user is allowed
 		public const int k_cFriendsGroupLimit = 100;
 		public const int k_cEnumerateFollowersMax = 50;
+		// special values for FriendGameInfo_t::m_usQueryPort
+		public const ushort k_usFriendGameInfoQueryPort_NotInitialized = 0xFFFF; // We haven't asked the GS for this query port's actual value yet.  Was #define QUERY_PORT_NOT_INITIALIZED in older versions of Steamworks SDK.
+		public const ushort k_usFriendGameInfoQueryPort_Error = 0xFFFE; // We were unable to get the query port for this server.  Was #define QUERY_PORT_ERROR in older versions of Steamworks SDK.
 		// maximum number of characters in a user's name. Two flavors; one for UTF-8 and one for UTF-16.
 		// The UTF-8 version has to be very generous to accomodate characters that get large when encoded
 		// in UTF-8.
@@ -76,6 +79,10 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		// Required with of a thumbnail provided to AddScreenshotToLibrary.  If you do not provide a thumbnail
 		// one will be generated.
 		public const int k_ScreenshotThumbWidth = 200;
+		public const int k_unMaxTimelinePriority = 1000;
+		public const int k_unTimelinePriority_KeepCurrentValue = 1000000; // Use with UpdateRangeTimelineEvent to not change the priority
+		public const float k_flMaxTimelineEventDuration = 600.0f;
+		public const int k_cchMaxPhaseIDLength = 64;
 		public const int kNumUGCResultsPerPage = 50;
 		public const int k_cchDeveloperMetadataMax = 5000;
 		public const int k_nCubTicketMaxLength = 2560;
@@ -129,7 +136,6 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public const int k_iSteamControllerCallbacks = 2800;
 		public const int k_iSteamUGCCallbacks = 3400;
 		public const int k_iSteamStreamClientCallbacks = 3500;
-		public const int k_iSteamAppListCallbacks = 3900;
 		public const int k_iSteamMusicCallbacks = 4000;
 		public const int k_iSteamMusicRemoteCallbacks = 4100;
 		public const int k_iSteamGameNotificationCallbacks = 4400;
@@ -142,6 +148,7 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public const int k_iSteamSTARCallbacks = 5500;
 		public const int k_iSteamRemotePlayCallbacks = 5700;
 		public const int k_iSteamChatCallbacks = 5900;
+		public const int k_iSteamTimelineCallbacks = 6000;
 		/// Pass to SteamGameServer_Init to indicate that the same UDP port will be used for game traffic
 		/// UDP queries for server browser pings and LAN discovery.  In this case, Steam will not open up a
 		/// socket to handle server browser queries, and you must use ISteamGameServer::HandleIncomingPacket
@@ -299,6 +306,7 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public const int k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_Private = 2; // host addresses that appear to be link-local or RFC1918 addresses
 		public const int k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_Public = 4; // STUN reflexive addresses, or host address that isn't a "private" address
 		public const int k_nSteamNetworkingConfig_P2P_Transport_ICE_Enable_All = 0x7fffffff;
+		public const int k_uAccountIdInvalid = 0;
 		public const ulong k_ulPartyBeaconIdInvalid = 0;
 		public const int INVALID_HTTPREQUEST_HANDLE		= 0;
 		public const int STEAM_INPUT_MAX_COUNT = 16;
@@ -314,6 +322,7 @@ namespace SwiftlyS2.Shared.SteamAPI {
 		public const byte k_nMaxLobbyKeyLength = 255;
 		public const int k_SteamMusicNameMaxLength = 255;
 		public const int k_SteamMusicPNGMaxLength = 65535;
+		// STEAM_API_EXPORTS
 	}
 }
 
