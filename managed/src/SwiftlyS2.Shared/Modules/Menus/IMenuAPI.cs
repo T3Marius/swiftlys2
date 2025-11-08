@@ -131,6 +131,11 @@ public interface IMenuAPI
     /// </summary>
     public event EventHandler<MenuEventArgs>? AfterSelectionMove;
 
+    /// <summary>
+    /// Fired when the selection pointer is hovering over an option.
+    /// </summary>
+    public event EventHandler<MenuEventArgs>? OptionHovering;
+
     // /// <summary>
     // /// Fired when an option is about to enter the visible viewport.
     // /// </summary>

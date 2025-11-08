@@ -164,16 +164,16 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
             else if (useKey.HasFlag(@event.Key.ToKeyBind()))
             {
                 var option = menu.GetCurrentOption(player);
-                if (option != null)
+                if (option != null && option.Enabled)
                 {
                     _ = Task.Run(async () => await option.OnClickAsync(player));
-                }
 
-                if (menu.Configuration.PlaySound && (option?.PlaySound ?? false))
-                {
-                    useSound.Recipients.AddRecipient(@event.PlayerId);
-                    useSound.Emit();
-                    useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                    if (menu.Configuration.PlaySound && option.PlaySound)
+                    {
+                        useSound.Recipients.AddRecipient(@event.PlayerId);
+                        useSound.Emit();
+                        useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                    }
                 }
             }
         }
@@ -214,16 +214,16 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
             else if (KeyBind.D.HasFlag(@event.Key.ToKeyBind()))
             {
                 var option = menu.GetCurrentOption(player);
-                if (option != null)
+                if (option != null && option.Enabled)
                 {
                     _ = Task.Run(async () => await option.OnClickAsync(player));
-                }
 
-                if (menu.Configuration.PlaySound && (option?.PlaySound ?? false))
-                {
-                    useSound.Recipients.AddRecipient(@event.PlayerId);
-                    useSound.Emit();
-                    useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                    if (menu.Configuration.PlaySound && option.PlaySound)
+                    {
+                        useSound.Recipients.AddRecipient(@event.PlayerId);
+                        useSound.Emit();
+                        useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                    }
                 }
             }
         }

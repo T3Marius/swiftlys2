@@ -123,10 +123,10 @@ public abstract class MenuOptionBase : IMenuOption
     /// </summary>
     public event AsyncEventHandler<MenuOptionClickEventArgs>? Click;
 
-    /// <summary>
-    /// Occurs when a player's cursor enters this option.
-    /// </summary>
-    public event EventHandler<MenuOptionEventArgs>? Hover;
+    // /// <summary>
+    // /// Occurs when a player's cursor enters this option.
+    // /// </summary>
+    // public event EventHandler<MenuOptionEventArgs>? Hover;
 
     /// <summary>
     /// Occurs before HTML markup is assembled, allowing customization of the text content.
@@ -333,14 +333,14 @@ public abstract class MenuOptionBase : IMenuOption
         TextChanged?.Invoke(this, args);
     }
 
-    /// <summary>
-    /// Raises the <see cref="Hover"/> event.
-    /// </summary>
-    /// <param name="player">The player whose cursor entered the option.</param>
-    protected virtual void OnHover( IPlayer player )
-    {
-        Hover?.Invoke(this, new MenuOptionEventArgs { Player = player, Option = this });
-    }
+    // /// <summary>
+    // /// Raises the <see cref="Hover"/> event.
+    // /// </summary>
+    // /// <param name="player">The player whose cursor entered the option.</param>
+    // protected virtual void OnHover( IPlayer player )
+    // {
+    //     Hover?.Invoke(this, new MenuOptionEventArgs { Player = player, Option = this });
+    // }
 
     private static string GetSizeClass( IMenuOptionTextSize size )
     {

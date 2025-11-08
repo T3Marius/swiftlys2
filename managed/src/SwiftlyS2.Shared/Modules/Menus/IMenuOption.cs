@@ -182,10 +182,10 @@ public interface IMenuOption
     /// </summary>
     public event AsyncEventHandler<MenuOptionClickEventArgs>? Click;
 
-    /// <summary>
-    /// Occurs when a player's cursor enters this option.
-    /// </summary>
-    public event EventHandler<MenuOptionEventArgs>? Hover;
+    // /// <summary>
+    // /// Occurs when a player's cursor enters this option.
+    // /// </summary>
+    // public event EventHandler<MenuOptionEventArgs>? Hover;
 
     /// <summary>
     /// Occurs before HTML markup is assembled, allowing customization of the text content.

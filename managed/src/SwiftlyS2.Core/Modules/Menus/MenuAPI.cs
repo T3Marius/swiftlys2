@@ -51,6 +51,11 @@ internal sealed class MenuAPI : IMenuAPI
     /// </summary>
     public event EventHandler<MenuEventArgs>? AfterSelectionMove;
 
+    /// <summary>
+    /// Fired when the selection pointer is hovering over an option.
+    /// </summary>
+    public event EventHandler<MenuEventArgs>? OptionHovering;
+
     // /// <summary>
     // /// Fired when an option is about to enter the visible viewport.
     // /// </summary>
@@ -123,6 +128,7 @@ internal sealed class MenuAPI : IMenuAPI
             BeforeSelectionMove?.Invoke(this, new MenuEventArgs { Player = player, Options = null });
 
             // TODO
+            OptionHovering?.Invoke(this, new MenuEventArgs { Player = player, Options = null });
 
             // TODO
             AfterSelectionMove?.Invoke(this, new MenuEventArgs { Player = player, Options = null });
@@ -181,6 +187,7 @@ internal sealed class MenuAPI : IMenuAPI
     {
         lock (optionsLock)
         {
+            option.Click += OnOptionClick;
             options.Add(option);
             maxOptions = options.Count;
             maxDisplayLines = options.Sum(option => option.LineCount);
@@ -238,5 +245,15 @@ internal sealed class MenuAPI : IMenuAPI
         player.PlayerPawn.MoveType = moveType;
         player.PlayerPawn.ActualMoveType = moveType;
         player.PlayerPawn.MoveTypeUpdated();
+    }
+
+    private ValueTask OnOptionClick( object? sender, MenuOptionClickEventArgs args )
+    {
+        if (args.CloseMenu)
+        {
+            CloseForPlayer(args.Player);
+        }
+
+        return ValueTask.CompletedTask;
     }
 }
