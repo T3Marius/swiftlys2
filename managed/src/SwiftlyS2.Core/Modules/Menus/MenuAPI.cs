@@ -351,14 +351,19 @@ internal sealed class MenuAPI : IMenuAPI
     {
         lock (optionsLock)
         {
-            var index = options.IndexOf(option);
-            return index >= 0 && index < maxOptions && desiredOptionIndex.TryGetValue(player, out var oldIndex) && desiredOptionIndex.TryUpdate(player, Math.Clamp(index, 0, maxOptions - 1), oldIndex);
+            return MoveToOptionIndex(player, options.IndexOf(option));
         }
     }
 
     public bool MoveToOptionIndex( IPlayer player, int index )
     {
-        return index >= 0 && index < maxOptions && desiredOptionIndex.TryGetValue(player, out var oldIndex) && desiredOptionIndex.TryUpdate(player, Math.Clamp(index, 0, maxOptions - 1), oldIndex);
+        if (maxOptions == 0)
+        {
+            return false;
+        }
+
+        var targetIndex = ((index % maxOptions) + maxOptions) % maxOptions;
+        return desiredOptionIndex.TryGetValue(player, out var oldIndex) && desiredOptionIndex.TryUpdate(player, targetIndex, oldIndex);
     }
 
     public IMenuOption? GetCurrentOption( IPlayer player )
