@@ -8,14 +8,14 @@ internal sealed class MenuBuilderAPI : IMenuBuilderAPI
     /// <summary>
     /// Gets the design interface for this menu.
     /// </summary>
-    public IMenuDesignAPI Design { get => design ??= new MenuDesignAPI(configuration, this, style => optionScrollStyle = style, style => optionTextStyle = style); }
+    public IMenuDesignAPI Design { get => design ??= new MenuDesignAPI(configuration, this, style => optionScrollStyle = style/*, style => optionTextStyle = style*/); }
 
     private readonly ISwiftlyCore core;
     private readonly MenuConfiguration configuration = new();
     private readonly List<IMenuOption> options = new();
     private MenuKeybindOverrides keybindOverrides = new();
     private MenuOptionScrollStyle optionScrollStyle = MenuOptionScrollStyle.CenterFixed;
-    private MenuOptionTextStyle optionTextStyle = MenuOptionTextStyle.TruncateEnd;
+    // private MenuOptionTextStyle optionTextStyle = MenuOptionTextStyle.TruncateEnd;
     private IMenuAPI? parent = null;
     private IMenuDesignAPI? design = null;
 
@@ -81,7 +81,7 @@ internal sealed class MenuBuilderAPI : IMenuBuilderAPI
 
     public IMenuAPI Build()
     {
-        var menu = new MenuAPI(core, configuration, keybindOverrides, this, parent, optionScrollStyle, optionTextStyle);
+        var menu = new MenuAPI(core, configuration, keybindOverrides, this, parent, optionScrollStyle/*, optionTextStyle*/);
         options.ForEach(option => menu.AddOption(option));
         return menu;
     }

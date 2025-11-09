@@ -617,12 +617,12 @@ public class TestPlugin : BasePlugin
         var player = context.Sender!;
         var menu = Core.MenusAPI
             .CreateBuilder()
-            .FreezePlayer(true)
+            .FreezePlayer(false)
             .AutoClose(15f)
             .Design.MaxVisibleItems(5)
             .Design.SetMenuTitle("Refactored Menu")
             .Design.HideMenuTitle(false)
-            .Design.SetGlobalOptionScrollStyle(MenuOptionScrollStyle.LinearScroll)
+            .Design.SetGlobalOptionScrollStyle(MenuOptionScrollStyle.WaitingCenter)
             .AddOption(new TextMenuOption("1"))
             .AddOption(new TextMenuOption("12"))
             .AddOption(new TextMenuOption("123"))
@@ -632,6 +632,8 @@ public class TestPlugin : BasePlugin
             .AddOption(new TextMenuOption("1234567"))
             .AddOption(new TextMenuOption("12345678"))
             .AddOption(new TextMenuOption("123456789"))
+            .AddOption(new TextMenuOption("1234567890"))
+            .AddOption(new TextMenuOption("123456789012345678901234567890"))
             .AddOption(new TextMenuOption("1234567890"))
             .AddOption(new TextMenuOption("123456789"))
             .AddOption(new TextMenuOption("12345678"))

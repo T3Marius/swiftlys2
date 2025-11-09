@@ -122,6 +122,11 @@ public interface IMenuOption
     public string Text { get; set; }
 
     /// <summary>
+    /// The maximum display width for menu option text in relative units.
+    /// </summary>
+    public float MaxWidth { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether this option is visible in the menu.
     /// </summary>
     /// <remarks>

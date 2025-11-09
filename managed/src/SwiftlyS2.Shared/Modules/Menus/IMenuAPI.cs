@@ -126,10 +126,10 @@ public interface IMenuAPI
     /// </summary>
     public MenuOptionScrollStyle OptionScrollStyle { get; }
 
-    /// <summary>
-    /// The text overflow style for menu options.
-    /// </summary>
-    public MenuOptionTextStyle OptionTextStyle { get; }
+    // /// <summary>
+    // /// The text overflow style for menu options.
+    // /// </summary>
+    // public MenuOptionTextStyle OptionTextStyle { get; }
 
     /// <summary>
     /// The builder used to construct and configure this menu.

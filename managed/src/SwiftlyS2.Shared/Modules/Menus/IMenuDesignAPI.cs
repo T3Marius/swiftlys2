@@ -33,10 +33,10 @@ public interface IMenuDesignAPI
     /// <returns>The menu builder for method chaining.</returns>
     public IMenuBuilderAPI SetGlobalOptionScrollStyle( MenuOptionScrollStyle style );
 
-    /// <summary>
-    /// Sets the global option text style for the menu.
-    /// </summary>
-    /// <param name="style">The text style to apply to all options in the menu.</param>
-    /// <returns>The menu builder for method chaining.</returns>
-    public IMenuBuilderAPI SetGlobalOptionTextStyle( MenuOptionTextStyle style );
+    // /// <summary>
+    // /// Sets the global option text style for the menu.
+    // /// </summary>
+    // /// <param name="style">The text style to apply to all options in the menu.</param>
+    // /// <returns>The menu builder for method chaining.</returns>
+    // public IMenuBuilderAPI SetGlobalOptionTextStyle( MenuOptionTextStyle style );
 }

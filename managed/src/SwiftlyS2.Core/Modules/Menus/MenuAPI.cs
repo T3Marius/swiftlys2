@@ -24,10 +24,10 @@ internal sealed class MenuAPI : IMenuAPI
     /// </summary>
     public MenuOptionScrollStyle OptionScrollStyle { get; init; }
 
-    /// <summary>
-    /// The text overflow style for menu options.
-    /// </summary>
-    public MenuOptionTextStyle OptionTextStyle { get; init; }
+    // /// <summary>
+    // /// The text overflow style for menu options.
+    // /// </summary>
+    // public MenuOptionTextStyle OptionTextStyle { get; init; }
 
     /// <summary>
     /// The builder used to construct and configure this menu.
@@ -90,13 +90,13 @@ internal sealed class MenuAPI : IMenuAPI
     private readonly ConcurrentDictionary<IPlayer, CancellationTokenSource> autoCloseCancelTokens = new();
 
     // [SetsRequiredMembers]
-    public MenuAPI( ISwiftlyCore core, MenuConfiguration configuration, MenuKeybindOverrides keybindOverrides, IMenuBuilderAPI? builder = null, IMenuAPI? parent = null, MenuOptionScrollStyle optionScrollStyle = MenuOptionScrollStyle.CenterFixed, MenuOptionTextStyle optionTextStyle = MenuOptionTextStyle.TruncateEnd )
+    public MenuAPI( ISwiftlyCore core, MenuConfiguration configuration, MenuKeybindOverrides keybindOverrides, IMenuBuilderAPI? builder = null, IMenuAPI? parent = null, MenuOptionScrollStyle optionScrollStyle = MenuOptionScrollStyle.CenterFixed/*, MenuOptionTextStyle optionTextStyle = MenuOptionTextStyle.TruncateEnd*/ )
     {
         this.core = core;
         Configuration = configuration;
         KeybindOverrides = keybindOverrides;
         OptionScrollStyle = optionScrollStyle;
-        OptionTextStyle = optionTextStyle;
+        // OptionTextStyle = optionTextStyle;
         Builder = builder;
         Parent = parent;
 

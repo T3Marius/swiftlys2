@@ -7,14 +7,14 @@ internal sealed class MenuDesignAPI : IMenuDesignAPI
     private readonly MenuConfiguration configuration;
     private readonly IMenuBuilderAPI builder;
     private readonly Action<MenuOptionScrollStyle> setScrollStyle;
-    private readonly Action<MenuOptionTextStyle> setTextStyle;
+    // private readonly Action<MenuOptionTextStyle> setTextStyle;
 
-    public MenuDesignAPI( MenuConfiguration configuration, IMenuBuilderAPI builder, Action<MenuOptionScrollStyle> setScrollStyle, Action<MenuOptionTextStyle> setTextStyle )
+    public MenuDesignAPI( MenuConfiguration configuration, IMenuBuilderAPI builder, Action<MenuOptionScrollStyle> setScrollStyle/*, Action<MenuOptionTextStyle> setTextStyle*/ )
     {
         this.configuration = configuration;
         this.builder = builder;
         this.setScrollStyle = setScrollStyle;
-        this.setTextStyle = setTextStyle;
+        // this.setTextStyle = setTextStyle;
     }
 
     public IMenuBuilderAPI SetMenuTitle( string? title = null )
@@ -41,9 +41,9 @@ internal sealed class MenuDesignAPI : IMenuDesignAPI
         return builder;
     }
 
-    public IMenuBuilderAPI SetGlobalOptionTextStyle( MenuOptionTextStyle style )
-    {
-        setTextStyle(style);
-        return builder;
-    }
+    // public IMenuBuilderAPI SetGlobalOptionTextStyle( MenuOptionTextStyle style )
+    // {
+    //     setTextStyle(style);
+    //     return builder;
+    // }
 }
