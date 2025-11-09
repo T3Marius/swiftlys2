@@ -1,4 +1,3 @@
-using SwiftlyS2.Shared.Natives;
 using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.Menus;
@@ -30,7 +29,26 @@ public record class MenuConfiguration
     /// <summary>
     /// Maximum number of menu options displayed on screen at once.
     /// </summary>
-    public int MaxVisibleItems { get; set; } = 5;
+    /// <remarks>
+    /// Valid range is [1, 5]. If set to a value outside this range, an exception will be thrown and the value will be set to -1.
+    /// <para>
+    /// When set to -1, the maximum visible items per page will use the <c>ItemsPerPage</c> value from the configuration file.
+    /// </para>
+    /// </remarks>
+    public int MaxVisibleItems {
+        get => maxVisibleItems;
+        set {
+            if (value < 1 || value > 5)
+            {
+                Spectre.Console.AnsiConsole.WriteException(new ArgumentOutOfRangeException(nameof(value), $"MaxVisibleItems: value {value} is out of range [1, 5]."));
+                maxVisibleItems = -1;
+            }
+            else
+            {
+                maxVisibleItems = value;
+            }
+        }
+    }
 
     /// <summary>
     /// Whether to freeze player movement while the menu is open.
@@ -38,14 +56,11 @@ public record class MenuConfiguration
     public bool FreezePlayer { get; set; } = false;
 
     /// <summary>
-    /// The color used to render the menu interface.
-    /// </summary>
-    public Color RenderColor { get; set; } = default;
-
-    /// <summary>
     /// Time in seconds before the menu automatically closes. Set to 0 or less to disable auto-close.
     /// </summary>
     public float AutoCloseAfter { get; set; } = 0f;
+
+    private int maxVisibleItems = -1;
 }
 
 /// <summary>
@@ -131,15 +146,15 @@ public interface IMenuAPI
     /// </summary>
     public IReadOnlyList<IMenuOption> Options { get; }
 
-    /// <summary>
-    /// Fired before a player navigates to a different menu option.
-    /// </summary>
-    public event EventHandler<MenuEventArgs>? BeforeSelectionMove;
+    // /// <summary>
+    // /// Fired before a player navigates to a different menu option.
+    // /// </summary>
+    // public event EventHandler<MenuEventArgs>? BeforeSelectionMove;
 
-    /// <summary>
-    /// Fired after a player navigates to a different menu option.
-    /// </summary>
-    public event EventHandler<MenuEventArgs>? AfterSelectionMove;
+    // /// <summary>
+    // /// Fired after a player navigates to a different menu option.
+    // /// </summary>
+    // public event EventHandler<MenuEventArgs>? AfterSelectionMove;
 
     /// <summary>
     /// Fired when the selection pointer is hovering over an option.
@@ -211,12 +226,12 @@ public interface IMenuAPI
     /// <returns>The index of the currently selected option, or -1 if nothing is selected.</returns>
     public int GetCurrentOptionIndex( IPlayer player );
 
-    /// <summary>
-    /// Gets the display line index of the currently highlighted option for the specified player.
-    /// </summary>
-    /// <param name="player">The player whose current selection display line to retrieve.</param>
-    /// <returns>The display line index of the currently selected option, or -1 if nothing is selected.</returns>
-    public int GetCurrentOptionDisplayLine( IPlayer player );
+    // /// <summary>
+    // /// Gets the display line index of the currently highlighted option for the specified player.
+    // /// </summary>
+    // /// <param name="player">The player whose current selection display line to retrieve.</param>
+    // /// <returns>The display line index of the currently selected option, or -1 if nothing is selected.</returns>
+    // public int GetCurrentOptionDisplayLine( IPlayer player );
 }
 
 /// <summary>

@@ -148,7 +148,8 @@ int Bridge_EngineHelpers_GetMenuSettings(char* out)
                 std::to_string(std::get<double>(configuration->GetValue("core.Menu.Sound.Scroll.Volume"))),
                 std::get<std::string>(configuration->GetValue("core.Menu.Sound.Exit.Name")),
                 std::to_string(std::get<double>(configuration->GetValue("core.Menu.Sound.Exit.Volume"))),
-                std::to_string(std::get<int>(configuration->GetValue("core.Menu.KindSettings.Center.ItemsPerPage"))),
+                // std::to_string(std::get<int>(configuration->GetValue("core.Menu.KindSettings.Center.ItemsPerPage"))),
+                std::to_string(std::get<int>(configuration->GetValue("core.Menu.ItemsPerPage"))),
         };
 
         s = implode(settings, "\x01");

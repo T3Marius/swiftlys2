@@ -51,15 +51,15 @@ internal sealed class MenuAPI : IMenuAPI
         }
     }
 
-    /// <summary>
-    /// Fired before a player navigates to a different menu option.
-    /// </summary>
-    public event EventHandler<MenuEventArgs>? BeforeSelectionMove;
+    // /// <summary>
+    // /// Fired before a player navigates to a different menu option.
+    // /// </summary>
+    // public event EventHandler<MenuEventArgs>? BeforeSelectionMove;
 
-    /// <summary>
-    /// Fired after a player navigates to a different menu option.
-    /// </summary>
-    public event EventHandler<MenuEventArgs>? AfterSelectionMove;
+    // /// <summary>
+    // /// Fired after a player navigates to a different menu option.
+    // /// </summary>
+    // public event EventHandler<MenuEventArgs>? AfterSelectionMove;
 
     /// <summary>
     /// Fired when the selection pointer is hovering over an option.
@@ -80,11 +80,13 @@ internal sealed class MenuAPI : IMenuAPI
     private readonly List<IMenuOption> options = new();
     // TODO: Replace with `Lock` when framework is upgraded to .NET 10 for better lock performance
     private readonly object optionsLock = new(); // Lock for synchronizing modifications to the `options`
-    // NOTE: Menu selection movement is entirely driven by changes to `selectedOptionIndex` (independent of any other variables)
     private readonly ConcurrentDictionary<IPlayer, int> selectedOptionIndex = new(); // Stores the currently selected option index for each player
+    // NOTE: Menu selection movement is entirely driven by changes to `desiredOptionIndex` (independent of any other variables)
+    private readonly ConcurrentDictionary<IPlayer, int> desiredOptionIndex = new(); // Stores the desired option index for each player
     private int maxOptions = 0;
-    private readonly ConcurrentDictionary<IPlayer, int> selectedDisplayLine = new(); // Stores the currently selected display line index for each player (some options may span multiple lines)
-    private int maxDisplayLines = 0;
+    // private readonly ConcurrentDictionary<IPlayer, int> selectedDisplayLine = new(); // Stores the currently selected display line index for each player (some options may span multiple lines)
+    // private int maxDisplayLines = 0;
+    // private readonly ConcurrentDictionary<IPlayer, IReadOnlyList<IMenuOption>> visibleOptionsCache = new();
     private readonly ConcurrentDictionary<IPlayer, CancellationTokenSource> autoCloseCancelTokens = new();
 
     // [SetsRequiredMembers]
@@ -100,11 +102,13 @@ internal sealed class MenuAPI : IMenuAPI
 
         options.Clear();
         selectedOptionIndex.Clear();
-        selectedDisplayLine.Clear();
+        desiredOptionIndex.Clear();
+        // selectedDisplayLine.Clear();
         autoCloseCancelTokens.Clear();
+        // visibleOptionsCache.Clear();
 
         maxOptions = 0;
-        maxDisplayLines = 0;
+        // maxDisplayLines = 0;
 
         core.Event.OnTick += OnTick;
     }
@@ -118,39 +122,62 @@ internal sealed class MenuAPI : IMenuAPI
 
         options.Clear();
         selectedOptionIndex.Clear();
-        selectedDisplayLine.Clear();
+        desiredOptionIndex.Clear();
+        // selectedDisplayLine.Clear();
         autoCloseCancelTokens.Clear();
+        // visibleOptionsCache.Clear();
 
         maxOptions = 0;
-        maxDisplayLines = 0;
+        // maxDisplayLines = 0;
 
         core.Event.OnTick -= OnTick;
     }
 
     private void OnTick()
     {
-        var players = core.PlayerManager
+        var playerStates = core.PlayerManager
             .GetAllPlayers()
-            .Where(player => player.IsValid && !player.IsFakeClient && selectedOptionIndex.TryGetValue(player, out _))
+            .Where(player => player.IsValid && !player.IsFakeClient)
+            .Select(player => (
+                Player: player,
+                DesiredIndex: desiredOptionIndex.TryGetValue(player, out var desired) ? desired : -1,
+                SelectedIndex: selectedOptionIndex.TryGetValue(player, out var selected) ? selected : -1
+            ))
+            .Where(state => state.DesiredIndex >= 0 && state.SelectedIndex >= 0 && state.DesiredIndex != state.SelectedIndex)
             .ToList();
 
-        foreach (var player in players)
+        var maxVisibleItems = Math.Clamp(
+            Configuration.MaxVisibleItems switch {
+                < 1 => core.MenusAPI.Configuration.ItemsPerPage,
+                var value => value
+            },
+            1,
+            5
+        );
+
+        var centerIndex = maxVisibleItems / 2;
+
+        foreach (var (player, desiredIndex, selectedIndex) in playerStates)
         {
             // TODO
-            BeforeSelectionMove?.Invoke(this, new MenuEventArgs { Player = player, Options = null });
+            // BeforeSelectionMove?.Invoke(this, new MenuEventArgs { Player = player, Options = visibleOptionsCache.TryGetValue(player, out var options) ? options : null });
 
             // TODO
             OptionHovering?.Invoke(this, new MenuEventArgs { Player = player, Options = null });
 
             // TODO
-            AfterSelectionMove?.Invoke(this, new MenuEventArgs { Player = player, Options = null });
+            // AfterSelectionMove?.Invoke(this, new MenuEventArgs { Player = player, Options = null });
         }
+
+        playerStates
+            .ForEach(state => selectedOptionIndex.TryUpdate(state.Player, state.DesiredIndex, state.SelectedIndex));
     }
 
     public void ShowForPlayer( IPlayer player )
     {
         _ = selectedOptionIndex.AddOrUpdate(player, 0, ( _, _ ) => 0);
-        _ = selectedDisplayLine.AddOrUpdate(player, 0, ( _, _ ) => 0);
+        _ = desiredOptionIndex.AddOrUpdate(player, 0, ( _, _ ) => 0);
+        // _ = selectedDisplayLine.AddOrUpdate(player, 0, ( _, _ ) => 0);
 
         if (!player.IsValid || player.IsFakeClient)
         {
@@ -175,7 +202,7 @@ internal sealed class MenuAPI : IMenuAPI
 
     public void CloseForPlayer( IPlayer player )
     {
-        var keyExists = selectedOptionIndex.TryRemove(player, out _) || selectedDisplayLine.TryRemove(player, out _);
+        var keyExists = selectedOptionIndex.TryRemove(player, out _) || desiredOptionIndex.TryRemove(player, out _)/* || selectedDisplayLine.TryRemove(player, out _)*/;
 
         if (!player.IsValid || player.IsFakeClient)
         {
@@ -202,7 +229,7 @@ internal sealed class MenuAPI : IMenuAPI
             option.Click += OnOptionClick;
             options.Add(option);
             maxOptions = options.Count;
-            maxDisplayLines = options.Sum(option => option.LineCount);
+            // maxDisplayLines = options.Sum(option => option.LineCount);
         }
     }
 
@@ -212,7 +239,7 @@ internal sealed class MenuAPI : IMenuAPI
         {
             var result = options.Remove(option);
             maxOptions = options.Count;
-            maxDisplayLines = options.Sum(option => option.LineCount);
+            // maxDisplayLines = options.Sum(option => option.LineCount);
             return result;
         }
     }
@@ -222,13 +249,13 @@ internal sealed class MenuAPI : IMenuAPI
         lock (optionsLock)
         {
             var index = options.IndexOf(option);
-            return index >= 0 && index < maxOptions && selectedOptionIndex.TryGetValue(player, out var oldIndex) && selectedOptionIndex.TryUpdate(player, index, oldIndex);
+            return index >= 0 && index < maxOptions && desiredOptionIndex.TryGetValue(player, out var oldIndex) && desiredOptionIndex.TryUpdate(player, Math.Clamp(index, 0, maxOptions - 1), oldIndex);
         }
     }
 
     public bool MoveToOptionIndex( IPlayer player, int index )
     {
-        return index >= 0 && index < maxOptions && selectedOptionIndex.TryGetValue(player, out var oldIndex) && selectedOptionIndex.TryUpdate(player, index, oldIndex);
+        return index >= 0 && index < maxOptions && desiredOptionIndex.TryGetValue(player, out var oldIndex) && desiredOptionIndex.TryUpdate(player, Math.Clamp(index, 0, maxOptions - 1), oldIndex);
     }
 
     public IMenuOption? GetCurrentOption( IPlayer player )
@@ -241,10 +268,10 @@ internal sealed class MenuAPI : IMenuAPI
         return selectedOptionIndex.TryGetValue(player, out var index) ? index : -1;
     }
 
-    public int GetCurrentOptionDisplayLine( IPlayer player )
-    {
-        return selectedDisplayLine.TryGetValue(player, out var line) ? line : -1;
-    }
+    // public int GetCurrentOptionDisplayLine( IPlayer player )
+    // {
+    //     return selectedDisplayLine.TryGetValue(player, out var line) ? line : -1;
+    // }
 
     private static void SetFreezeState( IPlayer player, bool freeze )
     {

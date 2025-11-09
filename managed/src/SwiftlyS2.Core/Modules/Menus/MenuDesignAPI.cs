@@ -31,11 +31,7 @@ internal sealed class MenuDesignAPI : IMenuDesignAPI
 
     public IMenuBuilderAPI MaxVisibleItems( int count = 5 )
     {
-        if (count < 1 || count > 5)
-        {
-            Spectre.Console.AnsiConsole.WriteException(new ArgumentOutOfRangeException(nameof(count), $"MaxVisibleItems: value {count} is out of range [1, 5]."));
-        }
-        configuration.MaxVisibleItems = Math.Clamp(count, 1, 5);
+        configuration.MaxVisibleItems = count;
         return builder;
     }
 
