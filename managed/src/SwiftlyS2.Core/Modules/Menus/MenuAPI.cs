@@ -182,38 +182,60 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
 
     private void ProcessPlayerMenu( IPlayer player, int desiredIndex, int selectedIndex, int maxOptions, int maxVisibleItems, int halfVisible )
     {
+        var filteredOptions = options.Where(opt => opt.Visible && opt.GetVisible(player)).ToList();
+        if (filteredOptions.Count == 0)
+        {
+            return;
+        }
+
         var clampedDesiredIndex = Math.Clamp(desiredIndex, 0, maxOptions - 1);
-        var (visibleOptions, arrowPosition) = GetVisibleOptionsAndArrowPosition(clampedDesiredIndex, maxOptions, maxVisibleItems, halfVisible);
+        var (visibleOptions, arrowPosition) = GetVisibleOptionsAndArrowPosition(filteredOptions, clampedDesiredIndex, maxVisibleItems, halfVisible);
+        var safeArrowPosition = Math.Clamp(arrowPosition, 0, visibleOptions.Count - 1);
 
         OptionHovering?.Invoke(this, new MenuEventArgs {
             Player = player,
-            Options = new List<IMenuOption> { visibleOptions[arrowPosition] }.AsReadOnly()
+            Options = new List<IMenuOption> { visibleOptions[safeArrowPosition] }.AsReadOnly()
         });
 
-        var html = BuildMenuHtml(player, visibleOptions, arrowPosition, clampedDesiredIndex, maxOptions, maxVisibleItems);
+        var html = BuildMenuHtml(player, visibleOptions, safeArrowPosition, clampedDesiredIndex, maxOptions, maxVisibleItems);
         NativePlayer.SetCenterMenuRender(player.PlayerID, html);
 
-        if (desiredIndex != selectedIndex)
+        var currentOption = visibleOptions[safeArrowPosition];
+        var currentOriginalIndex = options.IndexOf(currentOption);
+
+        if (currentOriginalIndex != selectedIndex)
         {
-            _ = selectedOptionIndex.TryUpdate(player, clampedDesiredIndex, selectedIndex);
+            _ = selectedOptionIndex.TryUpdate(player, currentOriginalIndex, selectedIndex);
         }
     }
 
-    private (IReadOnlyList<IMenuOption> VisibleOptions, int ArrowPosition) GetVisibleOptionsAndArrowPosition( int clampedDesiredIndex, int maxOptions, int maxVisibleItems, int halfVisible )
+    private (IReadOnlyList<IMenuOption> VisibleOptions, int ArrowPosition) GetVisibleOptionsAndArrowPosition( List<IMenuOption> filteredOptions, int clampedDesiredIndex, int maxVisibleItems, int halfVisible )
     {
-        if (maxOptions <= maxVisibleItems)
+        var filteredMaxOptions = filteredOptions.Count;
+        var desiredOption = options[clampedDesiredIndex];
+        var mappedDesiredIndex = filteredOptions.IndexOf(desiredOption);
+
+        if (mappedDesiredIndex < 0)
         {
-            return (options.AsReadOnly(), clampedDesiredIndex);
+            mappedDesiredIndex = filteredOptions
+                .Select(( opt, idx ) => (Index: idx, Distance: Math.Abs(options.IndexOf(opt) - clampedDesiredIndex)))
+                .MinBy(x => x.Distance)
+                .Index;
         }
 
-        var (startIndex, arrowPosition) = CalculateScrollPosition(clampedDesiredIndex, maxOptions, maxVisibleItems, halfVisible);
+        if (filteredMaxOptions <= maxVisibleItems)
+        {
+            return (filteredOptions.AsReadOnly(), mappedDesiredIndex);
+        }
+
+        var (startIndex, arrowPosition) = CalculateScrollPosition(mappedDesiredIndex, filteredMaxOptions, maxVisibleItems, halfVisible);
 
         var visibleOptions = OptionScrollStyle == MenuOptionScrollStyle.CenterFixed
             ? Enumerable.Range(0, maxVisibleItems)
-                .Select(i => options[(clampedDesiredIndex + i - halfVisible + maxOptions) % maxOptions])
+                .Select(i => filteredOptions[(mappedDesiredIndex + i - halfVisible + filteredMaxOptions) % filteredMaxOptions])
                 .ToList()
                 .AsReadOnly()
-            : options
+            : filteredOptions
                 .Skip(startIndex)
                 .Take(maxVisibleItems)
                 .ToList()
@@ -352,21 +374,31 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
 
     public bool MoveToOption( IPlayer player, IMenuOption option )
     {
-        lock (optionsLock)
-        {
-            return MoveToOptionIndex(player, options.IndexOf(option));
-        }
+        return MoveToOptionIndex(player, options.IndexOf(option));
     }
 
     public bool MoveToOptionIndex( IPlayer player, int index )
     {
-        if (maxOptions == 0)
+        lock (optionsLock)
         {
-            return false;
-        }
+            if (maxOptions == 0 || !desiredOptionIndex.TryGetValue(player, out var oldIndex))
+            {
+                return false;
+            }
 
-        var targetIndex = ((index % maxOptions) + maxOptions) % maxOptions;
-        return desiredOptionIndex.TryGetValue(player, out var oldIndex) && desiredOptionIndex.TryUpdate(player, targetIndex, oldIndex);
+            var targetIndex = ((index % maxOptions) + maxOptions) % maxOptions;
+            var direction = Math.Sign(targetIndex - oldIndex);
+            if (direction == 0)
+            {
+                return true;
+            }
+
+            var visibleIndex = Enumerable.Range(0, maxOptions)
+                .Select(i => (((targetIndex + (i * direction)) % maxOptions) + maxOptions) % maxOptions)
+                .FirstOrDefault(idx => options[idx].Visible && options[idx].GetVisible(player), -1);
+
+            return visibleIndex >= 0 && desiredOptionIndex.TryUpdate(player, visibleIndex, oldIndex);
+        }
     }
 
     public IMenuOption? GetCurrentOption( IPlayer player )
