@@ -71,7 +71,7 @@ internal sealed partial class TextStyleProcessor
                 // Output tags within visible window
                 if (started)
                 {
-                    result.Append(content);
+                    result = result.Append(content);
                     ProcessOpenTag(content, outputTags);
                 }
             }
@@ -86,9 +86,9 @@ internal sealed partial class TextStyleProcessor
                         if (!started)
                         {
                             started = true;
-                            activeTags.ForEach(tag => { result.Append(tag); ProcessOpenTag(tag, outputTags); });
+                            activeTags.ForEach(tag => { result = result.Append(tag); ProcessOpenTag(tag, outputTags); });
                         }
-                        result.Append(ch);
+                        result = result.Append(ch);
                     }
                     charIdx++;
                 }
@@ -144,7 +144,7 @@ internal sealed partial class TextStyleProcessor
         List<string> outputTags = [];
         List<string>? previousTags = null;
 
-        for (int i = 0; i < targetCharCount; i++)
+        for (var i = 0; i < targetCharCount; i++)
         {
             // Calculate circular character index
             var charIndex = scrollLeft
@@ -155,12 +155,12 @@ internal sealed partial class TextStyleProcessor
             // Close tags that are no longer active
             if (previousTags != null)
             {
-                for (int j = previousTags.Count - 1; j >= 0; j--)
+                for (var j = previousTags.Count - 1; j >= 0; j--)
                 {
                     if (!currentTags.Contains(previousTags[j]))
                     {
                         var prevTagName = previousTags[j][1..^1].Split(' ')[0];
-                        result.Append($"</{prevTagName}>");
+                        result = result.Append($"</{prevTagName}>");
                         var idx = outputTags.FindLastIndex(t => t.Equals(prevTagName, StringComparison.OrdinalIgnoreCase));
                         if (idx >= 0)
                         {
@@ -175,13 +175,13 @@ internal sealed partial class TextStyleProcessor
             {
                 if (previousTags == null || !previousTags.Contains(tag))
                 {
-                    result.Append(tag);
+                    result = result.Append(tag);
                     var tagName = tag[1..^1].Split(' ')[0];
                     outputTags.Add(tagName);
                 }
             }
 
-            result.Append(plainChars[charIndex]);
+            result = result.Append(plainChars[charIndex]);
             previousTags = currentTags;
         }
 
@@ -209,7 +209,7 @@ internal sealed partial class TextStyleProcessor
             {
                 // Preserve HTML tags before reaching limit
                 case (true, false):
-                    result.Append(content);
+                    result = result.Append(content);
                     ProcessOpenTag(content, openTags);
                     break;
 
@@ -223,16 +223,18 @@ internal sealed partial class TextStyleProcessor
                             reachedLimit = true;
                             break;
                         }
-                        result.Append(ch);
+                        result = result.Append(ch);
                         currentWidth += charWidth;
                     }
+                    break;
+                default:
                     break;
             }
         }
 
         if (reachedLimit)
         {
-            result.Append(suffix);
+            result = result.Append(suffix);
         }
 
         CloseOpenTags(result, openTags);
@@ -287,7 +289,7 @@ internal sealed partial class TextStyleProcessor
             {
                 // Process tags after output has started
                 case (true, true):
-                    result.Append(content);
+                    result = result.Append(content);
                     ProcessOpenTag(content, outputOpenTags);
                     break;
 
@@ -319,14 +321,16 @@ internal sealed partial class TextStyleProcessor
                                 hasStartedOutput = true;
                                 pendingOpenTags.ForEach(tag =>
                                 {
-                                    result.Append(tag);
+                                    result = result.Append(tag);
                                     ProcessOpenTag(tag, outputOpenTags);
                                 });
                             }
-                            result.Append(ch);
+                            result = result.Append(ch);
                         }
                         plainCharIndex++;
                     }
+                    break;
+                default:
                     break;
             }
         }
