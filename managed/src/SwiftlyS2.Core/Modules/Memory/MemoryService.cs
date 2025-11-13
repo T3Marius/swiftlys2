@@ -119,6 +119,22 @@ internal class MemoryService : IMemoryService, IDisposable
     return xrefAddress + 7 + (nint)offset;
   }
 
+  public string? GetObjectPtrVtableName( nint address )
+  {
+    var result = NativeMemoryHelpers.GetObjectPtrVtableName(address);
+    return result == string.Empty ? null : result;
+  }
+
+  public bool ObjectPtrHasVtable( nint address )
+  {
+    return NativeMemoryHelpers.ObjectPtrHasVtable(address);
+  }
+
+  public bool ObjectPtrHasBaseClass( nint address, string baseClassName )
+  {
+    return NativeMemoryHelpers.ObjectPtrHasBaseClass(address, baseClassName);
+  }
+
   public T ToSchemaClass<T>( nint address ) where T : class, ISchemaClass<T>
   {
     return T.From(address);

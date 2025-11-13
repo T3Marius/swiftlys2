@@ -72,4 +72,40 @@ internal static class NativeMemoryHelpers {
       }
     }
   }
+
+  private unsafe static delegate* unmanaged<byte*, nint, int> _GetObjectPtrVtableName;
+
+  public unsafe static string GetObjectPtrVtableName(nint objptr) {
+    var ret = _GetObjectPtrVtableName(null, objptr);
+    var pool = ArrayPool<byte>.Shared;
+    var retBuffer = pool.Rent(ret + 1);
+    fixed (byte* retBufferPtr = retBuffer) {
+      ret = _GetObjectPtrVtableName(retBufferPtr, objptr);
+      var retString = Encoding.UTF8.GetString(retBufferPtr, ret);
+      pool.Return(retBuffer);
+      return retString;
+    }
+  }
+
+  private unsafe static delegate* unmanaged<nint, byte> _ObjectPtrHasVtable;
+
+  public unsafe static bool ObjectPtrHasVtable(nint objptr) {
+    var ret = _ObjectPtrHasVtable(objptr);
+    return ret == 1;
+  }
+
+  private unsafe static delegate* unmanaged<nint, byte*, byte> _ObjectPtrHasBaseClass;
+
+  public unsafe static bool ObjectPtrHasBaseClass(nint objptr, string baseClassName) {
+    var pool = ArrayPool<byte>.Shared;
+    var baseClassNameLength = Encoding.UTF8.GetByteCount(baseClassName);
+    var baseClassNameBuffer = pool.Rent(baseClassNameLength + 1);
+    Encoding.UTF8.GetBytes(baseClassName, baseClassNameBuffer);
+    baseClassNameBuffer[baseClassNameLength] = 0;
+    fixed (byte* baseClassNameBufferPtr = baseClassNameBuffer) {
+      var ret = _ObjectPtrHasBaseClass(objptr, baseClassNameBufferPtr);
+      pool.Return(baseClassNameBuffer);
+      return ret == 1;
+    }
+  }
 }

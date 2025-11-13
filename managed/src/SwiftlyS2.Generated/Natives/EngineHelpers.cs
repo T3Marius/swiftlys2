@@ -11,6 +11,20 @@ namespace SwiftlyS2.Core.Natives;
 internal static class NativeEngineHelpers {
   private static int _MainThreadID;
 
+  private unsafe static delegate* unmanaged<byte*, int> _GetIP;
+
+  public unsafe static string GetIP() {
+    var ret = _GetIP(null);
+    var pool = ArrayPool<byte>.Shared;
+    var retBuffer = pool.Rent(ret + 1);
+    fixed (byte* retBufferPtr = retBuffer) {
+      ret = _GetIP(retBufferPtr);
+      var retString = Encoding.UTF8.GetString(retBufferPtr, ret);
+      pool.Return(retBuffer);
+      return retString;
+    }
+  }
+
   private unsafe static delegate* unmanaged<byte*, byte> _IsMapValid;
 
   /// <summary>

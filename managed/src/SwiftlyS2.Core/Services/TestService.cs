@@ -53,24 +53,15 @@ internal class TestService {
 
   public void Test()
   {
-    _Core.Event.OnEntityDeleted += (@event) => {
-      Console.WriteLine("Entity deleted: " + @event.Entity.Entity?.DesignerName);
+    _Core.Event.OnEntityCreated += (@event) =>
+    {
+      var name = _Core.Memory.GetObjectPtrVtableName(@event.Entity.Address);
+      Console.WriteLine("Entity spawned: " + name);
+      var hasVtable = _Core.Memory.ObjectPtrHasVtable(@event.Entity.Address + 1);
+      Console.WriteLine("Has vtable: " + hasVtable);
+      var vtable = _Core.Memory.ObjectPtrHasBaseClass(@event.Entity.Address, "CBaseEntity");
+      Console.WriteLine("Has base class: " + vtable);
     };
-    _Core.Command.RegisterCommand("rrr", (context) => {
-
-      _Core.EntitySystem.GetAllEntities().ToList().ForEach(entity => {
-        entity.Entity.Flags |= 0x200;
-      });
-
-      var a = _Core.ConVar.Create("test_convar", "Test convar", "abc");
-
-      Console.WriteLine(a.Value);
-      a.SetInternal("ghi");
-
-      Console.WriteLine(a.Value);
-      a.Value = "def";
-      Console.WriteLine(a.Value);
-    });
     // _Core.Event.OnItemServicesCanAcquireHook += (@event) => {
     //   Console.WriteLine(@event.EconItemView.ItemDefinitionIndex);
 
