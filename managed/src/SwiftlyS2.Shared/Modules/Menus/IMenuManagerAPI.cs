@@ -145,11 +145,26 @@ public interface IMenuManagerAPI
     public void OpenMenu( IMenuAPI menu );
 
     /// <summary>
+    /// Opens the specified menu for all players.
+    /// </summary>
+    /// <param name="menu">The menu to display.</param>
+    /// <param name="onClosed">Callback invoked when the menu is closed.</param>
+    public void OpenMenu( IMenuAPI menu, Action<IPlayer, IMenuAPI> onClosed );
+
+    /// <summary>
     /// Opens the specified menu for a player. Any currently open menu will be closed first.
     /// </summary>
     /// <param name="player">The player who will see the menu.</param>
     /// <param name="menu">The menu to display.</param>
     public void OpenMenuForPlayer( IPlayer player, IMenuAPI menu );
+
+    /// <summary>
+    /// Opens the specified menu for a player. Any currently open menu will be closed first.
+    /// </summary>
+    /// <param name="player">The player who will see the menu.</param>
+    /// <param name="menu">The menu to display.</param>
+    /// <param name="onClosed">Callback invoked when the menu is closed for the player.</param>
+    public void OpenMenuForPlayer( IPlayer player, IMenuAPI menu, Action<IPlayer, IMenuAPI> onClosed );
 
     /// <summary>
     /// Closes the specified menu for all players who have it open.

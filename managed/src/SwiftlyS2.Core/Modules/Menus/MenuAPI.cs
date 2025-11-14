@@ -42,6 +42,11 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
     public IMenuBuilderAPI? Builder { get; init; }
 
     /// <summary>
+    /// Gets or sets an object that contains data about this menu.
+    /// </summary>
+    public object? Tag { get; set; }
+
+    /// <summary>
     /// The parent hierarchy information in a hierarchical menu structure.
     /// </summary>
     public (IMenuAPI? ParentMenu, IMenuOption? TriggerOption) Parent {
@@ -112,6 +117,9 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
     // private readonly ConcurrentDictionary<IPlayer, IReadOnlyList<IMenuOption>> visibleOptionsCache = new();
     private readonly ConcurrentDictionary<IPlayer, CancellationTokenSource> autoCloseCancelTokens = new();
 
+    private readonly ConcurrentDictionary<IPlayer, string> renderCache = new();
+    private readonly CancellationTokenSource renderLoopCancellationTokenSource = new();
+
     private volatile bool disposed;
 
     // [SetsRequiredMembers]
@@ -135,11 +143,33 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         // selectedDisplayLine.Clear();
         autoCloseCancelTokens.Clear();
         // visibleOptionsCache.Clear();
+        renderCache.Clear();
 
         maxOptions = 0;
         // maxDisplayLines = 0;
 
         core.Event.OnTick += OnTick;
+
+        _ = Task.Run(async () =>
+        {
+            var token = renderLoopCancellationTokenSource.Token;
+            var delayMilliseconds = (int)(1000f / 64f / 2f);
+            while (!token.IsCancellationRequested || disposed)
+            {
+                try
+                {
+                    OnRender();
+                    await Task.Delay(delayMilliseconds, token);
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
+                catch
+                {
+                }
+            }
+        }, renderLoopCancellationTokenSource.Token);
     }
 
     ~MenuAPI()
@@ -177,17 +207,40 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         // selectedDisplayLine.Clear();
         autoCloseCancelTokens.Clear();
         // visibleOptionsCache.Clear();
+        renderCache.Clear();
 
         maxOptions = 0;
         // maxDisplayLines = 0;
 
         core.Event.OnTick -= OnTick;
 
+        renderLoopCancellationTokenSource?.Cancel();
+        renderLoopCancellationTokenSource?.Dispose();
+
         disposed = true;
         GC.SuppressFinalize(this);
     }
 
     private void OnTick()
+    {
+        if (maxOptions <= 0)
+        {
+            return;
+        }
+
+        foreach (var kvp in renderCache)
+        {
+            var player = kvp.Key;
+            if (!player.IsValid || player.IsFakeClient)
+            {
+                continue;
+            }
+
+            NativePlayer.SetCenterMenuRender(player.PlayerID, kvp.Value);
+        }
+    }
+
+    private void OnRender()
     {
         if (maxOptions <= 0)
         {
@@ -225,7 +278,8 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         var filteredOptions = options.Where(opt => opt.Visible && opt.GetVisible(player)).ToList();
         if (filteredOptions.Count == 0)
         {
-            NativePlayer.SetCenterMenuRender(player.PlayerID, BuildMenuHtml(player, [], 0, 0, maxOptions, maxVisibleItems));
+            var emptyHtml = BuildMenuHtml(player, [], 0, 0, maxOptions, maxVisibleItems);
+            _ = renderCache.AddOrUpdate(player, emptyHtml, ( _, _ ) => emptyHtml);
             return;
         }
 
@@ -239,7 +293,7 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         });
 
         var html = BuildMenuHtml(player, visibleOptions, safeArrowPosition, clampedDesiredIndex, maxOptions, maxVisibleItems);
-        NativePlayer.SetCenterMenuRender(player.PlayerID, html);
+        _ = renderCache.AddOrUpdate(player, html, ( _, _ ) => html);
 
         var currentOption = visibleOptions[safeArrowPosition];
         var currentOriginalIndex = options.IndexOf(currentOption);
@@ -412,6 +466,8 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         }
 
         SetFreezeState(player, false);
+
+        _ = renderCache.TryRemove(player, out _);
 
         if (autoCloseCancelTokens.TryRemove(player, out var token))
         {

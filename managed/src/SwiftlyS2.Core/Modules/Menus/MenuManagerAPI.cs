@@ -6,6 +6,7 @@ using SwiftlyS2.Shared.Menus;
 using SwiftlyS2.Shared.Events;
 using SwiftlyS2.Shared.Sounds;
 using SwiftlyS2.Shared.Players;
+using SwiftlyS2.Shared.SchemaDefinitions;
 
 namespace SwiftlyS2.Core.Menus;
 
@@ -32,6 +33,7 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
     public event EventHandler<MenuManagerEventArgs>? MenuOpened;
 
     private readonly ConcurrentDictionary<IPlayer, IMenuAPI> openMenus = new();
+    private readonly ConcurrentDictionary<(IPlayer, IMenuAPI), Action<IPlayer, IMenuAPI>?> onClosedCallbacks = new();
     private readonly SoundEvent useSound = new();
     private readonly SoundEvent exitSound = new();
     private readonly SoundEvent scrollSound = new();
@@ -95,6 +97,7 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
         buttonsUse = StringToKeyBind.GetValueOrDefault(Configuration.ButtonsUse.Trim().ToLower());
 
         openMenus.Clear();
+        onClosedCallbacks.Clear();
 
         Core.Event.OnClientKeyStateChanged += KeyStateChange;
         Core.Event.OnClientDisconnected += OnClientDisconnected;
@@ -104,6 +107,9 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
     ~MenuManagerAPI()
     {
         CloseAllMenus();
+
+        openMenus.Clear();
+        onClosedCallbacks.Clear();
 
         Core.Event.OnClientKeyStateChanged -= KeyStateChange;
         Core.Event.OnClientDisconnected -= OnClientDisconnected;
@@ -295,20 +301,56 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
     {
         Core.PlayerManager
             .GetAllPlayers()
+            .Where(player => player.IsValid && !player.IsFakeClient && (player.Controller?.IsValid ?? false))
             .ToList()
             .ForEach(player => OpenMenuForPlayer(player, menu));
     }
 
+    public void OpenMenu( IMenuAPI menu, Action<IPlayer, IMenuAPI> onClosed )
+    {
+        Core.PlayerManager
+            .GetAllPlayers()
+            .Where(player => player.IsValid && !player.IsFakeClient && (player.Controller?.IsValid ?? false))
+            .ToList()
+            .ForEach(player => OpenMenuForPlayer(player, menu, onClosed));
+    }
+
     public void OpenMenuForPlayer( IPlayer player, IMenuAPI menu )
     {
-        if (GetCurrentMenu(player) != null)
+        if (openMenus.TryGetValue(player, out var currentMenu) && currentMenu != null)
         {
-            CloseMenuForPlayer(player, GetCurrentMenu(player)!);
+            if (menu.Parent.ParentMenu == currentMenu)
+            {
+                // We are transitioning from the current menu to one of its submenus.
+                // To show the submenu, we first need to close the current (parent) menu, see CloseMenuForPlayer.
+                // The parent menu may have an onClosed callback registered in onClosedCallbacks.
+                // If we do not remove that callback temporarily, closing the parent menu here
+                // would incorrectly invoke the callback even though the user is only navigating
+                // deeper into the menu hierarchy (parent -> submenu), not actually finishing the overall menu flow.
+                // Therefore we:
+                //   1. Temporarily remove the callback associated with the current menu.
+                //   2. Close the current (parent) menu as part of the navigation process.
+                //   3. Re-register the callback so it will only be invoked later, when the
+                //      logical end of the menu flow is reached and the menu is truly closed.
+                _ = onClosedCallbacks.TryRemove((player, currentMenu), out var callback);
+                CloseMenuForPlayer(player, currentMenu);
+                _ = onClosedCallbacks.AddOrUpdate((player, currentMenu), callback, ( _, _ ) => callback);
+            }
+            else
+            {
+                CloseMenuForPlayer(player, currentMenu);
+            }
         }
 
         _ = openMenus.AddOrUpdate(player, menu, ( _, _ ) => menu);
         menu.ShowForPlayer(player);
         MenuOpened?.Invoke(this, new MenuManagerEventArgs { Player = player, Menu = menu });
+    }
+
+    public void OpenMenuForPlayer( IPlayer player, IMenuAPI menu, Action<IPlayer, IMenuAPI> onClosed )
+    {
+        OpenMenuForPlayer(player, menu);
+        _ = onClosedCallbacks.AddOrUpdate((player, menu), onClosed, ( _, _ ) => onClosed);
     }
 
     public void CloseMenu( IMenuAPI menu )
@@ -321,6 +363,15 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
 
     public void CloseMenuForPlayer( IPlayer player, IMenuAPI menu )
     {
+        if (!openMenus.TryGetValue(player, out var currentMenu) || currentMenu != menu)
+        {
+            return;
+        }
+        if (onClosedCallbacks.TryRemove((player, menu), out var onClosed) && onClosed != null)
+        {
+            onClosed(player, menu);
+        }
+
         if (openMenus.TryRemove(player, out _))
         {
             menu.HideForPlayer(player);

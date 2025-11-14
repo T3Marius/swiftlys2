@@ -57,7 +57,7 @@ internal sealed class DynamicTextUpdater : IDisposable
 
     private async Task UpdateLoopAsync( int intervalMs, int pauseIntervalMs, CancellationToken token )
     {
-        while (!token.IsCancellationRequested)
+        while (!token.IsCancellationRequested && !disposed)
         {
             try
             {
