@@ -42,6 +42,11 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
     public IMenuBuilderAPI? Builder { get; init; }
 
     /// <summary>
+    /// Gets or sets an object that contains data about this menu.
+    /// </summary>
+    public object? Tag { get; set; }
+
+    /// <summary>
     /// The parent hierarchy information in a hierarchical menu structure.
     /// </summary>
     public (IMenuAPI? ParentMenu, IMenuOption? TriggerOption) Parent {
