@@ -117,7 +117,7 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
     // private readonly ConcurrentDictionary<IPlayer, IReadOnlyList<IMenuOption>> visibleOptionsCache = new();
     private readonly ConcurrentDictionary<IPlayer, CancellationTokenSource> autoCloseCancelTokens = new();
 
-    private readonly ConcurrentDictionary<IPlayer, string> renderCache = new();
+    // private readonly ConcurrentDictionary<IPlayer, string> renderCache = new();
     private readonly CancellationTokenSource renderLoopCancellationTokenSource = new();
 
     private volatile bool disposed;
@@ -137,18 +137,21 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         Builder = builder;
         // Parent = parent;
 
-        options.Clear();
+        lock (optionsLock)
+        {
+            options.Clear();
+        }
         selectedOptionIndex.Clear();
         desiredOptionIndex.Clear();
         // selectedDisplayLine.Clear();
         autoCloseCancelTokens.Clear();
         // visibleOptionsCache.Clear();
-        renderCache.Clear();
+        // renderCache.Clear();
 
         maxOptions = 0;
         // maxDisplayLines = 0;
 
-        core.Event.OnTick += OnTick;
+        // core.Event.OnTick += OnTick;
 
         _ = Task.Run(async () =>
         {
@@ -200,19 +203,22 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
                 }
             });
 
-        // options.ForEach(option => option.Dispose());
-        options.Clear();
+        lock (optionsLock)
+        {
+            // options.ForEach(option => option.Dispose());
+            options.Clear();
+        }
         selectedOptionIndex.Clear();
         desiredOptionIndex.Clear();
         // selectedDisplayLine.Clear();
         autoCloseCancelTokens.Clear();
         // visibleOptionsCache.Clear();
-        renderCache.Clear();
+        // renderCache.Clear();
 
         maxOptions = 0;
         // maxDisplayLines = 0;
 
-        core.Event.OnTick -= OnTick;
+        // core.Event.OnTick -= OnTick;
 
         renderLoopCancellationTokenSource?.Cancel();
         renderLoopCancellationTokenSource?.Dispose();
@@ -221,24 +227,24 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         GC.SuppressFinalize(this);
     }
 
-    private void OnTick()
-    {
-        if (maxOptions <= 0)
-        {
-            return;
-        }
+    // private void OnTick()
+    // {
+    //     if (maxOptions <= 0)
+    //     {
+    //         return;
+    //     }
 
-        foreach (var kvp in renderCache)
-        {
-            var player = kvp.Key;
-            if (!player.IsValid || player.IsFakeClient)
-            {
-                continue;
-            }
+    //     foreach (var kvp in renderCache)
+    //     {
+    //         var player = kvp.Key;
+    //         if (!player.IsValid || player.IsFakeClient)
+    //         {
+    //             continue;
+    //         }
 
-            NativePlayer.SetCenterMenuRender(player.PlayerID, kvp.Value);
-        }
-    }
+    //         NativePlayer.SetCenterMenuRender(player.PlayerID, kvp.Value);
+    //     }
+    // }
 
     private void OnRender()
     {
@@ -264,22 +270,25 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
             : Math.Clamp(baseMaxVisibleItems, 1, 5);
         var halfVisible = maxVisibleItems / 2;
 
-        lock (optionsLock)
+        foreach (var (player, desiredIndex, selectedIndex) in playerStates)
         {
-            foreach (var (player, desiredIndex, selectedIndex) in playerStates)
-            {
-                ProcessPlayerMenu(player, desiredIndex, selectedIndex, maxOptions, maxVisibleItems, halfVisible);
-            }
+            ProcessPlayerMenu(player, desiredIndex, selectedIndex, maxOptions, maxVisibleItems, halfVisible);
         }
     }
 
     private void ProcessPlayerMenu( IPlayer player, int desiredIndex, int selectedIndex, int maxOptions, int maxVisibleItems, int halfVisible )
     {
-        var filteredOptions = options.Where(opt => opt.Visible && opt.GetVisible(player)).ToList();
-        if (filteredOptions.Count == 0)
+        var filteredOptions = new List<IMenuOption>();
+        lock (optionsLock)
+        {
+            filteredOptions = options.Where(opt => opt.Visible && opt.GetVisible(player)).ToList();
+        }
+
+        if (filteredOptions.Count <= 0)
         {
             var emptyHtml = BuildMenuHtml(player, [], 0, 0, maxOptions, maxVisibleItems);
-            _ = renderCache.AddOrUpdate(player, emptyHtml, ( _, _ ) => emptyHtml);
+            // _ = renderCache.AddOrUpdate(player, emptyHtml, ( _, _ ) => emptyHtml);
+            core.Scheduler.NextTick(() => NativePlayer.SetCenterMenuRender(player.PlayerID, emptyHtml));
             return;
         }
 
@@ -293,33 +302,40 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
         });
 
         var html = BuildMenuHtml(player, visibleOptions, safeArrowPosition, clampedDesiredIndex, maxOptions, maxVisibleItems);
-        _ = renderCache.AddOrUpdate(player, html, ( _, _ ) => html);
+        // _ = renderCache.AddOrUpdate(player, html, ( _, _ ) => html);
+        core.Scheduler.NextTick(() => NativePlayer.SetCenterMenuRender(player.PlayerID, html));
 
-        var currentOption = visibleOptions[safeArrowPosition];
-        var currentOriginalIndex = options.IndexOf(currentOption);
-
-        if (currentOriginalIndex != selectedIndex)
+        lock (optionsLock)
         {
-            var updateResult = selectedOptionIndex.TryUpdate(player, currentOriginalIndex, selectedIndex);
-            if (updateResult && currentOriginalIndex != desiredIndex)
+            var currentOriginalIndex = options.IndexOf(visibleOptions[safeArrowPosition]);
+
+            if (currentOriginalIndex != selectedIndex)
             {
-                _ = desiredOptionIndex.TryUpdate(player, currentOriginalIndex, desiredIndex);
+                var updateResult = selectedOptionIndex.TryUpdate(player, currentOriginalIndex, selectedIndex);
+                if (updateResult && currentOriginalIndex != desiredIndex)
+                {
+                    _ = desiredOptionIndex.TryUpdate(player, currentOriginalIndex, desiredIndex);
+                }
             }
         }
     }
 
     private (IReadOnlyList<IMenuOption> VisibleOptions, int ArrowPosition) GetVisibleOptionsAndArrowPosition( List<IMenuOption> filteredOptions, int clampedDesiredIndex, int maxVisibleItems, int halfVisible )
     {
-        var filteredMaxOptions = filteredOptions.Count;
-        var desiredOption = options[clampedDesiredIndex];
-        var mappedDesiredIndex = filteredOptions.IndexOf(desiredOption);
-
-        if (mappedDesiredIndex < 0)
+        var filteredMaxOptions = -1;
+        var mappedDesiredIndex = -1;
+        lock (optionsLock)
         {
-            mappedDesiredIndex = filteredOptions
-                .Select(( opt, idx ) => (Index: idx, Distance: Math.Abs(options.IndexOf(opt) - clampedDesiredIndex)))
-                .MinBy(x => x.Distance)
-                .Index;
+            filteredMaxOptions = filteredOptions.Count;
+            mappedDesiredIndex = filteredOptions.IndexOf(options[clampedDesiredIndex]);
+
+            if (mappedDesiredIndex < 0)
+            {
+                mappedDesiredIndex = filteredOptions
+                    .Select(( opt, idx ) => (Index: idx, Distance: Math.Abs(options.IndexOf(opt) - clampedDesiredIndex)))
+                    .MinBy(x => x.Distance)
+                    .Index;
+            }
         }
 
         if (filteredMaxOptions <= maxVisibleItems)
@@ -467,7 +483,7 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
 
         SetFreezeState(player, false);
 
-        _ = renderCache.TryRemove(player, out _);
+        // _ = renderCache.TryRemove(player, out _);
 
         if (autoCloseCancelTokens.TryRemove(player, out var token))
         {
@@ -521,25 +537,29 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
 
     public bool MoveToOption( IPlayer player, IMenuOption option )
     {
-        return MoveToOptionIndex(player, options.IndexOf(option));
+        lock (optionsLock)
+        {
+            return MoveToOptionIndex(player, options.IndexOf(option));
+        }
     }
 
     public bool MoveToOptionIndex( IPlayer player, int index )
     {
+
+        if (maxOptions == 0 || !desiredOptionIndex.TryGetValue(player, out var oldIndex))
+        {
+            return false;
+        }
+
+        var targetIndex = ((index % maxOptions) + maxOptions) % maxOptions;
+        var direction = Math.Sign(targetIndex - oldIndex);
+        if (direction == 0)
+        {
+            return true;
+        }
+
         lock (optionsLock)
         {
-            if (maxOptions == 0 || !desiredOptionIndex.TryGetValue(player, out var oldIndex))
-            {
-                return false;
-            }
-
-            var targetIndex = ((index % maxOptions) + maxOptions) % maxOptions;
-            var direction = Math.Sign(targetIndex - oldIndex);
-            if (direction == 0)
-            {
-                return true;
-            }
-
             var visibleIndex = Enumerable.Range(0, maxOptions)
                 .Select(i => (((targetIndex + (i * direction)) % maxOptions) + maxOptions) % maxOptions)
                 .FirstOrDefault(idx => options[idx].Visible && options[idx].GetVisible(player), -1);
@@ -550,7 +570,10 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
 
     public IMenuOption? GetCurrentOption( IPlayer player )
     {
-        return selectedOptionIndex.TryGetValue(player, out var index) ? options[index] : null;
+        lock (optionsLock)
+        {
+            return selectedOptionIndex.TryGetValue(player, out var index) ? options[index] : null;
+        }
     }
 
     public int GetCurrentOptionIndex( IPlayer player )

@@ -60,8 +60,9 @@ void CheckTransmitHook(void* _this, CCheckTransmitInfo** ppInfoList, int infoCou
 
 void CPlayerManager::Initialize()
 {
-    g_Players = new CPlayer * [g_SwiftlyCore.GetMaxGameClients()];
-    for (int i = 0; i < g_SwiftlyCore.GetMaxGameClients(); i++) {
+    g_Players = new CPlayer*[g_SwiftlyCore.GetMaxGameClients()];
+    for (int i = 0; i < g_SwiftlyCore.GetMaxGameClients(); i++)
+    {
         g_Players[i] = nullptr;
     }
 
@@ -108,9 +109,12 @@ void CPlayerManager::Initialize()
     g_pProcessUserCmdsHook->Enable();
 }
 
-void CPlayerManager::Shutdown() {
-    for (int i = 0; i < g_SwiftlyCore.GetMaxGameClients(); i++) {
-        if (g_Players[i] != nullptr) {
+void CPlayerManager::Shutdown()
+{
+    for (int i = 0; i < g_SwiftlyCore.GetMaxGameClients(); i++)
+    {
+        if (g_Players[i] != nullptr)
+        {
             delete g_Players[i];
         }
     }
@@ -175,7 +179,7 @@ void OnClientPutInServerHook(void* _this, CPlayerSlot slot, char const* pszName,
     reinterpret_cast<decltype(&OnClientPutInServerHook)>(g_pClientPutInServerHook->GetOriginal())(_this, slot, pszName, type, xuid);
 
     if (g_pOnClientPutInServerCallback)
-        reinterpret_cast<void(*)(int, int)>(g_pOnClientPutInServerCallback)(slot.Get(), type);
+        reinterpret_cast<void (*)(int, int)>(g_pOnClientPutInServerCallback)(slot.Get(), type);
 }
 
 extern void* g_pOnClientProcessUsercmdsCallback;
@@ -184,12 +188,12 @@ void* ProcessUsercmdsHook(void* pController, CUserCmd* cmds, int numcmds, bool p
 {
     auto playerid = ((CEntityInstance*)pController)->m_pEntity->m_EHandle.GetEntryIndex() - 1;
 
-    google::protobuf::Message** pMsg = new google::protobuf::Message * [numcmds];
+    google::protobuf::Message** pMsg = new google::protobuf::Message*[numcmds];
     for (int i = 0; i < numcmds; i++)
         pMsg[i] = (google::protobuf::Message*)&cmds[i].cmd;
 
     if (g_pOnClientProcessUsercmdsCallback)
-        reinterpret_cast<void(*)(int, void*, int, bool, float)>(g_pOnClientProcessUsercmdsCallback)(playerid, pMsg, numcmds, paused, margin);
+        reinterpret_cast<void (*)(int, void*, int, bool, float)>(g_pOnClientProcessUsercmdsCallback)(playerid, pMsg, numcmds, paused, margin);
 
     delete[] pMsg;
 
@@ -205,7 +209,8 @@ void CheckTransmitHook(void* _this, CCheckTransmitInfo** ppInfoList, int infoCou
     {
         auto& pInfo = ppInfoList[i];
         int playerid = pInfo->m_nPlayerSlot.Get();
-        if (!playermanager->IsPlayerOnline(playerid)) continue;
+        if (!playermanager->IsPlayerOnline(playerid))
+            continue;
         auto player = playermanager->GetPlayer(playerid);
 
         auto& blockedBits = player->GetBlockedTransmittingBits();
@@ -215,7 +220,8 @@ void CheckTransmitHook(void* _this, CCheckTransmitInfo** ppInfoList, int infoCou
         auto& activeMasks = blockedBits.activeMasks;
 
         // NUM_MASKS_ACTIVE ops = NUM_MASKS_ACTIVE*64 bits -> 64 players -> NUM_MASKS_ACTIVE*64 ops
-        for (auto& dword : activeMasks) {
+        for (auto& dword : activeMasks)
+        {
             base[dword] &= ~blockedBits.blockedMask[dword];
             baseAlways[dword] &= ~blockedBits.blockedMask[dword];
         }
@@ -229,7 +235,7 @@ void CheckTransmitHook(void* _this, CCheckTransmitInfo** ppInfoList, int infoCou
         //     wordAlways &= ~blockedBase[i];
         // }
 
-        //16k ops = 16k bits -> 64 players -> 1M ops
+        // 16k ops = 16k bits -> 64 players -> 1M ops
         /*
         for (int i = 0; i < 16384; i++)
             if (blockedBits.IsBitSet(i))
@@ -247,12 +253,15 @@ void OnGameFramePlayerHook(void* _this, bool simulate, bool first, bool last)
     static auto playermanager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     static auto vgui = g_ifaceService.FetchInterface<IVGUI>(VGUI_INTERFACE_VERSION);
 
-    if (g_pOnGameTickCallback) reinterpret_cast<void(*)(bool, bool, bool)>(g_pOnGameTickCallback)(simulate, first, last);
+    if (g_pOnGameTickCallback)
+        reinterpret_cast<void (*)(bool, bool, bool)>(g_pOnGameTickCallback)(simulate, first, last);
 
     for (int i = 0; i < 64; i++)
-        if (playermanager->IsPlayerOnline(i)) {
+        if (playermanager->IsPlayerOnline(i))
+        {
             auto player = playermanager->GetPlayer(i);
-            if (!player) continue;
+            if (!player)
+                continue;
             player->Think();
         }
 
@@ -270,7 +279,7 @@ bool ClientConnectHook(void* _this, CPlayerSlot slot, const char* pszName, uint6
     player->SetUnauthorizedSteamID(xuid);
 
     if (g_pOnClientConnectCallback)
-        if (reinterpret_cast<bool(*)(int)>(g_pOnClientConnectCallback)(playerid) == false)
+        if (reinterpret_cast<bool (*)(int)>(g_pOnClientConnectCallback)(playerid) == false)
             return false;
 
     return reinterpret_cast<decltype(&ClientConnectHook)>(g_pClientConnectHook->GetOriginal())(_this, slot, pszName, xuid, pszNetworkID, unk1, pRejectReason);
@@ -280,11 +289,13 @@ void OnClientConnectedHook(void* _this, CPlayerSlot slot, const char* pszName, u
 {
     static auto playermanager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto playerid = slot.Get();
-    if (bFakePlayer) {
+    if (bFakePlayer)
+    {
         auto player = playermanager->RegisterPlayer(playerid);
         player->Initialize(playerid);
     }
-    else {
+    else
+    {
         auto cvarmanager = g_ifaceService.FetchInterface<IConvarManager>(CONVARMANAGER_INTERFACE_VERSION);
         cvarmanager->QueryClientConvar(playerid, "cl_language");
     }
@@ -302,16 +313,18 @@ void ClientDisconnectHook(void* _this, CPlayerSlot slot, int reason, const char*
     auto playerid = slot.Get();
 
     if (g_pOnClientDisconnectCallback)
-        reinterpret_cast<void(*)(int, int)>(g_pOnClientDisconnectCallback)(playerid, reason);
+        reinterpret_cast<void (*)(int, int)>(g_pOnClientDisconnectCallback)(playerid, reason);
 
     playermanager->UnregisterPlayer(playerid);
 }
 
 IPlayer* CPlayerManager::RegisterPlayer(int playerid)
 {
-    if (playerid < 0 || playerid >= g_SwiftlyCore.GetMaxGameClients()) return nullptr;
+    if (playerid < 0 || playerid >= g_SwiftlyCore.GetMaxGameClients())
+        return nullptr;
 
-    if (g_Players[playerid] != nullptr) UnregisterPlayer(playerid);
+    if (g_Players[playerid] != nullptr)
+        UnregisterPlayer(playerid);
 
     g_Players[playerid] = new CPlayer();
     g_Players[playerid]->Initialize(playerid);
@@ -321,8 +334,10 @@ IPlayer* CPlayerManager::RegisterPlayer(int playerid)
 
 void CPlayerManager::UnregisterPlayer(int playerid)
 {
-    if (playerid < 0 || playerid >= g_SwiftlyCore.GetMaxGameClients()) return;
-    if (g_Players[playerid] == nullptr) return;
+    if (playerid < 0 || playerid >= g_SwiftlyCore.GetMaxGameClients())
+        return;
+    if (g_Players[playerid] == nullptr)
+        return;
 
     static auto vgui = g_ifaceService.FetchInterface<IVGUI>(VGUI_INTERFACE_VERSION);
 
@@ -335,14 +350,17 @@ void CPlayerManager::UnregisterPlayer(int playerid)
 
 IPlayer* CPlayerManager::GetPlayer(int playerid)
 {
-    if (playerid < 0 || playerid >= g_SwiftlyCore.GetMaxGameClients()) return nullptr;
-    if (IsPlayerOnline(playerid)) return g_Players[playerid];
-    return nullptr;
+    if (!IsPlayerOnline(playerid))
+        return nullptr;
+
+    auto player = g_Players[playerid];
+    return player && *(void***)player ? player : nullptr;
 }
 
 bool CPlayerManager::IsPlayerOnline(int playerid)
 {
-    if (playerid < 0 || playerid >= g_SwiftlyCore.GetMaxGameClients()) return false;
+    if (playerid < 0 || playerid >= g_SwiftlyCore.GetMaxGameClients())
+        return false;
     static auto engine = g_ifaceService.FetchInterface<IVEngineServer2>(INTERFACEVERSION_VENGINESERVER);
     return (engine->GetClientSteamID(playerid) != nullptr);
 }
@@ -353,7 +371,8 @@ int CPlayerManager::GetPlayerCount()
     int count = 0;
 
     for (int i = 0; i < GetPlayerCap(); i++)
-        if (engine->GetClientSteamID(i)) ++count;
+        if (engine->GetClientSteamID(i))
+            ++count;
 
     return count;
 }
@@ -365,9 +384,11 @@ int CPlayerManager::GetPlayerCap()
 
 void CPlayerManager::SendMsg(MessageType type, const std::string& message, int duration)
 {
-    for (int i = 0; i < g_SwiftlyCore.GetMaxGameClients(); i++) {
+    for (int i = 0; i < g_SwiftlyCore.GetMaxGameClients(); i++)
+    {
         IPlayer* player = GetPlayer(i);
-        if (player) player->SendMsg(type, message, duration);
+        if (player)
+            player->SendMsg(type, message, duration);
     }
 }
 
@@ -380,10 +401,13 @@ void CPlayerManager::OnValidateAuthTicket(ValidateAuthTicketResponse_t* response
 {
     uint64_t steamid = response->m_SteamID.ConvertToUint64();
 
-    for (int i = 0; i < GetPlayerCap(); i++) {
+    for (int i = 0; i < GetPlayerCap(); i++)
+    {
         auto player = GetPlayer(i);
-        if (!player) continue;
-        if (player->GetUnauthorizedSteamID() != steamid) continue;
+        if (!player)
+            continue;
+        if (player->GetUnauthorizedSteamID() != steamid)
+            continue;
 
         player->ChangeAuthorizationState(response->m_eAuthSessionResponse == k_EAuthSessionResponseOK);
         break;

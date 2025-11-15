@@ -25,7 +25,8 @@ void Bridge_Player_SendMessage(int playerid, int kind, const char* message, int 
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     player->SendMsg((MessageType)kind, message, duration);
 }
@@ -34,7 +35,8 @@ bool Bridge_Player_IsFakeClient(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return true;
+    if (!player)
+        return true;
 
     return player->IsFakeClient();
 }
@@ -43,7 +45,8 @@ bool Bridge_Player_IsAuthorized(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return false;
+    if (!player)
+        return false;
 
     return player->IsAuthorized();
 }
@@ -52,7 +55,8 @@ uint32_t Bridge_Player_GetConnectedTime(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return 0;
+    if (!player)
+        return 0;
 
     return player->GetConnectedTime();
 }
@@ -61,7 +65,8 @@ uint64_t Bridge_Player_GetUnauthorizedSteamID(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return 0;
+    if (!player)
+        return 0;
 
     return player->GetUnauthorizedSteamID();
 }
@@ -70,7 +75,8 @@ uint64_t Bridge_Player_GetSteamID(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return 0;
+    if (!player)
+        return 0;
 
     return player->GetSteamID();
 }
@@ -79,7 +85,8 @@ void* Bridge_Player_GetController(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return nullptr;
+    if (!player)
+        return nullptr;
 
     return player->GetController();
 }
@@ -88,7 +95,8 @@ void* Bridge_Player_GetPawn(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return nullptr;
+    if (!player)
+        return nullptr;
 
     return player->GetPawn();
 }
@@ -97,7 +105,8 @@ void* Bridge_Player_GetPlayerPawn(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return nullptr;
+    if (!player)
+        return nullptr;
 
     return player->GetPlayerPawn();
 }
@@ -106,7 +115,8 @@ uint64_t Bridge_Player_GetPressedButtons(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return 0;
+    if (!player)
+        return 0;
 
     return player->GetPressedButtons();
 }
@@ -115,7 +125,8 @@ void Bridge_Player_PerformCommand(int playerid, const char* command)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     player->PerformCommand(command);
 }
@@ -124,12 +135,14 @@ int Bridge_Player_GetIPAddress(char* out, int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return 0;
+    if (!player)
+        return 0;
 
     static std::string s;
     s = player->GetIPAddress();
 
-    if (out != nullptr) strcpy(out, s.c_str());
+    if (out != nullptr)
+        strcpy(out, s.c_str());
 
     return s.size();
 }
@@ -138,40 +151,49 @@ void Bridge_Player_Kick(int playerid, const char* reason, int gamereason)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     player->Kick(reason, gamereason);
 }
 
 void Bridge_Player_ShouldBlockTransmitEntity(int playerid, int entityidx, bool shouldBlockTransmit)
 {
-    if (playerid + 1 == entityidx) return;
+    if (playerid + 1 == entityidx)
+        return;
 
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     auto& bv = player->GetBlockedTransmittingBits();
 
     auto dword = entityidx / 64;
-    if (shouldBlockTransmit) {
+    if (shouldBlockTransmit)
+    {
         bool wasEmpty = (bv.blockedMask[dword] == 0);
         bv.blockedMask[dword] |= (1 << (entityidx % 64));
-        if (wasEmpty) bv.activeMasks.push_back(dword);
+        if (wasEmpty)
+            bv.activeMasks.push_back(dword);
     }
-    else {
+    else
+    {
         bv.blockedMask[dword] &= ~(1 << (entityidx % 64));
-        if (bv.blockedMask[dword] == 0) bv.activeMasks.erase(std::find(bv.activeMasks.begin(), bv.activeMasks.end(), dword));
+        if (bv.blockedMask[dword] == 0)
+            bv.activeMasks.erase(std::find(bv.activeMasks.begin(), bv.activeMasks.end(), dword));
     }
 }
 
 bool Bridge_Player_IsTransmitEntityBlocked(int playerid, int entityidx)
 {
-    if (playerid + 1 == entityidx) return false;
+    if (playerid + 1 == entityidx)
+        return false;
 
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return false;
+    if (!player)
+        return false;
 
     auto& bv = player->GetBlockedTransmittingBits();
     return (bv.blockedMask[entityidx / 64] & (1 << (entityidx % 64))) != 0;
@@ -181,10 +203,12 @@ void Bridge_Player_ClearTransmitEntityBlocked(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     auto& bv = player->GetBlockedTransmittingBits();
-    for (int i = 0; i < 512; i++) bv.blockedMask[i] = 0;
+    for (int i = 0; i < 512; i++)
+        bv.blockedMask[i] = 0;
     bv.activeMasks.clear();
 }
 
@@ -192,7 +216,8 @@ void Bridge_Player_ChangeTeam(int playerid, int newteam)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     static auto gamedata = g_ifaceService.FetchInterface<IGameDataManager>(GAMEDATA_INTERFACE_VERSION);
     CALL_VIRTUAL(void, gamedata->GetOffsets()->Fetch("CCSPlayerController::ChangeTeam"), player->GetController(), newteam);
@@ -202,30 +227,33 @@ void Bridge_Player_SwitchTeam(int playerid, int newteam)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     static auto gamedata = g_ifaceService.FetchInterface<IGameDataManager>(GAMEDATA_INTERFACE_VERSION);
     if (newteam == 0 || newteam == 1)
         CALL_VIRTUAL(void, gamedata->GetOffsets()->Fetch("CCSPlayerController::ChangeTeam"), player->GetController(), newteam);
     else
-        reinterpret_cast<void(*)(void*, int)>(gamedata->GetSignatures()->Fetch("CCSPlayerController::SwitchTeam"))(player->GetController(), newteam);
+        reinterpret_cast<void (*)(void*, int)>(gamedata->GetSignatures()->Fetch("CCSPlayerController::SwitchTeam"))(player->GetController(), newteam);
 }
 
 void Bridge_Player_TakeDamage(int playerid, void* dmginfo)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     static auto gamedata = g_ifaceService.FetchInterface<IGameDataManager>(GAMEDATA_INTERFACE_VERSION);
-    reinterpret_cast<int64_t(*)(void*, void*, void*)>(gamedata->GetSignatures()->Fetch("CBaseEntity::TakeDamage"))(player->GetPawn(), dmginfo, 0);
+    reinterpret_cast<int64_t (*)(void*, void*, void*)>(gamedata->GetSignatures()->Fetch("CBaseEntity::TakeDamage"))(player->GetPawn(), dmginfo, 0);
 }
 
 void Bridge_Player_Teleport(int playerid, Vector pos, QAngle angle, Vector vel)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     static auto gamedata = g_ifaceService.FetchInterface<IGameDataManager>(GAMEDATA_INTERFACE_VERSION);
     CALL_VIRTUAL(void, gamedata->GetOffsets()->Fetch("CBaseEntity::Teleport"), player->GetPawn(), &pos, &angle, &vel);
@@ -235,12 +263,14 @@ int Bridge_Player_GetLanguage(char* out, int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return 0;
+    if (!player)
+        return 0;
 
     static std::string s;
     s = player->GetLanguage();
 
-    if (out != nullptr) strcpy(out, s.c_str());
+    if (out != nullptr)
+        strcpy(out, s.c_str());
 
     return s.size();
 }
@@ -249,7 +279,8 @@ void Bridge_Player_SetCenterMenuRender(int playerid, const char* text)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     player->RenderMenuCenterText(text);
 }
@@ -258,7 +289,8 @@ void Bridge_Player_ClearCenterMenuRender(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     player->ClearRenderMenuCenterText();
 }
@@ -267,7 +299,8 @@ bool Bridge_Player_HasMenuShown(int playerid)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return false;
+    if (!player)
+        return false;
 
     return player->HasMenuShown();
 }
@@ -276,18 +309,21 @@ void Bridge_Player_ExecuteCommand(int playerid, const char* command)
 {
     static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
     auto player = playerManager->GetPlayer(playerid);
-    if (!player) return;
+    if (!player)
+        return;
 
     CCommand cmd;
     cmd.Tokenize(command);
 
     ConCommandRef cmdRef(cmd[0]);
 
-    if (cmdRef.IsValidRef()) {
+    if (cmdRef.IsValidRef())
+    {
         CCommandContext context(CommandTarget_t::CT_FIRST_SPLITSCREEN_CLIENT, CPlayerSlot(player->GetSlot()));
         cmdRef.Dispatch(context, cmd);
     }
-    else {
+    else
+    {
         static auto engine = g_ifaceService.FetchInterface<IVEngineServer2>(INTERFACEVERSION_VENGINESERVER);
         engine->ClientCommand(player->GetSlot(), command);
     }
