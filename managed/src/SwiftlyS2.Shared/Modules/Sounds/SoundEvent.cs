@@ -137,11 +137,13 @@ public class SoundEvent : IDisposable
 
   /// <summary>
   /// Emit the sound event.
+  /// 
+  /// <returns>The emitted sound event guid.</returns>
   /// </summary>
-  public void Emit()
+  public uint Emit()
   {
     NativeSounds.SetClients(Address, Recipients.ToMask());
-    NativeSounds.Emit(Address);
+    return NativeSounds.Emit(Address);
   }
 
   public void Dispose()
