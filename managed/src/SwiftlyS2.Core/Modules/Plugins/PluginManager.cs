@@ -22,6 +22,7 @@ internal class PluginManager
     private readonly List<Type> sharedTypes;
     private readonly List<PluginContext> plugins;
     private readonly ConcurrentDictionary<string, DateTime> fileLastChange;
+    private readonly ConcurrentDictionary<string, CancellationTokenSource> fileReloadTokens;
 
     private readonly FileSystemWatcher? fileWatcher;
 
@@ -38,9 +39,10 @@ internal class PluginManager
         this.logger = logger;
 
         this.interfaceManager = new();
-        this.sharedTypes = [];
-        this.plugins = [];
-        this.fileLastChange = new();
+        this.sharedTypes = new List<Type>();
+        this.plugins = new List<PluginContext>();
+        this.fileLastChange = new ConcurrentDictionary<string, DateTime>();
+        this.fileReloadTokens = new ConcurrentDictionary<string, CancellationTokenSource>();
 
         this.fileWatcher = new FileSystemWatcher {
             Path = rootDirService.GetPluginsRoot(),
@@ -51,6 +53,31 @@ internal class PluginManager
         };
         this.fileWatcher.Changed += ( sender, e ) =>
         {
+            static async Task WaitForFileAccess( CancellationToken token, string filePath, int maxRetries = 10, int initialDelayMs = 50 )
+            {
+                for (var i = 1; i <= maxRetries && !token.IsCancellationRequested; i++)
+                {
+                    try
+                    {
+                        using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                        break;
+                    }
+                    catch (IOException)
+                    {
+                        if (i < maxRetries)
+                        {
+                            // 50ms, 100ms, 200ms, 400ms, 800ms...
+                            await Task.Delay(initialDelayMs * (1 << (i - 1)), token);
+                        }
+                        continue;
+                    }
+                    catch (Exception)
+                    {
+                        break;
+                    }
+                }
+            }
+
             try
             {
                 if (!NativeServerHelpers.UseAutoHotReload() || e.ChangeType != WatcherChangeTypes.Changed)
@@ -65,20 +92,40 @@ internal class PluginManager
                     return;
                 }
 
-                var now = DateTime.UtcNow;
-                if ((now - fileLastChange.GetValueOrDefault(directoryName, DateTime.MinValue)).TotalSeconds > 2)
+                if ((DateTime.UtcNow - fileLastChange.GetValueOrDefault(directoryName, DateTime.MinValue)).TotalSeconds > 2)
                 {
-                    _ = fileLastChange.AddOrUpdate(directoryName, now, ( _, _ ) => now);
-                    Console.WriteLine("\n");
-                    if (ReloadPluginByDllName(directoryName, true))
+                    _ = fileLastChange.AddOrUpdate(directoryName, DateTime.UtcNow, ( _, _ ) => DateTime.UtcNow);
+
+                    if (fileReloadTokens.TryRemove(directoryName, out var oldCts))
                     {
-                        logger.LogInformation("Reloaded plugin: {Format}", directoryName);
+                        oldCts.Cancel();
+                        oldCts.Dispose();
                     }
-                    else
+
+                    var cts = new CancellationTokenSource();
+                    _ = fileReloadTokens.AddOrUpdate(directoryName, cts, ( _, _ ) => cts);
+
+                    // Wait for file to be accessible, then reload
+                    _ = Task.Run(async () =>
                     {
-                        logger.LogWarning("Failed to reload plugin: {Format}", directoryName);
-                    }
-                    Console.WriteLine("\n");
+                        try
+                        {
+                            await WaitForFileAccess(cts.Token, e.FullPath);
+                            Console.WriteLine("\n");
+                            if (ReloadPluginByDllName(directoryName, true))
+                            {
+                                logger.LogInformation("Reloaded plugin: {Format}", directoryName);
+                            }
+                            else
+                            {
+                                logger.LogWarning("Failed to reload plugin: {Format}", directoryName);
+                            }
+                            Console.WriteLine("\n");
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }, cts.Token);
                 }
             }
             catch (Exception ex)
@@ -224,32 +271,26 @@ internal class PluginManager
             return false;
         }
 
-        var context = plugins
+        var oldContext = plugins
             .Where(p => p.Status != PluginStatus.Loading && p.Status != PluginStatus.Loaded)
             .FirstOrDefault(p => p.PluginDirectory?.Trim().Equals(pluginDir.Trim()) ?? false);
 
+        PluginContext? newContext = null;
         try
         {
-            if (context != null && plugins.Remove(context))
+            if (oldContext != null && plugins.Remove(oldContext))
             {
-                var newContext = LoadPlugin(pluginDir, true, silent);
+                newContext = LoadPlugin(pluginDir, true, silent);
                 if (newContext?.Status == PluginStatus.Loaded)
                 {
                     if (!silent)
                     {
-                        logger.LogInformation("Loaded plugin: {Id}", context.Metadata!.Id);
+                        logger.LogInformation("Loaded plugin: {Id}", newContext.Metadata!.Id);
                     }
                     return true;
                 }
-                else
-                {
-                    throw new ArgumentException(string.Empty, string.Empty);
-                }
             }
-            else
-            {
-                throw new ArgumentException(string.Empty, string.Empty);
-            }
+            throw new ArgumentException(string.Empty, string.Empty);
         }
         catch (Exception e)
         {
@@ -259,11 +300,11 @@ internal class PluginManager
             }
             if (!silent)
             {
-                logger.LogWarning(e, "Failed to load plugin by name: {Path}", pluginDir);
+                logger.LogWarning("Failed to load plugin by name: {Path}", pluginDir);
             }
-            if (context != null)
+            if (newContext != null)
             {
-                context.Status = PluginStatus.Indeterminate;
+                newContext.Status = PluginStatus.Indeterminate;
             }
             return false;
         }
