@@ -57,7 +57,7 @@ internal class EventSubscriber : IEventSubscriber, IDisposable
     public event EventDelegates.OnCommandExecuteHook? OnCommandExecuteHook;
     public event EventDelegates.OnSteamAPIActivated? OnSteamAPIActivated;
     public event EventDelegates.OnMovementServicesRunCommandHook? OnMovementServicesRunCommandHook;
-    public event EventDelegates.OnPlayerPawnPostThinkHook? OnPlayerPawnPostThinkHook;
+    public event EventDelegates.OnPlayerPawnPostThink? OnPlayerPawnPostThink;
 
     public void Dispose()
     {
@@ -606,17 +606,17 @@ internal class EventSubscriber : IEventSubscriber, IDisposable
     {
         try
         {
-            if (OnPlayerPawnPostThinkHook == null) return;
-            _Profiler.StartRecording("Event::OnPlayerPawnPostThinkHook");
-            OnPlayerPawnPostThinkHook?.Invoke(@event);
+            if (OnPlayerPawnPostThink == null) return;
+            _Profiler.StartRecording("Event::OnPlayerPawnPostThink");
+            OnPlayerPawnPostThink?.Invoke(@event);
         }
         catch (Exception e)
         {
-            if (GlobalExceptionHandler.Handle(e)) _Logger.LogError(e, "Error invoking OnPlayerPawnPostThinkHook.");
+            if (GlobalExceptionHandler.Handle(e)) _Logger.LogError(e, "Error invoking OnPlayerPawnPostThink.");
         }
         finally
         {
-            _Profiler.StopRecording("Event::OnPlayerPawnPostThinkHook");
+            _Profiler.StopRecording("Event::OnPlayerPawnPostThink");
         }
     }
 }

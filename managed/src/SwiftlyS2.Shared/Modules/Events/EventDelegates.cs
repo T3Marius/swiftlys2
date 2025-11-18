@@ -160,5 +160,5 @@ public class EventDelegates
     /// <summary>
     /// Called when the player pawn post think hook is triggered.
     /// </summary>
-    public delegate void OnPlayerPawnPostThinkHook( IOnPlayerPawnPostThinkHookEvent @event );
+    public delegate void OnPlayerPawnPostThink( IOnPlayerPawnPostThinkHookEvent @event );
 }

@@ -160,5 +160,5 @@ public interface IEventSubscriber
     /// <summary>
     /// Called when the player pawn post think hook is triggered.
     /// </summary>
-    public event EventDelegates.OnPlayerPawnPostThinkHook? OnPlayerPawnPostThinkHook;
+    public event EventDelegates.OnPlayerPawnPostThink? OnPlayerPawnPostThink;
 }

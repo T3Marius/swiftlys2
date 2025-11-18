@@ -140,7 +140,7 @@ public class TestPlugin : BasePlugin
         //   }
         // };
 
-        // Core.Event.OnPlayerPawnPostThinkHook += ( @event ) =>
+        // Core.Event.OnPlayerPawnPostThink += ( @event ) =>
         // {
         //     Console.WriteLine($"PostThink -> {@event.PlayerPawn.OriginalController.Value?.PlayerName}");
         // };
