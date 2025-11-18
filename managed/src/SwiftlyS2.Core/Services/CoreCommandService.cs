@@ -258,11 +258,11 @@ internal class CoreCommandService
         var args = context.Args;
         if (args.Length == 1)
         {
-            var table = new Table().AddColumn("Command").AddColumn("Description");
-            table = table.AddRow("enable", "Enable the profiler");
-            table = table.AddRow("disable", "Disable the profiler");
-            table = table.AddRow("status", "Show the status of the profiler");
-            table = table.AddRow("save", "Save the profiler data to a file");
+            var table = new Table().AddColumn("Command").AddColumn("Description")
+                .AddRow("enable", "Enable the profiler")
+                .AddRow("disable", "Disable the profiler")
+                .AddRow("status", "Show the status of the profiler")
+                .AddRow("save", "Save the profiler data to a file");
             AnsiConsole.Write(table);
             return;
         }
@@ -380,19 +380,46 @@ internal class CoreCommandService
             case "load":
                 if (ValidatePluginId(args, "load", "<dllName>"))
                 {
-                    _ = pluginManager.LoadPluginById(args[2]);
+                    Console.WriteLine("\n");
+                    if (pluginManager.LoadPluginByDllName(args[2], true))
+                    {
+                        logger.LogInformation("Loaded plugin: {Format}", args[2]);
+                    }
+                    else
+                    {
+                        logger.LogWarning("Failed to load plugin: {Format}", args[2]);
+                    }
+                    Console.WriteLine("\n");
                 }
                 break;
             case "unload":
                 if (ValidatePluginId(args, "unload", "<pluginId>/<dllName>"))
                 {
-                    _ = pluginManager.UnloadPluginById(args[2]);
+                    Console.WriteLine("\n");
+                    if (pluginManager.UnloadPluginById(args[2], true) || pluginManager.UnloadPluginByDllName(args[2], true))
+                    {
+                        logger.LogInformation("Unloaded plugin: {Format}", args[2]);
+                    }
+                    else
+                    {
+                        logger.LogWarning("Failed to unload plugin: {Format}", args[2]);
+                    }
+                    Console.WriteLine("\n");
                 }
                 break;
             case "reload":
                 if (ValidatePluginId(args, "reload", "<pluginId>/<dllName>"))
                 {
-                    pluginManager.ReloadPluginById(args[2], true);
+                    Console.WriteLine("\n");
+                    if (pluginManager.ReloadPluginById(args[2], true) || pluginManager.ReloadPluginByDllName(args[2], true))
+                    {
+                        logger.LogInformation("Reloaded plugin: {Format}", args[2]);
+                    }
+                    else
+                    {
+                        logger.LogWarning("Failed to reload plugin: {Format}", args[2]);
+                    }
+                    Console.WriteLine("\n");
                 }
                 break;
             default:

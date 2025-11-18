@@ -55,18 +55,10 @@ internal class PluginManager
                     return;
                 }
 
-                var directoryName = Path.GetDirectoryName(e.FullPath) ?? string.Empty;
+                var directoryName = Path.GetFileName(Path.GetDirectoryName(e.FullPath)) ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(directoryName))
                 {
-                    return;
-                }
-
-                var pluginId = plugins
-                    .FirstOrDefault(p => Path.GetFileName(p?.PluginDirectory) == Path.GetFileName(directoryName))
-                    ?.Metadata?.Id;
-                if (!string.IsNullOrWhiteSpace(pluginId))
-                {
-                    ReloadPluginById(pluginId, true);
+                    _ = ReloadPluginByDllName(directoryName, true);
                 }
             }
             catch (Exception ex)
@@ -93,7 +85,309 @@ internal class PluginManager
 
     public IReadOnlyList<PluginContext> GetPlugins() => plugins.AsReadOnly();
 
-    public PluginContext? LoadPlugin( string dir, bool hotReload, bool silent = false )
+    public string? FindPluginDirectoryByDllName( string dllName )
+    {
+        dllName = dllName.Trim();
+        if (dllName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+        {
+            dllName = dllName[..^4];
+        }
+
+        var pluginDir = plugins
+            .FirstOrDefault(p => Path.GetFileName(p.PluginDirectory)?.Trim().Equals(dllName.Trim()) ?? false)
+            ?.PluginDirectory;
+
+        if (!string.IsNullOrWhiteSpace(pluginDir))
+        {
+            return pluginDir;
+        }
+
+        string? foundDir = null;
+        EnumeratePluginDirectories(rootDirService.GetPluginsRoot(), dir =>
+        {
+            if (Path.GetFileName(dir).Equals(dllName))
+            {
+                foundDir = dir;
+            }
+        });
+
+        return foundDir;
+    }
+
+    public bool UnloadPluginById( string id, bool silent = false )
+    {
+        var context = plugins
+            .Where(p => p.Status != PluginStatus.Unloaded)
+            .FirstOrDefault(p => p.Metadata?.Id.Trim().Equals(id.Trim(), StringComparison.OrdinalIgnoreCase) ?? false);
+
+        try
+        {
+            context?.Dispose();
+            context?.Loader?.Dispose();
+            context?.Core?.Dispose();
+            context!.Status = PluginStatus.Unloaded;
+            return true;
+        }
+        catch
+        {
+            if (!silent)
+            {
+                logger.LogWarning("Failed to unload plugin by id: {Id}", id);
+            }
+            if (context != null)
+            {
+                context.Status = PluginStatus.Indeterminate;
+            }
+            return false;
+        }
+        finally
+        {
+            RebuildSharedServices();
+        }
+    }
+
+    public bool UnloadPluginByDllName( string dllName, bool silent = false )
+    {
+        var pluginDir = FindPluginDirectoryByDllName(dllName);
+        if (string.IsNullOrWhiteSpace(pluginDir))
+        {
+            if (!silent)
+            {
+                logger.LogWarning("Failed to find plugin by name: {DllName}", dllName);
+            }
+            return false;
+        }
+
+        var context = plugins
+            .Where(p => p.Status != PluginStatus.Unloaded)
+            .FirstOrDefault(p => p.PluginDirectory?.Trim().Equals(pluginDir.Trim()) ?? false);
+
+        if (string.IsNullOrWhiteSpace(context?.Metadata?.Id))
+        {
+            if (!silent)
+            {
+                logger.LogWarning("Failed to find plugin  by name: {DllName}", dllName);
+            }
+            return false;
+        }
+
+        return UnloadPluginById(context.Metadata.Id, silent);
+    }
+
+    public bool LoadPluginById( string id, bool silent = false )
+    {
+        var context = plugins
+            .Where(p => p.Status != PluginStatus.Loading && p.Status != PluginStatus.Loaded)
+            .FirstOrDefault(p => p.Metadata?.Id.Trim().Equals(id.Trim(), StringComparison.OrdinalIgnoreCase) ?? false);
+
+        if (string.IsNullOrWhiteSpace(context?.PluginDirectory))
+        {
+            if (!silent)
+            {
+                logger.LogWarning("Failed to load plugin by id: {Id}", id);
+            }
+            return false;
+        }
+
+        return LoadPluginByDllName(Path.GetFileName(context.PluginDirectory), silent);
+    }
+
+    public bool LoadPluginByDllName( string dllName, bool silent = false )
+    {
+        var pluginDir = FindPluginDirectoryByDllName(dllName);
+        if (string.IsNullOrWhiteSpace(pluginDir))
+        {
+            if (!silent)
+            {
+                logger.LogWarning("Failed to load plugin by name: {DllName}", dllName);
+            }
+            return false;
+        }
+
+        var context = plugins
+            .Where(p => p.Status != PluginStatus.Loading && p.Status != PluginStatus.Loaded)
+            .FirstOrDefault(p => p.PluginDirectory?.Trim().Equals(pluginDir.Trim()) ?? false);
+
+        try
+        {
+            if (context != null && plugins.Remove(context))
+            {
+                var newContext = LoadPlugin(pluginDir, true, silent);
+                if (newContext?.Status == PluginStatus.Loaded)
+                {
+                    if (!silent)
+                    {
+                        logger.LogInformation("Loaded plugin: {Id}", context.Metadata!.Id);
+                    }
+                    return true;
+                }
+                else
+                {
+                    throw new ArgumentException(string.Empty, string.Empty);
+                }
+            }
+            else
+            {
+                throw new ArgumentException(string.Empty, string.Empty);
+            }
+        }
+        catch (Exception e)
+        {
+            if (!GlobalExceptionHandler.Handle(e))
+            {
+                return false;
+            }
+            if (!silent)
+            {
+                logger.LogWarning(e, "Failed to load plugin by name: {Path}", pluginDir);
+            }
+            if (context != null)
+            {
+                context.Status = PluginStatus.Indeterminate;
+            }
+            return false;
+        }
+        finally
+        {
+            RebuildSharedServices();
+        }
+    }
+
+    public bool ReloadPluginById( string id, bool silent = false )
+    {
+        _ = UnloadPluginById(id, silent);
+        return LoadPluginById(id, silent);
+    }
+
+    public bool ReloadPluginByDllName( string dllName, bool silent = false )
+    {
+        _ = UnloadPluginByDllName(dllName, silent);
+        return LoadPluginByDllName(dllName, silent);
+    }
+
+    private void LoadExports()
+    {
+        void PopulateSharedManually( string startDirectory )
+        {
+            EnumeratePluginDirectories(startDirectory, pluginDir =>
+            {
+                var exportsPath = Path.Combine(pluginDir, "resources", "exports");
+                if (!Directory.Exists(exportsPath))
+                {
+                    return;
+                }
+
+                Directory.GetFiles(exportsPath, "*.dll")
+                    .ToList()
+                    .ForEach(exportFile =>
+                    {
+                        try
+                        {
+                            var assembly = Assembly.LoadFrom(exportFile);
+                            assembly.GetTypes().ToList().ForEach(sharedTypes.Add);
+                        }
+                        catch (Exception innerEx)
+                        {
+                            if (!GlobalExceptionHandler.Handle(innerEx))
+                            {
+                                return;
+                            }
+                            logger.LogWarning(innerEx, "Failed to load export assembly: {Path}", exportFile);
+                        }
+                    });
+            });
+        }
+
+        try
+        {
+            var resolver = new DependencyResolver(logger);
+            resolver.AnalyzeDependencies(rootDirService.GetPluginsRoot());
+            logger.LogInformation("{Graph}", resolver.GetDependencyGraphVisualization());
+            var loadOrder = resolver.GetLoadOrder();
+            logger.LogInformation("Loading {Count} export assemblies in dependency order", loadOrder.Count);
+
+            loadOrder.ForEach(exportFile =>
+            {
+                try
+                {
+                    var assembly = Assembly.LoadFrom(exportFile);
+                    var exports = assembly.GetTypes();
+                    logger.LogDebug("Loaded {Count} types from {Path}", exports.Length, Path.GetFileName(exportFile));
+                    exports.ToList().ForEach(sharedTypes.Add);
+                }
+                catch (Exception ex)
+                {
+                    if (!GlobalExceptionHandler.Handle(ex))
+                    {
+                        return;
+                    }
+                    logger.LogWarning(ex, "Failed to load export assembly: {Path}", exportFile);
+                }
+            });
+
+            logger.LogInformation("Loaded {Count} shared types", sharedTypes.Count);
+        }
+        catch (InvalidOperationException ex) when (ex.Message.Contains("circular dependency", StringComparison.OrdinalIgnoreCase))
+        {
+            logger.LogError(ex, "Circular dependency detected in plugin exports, loading manually");
+            PopulateSharedManually(rootDirService.GetPluginsRoot());
+        }
+        catch (Exception ex)
+        {
+            if (!GlobalExceptionHandler.Handle(ex))
+            {
+                return;
+            }
+            logger.LogError(ex, "Failed to load exports");
+        }
+    }
+
+    private void LoadPlugins()
+    {
+        EnumeratePluginDirectories(rootDirService.GetPluginsRoot(), pluginDir =>
+        {
+            Console.WriteLine(string.Empty);
+            var relativePath = pluginDir is { } dir ? Path.Join("(swRoot)", Path.GetRelativePath(rootDirService.GetRoot(), dir)) : string.Empty;
+            logger.LogInformation("Loading plugin: {RelativePath}.dll", Path.Join(relativePath, Path.GetFileName(relativePath)));
+            try
+            {
+                var context = LoadPlugin(pluginDir, false);
+                if (context?.Status == PluginStatus.Loaded)
+                {
+                    logger.LogInformation(
+                        string.Join("\n", [
+                            "Loaded Plugin",
+                            "├─  {Id} {Version}",
+                            "├─  Author: {Author}",
+                            "└─  Path: {RelativePath}"
+                        ]),
+                        context.Metadata!.Id,
+                        context.Metadata!.Version,
+                        context.Metadata!.Author,
+                        relativePath
+                    );
+                }
+            }
+            catch (Exception e)
+            {
+                if (!GlobalExceptionHandler.Handle(e))
+                {
+                    return;
+                }
+                logger.LogWarning(e, "Failed to load plugin: {RelativePath}.dll", Path.Join(relativePath, Path.GetFileName(relativePath)));
+            }
+            Console.WriteLine(string.Empty);
+        });
+
+        RebuildSharedServices();
+
+        plugins
+            .Where(p => p.Status == PluginStatus.Loaded)
+            .ToList()
+            .ForEach(p => p.Plugin!.OnAllPluginsLoaded());
+    }
+
+    private PluginContext? LoadPlugin( string dir, bool hotReload, bool silent = false )
     {
         PluginContext? FailWithError( PluginContext context, string message )
         {
@@ -178,217 +472,6 @@ internal class PluginManager
         }
     }
 
-    public bool UnloadPluginById( string id, bool silent = false )
-    {
-        var context = plugins
-            .Where(p => p.Status != PluginStatus.Unloaded)
-            .FirstOrDefault(p => p.Metadata?.Id == id);
-
-        try
-        {
-            context?.Dispose();
-            context?.Loader?.Dispose();
-            context?.Core?.Dispose();
-            context!.Status = PluginStatus.Unloaded;
-            return true;
-        }
-        catch
-        {
-            if (!silent)
-            {
-                logger.LogWarning("Failed to unload plugin by id: {Id}", id);
-            }
-            if (context != null)
-            {
-                context.Status = PluginStatus.Indeterminate;
-            }
-            return false;
-        }
-        finally
-        {
-            RebuildSharedServices();
-        }
-    }
-
-    public bool LoadPluginById( string id, bool silent = false )
-    {
-        var context = plugins
-            .Where(p => p.Status != PluginStatus.Loading && p.Status != PluginStatus.Loaded)
-            .FirstOrDefault(p => p.Metadata?.Id == id);
-
-        try
-        {
-            if (plugins.Remove(context!))
-            {
-                _ = LoadPlugin(context!.PluginDirectory!, true, silent);
-                return true;
-            }
-            else
-            {
-                throw new ArgumentException(string.Empty, string.Empty);
-            }
-        }
-        catch
-        {
-            if (!silent)
-            {
-                logger.LogWarning("Failed to load plugin by id: {Id}", id);
-            }
-            if (context != null)
-            {
-                context.Status = PluginStatus.Indeterminate;
-            }
-            return false;
-        }
-        finally
-        {
-            RebuildSharedServices();
-        }
-    }
-
-    public void ReloadPluginById( string id, bool silent = false )
-    {
-        _ = UnloadPluginById(id, silent);
-
-        if (!LoadPluginById(id, silent))
-        {
-            logger.LogWarning("Failed to reload plugin by id: {Id}", id);
-        }
-        else
-        {
-            logger.LogInformation("Reloaded plugin by id: {Id}", id);
-        }
-    }
-
-    private void LoadExports()
-    {
-        void PopulateSharedManually( string startDirectory )
-        {
-            var pluginDirs = Directory.GetDirectories(startDirectory);
-
-            foreach (var pluginDir in pluginDirs)
-            {
-                var dirName = Path.GetFileName(pluginDir);
-                if (dirName.StartsWith('[') && dirName.EndsWith(']'))
-                {
-                    PopulateSharedManually(pluginDir);
-                    continue;
-                }
-
-                var exportsPath = Path.Combine(pluginDir, "resources", "exports");
-                if (!Directory.Exists(exportsPath))
-                {
-                    continue;
-                }
-
-                Directory.GetFiles(exportsPath, "*.dll")
-                    .ToList()
-                    .ForEach(exportFile =>
-                    {
-                        try
-                        {
-                            var assembly = Assembly.LoadFrom(exportFile);
-                            assembly.GetTypes().ToList().ForEach(sharedTypes.Add);
-                        }
-                        catch (Exception innerEx)
-                        {
-                            if (!GlobalExceptionHandler.Handle(innerEx))
-                            {
-                                return;
-                            }
-                            logger.LogWarning(innerEx, "Failed to load export assembly: {Path}", exportFile);
-                        }
-                    });
-            }
-        }
-
-        try
-        {
-            var resolver = new DependencyResolver(logger);
-            resolver.AnalyzeDependencies(rootDirService.GetPluginsRoot());
-            logger.LogInformation("{Graph}\n", resolver.GetDependencyGraphVisualization());
-            var loadOrder = resolver.GetLoadOrder();
-            // logger.LogInformation("Loading {Count} export assemblies in dependency order", loadOrder.Count);
-
-            loadOrder.ForEach(exportFile =>
-            {
-                try
-                {
-                    var assembly = Assembly.LoadFrom(exportFile);
-                    var exports = assembly.GetTypes();
-                    logger.LogDebug("Loaded {Count} types from {Path}", exports.Length, Path.GetFileName(exportFile));
-                    exports.ToList().ForEach(sharedTypes.Add);
-                }
-                catch (Exception ex)
-                {
-                    if (!GlobalExceptionHandler.Handle(ex))
-                    {
-                        return;
-                    }
-                    logger.LogWarning(ex, "Failed to load export assembly: {Path}", exportFile);
-                }
-            });
-
-            logger.LogInformation("Loaded {Count} shared types", sharedTypes.Count);
-        }
-        catch (InvalidOperationException ex) when (ex.Message.Contains("Circular dependency"))
-        {
-            logger.LogError(ex, "Circular dependency detected in plugin exports, loading manually");
-            PopulateSharedManually(rootDirService.GetPluginsRoot());
-        }
-        catch (Exception ex)
-        {
-            if (!GlobalExceptionHandler.Handle(ex))
-            {
-                return;
-            }
-            logger.LogError(ex, "Failed to load exports");
-        }
-    }
-
-    private void LoadPlugins()
-    {
-        void LoadPluginsFromFolder( string directory )
-        {
-            var pluginDirs = Directory.GetDirectories(directory);
-
-            foreach (var pluginDir in pluginDirs)
-            {
-                var dirName = Path.GetFileName(pluginDir);
-                if (dirName.StartsWith('[') && dirName.EndsWith(']'))
-                {
-                    LoadPluginsFromFolder(pluginDir);
-                    continue;
-                }
-
-                try
-                {
-                    var context = LoadPlugin(pluginDir, false);
-                    if (context?.Status == PluginStatus.Loaded)
-                    {
-                        logger.LogInformation("Loaded plugin: {Id}", context.Metadata!.Id);
-                    }
-                }
-                catch (Exception e)
-                {
-                    if (!GlobalExceptionHandler.Handle(e))
-                    {
-                        continue;
-                    }
-                    logger.LogWarning(e, "Failed to load plugin: {Path}", pluginDir);
-                }
-            }
-        }
-
-        LoadPluginsFromFolder(rootDirService.GetPluginsRoot());
-        RebuildSharedServices();
-
-        plugins
-            .Where(p => p.Status == PluginStatus.Loaded)
-            .ToList()
-            .ForEach(p => p.Plugin!.OnAllPluginsLoaded());
-    }
-
     private void RebuildSharedServices()
     {
         interfaceManager.Dispose();
@@ -402,5 +485,32 @@ internal class PluginManager
 
         loadedPlugins.ForEach(p => p.Plugin?.UseSharedInterface(interfaceManager));
         loadedPlugins.ForEach(p => p.Plugin?.OnSharedInterfaceInjected(interfaceManager));
+    }
+
+    private static void EnumeratePluginDirectories( string directory, Action<string> action )
+    {
+        var pluginDirs = Directory.GetDirectories(directory);
+
+        foreach (var pluginDir in pluginDirs)
+        {
+            var dirName = Path.GetFileName(pluginDir);
+            if (dirName.Trim().StartsWith('[') && dirName.EndsWith(']'))
+            {
+                EnumeratePluginDirectories(pluginDir, action);
+                continue;
+            }
+
+            if (dirName.Trim().Equals("disable", StringComparison.OrdinalIgnoreCase) || dirName.Trim().Equals("_", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            if (dirName.Trim().Length >= 2 && dirName.StartsWith('_'))
+            {
+                continue;
+            }
+
+            action(pluginDir);
+        }
     }
 }
