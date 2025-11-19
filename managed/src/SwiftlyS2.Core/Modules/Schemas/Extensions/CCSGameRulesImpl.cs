@@ -27,26 +27,4 @@ internal partial class CCSGameRulesImpl : CCSGameRules
     {
         GameFunctions.TerminateRound(Address, (uint)reason, delay, teamId, unk01);
     }
-
-    public void AddTerroristWins( short wins )
-    {
-        GameFunctions.AddTerroristWins(Address, wins);
-    }
-
-    public void AddTerroristWins( short wins, float delay )
-    {
-        GameFunctions.AddTerroristWins(Address, wins);
-        TerminateRound(EndReason.TerroristsWin, delay, 2, 1);
-    }
-
-    public void AddCTWins( short wins )
-    {
-        GameFunctions.AddCTWins(Address, wins);
-    }
-
-    public void AddCTWins( short wins, float delay )
-    {
-        GameFunctions.AddCTWins(Address, wins);
-        TerminateRound(EndReason.CTsWin, delay, 3, 1);
-    }
 }

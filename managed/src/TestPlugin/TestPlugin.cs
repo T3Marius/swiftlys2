@@ -646,7 +646,7 @@ public class TestPlugin : BasePlugin
         // gameRules.AddTerroristWins(1, 7.0f);
         // gameRules.AddCTWins(1, 7.0f);
         Core.Game.AddCTWins(1);
-        gameRules.TerminateRound(RoundEndReason.CTsWin, 7.0f);
+        gameRules.TerminateRound(RoundEndReason.AllHostageRescued, 7.0f);
     }
 
     [Command("ss")]

@@ -17,10 +17,7 @@ internal static class GameFunctions
     public static unsafe delegate* unmanaged< nint, uint, nint, byte, CUtlSymbolLarge, byte, int, nint, nint, void > pDispatchParticleEffect;
     public static unsafe delegate* unmanaged< nint, uint, nint, uint, float, void > pTerminateRoundLinux;
     public static unsafe delegate* unmanaged< nint, float, uint, nint, uint, void > pTerminateRoundWindows;
-    public static unsafe delegate* unmanaged< nint, short, void > pAddTerroristWins;
-    public static unsafe delegate* unmanaged< nint, short, void > pAddCTWins;
     public static unsafe delegate* unmanaged< nint, Vector*, QAngle*, Vector*, void > pTeleport;
-    public static int Unk01Offset => NativeOffsets.Fetch("CGameRules::Unk01");
     public static int TeleportOffset => NativeOffsets.Fetch("CBaseEntity::Teleport");
     public static int CommitSuicideOffset => NativeOffsets.Fetch("CBasePlayerPawn::CommitSuicide");
     public static int GetSkeletonInstanceOffset => NativeOffsets.Fetch("CGameSceneNode::GetSkeletonInstance");
@@ -54,8 +51,6 @@ internal static class GameFunctions
             {
                 pTerminateRoundLinux = (delegate* unmanaged< nint, uint, nint, uint, float, void >)NativeSignatures.Fetch("CGameRules::TerminateRound");
             }
-            pAddTerroristWins = (delegate* unmanaged< nint, short, void >)NativeSignatures.Fetch("CGameRules::AddTerroristWins");
-            pAddCTWins = (delegate* unmanaged< nint, short, void >)NativeSignatures.Fetch("CGameRules::AddCTWins");
             pTeleport = (delegate* unmanaged< nint, Vector*, QAngle*, Vector*, void >)((void**)NativeMemoryHelpers.GetVirtualTableAddress("server", "CBaseEntity"))[TeleportOffset];
         }
     }
@@ -104,36 +99,6 @@ internal static class GameFunctions
                 {
                     pTerminateRoundLinux(gameRules, reason, teamId > 0 ? (nint)(&teamId) : 0, unk01, delay);
                 }
-            }
-        }
-        catch (Exception e)
-        {
-            AnsiConsole.WriteException(e);
-        }
-    }
-
-    public static void AddTerroristWins( nint gameRules, short wins )
-    {
-        try
-        {
-            unsafe
-            {
-                pAddTerroristWins(gameRules + Unk01Offset, wins);
-            }
-        }
-        catch (Exception e)
-        {
-            AnsiConsole.WriteException(e);
-        }
-    }
-
-    public static void AddCTWins( nint gameRules, short wins )
-    {
-        try
-        {
-            unsafe
-            {
-                pAddCTWins(gameRules + Unk01Offset, wins);
             }
         }
         catch (Exception e)
