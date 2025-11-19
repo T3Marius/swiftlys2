@@ -1,7 +1,7 @@
-﻿using SwiftlyS2.Core.Natives;
-using SwiftlyS2.Shared.Natives;
-using SwiftlyS2.Shared.SchemaDefinitions;
+using SwiftlyS2.Core.Natives;
 using SwiftlyS2.Shared.Schemas;
+using SwiftlyS2.Shared.SchemaDefinitions;
+using EndReason = SwiftlyS2.Shared.Natives.RoundEndReason;
 
 namespace SwiftlyS2.Core.SchemaDefinitions;
 
@@ -12,7 +12,7 @@ internal partial class CCSGameRulesImpl : CCSGameRules
         return ((CBaseEntity)new CBaseEntityImpl(GameFunctions.FindPickerEntity(Address, controller.Address))).As<T>();
     }
 
-    public void TerminateRound( RoundEndReason reason, float delay )
+    public void TerminateRound( EndReason reason, float delay )
     {
         GameFunctions.TerminateRound(Address, (uint)reason, delay);
     }
@@ -22,8 +22,20 @@ internal partial class CCSGameRulesImpl : CCSGameRules
         GameFunctions.AddTerroristWins(Address, wins);
     }
 
+    public void AddTerroristWins( short wins, float delay )
+    {
+        GameFunctions.AddTerroristWins(Address, wins);
+        TerminateRound(EndReason.TerroristsWin, delay);
+    }
+
     public void AddCTWins( short wins )
     {
         GameFunctions.AddCTWins(Address, wins);
+    }
+
+    public void AddCTWins( short wins, float delay )
+    {
+        GameFunctions.AddCTWins(Address, wins);
+        TerminateRound(EndReason.CTsWin, delay);
     }
 }

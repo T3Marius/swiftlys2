@@ -642,7 +642,8 @@ public class TestPlugin : BasePlugin
     {
         var gameRules = Core.EntitySystem.GetGameRules()!;
         // gameRules.TerminateRound(RoundEndReason.CTsWin, 10.0f);
-        gameRules.AddCTWins(1);
+        gameRules.AddTerroristWins(1, 7.0f);
+        // gameRules.AddCTWins(1, 7.0f);
     }
 
     [Command("tm")]
