@@ -11,26 +11,26 @@ public struct SubtickMove
     public float When;
 
     [FieldOffset(0x04)]
+    private readonly int Padding0;
+
+    [FieldOffset(0x08)]
     public ulong Button;
 
-    // Union: pressed (bool) or analogMove struct (shares same memory at 0x0C)
-    [FieldOffset(0x0C)]
+    // Union: pressed (bool) or analogMove struct
+    [FieldOffset(0x10)]
     public bool Pressed;
 
-    [FieldOffset(0x0C)]
+    [FieldOffset(0x10)]
     public float AnalogForwardDelta;
 
-    [FieldOffset(0x10)]
+    [FieldOffset(0x14)]
     public float AnalogLeftDelta;
 
-    [FieldOffset(0x14)]
+    [FieldOffset(0x18)]
     public float PitchDelta;
 
-    [FieldOffset(0x18)]
-    public float YawDelta;
-
     [FieldOffset(0x1C)]
-    private unsafe fixed byte _padding[4];
+    public float YawDelta;
 
     public readonly bool IsAnalogInput()
     {
