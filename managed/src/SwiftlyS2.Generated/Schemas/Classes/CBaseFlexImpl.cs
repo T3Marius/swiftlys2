@@ -17,40 +17,75 @@ internal partial class CBaseFlexImpl : CBaseAnimGraphImpl, CBaseFlex {
   public CBaseFlexImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlexWeightOffset = Schema.GetOffset(0xEE4FEF48AB868EDA);
+  private static nint? _FlexWeightOffset;
 
   public ref CUtlVector<float> FlexWeight {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_FlexWeightOffset);
+    get {
+      if (_FlexWeightOffset == null) {
+        _FlexWeightOffset = Schema.GetOffset(0xEE4FEF48AB868EDA);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_FlexWeightOffset!.Value);
+    }
   }
-  private static readonly nint _LookTargetPositionOffset = Schema.GetOffset(0xEE4FEF480DCD7B00);
+  private static nint? _LookTargetPositionOffset;
 
   public ref Vector LookTargetPosition {
-    get => ref _Handle.AsRef<Vector>(_LookTargetPositionOffset);
+    get {
+      if (_LookTargetPositionOffset == null) {
+        _LookTargetPositionOffset = Schema.GetOffset(0xEE4FEF480DCD7B00);
+      }
+      return ref _Handle.AsRef<Vector>(_LookTargetPositionOffset!.Value);
+    }
   }
-  private static readonly nint _BlinktoggleOffset = Schema.GetOffset(0xEE4FEF48CA230309);
+  private static nint? _BlinktoggleOffset;
 
   public ref bool Blinktoggle {
-    get => ref _Handle.AsRef<bool>(_BlinktoggleOffset);
+    get {
+      if (_BlinktoggleOffset == null) {
+        _BlinktoggleOffset = Schema.GetOffset(0xEE4FEF48CA230309);
+      }
+      return ref _Handle.AsRef<bool>(_BlinktoggleOffset!.Value);
+    }
   }
-  private static readonly nint _AllowResponsesEndTimeOffset = Schema.GetOffset(0xEE4FEF4858EB0248);
+  private static nint? _AllowResponsesEndTimeOffset;
 
   public GameTime_t AllowResponsesEndTime {
-    get => new GameTime_tImpl(_Handle + _AllowResponsesEndTimeOffset);
+    get {
+      if (_AllowResponsesEndTimeOffset == null) {
+        _AllowResponsesEndTimeOffset = Schema.GetOffset(0xEE4FEF4858EB0248);
+      }
+      return new GameTime_tImpl(_Handle + _AllowResponsesEndTimeOffset!.Value);
+    }
   }
-  private static readonly nint _LastFlexAnimationTimeOffset = Schema.GetOffset(0xEE4FEF48D5ADEDFF);
+  private static nint? _LastFlexAnimationTimeOffset;
 
   public GameTime_t LastFlexAnimationTime {
-    get => new GameTime_tImpl(_Handle + _LastFlexAnimationTimeOffset);
+    get {
+      if (_LastFlexAnimationTimeOffset == null) {
+        _LastFlexAnimationTimeOffset = Schema.GetOffset(0xEE4FEF48D5ADEDFF);
+      }
+      return new GameTime_tImpl(_Handle + _LastFlexAnimationTimeOffset!.Value);
+    }
   }
-  private static readonly nint _NextSceneEventIdOffset = Schema.GetOffset(0xEE4FEF483756F461);
+  private static nint? _NextSceneEventIdOffset;
 
   public SceneEventId_t NextSceneEventId {
-    get => new SceneEventId_tImpl(_Handle + _NextSceneEventIdOffset);
+    get {
+      if (_NextSceneEventIdOffset == null) {
+        _NextSceneEventIdOffset = Schema.GetOffset(0xEE4FEF483756F461);
+      }
+      return new SceneEventId_tImpl(_Handle + _NextSceneEventIdOffset!.Value);
+    }
   }
-  private static readonly nint _UpdateLayerPrioritiesOffset = Schema.GetOffset(0xEE4FEF48446AC3B9);
+  private static nint? _UpdateLayerPrioritiesOffset;
 
   public ref bool UpdateLayerPriorities {
-    get => ref _Handle.AsRef<bool>(_UpdateLayerPrioritiesOffset);
+    get {
+      if (_UpdateLayerPrioritiesOffset == null) {
+        _UpdateLayerPrioritiesOffset = Schema.GetOffset(0xEE4FEF48446AC3B9);
+      }
+      return ref _Handle.AsRef<bool>(_UpdateLayerPrioritiesOffset!.Value);
+    }
   }
 
   public void FlexWeightUpdated() {

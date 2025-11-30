@@ -17,14 +17,22 @@ internal partial class CFlexDescImpl : SchemaClass, CFlexDesc {
   public CFlexDescImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FacsOffset = Schema.GetOffset(0xF8B9C4900514A8FF);
+  private static nint? _FacsOffset;
 
   public string Facs {
     get {
-      var ptr = _Handle.Read<nint>(_FacsOffset);
+      if (_FacsOffset == null) {
+        _FacsOffset = Schema.GetOffset(0xF8B9C4900514A8FF);
+      }
+      var ptr = _Handle.Read<nint>(_FacsOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FacsOffset, value);
+    set {
+      if (_FacsOffset == null) {
+        _FacsOffset = Schema.GetOffset(0xF8B9C4900514A8FF);
+      }
+      Schema.SetString(_Handle, _FacsOffset!.Value, value);
+    }
   } 
 
 

@@ -17,113 +17,209 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
   public CPhysSurfacePropertiesSoundNamesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ImpactSoftOffset = Schema.GetOffset(0xF2658A3949E7237B);
+  private static nint? _ImpactSoftOffset;
 
   public string ImpactSoft {
     get {
-      var ptr = _Handle.Read<nint>(_ImpactSoftOffset);
+      if (_ImpactSoftOffset == null) {
+        _ImpactSoftOffset = Schema.GetOffset(0xF2658A3949E7237B);
+      }
+      var ptr = _Handle.Read<nint>(_ImpactSoftOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ImpactSoftOffset, value);
+    set {
+      if (_ImpactSoftOffset == null) {
+        _ImpactSoftOffset = Schema.GetOffset(0xF2658A3949E7237B);
+      }
+      Schema.SetString(_Handle, _ImpactSoftOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ImpactHardOffset = Schema.GetOffset(0xF2658A3934A77BB2);
+  private static nint? _ImpactHardOffset;
 
   public string ImpactHard {
     get {
-      var ptr = _Handle.Read<nint>(_ImpactHardOffset);
+      if (_ImpactHardOffset == null) {
+        _ImpactHardOffset = Schema.GetOffset(0xF2658A3934A77BB2);
+      }
+      var ptr = _Handle.Read<nint>(_ImpactHardOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ImpactHardOffset, value);
+    set {
+      if (_ImpactHardOffset == null) {
+        _ImpactHardOffset = Schema.GetOffset(0xF2658A3934A77BB2);
+      }
+      Schema.SetString(_Handle, _ImpactHardOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ScrapeSmoothOffset = Schema.GetOffset(0xF2658A3902EA935F);
+  private static nint? _ScrapeSmoothOffset;
 
   public string ScrapeSmooth {
     get {
-      var ptr = _Handle.Read<nint>(_ScrapeSmoothOffset);
+      if (_ScrapeSmoothOffset == null) {
+        _ScrapeSmoothOffset = Schema.GetOffset(0xF2658A3902EA935F);
+      }
+      var ptr = _Handle.Read<nint>(_ScrapeSmoothOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ScrapeSmoothOffset, value);
+    set {
+      if (_ScrapeSmoothOffset == null) {
+        _ScrapeSmoothOffset = Schema.GetOffset(0xF2658A3902EA935F);
+      }
+      Schema.SetString(_Handle, _ScrapeSmoothOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ScrapeRoughOffset = Schema.GetOffset(0xF2658A39CE764A7E);
+  private static nint? _ScrapeRoughOffset;
 
   public string ScrapeRough {
     get {
-      var ptr = _Handle.Read<nint>(_ScrapeRoughOffset);
+      if (_ScrapeRoughOffset == null) {
+        _ScrapeRoughOffset = Schema.GetOffset(0xF2658A39CE764A7E);
+      }
+      var ptr = _Handle.Read<nint>(_ScrapeRoughOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ScrapeRoughOffset, value);
+    set {
+      if (_ScrapeRoughOffset == null) {
+        _ScrapeRoughOffset = Schema.GetOffset(0xF2658A39CE764A7E);
+      }
+      Schema.SetString(_Handle, _ScrapeRoughOffset!.Value, value);
+    }
   } 
-  private static readonly nint _BulletImpactOffset = Schema.GetOffset(0xF2658A3943E056BB);
+  private static nint? _BulletImpactOffset;
 
   public string BulletImpact {
     get {
-      var ptr = _Handle.Read<nint>(_BulletImpactOffset);
+      if (_BulletImpactOffset == null) {
+        _BulletImpactOffset = Schema.GetOffset(0xF2658A3943E056BB);
+      }
+      var ptr = _Handle.Read<nint>(_BulletImpactOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _BulletImpactOffset, value);
+    set {
+      if (_BulletImpactOffset == null) {
+        _BulletImpactOffset = Schema.GetOffset(0xF2658A3943E056BB);
+      }
+      Schema.SetString(_Handle, _BulletImpactOffset!.Value, value);
+    }
   } 
-  private static readonly nint _RollingOffset = Schema.GetOffset(0xF2658A39E0171912);
+  private static nint? _RollingOffset;
 
   public string Rolling {
     get {
-      var ptr = _Handle.Read<nint>(_RollingOffset);
+      if (_RollingOffset == null) {
+        _RollingOffset = Schema.GetOffset(0xF2658A39E0171912);
+      }
+      var ptr = _Handle.Read<nint>(_RollingOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _RollingOffset, value);
+    set {
+      if (_RollingOffset == null) {
+        _RollingOffset = Schema.GetOffset(0xF2658A39E0171912);
+      }
+      Schema.SetString(_Handle, _RollingOffset!.Value, value);
+    }
   } 
-  private static readonly nint _BreakOffset = Schema.GetOffset(0xF2658A39382B2298);
+  private static nint? _BreakOffset;
 
   public string Break {
     get {
-      var ptr = _Handle.Read<nint>(_BreakOffset);
+      if (_BreakOffset == null) {
+        _BreakOffset = Schema.GetOffset(0xF2658A39382B2298);
+      }
+      var ptr = _Handle.Read<nint>(_BreakOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _BreakOffset, value);
+    set {
+      if (_BreakOffset == null) {
+        _BreakOffset = Schema.GetOffset(0xF2658A39382B2298);
+      }
+      Schema.SetString(_Handle, _BreakOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StrainOffset = Schema.GetOffset(0xF2658A397EDA2E10);
+  private static nint? _StrainOffset;
 
   public string Strain {
     get {
-      var ptr = _Handle.Read<nint>(_StrainOffset);
+      if (_StrainOffset == null) {
+        _StrainOffset = Schema.GetOffset(0xF2658A397EDA2E10);
+      }
+      var ptr = _Handle.Read<nint>(_StrainOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrainOffset, value);
+    set {
+      if (_StrainOffset == null) {
+        _StrainOffset = Schema.GetOffset(0xF2658A397EDA2E10);
+      }
+      Schema.SetString(_Handle, _StrainOffset!.Value, value);
+    }
   } 
-  private static readonly nint _MeleeImpactOffset = Schema.GetOffset(0xF2658A3976A52491);
+  private static nint? _MeleeImpactOffset;
 
   public string MeleeImpact {
     get {
-      var ptr = _Handle.Read<nint>(_MeleeImpactOffset);
+      if (_MeleeImpactOffset == null) {
+        _MeleeImpactOffset = Schema.GetOffset(0xF2658A3976A52491);
+      }
+      var ptr = _Handle.Read<nint>(_MeleeImpactOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _MeleeImpactOffset, value);
+    set {
+      if (_MeleeImpactOffset == null) {
+        _MeleeImpactOffset = Schema.GetOffset(0xF2658A3976A52491);
+      }
+      Schema.SetString(_Handle, _MeleeImpactOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PushOffOffset = Schema.GetOffset(0xF2658A39C825B1A2);
+  private static nint? _PushOffOffset;
 
   public string PushOff {
     get {
-      var ptr = _Handle.Read<nint>(_PushOffOffset);
+      if (_PushOffOffset == null) {
+        _PushOffOffset = Schema.GetOffset(0xF2658A39C825B1A2);
+      }
+      var ptr = _Handle.Read<nint>(_PushOffOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PushOffOffset, value);
+    set {
+      if (_PushOffOffset == null) {
+        _PushOffOffset = Schema.GetOffset(0xF2658A39C825B1A2);
+      }
+      Schema.SetString(_Handle, _PushOffOffset!.Value, value);
+    }
   } 
-  private static readonly nint _SkidStopOffset = Schema.GetOffset(0xF2658A3976C778AE);
+  private static nint? _SkidStopOffset;
 
   public string SkidStop {
     get {
-      var ptr = _Handle.Read<nint>(_SkidStopOffset);
+      if (_SkidStopOffset == null) {
+        _SkidStopOffset = Schema.GetOffset(0xF2658A3976C778AE);
+      }
+      var ptr = _Handle.Read<nint>(_SkidStopOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SkidStopOffset, value);
+    set {
+      if (_SkidStopOffset == null) {
+        _SkidStopOffset = Schema.GetOffset(0xF2658A3976C778AE);
+      }
+      Schema.SetString(_Handle, _SkidStopOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ResonantOffset = Schema.GetOffset(0xF2658A396BA8FAF5);
+  private static nint? _ResonantOffset;
 
   public string Resonant {
     get {
-      var ptr = _Handle.Read<nint>(_ResonantOffset);
+      if (_ResonantOffset == null) {
+        _ResonantOffset = Schema.GetOffset(0xF2658A396BA8FAF5);
+      }
+      var ptr = _Handle.Read<nint>(_ResonantOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ResonantOffset, value);
+    set {
+      if (_ResonantOffset == null) {
+        _ResonantOffset = Schema.GetOffset(0xF2658A396BA8FAF5);
+      }
+      Schema.SetString(_Handle, _ResonantOffset!.Value, value);
+    }
   } 
 
 

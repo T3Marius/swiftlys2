@@ -17,15 +17,25 @@ internal partial class CNmTransitionEventImpl : CNmEventImpl, CNmTransitionEvent
   public CNmTransitionEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RuleOffset = Schema.GetOffset(0x11493D8CBA097173);
+  private static nint? _RuleOffset;
 
   public ref NmTransitionRule_t Rule {
-    get => ref _Handle.AsRef<NmTransitionRule_t>(_RuleOffset);
+    get {
+      if (_RuleOffset == null) {
+        _RuleOffset = Schema.GetOffset(0x11493D8CBA097173);
+      }
+      return ref _Handle.AsRef<NmTransitionRule_t>(_RuleOffset!.Value);
+    }
   }
-  private static readonly nint _IDOffset = Schema.GetOffset(0x11493D8C95066900);
+  private static nint? _IDOffset;
 
   public ref CGlobalSymbol ID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_IDOffset);
+    get {
+      if (_IDOffset == null) {
+        _IDOffset = Schema.GetOffset(0x11493D8C95066900);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_IDOffset!.Value);
+    }
   }
 
 

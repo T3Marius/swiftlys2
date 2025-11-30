@@ -17,40 +17,75 @@ internal partial class JiggleBoneSettings_tImpl : SchemaClass, JiggleBoneSetting
   public JiggleBoneSettings_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneIndexOffset = Schema.GetOffset(0xBEFF05219F407B79);
+  private static nint? _BoneIndexOffset;
 
   public ref int BoneIndex {
-    get => ref _Handle.AsRef<int>(_BoneIndexOffset);
+    get {
+      if (_BoneIndexOffset == null) {
+        _BoneIndexOffset = Schema.GetOffset(0xBEFF05219F407B79);
+      }
+      return ref _Handle.AsRef<int>(_BoneIndexOffset!.Value);
+    }
   }
-  private static readonly nint _SpringStrengthOffset = Schema.GetOffset(0xBEFF0521595D254F);
+  private static nint? _SpringStrengthOffset;
 
   public ref float SpringStrength {
-    get => ref _Handle.AsRef<float>(_SpringStrengthOffset);
+    get {
+      if (_SpringStrengthOffset == null) {
+        _SpringStrengthOffset = Schema.GetOffset(0xBEFF0521595D254F);
+      }
+      return ref _Handle.AsRef<float>(_SpringStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTimeStepOffset = Schema.GetOffset(0xBEFF052177D1E0C4);
+  private static nint? _MaxTimeStepOffset;
 
   public ref float MaxTimeStep {
-    get => ref _Handle.AsRef<float>(_MaxTimeStepOffset);
+    get {
+      if (_MaxTimeStepOffset == null) {
+        _MaxTimeStepOffset = Schema.GetOffset(0xBEFF052177D1E0C4);
+      }
+      return ref _Handle.AsRef<float>(_MaxTimeStepOffset!.Value);
+    }
   }
-  private static readonly nint _DampingOffset = Schema.GetOffset(0xBEFF0521AAC624EB);
+  private static nint? _DampingOffset;
 
   public ref float Damping {
-    get => ref _Handle.AsRef<float>(_DampingOffset);
+    get {
+      if (_DampingOffset == null) {
+        _DampingOffset = Schema.GetOffset(0xBEFF0521AAC624EB);
+      }
+      return ref _Handle.AsRef<float>(_DampingOffset!.Value);
+    }
   }
-  private static readonly nint _BoundsMaxLSOffset = Schema.GetOffset(0xBEFF0521ABADA913);
+  private static nint? _BoundsMaxLSOffset;
 
   public ref Vector BoundsMaxLS {
-    get => ref _Handle.AsRef<Vector>(_BoundsMaxLSOffset);
+    get {
+      if (_BoundsMaxLSOffset == null) {
+        _BoundsMaxLSOffset = Schema.GetOffset(0xBEFF0521ABADA913);
+      }
+      return ref _Handle.AsRef<Vector>(_BoundsMaxLSOffset!.Value);
+    }
   }
-  private static readonly nint _BoundsMinLSOffset = Schema.GetOffset(0xBEFF0521FF607855);
+  private static nint? _BoundsMinLSOffset;
 
   public ref Vector BoundsMinLS {
-    get => ref _Handle.AsRef<Vector>(_BoundsMinLSOffset);
+    get {
+      if (_BoundsMinLSOffset == null) {
+        _BoundsMinLSOffset = Schema.GetOffset(0xBEFF0521FF607855);
+      }
+      return ref _Handle.AsRef<Vector>(_BoundsMinLSOffset!.Value);
+    }
   }
-  private static readonly nint _SimSpaceOffset = Schema.GetOffset(0xBEFF052186872533);
+  private static nint? _SimSpaceOffset;
 
   public ref JiggleBoneSimSpace SimSpace {
-    get => ref _Handle.AsRef<JiggleBoneSimSpace>(_SimSpaceOffset);
+    get {
+      if (_SimSpaceOffset == null) {
+        _SimSpaceOffset = Schema.GetOffset(0xBEFF052186872533);
+      }
+      return ref _Handle.AsRef<JiggleBoneSimSpace>(_SimSpaceOffset!.Value);
+    }
   }
 
 

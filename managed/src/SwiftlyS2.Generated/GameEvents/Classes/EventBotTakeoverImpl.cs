@@ -29,8 +29,17 @@ internal class EventBotTakeoverImpl : GameEvent<EventBotTakeover>, EventBotTakeo
   public int UserId
   { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
+  public CCSPlayerController BotIDController
+  { get => Accessor.GetPlayerController("botid"); }
+
+  public CCSPlayerPawn BotIDPawn
+  { get => Accessor.GetPlayerPawn("botid"); }
+
+  public IPlayer BotIDPlayer
+  { get => Accessor.GetPlayer("botid"); }
+
   public int BotID
-  { get => Accessor.GetPlayerSlot("botid"); set => Accessor.SetPlayerSlot("botid", value); }
+  { get => Accessor.GetInt32("botid"); set => Accessor.SetInt32("botid", value); }
 
   public float P
   { get => Accessor.GetFloat("p"); set => Accessor.SetFloat("p", value); }

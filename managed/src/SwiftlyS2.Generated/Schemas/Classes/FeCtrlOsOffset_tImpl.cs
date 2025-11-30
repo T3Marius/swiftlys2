@@ -17,15 +17,25 @@ internal partial class FeCtrlOsOffset_tImpl : SchemaClass, FeCtrlOsOffset_t {
   public FeCtrlOsOffset_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CtrlParentOffset = Schema.GetOffset(0xA9B7D3DF55049230);
+  private static nint? _CtrlParentOffset;
 
   public ref ushort CtrlParent {
-    get => ref _Handle.AsRef<ushort>(_CtrlParentOffset);
+    get {
+      if (_CtrlParentOffset == null) {
+        _CtrlParentOffset = Schema.GetOffset(0xA9B7D3DF55049230);
+      }
+      return ref _Handle.AsRef<ushort>(_CtrlParentOffset!.Value);
+    }
   }
-  private static readonly nint _CtrlChildOffset = Schema.GetOffset(0xA9B7D3DF5BE48066);
+  private static nint? _CtrlChildOffset;
 
   public ref ushort CtrlChild {
-    get => ref _Handle.AsRef<ushort>(_CtrlChildOffset);
+    get {
+      if (_CtrlChildOffset == null) {
+        _CtrlChildOffset = Schema.GetOffset(0xA9B7D3DF5BE48066);
+      }
+      return ref _Handle.AsRef<ushort>(_CtrlChildOffset!.Value);
+    }
   }
 
 

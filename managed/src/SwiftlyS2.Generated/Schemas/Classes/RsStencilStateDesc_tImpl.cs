@@ -17,60 +17,115 @@ internal partial class RsStencilStateDesc_tImpl : SchemaClass, RsStencilStateDes
   public RsStencilStateDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StencilEnableOffset = Schema.GetOffset(0xA65B7AC54518B5FC);
+  private static nint? _StencilEnableOffset;
 
   public SchemaUntypedField StencilEnable {
-    get => new SchemaUntypedField(_Handle + _StencilEnableOffset);
+    get {
+      if (_StencilEnableOffset == null) {
+        _StencilEnableOffset = Schema.GetOffset(0xA65B7AC54518B5FC);
+      }
+      return new SchemaUntypedField(_Handle + _StencilEnableOffset!.Value);
+    }
   }
-  private static readonly nint _FrontStencilFailOpOffset = Schema.GetOffset(0xA65B7AC59A6D86EF);
+  private static nint? _FrontStencilFailOpOffset;
 
   public SchemaUntypedField FrontStencilFailOp {
-    get => new SchemaUntypedField(_Handle + _FrontStencilFailOpOffset);
+    get {
+      if (_FrontStencilFailOpOffset == null) {
+        _FrontStencilFailOpOffset = Schema.GetOffset(0xA65B7AC59A6D86EF);
+      }
+      return new SchemaUntypedField(_Handle + _FrontStencilFailOpOffset!.Value);
+    }
   }
-  private static readonly nint _FrontStencilDepthFailOpOffset = Schema.GetOffset(0xA65B7AC5E8761D3E);
+  private static nint? _FrontStencilDepthFailOpOffset;
 
   public SchemaUntypedField FrontStencilDepthFailOp {
-    get => new SchemaUntypedField(_Handle + _FrontStencilDepthFailOpOffset);
+    get {
+      if (_FrontStencilDepthFailOpOffset == null) {
+        _FrontStencilDepthFailOpOffset = Schema.GetOffset(0xA65B7AC5E8761D3E);
+      }
+      return new SchemaUntypedField(_Handle + _FrontStencilDepthFailOpOffset!.Value);
+    }
   }
-  private static readonly nint _FrontStencilPassOpOffset = Schema.GetOffset(0xA65B7AC586875BA2);
+  private static nint? _FrontStencilPassOpOffset;
 
   public SchemaUntypedField FrontStencilPassOp {
-    get => new SchemaUntypedField(_Handle + _FrontStencilPassOpOffset);
+    get {
+      if (_FrontStencilPassOpOffset == null) {
+        _FrontStencilPassOpOffset = Schema.GetOffset(0xA65B7AC586875BA2);
+      }
+      return new SchemaUntypedField(_Handle + _FrontStencilPassOpOffset!.Value);
+    }
   }
-  private static readonly nint _FrontStencilFuncOffset = Schema.GetOffset(0xA65B7AC581FBEC02);
+  private static nint? _FrontStencilFuncOffset;
 
   public SchemaUntypedField FrontStencilFunc {
-    get => new SchemaUntypedField(_Handle + _FrontStencilFuncOffset);
+    get {
+      if (_FrontStencilFuncOffset == null) {
+        _FrontStencilFuncOffset = Schema.GetOffset(0xA65B7AC581FBEC02);
+      }
+      return new SchemaUntypedField(_Handle + _FrontStencilFuncOffset!.Value);
+    }
   }
-  private static readonly nint _BackStencilFailOpOffset = Schema.GetOffset(0xA65B7AC557603E59);
+  private static nint? _BackStencilFailOpOffset;
 
   public SchemaUntypedField BackStencilFailOp {
-    get => new SchemaUntypedField(_Handle + _BackStencilFailOpOffset);
+    get {
+      if (_BackStencilFailOpOffset == null) {
+        _BackStencilFailOpOffset = Schema.GetOffset(0xA65B7AC557603E59);
+      }
+      return new SchemaUntypedField(_Handle + _BackStencilFailOpOffset!.Value);
+    }
   }
-  private static readonly nint _BackStencilDepthFailOpOffset = Schema.GetOffset(0xA65B7AC5EA6F7BAC);
+  private static nint? _BackStencilDepthFailOpOffset;
 
   public SchemaUntypedField BackStencilDepthFailOp {
-    get => new SchemaUntypedField(_Handle + _BackStencilDepthFailOpOffset);
+    get {
+      if (_BackStencilDepthFailOpOffset == null) {
+        _BackStencilDepthFailOpOffset = Schema.GetOffset(0xA65B7AC5EA6F7BAC);
+      }
+      return new SchemaUntypedField(_Handle + _BackStencilDepthFailOpOffset!.Value);
+    }
   }
-  private static readonly nint _BackStencilPassOpOffset = Schema.GetOffset(0xA65B7AC51276F800);
+  private static nint? _BackStencilPassOpOffset;
 
   public SchemaUntypedField BackStencilPassOp {
-    get => new SchemaUntypedField(_Handle + _BackStencilPassOpOffset);
+    get {
+      if (_BackStencilPassOpOffset == null) {
+        _BackStencilPassOpOffset = Schema.GetOffset(0xA65B7AC51276F800);
+      }
+      return new SchemaUntypedField(_Handle + _BackStencilPassOpOffset!.Value);
+    }
   }
-  private static readonly nint _BackStencilFuncOffset = Schema.GetOffset(0xA65B7AC520B49048);
+  private static nint? _BackStencilFuncOffset;
 
   public SchemaUntypedField BackStencilFunc {
-    get => new SchemaUntypedField(_Handle + _BackStencilFuncOffset);
+    get {
+      if (_BackStencilFuncOffset == null) {
+        _BackStencilFuncOffset = Schema.GetOffset(0xA65B7AC520B49048);
+      }
+      return new SchemaUntypedField(_Handle + _BackStencilFuncOffset!.Value);
+    }
   }
-  private static readonly nint _StencilReadMaskOffset = Schema.GetOffset(0xA65B7AC5C9D7494F);
+  private static nint? _StencilReadMaskOffset;
 
   public ref byte StencilReadMask {
-    get => ref _Handle.AsRef<byte>(_StencilReadMaskOffset);
+    get {
+      if (_StencilReadMaskOffset == null) {
+        _StencilReadMaskOffset = Schema.GetOffset(0xA65B7AC5C9D7494F);
+      }
+      return ref _Handle.AsRef<byte>(_StencilReadMaskOffset!.Value);
+    }
   }
-  private static readonly nint _StencilWriteMaskOffset = Schema.GetOffset(0xA65B7AC5E50288E2);
+  private static nint? _StencilWriteMaskOffset;
 
   public ref byte StencilWriteMask {
-    get => ref _Handle.AsRef<byte>(_StencilWriteMaskOffset);
+    get {
+      if (_StencilWriteMaskOffset == null) {
+        _StencilWriteMaskOffset = Schema.GetOffset(0xA65B7AC5E50288E2);
+      }
+      return ref _Handle.AsRef<byte>(_StencilWriteMaskOffset!.Value);
+    }
   }
 
 

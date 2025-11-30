@@ -17,10 +17,15 @@ internal partial class RnHullDesc_tImpl : RnShapeDesc_tImpl, RnHullDesc_t {
   public RnHullDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _HullOffset = Schema.GetOffset(0xBB74EDD8AC535D36);
+  private static nint? _HullOffset;
 
   public RnHull_t Hull {
-    get => new RnHull_tImpl(_Handle + _HullOffset);
+    get {
+      if (_HullOffset == null) {
+        _HullOffset = Schema.GetOffset(0xBB74EDD8AC535D36);
+      }
+      return new RnHull_tImpl(_Handle + _HullOffset!.Value);
+    }
   }
 
 

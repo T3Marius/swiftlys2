@@ -20,30 +20,55 @@ internal partial class FeHingeLimit_tImpl : SchemaClass, FeHingeLimit_t {
   public ISchemaFixedArray<ushort> Node {
     get => new SchemaFixedArray<ushort>(_Handle, 0x3E7F1FF5CD6694B9, 6, 2, 2);
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x3E7F1FF5B8D52E48);
+  private static nint? _FlagsOffset;
 
   public ref uint Flags {
-    get => ref _Handle.AsRef<uint>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x3E7F1FF5B8D52E48);
+      }
+      return ref _Handle.AsRef<uint>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _Weight4Offset = Schema.GetOffset(0x3E7F1FF56956236D);
+  private static nint? _Weight4Offset;
 
   public ref float Weight4 {
-    get => ref _Handle.AsRef<float>(_Weight4Offset);
+    get {
+      if (_Weight4Offset == null) {
+        _Weight4Offset = Schema.GetOffset(0x3E7F1FF56956236D);
+      }
+      return ref _Handle.AsRef<float>(_Weight4Offset!.Value);
+    }
   }
-  private static readonly nint _Weight5Offset = Schema.GetOffset(0x3E7F1FF5685621DA);
+  private static nint? _Weight5Offset;
 
   public ref float Weight5 {
-    get => ref _Handle.AsRef<float>(_Weight5Offset);
+    get {
+      if (_Weight5Offset == null) {
+        _Weight5Offset = Schema.GetOffset(0x3E7F1FF5685621DA);
+      }
+      return ref _Handle.AsRef<float>(_Weight5Offset!.Value);
+    }
   }
-  private static readonly nint _AngleCenterOffset = Schema.GetOffset(0x3E7F1FF57BF2D76B);
+  private static nint? _AngleCenterOffset;
 
   public ref float AngleCenter {
-    get => ref _Handle.AsRef<float>(_AngleCenterOffset);
+    get {
+      if (_AngleCenterOffset == null) {
+        _AngleCenterOffset = Schema.GetOffset(0x3E7F1FF57BF2D76B);
+      }
+      return ref _Handle.AsRef<float>(_AngleCenterOffset!.Value);
+    }
   }
-  private static readonly nint _AngleExtentsOffset = Schema.GetOffset(0x3E7F1FF59D58EF0B);
+  private static nint? _AngleExtentsOffset;
 
   public ref float AngleExtents {
-    get => ref _Handle.AsRef<float>(_AngleExtentsOffset);
+    get {
+      if (_AngleExtentsOffset == null) {
+        _AngleExtentsOffset = Schema.GetOffset(0x3E7F1FF59D58EF0B);
+      }
+      return ref _Handle.AsRef<float>(_AngleExtentsOffset!.Value);
+    }
   }
 
 

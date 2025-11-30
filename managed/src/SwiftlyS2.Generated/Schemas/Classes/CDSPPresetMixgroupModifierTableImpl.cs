@@ -17,10 +17,15 @@ internal partial class CDSPPresetMixgroupModifierTableImpl : SchemaClass, CDSPPr
   public CDSPPresetMixgroupModifierTableImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TableOffset = Schema.GetOffset(0xB4266D22715EA0FF);
+  private static nint? _TableOffset;
 
   public ref CUtlVector<CDspPresetModifierList> Table {
-    get => ref _Handle.AsRef<CUtlVector<CDspPresetModifierList>>(_TableOffset);
+    get {
+      if (_TableOffset == null) {
+        _TableOffset = Schema.GetOffset(0xB4266D22715EA0FF);
+      }
+      return ref _Handle.AsRef<CUtlVector<CDspPresetModifierList>>(_TableOffset!.Value);
+    }
   }
 
 

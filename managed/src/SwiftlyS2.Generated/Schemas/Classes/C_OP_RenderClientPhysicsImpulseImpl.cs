@@ -17,20 +17,35 @@ internal partial class C_OP_RenderClientPhysicsImpulseImpl : CParticleFunctionRe
   public C_OP_RenderClientPhysicsImpulseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x618F365ACFC08D);
+  private static nint? _RadiusOffset;
 
   public CPerParticleFloatInput Radius {
-    get => new CPerParticleFloatInputImpl(_Handle + _RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x618F365ACFC08D);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _MagnitudeOffset = Schema.GetOffset(0x618F36ED0A1D8B);
+  private static nint? _MagnitudeOffset;
 
   public CPerParticleFloatInput Magnitude {
-    get => new CPerParticleFloatInputImpl(_Handle + _MagnitudeOffset);
+    get {
+      if (_MagnitudeOffset == null) {
+        _MagnitudeOffset = Schema.GetOffset(0x618F36ED0A1D8B);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _MagnitudeOffset!.Value);
+    }
   }
-  private static readonly nint _SimIdFilterOffset = Schema.GetOffset(0x618F36C5FA023F);
+  private static nint? _SimIdFilterOffset;
 
   public ref int SimIdFilter {
-    get => ref _Handle.AsRef<int>(_SimIdFilterOffset);
+    get {
+      if (_SimIdFilterOffset == null) {
+        _SimIdFilterOffset = Schema.GetOffset(0x618F36C5FA023F);
+      }
+      return ref _Handle.AsRef<int>(_SimIdFilterOffset!.Value);
+    }
   }
 
 

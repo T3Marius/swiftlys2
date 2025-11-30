@@ -17,10 +17,15 @@ internal partial class EventClientProcessNetworking_tImpl : SchemaClass, EventCl
   public EventClientProcessNetworking_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TickCountOffset = Schema.GetOffset(0x89FEDE50E25E6B27);
+  private static nint? _TickCountOffset;
 
   public ref int TickCount {
-    get => ref _Handle.AsRef<int>(_TickCountOffset);
+    get {
+      if (_TickCountOffset == null) {
+        _TickCountOffset = Schema.GetOffset(0x89FEDE50E25E6B27);
+      }
+      return ref _Handle.AsRef<int>(_TickCountOffset!.Value);
+    }
   }
 
 

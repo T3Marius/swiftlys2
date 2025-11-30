@@ -17,20 +17,35 @@ internal partial class C_OP_RenderPostProcessingImpl : CParticleFunctionRenderer
   public C_OP_RenderPostProcessingImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PostProcessStrengthOffset = Schema.GetOffset(0xD64D179C653C1A17);
+  private static nint? _PostProcessStrengthOffset;
 
   public CPerParticleFloatInput PostProcessStrength {
-    get => new CPerParticleFloatInputImpl(_Handle + _PostProcessStrengthOffset);
+    get {
+      if (_PostProcessStrengthOffset == null) {
+        _PostProcessStrengthOffset = Schema.GetOffset(0xD64D179C653C1A17);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _PostProcessStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _PostTextureOffset = Schema.GetOffset(0xD64D179C943F8D28);
+  private static nint? _PostTextureOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCPostProcessingResource> PostTexture {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCPostProcessingResource>>(_PostTextureOffset);
+    get {
+      if (_PostTextureOffset == null) {
+        _PostTextureOffset = Schema.GetOffset(0xD64D179C943F8D28);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCPostProcessingResource>>(_PostTextureOffset!.Value);
+    }
   }
-  private static readonly nint _PriorityOffset = Schema.GetOffset(0xD64D179CE7EFB335);
+  private static nint? _PriorityOffset;
 
   public ref ParticlePostProcessPriorityGroup_t Priority {
-    get => ref _Handle.AsRef<ParticlePostProcessPriorityGroup_t>(_PriorityOffset);
+    get {
+      if (_PriorityOffset == null) {
+        _PriorityOffset = Schema.GetOffset(0xD64D179CE7EFB335);
+      }
+      return ref _Handle.AsRef<ParticlePostProcessPriorityGroup_t>(_PriorityOffset!.Value);
+    }
   }
 
 

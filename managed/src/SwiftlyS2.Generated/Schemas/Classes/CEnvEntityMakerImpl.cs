@@ -17,69 +17,132 @@ internal partial class CEnvEntityMakerImpl : CPointEntityImpl, CEnvEntityMaker {
   public CEnvEntityMakerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EntityMinsOffset = Schema.GetOffset(0x5EC16696C39F1E27);
+  private static nint? _EntityMinsOffset;
 
   public ref Vector EntityMins {
-    get => ref _Handle.AsRef<Vector>(_EntityMinsOffset);
+    get {
+      if (_EntityMinsOffset == null) {
+        _EntityMinsOffset = Schema.GetOffset(0x5EC16696C39F1E27);
+      }
+      return ref _Handle.AsRef<Vector>(_EntityMinsOffset!.Value);
+    }
   }
-  private static readonly nint _EntityMaxsOffset = Schema.GetOffset(0x5EC166965CBE958D);
+  private static nint? _EntityMaxsOffset;
 
   public ref Vector EntityMaxs {
-    get => ref _Handle.AsRef<Vector>(_EntityMaxsOffset);
+    get {
+      if (_EntityMaxsOffset == null) {
+        _EntityMaxsOffset = Schema.GetOffset(0x5EC166965CBE958D);
+      }
+      return ref _Handle.AsRef<Vector>(_EntityMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _CurrentInstanceOffset = Schema.GetOffset(0x5EC166969C4BA153);
+  private static nint? _CurrentInstanceOffset;
 
   public ref CHandle<CBaseEntity> CurrentInstance {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_CurrentInstanceOffset);
+    get {
+      if (_CurrentInstanceOffset == null) {
+        _CurrentInstanceOffset = Schema.GetOffset(0x5EC166969C4BA153);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_CurrentInstanceOffset!.Value);
+    }
   }
-  private static readonly nint _CurrentBlockerOffset = Schema.GetOffset(0x5EC1669684284A72);
+  private static nint? _CurrentBlockerOffset;
 
   public ref CHandle<CBaseEntity> CurrentBlocker {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_CurrentBlockerOffset);
+    get {
+      if (_CurrentBlockerOffset == null) {
+        _CurrentBlockerOffset = Schema.GetOffset(0x5EC1669684284A72);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_CurrentBlockerOffset!.Value);
+    }
   }
-  private static readonly nint _BlockerOriginOffset = Schema.GetOffset(0x5EC16696987D753F);
+  private static nint? _BlockerOriginOffset;
 
   public ref Vector BlockerOrigin {
-    get => ref _Handle.AsRef<Vector>(_BlockerOriginOffset);
+    get {
+      if (_BlockerOriginOffset == null) {
+        _BlockerOriginOffset = Schema.GetOffset(0x5EC16696987D753F);
+      }
+      return ref _Handle.AsRef<Vector>(_BlockerOriginOffset!.Value);
+    }
   }
-  private static readonly nint _PostSpawnDirectionOffset = Schema.GetOffset(0x5EC16696226D1B99);
+  private static nint? _PostSpawnDirectionOffset;
 
   public ref QAngle PostSpawnDirection {
-    get => ref _Handle.AsRef<QAngle>(_PostSpawnDirectionOffset);
+    get {
+      if (_PostSpawnDirectionOffset == null) {
+        _PostSpawnDirectionOffset = Schema.GetOffset(0x5EC16696226D1B99);
+      }
+      return ref _Handle.AsRef<QAngle>(_PostSpawnDirectionOffset!.Value);
+    }
   }
-  private static readonly nint _PostSpawnDirectionVarianceOffset = Schema.GetOffset(0x5EC166965FA89D66);
+  private static nint? _PostSpawnDirectionVarianceOffset;
 
   public ref float PostSpawnDirectionVariance {
-    get => ref _Handle.AsRef<float>(_PostSpawnDirectionVarianceOffset);
+    get {
+      if (_PostSpawnDirectionVarianceOffset == null) {
+        _PostSpawnDirectionVarianceOffset = Schema.GetOffset(0x5EC166965FA89D66);
+      }
+      return ref _Handle.AsRef<float>(_PostSpawnDirectionVarianceOffset!.Value);
+    }
   }
-  private static readonly nint _PostSpawnSpeedOffset = Schema.GetOffset(0x5EC16696C4D43237);
+  private static nint? _PostSpawnSpeedOffset;
 
   public ref float PostSpawnSpeed {
-    get => ref _Handle.AsRef<float>(_PostSpawnSpeedOffset);
+    get {
+      if (_PostSpawnSpeedOffset == null) {
+        _PostSpawnSpeedOffset = Schema.GetOffset(0x5EC16696C4D43237);
+      }
+      return ref _Handle.AsRef<float>(_PostSpawnSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _PostSpawnUseAnglesOffset = Schema.GetOffset(0x5EC1669689448F21);
+  private static nint? _PostSpawnUseAnglesOffset;
 
   public ref bool PostSpawnUseAngles {
-    get => ref _Handle.AsRef<bool>(_PostSpawnUseAnglesOffset);
+    get {
+      if (_PostSpawnUseAnglesOffset == null) {
+        _PostSpawnUseAnglesOffset = Schema.GetOffset(0x5EC1669689448F21);
+      }
+      return ref _Handle.AsRef<bool>(_PostSpawnUseAnglesOffset!.Value);
+    }
   }
-  private static readonly nint _TemplateOffset = Schema.GetOffset(0x5EC16696F24EC223);
+  private static nint? _TemplateOffset;
 
   public string Template {
     get {
-      var ptr = _Handle.Read<nint>(_TemplateOffset);
+      if (_TemplateOffset == null) {
+        _TemplateOffset = Schema.GetOffset(0x5EC16696F24EC223);
+      }
+      var ptr = _Handle.Read<nint>(_TemplateOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _TemplateOffset, value);
+    set {
+      if (_TemplateOffset == null) {
+        _TemplateOffset = Schema.GetOffset(0x5EC16696F24EC223);
+      }
+      Schema.SetString(_Handle, _TemplateOffset!.Value, value);
+    }
   } 
-  private static readonly nint _OutputOnSpawnedOffset = Schema.GetOffset(0x5EC1669629B86CFF);
+  private static nint? _OutputOnSpawnedOffset;
 
   public CEntityIOOutput OutputOnSpawned {
-    get => new CEntityIOOutputImpl(_Handle + _OutputOnSpawnedOffset);
+    get {
+      if (_OutputOnSpawnedOffset == null) {
+        _OutputOnSpawnedOffset = Schema.GetOffset(0x5EC1669629B86CFF);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OutputOnSpawnedOffset!.Value);
+    }
   }
-  private static readonly nint _OutputOnFailedSpawnOffset = Schema.GetOffset(0x5EC16696EBDC0A35);
+  private static nint? _OutputOnFailedSpawnOffset;
 
   public CEntityIOOutput OutputOnFailedSpawn {
-    get => new CEntityIOOutputImpl(_Handle + _OutputOnFailedSpawnOffset);
+    get {
+      if (_OutputOnFailedSpawnOffset == null) {
+        _OutputOnFailedSpawnOffset = Schema.GetOffset(0x5EC16696EBDC0A35);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OutputOnFailedSpawnOffset!.Value);
+    }
   }
 
 

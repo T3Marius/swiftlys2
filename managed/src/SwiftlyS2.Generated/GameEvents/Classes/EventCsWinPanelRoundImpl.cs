@@ -33,8 +33,17 @@ internal class EventCsWinPanelRoundImpl : GameEvent<EventCsWinPanelRound>, Event
   public string FunfactToken
   { get => Accessor.GetString("funfact_token"); set => Accessor.SetString("funfact_token", value); }
 
+  public CCSPlayerController FunfactPlayerController
+  { get => Accessor.GetPlayerController("funfact_player"); }
+
+  public CCSPlayerPawn FunfactPlayerPawn
+  { get => Accessor.GetPlayerPawn("funfact_player"); }
+
+  public IPlayer FunfactPlayerPlayer
+  { get => Accessor.GetPlayer("funfact_player"); }
+
   public int FunfactPlayer
-  { get => Accessor.GetPlayerSlot("funfact_player"); set => Accessor.SetPlayerSlot("funfact_player", value); }
+  { get => Accessor.GetInt32("funfact_player"); set => Accessor.SetInt32("funfact_player", value); }
 
   public int FunfactData1
   { get => Accessor.GetInt32("funfact_data1"); set => Accessor.SetInt32("funfact_data1", value); }

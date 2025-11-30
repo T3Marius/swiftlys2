@@ -17,15 +17,25 @@ internal partial class CNmClipSelectorNode__CDefinitionImpl : CNmClipReferenceNo
   public CNmClipSelectorNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OptionNodeIndicesOffset = Schema.GetOffset(0xCF32AC18DA97B15D);
+  private static nint? _OptionNodeIndicesOffset;
 
   public SchemaUntypedField OptionNodeIndices {
-    get => new SchemaUntypedField(_Handle + _OptionNodeIndicesOffset);
+    get {
+      if (_OptionNodeIndicesOffset == null) {
+        _OptionNodeIndicesOffset = Schema.GetOffset(0xCF32AC18DA97B15D);
+      }
+      return new SchemaUntypedField(_Handle + _OptionNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _ConditionNodeIndicesOffset = Schema.GetOffset(0xCF32AC184A144D0F);
+  private static nint? _ConditionNodeIndicesOffset;
 
   public SchemaUntypedField ConditionNodeIndices {
-    get => new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset);
+    get {
+      if (_ConditionNodeIndicesOffset == null) {
+        _ConditionNodeIndicesOffset = Schema.GetOffset(0xCF32AC184A144D0F);
+      }
+      return new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset!.Value);
+    }
   }
 
 

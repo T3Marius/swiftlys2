@@ -17,15 +17,25 @@ internal partial class RotatorHistoryEntry_tImpl : SchemaClass, RotatorHistoryEn
   public RotatorHistoryEntry_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InvChangeOffset = Schema.GetOffset(0xB27D5BA9A4E4D41B);
+  private static nint? _InvChangeOffset;
 
   public ref Quaternion InvChange {
-    get => ref _Handle.AsRef<Quaternion>(_InvChangeOffset);
+    get {
+      if (_InvChangeOffset == null) {
+        _InvChangeOffset = Schema.GetOffset(0xB27D5BA9A4E4D41B);
+      }
+      return ref _Handle.AsRef<Quaternion>(_InvChangeOffset!.Value);
+    }
   }
-  private static readonly nint _TimeRotationStartOffset = Schema.GetOffset(0xB27D5BA9A2B2E208);
+  private static nint? _TimeRotationStartOffset;
 
   public GameTime_t TimeRotationStart {
-    get => new GameTime_tImpl(_Handle + _TimeRotationStartOffset);
+    get {
+      if (_TimeRotationStartOffset == null) {
+        _TimeRotationStartOffset = Schema.GetOffset(0xB27D5BA9A2B2E208);
+      }
+      return new GameTime_tImpl(_Handle + _TimeRotationStartOffset!.Value);
+    }
   }
 
 

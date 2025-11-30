@@ -17,15 +17,25 @@ internal partial class VMixPannerDesc_tImpl : SchemaClass, VMixPannerDesc_t {
   public VMixPannerDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TypeOffset = Schema.GetOffset(0x13827FF70F04B4ED);
+  private static nint? _TypeOffset;
 
   public ref VMixPannerType_t Type {
-    get => ref _Handle.AsRef<VMixPannerType_t>(_TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0x13827FF70F04B4ED);
+      }
+      return ref _Handle.AsRef<VMixPannerType_t>(_TypeOffset!.Value);
+    }
   }
-  private static readonly nint _StrengthOffset = Schema.GetOffset(0x13827FF78F67AF1A);
+  private static nint? _StrengthOffset;
 
   public ref float Strength {
-    get => ref _Handle.AsRef<float>(_StrengthOffset);
+    get {
+      if (_StrengthOffset == null) {
+        _StrengthOffset = Schema.GetOffset(0x13827FF78F67AF1A);
+      }
+      return ref _Handle.AsRef<float>(_StrengthOffset!.Value);
+    }
   }
 
 

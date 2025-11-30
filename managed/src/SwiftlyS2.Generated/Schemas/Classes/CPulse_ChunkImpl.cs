@@ -17,20 +17,35 @@ internal partial class CPulse_ChunkImpl : SchemaClass, CPulse_Chunk {
   public CPulse_ChunkImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InstructionsOffset = Schema.GetOffset(0x816932094D358BC4);
+  private static nint? _InstructionsOffset;
 
   public ref CUtlLeanVector<PGDInstruction_t, int> Instructions {
-    get => ref _Handle.AsRef<CUtlLeanVector<PGDInstruction_t, int>>(_InstructionsOffset);
+    get {
+      if (_InstructionsOffset == null) {
+        _InstructionsOffset = Schema.GetOffset(0x816932094D358BC4);
+      }
+      return ref _Handle.AsRef<CUtlLeanVector<PGDInstruction_t, int>>(_InstructionsOffset!.Value);
+    }
   }
-  private static readonly nint _RegistersOffset = Schema.GetOffset(0x81693209BB828A49);
+  private static nint? _RegistersOffset;
 
   public ref CUtlLeanVector<CPulse_RegisterInfo, int> Registers {
-    get => ref _Handle.AsRef<CUtlLeanVector<CPulse_RegisterInfo, int>>(_RegistersOffset);
+    get {
+      if (_RegistersOffset == null) {
+        _RegistersOffset = Schema.GetOffset(0x81693209BB828A49);
+      }
+      return ref _Handle.AsRef<CUtlLeanVector<CPulse_RegisterInfo, int>>(_RegistersOffset!.Value);
+    }
   }
-  private static readonly nint _InstructionEditorIDsOffset = Schema.GetOffset(0x81693209236D8B64);
+  private static nint? _InstructionEditorIDsOffset;
 
   public ref CUtlLeanVector<PulseDocNodeID_t, int> InstructionEditorIDs {
-    get => ref _Handle.AsRef<CUtlLeanVector<PulseDocNodeID_t, int>>(_InstructionEditorIDsOffset);
+    get {
+      if (_InstructionEditorIDsOffset == null) {
+        _InstructionEditorIDsOffset = Schema.GetOffset(0x81693209236D8B64);
+      }
+      return ref _Handle.AsRef<CUtlLeanVector<PulseDocNodeID_t, int>>(_InstructionEditorIDsOffset!.Value);
+    }
   }
 
 

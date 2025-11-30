@@ -17,35 +17,65 @@ internal partial class C_INIT_PositionWarpScalarImpl : CParticleFunctionInitiali
   public C_INIT_PositionWarpScalarImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WarpMinOffset = Schema.GetOffset(0x36E409431B8A7F09);
+  private static nint? _WarpMinOffset;
 
   public ref Vector WarpMin {
-    get => ref _Handle.AsRef<Vector>(_WarpMinOffset);
+    get {
+      if (_WarpMinOffset == null) {
+        _WarpMinOffset = Schema.GetOffset(0x36E409431B8A7F09);
+      }
+      return ref _Handle.AsRef<Vector>(_WarpMinOffset!.Value);
+    }
   }
-  private static readonly nint _WarpMaxOffset = Schema.GetOffset(0x36E409430D76E147);
+  private static nint? _WarpMaxOffset;
 
   public ref Vector WarpMax {
-    get => ref _Handle.AsRef<Vector>(_WarpMaxOffset);
+    get {
+      if (_WarpMaxOffset == null) {
+        _WarpMaxOffset = Schema.GetOffset(0x36E409430D76E147);
+      }
+      return ref _Handle.AsRef<Vector>(_WarpMaxOffset!.Value);
+    }
   }
-  private static readonly nint _InputValueOffset = Schema.GetOffset(0x36E4094334445438);
+  private static nint? _InputValueOffset;
 
   public CPerParticleFloatInput InputValue {
-    get => new CPerParticleFloatInputImpl(_Handle + _InputValueOffset);
+    get {
+      if (_InputValueOffset == null) {
+        _InputValueOffset = Schema.GetOffset(0x36E4094334445438);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InputValueOffset!.Value);
+    }
   }
-  private static readonly nint _PrevPosScaleOffset = Schema.GetOffset(0x36E4094346CED122);
+  private static nint? _PrevPosScaleOffset;
 
   public ref float PrevPosScale {
-    get => ref _Handle.AsRef<float>(_PrevPosScaleOffset);
+    get {
+      if (_PrevPosScaleOffset == null) {
+        _PrevPosScaleOffset = Schema.GetOffset(0x36E4094346CED122);
+      }
+      return ref _Handle.AsRef<float>(_PrevPosScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleControlPointNumberOffset = Schema.GetOffset(0x36E409439A649261);
+  private static nint? _ScaleControlPointNumberOffset;
 
   public ref int ScaleControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ScaleControlPointNumberOffset);
+    get {
+      if (_ScaleControlPointNumberOffset == null) {
+        _ScaleControlPointNumberOffset = Schema.GetOffset(0x36E409439A649261);
+      }
+      return ref _Handle.AsRef<int>(_ScaleControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x36E409433F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x36E409433F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
 
 

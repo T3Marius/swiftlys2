@@ -17,60 +17,115 @@ internal partial class CVSoundImpl : SchemaClass, CVSound {
   public CVSoundImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RateOffset = Schema.GetOffset(0x478C987331106783);
+  private static nint? _RateOffset;
 
   public ref int Rate {
-    get => ref _Handle.AsRef<int>(_RateOffset);
+    get {
+      if (_RateOffset == null) {
+        _RateOffset = Schema.GetOffset(0x478C987331106783);
+      }
+      return ref _Handle.AsRef<int>(_RateOffset!.Value);
+    }
   }
-  private static readonly nint _FormatOffset = Schema.GetOffset(0x478C9873A87491AE);
+  private static nint? _FormatOffset;
 
   public ref CVSoundFormat_t Format {
-    get => ref _Handle.AsRef<CVSoundFormat_t>(_FormatOffset);
+    get {
+      if (_FormatOffset == null) {
+        _FormatOffset = Schema.GetOffset(0x478C9873A87491AE);
+      }
+      return ref _Handle.AsRef<CVSoundFormat_t>(_FormatOffset!.Value);
+    }
   }
-  private static readonly nint _ChannelsOffset = Schema.GetOffset(0x478C98735A815AD1);
+  private static nint? _ChannelsOffset;
 
   public ref uint Channels {
-    get => ref _Handle.AsRef<uint>(_ChannelsOffset);
+    get {
+      if (_ChannelsOffset == null) {
+        _ChannelsOffset = Schema.GetOffset(0x478C98735A815AD1);
+      }
+      return ref _Handle.AsRef<uint>(_ChannelsOffset!.Value);
+    }
   }
-  private static readonly nint _LoopStartOffset = Schema.GetOffset(0x478C9873A12E4295);
+  private static nint? _LoopStartOffset;
 
   public ref int LoopStart {
-    get => ref _Handle.AsRef<int>(_LoopStartOffset);
+    get {
+      if (_LoopStartOffset == null) {
+        _LoopStartOffset = Schema.GetOffset(0x478C9873A12E4295);
+      }
+      return ref _Handle.AsRef<int>(_LoopStartOffset!.Value);
+    }
   }
-  private static readonly nint _SampleCountOffset = Schema.GetOffset(0x478C98732DEF676A);
+  private static nint? _SampleCountOffset;
 
   public ref uint SampleCount {
-    get => ref _Handle.AsRef<uint>(_SampleCountOffset);
+    get {
+      if (_SampleCountOffset == null) {
+        _SampleCountOffset = Schema.GetOffset(0x478C98732DEF676A);
+      }
+      return ref _Handle.AsRef<uint>(_SampleCountOffset!.Value);
+    }
   }
-  private static readonly nint _DurationOffset = Schema.GetOffset(0x478C9873BC5E3BAB);
+  private static nint? _DurationOffset;
 
   public ref float Duration {
-    get => ref _Handle.AsRef<float>(_DurationOffset);
+    get {
+      if (_DurationOffset == null) {
+        _DurationOffset = Schema.GetOffset(0x478C9873BC5E3BAB);
+      }
+      return ref _Handle.AsRef<float>(_DurationOffset!.Value);
+    }
   }
-  private static readonly nint _SentencesOffset = Schema.GetOffset(0x478C98730FF1D785);
+  private static nint? _SentencesOffset;
 
   public ref CUtlVector<CAudioSentence> Sentences {
-    get => ref _Handle.AsRef<CUtlVector<CAudioSentence>>(_SentencesOffset);
+    get {
+      if (_SentencesOffset == null) {
+        _SentencesOffset = Schema.GetOffset(0x478C98730FF1D785);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAudioSentence>>(_SentencesOffset!.Value);
+    }
   }
-  private static readonly nint _StreamingSizeOffset = Schema.GetOffset(0x478C9873CB44A8AE);
+  private static nint? _StreamingSizeOffset;
 
   public ref uint StreamingSize {
-    get => ref _Handle.AsRef<uint>(_StreamingSizeOffset);
+    get {
+      if (_StreamingSizeOffset == null) {
+        _StreamingSizeOffset = Schema.GetOffset(0x478C9873CB44A8AE);
+      }
+      return ref _Handle.AsRef<uint>(_StreamingSizeOffset!.Value);
+    }
   }
-  private static readonly nint _SeekTableOffset = Schema.GetOffset(0x478C987388E17207);
+  private static nint? _SeekTableOffset;
 
   public ref CUtlVector<int> SeekTable {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_SeekTableOffset);
+    get {
+      if (_SeekTableOffset == null) {
+        _SeekTableOffset = Schema.GetOffset(0x478C987388E17207);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_SeekTableOffset!.Value);
+    }
   }
-  private static readonly nint _LoopEndOffset = Schema.GetOffset(0x478C9873900B36CC);
+  private static nint? _LoopEndOffset;
 
   public ref int LoopEnd {
-    get => ref _Handle.AsRef<int>(_LoopEndOffset);
+    get {
+      if (_LoopEndOffset == null) {
+        _LoopEndOffset = Schema.GetOffset(0x478C9873900B36CC);
+      }
+      return ref _Handle.AsRef<int>(_LoopEndOffset!.Value);
+    }
   }
-  private static readonly nint _EncodedHeaderOffset = Schema.GetOffset(0x478C9873BDA3C36C);
+  private static nint? _EncodedHeaderOffset;
 
   public ref CUtlBinaryBlock EncodedHeader {
-    get => ref _Handle.AsRef<CUtlBinaryBlock>(_EncodedHeaderOffset);
+    get {
+      if (_EncodedHeaderOffset == null) {
+        _EncodedHeaderOffset = Schema.GetOffset(0x478C9873BDA3C36C);
+      }
+      return ref _Handle.AsRef<CUtlBinaryBlock>(_EncodedHeaderOffset!.Value);
+    }
   }
 
 

@@ -17,15 +17,25 @@ internal partial class CPulseCell_WaitForCursorsWithTagImpl : CPulseCell_WaitFor
   public CPulseCell_WaitForCursorsWithTagImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagSelfWhenCompleteOffset = Schema.GetOffset(0x550BA6FDA17E8F0E);
+  private static nint? _TagSelfWhenCompleteOffset;
 
   public ref bool TagSelfWhenComplete {
-    get => ref _Handle.AsRef<bool>(_TagSelfWhenCompleteOffset);
+    get {
+      if (_TagSelfWhenCompleteOffset == null) {
+        _TagSelfWhenCompleteOffset = Schema.GetOffset(0x550BA6FDA17E8F0E);
+      }
+      return ref _Handle.AsRef<bool>(_TagSelfWhenCompleteOffset!.Value);
+    }
   }
-  private static readonly nint _DesiredKillPriorityOffset = Schema.GetOffset(0x550BA6FD341BA991);
+  private static nint? _DesiredKillPriorityOffset;
 
   public ref PulseCursorCancelPriority_t DesiredKillPriority {
-    get => ref _Handle.AsRef<PulseCursorCancelPriority_t>(_DesiredKillPriorityOffset);
+    get {
+      if (_DesiredKillPriorityOffset == null) {
+        _DesiredKillPriorityOffset = Schema.GetOffset(0x550BA6FD341BA991);
+      }
+      return ref _Handle.AsRef<PulseCursorCancelPriority_t>(_DesiredKillPriorityOffset!.Value);
+    }
   }
 
 

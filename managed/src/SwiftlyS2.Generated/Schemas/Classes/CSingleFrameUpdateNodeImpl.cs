@@ -17,25 +17,45 @@ internal partial class CSingleFrameUpdateNodeImpl : CLeafUpdateNodeImpl, CSingle
   public CSingleFrameUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActionsOffset = Schema.GetOffset(0x5A65D6168D622684);
+  private static nint? _ActionsOffset;
 
   public ref CUtlVector<SchemaUntypedField> Actions {
-    get => ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ActionsOffset);
+    get {
+      if (_ActionsOffset == null) {
+        _ActionsOffset = Schema.GetOffset(0x5A65D6168D622684);
+      }
+      return ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ActionsOffset!.Value);
+    }
   }
-  private static readonly nint _PoseCacheHandleOffset = Schema.GetOffset(0x5A65D6164719447A);
+  private static nint? _PoseCacheHandleOffset;
 
   public CPoseHandle PoseCacheHandle {
-    get => new CPoseHandleImpl(_Handle + _PoseCacheHandleOffset);
+    get {
+      if (_PoseCacheHandleOffset == null) {
+        _PoseCacheHandleOffset = Schema.GetOffset(0x5A65D6164719447A);
+      }
+      return new CPoseHandleImpl(_Handle + _PoseCacheHandleOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceOffset = Schema.GetOffset(0x5A65D616E0A0598E);
+  private static nint? _SequenceOffset;
 
   public HSequence Sequence {
-    get => new HSequenceImpl(_Handle + _SequenceOffset);
+    get {
+      if (_SequenceOffset == null) {
+        _SequenceOffset = Schema.GetOffset(0x5A65D616E0A0598E);
+      }
+      return new HSequenceImpl(_Handle + _SequenceOffset!.Value);
+    }
   }
-  private static readonly nint _CycleOffset = Schema.GetOffset(0x5A65D6160C77829F);
+  private static nint? _CycleOffset;
 
   public ref float Cycle {
-    get => ref _Handle.AsRef<float>(_CycleOffset);
+    get {
+      if (_CycleOffset == null) {
+        _CycleOffset = Schema.GetOffset(0x5A65D6160C77829F);
+      }
+      return ref _Handle.AsRef<float>(_CycleOffset!.Value);
+    }
   }
 
 

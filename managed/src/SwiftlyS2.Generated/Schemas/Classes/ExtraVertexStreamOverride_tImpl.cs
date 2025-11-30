@@ -17,25 +17,45 @@ internal partial class ExtraVertexStreamOverride_tImpl : BaseSceneObjectOverride
   public ExtraVertexStreamOverride_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SubSceneObjectOffset = Schema.GetOffset(0x38857FE855C3CCBC);
+  private static nint? _SubSceneObjectOffset;
 
   public ref uint SubSceneObject {
-    get => ref _Handle.AsRef<uint>(_SubSceneObjectOffset);
+    get {
+      if (_SubSceneObjectOffset == null) {
+        _SubSceneObjectOffset = Schema.GetOffset(0x38857FE855C3CCBC);
+      }
+      return ref _Handle.AsRef<uint>(_SubSceneObjectOffset!.Value);
+    }
   }
-  private static readonly nint _DrawCallIndexOffset = Schema.GetOffset(0x38857FE8FA5614D5);
+  private static nint? _DrawCallIndexOffset;
 
   public ref uint DrawCallIndex {
-    get => ref _Handle.AsRef<uint>(_DrawCallIndexOffset);
+    get {
+      if (_DrawCallIndexOffset == null) {
+        _DrawCallIndexOffset = Schema.GetOffset(0x38857FE8FA5614D5);
+      }
+      return ref _Handle.AsRef<uint>(_DrawCallIndexOffset!.Value);
+    }
   }
-  private static readonly nint _AdditionalMeshDrawPrimitiveFlagsOffset = Schema.GetOffset(0x38857FE8F0E57F2B);
+  private static nint? _AdditionalMeshDrawPrimitiveFlagsOffset;
 
   public ref MeshDrawPrimitiveFlags_t AdditionalMeshDrawPrimitiveFlags {
-    get => ref _Handle.AsRef<MeshDrawPrimitiveFlags_t>(_AdditionalMeshDrawPrimitiveFlagsOffset);
+    get {
+      if (_AdditionalMeshDrawPrimitiveFlagsOffset == null) {
+        _AdditionalMeshDrawPrimitiveFlagsOffset = Schema.GetOffset(0x38857FE8F0E57F2B);
+      }
+      return ref _Handle.AsRef<MeshDrawPrimitiveFlags_t>(_AdditionalMeshDrawPrimitiveFlagsOffset!.Value);
+    }
   }
-  private static readonly nint _ExtraBufferBindingOffset = Schema.GetOffset(0x38857FE800630FD0);
+  private static nint? _ExtraBufferBindingOffset;
 
   public CRenderBufferBinding ExtraBufferBinding {
-    get => new CRenderBufferBindingImpl(_Handle + _ExtraBufferBindingOffset);
+    get {
+      if (_ExtraBufferBindingOffset == null) {
+        _ExtraBufferBindingOffset = Schema.GetOffset(0x38857FE800630FD0);
+      }
+      return new CRenderBufferBindingImpl(_Handle + _ExtraBufferBindingOffset!.Value);
+    }
   }
 
 

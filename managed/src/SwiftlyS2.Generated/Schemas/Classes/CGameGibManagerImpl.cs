@@ -17,25 +17,45 @@ internal partial class CGameGibManagerImpl : CBaseEntityImpl, CGameGibManager {
   public CGameGibManagerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AllowNewGibsOffset = Schema.GetOffset(0x1068CB09FD80F507);
+  private static nint? _AllowNewGibsOffset;
 
   public ref bool AllowNewGibs {
-    get => ref _Handle.AsRef<bool>(_AllowNewGibsOffset);
+    get {
+      if (_AllowNewGibsOffset == null) {
+        _AllowNewGibsOffset = Schema.GetOffset(0x1068CB09FD80F507);
+      }
+      return ref _Handle.AsRef<bool>(_AllowNewGibsOffset!.Value);
+    }
   }
-  private static readonly nint _CurrentMaxPiecesOffset = Schema.GetOffset(0x1068CB0999B0D602);
+  private static nint? _CurrentMaxPiecesOffset;
 
   public ref int CurrentMaxPieces {
-    get => ref _Handle.AsRef<int>(_CurrentMaxPiecesOffset);
+    get {
+      if (_CurrentMaxPiecesOffset == null) {
+        _CurrentMaxPiecesOffset = Schema.GetOffset(0x1068CB0999B0D602);
+      }
+      return ref _Handle.AsRef<int>(_CurrentMaxPiecesOffset!.Value);
+    }
   }
-  private static readonly nint _MaxPiecesOffset = Schema.GetOffset(0x1068CB092DDFB63D);
+  private static nint? _MaxPiecesOffset;
 
   public ref int MaxPieces {
-    get => ref _Handle.AsRef<int>(_MaxPiecesOffset);
+    get {
+      if (_MaxPiecesOffset == null) {
+        _MaxPiecesOffset = Schema.GetOffset(0x1068CB092DDFB63D);
+      }
+      return ref _Handle.AsRef<int>(_MaxPiecesOffset!.Value);
+    }
   }
-  private static readonly nint _LastFrameOffset = Schema.GetOffset(0x1068CB09F0B58C21);
+  private static nint? _LastFrameOffset;
 
   public ref int LastFrame {
-    get => ref _Handle.AsRef<int>(_LastFrameOffset);
+    get {
+      if (_LastFrameOffset == null) {
+        _LastFrameOffset = Schema.GetOffset(0x1068CB09F0B58C21);
+      }
+      return ref _Handle.AsRef<int>(_LastFrameOffset!.Value);
+    }
   }
 
 

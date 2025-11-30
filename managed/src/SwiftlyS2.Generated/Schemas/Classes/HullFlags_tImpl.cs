@@ -17,55 +17,105 @@ internal partial class HullFlags_tImpl : SchemaClass, HullFlags_t {
   public HullFlags_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _Hull_HumanOffset = Schema.GetOffset(0x6601A7BA756C6ED0);
+  private static nint? _Hull_HumanOffset;
 
   public ref bool Hull_Human {
-    get => ref _Handle.AsRef<bool>(_Hull_HumanOffset);
+    get {
+      if (_Hull_HumanOffset == null) {
+        _Hull_HumanOffset = Schema.GetOffset(0x6601A7BA756C6ED0);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_HumanOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_SmallCenteredOffset = Schema.GetOffset(0x6601A7BAA57EDD5E);
+  private static nint? _Hull_SmallCenteredOffset;
 
   public ref bool Hull_SmallCentered {
-    get => ref _Handle.AsRef<bool>(_Hull_SmallCenteredOffset);
+    get {
+      if (_Hull_SmallCenteredOffset == null) {
+        _Hull_SmallCenteredOffset = Schema.GetOffset(0x6601A7BAA57EDD5E);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_SmallCenteredOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_WideHumanOffset = Schema.GetOffset(0x6601A7BAEA8B5AFD);
+  private static nint? _Hull_WideHumanOffset;
 
   public ref bool Hull_WideHuman {
-    get => ref _Handle.AsRef<bool>(_Hull_WideHumanOffset);
+    get {
+      if (_Hull_WideHumanOffset == null) {
+        _Hull_WideHumanOffset = Schema.GetOffset(0x6601A7BAEA8B5AFD);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_WideHumanOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_TinyOffset = Schema.GetOffset(0x6601A7BA637634AD);
+  private static nint? _Hull_TinyOffset;
 
   public ref bool Hull_Tiny {
-    get => ref _Handle.AsRef<bool>(_Hull_TinyOffset);
+    get {
+      if (_Hull_TinyOffset == null) {
+        _Hull_TinyOffset = Schema.GetOffset(0x6601A7BA637634AD);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_TinyOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_MediumOffset = Schema.GetOffset(0x6601A7BADB23BDB4);
+  private static nint? _Hull_MediumOffset;
 
   public ref bool Hull_Medium {
-    get => ref _Handle.AsRef<bool>(_Hull_MediumOffset);
+    get {
+      if (_Hull_MediumOffset == null) {
+        _Hull_MediumOffset = Schema.GetOffset(0x6601A7BADB23BDB4);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_MediumOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_TinyCenteredOffset = Schema.GetOffset(0x6601A7BA139ED50D);
+  private static nint? _Hull_TinyCenteredOffset;
 
   public ref bool Hull_TinyCentered {
-    get => ref _Handle.AsRef<bool>(_Hull_TinyCenteredOffset);
+    get {
+      if (_Hull_TinyCenteredOffset == null) {
+        _Hull_TinyCenteredOffset = Schema.GetOffset(0x6601A7BA139ED50D);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_TinyCenteredOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_LargeOffset = Schema.GetOffset(0x6601A7BA11910E06);
+  private static nint? _Hull_LargeOffset;
 
   public ref bool Hull_Large {
-    get => ref _Handle.AsRef<bool>(_Hull_LargeOffset);
+    get {
+      if (_Hull_LargeOffset == null) {
+        _Hull_LargeOffset = Schema.GetOffset(0x6601A7BA11910E06);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_LargeOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_LargeCenteredOffset = Schema.GetOffset(0x6601A7BAEE04D78A);
+  private static nint? _Hull_LargeCenteredOffset;
 
   public ref bool Hull_LargeCentered {
-    get => ref _Handle.AsRef<bool>(_Hull_LargeCenteredOffset);
+    get {
+      if (_Hull_LargeCenteredOffset == null) {
+        _Hull_LargeCenteredOffset = Schema.GetOffset(0x6601A7BAEE04D78A);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_LargeCenteredOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_MediumTallOffset = Schema.GetOffset(0x6601A7BA332567D3);
+  private static nint? _Hull_MediumTallOffset;
 
   public ref bool Hull_MediumTall {
-    get => ref _Handle.AsRef<bool>(_Hull_MediumTallOffset);
+    get {
+      if (_Hull_MediumTallOffset == null) {
+        _Hull_MediumTallOffset = Schema.GetOffset(0x6601A7BA332567D3);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_MediumTallOffset!.Value);
+    }
   }
-  private static readonly nint _Hull_SmallOffset = Schema.GetOffset(0x6601A7BA86608A2A);
+  private static nint? _Hull_SmallOffset;
 
   public ref bool Hull_Small {
-    get => ref _Handle.AsRef<bool>(_Hull_SmallOffset);
+    get {
+      if (_Hull_SmallOffset == null) {
+        _Hull_SmallOffset = Schema.GetOffset(0x6601A7BA86608A2A);
+      }
+      return ref _Handle.AsRef<bool>(_Hull_SmallOffset!.Value);
+    }
   }
 
 

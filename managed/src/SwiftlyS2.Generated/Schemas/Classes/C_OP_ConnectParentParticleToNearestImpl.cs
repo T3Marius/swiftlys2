@@ -17,30 +17,55 @@ internal partial class C_OP_ConnectParentParticleToNearestImpl : CParticleFuncti
   public C_OP_ConnectParentParticleToNearestImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FirstControlPointOffset = Schema.GetOffset(0x9C608BD072117650);
+  private static nint? _FirstControlPointOffset;
 
   public ref int FirstControlPoint {
-    get => ref _Handle.AsRef<int>(_FirstControlPointOffset);
+    get {
+      if (_FirstControlPointOffset == null) {
+        _FirstControlPointOffset = Schema.GetOffset(0x9C608BD072117650);
+      }
+      return ref _Handle.AsRef<int>(_FirstControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _SecondControlPointOffset = Schema.GetOffset(0x9C608BD04D8D2B44);
+  private static nint? _SecondControlPointOffset;
 
   public ref int SecondControlPoint {
-    get => ref _Handle.AsRef<int>(_SecondControlPointOffset);
+    get {
+      if (_SecondControlPointOffset == null) {
+        _SecondControlPointOffset = Schema.GetOffset(0x9C608BD04D8D2B44);
+      }
+      return ref _Handle.AsRef<int>(_SecondControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _UseRadiusOffset = Schema.GetOffset(0x9C608BD0B7D98E6A);
+  private static nint? _UseRadiusOffset;
 
   public ref bool UseRadius {
-    get => ref _Handle.AsRef<bool>(_UseRadiusOffset);
+    get {
+      if (_UseRadiusOffset == null) {
+        _UseRadiusOffset = Schema.GetOffset(0x9C608BD0B7D98E6A);
+      }
+      return ref _Handle.AsRef<bool>(_UseRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusScaleOffset = Schema.GetOffset(0x9C608BD0A7A20159);
+  private static nint? _RadiusScaleOffset;
 
   public CParticleCollectionFloatInput RadiusScale {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _RadiusScaleOffset);
+    get {
+      if (_RadiusScaleOffset == null) {
+        _RadiusScaleOffset = Schema.GetOffset(0x9C608BD0A7A20159);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _RadiusScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ParentRadiusScaleOffset = Schema.GetOffset(0x9C608BD0CD77EF69);
+  private static nint? _ParentRadiusScaleOffset;
 
   public CParticleCollectionFloatInput ParentRadiusScale {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ParentRadiusScaleOffset);
+    get {
+      if (_ParentRadiusScaleOffset == null) {
+        _ParentRadiusScaleOffset = Schema.GetOffset(0x9C608BD0CD77EF69);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ParentRadiusScaleOffset!.Value);
+    }
   }
 
 

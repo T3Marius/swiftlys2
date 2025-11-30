@@ -17,24 +17,42 @@ internal partial class CPathSimpleImpl : CBaseEntityImpl, CPathSimple {
   public CPathSimpleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CPathQueryComponentOffset = Schema.GetOffset(0x10936CB34513F542);
+  private static nint? _CPathQueryComponentOffset;
 
   public CPathQueryComponent CPathQueryComponent {
-    get => new CPathQueryComponentImpl(_Handle + _CPathQueryComponentOffset);
+    get {
+      if (_CPathQueryComponentOffset == null) {
+        _CPathQueryComponentOffset = Schema.GetOffset(0x10936CB34513F542);
+      }
+      return new CPathQueryComponentImpl(_Handle + _CPathQueryComponentOffset!.Value);
+    }
   }
-  private static readonly nint _PathStringOffset = Schema.GetOffset(0x10936CB36EC51AA7);
+  private static nint? _PathStringOffset;
 
   public string PathString {
     get {
-      var ptr = _Handle.Read<nint>(_PathStringOffset);
+      if (_PathStringOffset == null) {
+        _PathStringOffset = Schema.GetOffset(0x10936CB36EC51AA7);
+      }
+      var ptr = _Handle.Read<nint>(_PathStringOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PathStringOffset, value);
+    set {
+      if (_PathStringOffset == null) {
+        _PathStringOffset = Schema.GetOffset(0x10936CB36EC51AA7);
+      }
+      Schema.SetString(_Handle, _PathStringOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ClosedLoopOffset = Schema.GetOffset(0x10936CB37C20D1AB);
+  private static nint? _ClosedLoopOffset;
 
   public ref bool ClosedLoop {
-    get => ref _Handle.AsRef<bool>(_ClosedLoopOffset);
+    get {
+      if (_ClosedLoopOffset == null) {
+        _ClosedLoopOffset = Schema.GetOffset(0x10936CB37C20D1AB);
+      }
+      return ref _Handle.AsRef<bool>(_ClosedLoopOffset!.Value);
+    }
   }
 
   public void CPathQueryComponentUpdated() {

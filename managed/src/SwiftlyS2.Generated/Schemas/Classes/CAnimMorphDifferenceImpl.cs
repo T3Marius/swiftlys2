@@ -17,10 +17,15 @@ internal partial class CAnimMorphDifferenceImpl : SchemaClass, CAnimMorphDiffere
   public CAnimMorphDifferenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x57D69D104D8F5786);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x57D69D104D8F5786);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
 
 

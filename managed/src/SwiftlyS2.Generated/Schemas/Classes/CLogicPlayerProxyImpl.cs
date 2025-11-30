@@ -17,30 +17,55 @@ internal partial class CLogicPlayerProxyImpl : CLogicalEntityImpl, CLogicPlayerP
   public CLogicPlayerProxyImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PlayerOffset = Schema.GetOffset(0x81D444EB68856C16);
+  private static nint? _PlayerOffset;
 
   public ref CHandle<CBaseEntity> Player {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_PlayerOffset);
+    get {
+      if (_PlayerOffset == null) {
+        _PlayerOffset = Schema.GetOffset(0x81D444EB68856C16);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_PlayerOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerHasAmmoOffset = Schema.GetOffset(0x81D444EB6A23AB96);
+  private static nint? _PlayerHasAmmoOffset;
 
   public CEntityIOOutput PlayerHasAmmo {
-    get => new CEntityIOOutputImpl(_Handle + _PlayerHasAmmoOffset);
+    get {
+      if (_PlayerHasAmmoOffset == null) {
+        _PlayerHasAmmoOffset = Schema.GetOffset(0x81D444EB6A23AB96);
+      }
+      return new CEntityIOOutputImpl(_Handle + _PlayerHasAmmoOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerHasNoAmmoOffset = Schema.GetOffset(0x81D444EB06CA340D);
+  private static nint? _PlayerHasNoAmmoOffset;
 
   public CEntityIOOutput PlayerHasNoAmmo {
-    get => new CEntityIOOutputImpl(_Handle + _PlayerHasNoAmmoOffset);
+    get {
+      if (_PlayerHasNoAmmoOffset == null) {
+        _PlayerHasNoAmmoOffset = Schema.GetOffset(0x81D444EB06CA340D);
+      }
+      return new CEntityIOOutputImpl(_Handle + _PlayerHasNoAmmoOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerDiedOffset = Schema.GetOffset(0x81D444EBB440E03E);
+  private static nint? _PlayerDiedOffset;
 
   public CEntityIOOutput PlayerDied {
-    get => new CEntityIOOutputImpl(_Handle + _PlayerDiedOffset);
+    get {
+      if (_PlayerDiedOffset == null) {
+        _PlayerDiedOffset = Schema.GetOffset(0x81D444EBB440E03E);
+      }
+      return new CEntityIOOutputImpl(_Handle + _PlayerDiedOffset!.Value);
+    }
   }
-  private static readonly nint _RequestedPlayerHealthOffset = Schema.GetOffset(0x81D444EBF1F83D58);
+  private static nint? _RequestedPlayerHealthOffset;
 
   public SchemaUntypedField RequestedPlayerHealth {
-    get => new SchemaUntypedField(_Handle + _RequestedPlayerHealthOffset);
+    get {
+      if (_RequestedPlayerHealthOffset == null) {
+        _RequestedPlayerHealthOffset = Schema.GetOffset(0x81D444EBF1F83D58);
+      }
+      return new SchemaUntypedField(_Handle + _RequestedPlayerHealthOffset!.Value);
+    }
   }
 
 

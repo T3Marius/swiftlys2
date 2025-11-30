@@ -17,35 +17,65 @@ internal partial class C_OP_UpdateLightSourceImpl : CParticleFunctionOperatorImp
   public C_OP_UpdateLightSourceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ColorTintOffset = Schema.GetOffset(0x6611EEDD569A6EA9);
+  private static nint? _ColorTintOffset;
 
   public ref Color ColorTint {
-    get => ref _Handle.AsRef<Color>(_ColorTintOffset);
+    get {
+      if (_ColorTintOffset == null) {
+        _ColorTintOffset = Schema.GetOffset(0x6611EEDD569A6EA9);
+      }
+      return ref _Handle.AsRef<Color>(_ColorTintOffset!.Value);
+    }
   }
-  private static readonly nint _BrightnessScaleOffset = Schema.GetOffset(0x6611EEDD5EFC3AAE);
+  private static nint? _BrightnessScaleOffset;
 
   public ref float BrightnessScale {
-    get => ref _Handle.AsRef<float>(_BrightnessScaleOffset);
+    get {
+      if (_BrightnessScaleOffset == null) {
+        _BrightnessScaleOffset = Schema.GetOffset(0x6611EEDD5EFC3AAE);
+      }
+      return ref _Handle.AsRef<float>(_BrightnessScaleOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusScaleOffset = Schema.GetOffset(0x6611EEDDA7A20159);
+  private static nint? _RadiusScaleOffset;
 
   public ref float RadiusScale {
-    get => ref _Handle.AsRef<float>(_RadiusScaleOffset);
+    get {
+      if (_RadiusScaleOffset == null) {
+        _RadiusScaleOffset = Schema.GetOffset(0x6611EEDDA7A20159);
+      }
+      return ref _Handle.AsRef<float>(_RadiusScaleOffset!.Value);
+    }
   }
-  private static readonly nint _MinimumLightingRadiusOffset = Schema.GetOffset(0x6611EEDD946ABF7B);
+  private static nint? _MinimumLightingRadiusOffset;
 
   public ref float MinimumLightingRadius {
-    get => ref _Handle.AsRef<float>(_MinimumLightingRadiusOffset);
+    get {
+      if (_MinimumLightingRadiusOffset == null) {
+        _MinimumLightingRadiusOffset = Schema.GetOffset(0x6611EEDD946ABF7B);
+      }
+      return ref _Handle.AsRef<float>(_MinimumLightingRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _MaximumLightingRadiusOffset = Schema.GetOffset(0x6611EEDD8804B57D);
+  private static nint? _MaximumLightingRadiusOffset;
 
   public ref float MaximumLightingRadius {
-    get => ref _Handle.AsRef<float>(_MaximumLightingRadiusOffset);
+    get {
+      if (_MaximumLightingRadiusOffset == null) {
+        _MaximumLightingRadiusOffset = Schema.GetOffset(0x6611EEDD8804B57D);
+      }
+      return ref _Handle.AsRef<float>(_MaximumLightingRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _PositionDampingConstantOffset = Schema.GetOffset(0x6611EEDD074C2A6A);
+  private static nint? _PositionDampingConstantOffset;
 
   public ref float PositionDampingConstant {
-    get => ref _Handle.AsRef<float>(_PositionDampingConstantOffset);
+    get {
+      if (_PositionDampingConstantOffset == null) {
+        _PositionDampingConstantOffset = Schema.GetOffset(0x6611EEDD074C2A6A);
+      }
+      return ref _Handle.AsRef<float>(_PositionDampingConstantOffset!.Value);
+    }
   }
 
 

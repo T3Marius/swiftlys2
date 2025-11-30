@@ -17,65 +17,125 @@ internal partial class CSmokeGrenadeProjectileImpl : CBaseCSGrenadeProjectileImp
   public CSmokeGrenadeProjectileImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SmokeEffectTickBeginOffset = Schema.GetOffset(0xE31DC1B8F5A25253);
+  private static nint? _SmokeEffectTickBeginOffset;
 
   public ref int SmokeEffectTickBegin {
-    get => ref _Handle.AsRef<int>(_SmokeEffectTickBeginOffset);
+    get {
+      if (_SmokeEffectTickBeginOffset == null) {
+        _SmokeEffectTickBeginOffset = Schema.GetOffset(0xE31DC1B8F5A25253);
+      }
+      return ref _Handle.AsRef<int>(_SmokeEffectTickBeginOffset!.Value);
+    }
   }
-  private static readonly nint _DidSmokeEffectOffset = Schema.GetOffset(0xE31DC1B881A8B092);
+  private static nint? _DidSmokeEffectOffset;
 
   public ref bool DidSmokeEffect {
-    get => ref _Handle.AsRef<bool>(_DidSmokeEffectOffset);
+    get {
+      if (_DidSmokeEffectOffset == null) {
+        _DidSmokeEffectOffset = Schema.GetOffset(0xE31DC1B881A8B092);
+      }
+      return ref _Handle.AsRef<bool>(_DidSmokeEffectOffset!.Value);
+    }
   }
-  private static readonly nint _RandomSeedOffset = Schema.GetOffset(0xE31DC1B86388F067);
+  private static nint? _RandomSeedOffset;
 
   public ref int RandomSeed {
-    get => ref _Handle.AsRef<int>(_RandomSeedOffset);
+    get {
+      if (_RandomSeedOffset == null) {
+        _RandomSeedOffset = Schema.GetOffset(0xE31DC1B86388F067);
+      }
+      return ref _Handle.AsRef<int>(_RandomSeedOffset!.Value);
+    }
   }
-  private static readonly nint _SmokeColorOffset = Schema.GetOffset(0xE31DC1B87808EA9D);
+  private static nint? _SmokeColorOffset;
 
   public ref Vector SmokeColor {
-    get => ref _Handle.AsRef<Vector>(_SmokeColorOffset);
+    get {
+      if (_SmokeColorOffset == null) {
+        _SmokeColorOffset = Schema.GetOffset(0xE31DC1B87808EA9D);
+      }
+      return ref _Handle.AsRef<Vector>(_SmokeColorOffset!.Value);
+    }
   }
-  private static readonly nint _SmokeDetonationPosOffset = Schema.GetOffset(0xE31DC1B8743595D7);
+  private static nint? _SmokeDetonationPosOffset;
 
   public ref Vector SmokeDetonationPos {
-    get => ref _Handle.AsRef<Vector>(_SmokeDetonationPosOffset);
+    get {
+      if (_SmokeDetonationPosOffset == null) {
+        _SmokeDetonationPosOffset = Schema.GetOffset(0xE31DC1B8743595D7);
+      }
+      return ref _Handle.AsRef<Vector>(_SmokeDetonationPosOffset!.Value);
+    }
   }
-  private static readonly nint _VoxelFrameDataOffset = Schema.GetOffset(0xE31DC1B8E854C6C4);
+  private static nint? _VoxelFrameDataOffset;
 
   public ref CUtlVector<byte> VoxelFrameData {
-    get => ref _Handle.AsRef<CUtlVector<byte>>(_VoxelFrameDataOffset);
+    get {
+      if (_VoxelFrameDataOffset == null) {
+        _VoxelFrameDataOffset = Schema.GetOffset(0xE31DC1B8E854C6C4);
+      }
+      return ref _Handle.AsRef<CUtlVector<byte>>(_VoxelFrameDataOffset!.Value);
+    }
   }
-  private static readonly nint _VoxelFrameDataSizeOffset = Schema.GetOffset(0xE31DC1B8369FBFD9);
+  private static nint? _VoxelFrameDataSizeOffset;
 
   public ref int VoxelFrameDataSize {
-    get => ref _Handle.AsRef<int>(_VoxelFrameDataSizeOffset);
+    get {
+      if (_VoxelFrameDataSizeOffset == null) {
+        _VoxelFrameDataSizeOffset = Schema.GetOffset(0xE31DC1B8369FBFD9);
+      }
+      return ref _Handle.AsRef<int>(_VoxelFrameDataSizeOffset!.Value);
+    }
   }
-  private static readonly nint _VoxelUpdateOffset = Schema.GetOffset(0xE31DC1B8EE30DA3A);
+  private static nint? _VoxelUpdateOffset;
 
   public ref int VoxelUpdate {
-    get => ref _Handle.AsRef<int>(_VoxelUpdateOffset);
+    get {
+      if (_VoxelUpdateOffset == null) {
+        _VoxelUpdateOffset = Schema.GetOffset(0xE31DC1B8EE30DA3A);
+      }
+      return ref _Handle.AsRef<int>(_VoxelUpdateOffset!.Value);
+    }
   }
-  private static readonly nint _LastBounceOffset = Schema.GetOffset(0xE31DC1B8A4A556A7);
+  private static nint? _LastBounceOffset;
 
   public GameTime_t LastBounce {
-    get => new GameTime_tImpl(_Handle + _LastBounceOffset);
+    get {
+      if (_LastBounceOffset == null) {
+        _LastBounceOffset = Schema.GetOffset(0xE31DC1B8A4A556A7);
+      }
+      return new GameTime_tImpl(_Handle + _LastBounceOffset!.Value);
+    }
   }
-  private static readonly nint _FllastSimulationTimeOffset = Schema.GetOffset(0xE31DC1B8F56D1EED);
+  private static nint? _FllastSimulationTimeOffset;
 
   public GameTime_t FllastSimulationTime {
-    get => new GameTime_tImpl(_Handle + _FllastSimulationTimeOffset);
+    get {
+      if (_FllastSimulationTimeOffset == null) {
+        _FllastSimulationTimeOffset = Schema.GetOffset(0xE31DC1B8F56D1EED);
+      }
+      return new GameTime_tImpl(_Handle + _FllastSimulationTimeOffset!.Value);
+    }
   }
-  private static readonly nint _ExplodeFromInfernoOffset = Schema.GetOffset(0xE31DC1B879437D79);
+  private static nint? _ExplodeFromInfernoOffset;
 
   public ref bool ExplodeFromInferno {
-    get => ref _Handle.AsRef<bool>(_ExplodeFromInfernoOffset);
+    get {
+      if (_ExplodeFromInfernoOffset == null) {
+        _ExplodeFromInfernoOffset = Schema.GetOffset(0xE31DC1B879437D79);
+      }
+      return ref _Handle.AsRef<bool>(_ExplodeFromInfernoOffset!.Value);
+    }
   }
-  private static readonly nint _DidGroundScorchOffset = Schema.GetOffset(0xE31DC1B80AD64DF5);
+  private static nint? _DidGroundScorchOffset;
 
   public ref bool DidGroundScorch {
-    get => ref _Handle.AsRef<bool>(_DidGroundScorchOffset);
+    get {
+      if (_DidGroundScorchOffset == null) {
+        _DidGroundScorchOffset = Schema.GetOffset(0xE31DC1B80AD64DF5);
+      }
+      return ref _Handle.AsRef<bool>(_DidGroundScorchOffset!.Value);
+    }
   }
 
   public void SmokeEffectTickBeginUpdated() {

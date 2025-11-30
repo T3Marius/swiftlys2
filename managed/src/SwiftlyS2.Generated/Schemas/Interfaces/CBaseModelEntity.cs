@@ -122,5 +122,4 @@ public partial interface CBaseModelEntity : CBaseEntity, ISchemaClass<CBaseModel
   public void ConfigEntitiesToPropagateMaterialDecalsToUpdated();
   public void ViewOffsetUpdated();
   public void DisabledHitGroupsUpdated();
-  public void ChangeSubclass(ushort itemDefinitionIndex);
 }

@@ -17,25 +17,45 @@ internal partial class C_INIT_RandomVectorComponentImpl : CParticleFunctionIniti
   public C_INIT_RandomVectorComponentImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinOffset = Schema.GetOffset(0xD6D670313B1A5649);
+  private static nint? _MinOffset;
 
   public ref float Min {
-    get => ref _Handle.AsRef<float>(_MinOffset);
+    get {
+      if (_MinOffset == null) {
+        _MinOffset = Schema.GetOffset(0xD6D670313B1A5649);
+      }
+      return ref _Handle.AsRef<float>(_MinOffset!.Value);
+    }
   }
-  private static readonly nint _MaxOffset = Schema.GetOffset(0xD6D670312D06B887);
+  private static nint? _MaxOffset;
 
   public ref float Max {
-    get => ref _Handle.AsRef<float>(_MaxOffset);
+    get {
+      if (_MaxOffset == null) {
+        _MaxOffset = Schema.GetOffset(0xD6D670312D06B887);
+      }
+      return ref _Handle.AsRef<float>(_MaxOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0xD6D67031E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0xD6D67031E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _ComponentOffset = Schema.GetOffset(0xD6D67031BFD0952C);
+  private static nint? _ComponentOffset;
 
   public ref int Component {
-    get => ref _Handle.AsRef<int>(_ComponentOffset);
+    get {
+      if (_ComponentOffset == null) {
+        _ComponentOffset = Schema.GetOffset(0xD6D67031BFD0952C);
+      }
+      return ref _Handle.AsRef<int>(_ComponentOffset!.Value);
+    }
   }
 
 

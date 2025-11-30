@@ -17,25 +17,45 @@ internal partial class CPulseCell_InlineNodeSkipSelectorImpl : CPulseCell_BaseFl
   public CPulseCell_InlineNodeSkipSelectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlowNodeIDOffset = Schema.GetOffset(0x43AF14578ED47FBC);
+  private static nint? _FlowNodeIDOffset;
 
   public PulseDocNodeID_t FlowNodeID {
-    get => new PulseDocNodeID_tImpl(_Handle + _FlowNodeIDOffset);
+    get {
+      if (_FlowNodeIDOffset == null) {
+        _FlowNodeIDOffset = Schema.GetOffset(0x43AF14578ED47FBC);
+      }
+      return new PulseDocNodeID_tImpl(_Handle + _FlowNodeIDOffset!.Value);
+    }
   }
-  private static readonly nint _AndOffset = Schema.GetOffset(0x43AF14573A289986);
+  private static nint? _AndOffset;
 
   public ref bool And {
-    get => ref _Handle.AsRef<bool>(_AndOffset);
+    get {
+      if (_AndOffset == null) {
+        _AndOffset = Schema.GetOffset(0x43AF14573A289986);
+      }
+      return ref _Handle.AsRef<bool>(_AndOffset!.Value);
+    }
   }
-  private static readonly nint _PassOutflowOffset = Schema.GetOffset(0x43AF145724AA6434);
+  private static nint? _PassOutflowOffset;
 
   public PulseSelectorOutflowList_t PassOutflow {
-    get => new PulseSelectorOutflowList_tImpl(_Handle + _PassOutflowOffset);
+    get {
+      if (_PassOutflowOffset == null) {
+        _PassOutflowOffset = Schema.GetOffset(0x43AF145724AA6434);
+      }
+      return new PulseSelectorOutflowList_tImpl(_Handle + _PassOutflowOffset!.Value);
+    }
   }
-  private static readonly nint _FailOutflowOffset = Schema.GetOffset(0x43AF1457AC90C0E3);
+  private static nint? _FailOutflowOffset;
 
   public CPulse_OutflowConnection FailOutflow {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _FailOutflowOffset);
+    get {
+      if (_FailOutflowOffset == null) {
+        _FailOutflowOffset = Schema.GetOffset(0x43AF1457AC90C0E3);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _FailOutflowOffset!.Value);
+    }
   }
 
 

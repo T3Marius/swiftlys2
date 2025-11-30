@@ -17,15 +17,25 @@ internal partial class CResponseCriteriaSetImpl : SchemaClass, CResponseCriteria
   public CResponseCriteriaSetImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NumPrefixedContextsOffset = Schema.GetOffset(0x96E39114B653ABCA);
+  private static nint? _NumPrefixedContextsOffset;
 
   public ref int NumPrefixedContexts {
-    get => ref _Handle.AsRef<int>(_NumPrefixedContextsOffset);
+    get {
+      if (_NumPrefixedContextsOffset == null) {
+        _NumPrefixedContextsOffset = Schema.GetOffset(0x96E39114B653ABCA);
+      }
+      return ref _Handle.AsRef<int>(_NumPrefixedContextsOffset!.Value);
+    }
   }
-  private static readonly nint _OverrideOnAppendOffset = Schema.GetOffset(0x96E391140E1014F0);
+  private static nint? _OverrideOnAppendOffset;
 
   public ref bool OverrideOnAppend {
-    get => ref _Handle.AsRef<bool>(_OverrideOnAppendOffset);
+    get {
+      if (_OverrideOnAppendOffset == null) {
+        _OverrideOnAppendOffset = Schema.GetOffset(0x96E391140E1014F0);
+      }
+      return ref _Handle.AsRef<bool>(_OverrideOnAppendOffset!.Value);
+    }
   }
 
 

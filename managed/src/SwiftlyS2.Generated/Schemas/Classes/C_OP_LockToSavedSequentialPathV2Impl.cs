@@ -17,25 +17,45 @@ internal partial class C_OP_LockToSavedSequentialPathV2Impl : CParticleFunctionO
   public C_OP_LockToSavedSequentialPathV2Impl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FadeStartOffset = Schema.GetOffset(0x817A0CEE1A81343);
+  private static nint? _FadeStartOffset;
 
   public ref float FadeStart {
-    get => ref _Handle.AsRef<float>(_FadeStartOffset);
+    get {
+      if (_FadeStartOffset == null) {
+        _FadeStartOffset = Schema.GetOffset(0x817A0CEE1A81343);
+      }
+      return ref _Handle.AsRef<float>(_FadeStartOffset!.Value);
+    }
   }
-  private static readonly nint _FadeEndOffset = Schema.GetOffset(0x817A0CEBE7F4636);
+  private static nint? _FadeEndOffset;
 
   public ref float FadeEnd {
-    get => ref _Handle.AsRef<float>(_FadeEndOffset);
+    get {
+      if (_FadeEndOffset == null) {
+        _FadeEndOffset = Schema.GetOffset(0x817A0CEBE7F4636);
+      }
+      return ref _Handle.AsRef<float>(_FadeEndOffset!.Value);
+    }
   }
-  private static readonly nint _CPPairsOffset = Schema.GetOffset(0x817A0CEA5D36D0F);
+  private static nint? _CPPairsOffset;
 
   public ref bool CPPairs {
-    get => ref _Handle.AsRef<bool>(_CPPairsOffset);
+    get {
+      if (_CPPairsOffset == null) {
+        _CPPairsOffset = Schema.GetOffset(0x817A0CEA5D36D0F);
+      }
+      return ref _Handle.AsRef<bool>(_CPPairsOffset!.Value);
+    }
   }
-  private static readonly nint _PathParamsOffset = Schema.GetOffset(0x817A0CE3C10092C);
+  private static nint? _PathParamsOffset;
 
   public CPathParameters PathParams {
-    get => new CPathParametersImpl(_Handle + _PathParamsOffset);
+    get {
+      if (_PathParamsOffset == null) {
+        _PathParamsOffset = Schema.GetOffset(0x817A0CE3C10092C);
+      }
+      return new CPathParametersImpl(_Handle + _PathParamsOffset!.Value);
+    }
   }
 
 

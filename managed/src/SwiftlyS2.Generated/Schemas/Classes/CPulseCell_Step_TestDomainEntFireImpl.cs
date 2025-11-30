@@ -17,14 +17,22 @@ internal partial class CPulseCell_Step_TestDomainEntFireImpl : CPulseCell_BaseFl
   public CPulseCell_Step_TestDomainEntFireImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputOffset = Schema.GetOffset(0x22A0E258942A24FB);
+  private static nint? _InputOffset;
 
   public string Input {
     get {
-      var ptr = _Handle.Read<nint>(_InputOffset);
+      if (_InputOffset == null) {
+        _InputOffset = Schema.GetOffset(0x22A0E258942A24FB);
+      }
+      var ptr = _Handle.Read<nint>(_InputOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _InputOffset, value);
+    set {
+      if (_InputOffset == null) {
+        _InputOffset = Schema.GetOffset(0x22A0E258942A24FB);
+      }
+      Schema.SetString(_Handle, _InputOffset!.Value, value);
+    }
   } 
 
 

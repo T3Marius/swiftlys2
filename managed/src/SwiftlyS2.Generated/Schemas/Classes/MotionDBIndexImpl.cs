@@ -17,10 +17,15 @@ internal partial class MotionDBIndexImpl : SchemaClass, MotionDBIndex {
   public MotionDBIndexImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IndexOffset = Schema.GetOffset(0x35C035B7B73DBE67);
+  private static nint? _IndexOffset;
 
   public ref uint Index {
-    get => ref _Handle.AsRef<uint>(_IndexOffset);
+    get {
+      if (_IndexOffset == null) {
+        _IndexOffset = Schema.GetOffset(0x35C035B7B73DBE67);
+      }
+      return ref _Handle.AsRef<uint>(_IndexOffset!.Value);
+    }
   }
 
 

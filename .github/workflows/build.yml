@@ -254,7 +254,9 @@ jobs:
         cp -r ./server.pdb/server.pdb ${{ env.WINDOWS_FOLDER }}/swiftlys2/bin/win64/
 
         mkdir -p ${{ env.LINUX_FOLDER }}/swiftlys2/plugins/
+        mkdir -p ${{ env.LINUX_FOLDER }}/swiftlys2/plugins/disabled
         mkdir -p ${{ env.WINDOWS_FOLDER }}/swiftlys2/plugins/
+        mkdir -p ${{ env.WINDOWS_FOLDER }}/swiftlys2/plugins/disabled
 
         cp -r ${{ env.LINUX_FOLDER }}/ ${{ env.LINUX_FOLDER }}-with-runtimes/
         cp -r ${{ env.WINDOWS_FOLDER }}/ ${{ env.WINDOWS_FOLDER }}-with-runtimes/

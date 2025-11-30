@@ -17,19 +17,32 @@ internal partial class CSceneListManagerImpl : CLogicalEntityImpl, CSceneListMan
   public CSceneListManagerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ListManagersOffset = Schema.GetOffset(0x6DF51C6DAD7882DF);
+  private static nint? _ListManagersOffset;
 
   public ref CUtlVector<CHandle<CSceneListManager>> ListManagers {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CSceneListManager>>>(_ListManagersOffset);
+    get {
+      if (_ListManagersOffset == null) {
+        _ListManagersOffset = Schema.GetOffset(0x6DF51C6DAD7882DF);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CSceneListManager>>>(_ListManagersOffset!.Value);
+    }
   }
-  private static readonly nint _ScenesOffset = Schema.GetOffset(0x6DF51C6D967363E8);
+  private static nint? _ScenesOffset;
 
   public string Scenes {
     get {
-      var ptr = _Handle.Read<nint>(_ScenesOffset);
+      if (_ScenesOffset == null) {
+        _ScenesOffset = Schema.GetOffset(0x6DF51C6D967363E8);
+      }
+      var ptr = _Handle.Read<nint>(_ScenesOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ScenesOffset, value);
+    set {
+      if (_ScenesOffset == null) {
+        _ScenesOffset = Schema.GetOffset(0x6DF51C6D967363E8);
+      }
+      Schema.SetString(_Handle, _ScenesOffset!.Value, value);
+    }
   } 
   public ISchemaFixedArray<CHandle<CBaseEntity>> Scenes1 {
     get => new SchemaFixedArray<CHandle<CBaseEntity>>(_Handle, 0x6DF51C6D2B7EE872, 16, 4, 4);

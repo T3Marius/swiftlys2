@@ -17,15 +17,25 @@ internal partial class CSequenceUpdateNodeBaseImpl : CLeafUpdateNodeImpl, CSeque
   public CSequenceUpdateNodeBaseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PlaybackSpeedOffset = Schema.GetOffset(0x6FCA4DDB1AFA7387);
+  private static nint? _PlaybackSpeedOffset;
 
   public ref float PlaybackSpeed {
-    get => ref _Handle.AsRef<float>(_PlaybackSpeedOffset);
+    get {
+      if (_PlaybackSpeedOffset == null) {
+        _PlaybackSpeedOffset = Schema.GetOffset(0x6FCA4DDB1AFA7387);
+      }
+      return ref _Handle.AsRef<float>(_PlaybackSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _LoopOffset = Schema.GetOffset(0x6FCA4DDBC668A4CB);
+  private static nint? _LoopOffset;
 
   public ref bool Loop {
-    get => ref _Handle.AsRef<bool>(_LoopOffset);
+    get {
+      if (_LoopOffset == null) {
+        _LoopOffset = Schema.GetOffset(0x6FCA4DDBC668A4CB);
+      }
+      return ref _Handle.AsRef<bool>(_LoopOffset!.Value);
+    }
   }
 
 

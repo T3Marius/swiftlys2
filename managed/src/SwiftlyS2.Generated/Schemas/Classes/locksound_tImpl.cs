@@ -17,28 +17,49 @@ internal partial class locksound_tImpl : SchemaClass, locksound_t {
   public locksound_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LockedSoundOffset = Schema.GetOffset(0xDAD0AE229881D7AB);
+  private static nint? _LockedSoundOffset;
 
   public string LockedSound {
     get {
-      var ptr = _Handle.Read<nint>(_LockedSoundOffset);
+      if (_LockedSoundOffset == null) {
+        _LockedSoundOffset = Schema.GetOffset(0xDAD0AE229881D7AB);
+      }
+      var ptr = _Handle.Read<nint>(_LockedSoundOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _LockedSoundOffset, value);
+    set {
+      if (_LockedSoundOffset == null) {
+        _LockedSoundOffset = Schema.GetOffset(0xDAD0AE229881D7AB);
+      }
+      Schema.SetString(_Handle, _LockedSoundOffset!.Value, value);
+    }
   } 
-  private static readonly nint _UnlockedSoundOffset = Schema.GetOffset(0xDAD0AE227EE88276);
+  private static nint? _UnlockedSoundOffset;
 
   public string UnlockedSound {
     get {
-      var ptr = _Handle.Read<nint>(_UnlockedSoundOffset);
+      if (_UnlockedSoundOffset == null) {
+        _UnlockedSoundOffset = Schema.GetOffset(0xDAD0AE227EE88276);
+      }
+      var ptr = _Handle.Read<nint>(_UnlockedSoundOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _UnlockedSoundOffset, value);
+    set {
+      if (_UnlockedSoundOffset == null) {
+        _UnlockedSoundOffset = Schema.GetOffset(0xDAD0AE227EE88276);
+      }
+      Schema.SetString(_Handle, _UnlockedSoundOffset!.Value, value);
+    }
   } 
-  private static readonly nint _FlwaitSoundOffset = Schema.GetOffset(0xDAD0AE2297A4A845);
+  private static nint? _FlwaitSoundOffset;
 
   public GameTime_t FlwaitSound {
-    get => new GameTime_tImpl(_Handle + _FlwaitSoundOffset);
+    get {
+      if (_FlwaitSoundOffset == null) {
+        _FlwaitSoundOffset = Schema.GetOffset(0xDAD0AE2297A4A845);
+      }
+      return new GameTime_tImpl(_Handle + _FlwaitSoundOffset!.Value);
+    }
   }
 
 

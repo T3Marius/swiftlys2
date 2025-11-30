@@ -17,15 +17,25 @@ internal partial class CPulseCell_Outflow_TestExplicitYesNoImpl : CPulseCell_Bas
   public CPulseCell_Outflow_TestExplicitYesNoImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _YesOffset = Schema.GetOffset(0xA1B4A577DA358F10);
+  private static nint? _YesOffset;
 
   public CPulse_OutflowConnection Yes {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _YesOffset);
+    get {
+      if (_YesOffset == null) {
+        _YesOffset = Schema.GetOffset(0xA1B4A577DA358F10);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _YesOffset!.Value);
+    }
   }
-  private static readonly nint _NoOffset = Schema.GetOffset(0xA1B4A577E004A07A);
+  private static nint? _NoOffset;
 
   public CPulse_OutflowConnection No {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _NoOffset);
+    get {
+      if (_NoOffset == null) {
+        _NoOffset = Schema.GetOffset(0xA1B4A577E004A07A);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _NoOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class CCachedPoseImpl : SchemaClass, CCachedPose {
   public CCachedPoseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TransformsOffset = Schema.GetOffset(0x4B6C235988C82C58);
+  private static nint? _TransformsOffset;
 
   public ref CUtlVector<CTransform> Transforms {
-    get => ref _Handle.AsRef<CUtlVector<CTransform>>(_TransformsOffset);
+    get {
+      if (_TransformsOffset == null) {
+        _TransformsOffset = Schema.GetOffset(0x4B6C235988C82C58);
+      }
+      return ref _Handle.AsRef<CUtlVector<CTransform>>(_TransformsOffset!.Value);
+    }
   }
-  private static readonly nint _MorphWeightsOffset = Schema.GetOffset(0x4B6C23596B6689BE);
+  private static nint? _MorphWeightsOffset;
 
   public ref CUtlVector<float> MorphWeights {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_MorphWeightsOffset);
+    get {
+      if (_MorphWeightsOffset == null) {
+        _MorphWeightsOffset = Schema.GetOffset(0x4B6C23596B6689BE);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_MorphWeightsOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceOffset = Schema.GetOffset(0x4B6C2359E0A0598E);
+  private static nint? _SequenceOffset;
 
   public HSequence Sequence {
-    get => new HSequenceImpl(_Handle + _SequenceOffset);
+    get {
+      if (_SequenceOffset == null) {
+        _SequenceOffset = Schema.GetOffset(0x4B6C2359E0A0598E);
+      }
+      return new HSequenceImpl(_Handle + _SequenceOffset!.Value);
+    }
   }
-  private static readonly nint _CycleOffset = Schema.GetOffset(0x4B6C23590C77829F);
+  private static nint? _CycleOffset;
 
   public ref float Cycle {
-    get => ref _Handle.AsRef<float>(_CycleOffset);
+    get {
+      if (_CycleOffset == null) {
+        _CycleOffset = Schema.GetOffset(0x4B6C23590C77829F);
+      }
+      return ref _Handle.AsRef<float>(_CycleOffset!.Value);
+    }
   }
 
 

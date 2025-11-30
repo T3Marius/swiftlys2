@@ -17,15 +17,25 @@ internal partial class CEmitTagActionUpdaterImpl : CAnimActionUpdaterImpl, CEmit
   public CEmitTagActionUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagIndexOffset = Schema.GetOffset(0x13C6F616C2026AAD);
+  private static nint? _TagIndexOffset;
 
   public ref int TagIndex {
-    get => ref _Handle.AsRef<int>(_TagIndexOffset);
+    get {
+      if (_TagIndexOffset == null) {
+        _TagIndexOffset = Schema.GetOffset(0x13C6F616C2026AAD);
+      }
+      return ref _Handle.AsRef<int>(_TagIndexOffset!.Value);
+    }
   }
-  private static readonly nint _IsZeroDurationOffset = Schema.GetOffset(0x13C6F61604008747);
+  private static nint? _IsZeroDurationOffset;
 
   public ref bool IsZeroDuration {
-    get => ref _Handle.AsRef<bool>(_IsZeroDurationOffset);
+    get {
+      if (_IsZeroDurationOffset == null) {
+        _IsZeroDurationOffset = Schema.GetOffset(0x13C6F61604008747);
+      }
+      return ref _Handle.AsRef<bool>(_IsZeroDurationOffset!.Value);
+    }
   }
 
 

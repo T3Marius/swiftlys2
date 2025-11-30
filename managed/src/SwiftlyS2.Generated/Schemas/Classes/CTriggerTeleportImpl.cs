@@ -17,29 +17,52 @@ internal partial class CTriggerTeleportImpl : CBaseTriggerImpl, CTriggerTeleport
   public CTriggerTeleportImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LandmarkOffset = Schema.GetOffset(0xA6381755DF022EC4);
+  private static nint? _LandmarkOffset;
 
   public string Landmark {
     get {
-      var ptr = _Handle.Read<nint>(_LandmarkOffset);
+      if (_LandmarkOffset == null) {
+        _LandmarkOffset = Schema.GetOffset(0xA6381755DF022EC4);
+      }
+      var ptr = _Handle.Read<nint>(_LandmarkOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _LandmarkOffset, value);
+    set {
+      if (_LandmarkOffset == null) {
+        _LandmarkOffset = Schema.GetOffset(0xA6381755DF022EC4);
+      }
+      Schema.SetString(_Handle, _LandmarkOffset!.Value, value);
+    }
   } 
-  private static readonly nint _UseLandmarkAnglesOffset = Schema.GetOffset(0xA638175528C3B2F4);
+  private static nint? _UseLandmarkAnglesOffset;
 
   public ref bool UseLandmarkAngles {
-    get => ref _Handle.AsRef<bool>(_UseLandmarkAnglesOffset);
+    get {
+      if (_UseLandmarkAnglesOffset == null) {
+        _UseLandmarkAnglesOffset = Schema.GetOffset(0xA638175528C3B2F4);
+      }
+      return ref _Handle.AsRef<bool>(_UseLandmarkAnglesOffset!.Value);
+    }
   }
-  private static readonly nint _MirrorPlayerOffset = Schema.GetOffset(0xA638175563293A1B);
+  private static nint? _MirrorPlayerOffset;
 
   public ref bool MirrorPlayer {
-    get => ref _Handle.AsRef<bool>(_MirrorPlayerOffset);
+    get {
+      if (_MirrorPlayerOffset == null) {
+        _MirrorPlayerOffset = Schema.GetOffset(0xA638175563293A1B);
+      }
+      return ref _Handle.AsRef<bool>(_MirrorPlayerOffset!.Value);
+    }
   }
-  private static readonly nint _CheckDestIfClearForPlayerOffset = Schema.GetOffset(0xA638175514792115);
+  private static nint? _CheckDestIfClearForPlayerOffset;
 
   public ref bool CheckDestIfClearForPlayer {
-    get => ref _Handle.AsRef<bool>(_CheckDestIfClearForPlayerOffset);
+    get {
+      if (_CheckDestIfClearForPlayerOffset == null) {
+        _CheckDestIfClearForPlayerOffset = Schema.GetOffset(0xA638175514792115);
+      }
+      return ref _Handle.AsRef<bool>(_CheckDestIfClearForPlayerOffset!.Value);
+    }
   }
 
 

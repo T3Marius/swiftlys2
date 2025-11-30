@@ -20,25 +20,45 @@ internal partial class FeTaperedCapsuleRigid_tImpl : SchemaClass, FeTaperedCapsu
   public ISchemaFixedArray<fltx4> Sphere {
     get => new SchemaFixedArray<fltx4>(_Handle, 0x4B2017EE9E2AC48C, 2, 16, 16);
   }
-  private static readonly nint _NodeOffset = Schema.GetOffset(0x4B2017EECD6694B9);
+  private static nint? _NodeOffset;
 
   public ref ushort Node {
-    get => ref _Handle.AsRef<ushort>(_NodeOffset);
+    get {
+      if (_NodeOffset == null) {
+        _NodeOffset = Schema.GetOffset(0x4B2017EECD6694B9);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeOffset!.Value);
+    }
   }
-  private static readonly nint _CollisionMaskOffset = Schema.GetOffset(0x4B2017EE0ED3454F);
+  private static nint? _CollisionMaskOffset;
 
   public ref ushort CollisionMask {
-    get => ref _Handle.AsRef<ushort>(_CollisionMaskOffset);
+    get {
+      if (_CollisionMaskOffset == null) {
+        _CollisionMaskOffset = Schema.GetOffset(0x4B2017EE0ED3454F);
+      }
+      return ref _Handle.AsRef<ushort>(_CollisionMaskOffset!.Value);
+    }
   }
-  private static readonly nint _VertexMapIndexOffset = Schema.GetOffset(0x4B2017EE7B332E39);
+  private static nint? _VertexMapIndexOffset;
 
   public ref ushort VertexMapIndex {
-    get => ref _Handle.AsRef<ushort>(_VertexMapIndexOffset);
+    get {
+      if (_VertexMapIndexOffset == null) {
+        _VertexMapIndexOffset = Schema.GetOffset(0x4B2017EE7B332E39);
+      }
+      return ref _Handle.AsRef<ushort>(_VertexMapIndexOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x4B2017EEB8D52E48);
+  private static nint? _FlagsOffset;
 
   public ref ushort Flags {
-    get => ref _Handle.AsRef<ushort>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x4B2017EEB8D52E48);
+      }
+      return ref _Handle.AsRef<ushort>(_FlagsOffset!.Value);
+    }
   }
 
 

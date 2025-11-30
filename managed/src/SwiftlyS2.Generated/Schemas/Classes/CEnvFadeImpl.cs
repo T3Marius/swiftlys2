@@ -17,25 +17,45 @@ internal partial class CEnvFadeImpl : CLogicalEntityImpl, CEnvFade {
   public CEnvFadeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FadeColorOffset = Schema.GetOffset(0xEFBFC063C1517BF2);
+  private static nint? _FadeColorOffset;
 
   public ref Color FadeColor {
-    get => ref _Handle.AsRef<Color>(_FadeColorOffset);
+    get {
+      if (_FadeColorOffset == null) {
+        _FadeColorOffset = Schema.GetOffset(0xEFBFC063C1517BF2);
+      }
+      return ref _Handle.AsRef<Color>(_FadeColorOffset!.Value);
+    }
   }
-  private static readonly nint _DurationOffset = Schema.GetOffset(0xEFBFC0639879A98D);
+  private static nint? _DurationOffset;
 
   public ref float Duration {
-    get => ref _Handle.AsRef<float>(_DurationOffset);
+    get {
+      if (_DurationOffset == null) {
+        _DurationOffset = Schema.GetOffset(0xEFBFC0639879A98D);
+      }
+      return ref _Handle.AsRef<float>(_DurationOffset!.Value);
+    }
   }
-  private static readonly nint _HoldDurationOffset = Schema.GetOffset(0xEFBFC0631D577A68);
+  private static nint? _HoldDurationOffset;
 
   public ref float HoldDuration {
-    get => ref _Handle.AsRef<float>(_HoldDurationOffset);
+    get {
+      if (_HoldDurationOffset == null) {
+        _HoldDurationOffset = Schema.GetOffset(0xEFBFC0631D577A68);
+      }
+      return ref _Handle.AsRef<float>(_HoldDurationOffset!.Value);
+    }
   }
-  private static readonly nint _OnBeginFadeOffset = Schema.GetOffset(0xEFBFC0633308BA63);
+  private static nint? _OnBeginFadeOffset;
 
   public CEntityIOOutput OnBeginFade {
-    get => new CEntityIOOutputImpl(_Handle + _OnBeginFadeOffset);
+    get {
+      if (_OnBeginFadeOffset == null) {
+        _OnBeginFadeOffset = Schema.GetOffset(0xEFBFC0633308BA63);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnBeginFadeOffset!.Value);
+    }
   }
 
   public void FadeColorUpdated() {

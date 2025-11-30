@@ -17,30 +17,55 @@ internal partial class C_OP_RopeSpringConstraintImpl : CParticleFunctionConstrai
   public C_OP_RopeSpringConstraintImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RestLengthOffset = Schema.GetOffset(0x2CF6156393AC4079);
+  private static nint? _RestLengthOffset;
 
   public CParticleCollectionFloatInput RestLength {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _RestLengthOffset);
+    get {
+      if (_RestLengthOffset == null) {
+        _RestLengthOffset = Schema.GetOffset(0x2CF6156393AC4079);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _RestLengthOffset!.Value);
+    }
   }
-  private static readonly nint _MinDistanceOffset = Schema.GetOffset(0x2CF6156392BCAD06);
+  private static nint? _MinDistanceOffset;
 
   public CParticleCollectionFloatInput MinDistance {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _MinDistanceOffset);
+    get {
+      if (_MinDistanceOffset == null) {
+        _MinDistanceOffset = Schema.GetOffset(0x2CF6156392BCAD06);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _MinDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _MaxDistanceOffset = Schema.GetOffset(0x2CF6156398893360);
+  private static nint? _MaxDistanceOffset;
 
   public CParticleCollectionFloatInput MaxDistance {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _MaxDistanceOffset);
+    get {
+      if (_MaxDistanceOffset == null) {
+        _MaxDistanceOffset = Schema.GetOffset(0x2CF6156398893360);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _MaxDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _AdjustmentScaleOffset = Schema.GetOffset(0x2CF61563A29D34AE);
+  private static nint? _AdjustmentScaleOffset;
 
   public ref float AdjustmentScale {
-    get => ref _Handle.AsRef<float>(_AdjustmentScaleOffset);
+    get {
+      if (_AdjustmentScaleOffset == null) {
+        _AdjustmentScaleOffset = Schema.GetOffset(0x2CF61563A29D34AE);
+      }
+      return ref _Handle.AsRef<float>(_AdjustmentScaleOffset!.Value);
+    }
   }
-  private static readonly nint _InitialRestingLengthOffset = Schema.GetOffset(0x2CF61563FE9273C1);
+  private static nint? _InitialRestingLengthOffset;
 
   public CParticleCollectionFloatInput InitialRestingLength {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _InitialRestingLengthOffset);
+    get {
+      if (_InitialRestingLengthOffset == null) {
+        _InitialRestingLengthOffset = Schema.GetOffset(0x2CF61563FE9273C1);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _InitialRestingLengthOffset!.Value);
+    }
   }
 
 

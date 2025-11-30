@@ -17,10 +17,15 @@ internal partial class CPulseCell_LimitCount__InstanceState_tImpl : SchemaClass,
   public CPulseCell_LimitCount__InstanceState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CurrentCountOffset = Schema.GetOffset(0x8CD3F919BE40B2AD);
+  private static nint? _CurrentCountOffset;
 
   public ref int CurrentCount {
-    get => ref _Handle.AsRef<int>(_CurrentCountOffset);
+    get {
+      if (_CurrentCountOffset == null) {
+        _CurrentCountOffset = Schema.GetOffset(0x8CD3F919BE40B2AD);
+      }
+      return ref _Handle.AsRef<int>(_CurrentCountOffset!.Value);
+    }
   }
 
 

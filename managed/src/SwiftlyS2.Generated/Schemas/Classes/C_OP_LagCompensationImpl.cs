@@ -17,25 +17,45 @@ internal partial class C_OP_LagCompensationImpl : CParticleFunctionOperatorImpl,
   public C_OP_LagCompensationImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DesiredVelocityCPOffset = Schema.GetOffset(0x21277E4532AACEC5);
+  private static nint? _DesiredVelocityCPOffset;
 
   public ref int DesiredVelocityCP {
-    get => ref _Handle.AsRef<int>(_DesiredVelocityCPOffset);
+    get {
+      if (_DesiredVelocityCPOffset == null) {
+        _DesiredVelocityCPOffset = Schema.GetOffset(0x21277E4532AACEC5);
+      }
+      return ref _Handle.AsRef<int>(_DesiredVelocityCPOffset!.Value);
+    }
   }
-  private static readonly nint _LatencyCPOffset = Schema.GetOffset(0x21277E45B100FE8E);
+  private static nint? _LatencyCPOffset;
 
   public ref int LatencyCP {
-    get => ref _Handle.AsRef<int>(_LatencyCPOffset);
+    get {
+      if (_LatencyCPOffset == null) {
+        _LatencyCPOffset = Schema.GetOffset(0x21277E45B100FE8E);
+      }
+      return ref _Handle.AsRef<int>(_LatencyCPOffset!.Value);
+    }
   }
-  private static readonly nint _LatencyCPFieldOffset = Schema.GetOffset(0x21277E458E1CEB3A);
+  private static nint? _LatencyCPFieldOffset;
 
   public ref int LatencyCPField {
-    get => ref _Handle.AsRef<int>(_LatencyCPFieldOffset);
+    get {
+      if (_LatencyCPFieldOffset == null) {
+        _LatencyCPFieldOffset = Schema.GetOffset(0x21277E458E1CEB3A);
+      }
+      return ref _Handle.AsRef<int>(_LatencyCPFieldOffset!.Value);
+    }
   }
-  private static readonly nint _DesiredVelocityCPFieldOffset = Schema.GetOffset(0x21277E45B59E9007);
+  private static nint? _DesiredVelocityCPFieldOffset;
 
   public ref int DesiredVelocityCPField {
-    get => ref _Handle.AsRef<int>(_DesiredVelocityCPFieldOffset);
+    get {
+      if (_DesiredVelocityCPFieldOffset == null) {
+        _DesiredVelocityCPFieldOffset = Schema.GetOffset(0x21277E45B59E9007);
+      }
+      return ref _Handle.AsRef<int>(_DesiredVelocityCPFieldOffset!.Value);
+    }
   }
 
 

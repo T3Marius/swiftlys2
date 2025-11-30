@@ -17,68 +17,126 @@ internal partial class CBaseAnimGraphImpl : CBaseModelEntityImpl, CBaseAnimGraph
   public CBaseAnimGraphImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InitiallyPopulateInterpHistoryOffset = Schema.GetOffset(0xE501DB1E3087361C);
+  private static nint? _InitiallyPopulateInterpHistoryOffset;
 
   public ref bool InitiallyPopulateInterpHistory {
-    get => ref _Handle.AsRef<bool>(_InitiallyPopulateInterpHistoryOffset);
+    get {
+      if (_InitiallyPopulateInterpHistoryOffset == null) {
+        _InitiallyPopulateInterpHistoryOffset = Schema.GetOffset(0xE501DB1E3087361C);
+      }
+      return ref _Handle.AsRef<bool>(_InitiallyPopulateInterpHistoryOffset!.Value);
+    }
   }
-  private static readonly nint _ChoreoServicesOffset = Schema.GetOffset(0xE501DB1E89C6D559);
+  private static nint? _ChoreoServicesOffset;
 
   public IChoreoServices? ChoreoServices {
     get {
-      var ptr = _Handle.Read<nint>(_ChoreoServicesOffset);
+      if (_ChoreoServicesOffset == null) {
+        _ChoreoServicesOffset = Schema.GetOffset(0xE501DB1E89C6D559);
+      }
+      var ptr = _Handle.Read<nint>(_ChoreoServicesOffset!.Value);
       return ptr.IsValidPtr() ? new IChoreoServicesImpl(ptr) : null;
     }
   }
-  private static readonly nint _AnimGraphUpdateEnabledOffset = Schema.GetOffset(0xE501DB1E724F7FEE);
+  private static nint? _AnimGraphUpdateEnabledOffset;
 
   public ref bool AnimGraphUpdateEnabled {
-    get => ref _Handle.AsRef<bool>(_AnimGraphUpdateEnabledOffset);
+    get {
+      if (_AnimGraphUpdateEnabledOffset == null) {
+        _AnimGraphUpdateEnabledOffset = Schema.GetOffset(0xE501DB1E724F7FEE);
+      }
+      return ref _Handle.AsRef<bool>(_AnimGraphUpdateEnabledOffset!.Value);
+    }
   }
-  private static readonly nint _MaxSlopeDistanceOffset = Schema.GetOffset(0xE501DB1E531F618D);
+  private static nint? _MaxSlopeDistanceOffset;
 
   public ref float MaxSlopeDistance {
-    get => ref _Handle.AsRef<float>(_MaxSlopeDistanceOffset);
+    get {
+      if (_MaxSlopeDistanceOffset == null) {
+        _MaxSlopeDistanceOffset = Schema.GetOffset(0xE501DB1E531F618D);
+      }
+      return ref _Handle.AsRef<float>(_MaxSlopeDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _LastSlopeCheckPosOffset = Schema.GetOffset(0xE501DB1E586A5E32);
+  private static nint? _LastSlopeCheckPosOffset;
 
   public ref Vector LastSlopeCheckPos {
-    get => ref _Handle.AsRef<Vector>(_LastSlopeCheckPosOffset);
+    get {
+      if (_LastSlopeCheckPosOffset == null) {
+        _LastSlopeCheckPosOffset = Schema.GetOffset(0xE501DB1E586A5E32);
+      }
+      return ref _Handle.AsRef<Vector>(_LastSlopeCheckPosOffset!.Value);
+    }
   }
-  private static readonly nint _AnimationUpdateScheduledOffset = Schema.GetOffset(0xE501DB1E49747BCF);
+  private static nint? _AnimationUpdateScheduledOffset;
 
   public ref bool AnimationUpdateScheduled {
-    get => ref _Handle.AsRef<bool>(_AnimationUpdateScheduledOffset);
+    get {
+      if (_AnimationUpdateScheduledOffset == null) {
+        _AnimationUpdateScheduledOffset = Schema.GetOffset(0xE501DB1E49747BCF);
+      }
+      return ref _Handle.AsRef<bool>(_AnimationUpdateScheduledOffset!.Value);
+    }
   }
-  private static readonly nint _ForceOffset = Schema.GetOffset(0xE501DB1E566BD764);
+  private static nint? _ForceOffset;
 
   public ref Vector Force {
-    get => ref _Handle.AsRef<Vector>(_ForceOffset);
+    get {
+      if (_ForceOffset == null) {
+        _ForceOffset = Schema.GetOffset(0xE501DB1E566BD764);
+      }
+      return ref _Handle.AsRef<Vector>(_ForceOffset!.Value);
+    }
   }
-  private static readonly nint _ForceBoneOffset = Schema.GetOffset(0xE501DB1EDDAC019E);
+  private static nint? _ForceBoneOffset;
 
   public ref int ForceBone {
-    get => ref _Handle.AsRef<int>(_ForceBoneOffset);
+    get {
+      if (_ForceBoneOffset == null) {
+        _ForceBoneOffset = Schema.GetOffset(0xE501DB1EDDAC019E);
+      }
+      return ref _Handle.AsRef<int>(_ForceBoneOffset!.Value);
+    }
   }
-  private static readonly nint _RagdollPoseOffset = Schema.GetOffset(0xE501DB1E49F01F45);
+  private static nint? _RagdollPoseOffset;
 
   public PhysicsRagdollPose_t RagdollPose {
-    get => new PhysicsRagdollPose_tImpl(_Handle + _RagdollPoseOffset);
+    get {
+      if (_RagdollPoseOffset == null) {
+        _RagdollPoseOffset = Schema.GetOffset(0xE501DB1E49F01F45);
+      }
+      return new PhysicsRagdollPose_tImpl(_Handle + _RagdollPoseOffset!.Value);
+    }
   }
-  private static readonly nint _RagdollEnabledOffset = Schema.GetOffset(0xE501DB1E03EA7599);
+  private static nint? _RagdollEnabledOffset;
 
   public ref bool RagdollEnabled {
-    get => ref _Handle.AsRef<bool>(_RagdollEnabledOffset);
+    get {
+      if (_RagdollEnabledOffset == null) {
+        _RagdollEnabledOffset = Schema.GetOffset(0xE501DB1E03EA7599);
+      }
+      return ref _Handle.AsRef<bool>(_RagdollEnabledOffset!.Value);
+    }
   }
-  private static readonly nint _RagdollClientSideOffset = Schema.GetOffset(0xE501DB1EB6A5159C);
+  private static nint? _RagdollClientSideOffset;
 
   public ref bool RagdollClientSide {
-    get => ref _Handle.AsRef<bool>(_RagdollClientSideOffset);
+    get {
+      if (_RagdollClientSideOffset == null) {
+        _RagdollClientSideOffset = Schema.GetOffset(0xE501DB1EB6A5159C);
+      }
+      return ref _Handle.AsRef<bool>(_RagdollClientSideOffset!.Value);
+    }
   }
-  private static readonly nint _XParentedRagdollRootInEntitySpaceOffset = Schema.GetOffset(0xE501DB1EFC4C1401);
+  private static nint? _XParentedRagdollRootInEntitySpaceOffset;
 
   public ref CTransform XParentedRagdollRootInEntitySpace {
-    get => ref _Handle.AsRef<CTransform>(_XParentedRagdollRootInEntitySpaceOffset);
+    get {
+      if (_XParentedRagdollRootInEntitySpaceOffset == null) {
+        _XParentedRagdollRootInEntitySpaceOffset = Schema.GetOffset(0xE501DB1EFC4C1401);
+      }
+      return ref _Handle.AsRef<CTransform>(_XParentedRagdollRootInEntitySpaceOffset!.Value);
+    }
   }
 
   public void InitiallyPopulateInterpHistoryUpdated() {

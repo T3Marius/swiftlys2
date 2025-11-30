@@ -17,20 +17,35 @@ internal partial class CPulseCell_LerpCameraSettings__CursorState_tImpl : CPulse
   public CPulseCell_LerpCameraSettings__CursorState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CameraOffset = Schema.GetOffset(0x84AB53FD538EFB98);
+  private static nint? _CameraOffset;
 
   public ref CHandle<CPointCamera> Camera {
-    get => ref _Handle.AsRef<CHandle<CPointCamera>>(_CameraOffset);
+    get {
+      if (_CameraOffset == null) {
+        _CameraOffset = Schema.GetOffset(0x84AB53FD538EFB98);
+      }
+      return ref _Handle.AsRef<CHandle<CPointCamera>>(_CameraOffset!.Value);
+    }
   }
-  private static readonly nint _OverlaidStartOffset = Schema.GetOffset(0x84AB53FD54E9A76F);
+  private static nint? _OverlaidStartOffset;
 
   public PointCameraSettings_t OverlaidStart {
-    get => new PointCameraSettings_tImpl(_Handle + _OverlaidStartOffset);
+    get {
+      if (_OverlaidStartOffset == null) {
+        _OverlaidStartOffset = Schema.GetOffset(0x84AB53FD54E9A76F);
+      }
+      return new PointCameraSettings_tImpl(_Handle + _OverlaidStartOffset!.Value);
+    }
   }
-  private static readonly nint _OverlaidEndOffset = Schema.GetOffset(0x84AB53FD3CDFDEFA);
+  private static nint? _OverlaidEndOffset;
 
   public PointCameraSettings_t OverlaidEnd {
-    get => new PointCameraSettings_tImpl(_Handle + _OverlaidEndOffset);
+    get {
+      if (_OverlaidEndOffset == null) {
+        _OverlaidEndOffset = Schema.GetOffset(0x84AB53FD3CDFDEFA);
+      }
+      return new PointCameraSettings_tImpl(_Handle + _OverlaidEndOffset!.Value);
+    }
   }
 
 

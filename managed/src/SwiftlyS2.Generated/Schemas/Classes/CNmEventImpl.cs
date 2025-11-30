@@ -17,25 +17,45 @@ internal partial class CNmEventImpl : SchemaClass, CNmEvent {
   public CNmEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StartTimeSecondsOffset = Schema.GetOffset(0xF9871009C1FCF499);
+  private static nint? _StartTimeSecondsOffset;
 
   public ref float StartTimeSeconds {
-    get => ref _Handle.AsRef<float>(_StartTimeSecondsOffset);
+    get {
+      if (_StartTimeSecondsOffset == null) {
+        _StartTimeSecondsOffset = Schema.GetOffset(0xF9871009C1FCF499);
+      }
+      return ref _Handle.AsRef<float>(_StartTimeSecondsOffset!.Value);
+    }
   }
-  private static readonly nint _DurationSecondsOffset = Schema.GetOffset(0xF9871009917797C0);
+  private static nint? _DurationSecondsOffset;
 
   public ref float DurationSeconds {
-    get => ref _Handle.AsRef<float>(_DurationSecondsOffset);
+    get {
+      if (_DurationSecondsOffset == null) {
+        _DurationSecondsOffset = Schema.GetOffset(0xF9871009917797C0);
+      }
+      return ref _Handle.AsRef<float>(_DurationSecondsOffset!.Value);
+    }
   }
-  private static readonly nint _SyncIDOffset = Schema.GetOffset(0xF987100915636837);
+  private static nint? _SyncIDOffset;
 
   public ref CGlobalSymbol SyncID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_SyncIDOffset);
+    get {
+      if (_SyncIDOffset == null) {
+        _SyncIDOffset = Schema.GetOffset(0xF987100915636837);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_SyncIDOffset!.Value);
+    }
   }
-  private static readonly nint _ClientOnlyOffset = Schema.GetOffset(0xF9871009B39BA128);
+  private static nint? _ClientOnlyOffset;
 
   public ref bool ClientOnly {
-    get => ref _Handle.AsRef<bool>(_ClientOnlyOffset);
+    get {
+      if (_ClientOnlyOffset == null) {
+        _ClientOnlyOffset = Schema.GetOffset(0xF9871009B39BA128);
+      }
+      return ref _Handle.AsRef<bool>(_ClientOnlyOffset!.Value);
+    }
   }
 
 

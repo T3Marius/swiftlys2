@@ -17,15 +17,25 @@ internal partial class CNmCachedVectorNode__CDefinitionImpl : CNmVectorValueNode
   public CNmCachedVectorNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputValueNodeIdxOffset = Schema.GetOffset(0x4F6FE2EA95E89F27);
+  private static nint? _InputValueNodeIdxOffset;
 
   public ref short InputValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputValueNodeIdxOffset);
+    get {
+      if (_InputValueNodeIdxOffset == null) {
+        _InputValueNodeIdxOffset = Schema.GetOffset(0x4F6FE2EA95E89F27);
+      }
+      return ref _Handle.AsRef<short>(_InputValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _ModeOffset = Schema.GetOffset(0x4F6FE2EA90FD5BB2);
+  private static nint? _ModeOffset;
 
   public ref NmCachedValueMode_t Mode {
-    get => ref _Handle.AsRef<NmCachedValueMode_t>(_ModeOffset);
+    get {
+      if (_ModeOffset == null) {
+        _ModeOffset = Schema.GetOffset(0x4F6FE2EA90FD5BB2);
+      }
+      return ref _Handle.AsRef<NmCachedValueMode_t>(_ModeOffset!.Value);
+    }
   }
 
 

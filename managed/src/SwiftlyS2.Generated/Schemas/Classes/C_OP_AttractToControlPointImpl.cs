@@ -17,35 +17,65 @@ internal partial class C_OP_AttractToControlPointImpl : CParticleFunctionForceIm
   public C_OP_AttractToControlPointImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ComponentScaleOffset = Schema.GetOffset(0xBD30C24AB17954E2);
+  private static nint? _ComponentScaleOffset;
 
   public ref Vector ComponentScale {
-    get => ref _Handle.AsRef<Vector>(_ComponentScaleOffset);
+    get {
+      if (_ComponentScaleOffset == null) {
+        _ComponentScaleOffset = Schema.GetOffset(0xBD30C24AB17954E2);
+      }
+      return ref _Handle.AsRef<Vector>(_ComponentScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ForceAmountOffset = Schema.GetOffset(0xBD30C24A70831A84);
+  private static nint? _ForceAmountOffset;
 
   public CPerParticleFloatInput ForceAmount {
-    get => new CPerParticleFloatInputImpl(_Handle + _ForceAmountOffset);
+    get {
+      if (_ForceAmountOffset == null) {
+        _ForceAmountOffset = Schema.GetOffset(0xBD30C24A70831A84);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ForceAmountOffset!.Value);
+    }
   }
-  private static readonly nint _FalloffPowerOffset = Schema.GetOffset(0xBD30C24AE3163382);
+  private static nint? _FalloffPowerOffset;
 
   public ref float FalloffPower {
-    get => ref _Handle.AsRef<float>(_FalloffPowerOffset);
+    get {
+      if (_FalloffPowerOffset == null) {
+        _FalloffPowerOffset = Schema.GetOffset(0xBD30C24AE3163382);
+      }
+      return ref _Handle.AsRef<float>(_FalloffPowerOffset!.Value);
+    }
   }
-  private static readonly nint _TransformInputOffset = Schema.GetOffset(0xBD30C24AB3FDC289);
+  private static nint? _TransformInputOffset;
 
   public CParticleTransformInput TransformInput {
-    get => new CParticleTransformInputImpl(_Handle + _TransformInputOffset);
+    get {
+      if (_TransformInputOffset == null) {
+        _TransformInputOffset = Schema.GetOffset(0xBD30C24AB3FDC289);
+      }
+      return new CParticleTransformInputImpl(_Handle + _TransformInputOffset!.Value);
+    }
   }
-  private static readonly nint _ForceAmountMinOffset = Schema.GetOffset(0xBD30C24AEBB56458);
+  private static nint? _ForceAmountMinOffset;
 
   public CPerParticleFloatInput ForceAmountMin {
-    get => new CPerParticleFloatInputImpl(_Handle + _ForceAmountMinOffset);
+    get {
+      if (_ForceAmountMinOffset == null) {
+        _ForceAmountMinOffset = Schema.GetOffset(0xBD30C24AEBB56458);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ForceAmountMinOffset!.Value);
+    }
   }
-  private static readonly nint _ApplyMinForceOffset = Schema.GetOffset(0xBD30C24AF72AC3CC);
+  private static nint? _ApplyMinForceOffset;
 
   public ref bool ApplyMinForce {
-    get => ref _Handle.AsRef<bool>(_ApplyMinForceOffset);
+    get {
+      if (_ApplyMinForceOffset == null) {
+        _ApplyMinForceOffset = Schema.GetOffset(0xBD30C24AF72AC3CC);
+      }
+      return ref _Handle.AsRef<bool>(_ApplyMinForceOffset!.Value);
+    }
   }
 
 

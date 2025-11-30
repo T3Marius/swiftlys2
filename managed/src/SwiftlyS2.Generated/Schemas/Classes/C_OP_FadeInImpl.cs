@@ -17,25 +17,45 @@ internal partial class C_OP_FadeInImpl : CParticleFunctionOperatorImpl, C_OP_Fad
   public C_OP_FadeInImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FadeInTimeMinOffset = Schema.GetOffset(0xA8B59B1091A2EFE5);
+  private static nint? _FadeInTimeMinOffset;
 
   public ref float FadeInTimeMin {
-    get => ref _Handle.AsRef<float>(_FadeInTimeMinOffset);
+    get {
+      if (_FadeInTimeMinOffset == null) {
+        _FadeInTimeMinOffset = Schema.GetOffset(0xA8B59B1091A2EFE5);
+      }
+      return ref _Handle.AsRef<float>(_FadeInTimeMinOffset!.Value);
+    }
   }
-  private static readonly nint _FadeInTimeMaxOffset = Schema.GetOffset(0xA8B59B109BB6875B);
+  private static nint? _FadeInTimeMaxOffset;
 
   public ref float FadeInTimeMax {
-    get => ref _Handle.AsRef<float>(_FadeInTimeMaxOffset);
+    get {
+      if (_FadeInTimeMaxOffset == null) {
+        _FadeInTimeMaxOffset = Schema.GetOffset(0xA8B59B109BB6875B);
+      }
+      return ref _Handle.AsRef<float>(_FadeInTimeMaxOffset!.Value);
+    }
   }
-  private static readonly nint _FadeInTimeExpOffset = Schema.GetOffset(0xA8B59B1046BA449A);
+  private static nint? _FadeInTimeExpOffset;
 
   public ref float FadeInTimeExp {
-    get => ref _Handle.AsRef<float>(_FadeInTimeExpOffset);
+    get {
+      if (_FadeInTimeExpOffset == null) {
+        _FadeInTimeExpOffset = Schema.GetOffset(0xA8B59B1046BA449A);
+      }
+      return ref _Handle.AsRef<float>(_FadeInTimeExpOffset!.Value);
+    }
   }
-  private static readonly nint _ProportionalOffset = Schema.GetOffset(0xA8B59B10891F328A);
+  private static nint? _ProportionalOffset;
 
   public ref bool Proportional {
-    get => ref _Handle.AsRef<bool>(_ProportionalOffset);
+    get {
+      if (_ProportionalOffset == null) {
+        _ProportionalOffset = Schema.GetOffset(0xA8B59B10891F328A);
+      }
+      return ref _Handle.AsRef<bool>(_ProportionalOffset!.Value);
+    }
   }
 
 

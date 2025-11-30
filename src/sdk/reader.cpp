@@ -79,13 +79,22 @@ std::string GetBuiltinTypeName(CSchemaType_Builtin* pType)
 
 std::string ReadFieldType(CSchemaType* field)
 {
+
     if (field->IsA<CSchemaType_Builtin>())
     {
         return GetBuiltinTypeName(field->ReinterpretAs<CSchemaType_Builtin>());
     }
     else if (field->IsA<CSchemaType_DeclaredClass>())
     {
-        return field->ReinterpretAs<CSchemaType_DeclaredClass>()->m_pClassInfo->m_pszName;
+        auto classInfo = field->ReinterpretAs<CSchemaType_DeclaredClass>()->m_pClassInfo;
+        if (classInfo)
+        {
+            return classInfo->m_pszName;
+        }
+        else
+        {
+            return field->m_sTypeName.Get();
+        }
     }
     else if (field->IsA<CSchemaType_DeclaredEnum>())
     {
@@ -148,6 +157,10 @@ void FindChainer(bool& has_chainer, int& chainer_offset, CSchemaClassInfo* class
 void ReadClasses(CSchemaType_DeclaredClass* declClass, json& outJson)
 {
     auto classInfo = declClass->m_pClassInfo;
+    if (!classInfo)
+    {
+        return;
+    }
     uint32_t class_hash = hash_32_fnv1a_const(classInfo->m_pszName);
     bool isStruct = IsStandardLayoutClass(classInfo);
 

@@ -20,25 +20,45 @@ internal partial class FeTri_tImpl : SchemaClass, FeTri_t {
   public ISchemaFixedArray<ushort> Node {
     get => new SchemaFixedArray<ushort>(_Handle, 0x75C07D86CD6694B9, 3, 2, 2);
   }
-  private static readonly nint _W1Offset = Schema.GetOffset(0x75C07D8610473805);
+  private static nint? _W1Offset;
 
   public ref float W1 {
-    get => ref _Handle.AsRef<float>(_W1Offset);
+    get {
+      if (_W1Offset == null) {
+        _W1Offset = Schema.GetOffset(0x75C07D8610473805);
+      }
+      return ref _Handle.AsRef<float>(_W1Offset!.Value);
+    }
   }
-  private static readonly nint _W2Offset = Schema.GetOffset(0x75C07D860D47334C);
+  private static nint? _W2Offset;
 
   public ref float W2 {
-    get => ref _Handle.AsRef<float>(_W2Offset);
+    get {
+      if (_W2Offset == null) {
+        _W2Offset = Schema.GetOffset(0x75C07D860D47334C);
+      }
+      return ref _Handle.AsRef<float>(_W2Offset!.Value);
+    }
   }
-  private static readonly nint _V1xOffset = Schema.GetOffset(0x75C07D8680EC4B30);
+  private static nint? _V1xOffset;
 
   public ref float V1x {
-    get => ref _Handle.AsRef<float>(_V1xOffset);
+    get {
+      if (_V1xOffset == null) {
+        _V1xOffset = Schema.GetOffset(0x75C07D8680EC4B30);
+      }
+      return ref _Handle.AsRef<float>(_V1xOffset!.Value);
+    }
   }
-  private static readonly nint _V2Offset = Schema.GetOffset(0x75C07D86974A4B21);
+  private static nint? _V2Offset;
 
   public ref Vector2D V2 {
-    get => ref _Handle.AsRef<Vector2D>(_V2Offset);
+    get {
+      if (_V2Offset == null) {
+        _V2Offset = Schema.GetOffset(0x75C07D86974A4B21);
+      }
+      return ref _Handle.AsRef<Vector2D>(_V2Offset!.Value);
+    }
   }
 
 

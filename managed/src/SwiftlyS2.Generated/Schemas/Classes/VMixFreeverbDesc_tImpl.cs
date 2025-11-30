@@ -17,25 +17,45 @@ internal partial class VMixFreeverbDesc_tImpl : SchemaClass, VMixFreeverbDesc_t 
   public VMixFreeverbDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RoomSizeOffset = Schema.GetOffset(0xF9EB6BF8DEA95199);
+  private static nint? _RoomSizeOffset;
 
   public ref float RoomSize {
-    get => ref _Handle.AsRef<float>(_RoomSizeOffset);
+    get {
+      if (_RoomSizeOffset == null) {
+        _RoomSizeOffset = Schema.GetOffset(0xF9EB6BF8DEA95199);
+      }
+      return ref _Handle.AsRef<float>(_RoomSizeOffset!.Value);
+    }
   }
-  private static readonly nint _DampOffset = Schema.GetOffset(0xF9EB6BF851CA5395);
+  private static nint? _DampOffset;
 
   public ref float Damp {
-    get => ref _Handle.AsRef<float>(_DampOffset);
+    get {
+      if (_DampOffset == null) {
+        _DampOffset = Schema.GetOffset(0xF9EB6BF851CA5395);
+      }
+      return ref _Handle.AsRef<float>(_DampOffset!.Value);
+    }
   }
-  private static readonly nint _WidthOffset = Schema.GetOffset(0xF9EB6BF8B91935E1);
+  private static nint? _WidthOffset;
 
   public ref float Width {
-    get => ref _Handle.AsRef<float>(_WidthOffset);
+    get {
+      if (_WidthOffset == null) {
+        _WidthOffset = Schema.GetOffset(0xF9EB6BF8B91935E1);
+      }
+      return ref _Handle.AsRef<float>(_WidthOffset!.Value);
+    }
   }
-  private static readonly nint _LateReflectionsOffset = Schema.GetOffset(0xF9EB6BF830A49ADF);
+  private static nint? _LateReflectionsOffset;
 
   public ref float LateReflections {
-    get => ref _Handle.AsRef<float>(_LateReflectionsOffset);
+    get {
+      if (_LateReflectionsOffset == null) {
+        _LateReflectionsOffset = Schema.GetOffset(0xF9EB6BF830A49ADF);
+      }
+      return ref _Handle.AsRef<float>(_LateReflectionsOffset!.Value);
+    }
   }
 
 

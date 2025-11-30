@@ -17,20 +17,35 @@ internal partial class EventSimpleLoopFrameUpdate_tImpl : SchemaClass, EventSimp
   public EventSimpleLoopFrameUpdate_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LoopStateOffset = Schema.GetOffset(0x2C7358DAF928A2EC);
+  private static nint? _LoopStateOffset;
 
   public EngineLoopState_t LoopState {
-    get => new EngineLoopState_tImpl(_Handle + _LoopStateOffset);
+    get {
+      if (_LoopStateOffset == null) {
+        _LoopStateOffset = Schema.GetOffset(0x2C7358DAF928A2EC);
+      }
+      return new EngineLoopState_tImpl(_Handle + _LoopStateOffset!.Value);
+    }
   }
-  private static readonly nint _RealTimeOffset = Schema.GetOffset(0x2C7358DA1168EC02);
+  private static nint? _RealTimeOffset;
 
   public ref float RealTime {
-    get => ref _Handle.AsRef<float>(_RealTimeOffset);
+    get {
+      if (_RealTimeOffset == null) {
+        _RealTimeOffset = Schema.GetOffset(0x2C7358DA1168EC02);
+      }
+      return ref _Handle.AsRef<float>(_RealTimeOffset!.Value);
+    }
   }
-  private static readonly nint _FrameTimeOffset = Schema.GetOffset(0x2C7358DA659DF875);
+  private static nint? _FrameTimeOffset;
 
   public ref float FrameTime {
-    get => ref _Handle.AsRef<float>(_FrameTimeOffset);
+    get {
+      if (_FrameTimeOffset == null) {
+        _FrameTimeOffset = Schema.GetOffset(0x2C7358DA659DF875);
+      }
+      return ref _Handle.AsRef<float>(_FrameTimeOffset!.Value);
+    }
   }
 
 

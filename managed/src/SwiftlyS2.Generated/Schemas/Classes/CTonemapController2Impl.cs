@@ -17,30 +17,55 @@ internal partial class CTonemapController2Impl : CBaseEntityImpl, CTonemapContro
   public CTonemapController2Impl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AutoExposureMinOffset = Schema.GetOffset(0xD2B5E9D27D8FC60B);
+  private static nint? _AutoExposureMinOffset;
 
   public ref float AutoExposureMin {
-    get => ref _Handle.AsRef<float>(_AutoExposureMinOffset);
+    get {
+      if (_AutoExposureMinOffset == null) {
+        _AutoExposureMinOffset = Schema.GetOffset(0xD2B5E9D27D8FC60B);
+      }
+      return ref _Handle.AsRef<float>(_AutoExposureMinOffset!.Value);
+    }
   }
-  private static readonly nint _AutoExposureMaxOffset = Schema.GetOffset(0xD2B5E9D2937C60F5);
+  private static nint? _AutoExposureMaxOffset;
 
   public ref float AutoExposureMax {
-    get => ref _Handle.AsRef<float>(_AutoExposureMaxOffset);
+    get {
+      if (_AutoExposureMaxOffset == null) {
+        _AutoExposureMaxOffset = Schema.GetOffset(0xD2B5E9D2937C60F5);
+      }
+      return ref _Handle.AsRef<float>(_AutoExposureMaxOffset!.Value);
+    }
   }
-  private static readonly nint _ExposureAdaptationSpeedUpOffset = Schema.GetOffset(0xD2B5E9D2D587708B);
+  private static nint? _ExposureAdaptationSpeedUpOffset;
 
   public ref float ExposureAdaptationSpeedUp {
-    get => ref _Handle.AsRef<float>(_ExposureAdaptationSpeedUpOffset);
+    get {
+      if (_ExposureAdaptationSpeedUpOffset == null) {
+        _ExposureAdaptationSpeedUpOffset = Schema.GetOffset(0xD2B5E9D2D587708B);
+      }
+      return ref _Handle.AsRef<float>(_ExposureAdaptationSpeedUpOffset!.Value);
+    }
   }
-  private static readonly nint _ExposureAdaptationSpeedDownOffset = Schema.GetOffset(0xD2B5E9D232DAF29E);
+  private static nint? _ExposureAdaptationSpeedDownOffset;
 
   public ref float ExposureAdaptationSpeedDown {
-    get => ref _Handle.AsRef<float>(_ExposureAdaptationSpeedDownOffset);
+    get {
+      if (_ExposureAdaptationSpeedDownOffset == null) {
+        _ExposureAdaptationSpeedDownOffset = Schema.GetOffset(0xD2B5E9D232DAF29E);
+      }
+      return ref _Handle.AsRef<float>(_ExposureAdaptationSpeedDownOffset!.Value);
+    }
   }
-  private static readonly nint _TonemapEVSmoothingRangeOffset = Schema.GetOffset(0xD2B5E9D29C2546CB);
+  private static nint? _TonemapEVSmoothingRangeOffset;
 
   public ref float TonemapEVSmoothingRange {
-    get => ref _Handle.AsRef<float>(_TonemapEVSmoothingRangeOffset);
+    get {
+      if (_TonemapEVSmoothingRangeOffset == null) {
+        _TonemapEVSmoothingRangeOffset = Schema.GetOffset(0xD2B5E9D29C2546CB);
+      }
+      return ref _Handle.AsRef<float>(_TonemapEVSmoothingRangeOffset!.Value);
+    }
   }
 
   public void AutoExposureMinUpdated() {

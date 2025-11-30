@@ -17,30 +17,55 @@ internal partial class CTriggerBrushImpl : CBaseModelEntityImpl, CTriggerBrush {
   public CTriggerBrushImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnStartTouchOffset = Schema.GetOffset(0xD9D3DFB2B4E38193);
+  private static nint? _OnStartTouchOffset;
 
   public CEntityIOOutput OnStartTouch {
-    get => new CEntityIOOutputImpl(_Handle + _OnStartTouchOffset);
+    get {
+      if (_OnStartTouchOffset == null) {
+        _OnStartTouchOffset = Schema.GetOffset(0xD9D3DFB2B4E38193);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnStartTouchOffset!.Value);
+    }
   }
-  private static readonly nint _OnEndTouchOffset = Schema.GetOffset(0xD9D3DFB25D181B48);
+  private static nint? _OnEndTouchOffset;
 
   public CEntityIOOutput OnEndTouch {
-    get => new CEntityIOOutputImpl(_Handle + _OnEndTouchOffset);
+    get {
+      if (_OnEndTouchOffset == null) {
+        _OnEndTouchOffset = Schema.GetOffset(0xD9D3DFB25D181B48);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnEndTouchOffset!.Value);
+    }
   }
-  private static readonly nint _OnUseOffset = Schema.GetOffset(0xD9D3DFB2C3D50673);
+  private static nint? _OnUseOffset;
 
   public CEntityIOOutput OnUse {
-    get => new CEntityIOOutputImpl(_Handle + _OnUseOffset);
+    get {
+      if (_OnUseOffset == null) {
+        _OnUseOffset = Schema.GetOffset(0xD9D3DFB2C3D50673);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnUseOffset!.Value);
+    }
   }
-  private static readonly nint _InputFilterOffset = Schema.GetOffset(0xD9D3DFB2D5B46E3A);
+  private static nint? _InputFilterOffset;
 
   public ref int InputFilter {
-    get => ref _Handle.AsRef<int>(_InputFilterOffset);
+    get {
+      if (_InputFilterOffset == null) {
+        _InputFilterOffset = Schema.GetOffset(0xD9D3DFB2D5B46E3A);
+      }
+      return ref _Handle.AsRef<int>(_InputFilterOffset!.Value);
+    }
   }
-  private static readonly nint _DontMessageParentOffset = Schema.GetOffset(0xD9D3DFB2EE2AF166);
+  private static nint? _DontMessageParentOffset;
 
   public ref int DontMessageParent {
-    get => ref _Handle.AsRef<int>(_DontMessageParentOffset);
+    get {
+      if (_DontMessageParentOffset == null) {
+        _DontMessageParentOffset = Schema.GetOffset(0xD9D3DFB2EE2AF166);
+      }
+      return ref _Handle.AsRef<int>(_DontMessageParentOffset!.Value);
+    }
   }
 
 

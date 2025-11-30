@@ -17,10 +17,15 @@ internal partial class C_OP_NormalLockImpl : CParticleFunctionOperatorImpl, C_OP
   public C_OP_NormalLockImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x8C7847AD3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x8C7847AD3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
 
 

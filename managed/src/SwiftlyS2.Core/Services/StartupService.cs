@@ -6,18 +6,20 @@ namespace SwiftlyS2.Core.Services;
 
 internal class StartupService : IHostedService
 {
-    // private readonly IServiceProvider _provider;
+    // private readonly IServiceProvider provider;
 
     public StartupService( IServiceProvider provider )
     {
-        // _provider = provider;
-        provider.UseMenuManagerAPIService();
-        provider.UseCoreCommandService();
+        // this.provider = provider;
+        // provider.UseTestService();
         provider.UseCoreHookService();
         provider.UsePermissionManager();
-        provider.UsePluginManager();
         provider.UseCommandTrackerService();
-        // provider.UseTestService();
+        provider.UseMenuManagerAPIService();
+        // UseCoreCommandService must be the second to last one
+        provider.UseCoreCommandService();
+        // Initialize PluginManager after everything is ready
+        provider.UsePluginManager();
     }
 
     public Task StartAsync( CancellationToken cancellationToken )

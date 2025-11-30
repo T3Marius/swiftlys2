@@ -17,33 +17,59 @@ internal partial class CBtActionCombatPositioningImpl : CBtNodeImpl, CBtActionCo
   public CBtActionCombatPositioningImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SensorInputKeyOffset = Schema.GetOffset(0x3FB29123D2B0D4C1);
+  private static nint? _SensorInputKeyOffset;
 
   public string SensorInputKey {
     get {
-      var ptr = _Handle.Read<nint>(_SensorInputKeyOffset);
+      if (_SensorInputKeyOffset == null) {
+        _SensorInputKeyOffset = Schema.GetOffset(0x3FB29123D2B0D4C1);
+      }
+      var ptr = _Handle.Read<nint>(_SensorInputKeyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SensorInputKeyOffset, value);
+    set {
+      if (_SensorInputKeyOffset == null) {
+        _SensorInputKeyOffset = Schema.GetOffset(0x3FB29123D2B0D4C1);
+      }
+      Schema.SetString(_Handle, _SensorInputKeyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _IsAttackingKeyOffset = Schema.GetOffset(0x3FB29123BFC6462B);
+  private static nint? _IsAttackingKeyOffset;
 
   public string IsAttackingKey {
     get {
-      var ptr = _Handle.Read<nint>(_IsAttackingKeyOffset);
+      if (_IsAttackingKeyOffset == null) {
+        _IsAttackingKeyOffset = Schema.GetOffset(0x3FB29123BFC6462B);
+      }
+      var ptr = _Handle.Read<nint>(_IsAttackingKeyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _IsAttackingKeyOffset, value);
+    set {
+      if (_IsAttackingKeyOffset == null) {
+        _IsAttackingKeyOffset = Schema.GetOffset(0x3FB29123BFC6462B);
+      }
+      Schema.SetString(_Handle, _IsAttackingKeyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ActionTimerOffset = Schema.GetOffset(0x3FB291238777F414);
+  private static nint? _ActionTimerOffset;
 
   public CountdownTimer ActionTimer {
-    get => new CountdownTimerImpl(_Handle + _ActionTimerOffset);
+    get {
+      if (_ActionTimerOffset == null) {
+        _ActionTimerOffset = Schema.GetOffset(0x3FB291238777F414);
+      }
+      return new CountdownTimerImpl(_Handle + _ActionTimerOffset!.Value);
+    }
   }
-  private static readonly nint _CrouchingOffset = Schema.GetOffset(0x3FB291232DA51BAD);
+  private static nint? _CrouchingOffset;
 
   public ref bool Crouching {
-    get => ref _Handle.AsRef<bool>(_CrouchingOffset);
+    get {
+      if (_CrouchingOffset == null) {
+        _CrouchingOffset = Schema.GetOffset(0x3FB291232DA51BAD);
+      }
+      return ref _Handle.AsRef<bool>(_CrouchingOffset!.Value);
+    }
   }
 
 

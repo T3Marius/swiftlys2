@@ -17,20 +17,35 @@ internal partial class VMixEnvelopeDesc_tImpl : SchemaClass, VMixEnvelopeDesc_t 
   public VMixEnvelopeDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AttackTimeMSOffset = Schema.GetOffset(0xEF93602BD4A28216);
+  private static nint? _AttackTimeMSOffset;
 
   public ref float AttackTimeMS {
-    get => ref _Handle.AsRef<float>(_AttackTimeMSOffset);
+    get {
+      if (_AttackTimeMSOffset == null) {
+        _AttackTimeMSOffset = Schema.GetOffset(0xEF93602BD4A28216);
+      }
+      return ref _Handle.AsRef<float>(_AttackTimeMSOffset!.Value);
+    }
   }
-  private static readonly nint _HoldTimeMSOffset = Schema.GetOffset(0xEF93602B028BA44F);
+  private static nint? _HoldTimeMSOffset;
 
   public ref float HoldTimeMS {
-    get => ref _Handle.AsRef<float>(_HoldTimeMSOffset);
+    get {
+      if (_HoldTimeMSOffset == null) {
+        _HoldTimeMSOffset = Schema.GetOffset(0xEF93602B028BA44F);
+      }
+      return ref _Handle.AsRef<float>(_HoldTimeMSOffset!.Value);
+    }
   }
-  private static readonly nint _ReleaseTimeMSOffset = Schema.GetOffset(0xEF93602BEBB62791);
+  private static nint? _ReleaseTimeMSOffset;
 
   public ref float ReleaseTimeMS {
-    get => ref _Handle.AsRef<float>(_ReleaseTimeMSOffset);
+    get {
+      if (_ReleaseTimeMSOffset == null) {
+        _ReleaseTimeMSOffset = Schema.GetOffset(0xEF93602BEBB62791);
+      }
+      return ref _Handle.AsRef<float>(_ReleaseTimeMSOffset!.Value);
+    }
   }
 
 

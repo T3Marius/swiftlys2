@@ -17,25 +17,45 @@ internal partial class CPulseCell_BooleanSwitchStateImpl : CPulseCell_BaseStateI
   public CPulseCell_BooleanSwitchStateImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ConditionOffset = Schema.GetOffset(0xB0380EFD5F2A883E);
+  private static nint? _ConditionOffset;
 
   public PulseObservableBoolExpression_t Condition {
-    get => new PulseObservableBoolExpression_tImpl(_Handle + _ConditionOffset);
+    get {
+      if (_ConditionOffset == null) {
+        _ConditionOffset = Schema.GetOffset(0xB0380EFD5F2A883E);
+      }
+      return new PulseObservableBoolExpression_tImpl(_Handle + _ConditionOffset!.Value);
+    }
   }
-  private static readonly nint _SubGraphOffset = Schema.GetOffset(0xB0380EFD979BD817);
+  private static nint? _SubGraphOffset;
 
   public CPulse_OutflowConnection SubGraph {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _SubGraphOffset);
+    get {
+      if (_SubGraphOffset == null) {
+        _SubGraphOffset = Schema.GetOffset(0xB0380EFD979BD817);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _SubGraphOffset!.Value);
+    }
   }
-  private static readonly nint _WhenTrueOffset = Schema.GetOffset(0xB0380EFDB329ED61);
+  private static nint? _WhenTrueOffset;
 
   public CPulse_OutflowConnection WhenTrue {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _WhenTrueOffset);
+    get {
+      if (_WhenTrueOffset == null) {
+        _WhenTrueOffset = Schema.GetOffset(0xB0380EFDB329ED61);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _WhenTrueOffset!.Value);
+    }
   }
-  private static readonly nint _WhenFalseOffset = Schema.GetOffset(0xB0380EFD4DD1A01C);
+  private static nint? _WhenFalseOffset;
 
   public CPulse_OutflowConnection WhenFalse {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _WhenFalseOffset);
+    get {
+      if (_WhenFalseOffset == null) {
+        _WhenFalseOffset = Schema.GetOffset(0xB0380EFD4DD1A01C);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _WhenFalseOffset!.Value);
+    }
   }
 
 

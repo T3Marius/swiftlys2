@@ -17,10 +17,15 @@ internal partial class CMarkupVolumeImpl : CBaseModelEntityImpl, CMarkupVolume {
   public CMarkupVolumeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x41A873203A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x41A873203A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
 
 

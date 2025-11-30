@@ -17,25 +17,45 @@ internal partial class C_OP_ScreenSpaceDistanceToEdgeImpl : CParticleFunctionOpe
   public C_OP_ScreenSpaceDistanceToEdgeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x5525036EE5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x5525036EE5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _MaxDistFromEdgeOffset = Schema.GetOffset(0x5525036E3E73EC16);
+  private static nint? _MaxDistFromEdgeOffset;
 
   public CPerParticleFloatInput MaxDistFromEdge {
-    get => new CPerParticleFloatInputImpl(_Handle + _MaxDistFromEdgeOffset);
+    get {
+      if (_MaxDistFromEdgeOffset == null) {
+        _MaxDistFromEdgeOffset = Schema.GetOffset(0x5525036E3E73EC16);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _MaxDistFromEdgeOffset!.Value);
+    }
   }
-  private static readonly nint _OutputRemapOffset = Schema.GetOffset(0x5525036E1239396F);
+  private static nint? _OutputRemapOffset;
 
   public CParticleRemapFloatInput OutputRemap {
-    get => new CParticleRemapFloatInputImpl(_Handle + _OutputRemapOffset);
+    get {
+      if (_OutputRemapOffset == null) {
+        _OutputRemapOffset = Schema.GetOffset(0x5525036E1239396F);
+      }
+      return new CParticleRemapFloatInputImpl(_Handle + _OutputRemapOffset!.Value);
+    }
   }
-  private static readonly nint _SetMethodOffset = Schema.GetOffset(0x5525036EFB53C31E);
+  private static nint? _SetMethodOffset;
 
   public ref ParticleSetMethod_t SetMethod {
-    get => ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset);
+    get {
+      if (_SetMethodOffset == null) {
+        _SetMethodOffset = Schema.GetOffset(0x5525036EFB53C31E);
+      }
+      return ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset!.Value);
+    }
   }
 
 

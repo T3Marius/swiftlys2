@@ -17,30 +17,55 @@ internal partial class CCSPlayer_RadioServicesImpl : CPlayerPawnComponentImpl, C
   public CCSPlayer_RadioServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _GotHostageTalkTimerOffset = Schema.GetOffset(0x8E7F7B35729FE1A3);
+  private static nint? _GotHostageTalkTimerOffset;
 
   public GameTime_t GotHostageTalkTimer {
-    get => new GameTime_tImpl(_Handle + _GotHostageTalkTimerOffset);
+    get {
+      if (_GotHostageTalkTimerOffset == null) {
+        _GotHostageTalkTimerOffset = Schema.GetOffset(0x8E7F7B35729FE1A3);
+      }
+      return new GameTime_tImpl(_Handle + _GotHostageTalkTimerOffset!.Value);
+    }
   }
-  private static readonly nint _DefusingTalkTimerOffset = Schema.GetOffset(0x8E7F7B355AF7F835);
+  private static nint? _DefusingTalkTimerOffset;
 
   public GameTime_t DefusingTalkTimer {
-    get => new GameTime_tImpl(_Handle + _DefusingTalkTimerOffset);
+    get {
+      if (_DefusingTalkTimerOffset == null) {
+        _DefusingTalkTimerOffset = Schema.GetOffset(0x8E7F7B355AF7F835);
+      }
+      return new GameTime_tImpl(_Handle + _DefusingTalkTimerOffset!.Value);
+    }
   }
-  private static readonly nint _C4PlantTalkTimerOffset = Schema.GetOffset(0x8E7F7B35CE58ABD4);
+  private static nint? _C4PlantTalkTimerOffset;
 
   public GameTime_t C4PlantTalkTimer {
-    get => new GameTime_tImpl(_Handle + _C4PlantTalkTimerOffset);
+    get {
+      if (_C4PlantTalkTimerOffset == null) {
+        _C4PlantTalkTimerOffset = Schema.GetOffset(0x8E7F7B35CE58ABD4);
+      }
+      return new GameTime_tImpl(_Handle + _C4PlantTalkTimerOffset!.Value);
+    }
   }
-  private static readonly nint _RadioTokenSlotsOffset = Schema.GetOffset(0x8E7F7B356FB722D0);
+  private static nint? _RadioTokenSlotsOffset;
 
   public SchemaUntypedField RadioTokenSlots {
-    get => new SchemaUntypedField(_Handle + _RadioTokenSlotsOffset);
+    get {
+      if (_RadioTokenSlotsOffset == null) {
+        _RadioTokenSlotsOffset = Schema.GetOffset(0x8E7F7B356FB722D0);
+      }
+      return new SchemaUntypedField(_Handle + _RadioTokenSlotsOffset!.Value);
+    }
   }
-  private static readonly nint _IgnoreRadioOffset = Schema.GetOffset(0x8E7F7B3562FA7576);
+  private static nint? _IgnoreRadioOffset;
 
   public ref bool IgnoreRadio {
-    get => ref _Handle.AsRef<bool>(_IgnoreRadioOffset);
+    get {
+      if (_IgnoreRadioOffset == null) {
+        _IgnoreRadioOffset = Schema.GetOffset(0x8E7F7B3562FA7576);
+      }
+      return ref _Handle.AsRef<bool>(_IgnoreRadioOffset!.Value);
+    }
   }
 
 

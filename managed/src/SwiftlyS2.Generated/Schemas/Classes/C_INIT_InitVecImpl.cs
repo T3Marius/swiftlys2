@@ -17,30 +17,55 @@ internal partial class C_INIT_InitVecImpl : CParticleFunctionInitializerImpl, C_
   public C_INIT_InitVecImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputValueOffset = Schema.GetOffset(0x60C95B0234445438);
+  private static nint? _InputValueOffset;
 
   public CPerParticleVecInput InputValue {
-    get => new CPerParticleVecInputImpl(_Handle + _InputValueOffset);
+    get {
+      if (_InputValueOffset == null) {
+        _InputValueOffset = Schema.GetOffset(0x60C95B0234445438);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _InputValueOffset!.Value);
+    }
   }
-  private static readonly nint _OutputFieldOffset = Schema.GetOffset(0x60C95B02324F6F74);
+  private static nint? _OutputFieldOffset;
 
   public ParticleAttributeIndex_t OutputField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset);
+    get {
+      if (_OutputFieldOffset == null) {
+        _OutputFieldOffset = Schema.GetOffset(0x60C95B02324F6F74);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset!.Value);
+    }
   }
-  private static readonly nint _SetMethodOffset = Schema.GetOffset(0x60C95B02FB53C31E);
+  private static nint? _SetMethodOffset;
 
   public ref ParticleSetMethod_t SetMethod {
-    get => ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset);
+    get {
+      if (_SetMethodOffset == null) {
+        _SetMethodOffset = Schema.GetOffset(0x60C95B02FB53C31E);
+      }
+      return ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset!.Value);
+    }
   }
-  private static readonly nint _NormalizedOutputOffset = Schema.GetOffset(0x60C95B020AA98C55);
+  private static nint? _NormalizedOutputOffset;
 
   public ref bool NormalizedOutput {
-    get => ref _Handle.AsRef<bool>(_NormalizedOutputOffset);
+    get {
+      if (_NormalizedOutputOffset == null) {
+        _NormalizedOutputOffset = Schema.GetOffset(0x60C95B020AA98C55);
+      }
+      return ref _Handle.AsRef<bool>(_NormalizedOutputOffset!.Value);
+    }
   }
-  private static readonly nint _WritePreviousPositionOffset = Schema.GetOffset(0x60C95B02EA635776);
+  private static nint? _WritePreviousPositionOffset;
 
   public ref bool WritePreviousPosition {
-    get => ref _Handle.AsRef<bool>(_WritePreviousPositionOffset);
+    get {
+      if (_WritePreviousPositionOffset == null) {
+        _WritePreviousPositionOffset = Schema.GetOffset(0x60C95B02EA635776);
+      }
+      return ref _Handle.AsRef<bool>(_WritePreviousPositionOffset!.Value);
+    }
   }
 
 

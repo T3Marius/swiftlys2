@@ -17,30 +17,55 @@ internal partial class CCSPlayerController_ActionTrackingServicesImpl : CPlayerC
   public CCSPlayerController_ActionTrackingServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PerRoundStatsOffset = Schema.GetOffset(0x96DF63C17C8AAE9F);
+  private static nint? _PerRoundStatsOffset;
 
   public ref CUtlVector<CSPerRoundStats_t> PerRoundStats {
-    get => ref _Handle.AsRef<CUtlVector<CSPerRoundStats_t>>(_PerRoundStatsOffset);
+    get {
+      if (_PerRoundStatsOffset == null) {
+        _PerRoundStatsOffset = Schema.GetOffset(0x96DF63C17C8AAE9F);
+      }
+      return ref _Handle.AsRef<CUtlVector<CSPerRoundStats_t>>(_PerRoundStatsOffset!.Value);
+    }
   }
-  private static readonly nint _MatchStatsOffset = Schema.GetOffset(0x96DF63C11729A24D);
+  private static nint? _MatchStatsOffset;
 
   public CSMatchStats_t MatchStats {
-    get => new CSMatchStats_tImpl(_Handle + _MatchStatsOffset);
+    get {
+      if (_MatchStatsOffset == null) {
+        _MatchStatsOffset = Schema.GetOffset(0x96DF63C11729A24D);
+      }
+      return new CSMatchStats_tImpl(_Handle + _MatchStatsOffset!.Value);
+    }
   }
-  private static readonly nint _NumRoundKillsOffset = Schema.GetOffset(0x96DF63C1C6B90825);
+  private static nint? _NumRoundKillsOffset;
 
   public ref int NumRoundKills {
-    get => ref _Handle.AsRef<int>(_NumRoundKillsOffset);
+    get {
+      if (_NumRoundKillsOffset == null) {
+        _NumRoundKillsOffset = Schema.GetOffset(0x96DF63C1C6B90825);
+      }
+      return ref _Handle.AsRef<int>(_NumRoundKillsOffset!.Value);
+    }
   }
-  private static readonly nint _NumRoundKillsHeadshotsOffset = Schema.GetOffset(0x96DF63C196C53F70);
+  private static nint? _NumRoundKillsHeadshotsOffset;
 
   public ref int NumRoundKillsHeadshots {
-    get => ref _Handle.AsRef<int>(_NumRoundKillsHeadshotsOffset);
+    get {
+      if (_NumRoundKillsHeadshotsOffset == null) {
+        _NumRoundKillsHeadshotsOffset = Schema.GetOffset(0x96DF63C196C53F70);
+      }
+      return ref _Handle.AsRef<int>(_NumRoundKillsHeadshotsOffset!.Value);
+    }
   }
-  private static readonly nint _TotalRoundDamageDealtOffset = Schema.GetOffset(0x96DF63C19CF13FA6);
+  private static nint? _TotalRoundDamageDealtOffset;
 
   public ref float TotalRoundDamageDealt {
-    get => ref _Handle.AsRef<float>(_TotalRoundDamageDealtOffset);
+    get {
+      if (_TotalRoundDamageDealtOffset == null) {
+        _TotalRoundDamageDealtOffset = Schema.GetOffset(0x96DF63C19CF13FA6);
+      }
+      return ref _Handle.AsRef<float>(_TotalRoundDamageDealtOffset!.Value);
+    }
   }
 
   public void PerRoundStatsUpdated() {

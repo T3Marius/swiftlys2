@@ -20,10 +20,15 @@ internal partial class FeEdgeDesc_tImpl : SchemaClass, FeEdgeDesc_t {
   public ISchemaFixedArray<ushort> Edge {
     get => new SchemaFixedArray<ushort>(_Handle, 0xD483120F9FB47768, 2, 2, 2);
   }
-  private static readonly nint _SideOffset = Schema.GetOffset(0xD483120FA0D97E1A);
+  private static nint? _SideOffset;
 
   public SchemaUntypedField Side {
-    get => new SchemaUntypedField(_Handle + _SideOffset);
+    get {
+      if (_SideOffset == null) {
+        _SideOffset = Schema.GetOffset(0xD483120FA0D97E1A);
+      }
+      return new SchemaUntypedField(_Handle + _SideOffset!.Value);
+    }
   }
   public ISchemaFixedArray<ushort> VirtElem {
     get => new SchemaFixedArray<ushort>(_Handle, 0xD483120F64A695A5, 2, 2, 2);

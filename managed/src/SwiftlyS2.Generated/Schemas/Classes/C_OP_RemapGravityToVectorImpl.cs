@@ -17,25 +17,45 @@ internal partial class C_OP_RemapGravityToVectorImpl : CParticleFunctionOperator
   public C_OP_RemapGravityToVectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _Input1Offset = Schema.GetOffset(0x3777A3A2E17F27DA);
+  private static nint? _Input1Offset;
 
   public CPerParticleVecInput Input1 {
-    get => new CPerParticleVecInputImpl(_Handle + _Input1Offset);
+    get {
+      if (_Input1Offset == null) {
+        _Input1Offset = Schema.GetOffset(0x3777A3A2E17F27DA);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _Input1Offset!.Value);
+    }
   }
-  private static readonly nint _OutputFieldOffset = Schema.GetOffset(0x3777A3A2324F6F74);
+  private static nint? _OutputFieldOffset;
 
   public ParticleAttributeIndex_t OutputField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset);
+    get {
+      if (_OutputFieldOffset == null) {
+        _OutputFieldOffset = Schema.GetOffset(0x3777A3A2324F6F74);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset!.Value);
+    }
   }
-  private static readonly nint _SetMethodOffset = Schema.GetOffset(0x3777A3A2FB53C31E);
+  private static nint? _SetMethodOffset;
 
   public ref ParticleSetMethod_t SetMethod {
-    get => ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset);
+    get {
+      if (_SetMethodOffset == null) {
+        _SetMethodOffset = Schema.GetOffset(0x3777A3A2FB53C31E);
+      }
+      return ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset!.Value);
+    }
   }
-  private static readonly nint _NormalizedOutputOffset = Schema.GetOffset(0x3777A3A20AA98C55);
+  private static nint? _NormalizedOutputOffset;
 
   public ref bool NormalizedOutput {
-    get => ref _Handle.AsRef<bool>(_NormalizedOutputOffset);
+    get {
+      if (_NormalizedOutputOffset == null) {
+        _NormalizedOutputOffset = Schema.GetOffset(0x3777A3A20AA98C55);
+      }
+      return ref _Handle.AsRef<bool>(_NormalizedOutputOffset!.Value);
+    }
   }
 
 

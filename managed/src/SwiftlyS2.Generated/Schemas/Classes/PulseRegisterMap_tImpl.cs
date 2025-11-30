@@ -17,20 +17,35 @@ internal partial class PulseRegisterMap_tImpl : SchemaClass, PulseRegisterMap_t 
   public PulseRegisterMap_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InparamsOffset = Schema.GetOffset(0x833FEA64B9B18E04);
+  private static nint? _InparamsOffset;
 
   public SchemaUntypedField Inparams {
-    get => new SchemaUntypedField(_Handle + _InparamsOffset);
+    get {
+      if (_InparamsOffset == null) {
+        _InparamsOffset = Schema.GetOffset(0x833FEA64B9B18E04);
+      }
+      return new SchemaUntypedField(_Handle + _InparamsOffset!.Value);
+    }
   }
-  private static readonly nint _InparamsWhichCanBeMovedOffset = Schema.GetOffset(0x833FEA6405245E23);
+  private static nint? _InparamsWhichCanBeMovedOffset;
 
   public SchemaUntypedField InparamsWhichCanBeMoved {
-    get => new SchemaUntypedField(_Handle + _InparamsWhichCanBeMovedOffset);
+    get {
+      if (_InparamsWhichCanBeMovedOffset == null) {
+        _InparamsWhichCanBeMovedOffset = Schema.GetOffset(0x833FEA6405245E23);
+      }
+      return new SchemaUntypedField(_Handle + _InparamsWhichCanBeMovedOffset!.Value);
+    }
   }
-  private static readonly nint _OutparamsOffset = Schema.GetOffset(0x833FEA64798D964D);
+  private static nint? _OutparamsOffset;
 
   public SchemaUntypedField Outparams {
-    get => new SchemaUntypedField(_Handle + _OutparamsOffset);
+    get {
+      if (_OutparamsOffset == null) {
+        _OutparamsOffset = Schema.GetOffset(0x833FEA64798D964D);
+      }
+      return new SchemaUntypedField(_Handle + _OutparamsOffset!.Value);
+    }
   }
 
 

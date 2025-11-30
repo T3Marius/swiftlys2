@@ -17,20 +17,35 @@ internal partial class CPathCornerImpl : CPointEntityImpl, CPathCorner {
   public CPathCornerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WaitOffset = Schema.GetOffset(0xF74EA45499A062B6);
+  private static nint? _WaitOffset;
 
   public ref float Wait {
-    get => ref _Handle.AsRef<float>(_WaitOffset);
+    get {
+      if (_WaitOffset == null) {
+        _WaitOffset = Schema.GetOffset(0xF74EA45499A062B6);
+      }
+      return ref _Handle.AsRef<float>(_WaitOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0xF74EA4545ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0xF74EA4545ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _OnPassOffset = Schema.GetOffset(0xF74EA4549B527249);
+  private static nint? _OnPassOffset;
 
   public CEntityIOOutput OnPass {
-    get => new CEntityIOOutputImpl(_Handle + _OnPassOffset);
+    get {
+      if (_OnPassOffset == null) {
+        _OnPassOffset = Schema.GetOffset(0xF74EA4549B527249);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnPassOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class HSequenceImpl : SchemaClass, HSequence {
   public HSequenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x5388CC0EDCB0894A);
+  private static nint? _ValueOffset;
 
   public ref int Value {
-    get => ref _Handle.AsRef<int>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x5388CC0EDCB0894A);
+      }
+      return ref _Handle.AsRef<int>(_ValueOffset!.Value);
+    }
   }
 
 

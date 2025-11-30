@@ -17,15 +17,25 @@ internal partial class CAnimNodePathImpl : SchemaClass, CAnimNodePath {
   public CAnimNodePathImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PathOffset = Schema.GetOffset(0xE070E30C2915C8D6);
+  private static nint? _PathOffset;
 
   public SchemaUntypedField Path {
-    get => new SchemaUntypedField(_Handle + _PathOffset);
+    get {
+      if (_PathOffset == null) {
+        _PathOffset = Schema.GetOffset(0xE070E30C2915C8D6);
+      }
+      return new SchemaUntypedField(_Handle + _PathOffset!.Value);
+    }
   }
-  private static readonly nint _CountOffset = Schema.GetOffset(0xE070E30C7D31AC08);
+  private static nint? _CountOffset;
 
   public ref int Count {
-    get => ref _Handle.AsRef<int>(_CountOffset);
+    get {
+      if (_CountOffset == null) {
+        _CountOffset = Schema.GetOffset(0xE070E30C7D31AC08);
+      }
+      return ref _Handle.AsRef<int>(_CountOffset!.Value);
+    }
   }
 
 

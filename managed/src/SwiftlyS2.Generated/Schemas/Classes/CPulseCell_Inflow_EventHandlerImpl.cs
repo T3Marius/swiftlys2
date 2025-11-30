@@ -17,10 +17,15 @@ internal partial class CPulseCell_Inflow_EventHandlerImpl : CPulseCell_Inflow_Ba
   public CPulseCell_Inflow_EventHandlerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EventNameOffset = Schema.GetOffset(0x9BAF9AD81DFEB13C);
+  private static nint? _EventNameOffset;
 
   public SchemaUntypedField EventName {
-    get => new SchemaUntypedField(_Handle + _EventNameOffset);
+    get {
+      if (_EventNameOffset == null) {
+        _EventNameOffset = Schema.GetOffset(0x9BAF9AD81DFEB13C);
+      }
+      return new SchemaUntypedField(_Handle + _EventNameOffset!.Value);
+    }
   }
 
 

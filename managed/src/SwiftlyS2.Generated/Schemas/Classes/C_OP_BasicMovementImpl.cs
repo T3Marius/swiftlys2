@@ -17,30 +17,55 @@ internal partial class C_OP_BasicMovementImpl : CParticleFunctionOperatorImpl, C
   public C_OP_BasicMovementImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _GravityOffset = Schema.GetOffset(0xC8273B20790C70C5);
+  private static nint? _GravityOffset;
 
   public CParticleCollectionVecInput Gravity {
-    get => new CParticleCollectionVecInputImpl(_Handle + _GravityOffset);
+    get {
+      if (_GravityOffset == null) {
+        _GravityOffset = Schema.GetOffset(0xC8273B20790C70C5);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _GravityOffset!.Value);
+    }
   }
-  private static readonly nint _DragOffset = Schema.GetOffset(0xC8273B2050DA6497);
+  private static nint? _DragOffset;
 
   public CParticleCollectionFloatInput Drag {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _DragOffset);
+    get {
+      if (_DragOffset == null) {
+        _DragOffset = Schema.GetOffset(0xC8273B2050DA6497);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _DragOffset!.Value);
+    }
   }
-  private static readonly nint _MassControlsOffset = Schema.GetOffset(0xC8273B2039CBEACB);
+  private static nint? _MassControlsOffset;
 
   public CParticleMassCalculationParameters MassControls {
-    get => new CParticleMassCalculationParametersImpl(_Handle + _MassControlsOffset);
+    get {
+      if (_MassControlsOffset == null) {
+        _MassControlsOffset = Schema.GetOffset(0xC8273B2039CBEACB);
+      }
+      return new CParticleMassCalculationParametersImpl(_Handle + _MassControlsOffset!.Value);
+    }
   }
-  private static readonly nint _MaxConstraintPassesOffset = Schema.GetOffset(0xC8273B20D83D0CAB);
+  private static nint? _MaxConstraintPassesOffset;
 
   public ref int MaxConstraintPasses {
-    get => ref _Handle.AsRef<int>(_MaxConstraintPassesOffset);
+    get {
+      if (_MaxConstraintPassesOffset == null) {
+        _MaxConstraintPassesOffset = Schema.GetOffset(0xC8273B20D83D0CAB);
+      }
+      return ref _Handle.AsRef<int>(_MaxConstraintPassesOffset!.Value);
+    }
   }
-  private static readonly nint _UseNewCodeOffset = Schema.GetOffset(0xC8273B207C6D1CDF);
+  private static nint? _UseNewCodeOffset;
 
   public ref bool UseNewCode {
-    get => ref _Handle.AsRef<bool>(_UseNewCodeOffset);
+    get {
+      if (_UseNewCodeOffset == null) {
+        _UseNewCodeOffset = Schema.GetOffset(0xC8273B207C6D1CDF);
+      }
+      return ref _Handle.AsRef<bool>(_UseNewCodeOffset!.Value);
+    }
   }
 
 

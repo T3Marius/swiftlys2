@@ -17,70 +17,135 @@ internal partial class C_OP_OscillateScalarImpl : CParticleFunctionOperatorImpl,
   public C_OP_OscillateScalarImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RateMinOffset = Schema.GetOffset(0x92E728A5645AF561);
+  private static nint? _RateMinOffset;
 
   public ref float RateMin {
-    get => ref _Handle.AsRef<float>(_RateMinOffset);
+    get {
+      if (_RateMinOffset == null) {
+        _RateMinOffset = Schema.GetOffset(0x92E728A5645AF561);
+      }
+      return ref _Handle.AsRef<float>(_RateMinOffset!.Value);
+    }
   }
-  private static readonly nint _RateMaxOffset = Schema.GetOffset(0x92E728A5566E670F);
+  private static nint? _RateMaxOffset;
 
   public ref float RateMax {
-    get => ref _Handle.AsRef<float>(_RateMaxOffset);
+    get {
+      if (_RateMaxOffset == null) {
+        _RateMaxOffset = Schema.GetOffset(0x92E728A5566E670F);
+      }
+      return ref _Handle.AsRef<float>(_RateMaxOffset!.Value);
+    }
   }
-  private static readonly nint _FrequencyMinOffset = Schema.GetOffset(0x92E728A531C7331B);
+  private static nint? _FrequencyMinOffset;
 
   public ref float FrequencyMin {
-    get => ref _Handle.AsRef<float>(_FrequencyMinOffset);
+    get {
+      if (_FrequencyMinOffset == null) {
+        _FrequencyMinOffset = Schema.GetOffset(0x92E728A531C7331B);
+      }
+      return ref _Handle.AsRef<float>(_FrequencyMinOffset!.Value);
+    }
   }
-  private static readonly nint _FrequencyMaxOffset = Schema.GetOffset(0x92E728A527B39BA5);
+  private static nint? _FrequencyMaxOffset;
 
   public ref float FrequencyMax {
-    get => ref _Handle.AsRef<float>(_FrequencyMaxOffset);
+    get {
+      if (_FrequencyMaxOffset == null) {
+        _FrequencyMaxOffset = Schema.GetOffset(0x92E728A527B39BA5);
+      }
+      return ref _Handle.AsRef<float>(_FrequencyMaxOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOffset = Schema.GetOffset(0x92E728A5C257B93B);
+  private static nint? _FieldOffset;
 
   public ParticleAttributeIndex_t Field {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset);
+    get {
+      if (_FieldOffset == null) {
+        _FieldOffset = Schema.GetOffset(0x92E728A5C257B93B);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset!.Value);
+    }
   }
-  private static readonly nint _ProportionalOffset = Schema.GetOffset(0x92E728A5891F328A);
+  private static nint? _ProportionalOffset;
 
   public ref bool Proportional {
-    get => ref _Handle.AsRef<bool>(_ProportionalOffset);
+    get {
+      if (_ProportionalOffset == null) {
+        _ProportionalOffset = Schema.GetOffset(0x92E728A5891F328A);
+      }
+      return ref _Handle.AsRef<bool>(_ProportionalOffset!.Value);
+    }
   }
-  private static readonly nint _ProportionalOpOffset = Schema.GetOffset(0x92E728A50F8832BD);
+  private static nint? _ProportionalOpOffset;
 
   public ref bool ProportionalOp {
-    get => ref _Handle.AsRef<bool>(_ProportionalOpOffset);
+    get {
+      if (_ProportionalOpOffset == null) {
+        _ProportionalOpOffset = Schema.GetOffset(0x92E728A50F8832BD);
+      }
+      return ref _Handle.AsRef<bool>(_ProportionalOpOffset!.Value);
+    }
   }
-  private static readonly nint _StartTime_minOffset = Schema.GetOffset(0x92E728A55AC75BFB);
+  private static nint? _StartTime_minOffset;
 
   public ref float StartTime_min {
-    get => ref _Handle.AsRef<float>(_StartTime_minOffset);
+    get {
+      if (_StartTime_minOffset == null) {
+        _StartTime_minOffset = Schema.GetOffset(0x92E728A55AC75BFB);
+      }
+      return ref _Handle.AsRef<float>(_StartTime_minOffset!.Value);
+    }
   }
-  private static readonly nint _StartTime_maxOffset = Schema.GetOffset(0x92E728A550B23185);
+  private static nint? _StartTime_maxOffset;
 
   public ref float StartTime_max {
-    get => ref _Handle.AsRef<float>(_StartTime_maxOffset);
+    get {
+      if (_StartTime_maxOffset == null) {
+        _StartTime_maxOffset = Schema.GetOffset(0x92E728A550B23185);
+      }
+      return ref _Handle.AsRef<float>(_StartTime_maxOffset!.Value);
+    }
   }
-  private static readonly nint _EndTime_minOffset = Schema.GetOffset(0x92E728A57B891932);
+  private static nint? _EndTime_minOffset;
 
   public ref float EndTime_min {
-    get => ref _Handle.AsRef<float>(_EndTime_minOffset);
+    get {
+      if (_EndTime_minOffset == null) {
+        _EndTime_minOffset = Schema.GetOffset(0x92E728A57B891932);
+      }
+      return ref _Handle.AsRef<float>(_EndTime_minOffset!.Value);
+    }
   }
-  private static readonly nint _EndTime_maxOffset = Schema.GetOffset(0x92E728A58575A138);
+  private static nint? _EndTime_maxOffset;
 
   public ref float EndTime_max {
-    get => ref _Handle.AsRef<float>(_EndTime_maxOffset);
+    get {
+      if (_EndTime_maxOffset == null) {
+        _EndTime_maxOffset = Schema.GetOffset(0x92E728A58575A138);
+      }
+      return ref _Handle.AsRef<float>(_EndTime_maxOffset!.Value);
+    }
   }
-  private static readonly nint _OscMultOffset = Schema.GetOffset(0x92E728A516278E94);
+  private static nint? _OscMultOffset;
 
   public ref float OscMult {
-    get => ref _Handle.AsRef<float>(_OscMultOffset);
+    get {
+      if (_OscMultOffset == null) {
+        _OscMultOffset = Schema.GetOffset(0x92E728A516278E94);
+      }
+      return ref _Handle.AsRef<float>(_OscMultOffset!.Value);
+    }
   }
-  private static readonly nint _OscAddOffset = Schema.GetOffset(0x92E728A57B38A63D);
+  private static nint? _OscAddOffset;
 
   public ref float OscAdd {
-    get => ref _Handle.AsRef<float>(_OscAddOffset);
+    get {
+      if (_OscAddOffset == null) {
+        _OscAddOffset = Schema.GetOffset(0x92E728A57B38A63D);
+      }
+      return ref _Handle.AsRef<float>(_OscAddOffset!.Value);
+    }
   }
 
 

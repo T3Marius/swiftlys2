@@ -26,6 +26,9 @@ public static class SwiftlyCoreInjection
           .AddSingleton(core.Profiler)
           .AddSingleton(core.Scheduler)
           .AddSingleton(core.Trace)
+          .AddSingleton(core.MenusAPI)
+          .AddSingleton(core.CommandLine)
+          .AddSingleton(core.GameFileSystem)
           .AddSingleton(core.Translation);
 
         if (addLogger)

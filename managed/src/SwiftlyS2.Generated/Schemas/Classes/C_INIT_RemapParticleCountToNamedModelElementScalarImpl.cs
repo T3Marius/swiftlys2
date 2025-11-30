@@ -17,33 +17,59 @@ internal partial class C_INIT_RemapParticleCountToNamedModelElementScalarImpl : 
   public C_INIT_RemapParticleCountToNamedModelElementScalarImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ModelOffset = Schema.GetOffset(0xB011C761E100C814);
+  private static nint? _ModelOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCModel> Model {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset);
+    get {
+      if (_ModelOffset == null) {
+        _ModelOffset = Schema.GetOffset(0xB011C761E100C814);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMinNameOffset = Schema.GetOffset(0xB011C761CF5C20FB);
+  private static nint? _OutputMinNameOffset;
 
   public string OutputMinName {
     get {
-      var ptr = _Handle.Read<nint>(_OutputMinNameOffset);
+      if (_OutputMinNameOffset == null) {
+        _OutputMinNameOffset = Schema.GetOffset(0xB011C761CF5C20FB);
+      }
+      var ptr = _Handle.Read<nint>(_OutputMinNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _OutputMinNameOffset, value);
+    set {
+      if (_OutputMinNameOffset == null) {
+        _OutputMinNameOffset = Schema.GetOffset(0xB011C761CF5C20FB);
+      }
+      Schema.SetString(_Handle, _OutputMinNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _OutputMaxNameOffset = Schema.GetOffset(0xB011C761553184F9);
+  private static nint? _OutputMaxNameOffset;
 
   public string OutputMaxName {
     get {
-      var ptr = _Handle.Read<nint>(_OutputMaxNameOffset);
+      if (_OutputMaxNameOffset == null) {
+        _OutputMaxNameOffset = Schema.GetOffset(0xB011C761553184F9);
+      }
+      var ptr = _Handle.Read<nint>(_OutputMaxNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _OutputMaxNameOffset, value);
+    set {
+      if (_OutputMaxNameOffset == null) {
+        _OutputMaxNameOffset = Schema.GetOffset(0xB011C761553184F9);
+      }
+      Schema.SetString(_Handle, _OutputMaxNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ModelFromRendererOffset = Schema.GetOffset(0xB011C761AEBA1F25);
+  private static nint? _ModelFromRendererOffset;
 
   public ref bool ModelFromRenderer {
-    get => ref _Handle.AsRef<bool>(_ModelFromRendererOffset);
+    get {
+      if (_ModelFromRendererOffset == null) {
+        _ModelFromRendererOffset = Schema.GetOffset(0xB011C761AEBA1F25);
+      }
+      return ref _Handle.AsRef<bool>(_ModelFromRendererOffset!.Value);
+    }
   }
 
 

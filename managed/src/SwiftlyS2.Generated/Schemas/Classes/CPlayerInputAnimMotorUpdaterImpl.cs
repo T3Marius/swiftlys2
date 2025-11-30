@@ -17,35 +17,65 @@ internal partial class CPlayerInputAnimMotorUpdaterImpl : CAnimMotorUpdaterBaseI
   public CPlayerInputAnimMotorUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SampleTimesOffset = Schema.GetOffset(0xA117CC02471975DF);
+  private static nint? _SampleTimesOffset;
 
   public ref CUtlVector<float> SampleTimes {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_SampleTimesOffset);
+    get {
+      if (_SampleTimesOffset == null) {
+        _SampleTimesOffset = Schema.GetOffset(0xA117CC02471975DF);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_SampleTimesOffset!.Value);
+    }
   }
-  private static readonly nint _SpringConstantOffset = Schema.GetOffset(0xA117CC02CE2260BE);
+  private static nint? _SpringConstantOffset;
 
   public ref float SpringConstant {
-    get => ref _Handle.AsRef<float>(_SpringConstantOffset);
+    get {
+      if (_SpringConstantOffset == null) {
+        _SpringConstantOffset = Schema.GetOffset(0xA117CC02CE2260BE);
+      }
+      return ref _Handle.AsRef<float>(_SpringConstantOffset!.Value);
+    }
   }
-  private static readonly nint _AnticipationDistanceOffset = Schema.GetOffset(0xA117CC0264273401);
+  private static nint? _AnticipationDistanceOffset;
 
   public ref float AnticipationDistance {
-    get => ref _Handle.AsRef<float>(_AnticipationDistanceOffset);
+    get {
+      if (_AnticipationDistanceOffset == null) {
+        _AnticipationDistanceOffset = Schema.GetOffset(0xA117CC0264273401);
+      }
+      return ref _Handle.AsRef<float>(_AnticipationDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _AnticipationPosParamOffset = Schema.GetOffset(0xA117CC0286389829);
+  private static nint? _AnticipationPosParamOffset;
 
   public CAnimParamHandle AnticipationPosParam {
-    get => new CAnimParamHandleImpl(_Handle + _AnticipationPosParamOffset);
+    get {
+      if (_AnticipationPosParamOffset == null) {
+        _AnticipationPosParamOffset = Schema.GetOffset(0xA117CC0286389829);
+      }
+      return new CAnimParamHandleImpl(_Handle + _AnticipationPosParamOffset!.Value);
+    }
   }
-  private static readonly nint _AnticipationHeadingParamOffset = Schema.GetOffset(0xA117CC02095DAB6D);
+  private static nint? _AnticipationHeadingParamOffset;
 
   public CAnimParamHandle AnticipationHeadingParam {
-    get => new CAnimParamHandleImpl(_Handle + _AnticipationHeadingParamOffset);
+    get {
+      if (_AnticipationHeadingParamOffset == null) {
+        _AnticipationHeadingParamOffset = Schema.GetOffset(0xA117CC02095DAB6D);
+      }
+      return new CAnimParamHandleImpl(_Handle + _AnticipationHeadingParamOffset!.Value);
+    }
   }
-  private static readonly nint _UseAccelerationOffset = Schema.GetOffset(0xA117CC02254F8B08);
+  private static nint? _UseAccelerationOffset;
 
   public ref bool UseAcceleration {
-    get => ref _Handle.AsRef<bool>(_UseAccelerationOffset);
+    get {
+      if (_UseAccelerationOffset == null) {
+        _UseAccelerationOffset = Schema.GetOffset(0xA117CC02254F8B08);
+      }
+      return ref _Handle.AsRef<bool>(_UseAccelerationOffset!.Value);
+    }
   }
 
 

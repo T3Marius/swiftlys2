@@ -17,20 +17,35 @@ internal partial class CNmIKRigImpl : SchemaClass, CNmIKRig {
   public CNmIKRigImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SkeletonOffset = Schema.GetOffset(0x9C509BCFE77F030E);
+  private static nint? _SkeletonOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCNmSkeleton> Skeleton {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmSkeleton>>(_SkeletonOffset);
+    get {
+      if (_SkeletonOffset == null) {
+        _SkeletonOffset = Schema.GetOffset(0x9C509BCFE77F030E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmSkeleton>>(_SkeletonOffset!.Value);
+    }
   }
-  private static readonly nint _BodiesOffset = Schema.GetOffset(0x9C509BCF24483A49);
+  private static nint? _BodiesOffset;
 
   public ref CUtlVector<CNmIKBody> Bodies {
-    get => ref _Handle.AsRef<CUtlVector<CNmIKBody>>(_BodiesOffset);
+    get {
+      if (_BodiesOffset == null) {
+        _BodiesOffset = Schema.GetOffset(0x9C509BCF24483A49);
+      }
+      return ref _Handle.AsRef<CUtlVector<CNmIKBody>>(_BodiesOffset!.Value);
+    }
   }
-  private static readonly nint _JointsOffset = Schema.GetOffset(0x9C509BCF364EA4AC);
+  private static nint? _JointsOffset;
 
   public ref CUtlVector<CNmIKJoint> Joints {
-    get => ref _Handle.AsRef<CUtlVector<CNmIKJoint>>(_JointsOffset);
+    get {
+      if (_JointsOffset == null) {
+        _JointsOffset = Schema.GetOffset(0x9C509BCF364EA4AC);
+      }
+      return ref _Handle.AsRef<CUtlVector<CNmIKJoint>>(_JointsOffset!.Value);
+    }
   }
 
 

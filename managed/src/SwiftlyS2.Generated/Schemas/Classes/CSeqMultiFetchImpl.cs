@@ -17,15 +17,25 @@ internal partial class CSeqMultiFetchImpl : SchemaClass, CSeqMultiFetch {
   public CSeqMultiFetchImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x3846FD62DC74A14C);
+  private static nint? _FlagsOffset;
 
   public CSeqMultiFetchFlag Flags {
-    get => new CSeqMultiFetchFlagImpl(_Handle + _FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x3846FD62DC74A14C);
+      }
+      return new CSeqMultiFetchFlagImpl(_Handle + _FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _LocalReferenceArrayOffset = Schema.GetOffset(0x3846FD6290C98686);
+  private static nint? _LocalReferenceArrayOffset;
 
   public ref CUtlVector<short> LocalReferenceArray {
-    get => ref _Handle.AsRef<CUtlVector<short>>(_LocalReferenceArrayOffset);
+    get {
+      if (_LocalReferenceArrayOffset == null) {
+        _LocalReferenceArrayOffset = Schema.GetOffset(0x3846FD6290C98686);
+      }
+      return ref _Handle.AsRef<CUtlVector<short>>(_LocalReferenceArrayOffset!.Value);
+    }
   }
   public ISchemaFixedArray<int> GroupSize {
     get => new SchemaFixedArray<int>(_Handle, 0x3846FD6258533CF9, 2, 4, 4);
@@ -33,30 +43,55 @@ internal partial class CSeqMultiFetchImpl : SchemaClass, CSeqMultiFetch {
   public ISchemaFixedArray<int> LocalPose {
     get => new SchemaFixedArray<int>(_Handle, 0x3846FD6270BF8111, 2, 4, 4);
   }
-  private static readonly nint _PoseKeyArray0Offset = Schema.GetOffset(0x3846FD62E139B398);
+  private static nint? _PoseKeyArray0Offset;
 
   public ref CUtlVector<float> PoseKeyArray0 {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_PoseKeyArray0Offset);
+    get {
+      if (_PoseKeyArray0Offset == null) {
+        _PoseKeyArray0Offset = Schema.GetOffset(0x3846FD62E139B398);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_PoseKeyArray0Offset!.Value);
+    }
   }
-  private static readonly nint _PoseKeyArray1Offset = Schema.GetOffset(0x3846FD62E239B52B);
+  private static nint? _PoseKeyArray1Offset;
 
   public ref CUtlVector<float> PoseKeyArray1 {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_PoseKeyArray1Offset);
+    get {
+      if (_PoseKeyArray1Offset == null) {
+        _PoseKeyArray1Offset = Schema.GetOffset(0x3846FD62E239B52B);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_PoseKeyArray1Offset!.Value);
+    }
   }
-  private static readonly nint _LocalCyclePoseParameterOffset = Schema.GetOffset(0x3846FD62722CCD8E);
+  private static nint? _LocalCyclePoseParameterOffset;
 
   public ref int LocalCyclePoseParameter {
-    get => ref _Handle.AsRef<int>(_LocalCyclePoseParameterOffset);
+    get {
+      if (_LocalCyclePoseParameterOffset == null) {
+        _LocalCyclePoseParameterOffset = Schema.GetOffset(0x3846FD62722CCD8E);
+      }
+      return ref _Handle.AsRef<int>(_LocalCyclePoseParameterOffset!.Value);
+    }
   }
-  private static readonly nint _CalculatePoseParametersOffset = Schema.GetOffset(0x3846FD6259BED3FE);
+  private static nint? _CalculatePoseParametersOffset;
 
   public ref bool CalculatePoseParameters {
-    get => ref _Handle.AsRef<bool>(_CalculatePoseParametersOffset);
+    get {
+      if (_CalculatePoseParametersOffset == null) {
+        _CalculatePoseParametersOffset = Schema.GetOffset(0x3846FD6259BED3FE);
+      }
+      return ref _Handle.AsRef<bool>(_CalculatePoseParametersOffset!.Value);
+    }
   }
-  private static readonly nint _FixedBlendWeightOffset = Schema.GetOffset(0x3846FD626C68A6B4);
+  private static nint? _FixedBlendWeightOffset;
 
   public ref bool FixedBlendWeight {
-    get => ref _Handle.AsRef<bool>(_FixedBlendWeightOffset);
+    get {
+      if (_FixedBlendWeightOffset == null) {
+        _FixedBlendWeightOffset = Schema.GetOffset(0x3846FD626C68A6B4);
+      }
+      return ref _Handle.AsRef<bool>(_FixedBlendWeightOffset!.Value);
+    }
   }
   public ISchemaFixedArray<float> FixedBlendWeightVals {
     get => new SchemaFixedArray<float>(_Handle, 0x3846FD6221B3BB76, 2, 4, 4);

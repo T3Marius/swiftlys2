@@ -17,43 +17,79 @@ internal partial class RenderInputLayoutField_tImpl : SchemaClass, RenderInputLa
   public RenderInputLayoutField_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SemanticNameOffset = Schema.GetOffset(0x752C88F08F25E44C);
+  private static nint? _SemanticNameOffset;
 
   public string SemanticName {
     get {
-      var ptr = _Handle + _SemanticNameOffset;
-      return Schema.GetString(ptr);
+        if (_SemanticNameOffset == null) {
+            _SemanticNameOffset = Schema.GetOffset(0x752C88F08F25E44C);
+        }
+        var ptr = _Handle + _SemanticNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _SemanticNameOffset, value, 32);
+    set {
+        if (_SemanticNameOffset == null) {
+            _SemanticNameOffset = Schema.GetOffset(0x752C88F08F25E44C);
+        }
+        Schema.SetFixedString(_Handle, _SemanticNameOffset!.Value, value, 32);
+    }
   } 
-  private static readonly nint _SemanticIndexOffset = Schema.GetOffset(0x752C88F0AAC99783);
+  private static nint? _SemanticIndexOffset;
 
   public ref byte SemanticIndex {
-    get => ref _Handle.AsRef<byte>(_SemanticIndexOffset);
+    get {
+      if (_SemanticIndexOffset == null) {
+        _SemanticIndexOffset = Schema.GetOffset(0x752C88F0AAC99783);
+      }
+      return ref _Handle.AsRef<byte>(_SemanticIndexOffset!.Value);
+    }
   }
-  private static readonly nint _OffsetOffset = Schema.GetOffset(0x752C88F027734C8E);
+  private static nint? _OffsetOffset;
 
   public ref short Offset {
-    get => ref _Handle.AsRef<short>(_OffsetOffset);
+    get {
+      if (_OffsetOffset == null) {
+        _OffsetOffset = Schema.GetOffset(0x752C88F027734C8E);
+      }
+      return ref _Handle.AsRef<short>(_OffsetOffset!.Value);
+    }
   }
-  private static readonly nint _SlotOffset = Schema.GetOffset(0x752C88F08A37D215);
+  private static nint? _SlotOffset;
 
   public ref byte Slot {
-    get => ref _Handle.AsRef<byte>(_SlotOffset);
+    get {
+      if (_SlotOffset == null) {
+        _SlotOffset = Schema.GetOffset(0x752C88F08A37D215);
+      }
+      return ref _Handle.AsRef<byte>(_SlotOffset!.Value);
+    }
   }
-  private static readonly nint _SlotTypeOffset = Schema.GetOffset(0x752C88F05072B95D);
+  private static nint? _SlotTypeOffset;
 
   public ref RenderSlotType_t SlotType {
-    get => ref _Handle.AsRef<RenderSlotType_t>(_SlotTypeOffset);
+    get {
+      if (_SlotTypeOffset == null) {
+        _SlotTypeOffset = Schema.GetOffset(0x752C88F05072B95D);
+      }
+      return ref _Handle.AsRef<RenderSlotType_t>(_SlotTypeOffset!.Value);
+    }
   }
-  private static readonly nint _ShaderSemanticOffset = Schema.GetOffset(0x752C88F0897CAA95);
+  private static nint? _ShaderSemanticOffset;
 
   public string ShaderSemantic {
     get {
-      var ptr = _Handle + _ShaderSemanticOffset;
-      return Schema.GetString(ptr);
+        if (_ShaderSemanticOffset == null) {
+            _ShaderSemanticOffset = Schema.GetOffset(0x752C88F0897CAA95);
+        }
+        var ptr = _Handle + _ShaderSemanticOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _ShaderSemanticOffset, value, 32);
+    set {
+        if (_ShaderSemanticOffset == null) {
+            _ShaderSemanticOffset = Schema.GetOffset(0x752C88F0897CAA95);
+        }
+        Schema.SetFixedString(_Handle, _ShaderSemanticOffset!.Value, value, 32);
+    }
   } 
 
 

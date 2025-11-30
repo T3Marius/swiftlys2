@@ -17,30 +17,55 @@ internal partial class VMixShaperDesc_tImpl : SchemaClass, VMixShaperDesc_t {
   public VMixShaperDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ShapeOffset = Schema.GetOffset(0x80E2A73621208A02);
+  private static nint? _ShapeOffset;
 
   public ref int Shape {
-    get => ref _Handle.AsRef<int>(_ShapeOffset);
+    get {
+      if (_ShapeOffset == null) {
+        _ShapeOffset = Schema.GetOffset(0x80E2A73621208A02);
+      }
+      return ref _Handle.AsRef<int>(_ShapeOffset!.Value);
+    }
   }
-  private static readonly nint _FldbDriveOffset = Schema.GetOffset(0x80E2A7360E12679B);
+  private static nint? _FldbDriveOffset;
 
   public ref float FldbDrive {
-    get => ref _Handle.AsRef<float>(_FldbDriveOffset);
+    get {
+      if (_FldbDriveOffset == null) {
+        _FldbDriveOffset = Schema.GetOffset(0x80E2A7360E12679B);
+      }
+      return ref _Handle.AsRef<float>(_FldbDriveOffset!.Value);
+    }
   }
-  private static readonly nint _FldbOutputGainOffset = Schema.GetOffset(0x80E2A73667F97C23);
+  private static nint? _FldbOutputGainOffset;
 
   public ref float FldbOutputGain {
-    get => ref _Handle.AsRef<float>(_FldbOutputGainOffset);
+    get {
+      if (_FldbOutputGainOffset == null) {
+        _FldbOutputGainOffset = Schema.GetOffset(0x80E2A73667F97C23);
+      }
+      return ref _Handle.AsRef<float>(_FldbOutputGainOffset!.Value);
+    }
   }
-  private static readonly nint _WetMixOffset = Schema.GetOffset(0x80E2A736D5453C15);
+  private static nint? _WetMixOffset;
 
   public ref float WetMix {
-    get => ref _Handle.AsRef<float>(_WetMixOffset);
+    get {
+      if (_WetMixOffset == null) {
+        _WetMixOffset = Schema.GetOffset(0x80E2A736D5453C15);
+      }
+      return ref _Handle.AsRef<float>(_WetMixOffset!.Value);
+    }
   }
-  private static readonly nint _OversampleFactorOffset = Schema.GetOffset(0x80E2A736142D0AF2);
+  private static nint? _OversampleFactorOffset;
 
   public ref int OversampleFactor {
-    get => ref _Handle.AsRef<int>(_OversampleFactorOffset);
+    get {
+      if (_OversampleFactorOffset == null) {
+        _OversampleFactorOffset = Schema.GetOffset(0x80E2A736142D0AF2);
+      }
+      return ref _Handle.AsRef<int>(_OversampleFactorOffset!.Value);
+    }
   }
 
 

@@ -17,45 +17,85 @@ internal partial class NmCompressionSettings_tImpl : SchemaClass, NmCompressionS
   public NmCompressionSettings_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TranslationRangeXOffset = Schema.GetOffset(0xA8EC8858BF2C2B);
+  private static nint? _TranslationRangeXOffset;
 
   public NmCompressionSettings_t__QuantizationRange_t TranslationRangeX {
-    get => new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _TranslationRangeXOffset);
+    get {
+      if (_TranslationRangeXOffset == null) {
+        _TranslationRangeXOffset = Schema.GetOffset(0xA8EC8858BF2C2B);
+      }
+      return new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _TranslationRangeXOffset!.Value);
+    }
   }
-  private static readonly nint _TranslationRangeYOffset = Schema.GetOffset(0xA8EC8857BF2A98);
+  private static nint? _TranslationRangeYOffset;
 
   public NmCompressionSettings_t__QuantizationRange_t TranslationRangeY {
-    get => new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _TranslationRangeYOffset);
+    get {
+      if (_TranslationRangeYOffset == null) {
+        _TranslationRangeYOffset = Schema.GetOffset(0xA8EC8857BF2A98);
+      }
+      return new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _TranslationRangeYOffset!.Value);
+    }
   }
-  private static readonly nint _TranslationRangeZOffset = Schema.GetOffset(0xA8EC885ABF2F51);
+  private static nint? _TranslationRangeZOffset;
 
   public NmCompressionSettings_t__QuantizationRange_t TranslationRangeZ {
-    get => new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _TranslationRangeZOffset);
+    get {
+      if (_TranslationRangeZOffset == null) {
+        _TranslationRangeZOffset = Schema.GetOffset(0xA8EC885ABF2F51);
+      }
+      return new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _TranslationRangeZOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleRangeOffset = Schema.GetOffset(0xA8EC88E96F803E);
+  private static nint? _ScaleRangeOffset;
 
   public NmCompressionSettings_t__QuantizationRange_t ScaleRange {
-    get => new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _ScaleRangeOffset);
+    get {
+      if (_ScaleRangeOffset == null) {
+        _ScaleRangeOffset = Schema.GetOffset(0xA8EC88E96F803E);
+      }
+      return new NmCompressionSettings_t__QuantizationRange_tImpl(_Handle + _ScaleRangeOffset!.Value);
+    }
   }
-  private static readonly nint _ConstantRotationOffset = Schema.GetOffset(0xA8EC88C609717F);
+  private static nint? _ConstantRotationOffset;
 
   public ref Quaternion ConstantRotation {
-    get => ref _Handle.AsRef<Quaternion>(_ConstantRotationOffset);
+    get {
+      if (_ConstantRotationOffset == null) {
+        _ConstantRotationOffset = Schema.GetOffset(0xA8EC88C609717F);
+      }
+      return ref _Handle.AsRef<Quaternion>(_ConstantRotationOffset!.Value);
+    }
   }
-  private static readonly nint _IsRotationStaticOffset = Schema.GetOffset(0xA8EC88D75373C5);
+  private static nint? _IsRotationStaticOffset;
 
   public ref bool IsRotationStatic {
-    get => ref _Handle.AsRef<bool>(_IsRotationStaticOffset);
+    get {
+      if (_IsRotationStaticOffset == null) {
+        _IsRotationStaticOffset = Schema.GetOffset(0xA8EC88D75373C5);
+      }
+      return ref _Handle.AsRef<bool>(_IsRotationStaticOffset!.Value);
+    }
   }
-  private static readonly nint _IsTranslationStaticOffset = Schema.GetOffset(0xA8EC888ABDF382);
+  private static nint? _IsTranslationStaticOffset;
 
   public ref bool IsTranslationStatic {
-    get => ref _Handle.AsRef<bool>(_IsTranslationStaticOffset);
+    get {
+      if (_IsTranslationStaticOffset == null) {
+        _IsTranslationStaticOffset = Schema.GetOffset(0xA8EC888ABDF382);
+      }
+      return ref _Handle.AsRef<bool>(_IsTranslationStaticOffset!.Value);
+    }
   }
-  private static readonly nint _IsScaleStaticOffset = Schema.GetOffset(0xA8EC88FDB26607);
+  private static nint? _IsScaleStaticOffset;
 
   public ref bool IsScaleStatic {
-    get => ref _Handle.AsRef<bool>(_IsScaleStaticOffset);
+    get {
+      if (_IsScaleStaticOffset == null) {
+        _IsScaleStaticOffset = Schema.GetOffset(0xA8EC88FDB26607);
+      }
+      return ref _Handle.AsRef<bool>(_IsScaleStaticOffset!.Value);
+    }
   }
 
 

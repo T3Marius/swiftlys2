@@ -17,70 +17,135 @@ internal partial class CNmChainSolverTaskImpl : CNmPoseTaskImpl, CNmChainSolverT
   public CNmChainSolverTaskImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EffectorBoneIdxOffset = Schema.GetOffset(0x5D675A12A9C233BE);
+  private static nint? _EffectorBoneIdxOffset;
 
   public ref int EffectorBoneIdx {
-    get => ref _Handle.AsRef<int>(_EffectorBoneIdxOffset);
+    get {
+      if (_EffectorBoneIdxOffset == null) {
+        _EffectorBoneIdxOffset = Schema.GetOffset(0x5D675A12A9C233BE);
+      }
+      return ref _Handle.AsRef<int>(_EffectorBoneIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EffectorTargetBoneIdxOffset = Schema.GetOffset(0x5D675A123A19E0D9);
+  private static nint? _EffectorTargetBoneIdxOffset;
 
   public ref int EffectorTargetBoneIdx {
-    get => ref _Handle.AsRef<int>(_EffectorTargetBoneIdxOffset);
+    get {
+      if (_EffectorTargetBoneIdxOffset == null) {
+        _EffectorTargetBoneIdxOffset = Schema.GetOffset(0x5D675A123A19E0D9);
+      }
+      return ref _Handle.AsRef<int>(_EffectorTargetBoneIdxOffset!.Value);
+    }
   }
-  private static readonly nint _TargetTransformOffset = Schema.GetOffset(0x5D675A12B1497974);
+  private static nint? _TargetTransformOffset;
 
   public ref CTransform TargetTransform {
-    get => ref _Handle.AsRef<CTransform>(_TargetTransformOffset);
+    get {
+      if (_TargetTransformOffset == null) {
+        _TargetTransformOffset = Schema.GetOffset(0x5D675A12B1497974);
+      }
+      return ref _Handle.AsRef<CTransform>(_TargetTransformOffset!.Value);
+    }
   }
-  private static readonly nint _NumBonesInChainOffset = Schema.GetOffset(0x5D675A12CAD2EB3E);
+  private static nint? _NumBonesInChainOffset;
 
   public ref int NumBonesInChain {
-    get => ref _Handle.AsRef<int>(_NumBonesInChainOffset);
+    get {
+      if (_NumBonesInChainOffset == null) {
+        _NumBonesInChainOffset = Schema.GetOffset(0x5D675A12CAD2EB3E);
+      }
+      return ref _Handle.AsRef<int>(_NumBonesInChainOffset!.Value);
+    }
   }
-  private static readonly nint _EffectorTargetOffset = Schema.GetOffset(0x5D675A128D86AF5C);
+  private static nint? _EffectorTargetOffset;
 
   public CNmTarget EffectorTarget {
-    get => new CNmTargetImpl(_Handle + _EffectorTargetOffset);
+    get {
+      if (_EffectorTargetOffset == null) {
+        _EffectorTargetOffset = Schema.GetOffset(0x5D675A128D86AF5C);
+      }
+      return new CNmTargetImpl(_Handle + _EffectorTargetOffset!.Value);
+    }
   }
-  private static readonly nint _BlendModeOffset = Schema.GetOffset(0x5D675A128D5006AB);
+  private static nint? _BlendModeOffset;
 
   public ref NmIKBlendMode_t BlendMode {
-    get => ref _Handle.AsRef<NmIKBlendMode_t>(_BlendModeOffset);
+    get {
+      if (_BlendModeOffset == null) {
+        _BlendModeOffset = Schema.GetOffset(0x5D675A128D5006AB);
+      }
+      return ref _Handle.AsRef<NmIKBlendMode_t>(_BlendModeOffset!.Value);
+    }
   }
-  private static readonly nint _BlendWeightOffset = Schema.GetOffset(0x5D675A12E5D6B9CE);
+  private static nint? _BlendWeightOffset;
 
   public ref float BlendWeight {
-    get => ref _Handle.AsRef<float>(_BlendWeightOffset);
+    get {
+      if (_BlendWeightOffset == null) {
+        _BlendWeightOffset = Schema.GetOffset(0x5D675A12E5D6B9CE);
+      }
+      return ref _Handle.AsRef<float>(_BlendWeightOffset!.Value);
+    }
   }
-  private static readonly nint _IsTargetInWorldSpaceOffset = Schema.GetOffset(0x5D675A125F56E0C5);
+  private static nint? _IsTargetInWorldSpaceOffset;
 
   public ref bool IsTargetInWorldSpace {
-    get => ref _Handle.AsRef<bool>(_IsTargetInWorldSpaceOffset);
+    get {
+      if (_IsTargetInWorldSpaceOffset == null) {
+        _IsTargetInWorldSpaceOffset = Schema.GetOffset(0x5D675A125F56E0C5);
+      }
+      return ref _Handle.AsRef<bool>(_IsTargetInWorldSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _IsRunningFromDeserializedDataOffset = Schema.GetOffset(0x5D675A124791111D);
+  private static nint? _IsRunningFromDeserializedDataOffset;
 
   public ref bool IsRunningFromDeserializedData {
-    get => ref _Handle.AsRef<bool>(_IsRunningFromDeserializedDataOffset);
+    get {
+      if (_IsRunningFromDeserializedDataOffset == null) {
+        _IsRunningFromDeserializedDataOffset = Schema.GetOffset(0x5D675A124791111D);
+      }
+      return ref _Handle.AsRef<bool>(_IsRunningFromDeserializedDataOffset!.Value);
+    }
   }
-  private static readonly nint _DebugEffectorBoneIDOffset = Schema.GetOffset(0x5D675A12A9F0F1F3);
+  private static nint? _DebugEffectorBoneIDOffset;
 
   public ref CGlobalSymbol DebugEffectorBoneID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_DebugEffectorBoneIDOffset);
+    get {
+      if (_DebugEffectorBoneIDOffset == null) {
+        _DebugEffectorBoneIDOffset = Schema.GetOffset(0x5D675A12A9F0F1F3);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_DebugEffectorBoneIDOffset!.Value);
+    }
   }
-  private static readonly nint _ChainStartTransformMSOffset = Schema.GetOffset(0x5D675A12E1B47AFE);
+  private static nint? _ChainStartTransformMSOffset;
 
   public ref CTransform ChainStartTransformMS {
-    get => ref _Handle.AsRef<CTransform>(_ChainStartTransformMSOffset);
+    get {
+      if (_ChainStartTransformMSOffset == null) {
+        _ChainStartTransformMSOffset = Schema.GetOffset(0x5D675A12E1B47AFE);
+      }
+      return ref _Handle.AsRef<CTransform>(_ChainStartTransformMSOffset!.Value);
+    }
   }
-  private static readonly nint _DebugRequestedTargetTransformMSOffset = Schema.GetOffset(0x5D675A12416A1F2F);
+  private static nint? _DebugRequestedTargetTransformMSOffset;
 
   public ref CTransform DebugRequestedTargetTransformMS {
-    get => ref _Handle.AsRef<CTransform>(_DebugRequestedTargetTransformMSOffset);
+    get {
+      if (_DebugRequestedTargetTransformMSOffset == null) {
+        _DebugRequestedTargetTransformMSOffset = Schema.GetOffset(0x5D675A12416A1F2F);
+      }
+      return ref _Handle.AsRef<CTransform>(_DebugRequestedTargetTransformMSOffset!.Value);
+    }
   }
-  private static readonly nint _DebugTotalChainLengthOffset = Schema.GetOffset(0x5D675A125ED39D2F);
+  private static nint? _DebugTotalChainLengthOffset;
 
   public ref float DebugTotalChainLength {
-    get => ref _Handle.AsRef<float>(_DebugTotalChainLengthOffset);
+    get {
+      if (_DebugTotalChainLengthOffset == null) {
+        _DebugTotalChainLengthOffset = Schema.GetOffset(0x5D675A125ED39D2F);
+      }
+      return ref _Handle.AsRef<float>(_DebugTotalChainLengthOffset!.Value);
+    }
   }
 
 

@@ -17,15 +17,25 @@ internal partial class CNmReferencedGraphNode__CDefinitionImpl : CNmPoseNode__CD
   public CNmReferencedGraphNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ReferencedGraphIdxOffset = Schema.GetOffset(0x44045ED427B00199);
+  private static nint? _ReferencedGraphIdxOffset;
 
   public ref short ReferencedGraphIdx {
-    get => ref _Handle.AsRef<short>(_ReferencedGraphIdxOffset);
+    get {
+      if (_ReferencedGraphIdxOffset == null) {
+        _ReferencedGraphIdxOffset = Schema.GetOffset(0x44045ED427B00199);
+      }
+      return ref _Handle.AsRef<short>(_ReferencedGraphIdxOffset!.Value);
+    }
   }
-  private static readonly nint _FallbackNodeIdxOffset = Schema.GetOffset(0x44045ED4AFA8F89E);
+  private static nint? _FallbackNodeIdxOffset;
 
   public ref short FallbackNodeIdx {
-    get => ref _Handle.AsRef<short>(_FallbackNodeIdxOffset);
+    get {
+      if (_FallbackNodeIdxOffset == null) {
+        _FallbackNodeIdxOffset = Schema.GetOffset(0x44045ED4AFA8F89E);
+      }
+      return ref _Handle.AsRef<short>(_FallbackNodeIdxOffset!.Value);
+    }
   }
 
 

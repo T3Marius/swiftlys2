@@ -17,10 +17,15 @@ internal partial class PARTICLE_EHANDLE__Impl : SchemaClass, PARTICLE_EHANDLE__ 
   public PARTICLE_EHANDLE__Impl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _UnusedOffset = Schema.GetOffset(0x7E4CC5CF85CF281B);
+  private static nint? _UnusedOffset;
 
   public ref int Unused {
-    get => ref _Handle.AsRef<int>(_UnusedOffset);
+    get {
+      if (_UnusedOffset == null) {
+        _UnusedOffset = Schema.GetOffset(0x7E4CC5CF85CF281B);
+      }
+      return ref _Handle.AsRef<int>(_UnusedOffset!.Value);
+    }
   }
 
 

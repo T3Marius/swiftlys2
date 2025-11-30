@@ -17,30 +17,55 @@ internal partial class C_INIT_InitFromVectorFieldSnapshotImpl : CParticleFunctio
   public C_INIT_InitFromVectorFieldSnapshotImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x1F4AA8713F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x1F4AA8713F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _LocalSpaceCPOffset = Schema.GetOffset(0x1F4AA871C8E9CB31);
+  private static nint? _LocalSpaceCPOffset;
 
   public ref int LocalSpaceCP {
-    get => ref _Handle.AsRef<int>(_LocalSpaceCPOffset);
+    get {
+      if (_LocalSpaceCPOffset == null) {
+        _LocalSpaceCPOffset = Schema.GetOffset(0x1F4AA871C8E9CB31);
+      }
+      return ref _Handle.AsRef<int>(_LocalSpaceCPOffset!.Value);
+    }
   }
-  private static readonly nint _WeightUpdateCPOffset = Schema.GetOffset(0x1F4AA8712CCDE17F);
+  private static nint? _WeightUpdateCPOffset;
 
   public ref int WeightUpdateCP {
-    get => ref _Handle.AsRef<int>(_WeightUpdateCPOffset);
+    get {
+      if (_WeightUpdateCPOffset == null) {
+        _WeightUpdateCPOffset = Schema.GetOffset(0x1F4AA8712CCDE17F);
+      }
+      return ref _Handle.AsRef<int>(_WeightUpdateCPOffset!.Value);
+    }
   }
-  private static readonly nint _UseVerticalVelocityOffset = Schema.GetOffset(0x1F4AA8713C99C6FD);
+  private static nint? _UseVerticalVelocityOffset;
 
   public ref bool UseVerticalVelocity {
-    get => ref _Handle.AsRef<bool>(_UseVerticalVelocityOffset);
+    get {
+      if (_UseVerticalVelocityOffset == null) {
+        _UseVerticalVelocityOffset = Schema.GetOffset(0x1F4AA8713C99C6FD);
+      }
+      return ref _Handle.AsRef<bool>(_UseVerticalVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x1F4AA8715F596B51);
+  private static nint? _ScaleOffset;
 
   public CPerParticleVecInput Scale {
-    get => new CPerParticleVecInputImpl(_Handle + _ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x1F4AA8715F596B51);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _ScaleOffset!.Value);
+    }
   }
 
 

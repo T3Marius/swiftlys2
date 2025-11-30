@@ -17,20 +17,35 @@ internal partial class CCommentaryAutoImpl : CBaseEntityImpl, CCommentaryAuto {
   public CCommentaryAutoImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnCommentaryNewGameOffset = Schema.GetOffset(0x5BB39498C3245D97);
+  private static nint? _OnCommentaryNewGameOffset;
 
   public CEntityIOOutput OnCommentaryNewGame {
-    get => new CEntityIOOutputImpl(_Handle + _OnCommentaryNewGameOffset);
+    get {
+      if (_OnCommentaryNewGameOffset == null) {
+        _OnCommentaryNewGameOffset = Schema.GetOffset(0x5BB39498C3245D97);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnCommentaryNewGameOffset!.Value);
+    }
   }
-  private static readonly nint _OnCommentaryMidGameOffset = Schema.GetOffset(0x5BB39498A1777FCB);
+  private static nint? _OnCommentaryMidGameOffset;
 
   public CEntityIOOutput OnCommentaryMidGame {
-    get => new CEntityIOOutputImpl(_Handle + _OnCommentaryMidGameOffset);
+    get {
+      if (_OnCommentaryMidGameOffset == null) {
+        _OnCommentaryMidGameOffset = Schema.GetOffset(0x5BB39498A1777FCB);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnCommentaryMidGameOffset!.Value);
+    }
   }
-  private static readonly nint _OnCommentaryMultiplayerSpawnOffset = Schema.GetOffset(0x5BB3949819FDEEB2);
+  private static nint? _OnCommentaryMultiplayerSpawnOffset;
 
   public CEntityIOOutput OnCommentaryMultiplayerSpawn {
-    get => new CEntityIOOutputImpl(_Handle + _OnCommentaryMultiplayerSpawnOffset);
+    get {
+      if (_OnCommentaryMultiplayerSpawnOffset == null) {
+        _OnCommentaryMultiplayerSpawnOffset = Schema.GetOffset(0x5BB3949819FDEEB2);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnCommentaryMultiplayerSpawnOffset!.Value);
+    }
   }
 
 

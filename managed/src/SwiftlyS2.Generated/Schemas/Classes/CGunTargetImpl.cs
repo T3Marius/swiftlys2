@@ -17,20 +17,35 @@ internal partial class CGunTargetImpl : CBaseToggleImpl, CGunTarget {
   public CGunTargetImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnOffset = Schema.GetOffset(0x4CB42969DEB2AE70);
+  private static nint? _OnOffset;
 
   public ref bool On {
-    get => ref _Handle.AsRef<bool>(_OnOffset);
+    get {
+      if (_OnOffset == null) {
+        _OnOffset = Schema.GetOffset(0x4CB42969DEB2AE70);
+      }
+      return ref _Handle.AsRef<bool>(_OnOffset!.Value);
+    }
   }
-  private static readonly nint _TargetEntOffset = Schema.GetOffset(0x4CB429692DD292D7);
+  private static nint? _TargetEntOffset;
 
   public ref CHandle<CBaseEntity> TargetEnt {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetEntOffset);
+    get {
+      if (_TargetEntOffset == null) {
+        _TargetEntOffset = Schema.GetOffset(0x4CB429692DD292D7);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetEntOffset!.Value);
+    }
   }
-  private static readonly nint _OnDeathOffset = Schema.GetOffset(0x4CB429696F756BD2);
+  private static nint? _OnDeathOffset;
 
   public CEntityIOOutput OnDeath {
-    get => new CEntityIOOutputImpl(_Handle + _OnDeathOffset);
+    get {
+      if (_OnDeathOffset == null) {
+        _OnDeathOffset = Schema.GetOffset(0x4CB429696F756BD2);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnDeathOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class C_OP_RemapCrossProductOfTwoVectorsToVectorImpl : CParticl
   public C_OP_RemapCrossProductOfTwoVectorsToVectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputVec1Offset = Schema.GetOffset(0x4B4531D84584355A);
+  private static nint? _InputVec1Offset;
 
   public CPerParticleVecInput InputVec1 {
-    get => new CPerParticleVecInputImpl(_Handle + _InputVec1Offset);
+    get {
+      if (_InputVec1Offset == null) {
+        _InputVec1Offset = Schema.GetOffset(0x4B4531D84584355A);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _InputVec1Offset!.Value);
+    }
   }
-  private static readonly nint _InputVec2Offset = Schema.GetOffset(0x4B4531D8448433C7);
+  private static nint? _InputVec2Offset;
 
   public CPerParticleVecInput InputVec2 {
-    get => new CPerParticleVecInputImpl(_Handle + _InputVec2Offset);
+    get {
+      if (_InputVec2Offset == null) {
+        _InputVec2Offset = Schema.GetOffset(0x4B4531D8448433C7);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _InputVec2Offset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x4B4531D8E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x4B4531D8E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _NormalizeOffset = Schema.GetOffset(0x4B4531D848BC424C);
+  private static nint? _NormalizeOffset;
 
   public ref bool Normalize {
-    get => ref _Handle.AsRef<bool>(_NormalizeOffset);
+    get {
+      if (_NormalizeOffset == null) {
+        _NormalizeOffset = Schema.GetOffset(0x4B4531D848BC424C);
+      }
+      return ref _Handle.AsRef<bool>(_NormalizeOffset!.Value);
+    }
   }
 
 

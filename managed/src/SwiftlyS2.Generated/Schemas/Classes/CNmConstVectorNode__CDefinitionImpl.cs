@@ -17,10 +17,15 @@ internal partial class CNmConstVectorNode__CDefinitionImpl : CNmVectorValueNode_
   public CNmConstVectorNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x78163C736B99AEEA);
+  private static nint? _ValueOffset;
 
   public ref Vector Value {
-    get => ref _Handle.AsRef<Vector>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x78163C736B99AEEA);
+      }
+      return ref _Handle.AsRef<Vector>(_ValueOffset!.Value);
+    }
   }
 
 

@@ -157,6 +157,10 @@ public interface IPlayer : IEquatable<IPlayer>
     /// </summary>
     public Language PlayerLanguage { get; }
     /// <summary>
+    /// Indicates whether this is the player's first spawn.
+    /// </summary>
+    public bool IsFirstSpawn { get; }
+    /// <summary>
     /// Checks if the player is valid (has controller, is not HLTV, is connected and has pawn).
     /// </summary>
     public bool IsValid { get; }

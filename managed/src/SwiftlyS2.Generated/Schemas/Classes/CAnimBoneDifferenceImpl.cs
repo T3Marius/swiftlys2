@@ -17,30 +17,55 @@ internal partial class CAnimBoneDifferenceImpl : SchemaClass, CAnimBoneDifferenc
   public CAnimBoneDifferenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xCC65F41E4D8F5786);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xCC65F41E4D8F5786);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _ParentOffset = Schema.GetOffset(0xCC65F41E2FF7A69D);
+  private static nint? _ParentOffset;
 
   public ref CBufferString Parent {
-    get => ref _Handle.AsRef<CBufferString>(_ParentOffset);
+    get {
+      if (_ParentOffset == null) {
+        _ParentOffset = Schema.GetOffset(0xCC65F41E2FF7A69D);
+      }
+      return ref _Handle.AsRef<CBufferString>(_ParentOffset!.Value);
+    }
   }
-  private static readonly nint _PosErrorOffset = Schema.GetOffset(0xCC65F41E48F0F4CD);
+  private static nint? _PosErrorOffset;
 
   public ref Vector PosError {
-    get => ref _Handle.AsRef<Vector>(_PosErrorOffset);
+    get {
+      if (_PosErrorOffset == null) {
+        _PosErrorOffset = Schema.GetOffset(0xCC65F41E48F0F4CD);
+      }
+      return ref _Handle.AsRef<Vector>(_PosErrorOffset!.Value);
+    }
   }
-  private static readonly nint _HasRotationOffset = Schema.GetOffset(0xCC65F41E84FE2D9D);
+  private static nint? _HasRotationOffset;
 
   public ref bool HasRotation {
-    get => ref _Handle.AsRef<bool>(_HasRotationOffset);
+    get {
+      if (_HasRotationOffset == null) {
+        _HasRotationOffset = Schema.GetOffset(0xCC65F41E84FE2D9D);
+      }
+      return ref _Handle.AsRef<bool>(_HasRotationOffset!.Value);
+    }
   }
-  private static readonly nint _HasMovementOffset = Schema.GetOffset(0xCC65F41E07AC967A);
+  private static nint? _HasMovementOffset;
 
   public ref bool HasMovement {
-    get => ref _Handle.AsRef<bool>(_HasMovementOffset);
+    get {
+      if (_HasMovementOffset == null) {
+        _HasMovementOffset = Schema.GetOffset(0xCC65F41E07AC967A);
+      }
+      return ref _Handle.AsRef<bool>(_HasMovementOffset!.Value);
+    }
   }
 
 

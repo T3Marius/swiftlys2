@@ -17,15 +17,25 @@ internal partial class FeSimdQuad_tImpl : SchemaClass, FeSimdQuad_t {
   public FeSimdQuad_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NodeOffset = Schema.GetOffset(0xB82B061DCD6694B9);
+  private static nint? _NodeOffset;
 
   public SchemaUntypedField Node {
-    get => new SchemaUntypedField(_Handle + _NodeOffset);
+    get {
+      if (_NodeOffset == null) {
+        _NodeOffset = Schema.GetOffset(0xB82B061DCD6694B9);
+      }
+      return new SchemaUntypedField(_Handle + _NodeOffset!.Value);
+    }
   }
-  private static readonly nint _F4SlackOffset = Schema.GetOffset(0xB82B061DBBFE3561);
+  private static nint? _F4SlackOffset;
 
   public ref fltx4 F4Slack {
-    get => ref _Handle.AsRef<fltx4>(_F4SlackOffset);
+    get {
+      if (_F4SlackOffset == null) {
+        _F4SlackOffset = Schema.GetOffset(0xB82B061DBBFE3561);
+      }
+      return ref _Handle.AsRef<fltx4>(_F4SlackOffset!.Value);
+    }
   }
   public ISchemaFixedArray<FourVectors> Shape {
     get => new SchemaFixedArray<FourVectors>(_Handle, 0xB82B061DE159551A, 4, 48, 16);

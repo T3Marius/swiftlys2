@@ -29,10 +29,15 @@ internal partial class CAnimAttachmentImpl : SchemaClass, CAnimAttachment {
   public ISchemaFixedArray<float> InfluenceWeights {
     get => new SchemaFixedArray<float>(_Handle, 0xCF91818649916951, 3, 4, 4);
   }
-  private static readonly nint _NumInfluencesOffset = Schema.GetOffset(0xCF9181861B36F553);
+  private static nint? _NumInfluencesOffset;
 
   public ref byte NumInfluences {
-    get => ref _Handle.AsRef<byte>(_NumInfluencesOffset);
+    get {
+      if (_NumInfluencesOffset == null) {
+        _NumInfluencesOffset = Schema.GetOffset(0xCF9181861B36F553);
+      }
+      return ref _Handle.AsRef<byte>(_NumInfluencesOffset!.Value);
+    }
   }
 
 

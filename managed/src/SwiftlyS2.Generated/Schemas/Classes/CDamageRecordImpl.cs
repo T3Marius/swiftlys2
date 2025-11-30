@@ -17,88 +17,169 @@ internal partial class CDamageRecordImpl : SchemaClass, CDamageRecord {
   public CDamageRecordImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PlayerDamagerOffset = Schema.GetOffset(0x149283162F5812D9);
+  private static nint? _PlayerDamagerOffset;
 
   public ref CHandle<CCSPlayerPawn> PlayerDamager {
-    get => ref _Handle.AsRef<CHandle<CCSPlayerPawn>>(_PlayerDamagerOffset);
+    get {
+      if (_PlayerDamagerOffset == null) {
+        _PlayerDamagerOffset = Schema.GetOffset(0x149283162F5812D9);
+      }
+      return ref _Handle.AsRef<CHandle<CCSPlayerPawn>>(_PlayerDamagerOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerRecipientOffset = Schema.GetOffset(0x14928316EB48351F);
+  private static nint? _PlayerRecipientOffset;
 
   public ref CHandle<CCSPlayerPawn> PlayerRecipient {
-    get => ref _Handle.AsRef<CHandle<CCSPlayerPawn>>(_PlayerRecipientOffset);
+    get {
+      if (_PlayerRecipientOffset == null) {
+        _PlayerRecipientOffset = Schema.GetOffset(0x14928316EB48351F);
+      }
+      return ref _Handle.AsRef<CHandle<CCSPlayerPawn>>(_PlayerRecipientOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerControllerDamagerOffset = Schema.GetOffset(0x14928316285F9023);
+  private static nint? _PlayerControllerDamagerOffset;
 
   public ref CHandle<CCSPlayerController> PlayerControllerDamager {
-    get => ref _Handle.AsRef<CHandle<CCSPlayerController>>(_PlayerControllerDamagerOffset);
+    get {
+      if (_PlayerControllerDamagerOffset == null) {
+        _PlayerControllerDamagerOffset = Schema.GetOffset(0x14928316285F9023);
+      }
+      return ref _Handle.AsRef<CHandle<CCSPlayerController>>(_PlayerControllerDamagerOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerControllerRecipientOffset = Schema.GetOffset(0x14928316033B0B25);
+  private static nint? _PlayerControllerRecipientOffset;
 
   public ref CHandle<CCSPlayerController> PlayerControllerRecipient {
-    get => ref _Handle.AsRef<CHandle<CCSPlayerController>>(_PlayerControllerRecipientOffset);
+    get {
+      if (_PlayerControllerRecipientOffset == null) {
+        _PlayerControllerRecipientOffset = Schema.GetOffset(0x14928316033B0B25);
+      }
+      return ref _Handle.AsRef<CHandle<CCSPlayerController>>(_PlayerControllerRecipientOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerDamagerNameOffset = Schema.GetOffset(0x149283165AB278AD);
+  private static nint? _PlayerDamagerNameOffset;
 
   public string PlayerDamagerName {
     get {
-      var ptr = _Handle.Read<nint>(_PlayerDamagerNameOffset);
+      if (_PlayerDamagerNameOffset == null) {
+        _PlayerDamagerNameOffset = Schema.GetOffset(0x149283165AB278AD);
+      }
+      var ptr = _Handle.Read<nint>(_PlayerDamagerNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PlayerDamagerNameOffset, value);
+    set {
+      if (_PlayerDamagerNameOffset == null) {
+        _PlayerDamagerNameOffset = Schema.GetOffset(0x149283165AB278AD);
+      }
+      Schema.SetString(_Handle, _PlayerDamagerNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PlayerRecipientNameOffset = Schema.GetOffset(0x14928316E6015313);
+  private static nint? _PlayerRecipientNameOffset;
 
   public string PlayerRecipientName {
     get {
-      var ptr = _Handle.Read<nint>(_PlayerRecipientNameOffset);
+      if (_PlayerRecipientNameOffset == null) {
+        _PlayerRecipientNameOffset = Schema.GetOffset(0x14928316E6015313);
+      }
+      var ptr = _Handle.Read<nint>(_PlayerRecipientNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PlayerRecipientNameOffset, value);
+    set {
+      if (_PlayerRecipientNameOffset == null) {
+        _PlayerRecipientNameOffset = Schema.GetOffset(0x14928316E6015313);
+      }
+      Schema.SetString(_Handle, _PlayerRecipientNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _DamagerXuidOffset = Schema.GetOffset(0x14928316DAD4D818);
+  private static nint? _DamagerXuidOffset;
 
   public ref ulong DamagerXuid {
-    get => ref _Handle.AsRef<ulong>(_DamagerXuidOffset);
+    get {
+      if (_DamagerXuidOffset == null) {
+        _DamagerXuidOffset = Schema.GetOffset(0x14928316DAD4D818);
+      }
+      return ref _Handle.AsRef<ulong>(_DamagerXuidOffset!.Value);
+    }
   }
-  private static readonly nint _RecipientXuidOffset = Schema.GetOffset(0x1492831684A232C2);
+  private static nint? _RecipientXuidOffset;
 
   public ref ulong RecipientXuid {
-    get => ref _Handle.AsRef<ulong>(_RecipientXuidOffset);
+    get {
+      if (_RecipientXuidOffset == null) {
+        _RecipientXuidOffset = Schema.GetOffset(0x1492831684A232C2);
+      }
+      return ref _Handle.AsRef<ulong>(_RecipientXuidOffset!.Value);
+    }
   }
-  private static readonly nint _BulletsDamageOffset = Schema.GetOffset(0x149283163641E11D);
+  private static nint? _BulletsDamageOffset;
 
   public ref float BulletsDamage {
-    get => ref _Handle.AsRef<float>(_BulletsDamageOffset);
+    get {
+      if (_BulletsDamageOffset == null) {
+        _BulletsDamageOffset = Schema.GetOffset(0x149283163641E11D);
+      }
+      return ref _Handle.AsRef<float>(_BulletsDamageOffset!.Value);
+    }
   }
-  private static readonly nint _DamageOffset = Schema.GetOffset(0x14928316DC60E53E);
+  private static nint? _DamageOffset;
 
   public ref float Damage {
-    get => ref _Handle.AsRef<float>(_DamageOffset);
+    get {
+      if (_DamageOffset == null) {
+        _DamageOffset = Schema.GetOffset(0x14928316DC60E53E);
+      }
+      return ref _Handle.AsRef<float>(_DamageOffset!.Value);
+    }
   }
-  private static readonly nint _ActualHealthRemovedOffset = Schema.GetOffset(0x14928316F8DC2935);
+  private static nint? _ActualHealthRemovedOffset;
 
   public ref float ActualHealthRemoved {
-    get => ref _Handle.AsRef<float>(_ActualHealthRemovedOffset);
+    get {
+      if (_ActualHealthRemovedOffset == null) {
+        _ActualHealthRemovedOffset = Schema.GetOffset(0x14928316F8DC2935);
+      }
+      return ref _Handle.AsRef<float>(_ActualHealthRemovedOffset!.Value);
+    }
   }
-  private static readonly nint _NumHitsOffset = Schema.GetOffset(0x149283162EC9980E);
+  private static nint? _NumHitsOffset;
 
   public ref int NumHits {
-    get => ref _Handle.AsRef<int>(_NumHitsOffset);
+    get {
+      if (_NumHitsOffset == null) {
+        _NumHitsOffset = Schema.GetOffset(0x149283162EC9980E);
+      }
+      return ref _Handle.AsRef<int>(_NumHitsOffset!.Value);
+    }
   }
-  private static readonly nint _LastBulletUpdateOffset = Schema.GetOffset(0x14928316D5ABC11D);
+  private static nint? _LastBulletUpdateOffset;
 
   public ref int LastBulletUpdate {
-    get => ref _Handle.AsRef<int>(_LastBulletUpdateOffset);
+    get {
+      if (_LastBulletUpdateOffset == null) {
+        _LastBulletUpdateOffset = Schema.GetOffset(0x14928316D5ABC11D);
+      }
+      return ref _Handle.AsRef<int>(_LastBulletUpdateOffset!.Value);
+    }
   }
-  private static readonly nint _IsOtherEnemyOffset = Schema.GetOffset(0x149283164F1F40EB);
+  private static nint? _IsOtherEnemyOffset;
 
   public ref bool IsOtherEnemy {
-    get => ref _Handle.AsRef<bool>(_IsOtherEnemyOffset);
+    get {
+      if (_IsOtherEnemyOffset == null) {
+        _IsOtherEnemyOffset = Schema.GetOffset(0x149283164F1F40EB);
+      }
+      return ref _Handle.AsRef<bool>(_IsOtherEnemyOffset!.Value);
+    }
   }
-  private static readonly nint _KillTypeOffset = Schema.GetOffset(0x14928316C2ADBB11);
+  private static nint? _KillTypeOffset;
 
   public ref EKillTypes_t KillType {
-    get => ref _Handle.AsRef<EKillTypes_t>(_KillTypeOffset);
+    get {
+      if (_KillTypeOffset == null) {
+        _KillTypeOffset = Schema.GetOffset(0x14928316C2ADBB11);
+      }
+      return ref _Handle.AsRef<EKillTypes_t>(_KillTypeOffset!.Value);
+    }
   }
 
   public void PlayerDamagerUpdated() {

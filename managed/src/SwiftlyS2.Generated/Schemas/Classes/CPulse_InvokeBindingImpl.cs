@@ -17,30 +17,55 @@ internal partial class CPulse_InvokeBindingImpl : SchemaClass, CPulse_InvokeBind
   public CPulse_InvokeBindingImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RegisterMapOffset = Schema.GetOffset(0x3632DF0D7BD4CE96);
+  private static nint? _RegisterMapOffset;
 
   public PulseRegisterMap_t RegisterMap {
-    get => new PulseRegisterMap_tImpl(_Handle + _RegisterMapOffset);
+    get {
+      if (_RegisterMapOffset == null) {
+        _RegisterMapOffset = Schema.GetOffset(0x3632DF0D7BD4CE96);
+      }
+      return new PulseRegisterMap_tImpl(_Handle + _RegisterMapOffset!.Value);
+    }
   }
-  private static readonly nint _FuncNameOffset = Schema.GetOffset(0x3632DF0D1B5BC2A4);
+  private static nint? _FuncNameOffset;
 
   public SchemaUntypedField FuncName {
-    get => new SchemaUntypedField(_Handle + _FuncNameOffset);
+    get {
+      if (_FuncNameOffset == null) {
+        _FuncNameOffset = Schema.GetOffset(0x3632DF0D1B5BC2A4);
+      }
+      return new SchemaUntypedField(_Handle + _FuncNameOffset!.Value);
+    }
   }
-  private static readonly nint _CellIndexOffset = Schema.GetOffset(0x3632DF0DACE41A7F);
+  private static nint? _CellIndexOffset;
 
   public PulseRuntimeCellIndex_t CellIndex {
-    get => new PulseRuntimeCellIndex_tImpl(_Handle + _CellIndexOffset);
+    get {
+      if (_CellIndexOffset == null) {
+        _CellIndexOffset = Schema.GetOffset(0x3632DF0DACE41A7F);
+      }
+      return new PulseRuntimeCellIndex_tImpl(_Handle + _CellIndexOffset!.Value);
+    }
   }
-  private static readonly nint _SrcChunkOffset = Schema.GetOffset(0x3632DF0D313F814A);
+  private static nint? _SrcChunkOffset;
 
   public PulseRuntimeChunkIndex_t SrcChunk {
-    get => new PulseRuntimeChunkIndex_tImpl(_Handle + _SrcChunkOffset);
+    get {
+      if (_SrcChunkOffset == null) {
+        _SrcChunkOffset = Schema.GetOffset(0x3632DF0D313F814A);
+      }
+      return new PulseRuntimeChunkIndex_tImpl(_Handle + _SrcChunkOffset!.Value);
+    }
   }
-  private static readonly nint _SrcInstructionOffset = Schema.GetOffset(0x3632DF0D99E09AE7);
+  private static nint? _SrcInstructionOffset;
 
   public ref int SrcInstruction {
-    get => ref _Handle.AsRef<int>(_SrcInstructionOffset);
+    get {
+      if (_SrcInstructionOffset == null) {
+        _SrcInstructionOffset = Schema.GetOffset(0x3632DF0D99E09AE7);
+      }
+      return ref _Handle.AsRef<int>(_SrcInstructionOffset!.Value);
+    }
   }
 
 

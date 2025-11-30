@@ -17,25 +17,45 @@ internal partial class FeWorldCollisionParams_tImpl : SchemaClass, FeWorldCollis
   public FeWorldCollisionParams_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WorldFrictionOffset = Schema.GetOffset(0x85D16E65E1266C23);
+  private static nint? _WorldFrictionOffset;
 
   public ref float WorldFriction {
-    get => ref _Handle.AsRef<float>(_WorldFrictionOffset);
+    get {
+      if (_WorldFrictionOffset == null) {
+        _WorldFrictionOffset = Schema.GetOffset(0x85D16E65E1266C23);
+      }
+      return ref _Handle.AsRef<float>(_WorldFrictionOffset!.Value);
+    }
   }
-  private static readonly nint _GroundFrictionOffset = Schema.GetOffset(0x85D16E652D394B72);
+  private static nint? _GroundFrictionOffset;
 
   public ref float GroundFriction {
-    get => ref _Handle.AsRef<float>(_GroundFrictionOffset);
+    get {
+      if (_GroundFrictionOffset == null) {
+        _GroundFrictionOffset = Schema.GetOffset(0x85D16E652D394B72);
+      }
+      return ref _Handle.AsRef<float>(_GroundFrictionOffset!.Value);
+    }
   }
-  private static readonly nint _ListBeginOffset = Schema.GetOffset(0x85D16E650BA98846);
+  private static nint? _ListBeginOffset;
 
   public ref ushort ListBegin {
-    get => ref _Handle.AsRef<ushort>(_ListBeginOffset);
+    get {
+      if (_ListBeginOffset == null) {
+        _ListBeginOffset = Schema.GetOffset(0x85D16E650BA98846);
+      }
+      return ref _Handle.AsRef<ushort>(_ListBeginOffset!.Value);
+    }
   }
-  private static readonly nint _ListEndOffset = Schema.GetOffset(0x85D16E658683DD62);
+  private static nint? _ListEndOffset;
 
   public ref ushort ListEnd {
-    get => ref _Handle.AsRef<ushort>(_ListEndOffset);
+    get {
+      if (_ListEndOffset == null) {
+        _ListEndOffset = Schema.GetOffset(0x85D16E658683DD62);
+      }
+      return ref _Handle.AsRef<ushort>(_ListEndOffset!.Value);
+    }
   }
 
 

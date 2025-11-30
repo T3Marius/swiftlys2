@@ -17,48 +17,89 @@ internal partial class CLogicDistanceCheckImpl : CLogicalEntityImpl, CLogicDista
   public CLogicDistanceCheckImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EntityAOffset = Schema.GetOffset(0x523E7E6D07823CB9);
+  private static nint? _EntityAOffset;
 
   public string EntityA {
     get {
-      var ptr = _Handle.Read<nint>(_EntityAOffset);
+      if (_EntityAOffset == null) {
+        _EntityAOffset = Schema.GetOffset(0x523E7E6D07823CB9);
+      }
+      var ptr = _Handle.Read<nint>(_EntityAOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _EntityAOffset, value);
+    set {
+      if (_EntityAOffset == null) {
+        _EntityAOffset = Schema.GetOffset(0x523E7E6D07823CB9);
+      }
+      Schema.SetString(_Handle, _EntityAOffset!.Value, value);
+    }
   } 
-  private static readonly nint _EntityBOffset = Schema.GetOffset(0x523E7E6D04823800);
+  private static nint? _EntityBOffset;
 
   public string EntityB {
     get {
-      var ptr = _Handle.Read<nint>(_EntityBOffset);
+      if (_EntityBOffset == null) {
+        _EntityBOffset = Schema.GetOffset(0x523E7E6D04823800);
+      }
+      var ptr = _Handle.Read<nint>(_EntityBOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _EntityBOffset, value);
+    set {
+      if (_EntityBOffset == null) {
+        _EntityBOffset = Schema.GetOffset(0x523E7E6D04823800);
+      }
+      Schema.SetString(_Handle, _EntityBOffset!.Value, value);
+    }
   } 
-  private static readonly nint _Zone1DistanceOffset = Schema.GetOffset(0x523E7E6DFF385A8F);
+  private static nint? _Zone1DistanceOffset;
 
   public ref float Zone1Distance {
-    get => ref _Handle.AsRef<float>(_Zone1DistanceOffset);
+    get {
+      if (_Zone1DistanceOffset == null) {
+        _Zone1DistanceOffset = Schema.GetOffset(0x523E7E6DFF385A8F);
+      }
+      return ref _Handle.AsRef<float>(_Zone1DistanceOffset!.Value);
+    }
   }
-  private static readonly nint _Zone2DistanceOffset = Schema.GetOffset(0x523E7E6DE1734A1A);
+  private static nint? _Zone2DistanceOffset;
 
   public ref float Zone2Distance {
-    get => ref _Handle.AsRef<float>(_Zone2DistanceOffset);
+    get {
+      if (_Zone2DistanceOffset == null) {
+        _Zone2DistanceOffset = Schema.GetOffset(0x523E7E6DE1734A1A);
+      }
+      return ref _Handle.AsRef<float>(_Zone2DistanceOffset!.Value);
+    }
   }
-  private static readonly nint _InZone1Offset = Schema.GetOffset(0x523E7E6D25378DB3);
+  private static nint? _InZone1Offset;
 
   public CEntityIOOutput InZone1 {
-    get => new CEntityIOOutputImpl(_Handle + _InZone1Offset);
+    get {
+      if (_InZone1Offset == null) {
+        _InZone1Offset = Schema.GetOffset(0x523E7E6D25378DB3);
+      }
+      return new CEntityIOOutputImpl(_Handle + _InZone1Offset!.Value);
+    }
   }
-  private static readonly nint _InZone2Offset = Schema.GetOffset(0x523E7E6D26378F46);
+  private static nint? _InZone2Offset;
 
   public CEntityIOOutput InZone2 {
-    get => new CEntityIOOutputImpl(_Handle + _InZone2Offset);
+    get {
+      if (_InZone2Offset == null) {
+        _InZone2Offset = Schema.GetOffset(0x523E7E6D26378F46);
+      }
+      return new CEntityIOOutputImpl(_Handle + _InZone2Offset!.Value);
+    }
   }
-  private static readonly nint _InZone3Offset = Schema.GetOffset(0x523E7E6D273790D9);
+  private static nint? _InZone3Offset;
 
   public CEntityIOOutput InZone3 {
-    get => new CEntityIOOutputImpl(_Handle + _InZone3Offset);
+    get {
+      if (_InZone3Offset == null) {
+        _InZone3Offset = Schema.GetOffset(0x523E7E6D273790D9);
+      }
+      return new CEntityIOOutputImpl(_Handle + _InZone3Offset!.Value);
+    }
   }
 
 

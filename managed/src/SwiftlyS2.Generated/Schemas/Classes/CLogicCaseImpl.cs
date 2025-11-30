@@ -17,37 +17,65 @@ internal partial class CLogicCaseImpl : CLogicalEntityImpl, CLogicCase {
   public CLogicCaseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CaseOffset = Schema.GetOffset(0x4B6BB20CBD726255);
+  private static nint? _CaseOffset;
 
   public string Case {
     get {
-      var ptr = _Handle.Read<nint>(_CaseOffset);
+      if (_CaseOffset == null) {
+        _CaseOffset = Schema.GetOffset(0x4B6BB20CBD726255);
+      }
+      var ptr = _Handle.Read<nint>(_CaseOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _CaseOffset, value);
+    set {
+      if (_CaseOffset == null) {
+        _CaseOffset = Schema.GetOffset(0x4B6BB20CBD726255);
+      }
+      Schema.SetString(_Handle, _CaseOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ShuffleCasesOffset = Schema.GetOffset(0x4B6BB20C3441354F);
+  private static nint? _ShuffleCasesOffset;
 
   public ref int ShuffleCases {
-    get => ref _Handle.AsRef<int>(_ShuffleCasesOffset);
+    get {
+      if (_ShuffleCasesOffset == null) {
+        _ShuffleCasesOffset = Schema.GetOffset(0x4B6BB20C3441354F);
+      }
+      return ref _Handle.AsRef<int>(_ShuffleCasesOffset!.Value);
+    }
   }
-  private static readonly nint _LastShuffleCaseOffset = Schema.GetOffset(0x4B6BB20C053CE392);
+  private static nint? _LastShuffleCaseOffset;
 
   public ref int LastShuffleCase {
-    get => ref _Handle.AsRef<int>(_LastShuffleCaseOffset);
+    get {
+      if (_LastShuffleCaseOffset == null) {
+        _LastShuffleCaseOffset = Schema.GetOffset(0x4B6BB20C053CE392);
+      }
+      return ref _Handle.AsRef<int>(_LastShuffleCaseOffset!.Value);
+    }
   }
   public ISchemaFixedArray<byte> UchShuffleCaseMap {
     get => new SchemaFixedArray<byte>(_Handle, 0x4B6BB20CF9FC41AE, 32, 1, 1);
   }
-  private static readonly nint _OnCaseOffset = Schema.GetOffset(0x4B6BB20CF8743C7C);
+  private static nint? _OnCaseOffset;
 
   public SchemaUntypedField OnCase {
-    get => new SchemaUntypedField(_Handle + _OnCaseOffset);
+    get {
+      if (_OnCaseOffset == null) {
+        _OnCaseOffset = Schema.GetOffset(0x4B6BB20CF8743C7C);
+      }
+      return new SchemaUntypedField(_Handle + _OnCaseOffset!.Value);
+    }
   }
-  private static readonly nint _OnDefaultOffset = Schema.GetOffset(0x4B6BB20C4B03C3CD);
+  private static nint? _OnDefaultOffset;
 
   public SchemaUntypedField OnDefault {
-    get => new SchemaUntypedField(_Handle + _OnDefaultOffset);
+    get {
+      if (_OnDefaultOffset == null) {
+        _OnDefaultOffset = Schema.GetOffset(0x4B6BB20C4B03C3CD);
+      }
+      return new SchemaUntypedField(_Handle + _OnDefaultOffset!.Value);
+    }
   }
 
 

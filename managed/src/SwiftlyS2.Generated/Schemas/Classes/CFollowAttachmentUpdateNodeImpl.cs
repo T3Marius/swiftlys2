@@ -17,10 +17,15 @@ internal partial class CFollowAttachmentUpdateNodeImpl : CUnaryUpdateNodeImpl, C
   public CFollowAttachmentUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OpFixedDataOffset = Schema.GetOffset(0x8E705AE36960AF8C);
+  private static nint? _OpFixedDataOffset;
 
   public FollowAttachmentSettings_t OpFixedData {
-    get => new FollowAttachmentSettings_tImpl(_Handle + _OpFixedDataOffset);
+    get {
+      if (_OpFixedDataOffset == null) {
+        _OpFixedDataOffset = Schema.GetOffset(0x8E705AE36960AF8C);
+      }
+      return new FollowAttachmentSettings_tImpl(_Handle + _OpFixedDataOffset!.Value);
+    }
   }
 
 

@@ -17,20 +17,35 @@ internal partial class CParticleModelInputImpl : CParticleInputImpl, CParticleMo
   public CParticleModelInputImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TypeOffset = Schema.GetOffset(0xC8FF4F3F18853D59);
+  private static nint? _TypeOffset;
 
   public ref ParticleModelType_t Type {
-    get => ref _Handle.AsRef<ParticleModelType_t>(_TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0xC8FF4F3F18853D59);
+      }
+      return ref _Handle.AsRef<ParticleModelType_t>(_TypeOffset!.Value);
+    }
   }
-  private static readonly nint _NamedValueOffset = Schema.GetOffset(0xC8FF4F3FE0618727);
+  private static nint? _NamedValueOffset;
 
   public SchemaUntypedField NamedValue {
-    get => new SchemaUntypedField(_Handle + _NamedValueOffset);
+    get {
+      if (_NamedValueOffset == null) {
+        _NamedValueOffset = Schema.GetOffset(0xC8FF4F3FE0618727);
+      }
+      return new SchemaUntypedField(_Handle + _NamedValueOffset!.Value);
+    }
   }
-  private static readonly nint _ControlPointOffset = Schema.GetOffset(0xC8FF4F3F0D0DDF8C);
+  private static nint? _ControlPointOffset;
 
   public ref int ControlPoint {
-    get => ref _Handle.AsRef<int>(_ControlPointOffset);
+    get {
+      if (_ControlPointOffset == null) {
+        _ControlPointOffset = Schema.GetOffset(0xC8FF4F3F0D0DDF8C);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointOffset!.Value);
+    }
   }
 
 

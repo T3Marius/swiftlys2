@@ -17,23 +17,39 @@ internal partial class CFootstepControlImpl : CBaseTriggerImpl, CFootstepControl
   public CFootstepControlImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceOffset = Schema.GetOffset(0x85B34315D0835C78);
+  private static nint? _SourceOffset;
 
   public string Source {
     get {
-      var ptr = _Handle.Read<nint>(_SourceOffset);
+      if (_SourceOffset == null) {
+        _SourceOffset = Schema.GetOffset(0x85B34315D0835C78);
+      }
+      var ptr = _Handle.Read<nint>(_SourceOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SourceOffset, value);
+    set {
+      if (_SourceOffset == null) {
+        _SourceOffset = Schema.GetOffset(0x85B34315D0835C78);
+      }
+      Schema.SetString(_Handle, _SourceOffset!.Value, value);
+    }
   } 
-  private static readonly nint _DestinationOffset = Schema.GetOffset(0x85B343156E5C12DF);
+  private static nint? _DestinationOffset;
 
   public string Destination {
     get {
-      var ptr = _Handle.Read<nint>(_DestinationOffset);
+      if (_DestinationOffset == null) {
+        _DestinationOffset = Schema.GetOffset(0x85B343156E5C12DF);
+      }
+      var ptr = _Handle.Read<nint>(_DestinationOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _DestinationOffset, value);
+    set {
+      if (_DestinationOffset == null) {
+        _DestinationOffset = Schema.GetOffset(0x85B343156E5C12DF);
+      }
+      Schema.SetString(_Handle, _DestinationOffset!.Value, value);
+    }
   } 
 
   public void SourceUpdated() {

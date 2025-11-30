@@ -17,25 +17,45 @@ internal partial class RsDepthStencilStateDesc_tImpl : SchemaClass, RsDepthStenc
   public RsDepthStencilStateDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DepthTestEnableOffset = Schema.GetOffset(0x9026AFA806421799);
+  private static nint? _DepthTestEnableOffset;
 
   public SchemaUntypedField DepthTestEnable {
-    get => new SchemaUntypedField(_Handle + _DepthTestEnableOffset);
+    get {
+      if (_DepthTestEnableOffset == null) {
+        _DepthTestEnableOffset = Schema.GetOffset(0x9026AFA806421799);
+      }
+      return new SchemaUntypedField(_Handle + _DepthTestEnableOffset!.Value);
+    }
   }
-  private static readonly nint _DepthWriteEnableOffset = Schema.GetOffset(0x9026AFA88D8085FE);
+  private static nint? _DepthWriteEnableOffset;
 
   public SchemaUntypedField DepthWriteEnable {
-    get => new SchemaUntypedField(_Handle + _DepthWriteEnableOffset);
+    get {
+      if (_DepthWriteEnableOffset == null) {
+        _DepthWriteEnableOffset = Schema.GetOffset(0x9026AFA88D8085FE);
+      }
+      return new SchemaUntypedField(_Handle + _DepthWriteEnableOffset!.Value);
+    }
   }
-  private static readonly nint _DepthFuncOffset = Schema.GetOffset(0x9026AFA8B47FC61C);
+  private static nint? _DepthFuncOffset;
 
   public ref RsComparison_t DepthFunc {
-    get => ref _Handle.AsRef<RsComparison_t>(_DepthFuncOffset);
+    get {
+      if (_DepthFuncOffset == null) {
+        _DepthFuncOffset = Schema.GetOffset(0x9026AFA8B47FC61C);
+      }
+      return ref _Handle.AsRef<RsComparison_t>(_DepthFuncOffset!.Value);
+    }
   }
-  private static readonly nint _StencilStateOffset = Schema.GetOffset(0x9026AFA828EA33C4);
+  private static nint? _StencilStateOffset;
 
   public RsStencilStateDesc_t StencilState {
-    get => new RsStencilStateDesc_tImpl(_Handle + _StencilStateOffset);
+    get {
+      if (_StencilStateOffset == null) {
+        _StencilStateOffset = Schema.GetOffset(0x9026AFA828EA33C4);
+      }
+      return new RsStencilStateDesc_tImpl(_Handle + _StencilStateOffset!.Value);
+    }
   }
 
 

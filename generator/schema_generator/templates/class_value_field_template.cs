@@ -1,5 +1,10 @@
-  private static readonly nint _$NAME$Offset = Schema.GetOffset($HASH$);
+  private static nint? _$NAME$Offset;
 
   public ref $IMPL_TYPE$ $NAME$ {
-    get => ref _Handle.$REF_METHOD$<$IMPL_TYPE$>(_$NAME$Offset);
+    get {
+      if (_$NAME$Offset == null) {
+        _$NAME$Offset = Schema.GetOffset($HASH$);
+      }
+      return ref _Handle.$REF_METHOD$<$IMPL_TYPE$>(_$NAME$Offset!.Value);
+    }
   }

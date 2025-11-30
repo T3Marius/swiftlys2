@@ -17,10 +17,15 @@ internal partial class CPulseCell_IsRequirementValid__Criteria_tImpl : SchemaCla
   public CPulseCell_IsRequirementValid__Criteria_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IsValidOffset = Schema.GetOffset(0x4D71FFB90E4A2BC1);
+  private static nint? _IsValidOffset;
 
   public ref bool IsValid {
-    get => ref _Handle.AsRef<bool>(_IsValidOffset);
+    get {
+      if (_IsValidOffset == null) {
+        _IsValidOffset = Schema.GetOffset(0x4D71FFB90E4A2BC1);
+      }
+      return ref _Handle.AsRef<bool>(_IsValidOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class CSoundAreaEntitySphereImpl : CSoundAreaEntityBaseImpl, CS
   public CSoundAreaEntitySphereImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x2FF7C1D65ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x2FF7C1D65ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
 
   public void RadiusUpdated() {

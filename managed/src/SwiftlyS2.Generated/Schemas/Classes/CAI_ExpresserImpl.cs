@@ -17,61 +17,114 @@ internal partial class CAI_ExpresserImpl : SchemaClass, CAI_Expresser {
   public CAI_ExpresserImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StopTalkTimeOffset = Schema.GetOffset(0xFB9DA1AC36131EC4);
+  private static nint? _StopTalkTimeOffset;
 
   public GameTime_t StopTalkTime {
-    get => new GameTime_tImpl(_Handle + _StopTalkTimeOffset);
+    get {
+      if (_StopTalkTimeOffset == null) {
+        _StopTalkTimeOffset = Schema.GetOffset(0xFB9DA1AC36131EC4);
+      }
+      return new GameTime_tImpl(_Handle + _StopTalkTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StopTalkTimeWithoutDelayOffset = Schema.GetOffset(0xFB9DA1ACB3CAE32F);
+  private static nint? _StopTalkTimeWithoutDelayOffset;
 
   public GameTime_t StopTalkTimeWithoutDelay {
-    get => new GameTime_tImpl(_Handle + _StopTalkTimeWithoutDelayOffset);
+    get {
+      if (_StopTalkTimeWithoutDelayOffset == null) {
+        _StopTalkTimeWithoutDelayOffset = Schema.GetOffset(0xFB9DA1ACB3CAE32F);
+      }
+      return new GameTime_tImpl(_Handle + _StopTalkTimeWithoutDelayOffset!.Value);
+    }
   }
-  private static readonly nint _QueuedSpeechTimeOffset = Schema.GetOffset(0xFB9DA1AC93DE376D);
+  private static nint? _QueuedSpeechTimeOffset;
 
   public GameTime_t QueuedSpeechTime {
-    get => new GameTime_tImpl(_Handle + _QueuedSpeechTimeOffset);
+    get {
+      if (_QueuedSpeechTimeOffset == null) {
+        _QueuedSpeechTimeOffset = Schema.GetOffset(0xFB9DA1AC93DE376D);
+      }
+      return new GameTime_tImpl(_Handle + _QueuedSpeechTimeOffset!.Value);
+    }
   }
-  private static readonly nint _BlockedTalkTimeOffset = Schema.GetOffset(0xFB9DA1AC2A2AC272);
+  private static nint? _BlockedTalkTimeOffset;
 
   public GameTime_t BlockedTalkTime {
-    get => new GameTime_tImpl(_Handle + _BlockedTalkTimeOffset);
+    get {
+      if (_BlockedTalkTimeOffset == null) {
+        _BlockedTalkTimeOffset = Schema.GetOffset(0xFB9DA1AC2A2AC272);
+      }
+      return new GameTime_tImpl(_Handle + _BlockedTalkTimeOffset!.Value);
+    }
   }
-  private static readonly nint _VoicePitchOffset = Schema.GetOffset(0xFB9DA1ACAB038A45);
+  private static nint? _VoicePitchOffset;
 
   public ref int VoicePitch {
-    get => ref _Handle.AsRef<int>(_VoicePitchOffset);
+    get {
+      if (_VoicePitchOffset == null) {
+        _VoicePitchOffset = Schema.GetOffset(0xFB9DA1ACAB038A45);
+      }
+      return ref _Handle.AsRef<int>(_VoicePitchOffset!.Value);
+    }
   }
-  private static readonly nint _LastTimeAcceptedSpeakOffset = Schema.GetOffset(0xFB9DA1AC8D9FF64F);
+  private static nint? _LastTimeAcceptedSpeakOffset;
 
   public GameTime_t LastTimeAcceptedSpeak {
-    get => new GameTime_tImpl(_Handle + _LastTimeAcceptedSpeakOffset);
+    get {
+      if (_LastTimeAcceptedSpeakOffset == null) {
+        _LastTimeAcceptedSpeakOffset = Schema.GetOffset(0xFB9DA1AC8D9FF64F);
+      }
+      return new GameTime_tImpl(_Handle + _LastTimeAcceptedSpeakOffset!.Value);
+    }
   }
-  private static readonly nint _AllowSpeakingInterruptsOffset = Schema.GetOffset(0xFB9DA1ACC77E4694);
+  private static nint? _AllowSpeakingInterruptsOffset;
 
   public ref bool AllowSpeakingInterrupts {
-    get => ref _Handle.AsRef<bool>(_AllowSpeakingInterruptsOffset);
+    get {
+      if (_AllowSpeakingInterruptsOffset == null) {
+        _AllowSpeakingInterruptsOffset = Schema.GetOffset(0xFB9DA1ACC77E4694);
+      }
+      return ref _Handle.AsRef<bool>(_AllowSpeakingInterruptsOffset!.Value);
+    }
   }
-  private static readonly nint _ConsiderSceneInvolvementAsSpeechOffset = Schema.GetOffset(0xFB9DA1ACB1C249B1);
+  private static nint? _ConsiderSceneInvolvementAsSpeechOffset;
 
   public ref bool ConsiderSceneInvolvementAsSpeech {
-    get => ref _Handle.AsRef<bool>(_ConsiderSceneInvolvementAsSpeechOffset);
+    get {
+      if (_ConsiderSceneInvolvementAsSpeechOffset == null) {
+        _ConsiderSceneInvolvementAsSpeechOffset = Schema.GetOffset(0xFB9DA1ACB1C249B1);
+      }
+      return ref _Handle.AsRef<bool>(_ConsiderSceneInvolvementAsSpeechOffset!.Value);
+    }
   }
-  private static readonly nint _SceneEntityDisabledOffset = Schema.GetOffset(0xFB9DA1AC6AC7EEF4);
+  private static nint? _SceneEntityDisabledOffset;
 
   public ref bool SceneEntityDisabled {
-    get => ref _Handle.AsRef<bool>(_SceneEntityDisabledOffset);
+    get {
+      if (_SceneEntityDisabledOffset == null) {
+        _SceneEntityDisabledOffset = Schema.GetOffset(0xFB9DA1AC6AC7EEF4);
+      }
+      return ref _Handle.AsRef<bool>(_SceneEntityDisabledOffset!.Value);
+    }
   }
-  private static readonly nint _LastSpokenPriorityOffset = Schema.GetOffset(0xFB9DA1AC9722D67B);
+  private static nint? _LastSpokenPriorityOffset;
 
   public ref int LastSpokenPriority {
-    get => ref _Handle.AsRef<int>(_LastSpokenPriorityOffset);
+    get {
+      if (_LastSpokenPriorityOffset == null) {
+        _LastSpokenPriorityOffset = Schema.GetOffset(0xFB9DA1AC9722D67B);
+      }
+      return ref _Handle.AsRef<int>(_LastSpokenPriorityOffset!.Value);
+    }
   }
-  private static readonly nint _OuterOffset = Schema.GetOffset(0xFB9DA1AC7359CF3A);
+  private static nint? _OuterOffset;
 
   public CBaseFlex? Outer {
     get {
-      var ptr = _Handle.Read<nint>(_OuterOffset);
+      if (_OuterOffset == null) {
+        _OuterOffset = Schema.GetOffset(0xFB9DA1AC7359CF3A);
+      }
+      var ptr = _Handle.Read<nint>(_OuterOffset!.Value);
       return ptr.IsValidPtr() ? new CBaseFlexImpl(ptr) : null;
     }
   }

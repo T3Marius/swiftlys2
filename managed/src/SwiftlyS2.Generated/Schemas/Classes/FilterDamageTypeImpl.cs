@@ -17,10 +17,15 @@ internal partial class FilterDamageTypeImpl : CBaseFilterImpl, FilterDamageType 
   public FilterDamageTypeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DamageTypeOffset = Schema.GetOffset(0xEBD649E6AF4EB7BD);
+  private static nint? _DamageTypeOffset;
 
   public ref int DamageType {
-    get => ref _Handle.AsRef<int>(_DamageTypeOffset);
+    get {
+      if (_DamageTypeOffset == null) {
+        _DamageTypeOffset = Schema.GetOffset(0xEBD649E6AF4EB7BD);
+      }
+      return ref _Handle.AsRef<int>(_DamageTypeOffset!.Value);
+    }
   }
 
 

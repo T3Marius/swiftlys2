@@ -17,30 +17,55 @@ internal partial class C_OP_BoxConstraintImpl : CParticleFunctionConstraintImpl,
   public C_OP_BoxConstraintImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinOffset = Schema.GetOffset(0x111EED71B0765F37);
+  private static nint? _MinOffset;
 
   public CParticleCollectionVecInput Min {
-    get => new CParticleCollectionVecInputImpl(_Handle + _MinOffset);
+    get {
+      if (_MinOffset == null) {
+        _MinOffset = Schema.GetOffset(0x111EED71B0765F37);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _MinOffset!.Value);
+    }
   }
-  private static readonly nint _MaxOffset = Schema.GetOffset(0x111EED71BE89FCF9);
+  private static nint? _MaxOffset;
 
   public CParticleCollectionVecInput Max {
-    get => new CParticleCollectionVecInputImpl(_Handle + _MaxOffset);
+    get {
+      if (_MaxOffset == null) {
+        _MaxOffset = Schema.GetOffset(0x111EED71BE89FCF9);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _MaxOffset!.Value);
+    }
   }
-  private static readonly nint _CPOffset = Schema.GetOffset(0x111EED71EB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x111EED71EB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
-  private static readonly nint _LocalSpaceOffset = Schema.GetOffset(0x111EED7162418E6E);
+  private static nint? _LocalSpaceOffset;
 
   public ref bool LocalSpace {
-    get => ref _Handle.AsRef<bool>(_LocalSpaceOffset);
+    get {
+      if (_LocalSpaceOffset == null) {
+        _LocalSpaceOffset = Schema.GetOffset(0x111EED7162418E6E);
+      }
+      return ref _Handle.AsRef<bool>(_LocalSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _AccountForRadiusOffset = Schema.GetOffset(0x111EED71E4DE9E21);
+  private static nint? _AccountForRadiusOffset;
 
   public ref bool AccountForRadius {
-    get => ref _Handle.AsRef<bool>(_AccountForRadiusOffset);
+    get {
+      if (_AccountForRadiusOffset == null) {
+        _AccountForRadiusOffset = Schema.GetOffset(0x111EED71E4DE9E21);
+      }
+      return ref _Handle.AsRef<bool>(_AccountForRadiusOffset!.Value);
+    }
   }
 
 

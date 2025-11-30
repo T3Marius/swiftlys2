@@ -17,25 +17,45 @@ internal partial class C_OP_SetSingleControlPointPositionImpl : CParticleFunctio
   public C_OP_SetSingleControlPointPositionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SetOnceOffset = Schema.GetOffset(0xFE0B7A4D6B261086);
+  private static nint? _SetOnceOffset;
 
   public ref bool SetOnce {
-    get => ref _Handle.AsRef<bool>(_SetOnceOffset);
+    get {
+      if (_SetOnceOffset == null) {
+        _SetOnceOffset = Schema.GetOffset(0xFE0B7A4D6B261086);
+      }
+      return ref _Handle.AsRef<bool>(_SetOnceOffset!.Value);
+    }
   }
-  private static readonly nint _CP1Offset = Schema.GetOffset(0xFE0B7A4DD4B1E579);
+  private static nint? _CP1Offset;
 
   public ref int CP1 {
-    get => ref _Handle.AsRef<int>(_CP1Offset);
+    get {
+      if (_CP1Offset == null) {
+        _CP1Offset = Schema.GetOffset(0xFE0B7A4DD4B1E579);
+      }
+      return ref _Handle.AsRef<int>(_CP1Offset!.Value);
+    }
   }
-  private static readonly nint _CP1PosOffset = Schema.GetOffset(0xFE0B7A4D408288D9);
+  private static nint? _CP1PosOffset;
 
   public CParticleCollectionVecInput CP1Pos {
-    get => new CParticleCollectionVecInputImpl(_Handle + _CP1PosOffset);
+    get {
+      if (_CP1PosOffset == null) {
+        _CP1PosOffset = Schema.GetOffset(0xFE0B7A4D408288D9);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _CP1PosOffset!.Value);
+    }
   }
-  private static readonly nint _TransformInputOffset = Schema.GetOffset(0xFE0B7A4D3A9ED669);
+  private static nint? _TransformInputOffset;
 
   public CParticleTransformInput TransformInput {
-    get => new CParticleTransformInputImpl(_Handle + _TransformInputOffset);
+    get {
+      if (_TransformInputOffset == null) {
+        _TransformInputOffset = Schema.GetOffset(0xFE0B7A4D3A9ED669);
+      }
+      return new CParticleTransformInputImpl(_Handle + _TransformInputOffset!.Value);
+    }
   }
 
 

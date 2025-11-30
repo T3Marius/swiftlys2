@@ -17,30 +17,55 @@ internal partial class CStopAtGoalUpdateNodeImpl : CUnaryUpdateNodeImpl, CStopAt
   public CStopAtGoalUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OuterRadiusOffset = Schema.GetOffset(0x4889F8297B66A818);
+  private static nint? _OuterRadiusOffset;
 
   public ref float OuterRadius {
-    get => ref _Handle.AsRef<float>(_OuterRadiusOffset);
+    get {
+      if (_OuterRadiusOffset == null) {
+        _OuterRadiusOffset = Schema.GetOffset(0x4889F8297B66A818);
+      }
+      return ref _Handle.AsRef<float>(_OuterRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _InnerRadiusOffset = Schema.GetOffset(0x4889F82932121407);
+  private static nint? _InnerRadiusOffset;
 
   public ref float InnerRadius {
-    get => ref _Handle.AsRef<float>(_InnerRadiusOffset);
+    get {
+      if (_InnerRadiusOffset == null) {
+        _InnerRadiusOffset = Schema.GetOffset(0x4889F82932121407);
+      }
+      return ref _Handle.AsRef<float>(_InnerRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _MaxScaleOffset = Schema.GetOffset(0x4889F829FF4EC8E7);
+  private static nint? _MaxScaleOffset;
 
   public ref float MaxScale {
-    get => ref _Handle.AsRef<float>(_MaxScaleOffset);
+    get {
+      if (_MaxScaleOffset == null) {
+        _MaxScaleOffset = Schema.GetOffset(0x4889F829FF4EC8E7);
+      }
+      return ref _Handle.AsRef<float>(_MaxScaleOffset!.Value);
+    }
   }
-  private static readonly nint _MinScaleOffset = Schema.GetOffset(0x4889F829D125D67D);
+  private static nint? _MinScaleOffset;
 
   public ref float MinScale {
-    get => ref _Handle.AsRef<float>(_MinScaleOffset);
+    get {
+      if (_MinScaleOffset == null) {
+        _MinScaleOffset = Schema.GetOffset(0x4889F829D125D67D);
+      }
+      return ref _Handle.AsRef<float>(_MinScaleOffset!.Value);
+    }
   }
-  private static readonly nint _DampingOffset = Schema.GetOffset(0x4889F82915440FB5);
+  private static nint? _DampingOffset;
 
   public CAnimInputDamping Damping {
-    get => new CAnimInputDampingImpl(_Handle + _DampingOffset);
+    get {
+      if (_DampingOffset == null) {
+        _DampingOffset = Schema.GetOffset(0x4889F82915440FB5);
+      }
+      return new CAnimInputDampingImpl(_Handle + _DampingOffset!.Value);
+    }
   }
 
 

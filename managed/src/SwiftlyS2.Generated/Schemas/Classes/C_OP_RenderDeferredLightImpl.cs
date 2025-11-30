@@ -17,85 +17,165 @@ internal partial class C_OP_RenderDeferredLightImpl : CParticleFunctionRendererI
   public C_OP_RenderDeferredLightImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _UseAlphaTestWindowOffset = Schema.GetOffset(0x44291266951B0D10);
+  private static nint? _UseAlphaTestWindowOffset;
 
   public ref bool UseAlphaTestWindow {
-    get => ref _Handle.AsRef<bool>(_UseAlphaTestWindowOffset);
+    get {
+      if (_UseAlphaTestWindowOffset == null) {
+        _UseAlphaTestWindowOffset = Schema.GetOffset(0x44291266951B0D10);
+      }
+      return ref _Handle.AsRef<bool>(_UseAlphaTestWindowOffset!.Value);
+    }
   }
-  private static readonly nint _UseTextureOffset = Schema.GetOffset(0x4429126624A2D28F);
+  private static nint? _UseTextureOffset;
 
   public ref bool UseTexture {
-    get => ref _Handle.AsRef<bool>(_UseTextureOffset);
+    get {
+      if (_UseTextureOffset == null) {
+        _UseTextureOffset = Schema.GetOffset(0x4429126624A2D28F);
+      }
+      return ref _Handle.AsRef<bool>(_UseTextureOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusScaleOffset = Schema.GetOffset(0x44291266A7A20159);
+  private static nint? _RadiusScaleOffset;
 
   public ref float RadiusScale {
-    get => ref _Handle.AsRef<float>(_RadiusScaleOffset);
+    get {
+      if (_RadiusScaleOffset == null) {
+        _RadiusScaleOffset = Schema.GetOffset(0x44291266A7A20159);
+      }
+      return ref _Handle.AsRef<float>(_RadiusScaleOffset!.Value);
+    }
   }
-  private static readonly nint _AlphaScaleOffset = Schema.GetOffset(0x44291266EC6D3C25);
+  private static nint? _AlphaScaleOffset;
 
   public ref float AlphaScale {
-    get => ref _Handle.AsRef<float>(_AlphaScaleOffset);
+    get {
+      if (_AlphaScaleOffset == null) {
+        _AlphaScaleOffset = Schema.GetOffset(0x44291266EC6D3C25);
+      }
+      return ref _Handle.AsRef<float>(_AlphaScaleOffset!.Value);
+    }
   }
-  private static readonly nint _Alpha2FieldOffset = Schema.GetOffset(0x44291266F60EADC1);
+  private static nint? _Alpha2FieldOffset;
 
   public ParticleAttributeIndex_t Alpha2Field {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _Alpha2FieldOffset);
+    get {
+      if (_Alpha2FieldOffset == null) {
+        _Alpha2FieldOffset = Schema.GetOffset(0x44291266F60EADC1);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _Alpha2FieldOffset!.Value);
+    }
   }
-  private static readonly nint _ColorScaleOffset = Schema.GetOffset(0x442912669F9BB8BA);
+  private static nint? _ColorScaleOffset;
 
   public CParticleCollectionVecInput ColorScale {
-    get => new CParticleCollectionVecInputImpl(_Handle + _ColorScaleOffset);
+    get {
+      if (_ColorScaleOffset == null) {
+        _ColorScaleOffset = Schema.GetOffset(0x442912669F9BB8BA);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _ColorScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ColorBlendTypeOffset = Schema.GetOffset(0x44291266DBC6EFCF);
+  private static nint? _ColorBlendTypeOffset;
 
   public ref ParticleColorBlendType_t ColorBlendType {
-    get => ref _Handle.AsRef<ParticleColorBlendType_t>(_ColorBlendTypeOffset);
+    get {
+      if (_ColorBlendTypeOffset == null) {
+        _ColorBlendTypeOffset = Schema.GetOffset(0x44291266DBC6EFCF);
+      }
+      return ref _Handle.AsRef<ParticleColorBlendType_t>(_ColorBlendTypeOffset!.Value);
+    }
   }
-  private static readonly nint _LightDistanceOffset = Schema.GetOffset(0x44291266FAE1FD66);
+  private static nint? _LightDistanceOffset;
 
   public ref float LightDistance {
-    get => ref _Handle.AsRef<float>(_LightDistanceOffset);
+    get {
+      if (_LightDistanceOffset == null) {
+        _LightDistanceOffset = Schema.GetOffset(0x44291266FAE1FD66);
+      }
+      return ref _Handle.AsRef<float>(_LightDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _StartFalloffOffset = Schema.GetOffset(0x44291266A8F25925);
+  private static nint? _StartFalloffOffset;
 
   public ref float StartFalloff {
-    get => ref _Handle.AsRef<float>(_StartFalloffOffset);
+    get {
+      if (_StartFalloffOffset == null) {
+        _StartFalloffOffset = Schema.GetOffset(0x44291266A8F25925);
+      }
+      return ref _Handle.AsRef<float>(_StartFalloffOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceFalloffOffset = Schema.GetOffset(0x44291266A9C33036);
+  private static nint? _DistanceFalloffOffset;
 
   public ref float DistanceFalloff {
-    get => ref _Handle.AsRef<float>(_DistanceFalloffOffset);
+    get {
+      if (_DistanceFalloffOffset == null) {
+        _DistanceFalloffOffset = Schema.GetOffset(0x44291266A9C33036);
+      }
+      return ref _Handle.AsRef<float>(_DistanceFalloffOffset!.Value);
+    }
   }
-  private static readonly nint _SpotFoVOffset = Schema.GetOffset(0x44291266D202E536);
+  private static nint? _SpotFoVOffset;
 
   public ref float SpotFoV {
-    get => ref _Handle.AsRef<float>(_SpotFoVOffset);
+    get {
+      if (_SpotFoVOffset == null) {
+        _SpotFoVOffset = Schema.GetOffset(0x44291266D202E536);
+      }
+      return ref _Handle.AsRef<float>(_SpotFoVOffset!.Value);
+    }
   }
-  private static readonly nint _AlphaTestPointFieldOffset = Schema.GetOffset(0x442912666AD21C15);
+  private static nint? _AlphaTestPointFieldOffset;
 
   public ParticleAttributeIndex_t AlphaTestPointField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _AlphaTestPointFieldOffset);
+    get {
+      if (_AlphaTestPointFieldOffset == null) {
+        _AlphaTestPointFieldOffset = Schema.GetOffset(0x442912666AD21C15);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _AlphaTestPointFieldOffset!.Value);
+    }
   }
-  private static readonly nint _AlphaTestRangeFieldOffset = Schema.GetOffset(0x442912663E3E66D4);
+  private static nint? _AlphaTestRangeFieldOffset;
 
   public ParticleAttributeIndex_t AlphaTestRangeField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _AlphaTestRangeFieldOffset);
+    get {
+      if (_AlphaTestRangeFieldOffset == null) {
+        _AlphaTestRangeFieldOffset = Schema.GetOffset(0x442912663E3E66D4);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _AlphaTestRangeFieldOffset!.Value);
+    }
   }
-  private static readonly nint _AlphaTestSharpnessFieldOffset = Schema.GetOffset(0x44291266BCB74B82);
+  private static nint? _AlphaTestSharpnessFieldOffset;
 
   public ParticleAttributeIndex_t AlphaTestSharpnessField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _AlphaTestSharpnessFieldOffset);
+    get {
+      if (_AlphaTestSharpnessFieldOffset == null) {
+        _AlphaTestSharpnessFieldOffset = Schema.GetOffset(0x44291266BCB74B82);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _AlphaTestSharpnessFieldOffset!.Value);
+    }
   }
-  private static readonly nint _TextureOffset = Schema.GetOffset(0x442912668C0A2FB6);
+  private static nint? _TextureOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Texture {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_TextureOffset);
+    get {
+      if (_TextureOffset == null) {
+        _TextureOffset = Schema.GetOffset(0x442912668C0A2FB6);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_TextureOffset!.Value);
+    }
   }
-  private static readonly nint _HSVShiftControlPointOffset = Schema.GetOffset(0x442912668848C01F);
+  private static nint? _HSVShiftControlPointOffset;
 
   public ref int HSVShiftControlPoint {
-    get => ref _Handle.AsRef<int>(_HSVShiftControlPointOffset);
+    get {
+      if (_HSVShiftControlPointOffset == null) {
+        _HSVShiftControlPointOffset = Schema.GetOffset(0x442912668848C01F);
+      }
+      return ref _Handle.AsRef<int>(_HSVShiftControlPointOffset!.Value);
+    }
   }
 
 

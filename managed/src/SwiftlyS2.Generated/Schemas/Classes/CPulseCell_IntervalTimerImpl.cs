@@ -17,15 +17,25 @@ internal partial class CPulseCell_IntervalTimerImpl : CPulseCell_BaseYieldingInf
   public CPulseCell_IntervalTimerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CompletedOffset = Schema.GetOffset(0x33EF5E76818C0E92);
+  private static nint? _CompletedOffset;
 
   public CPulse_ResumePoint Completed {
-    get => new CPulse_ResumePointImpl(_Handle + _CompletedOffset);
+    get {
+      if (_CompletedOffset == null) {
+        _CompletedOffset = Schema.GetOffset(0x33EF5E76818C0E92);
+      }
+      return new CPulse_ResumePointImpl(_Handle + _CompletedOffset!.Value);
+    }
   }
-  private static readonly nint _OnIntervalOffset = Schema.GetOffset(0x33EF5E761A4FEF89);
+  private static nint? _OnIntervalOffset;
 
   public SignatureOutflow_Continue OnInterval {
-    get => new SignatureOutflow_ContinueImpl(_Handle + _OnIntervalOffset);
+    get {
+      if (_OnIntervalOffset == null) {
+        _OnIntervalOffset = Schema.GetOffset(0x33EF5E761A4FEF89);
+      }
+      return new SignatureOutflow_ContinueImpl(_Handle + _OnIntervalOffset!.Value);
+    }
   }
 
 

@@ -17,28 +17,49 @@ internal partial class ResponseContext_tImpl : SchemaClass, ResponseContext_t {
   public ResponseContext_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x8F5A90A274FF65FE);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x8F5A90A274FF65FE);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x8F5A90A274FF65FE);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x8F5A90A28044B702);
+  private static nint? _ValueOffset;
 
   public string Value {
     get {
-      var ptr = _Handle.Read<nint>(_ValueOffset);
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x8F5A90A28044B702);
+      }
+      var ptr = _Handle.Read<nint>(_ValueOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ValueOffset, value);
+    set {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x8F5A90A28044B702);
+      }
+      Schema.SetString(_Handle, _ValueOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ExpirationTimeOffset = Schema.GetOffset(0x8F5A90A20389142D);
+  private static nint? _ExpirationTimeOffset;
 
   public GameTime_t ExpirationTime {
-    get => new GameTime_tImpl(_Handle + _ExpirationTimeOffset);
+    get {
+      if (_ExpirationTimeOffset == null) {
+        _ExpirationTimeOffset = Schema.GetOffset(0x8F5A90A20389142D);
+      }
+      return new GameTime_tImpl(_Handle + _ExpirationTimeOffset!.Value);
+    }
   }
 
 

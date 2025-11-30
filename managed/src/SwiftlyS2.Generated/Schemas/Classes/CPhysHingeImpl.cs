@@ -17,95 +17,185 @@ internal partial class CPhysHingeImpl : CPhysConstraintImpl, CPhysHinge {
   public CPhysHingeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SoundInfoOffset = Schema.GetOffset(0xFCB149B185F704E8);
+  private static nint? _SoundInfoOffset;
 
   public ConstraintSoundInfo SoundInfo {
-    get => new ConstraintSoundInfoImpl(_Handle + _SoundInfoOffset);
+    get {
+      if (_SoundInfoOffset == null) {
+        _SoundInfoOffset = Schema.GetOffset(0xFCB149B185F704E8);
+      }
+      return new ConstraintSoundInfoImpl(_Handle + _SoundInfoOffset!.Value);
+    }
   }
-  private static readonly nint _NotifyMinLimitReachedOffset = Schema.GetOffset(0xFCB149B1CD28EA23);
+  private static nint? _NotifyMinLimitReachedOffset;
 
   public CEntityIOOutput NotifyMinLimitReached {
-    get => new CEntityIOOutputImpl(_Handle + _NotifyMinLimitReachedOffset);
+    get {
+      if (_NotifyMinLimitReachedOffset == null) {
+        _NotifyMinLimitReachedOffset = Schema.GetOffset(0xFCB149B1CD28EA23);
+      }
+      return new CEntityIOOutputImpl(_Handle + _NotifyMinLimitReachedOffset!.Value);
+    }
   }
-  private static readonly nint _NotifyMaxLimitReachedOffset = Schema.GetOffset(0xFCB149B15B33E6AD);
+  private static nint? _NotifyMaxLimitReachedOffset;
 
   public CEntityIOOutput NotifyMaxLimitReached {
-    get => new CEntityIOOutputImpl(_Handle + _NotifyMaxLimitReachedOffset);
+    get {
+      if (_NotifyMaxLimitReachedOffset == null) {
+        _NotifyMaxLimitReachedOffset = Schema.GetOffset(0xFCB149B15B33E6AD);
+      }
+      return new CEntityIOOutputImpl(_Handle + _NotifyMaxLimitReachedOffset!.Value);
+    }
   }
-  private static readonly nint _AtMinLimitOffset = Schema.GetOffset(0xFCB149B119CAC3B7);
+  private static nint? _AtMinLimitOffset;
 
   public ref bool AtMinLimit {
-    get => ref _Handle.AsRef<bool>(_AtMinLimitOffset);
+    get {
+      if (_AtMinLimitOffset == null) {
+        _AtMinLimitOffset = Schema.GetOffset(0xFCB149B119CAC3B7);
+      }
+      return ref _Handle.AsRef<bool>(_AtMinLimitOffset!.Value);
+    }
   }
-  private static readonly nint _AtMaxLimitOffset = Schema.GetOffset(0xFCB149B153E2D225);
+  private static nint? _AtMaxLimitOffset;
 
   public ref bool AtMaxLimit {
-    get => ref _Handle.AsRef<bool>(_AtMaxLimitOffset);
+    get {
+      if (_AtMaxLimitOffset == null) {
+        _AtMaxLimitOffset = Schema.GetOffset(0xFCB149B153E2D225);
+      }
+      return ref _Handle.AsRef<bool>(_AtMaxLimitOffset!.Value);
+    }
   }
-  private static readonly nint _HingeOffset = Schema.GetOffset(0xFCB149B13923C0AC);
+  private static nint? _HingeOffset;
 
   public constraint_hingeparams_t Hinge {
-    get => new constraint_hingeparams_tImpl(_Handle + _HingeOffset);
+    get {
+      if (_HingeOffset == null) {
+        _HingeOffset = Schema.GetOffset(0xFCB149B13923C0AC);
+      }
+      return new constraint_hingeparams_tImpl(_Handle + _HingeOffset!.Value);
+    }
   }
-  private static readonly nint _HingeFrictionOffset = Schema.GetOffset(0xFCB149B11390591E);
+  private static nint? _HingeFrictionOffset;
 
   public ref float HingeFriction {
-    get => ref _Handle.AsRef<float>(_HingeFrictionOffset);
+    get {
+      if (_HingeFrictionOffset == null) {
+        _HingeFrictionOffset = Schema.GetOffset(0xFCB149B11390591E);
+      }
+      return ref _Handle.AsRef<float>(_HingeFrictionOffset!.Value);
+    }
   }
-  private static readonly nint _SystemLoadScaleOffset = Schema.GetOffset(0xFCB149B19C24DB62);
+  private static nint? _SystemLoadScaleOffset;
 
   public ref float SystemLoadScale {
-    get => ref _Handle.AsRef<float>(_SystemLoadScaleOffset);
+    get {
+      if (_SystemLoadScaleOffset == null) {
+        _SystemLoadScaleOffset = Schema.GetOffset(0xFCB149B19C24DB62);
+      }
+      return ref _Handle.AsRef<float>(_SystemLoadScaleOffset!.Value);
+    }
   }
-  private static readonly nint _IsAxisLocalOffset = Schema.GetOffset(0xFCB149B15A72A0AF);
+  private static nint? _IsAxisLocalOffset;
 
   public ref bool IsAxisLocal {
-    get => ref _Handle.AsRef<bool>(_IsAxisLocalOffset);
+    get {
+      if (_IsAxisLocalOffset == null) {
+        _IsAxisLocalOffset = Schema.GetOffset(0xFCB149B15A72A0AF);
+      }
+      return ref _Handle.AsRef<bool>(_IsAxisLocalOffset!.Value);
+    }
   }
-  private static readonly nint _MinRotationOffset = Schema.GetOffset(0xFCB149B124801DAB);
+  private static nint? _MinRotationOffset;
 
   public ref float MinRotation {
-    get => ref _Handle.AsRef<float>(_MinRotationOffset);
+    get {
+      if (_MinRotationOffset == null) {
+        _MinRotationOffset = Schema.GetOffset(0xFCB149B124801DAB);
+      }
+      return ref _Handle.AsRef<float>(_MinRotationOffset!.Value);
+    }
   }
-  private static readonly nint _MaxRotationOffset = Schema.GetOffset(0xFCB149B1770EB7E9);
+  private static nint? _MaxRotationOffset;
 
   public ref float MaxRotation {
-    get => ref _Handle.AsRef<float>(_MaxRotationOffset);
+    get {
+      if (_MaxRotationOffset == null) {
+        _MaxRotationOffset = Schema.GetOffset(0xFCB149B1770EB7E9);
+      }
+      return ref _Handle.AsRef<float>(_MaxRotationOffset!.Value);
+    }
   }
-  private static readonly nint _InitialRotationOffset = Schema.GetOffset(0xFCB149B1C9493687);
+  private static nint? _InitialRotationOffset;
 
   public ref float InitialRotation {
-    get => ref _Handle.AsRef<float>(_InitialRotationOffset);
+    get {
+      if (_InitialRotationOffset == null) {
+        _InitialRotationOffset = Schema.GetOffset(0xFCB149B1C9493687);
+      }
+      return ref _Handle.AsRef<float>(_InitialRotationOffset!.Value);
+    }
   }
-  private static readonly nint _MotorFrequencyOffset = Schema.GetOffset(0xFCB149B156F7120A);
+  private static nint? _MotorFrequencyOffset;
 
   public ref float MotorFrequency {
-    get => ref _Handle.AsRef<float>(_MotorFrequencyOffset);
+    get {
+      if (_MotorFrequencyOffset == null) {
+        _MotorFrequencyOffset = Schema.GetOffset(0xFCB149B156F7120A);
+      }
+      return ref _Handle.AsRef<float>(_MotorFrequencyOffset!.Value);
+    }
   }
-  private static readonly nint _MotorDampingRatioOffset = Schema.GetOffset(0xFCB149B1D8669699);
+  private static nint? _MotorDampingRatioOffset;
 
   public ref float MotorDampingRatio {
-    get => ref _Handle.AsRef<float>(_MotorDampingRatioOffset);
+    get {
+      if (_MotorDampingRatioOffset == null) {
+        _MotorDampingRatioOffset = Schema.GetOffset(0xFCB149B1D8669699);
+      }
+      return ref _Handle.AsRef<float>(_MotorDampingRatioOffset!.Value);
+    }
   }
-  private static readonly nint _AngleSpeedOffset = Schema.GetOffset(0xFCB149B18CA05599);
+  private static nint? _AngleSpeedOffset;
 
   public ref float AngleSpeed {
-    get => ref _Handle.AsRef<float>(_AngleSpeedOffset);
+    get {
+      if (_AngleSpeedOffset == null) {
+        _AngleSpeedOffset = Schema.GetOffset(0xFCB149B18CA05599);
+      }
+      return ref _Handle.AsRef<float>(_AngleSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _AngleSpeedThresholdOffset = Schema.GetOffset(0xFCB149B141F77A9C);
+  private static nint? _AngleSpeedThresholdOffset;
 
   public ref float AngleSpeedThreshold {
-    get => ref _Handle.AsRef<float>(_AngleSpeedThresholdOffset);
+    get {
+      if (_AngleSpeedThresholdOffset == null) {
+        _AngleSpeedThresholdOffset = Schema.GetOffset(0xFCB149B141F77A9C);
+      }
+      return ref _Handle.AsRef<float>(_AngleSpeedThresholdOffset!.Value);
+    }
   }
-  private static readonly nint _OnStartMovingOffset = Schema.GetOffset(0xFCB149B1F38945EA);
+  private static nint? _OnStartMovingOffset;
 
   public CEntityIOOutput OnStartMoving {
-    get => new CEntityIOOutputImpl(_Handle + _OnStartMovingOffset);
+    get {
+      if (_OnStartMovingOffset == null) {
+        _OnStartMovingOffset = Schema.GetOffset(0xFCB149B1F38945EA);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnStartMovingOffset!.Value);
+    }
   }
-  private static readonly nint _OnStopMovingOffset = Schema.GetOffset(0xFCB149B1D3A538AE);
+  private static nint? _OnStopMovingOffset;
 
   public CEntityIOOutput OnStopMoving {
-    get => new CEntityIOOutputImpl(_Handle + _OnStopMovingOffset);
+    get {
+      if (_OnStopMovingOffset == null) {
+        _OnStopMovingOffset = Schema.GetOffset(0xFCB149B1D3A538AE);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnStopMovingOffset!.Value);
+    }
   }
 
 

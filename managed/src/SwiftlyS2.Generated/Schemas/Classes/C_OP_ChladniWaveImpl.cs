@@ -17,55 +17,105 @@ internal partial class C_OP_ChladniWaveImpl : CParticleFunctionOperatorImpl, C_O
   public C_OP_ChladniWaveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x5C575E1BE5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x5C575E1BE5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _InputMinOffset = Schema.GetOffset(0x5C575E1BE88A0D0F);
+  private static nint? _InputMinOffset;
 
   public CPerParticleFloatInput InputMin {
-    get => new CPerParticleFloatInputImpl(_Handle + _InputMinOffset);
+    get {
+      if (_InputMinOffset == null) {
+        _InputMinOffset = Schema.GetOffset(0x5C575E1BE88A0D0F);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InputMinOffset!.Value);
+    }
   }
-  private static readonly nint _InputMaxOffset = Schema.GetOffset(0x5C575E1BD6766901);
+  private static nint? _InputMaxOffset;
 
   public CPerParticleFloatInput InputMax {
-    get => new CPerParticleFloatInputImpl(_Handle + _InputMaxOffset);
+    get {
+      if (_InputMaxOffset == null) {
+        _InputMaxOffset = Schema.GetOffset(0x5C575E1BD6766901);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InputMaxOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMinOffset = Schema.GetOffset(0x5C575E1B5F8D7716);
+  private static nint? _OutputMinOffset;
 
   public CPerParticleFloatInput OutputMin {
-    get => new CPerParticleFloatInputImpl(_Handle + _OutputMinOffset);
+    get {
+      if (_OutputMinOffset == null) {
+        _OutputMinOffset = Schema.GetOffset(0x5C575E1B5F8D7716);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _OutputMinOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMaxOffset = Schema.GetOffset(0x5C575E1B51A0E8C4);
+  private static nint? _OutputMaxOffset;
 
   public CPerParticleFloatInput OutputMax {
-    get => new CPerParticleFloatInputImpl(_Handle + _OutputMaxOffset);
+    get {
+      if (_OutputMaxOffset == null) {
+        _OutputMaxOffset = Schema.GetOffset(0x5C575E1B51A0E8C4);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _OutputMaxOffset!.Value);
+    }
   }
-  private static readonly nint _WaveLengthOffset = Schema.GetOffset(0x5C575E1B33948038);
+  private static nint? _WaveLengthOffset;
 
   public CPerParticleVecInput WaveLength {
-    get => new CPerParticleVecInputImpl(_Handle + _WaveLengthOffset);
+    get {
+      if (_WaveLengthOffset == null) {
+        _WaveLengthOffset = Schema.GetOffset(0x5C575E1B33948038);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _WaveLengthOffset!.Value);
+    }
   }
-  private static readonly nint _HarmonicsOffset = Schema.GetOffset(0x5C575E1B91D6B17F);
+  private static nint? _HarmonicsOffset;
 
   public CPerParticleVecInput Harmonics {
-    get => new CPerParticleVecInputImpl(_Handle + _HarmonicsOffset);
+    get {
+      if (_HarmonicsOffset == null) {
+        _HarmonicsOffset = Schema.GetOffset(0x5C575E1B91D6B17F);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _HarmonicsOffset!.Value);
+    }
   }
-  private static readonly nint _SetMethodOffset = Schema.GetOffset(0x5C575E1BFB53C31E);
+  private static nint? _SetMethodOffset;
 
   public ref ParticleSetMethod_t SetMethod {
-    get => ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset);
+    get {
+      if (_SetMethodOffset == null) {
+        _SetMethodOffset = Schema.GetOffset(0x5C575E1BFB53C31E);
+      }
+      return ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset!.Value);
+    }
   }
-  private static readonly nint _LocalSpaceControlPointOffset = Schema.GetOffset(0x5C575E1B1656DBF7);
+  private static nint? _LocalSpaceControlPointOffset;
 
   public ref int LocalSpaceControlPoint {
-    get => ref _Handle.AsRef<int>(_LocalSpaceControlPointOffset);
+    get {
+      if (_LocalSpaceControlPointOffset == null) {
+        _LocalSpaceControlPointOffset = Schema.GetOffset(0x5C575E1B1656DBF7);
+      }
+      return ref _Handle.AsRef<int>(_LocalSpaceControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _B3DOffset = Schema.GetOffset(0x5C575E1B24E1BE32);
+  private static nint? _B3DOffset;
 
   public ref bool B3D {
-    get => ref _Handle.AsRef<bool>(_B3DOffset);
+    get {
+      if (_B3DOffset == null) {
+        _B3DOffset = Schema.GetOffset(0x5C575E1B24E1BE32);
+      }
+      return ref _Handle.AsRef<bool>(_B3DOffset!.Value);
+    }
   }
 
 

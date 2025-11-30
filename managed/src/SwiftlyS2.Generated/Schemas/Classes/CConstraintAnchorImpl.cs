@@ -17,10 +17,15 @@ internal partial class CConstraintAnchorImpl : CBaseAnimGraphImpl, CConstraintAn
   public CConstraintAnchorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MassScaleOffset = Schema.GetOffset(0xD8ABF41001B9E905);
+  private static nint? _MassScaleOffset;
 
   public ref float MassScale {
-    get => ref _Handle.AsRef<float>(_MassScaleOffset);
+    get {
+      if (_MassScaleOffset == null) {
+        _MassScaleOffset = Schema.GetOffset(0xD8ABF41001B9E905);
+      }
+      return ref _Handle.AsRef<float>(_MassScaleOffset!.Value);
+    }
   }
 
 

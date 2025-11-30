@@ -17,35 +17,65 @@ internal partial class CCSPlayer_WaterServicesImpl : CPlayer_WaterServicesImpl, 
   public CCSPlayer_WaterServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NextDrownDamageTimeOffset = Schema.GetOffset(0x81EE3221161B7836);
+  private static nint? _NextDrownDamageTimeOffset;
 
   public GameTime_t NextDrownDamageTime {
-    get => new GameTime_tImpl(_Handle + _NextDrownDamageTimeOffset);
+    get {
+      if (_NextDrownDamageTimeOffset == null) {
+        _NextDrownDamageTimeOffset = Schema.GetOffset(0x81EE3221161B7836);
+      }
+      return new GameTime_tImpl(_Handle + _NextDrownDamageTimeOffset!.Value);
+    }
   }
-  private static readonly nint _DrownDmgRateOffset = Schema.GetOffset(0x81EE3221DB1DC111);
+  private static nint? _DrownDmgRateOffset;
 
   public ref int DrownDmgRate {
-    get => ref _Handle.AsRef<int>(_DrownDmgRateOffset);
+    get {
+      if (_DrownDmgRateOffset == null) {
+        _DrownDmgRateOffset = Schema.GetOffset(0x81EE3221DB1DC111);
+      }
+      return ref _Handle.AsRef<int>(_DrownDmgRateOffset!.Value);
+    }
   }
-  private static readonly nint _AirFinishedTimeOffset = Schema.GetOffset(0x81EE3221F32CD208);
+  private static nint? _AirFinishedTimeOffset;
 
   public GameTime_t AirFinishedTime {
-    get => new GameTime_tImpl(_Handle + _AirFinishedTimeOffset);
+    get {
+      if (_AirFinishedTimeOffset == null) {
+        _AirFinishedTimeOffset = Schema.GetOffset(0x81EE3221F32CD208);
+      }
+      return new GameTime_tImpl(_Handle + _AirFinishedTimeOffset!.Value);
+    }
   }
-  private static readonly nint _WaterJumpTimeOffset = Schema.GetOffset(0x81EE3221E7A7489F);
+  private static nint? _WaterJumpTimeOffset;
 
   public ref float WaterJumpTime {
-    get => ref _Handle.AsRef<float>(_WaterJumpTimeOffset);
+    get {
+      if (_WaterJumpTimeOffset == null) {
+        _WaterJumpTimeOffset = Schema.GetOffset(0x81EE3221E7A7489F);
+      }
+      return ref _Handle.AsRef<float>(_WaterJumpTimeOffset!.Value);
+    }
   }
-  private static readonly nint _WaterJumpVelOffset = Schema.GetOffset(0x81EE3221B3333137);
+  private static nint? _WaterJumpVelOffset;
 
   public ref Vector WaterJumpVel {
-    get => ref _Handle.AsRef<Vector>(_WaterJumpVelOffset);
+    get {
+      if (_WaterJumpVelOffset == null) {
+        _WaterJumpVelOffset = Schema.GetOffset(0x81EE3221B3333137);
+      }
+      return ref _Handle.AsRef<Vector>(_WaterJumpVelOffset!.Value);
+    }
   }
-  private static readonly nint _SwimSoundTimeOffset = Schema.GetOffset(0x81EE32218B6E62D7);
+  private static nint? _SwimSoundTimeOffset;
 
   public ref float SwimSoundTime {
-    get => ref _Handle.AsRef<float>(_SwimSoundTimeOffset);
+    get {
+      if (_SwimSoundTimeOffset == null) {
+        _SwimSoundTimeOffset = Schema.GetOffset(0x81EE32218B6E62D7);
+      }
+      return ref _Handle.AsRef<float>(_SwimSoundTimeOffset!.Value);
+    }
   }
 
 

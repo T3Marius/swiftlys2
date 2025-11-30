@@ -17,87 +17,166 @@ internal partial class CBaseClientUIEntityImpl : CBaseModelEntityImpl, CBaseClie
   public CBaseClientUIEntityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EnabledOffset = Schema.GetOffset(0x51A22D116154EB7E);
+  private static nint? _EnabledOffset;
 
   public ref bool Enabled {
-    get => ref _Handle.AsRef<bool>(_EnabledOffset);
+    get {
+      if (_EnabledOffset == null) {
+        _EnabledOffset = Schema.GetOffset(0x51A22D116154EB7E);
+      }
+      return ref _Handle.AsRef<bool>(_EnabledOffset!.Value);
+    }
   }
-  private static readonly nint _DialogXMLNameOffset = Schema.GetOffset(0x51A22D11D13858C9);
+  private static nint? _DialogXMLNameOffset;
 
   public string DialogXMLName {
     get {
-      var ptr = _Handle.Read<nint>(_DialogXMLNameOffset);
+      if (_DialogXMLNameOffset == null) {
+        _DialogXMLNameOffset = Schema.GetOffset(0x51A22D11D13858C9);
+      }
+      var ptr = _Handle.Read<nint>(_DialogXMLNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _DialogXMLNameOffset, value);
+    set {
+      if (_DialogXMLNameOffset == null) {
+        _DialogXMLNameOffset = Schema.GetOffset(0x51A22D11D13858C9);
+      }
+      Schema.SetString(_Handle, _DialogXMLNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PanelClassNameOffset = Schema.GetOffset(0x51A22D115C958CBC);
+  private static nint? _PanelClassNameOffset;
 
   public string PanelClassName {
     get {
-      var ptr = _Handle.Read<nint>(_PanelClassNameOffset);
+      if (_PanelClassNameOffset == null) {
+        _PanelClassNameOffset = Schema.GetOffset(0x51A22D115C958CBC);
+      }
+      var ptr = _Handle.Read<nint>(_PanelClassNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PanelClassNameOffset, value);
+    set {
+      if (_PanelClassNameOffset == null) {
+        _PanelClassNameOffset = Schema.GetOffset(0x51A22D115C958CBC);
+      }
+      Schema.SetString(_Handle, _PanelClassNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PanelIDOffset = Schema.GetOffset(0x51A22D1107A4EF60);
+  private static nint? _PanelIDOffset;
 
   public string PanelID {
     get {
-      var ptr = _Handle.Read<nint>(_PanelIDOffset);
+      if (_PanelIDOffset == null) {
+        _PanelIDOffset = Schema.GetOffset(0x51A22D1107A4EF60);
+      }
+      var ptr = _Handle.Read<nint>(_PanelIDOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PanelIDOffset, value);
+    set {
+      if (_PanelIDOffset == null) {
+        _PanelIDOffset = Schema.GetOffset(0x51A22D1107A4EF60);
+      }
+      Schema.SetString(_Handle, _PanelIDOffset!.Value, value);
+    }
   } 
-  private static readonly nint _CustomOutput0Offset = Schema.GetOffset(0x51A22D119AA5C775);
+  private static nint? _CustomOutput0Offset;
 
   public CEntityIOOutput CustomOutput0 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput0Offset);
+    get {
+      if (_CustomOutput0Offset == null) {
+        _CustomOutput0Offset = Schema.GetOffset(0x51A22D119AA5C775);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput0Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput1Offset = Schema.GetOffset(0x51A22D1199A5C5E2);
+  private static nint? _CustomOutput1Offset;
 
   public CEntityIOOutput CustomOutput1 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput1Offset);
+    get {
+      if (_CustomOutput1Offset == null) {
+        _CustomOutput1Offset = Schema.GetOffset(0x51A22D1199A5C5E2);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput1Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput2Offset = Schema.GetOffset(0x51A22D1198A5C44F);
+  private static nint? _CustomOutput2Offset;
 
   public CEntityIOOutput CustomOutput2 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput2Offset);
+    get {
+      if (_CustomOutput2Offset == null) {
+        _CustomOutput2Offset = Schema.GetOffset(0x51A22D1198A5C44F);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput2Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput3Offset = Schema.GetOffset(0x51A22D1197A5C2BC);
+  private static nint? _CustomOutput3Offset;
 
   public CEntityIOOutput CustomOutput3 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput3Offset);
+    get {
+      if (_CustomOutput3Offset == null) {
+        _CustomOutput3Offset = Schema.GetOffset(0x51A22D1197A5C2BC);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput3Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput4Offset = Schema.GetOffset(0x51A22D1196A5C129);
+  private static nint? _CustomOutput4Offset;
 
   public CEntityIOOutput CustomOutput4 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput4Offset);
+    get {
+      if (_CustomOutput4Offset == null) {
+        _CustomOutput4Offset = Schema.GetOffset(0x51A22D1196A5C129);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput4Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput5Offset = Schema.GetOffset(0x51A22D1195A5BF96);
+  private static nint? _CustomOutput5Offset;
 
   public CEntityIOOutput CustomOutput5 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput5Offset);
+    get {
+      if (_CustomOutput5Offset == null) {
+        _CustomOutput5Offset = Schema.GetOffset(0x51A22D1195A5BF96);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput5Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput6Offset = Schema.GetOffset(0x51A22D1194A5BE03);
+  private static nint? _CustomOutput6Offset;
 
   public CEntityIOOutput CustomOutput6 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput6Offset);
+    get {
+      if (_CustomOutput6Offset == null) {
+        _CustomOutput6Offset = Schema.GetOffset(0x51A22D1194A5BE03);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput6Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput7Offset = Schema.GetOffset(0x51A22D1193A5BC70);
+  private static nint? _CustomOutput7Offset;
 
   public CEntityIOOutput CustomOutput7 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput7Offset);
+    get {
+      if (_CustomOutput7Offset == null) {
+        _CustomOutput7Offset = Schema.GetOffset(0x51A22D1193A5BC70);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput7Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput8Offset = Schema.GetOffset(0x51A22D11A2A5D40D);
+  private static nint? _CustomOutput8Offset;
 
   public CEntityIOOutput CustomOutput8 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput8Offset);
+    get {
+      if (_CustomOutput8Offset == null) {
+        _CustomOutput8Offset = Schema.GetOffset(0x51A22D11A2A5D40D);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput8Offset!.Value);
+    }
   }
-  private static readonly nint _CustomOutput9Offset = Schema.GetOffset(0x51A22D11A1A5D27A);
+  private static nint? _CustomOutput9Offset;
 
   public CEntityIOOutput CustomOutput9 {
-    get => new CEntityIOOutputImpl(_Handle + _CustomOutput9Offset);
+    get {
+      if (_CustomOutput9Offset == null) {
+        _CustomOutput9Offset = Schema.GetOffset(0x51A22D11A1A5D27A);
+      }
+      return new CEntityIOOutputImpl(_Handle + _CustomOutput9Offset!.Value);
+    }
   }
 
   public void EnabledUpdated() {

@@ -41,7 +41,7 @@ public unsafe struct MeshTrace
     public int NumVertices;
 }
 
-[StructLayout(LayoutKind.Explicit)]
+[StructLayout(LayoutKind.Explicit, Size = 48)]
 public struct Ray_t
 {
     [FieldOffset(0x0)] public LineTrace Line;
@@ -49,16 +49,16 @@ public struct Ray_t
     [FieldOffset(0x0)] public HullTrace Hull;
     [FieldOffset(0x0)] public CapsuleTrace Capsule;
     [FieldOffset(0x0)] public MeshTrace Mesh;
-    [FieldOffset(0x34)] public RayType_t Type;
+    [FieldOffset(0x28)] public RayType_t Type;
 
-    public void Init(Vector StartOffset)
+    public void Init( Vector StartOffset )
     {
         Line.StartOffset = StartOffset;
         Line.Radius = 0.0f;
         Type = RayType_t.RAY_TYPE_LINE;
     }
 
-    public void Init(Vector Center, float Radius)
+    public void Init( Vector Center, float Radius )
     {
         if (Radius > 0.0f)
         {
@@ -72,7 +72,7 @@ public struct Ray_t
         }
     }
 
-    public void Init(Vector Mins, Vector Maxs)
+    public void Init( Vector Mins, Vector Maxs )
     {
         if (Mins != Maxs)
         {
@@ -86,7 +86,7 @@ public struct Ray_t
         }
     }
 
-    public void Init(Vector CenterA, Vector CenterB, float Radius)
+    public void Init( Vector CenterA, Vector CenterB, float Radius )
     {
         if (CenterA != CenterB)
         {
@@ -108,7 +108,7 @@ public struct Ray_t
         }
     }
 
-    public unsafe void Init(Vector Mins, Vector Maxs, Vector* Vertices, int NumVertices)
+    public unsafe void Init( Vector Mins, Vector Maxs, Vector* Vertices, int NumVertices )
     {
         Mesh.Mins = Mins;
         Mesh.Maxs = Maxs;

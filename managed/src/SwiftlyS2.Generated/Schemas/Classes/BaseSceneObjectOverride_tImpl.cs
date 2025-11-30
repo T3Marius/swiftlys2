@@ -17,10 +17,15 @@ internal partial class BaseSceneObjectOverride_tImpl : SchemaClass, BaseSceneObj
   public BaseSceneObjectOverride_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SceneObjectIndexOffset = Schema.GetOffset(0xDC119FF44026A3B8);
+  private static nint? _SceneObjectIndexOffset;
 
   public ref uint SceneObjectIndex {
-    get => ref _Handle.AsRef<uint>(_SceneObjectIndexOffset);
+    get {
+      if (_SceneObjectIndexOffset == null) {
+        _SceneObjectIndexOffset = Schema.GetOffset(0xDC119FF44026A3B8);
+      }
+      return ref _Handle.AsRef<uint>(_SceneObjectIndexOffset!.Value);
+    }
   }
 
 

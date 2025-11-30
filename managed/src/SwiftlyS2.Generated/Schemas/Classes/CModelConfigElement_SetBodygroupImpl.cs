@@ -17,15 +17,25 @@ internal partial class CModelConfigElement_SetBodygroupImpl : CModelConfigElemen
   public CModelConfigElement_SetBodygroupImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _GroupNameOffset = Schema.GetOffset(0x390A561FE0A55E67);
+  private static nint? _GroupNameOffset;
 
   public ref CGlobalSymbol GroupName {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_GroupNameOffset);
+    get {
+      if (_GroupNameOffset == null) {
+        _GroupNameOffset = Schema.GetOffset(0x390A561FE0A55E67);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_GroupNameOffset!.Value);
+    }
   }
-  private static readonly nint _ChoiceOffset = Schema.GetOffset(0x390A561F7CC11192);
+  private static nint? _ChoiceOffset;
 
   public ref int Choice {
-    get => ref _Handle.AsRef<int>(_ChoiceOffset);
+    get {
+      if (_ChoiceOffset == null) {
+        _ChoiceOffset = Schema.GetOffset(0x390A561F7CC11192);
+      }
+      return ref _Handle.AsRef<int>(_ChoiceOffset!.Value);
+    }
   }
 
 

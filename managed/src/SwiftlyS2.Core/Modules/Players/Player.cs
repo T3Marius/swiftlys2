@@ -54,6 +54,8 @@ internal class Player : IPlayer
         Controller is { IsValid: true, IsHLTV: false, Connected: PlayerConnectedState.PlayerConnected } &&
         Pawn is { IsValid: true };
 
+    public bool IsFirstSpawn => NativePlayer.IsFirstSpawn(Slot);
+
     Language IPlayer.PlayerLanguage => PlayerLanguage;
 
     public void ChangeTeam( Team team )

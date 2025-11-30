@@ -17,69 +17,132 @@ internal partial class MoodAnimationLayer_tImpl : SchemaClass, MoodAnimationLaye
   public MoodAnimationLayer_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x3663914263D22D49);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x3663914263D22D49);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x3663914263D22D49);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ActiveListeningOffset = Schema.GetOffset(0x36639142122973A0);
+  private static nint? _ActiveListeningOffset;
 
   public ref bool ActiveListening {
-    get => ref _Handle.AsRef<bool>(_ActiveListeningOffset);
+    get {
+      if (_ActiveListeningOffset == null) {
+        _ActiveListeningOffset = Schema.GetOffset(0x36639142122973A0);
+      }
+      return ref _Handle.AsRef<bool>(_ActiveListeningOffset!.Value);
+    }
   }
-  private static readonly nint _ActiveTalkingOffset = Schema.GetOffset(0x366391423033E5C3);
+  private static nint? _ActiveTalkingOffset;
 
   public ref bool ActiveTalking {
-    get => ref _Handle.AsRef<bool>(_ActiveTalkingOffset);
+    get {
+      if (_ActiveTalkingOffset == null) {
+        _ActiveTalkingOffset = Schema.GetOffset(0x366391423033E5C3);
+      }
+      return ref _Handle.AsRef<bool>(_ActiveTalkingOffset!.Value);
+    }
   }
-  private static readonly nint _LayerAnimationsOffset = Schema.GetOffset(0x3663914250279465);
+  private static nint? _LayerAnimationsOffset;
 
   public ref CUtlVector<MoodAnimation_t> LayerAnimations {
-    get => ref _Handle.AsRef<CUtlVector<MoodAnimation_t>>(_LayerAnimationsOffset);
+    get {
+      if (_LayerAnimationsOffset == null) {
+        _LayerAnimationsOffset = Schema.GetOffset(0x3663914250279465);
+      }
+      return ref _Handle.AsRef<CUtlVector<MoodAnimation_t>>(_LayerAnimationsOffset!.Value);
+    }
   }
-  private static readonly nint _IntensityOffset = Schema.GetOffset(0x3663914267B5578C);
+  private static nint? _IntensityOffset;
 
   public CRangeFloat Intensity {
-    get => new CRangeFloatImpl(_Handle + _IntensityOffset);
+    get {
+      if (_IntensityOffset == null) {
+        _IntensityOffset = Schema.GetOffset(0x3663914267B5578C);
+      }
+      return new CRangeFloatImpl(_Handle + _IntensityOffset!.Value);
+    }
   }
-  private static readonly nint _DurationScaleOffset = Schema.GetOffset(0x36639142776D4203);
+  private static nint? _DurationScaleOffset;
 
   public CRangeFloat DurationScale {
-    get => new CRangeFloatImpl(_Handle + _DurationScaleOffset);
+    get {
+      if (_DurationScaleOffset == null) {
+        _DurationScaleOffset = Schema.GetOffset(0x36639142776D4203);
+      }
+      return new CRangeFloatImpl(_Handle + _DurationScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleWithIntsOffset = Schema.GetOffset(0x366391427C46A077);
+  private static nint? _ScaleWithIntsOffset;
 
   public ref bool ScaleWithInts {
-    get => ref _Handle.AsRef<bool>(_ScaleWithIntsOffset);
+    get {
+      if (_ScaleWithIntsOffset == null) {
+        _ScaleWithIntsOffset = Schema.GetOffset(0x366391427C46A077);
+      }
+      return ref _Handle.AsRef<bool>(_ScaleWithIntsOffset!.Value);
+    }
   }
-  private static readonly nint _NextStartOffset = Schema.GetOffset(0x3663914202956BDE);
+  private static nint? _NextStartOffset;
 
   public CRangeFloat NextStart {
-    get => new CRangeFloatImpl(_Handle + _NextStartOffset);
+    get {
+      if (_NextStartOffset == null) {
+        _NextStartOffset = Schema.GetOffset(0x3663914202956BDE);
+      }
+      return new CRangeFloatImpl(_Handle + _NextStartOffset!.Value);
+    }
   }
-  private static readonly nint _StartOffsetOffset = Schema.GetOffset(0x3663914269A449AA);
+  private static nint? _StartOffsetOffset;
 
   public CRangeFloat StartOffset {
-    get => new CRangeFloatImpl(_Handle + _StartOffsetOffset);
+    get {
+      if (_StartOffsetOffset == null) {
+        _StartOffsetOffset = Schema.GetOffset(0x3663914269A449AA);
+      }
+      return new CRangeFloatImpl(_Handle + _StartOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _EndOffsetOffset = Schema.GetOffset(0x36639142C863E027);
+  private static nint? _EndOffsetOffset;
 
   public CRangeFloat EndOffset {
-    get => new CRangeFloatImpl(_Handle + _EndOffsetOffset);
+    get {
+      if (_EndOffsetOffset == null) {
+        _EndOffsetOffset = Schema.GetOffset(0x36639142C863E027);
+      }
+      return new CRangeFloatImpl(_Handle + _EndOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _FadeInOffset = Schema.GetOffset(0x36639142FCA835D2);
+  private static nint? _FadeInOffset;
 
   public ref float FadeIn {
-    get => ref _Handle.AsRef<float>(_FadeInOffset);
+    get {
+      if (_FadeInOffset == null) {
+        _FadeInOffset = Schema.GetOffset(0x36639142FCA835D2);
+      }
+      return ref _Handle.AsRef<float>(_FadeInOffset!.Value);
+    }
   }
-  private static readonly nint _FadeOutOffset = Schema.GetOffset(0x36639142FEBCE80B);
+  private static nint? _FadeOutOffset;
 
   public ref float FadeOut {
-    get => ref _Handle.AsRef<float>(_FadeOutOffset);
+    get {
+      if (_FadeOutOffset == null) {
+        _FadeOutOffset = Schema.GetOffset(0x36639142FEBCE80B);
+      }
+      return ref _Handle.AsRef<float>(_FadeOutOffset!.Value);
+    }
   }
 
 

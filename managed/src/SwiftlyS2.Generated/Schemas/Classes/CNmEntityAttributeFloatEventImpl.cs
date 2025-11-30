@@ -17,10 +17,15 @@ internal partial class CNmEntityAttributeFloatEventImpl : CNmEntityAttributeEven
   public CNmEntityAttributeFloatEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FloatValueOffset = Schema.GetOffset(0x3ADB66C2ADBE62AA);
+  private static nint? _FloatValueOffset;
 
   public SchemaUntypedField FloatValue {
-    get => new SchemaUntypedField(_Handle + _FloatValueOffset);
+    get {
+      if (_FloatValueOffset == null) {
+        _FloatValueOffset = Schema.GetOffset(0x3ADB66C2ADBE62AA);
+      }
+      return new SchemaUntypedField(_Handle + _FloatValueOffset!.Value);
+    }
   }
 
 

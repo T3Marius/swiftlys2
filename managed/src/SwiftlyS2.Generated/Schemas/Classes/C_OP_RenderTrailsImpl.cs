@@ -17,105 +17,205 @@ internal partial class C_OP_RenderTrailsImpl : CBaseTrailRendererImpl, C_OP_Rend
   public C_OP_RenderTrailsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EnableFadingAndClampingOffset = Schema.GetOffset(0xD6B804481BC56ADD);
+  private static nint? _EnableFadingAndClampingOffset;
 
   public ref bool EnableFadingAndClamping {
-    get => ref _Handle.AsRef<bool>(_EnableFadingAndClampingOffset);
+    get {
+      if (_EnableFadingAndClampingOffset == null) {
+        _EnableFadingAndClampingOffset = Schema.GetOffset(0xD6B804481BC56ADD);
+      }
+      return ref _Handle.AsRef<bool>(_EnableFadingAndClampingOffset!.Value);
+    }
   }
-  private static readonly nint _StartFadeDotOffset = Schema.GetOffset(0xD6B80448A5D81E0E);
+  private static nint? _StartFadeDotOffset;
 
   public ref float StartFadeDot {
-    get => ref _Handle.AsRef<float>(_StartFadeDotOffset);
+    get {
+      if (_StartFadeDotOffset == null) {
+        _StartFadeDotOffset = Schema.GetOffset(0xD6B80448A5D81E0E);
+      }
+      return ref _Handle.AsRef<float>(_StartFadeDotOffset!.Value);
+    }
   }
-  private static readonly nint _EndFadeDotOffset = Schema.GetOffset(0xD6B80448D549B121);
+  private static nint? _EndFadeDotOffset;
 
   public ref float EndFadeDot {
-    get => ref _Handle.AsRef<float>(_EndFadeDotOffset);
+    get {
+      if (_EndFadeDotOffset == null) {
+        _EndFadeDotOffset = Schema.GetOffset(0xD6B80448D549B121);
+      }
+      return ref _Handle.AsRef<float>(_EndFadeDotOffset!.Value);
+    }
   }
-  private static readonly nint _PrevPntSourceOffset = Schema.GetOffset(0xD6B80448E1E5B3D3);
+  private static nint? _PrevPntSourceOffset;
 
   public ParticleAttributeIndex_t PrevPntSource {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _PrevPntSourceOffset);
+    get {
+      if (_PrevPntSourceOffset == null) {
+        _PrevPntSourceOffset = Schema.GetOffset(0xD6B80448E1E5B3D3);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _PrevPntSourceOffset!.Value);
+    }
   }
-  private static readonly nint _MaxLengthOffset = Schema.GetOffset(0xD6B8044887A8B4C7);
+  private static nint? _MaxLengthOffset;
 
   public ref float MaxLength {
-    get => ref _Handle.AsRef<float>(_MaxLengthOffset);
+    get {
+      if (_MaxLengthOffset == null) {
+        _MaxLengthOffset = Schema.GetOffset(0xD6B8044887A8B4C7);
+      }
+      return ref _Handle.AsRef<float>(_MaxLengthOffset!.Value);
+    }
   }
-  private static readonly nint _MinLengthOffset = Schema.GetOffset(0xD6B8044895FB8E51);
+  private static nint? _MinLengthOffset;
 
   public ref float MinLength {
-    get => ref _Handle.AsRef<float>(_MinLengthOffset);
+    get {
+      if (_MinLengthOffset == null) {
+        _MinLengthOffset = Schema.GetOffset(0xD6B8044895FB8E51);
+      }
+      return ref _Handle.AsRef<float>(_MinLengthOffset!.Value);
+    }
   }
-  private static readonly nint _IgnoreDTOffset = Schema.GetOffset(0xD6B80448530C3863);
+  private static nint? _IgnoreDTOffset;
 
   public ref bool IgnoreDT {
-    get => ref _Handle.AsRef<bool>(_IgnoreDTOffset);
+    get {
+      if (_IgnoreDTOffset == null) {
+        _IgnoreDTOffset = Schema.GetOffset(0xD6B80448530C3863);
+      }
+      return ref _Handle.AsRef<bool>(_IgnoreDTOffset!.Value);
+    }
   }
-  private static readonly nint _ConstrainRadiusToLengthRatioOffset = Schema.GetOffset(0xD6B8044892B0E52E);
+  private static nint? _ConstrainRadiusToLengthRatioOffset;
 
   public ref float ConstrainRadiusToLengthRatio {
-    get => ref _Handle.AsRef<float>(_ConstrainRadiusToLengthRatioOffset);
+    get {
+      if (_ConstrainRadiusToLengthRatioOffset == null) {
+        _ConstrainRadiusToLengthRatioOffset = Schema.GetOffset(0xD6B8044892B0E52E);
+      }
+      return ref _Handle.AsRef<float>(_ConstrainRadiusToLengthRatioOffset!.Value);
+    }
   }
-  private static readonly nint _LengthScaleOffset = Schema.GetOffset(0xD6B80448E312BAFF);
+  private static nint? _LengthScaleOffset;
 
   public ref float LengthScale {
-    get => ref _Handle.AsRef<float>(_LengthScaleOffset);
+    get {
+      if (_LengthScaleOffset == null) {
+        _LengthScaleOffset = Schema.GetOffset(0xD6B80448E312BAFF);
+      }
+      return ref _Handle.AsRef<float>(_LengthScaleOffset!.Value);
+    }
   }
-  private static readonly nint _LengthFadeInTimeOffset = Schema.GetOffset(0xD6B80448F2585C63);
+  private static nint? _LengthFadeInTimeOffset;
 
   public ref float LengthFadeInTime {
-    get => ref _Handle.AsRef<float>(_LengthFadeInTimeOffset);
+    get {
+      if (_LengthFadeInTimeOffset == null) {
+        _LengthFadeInTimeOffset = Schema.GetOffset(0xD6B80448F2585C63);
+      }
+      return ref _Handle.AsRef<float>(_LengthFadeInTimeOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusHeadTaperOffset = Schema.GetOffset(0xD6B80448FA8DD87B);
+  private static nint? _RadiusHeadTaperOffset;
 
   public CPerParticleFloatInput RadiusHeadTaper {
-    get => new CPerParticleFloatInputImpl(_Handle + _RadiusHeadTaperOffset);
+    get {
+      if (_RadiusHeadTaperOffset == null) {
+        _RadiusHeadTaperOffset = Schema.GetOffset(0xD6B80448FA8DD87B);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _RadiusHeadTaperOffset!.Value);
+    }
   }
-  private static readonly nint _HeadColorScaleOffset = Schema.GetOffset(0xD6B80448C40BF2F8);
+  private static nint? _HeadColorScaleOffset;
 
   public CParticleCollectionVecInput HeadColorScale {
-    get => new CParticleCollectionVecInputImpl(_Handle + _HeadColorScaleOffset);
+    get {
+      if (_HeadColorScaleOffset == null) {
+        _HeadColorScaleOffset = Schema.GetOffset(0xD6B80448C40BF2F8);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _HeadColorScaleOffset!.Value);
+    }
   }
-  private static readonly nint _HeadAlphaScaleOffset = Schema.GetOffset(0xD6B80448225B27B3);
+  private static nint? _HeadAlphaScaleOffset;
 
   public CPerParticleFloatInput HeadAlphaScale {
-    get => new CPerParticleFloatInputImpl(_Handle + _HeadAlphaScaleOffset);
+    get {
+      if (_HeadAlphaScaleOffset == null) {
+        _HeadAlphaScaleOffset = Schema.GetOffset(0xD6B80448225B27B3);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _HeadAlphaScaleOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusTaperOffset = Schema.GetOffset(0xD6B804486362520D);
+  private static nint? _RadiusTaperOffset;
 
   public CPerParticleFloatInput RadiusTaper {
-    get => new CPerParticleFloatInputImpl(_Handle + _RadiusTaperOffset);
+    get {
+      if (_RadiusTaperOffset == null) {
+        _RadiusTaperOffset = Schema.GetOffset(0xD6B804486362520D);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _RadiusTaperOffset!.Value);
+    }
   }
-  private static readonly nint _TailColorScaleOffset = Schema.GetOffset(0xD6B80448CA576A18);
+  private static nint? _TailColorScaleOffset;
 
   public CParticleCollectionVecInput TailColorScale {
-    get => new CParticleCollectionVecInputImpl(_Handle + _TailColorScaleOffset);
+    get {
+      if (_TailColorScaleOffset == null) {
+        _TailColorScaleOffset = Schema.GetOffset(0xD6B80448CA576A18);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _TailColorScaleOffset!.Value);
+    }
   }
-  private static readonly nint _TailAlphaScaleOffset = Schema.GetOffset(0xD6B80448E64193A3);
+  private static nint? _TailAlphaScaleOffset;
 
   public CPerParticleFloatInput TailAlphaScale {
-    get => new CPerParticleFloatInputImpl(_Handle + _TailAlphaScaleOffset);
+    get {
+      if (_TailAlphaScaleOffset == null) {
+        _TailAlphaScaleOffset = Schema.GetOffset(0xD6B80448E64193A3);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _TailAlphaScaleOffset!.Value);
+    }
   }
-  private static readonly nint _HorizCropFieldOffset = Schema.GetOffset(0xD6B8044824C3C3FD);
+  private static nint? _HorizCropFieldOffset;
 
   public ParticleAttributeIndex_t HorizCropField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _HorizCropFieldOffset);
+    get {
+      if (_HorizCropFieldOffset == null) {
+        _HorizCropFieldOffset = Schema.GetOffset(0xD6B8044824C3C3FD);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _HorizCropFieldOffset!.Value);
+    }
   }
-  private static readonly nint _VertCropFieldOffset = Schema.GetOffset(0xD6B804488C72C684);
+  private static nint? _VertCropFieldOffset;
 
   public ParticleAttributeIndex_t VertCropField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _VertCropFieldOffset);
+    get {
+      if (_VertCropFieldOffset == null) {
+        _VertCropFieldOffset = Schema.GetOffset(0xD6B804488C72C684);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _VertCropFieldOffset!.Value);
+    }
   }
-  private static readonly nint _ForwardShiftOffset = Schema.GetOffset(0xD6B80448E6A1E8D8);
+  private static nint? _ForwardShiftOffset;
 
   public ref float ForwardShift {
-    get => ref _Handle.AsRef<float>(_ForwardShiftOffset);
+    get {
+      if (_ForwardShiftOffset == null) {
+        _ForwardShiftOffset = Schema.GetOffset(0xD6B80448E6A1E8D8);
+      }
+      return ref _Handle.AsRef<float>(_ForwardShiftOffset!.Value);
+    }
   }
-  private static readonly nint _FlipUVBasedOnPitchYawOffset = Schema.GetOffset(0xD6B8044861C3ACF4);
+  private static nint? _FlipUVBasedOnPitchYawOffset;
 
   public ref bool FlipUVBasedOnPitchYaw {
-    get => ref _Handle.AsRef<bool>(_FlipUVBasedOnPitchYawOffset);
+    get {
+      if (_FlipUVBasedOnPitchYawOffset == null) {
+        _FlipUVBasedOnPitchYawOffset = Schema.GetOffset(0xD6B8044861C3ACF4);
+      }
+      return ref _Handle.AsRef<bool>(_FlipUVBasedOnPitchYawOffset!.Value);
+    }
   }
 
 

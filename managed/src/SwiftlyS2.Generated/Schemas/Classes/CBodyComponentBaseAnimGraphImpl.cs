@@ -17,10 +17,15 @@ internal partial class CBodyComponentBaseAnimGraphImpl : CBodyComponentSkeletonI
   public CBodyComponentBaseAnimGraphImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AnimationControllerOffset = Schema.GetOffset(0xD004A34F552AD749);
+  private static nint? _AnimationControllerOffset;
 
   public CBaseAnimGraphController AnimationController {
-    get => new CBaseAnimGraphControllerImpl(_Handle + _AnimationControllerOffset);
+    get {
+      if (_AnimationControllerOffset == null) {
+        _AnimationControllerOffset = Schema.GetOffset(0xD004A34F552AD749);
+      }
+      return new CBaseAnimGraphControllerImpl(_Handle + _AnimationControllerOffset!.Value);
+    }
   }
 
   public void AnimationControllerUpdated() {

@@ -17,19 +17,32 @@ internal partial class CEnvMuzzleFlashImpl : CPointEntityImpl, CEnvMuzzleFlash {
   public CEnvMuzzleFlashImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x2EBDF9DEB731A42F);
+  private static nint? _ScaleOffset;
 
   public ref float Scale {
-    get => ref _Handle.AsRef<float>(_ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x2EBDF9DEB731A42F);
+      }
+      return ref _Handle.AsRef<float>(_ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ParentAttachmentOffset = Schema.GetOffset(0x2EBDF9DE0061F288);
+  private static nint? _ParentAttachmentOffset;
 
   public string ParentAttachment {
     get {
-      var ptr = _Handle.Read<nint>(_ParentAttachmentOffset);
+      if (_ParentAttachmentOffset == null) {
+        _ParentAttachmentOffset = Schema.GetOffset(0x2EBDF9DE0061F288);
+      }
+      var ptr = _Handle.Read<nint>(_ParentAttachmentOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ParentAttachmentOffset, value);
+    set {
+      if (_ParentAttachmentOffset == null) {
+        _ParentAttachmentOffset = Schema.GetOffset(0x2EBDF9DE0061F288);
+      }
+      Schema.SetString(_Handle, _ParentAttachmentOffset!.Value, value);
+    }
   } 
 
 

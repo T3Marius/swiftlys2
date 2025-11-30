@@ -17,63 +17,119 @@ internal partial class PermModelInfo_tImpl : SchemaClass, PermModelInfo_t {
   public PermModelInfo_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x1B48585FCE6E9C28);
+  private static nint? _FlagsOffset;
 
   public ref uint Flags {
-    get => ref _Handle.AsRef<uint>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x1B48585FCE6E9C28);
+      }
+      return ref _Handle.AsRef<uint>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _HullMinOffset = Schema.GetOffset(0x1B48585FAC1193D6);
+  private static nint? _HullMinOffset;
 
   public ref Vector HullMin {
-    get => ref _Handle.AsRef<Vector>(_HullMinOffset);
+    get {
+      if (_HullMinOffset == null) {
+        _HullMinOffset = Schema.GetOffset(0x1B48585FAC1193D6);
+      }
+      return ref _Handle.AsRef<Vector>(_HullMinOffset!.Value);
+    }
   }
-  private static readonly nint _HullMaxOffset = Schema.GetOffset(0x1B48585F9E269884);
+  private static nint? _HullMaxOffset;
 
   public ref Vector HullMax {
-    get => ref _Handle.AsRef<Vector>(_HullMaxOffset);
+    get {
+      if (_HullMaxOffset == null) {
+        _HullMaxOffset = Schema.GetOffset(0x1B48585F9E269884);
+      }
+      return ref _Handle.AsRef<Vector>(_HullMaxOffset!.Value);
+    }
   }
-  private static readonly nint _ViewMinOffset = Schema.GetOffset(0x1B48585F22A936E8);
+  private static nint? _ViewMinOffset;
 
   public ref Vector ViewMin {
-    get => ref _Handle.AsRef<Vector>(_ViewMinOffset);
+    get {
+      if (_ViewMinOffset == null) {
+        _ViewMinOffset = Schema.GetOffset(0x1B48585F22A936E8);
+      }
+      return ref _Handle.AsRef<Vector>(_ViewMinOffset!.Value);
+    }
   }
-  private static readonly nint _ViewMaxOffset = Schema.GetOffset(0x1B48585F18BCAEE2);
+  private static nint? _ViewMaxOffset;
 
   public ref Vector ViewMax {
-    get => ref _Handle.AsRef<Vector>(_ViewMaxOffset);
+    get {
+      if (_ViewMaxOffset == null) {
+        _ViewMaxOffset = Schema.GetOffset(0x1B48585F18BCAEE2);
+      }
+      return ref _Handle.AsRef<Vector>(_ViewMaxOffset!.Value);
+    }
   }
-  private static readonly nint _MassOffset = Schema.GetOffset(0x1B48585FCD83D263);
+  private static nint? _MassOffset;
 
   public ref float Mass {
-    get => ref _Handle.AsRef<float>(_MassOffset);
+    get {
+      if (_MassOffset == null) {
+        _MassOffset = Schema.GetOffset(0x1B48585FCD83D263);
+      }
+      return ref _Handle.AsRef<float>(_MassOffset!.Value);
+    }
   }
-  private static readonly nint _EyePositionOffset = Schema.GetOffset(0x1B48585FA0F51EB1);
+  private static nint? _EyePositionOffset;
 
   public ref Vector EyePosition {
-    get => ref _Handle.AsRef<Vector>(_EyePositionOffset);
+    get {
+      if (_EyePositionOffset == null) {
+        _EyePositionOffset = Schema.GetOffset(0x1B48585FA0F51EB1);
+      }
+      return ref _Handle.AsRef<Vector>(_EyePositionOffset!.Value);
+    }
   }
-  private static readonly nint _MaxEyeDeflectionOffset = Schema.GetOffset(0x1B48585F1C6CE157);
+  private static nint? _MaxEyeDeflectionOffset;
 
   public ref float MaxEyeDeflection {
-    get => ref _Handle.AsRef<float>(_MaxEyeDeflectionOffset);
+    get {
+      if (_MaxEyeDeflectionOffset == null) {
+        _MaxEyeDeflectionOffset = Schema.GetOffset(0x1B48585F1C6CE157);
+      }
+      return ref _Handle.AsRef<float>(_MaxEyeDeflectionOffset!.Value);
+    }
   }
-  private static readonly nint _SurfacePropertyOffset = Schema.GetOffset(0x1B48585F1A25534C);
+  private static nint? _SurfacePropertyOffset;
 
   public string SurfaceProperty {
     get {
-      var ptr = _Handle.Read<nint>(_SurfacePropertyOffset);
+      if (_SurfacePropertyOffset == null) {
+        _SurfacePropertyOffset = Schema.GetOffset(0x1B48585F1A25534C);
+      }
+      var ptr = _Handle.Read<nint>(_SurfacePropertyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SurfacePropertyOffset, value);
+    set {
+      if (_SurfacePropertyOffset == null) {
+        _SurfacePropertyOffset = Schema.GetOffset(0x1B48585F1A25534C);
+      }
+      Schema.SetString(_Handle, _SurfacePropertyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _KeyValueTextOffset = Schema.GetOffset(0x1B48585F2156929E);
+  private static nint? _KeyValueTextOffset;
 
   public string KeyValueText {
     get {
-      var ptr = _Handle.Read<nint>(_KeyValueTextOffset);
+      if (_KeyValueTextOffset == null) {
+        _KeyValueTextOffset = Schema.GetOffset(0x1B48585F2156929E);
+      }
+      var ptr = _Handle.Read<nint>(_KeyValueTextOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _KeyValueTextOffset, value);
+    set {
+      if (_KeyValueTextOffset == null) {
+        _KeyValueTextOffset = Schema.GetOffset(0x1B48585F2156929E);
+      }
+      Schema.SetString(_Handle, _KeyValueTextOffset!.Value, value);
+    }
   } 
 
 

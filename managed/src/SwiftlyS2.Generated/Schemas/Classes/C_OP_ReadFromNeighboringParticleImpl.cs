@@ -17,30 +17,55 @@ internal partial class C_OP_ReadFromNeighboringParticleImpl : CParticleFunctionO
   public C_OP_ReadFromNeighboringParticleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldInputOffset = Schema.GetOffset(0xDC4AE427AE775669);
+  private static nint? _FieldInputOffset;
 
   public ParticleAttributeIndex_t FieldInput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset);
+    get {
+      if (_FieldInputOffset == null) {
+        _FieldInputOffset = Schema.GetOffset(0xDC4AE427AE775669);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0xDC4AE427E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0xDC4AE427E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _IncrementOffset = Schema.GetOffset(0xDC4AE4272359F182);
+  private static nint? _IncrementOffset;
 
   public ref int Increment {
-    get => ref _Handle.AsRef<int>(_IncrementOffset);
+    get {
+      if (_IncrementOffset == null) {
+        _IncrementOffset = Schema.GetOffset(0xDC4AE4272359F182);
+      }
+      return ref _Handle.AsRef<int>(_IncrementOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceCheckOffset = Schema.GetOffset(0xDC4AE4272F031DC2);
+  private static nint? _DistanceCheckOffset;
 
   public CPerParticleFloatInput DistanceCheck {
-    get => new CPerParticleFloatInputImpl(_Handle + _DistanceCheckOffset);
+    get {
+      if (_DistanceCheckOffset == null) {
+        _DistanceCheckOffset = Schema.GetOffset(0xDC4AE4272F031DC2);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _DistanceCheckOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolationOffset = Schema.GetOffset(0xDC4AE427CF55B987);
+  private static nint? _InterpolationOffset;
 
   public CPerParticleFloatInput Interpolation {
-    get => new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset);
+    get {
+      if (_InterpolationOffset == null) {
+        _InterpolationOffset = Schema.GetOffset(0xDC4AE427CF55B987);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset!.Value);
+    }
   }
 
 

@@ -17,15 +17,25 @@ internal partial class CAnimUserImpl : SchemaClass, CAnimUser {
   public CAnimUserImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xA77D4C084D8F5786);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xA77D4C084D8F5786);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _TypeOffset = Schema.GetOffset(0xA77D4C0818853D59);
+  private static nint? _TypeOffset;
 
   public ref int Type {
-    get => ref _Handle.AsRef<int>(_TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0xA77D4C0818853D59);
+      }
+      return ref _Handle.AsRef<int>(_TypeOffset!.Value);
+    }
   }
 
 

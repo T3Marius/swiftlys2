@@ -17,25 +17,45 @@ internal partial class CMotionMetricEvaluatorImpl : SchemaClass, CMotionMetricEv
   public CMotionMetricEvaluatorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MeansOffset = Schema.GetOffset(0x1C07D08DAB070085);
+  private static nint? _MeansOffset;
 
   public ref CUtlVector<float> Means {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_MeansOffset);
+    get {
+      if (_MeansOffset == null) {
+        _MeansOffset = Schema.GetOffset(0x1C07D08DAB070085);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_MeansOffset!.Value);
+    }
   }
-  private static readonly nint _StandardDeviationsOffset = Schema.GetOffset(0x1C07D08D9114EB60);
+  private static nint? _StandardDeviationsOffset;
 
   public ref CUtlVector<float> StandardDeviations {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_StandardDeviationsOffset);
+    get {
+      if (_StandardDeviationsOffset == null) {
+        _StandardDeviationsOffset = Schema.GetOffset(0x1C07D08D9114EB60);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_StandardDeviationsOffset!.Value);
+    }
   }
-  private static readonly nint _WeightOffset = Schema.GetOffset(0x1C07D08D7B81E7AB);
+  private static nint? _WeightOffset;
 
   public ref float Weight {
-    get => ref _Handle.AsRef<float>(_WeightOffset);
+    get {
+      if (_WeightOffset == null) {
+        _WeightOffset = Schema.GetOffset(0x1C07D08D7B81E7AB);
+      }
+      return ref _Handle.AsRef<float>(_WeightOffset!.Value);
+    }
   }
-  private static readonly nint _DimensionStartIndexOffset = Schema.GetOffset(0x1C07D08D3448F2E3);
+  private static nint? _DimensionStartIndexOffset;
 
   public ref int DimensionStartIndex {
-    get => ref _Handle.AsRef<int>(_DimensionStartIndexOffset);
+    get {
+      if (_DimensionStartIndexOffset == null) {
+        _DimensionStartIndexOffset = Schema.GetOffset(0x1C07D08D3448F2E3);
+      }
+      return ref _Handle.AsRef<int>(_DimensionStartIndexOffset!.Value);
+    }
   }
 
 

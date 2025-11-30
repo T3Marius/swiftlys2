@@ -17,15 +17,25 @@ internal partial class CPulse_ConstantImpl : SchemaClass, CPulse_Constant {
   public CPulse_ConstantImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TypeOffset = Schema.GetOffset(0x28B1B9F08ED6D5CD);
+  private static nint? _TypeOffset;
 
   public SchemaUntypedField Type {
-    get => new SchemaUntypedField(_Handle + _TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0x28B1B9F08ED6D5CD);
+      }
+      return new SchemaUntypedField(_Handle + _TypeOffset!.Value);
+    }
   }
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x28B1B9F0DCB0894A);
+  private static nint? _ValueOffset;
 
   public SchemaUntypedField Value {
-    get => new SchemaUntypedField(_Handle + _ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x28B1B9F0DCB0894A);
+      }
+      return new SchemaUntypedField(_Handle + _ValueOffset!.Value);
+    }
   }
 
 

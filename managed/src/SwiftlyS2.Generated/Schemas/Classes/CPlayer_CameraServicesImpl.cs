@@ -17,65 +17,125 @@ internal partial class CPlayer_CameraServicesImpl : CPlayerPawnComponentImpl, CP
   public CPlayer_CameraServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CsViewPunchAngleOffset = Schema.GetOffset(0xCF1076771108E39);
+  private static nint? _CsViewPunchAngleOffset;
 
   public ref QAngle CsViewPunchAngle {
-    get => ref _Handle.AsRef<QAngle>(_CsViewPunchAngleOffset);
+    get {
+      if (_CsViewPunchAngleOffset == null) {
+        _CsViewPunchAngleOffset = Schema.GetOffset(0xCF1076771108E39);
+      }
+      return ref _Handle.AsRef<QAngle>(_CsViewPunchAngleOffset!.Value);
+    }
   }
-  private static readonly nint _CsViewPunchAngleTickOffset = Schema.GetOffset(0xCF10767832A08EC);
+  private static nint? _CsViewPunchAngleTickOffset;
 
   public GameTick_t CsViewPunchAngleTick {
-    get => new GameTick_tImpl(_Handle + _CsViewPunchAngleTickOffset);
+    get {
+      if (_CsViewPunchAngleTickOffset == null) {
+        _CsViewPunchAngleTickOffset = Schema.GetOffset(0xCF10767832A08EC);
+      }
+      return new GameTick_tImpl(_Handle + _CsViewPunchAngleTickOffset!.Value);
+    }
   }
-  private static readonly nint _CsViewPunchAngleTickRatioOffset = Schema.GetOffset(0xCF1076709BF7629);
+  private static nint? _CsViewPunchAngleTickRatioOffset;
 
   public ref float CsViewPunchAngleTickRatio {
-    get => ref _Handle.AsRef<float>(_CsViewPunchAngleTickRatioOffset);
+    get {
+      if (_CsViewPunchAngleTickRatioOffset == null) {
+        _CsViewPunchAngleTickRatioOffset = Schema.GetOffset(0xCF1076709BF7629);
+      }
+      return ref _Handle.AsRef<float>(_CsViewPunchAngleTickRatioOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerFogOffset = Schema.GetOffset(0xCF1076781FBA280);
+  private static nint? _PlayerFogOffset;
 
   public fogplayerparams_t PlayerFog {
-    get => new fogplayerparams_tImpl(_Handle + _PlayerFogOffset);
+    get {
+      if (_PlayerFogOffset == null) {
+        _PlayerFogOffset = Schema.GetOffset(0xCF1076781FBA280);
+      }
+      return new fogplayerparams_tImpl(_Handle + _PlayerFogOffset!.Value);
+    }
   }
-  private static readonly nint _ColorCorrectionCtrlOffset = Schema.GetOffset(0xCF1076724DC833B);
+  private static nint? _ColorCorrectionCtrlOffset;
 
   public ref CHandle<CColorCorrection> ColorCorrectionCtrl {
-    get => ref _Handle.AsRef<CHandle<CColorCorrection>>(_ColorCorrectionCtrlOffset);
+    get {
+      if (_ColorCorrectionCtrlOffset == null) {
+        _ColorCorrectionCtrlOffset = Schema.GetOffset(0xCF1076724DC833B);
+      }
+      return ref _Handle.AsRef<CHandle<CColorCorrection>>(_ColorCorrectionCtrlOffset!.Value);
+    }
   }
-  private static readonly nint _ViewEntityOffset = Schema.GetOffset(0xCF107677FD940D1);
+  private static nint? _ViewEntityOffset;
 
   public ref CHandle<CBaseEntity> ViewEntity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_ViewEntityOffset);
+    get {
+      if (_ViewEntityOffset == null) {
+        _ViewEntityOffset = Schema.GetOffset(0xCF107677FD940D1);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_ViewEntityOffset!.Value);
+    }
   }
-  private static readonly nint _TonemapControllerOffset = Schema.GetOffset(0xCF10767F5E1A34F);
+  private static nint? _TonemapControllerOffset;
 
   public ref CHandle<CTonemapController2> TonemapController {
-    get => ref _Handle.AsRef<CHandle<CTonemapController2>>(_TonemapControllerOffset);
+    get {
+      if (_TonemapControllerOffset == null) {
+        _TonemapControllerOffset = Schema.GetOffset(0xCF10767F5E1A34F);
+      }
+      return ref _Handle.AsRef<CHandle<CTonemapController2>>(_TonemapControllerOffset!.Value);
+    }
   }
-  private static readonly nint _AudioOffset = Schema.GetOffset(0xCF1076722E8C9B9);
+  private static nint? _AudioOffset;
 
   public audioparams_t Audio {
-    get => new audioparams_tImpl(_Handle + _AudioOffset);
+    get {
+      if (_AudioOffset == null) {
+        _AudioOffset = Schema.GetOffset(0xCF1076722E8C9B9);
+      }
+      return new audioparams_tImpl(_Handle + _AudioOffset!.Value);
+    }
   }
-  private static readonly nint _PostProcessingVolumesOffset = Schema.GetOffset(0xCF107674BEE60DF);
+  private static nint? _PostProcessingVolumesOffset;
 
   public ref CUtlVector<CHandle<CPostProcessingVolume>> PostProcessingVolumes {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CPostProcessingVolume>>>(_PostProcessingVolumesOffset);
+    get {
+      if (_PostProcessingVolumesOffset == null) {
+        _PostProcessingVolumesOffset = Schema.GetOffset(0xCF107674BEE60DF);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CPostProcessingVolume>>>(_PostProcessingVolumesOffset!.Value);
+    }
   }
-  private static readonly nint _OldPlayerZOffset = Schema.GetOffset(0xCF107677A9E373D);
+  private static nint? _OldPlayerZOffset;
 
   public ref float OldPlayerZ {
-    get => ref _Handle.AsRef<float>(_OldPlayerZOffset);
+    get {
+      if (_OldPlayerZOffset == null) {
+        _OldPlayerZOffset = Schema.GetOffset(0xCF107677A9E373D);
+      }
+      return ref _Handle.AsRef<float>(_OldPlayerZOffset!.Value);
+    }
   }
-  private static readonly nint _OldPlayerViewOffsetZOffset = Schema.GetOffset(0xCF10767CA126E73);
+  private static nint? _OldPlayerViewOffsetZOffset;
 
   public ref float OldPlayerViewOffsetZ {
-    get => ref _Handle.AsRef<float>(_OldPlayerViewOffsetZOffset);
+    get {
+      if (_OldPlayerViewOffsetZOffset == null) {
+        _OldPlayerViewOffsetZOffset = Schema.GetOffset(0xCF10767CA126E73);
+      }
+      return ref _Handle.AsRef<float>(_OldPlayerViewOffsetZOffset!.Value);
+    }
   }
-  private static readonly nint _TriggerSoundscapeListOffset = Schema.GetOffset(0xCF10767F74D6272);
+  private static nint? _TriggerSoundscapeListOffset;
 
   public ref CUtlVector<CHandle<CEnvSoundscapeTriggerable>> TriggerSoundscapeList {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CEnvSoundscapeTriggerable>>>(_TriggerSoundscapeListOffset);
+    get {
+      if (_TriggerSoundscapeListOffset == null) {
+        _TriggerSoundscapeListOffset = Schema.GetOffset(0xCF10767F74D6272);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CEnvSoundscapeTriggerable>>>(_TriggerSoundscapeListOffset!.Value);
+    }
   }
 
   public void CsViewPunchAngleUpdated() {

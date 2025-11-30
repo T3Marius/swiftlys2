@@ -17,20 +17,35 @@ internal partial class SoundOpvarTraceResult_tImpl : SchemaClass, SoundOpvarTrac
   public SoundOpvarTraceResult_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PosOffset = Schema.GetOffset(0xF93EB0CBE5D6FAFD);
+  private static nint? _PosOffset;
 
   public ref Vector Pos {
-    get => ref _Handle.AsRef<Vector>(_PosOffset);
+    get {
+      if (_PosOffset == null) {
+        _PosOffset = Schema.GetOffset(0xF93EB0CBE5D6FAFD);
+      }
+      return ref _Handle.AsRef<Vector>(_PosOffset!.Value);
+    }
   }
-  private static readonly nint _DidHitOffset = Schema.GetOffset(0xF93EB0CBA8217B9F);
+  private static nint? _DidHitOffset;
 
   public ref bool DidHit {
-    get => ref _Handle.AsRef<bool>(_DidHitOffset);
+    get {
+      if (_DidHitOffset == null) {
+        _DidHitOffset = Schema.GetOffset(0xF93EB0CBA8217B9F);
+      }
+      return ref _Handle.AsRef<bool>(_DidHitOffset!.Value);
+    }
   }
-  private static readonly nint _DistSqrToCenterOffset = Schema.GetOffset(0xF93EB0CB96618227);
+  private static nint? _DistSqrToCenterOffset;
 
   public ref float DistSqrToCenter {
-    get => ref _Handle.AsRef<float>(_DistSqrToCenterOffset);
+    get {
+      if (_DistSqrToCenterOffset == null) {
+        _DistSqrToCenterOffset = Schema.GetOffset(0xF93EB0CB96618227);
+      }
+      return ref _Handle.AsRef<float>(_DistSqrToCenterOffset!.Value);
+    }
   }
 
 

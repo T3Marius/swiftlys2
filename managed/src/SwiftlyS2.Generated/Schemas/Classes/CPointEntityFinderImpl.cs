@@ -17,48 +17,89 @@ internal partial class CPointEntityFinderImpl : CBaseEntityImpl, CPointEntityFin
   public CPointEntityFinderImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EntityOffset = Schema.GetOffset(0xC59CB1336EBADCB0);
+  private static nint? _EntityOffset;
 
   public ref CHandle<CBaseEntity> Entity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset);
+    get {
+      if (_EntityOffset == null) {
+        _EntityOffset = Schema.GetOffset(0xC59CB1336EBADCB0);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset!.Value);
+    }
   }
-  private static readonly nint _FilterNameOffset = Schema.GetOffset(0xC59CB13309C86445);
+  private static nint? _FilterNameOffset;
 
   public string FilterName {
     get {
-      var ptr = _Handle.Read<nint>(_FilterNameOffset);
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0xC59CB13309C86445);
+      }
+      var ptr = _Handle.Read<nint>(_FilterNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FilterNameOffset, value);
+    set {
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0xC59CB13309C86445);
+      }
+      Schema.SetString(_Handle, _FilterNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _FilterOffset = Schema.GetOffset(0xC59CB13345D9E0B1);
+  private static nint? _FilterOffset;
 
   public ref CHandle<CBaseFilter> Filter {
-    get => ref _Handle.AsRef<CHandle<CBaseFilter>>(_FilterOffset);
+    get {
+      if (_FilterOffset == null) {
+        _FilterOffset = Schema.GetOffset(0xC59CB13345D9E0B1);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseFilter>>(_FilterOffset!.Value);
+    }
   }
-  private static readonly nint _RefNameOffset = Schema.GetOffset(0xC59CB1339640D172);
+  private static nint? _RefNameOffset;
 
   public string RefName {
     get {
-      var ptr = _Handle.Read<nint>(_RefNameOffset);
+      if (_RefNameOffset == null) {
+        _RefNameOffset = Schema.GetOffset(0xC59CB1339640D172);
+      }
+      var ptr = _Handle.Read<nint>(_RefNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _RefNameOffset, value);
+    set {
+      if (_RefNameOffset == null) {
+        _RefNameOffset = Schema.GetOffset(0xC59CB1339640D172);
+      }
+      Schema.SetString(_Handle, _RefNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ReferenceOffset = Schema.GetOffset(0xC59CB1338100A1A4);
+  private static nint? _ReferenceOffset;
 
   public ref CHandle<CBaseEntity> Reference {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_ReferenceOffset);
+    get {
+      if (_ReferenceOffset == null) {
+        _ReferenceOffset = Schema.GetOffset(0xC59CB1338100A1A4);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_ReferenceOffset!.Value);
+    }
   }
-  private static readonly nint _FindMethodOffset = Schema.GetOffset(0xC59CB1331B37C627);
+  private static nint? _FindMethodOffset;
 
   public ref EntFinderMethod_t FindMethod {
-    get => ref _Handle.AsRef<EntFinderMethod_t>(_FindMethodOffset);
+    get {
+      if (_FindMethodOffset == null) {
+        _FindMethodOffset = Schema.GetOffset(0xC59CB1331B37C627);
+      }
+      return ref _Handle.AsRef<EntFinderMethod_t>(_FindMethodOffset!.Value);
+    }
   }
-  private static readonly nint _OnFoundEntityOffset = Schema.GetOffset(0xC59CB133119B4E6F);
+  private static nint? _OnFoundEntityOffset;
 
   public CEntityIOOutput OnFoundEntity {
-    get => new CEntityIOOutputImpl(_Handle + _OnFoundEntityOffset);
+    get {
+      if (_OnFoundEntityOffset == null) {
+        _OnFoundEntityOffset = Schema.GetOffset(0xC59CB133119B4E6F);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnFoundEntityOffset!.Value);
+    }
   }
 
 

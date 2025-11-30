@@ -17,33 +17,59 @@ internal partial class CHitBoxSetImpl : SchemaClass, CHitBoxSet {
   public CHitBoxSetImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x742AE9EC4D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x742AE9EC4D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x742AE9EC4D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NameHashOffset = Schema.GetOffset(0x742AE9ECDE15EEFE);
+  private static nint? _NameHashOffset;
 
   public ref uint NameHash {
-    get => ref _Handle.AsRef<uint>(_NameHashOffset);
+    get {
+      if (_NameHashOffset == null) {
+        _NameHashOffset = Schema.GetOffset(0x742AE9ECDE15EEFE);
+      }
+      return ref _Handle.AsRef<uint>(_NameHashOffset!.Value);
+    }
   }
-  private static readonly nint _HitBoxesOffset = Schema.GetOffset(0x742AE9EC07A4113F);
+  private static nint? _HitBoxesOffset;
 
   public ref CUtlVector<CHitBox> HitBoxes {
-    get => ref _Handle.AsRef<CUtlVector<CHitBox>>(_HitBoxesOffset);
+    get {
+      if (_HitBoxesOffset == null) {
+        _HitBoxesOffset = Schema.GetOffset(0x742AE9EC07A4113F);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHitBox>>(_HitBoxesOffset!.Value);
+    }
   }
-  private static readonly nint _SourceFilenameOffset = Schema.GetOffset(0x742AE9ECD49CE26D);
+  private static nint? _SourceFilenameOffset;
 
   public string SourceFilename {
     get {
-      var ptr = _Handle.Read<nint>(_SourceFilenameOffset);
+      if (_SourceFilenameOffset == null) {
+        _SourceFilenameOffset = Schema.GetOffset(0x742AE9ECD49CE26D);
+      }
+      var ptr = _Handle.Read<nint>(_SourceFilenameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SourceFilenameOffset, value);
+    set {
+      if (_SourceFilenameOffset == null) {
+        _SourceFilenameOffset = Schema.GetOffset(0x742AE9ECD49CE26D);
+      }
+      Schema.SetString(_Handle, _SourceFilenameOffset!.Value, value);
+    }
   } 
 
 

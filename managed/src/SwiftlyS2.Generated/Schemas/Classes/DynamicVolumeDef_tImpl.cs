@@ -17,45 +17,85 @@ internal partial class DynamicVolumeDef_tImpl : SchemaClass, DynamicVolumeDef_t 
   public DynamicVolumeDef_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceOffset = Schema.GetOffset(0x9D661554D0835C78);
+  private static nint? _SourceOffset;
 
   public ref CHandle<CBaseEntity> Source {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_SourceOffset);
+    get {
+      if (_SourceOffset == null) {
+        _SourceOffset = Schema.GetOffset(0x9D661554D0835C78);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_SourceOffset!.Value);
+    }
   }
-  private static readonly nint _TargetOffset = Schema.GetOffset(0x9D661554FA08A9E8);
+  private static nint? _TargetOffset;
 
   public ref CHandle<CBaseEntity> Target {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetOffset);
+    get {
+      if (_TargetOffset == null) {
+        _TargetOffset = Schema.GetOffset(0x9D661554FA08A9E8);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetOffset!.Value);
+    }
   }
-  private static readonly nint _HullIdxOffset = Schema.GetOffset(0x9D661554595B303D);
+  private static nint? _HullIdxOffset;
 
   public ref int HullIdx {
-    get => ref _Handle.AsRef<int>(_HullIdxOffset);
+    get {
+      if (_HullIdxOffset == null) {
+        _HullIdxOffset = Schema.GetOffset(0x9D661554595B303D);
+      }
+      return ref _Handle.AsRef<int>(_HullIdxOffset!.Value);
+    }
   }
-  private static readonly nint _SourceAnchorPosOffset = Schema.GetOffset(0x9D661554E6AC3899);
+  private static nint? _SourceAnchorPosOffset;
 
   public ref Vector SourceAnchorPos {
-    get => ref _Handle.AsRef<Vector>(_SourceAnchorPosOffset);
+    get {
+      if (_SourceAnchorPosOffset == null) {
+        _SourceAnchorPosOffset = Schema.GetOffset(0x9D661554E6AC3899);
+      }
+      return ref _Handle.AsRef<Vector>(_SourceAnchorPosOffset!.Value);
+    }
   }
-  private static readonly nint _TargetAnchorPosOffset = Schema.GetOffset(0x9D6615540976AD91);
+  private static nint? _TargetAnchorPosOffset;
 
   public ref Vector TargetAnchorPos {
-    get => ref _Handle.AsRef<Vector>(_TargetAnchorPosOffset);
+    get {
+      if (_TargetAnchorPosOffset == null) {
+        _TargetAnchorPosOffset = Schema.GetOffset(0x9D6615540976AD91);
+      }
+      return ref _Handle.AsRef<Vector>(_TargetAnchorPosOffset!.Value);
+    }
   }
-  private static readonly nint _AreaSrcOffset = Schema.GetOffset(0x9D661554E55D859E);
+  private static nint? _AreaSrcOffset;
 
   public ref uint AreaSrc {
-    get => ref _Handle.AsRef<uint>(_AreaSrcOffset);
+    get {
+      if (_AreaSrcOffset == null) {
+        _AreaSrcOffset = Schema.GetOffset(0x9D661554E55D859E);
+      }
+      return ref _Handle.AsRef<uint>(_AreaSrcOffset!.Value);
+    }
   }
-  private static readonly nint _AreaDstOffset = Schema.GetOffset(0x9D66155487799313);
+  private static nint? _AreaDstOffset;
 
   public ref uint AreaDst {
-    get => ref _Handle.AsRef<uint>(_AreaDstOffset);
+    get {
+      if (_AreaDstOffset == null) {
+        _AreaDstOffset = Schema.GetOffset(0x9D66155487799313);
+      }
+      return ref _Handle.AsRef<uint>(_AreaDstOffset!.Value);
+    }
   }
-  private static readonly nint _AttachedOffset = Schema.GetOffset(0x9D6615544C8B6515);
+  private static nint? _AttachedOffset;
 
   public ref bool Attached {
-    get => ref _Handle.AsRef<bool>(_AttachedOffset);
+    get {
+      if (_AttachedOffset == null) {
+        _AttachedOffset = Schema.GetOffset(0x9D6615544C8B6515);
+      }
+      return ref _Handle.AsRef<bool>(_AttachedOffset!.Value);
+    }
   }
 
 

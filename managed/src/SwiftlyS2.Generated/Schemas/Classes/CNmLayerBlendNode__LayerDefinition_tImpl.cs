@@ -17,45 +17,85 @@ internal partial class CNmLayerBlendNode__LayerDefinition_tImpl : SchemaClass, C
   public CNmLayerBlendNode__LayerDefinition_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputNodeIdxOffset = Schema.GetOffset(0xB5F2C492B0A177F6);
+  private static nint? _InputNodeIdxOffset;
 
   public ref short InputNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputNodeIdxOffset);
+    get {
+      if (_InputNodeIdxOffset == null) {
+        _InputNodeIdxOffset = Schema.GetOffset(0xB5F2C492B0A177F6);
+      }
+      return ref _Handle.AsRef<short>(_InputNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _WeightValueNodeIdxOffset = Schema.GetOffset(0xB5F2C4924E4CD159);
+  private static nint? _WeightValueNodeIdxOffset;
 
   public ref short WeightValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_WeightValueNodeIdxOffset);
+    get {
+      if (_WeightValueNodeIdxOffset == null) {
+        _WeightValueNodeIdxOffset = Schema.GetOffset(0xB5F2C4924E4CD159);
+      }
+      return ref _Handle.AsRef<short>(_WeightValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _BoneMaskValueNodeIdxOffset = Schema.GetOffset(0xB5F2C49284E70B17);
+  private static nint? _BoneMaskValueNodeIdxOffset;
 
   public ref short BoneMaskValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_BoneMaskValueNodeIdxOffset);
+    get {
+      if (_BoneMaskValueNodeIdxOffset == null) {
+        _BoneMaskValueNodeIdxOffset = Schema.GetOffset(0xB5F2C49284E70B17);
+      }
+      return ref _Handle.AsRef<short>(_BoneMaskValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _RootMotionWeightValueNodeIdxOffset = Schema.GetOffset(0xB5F2C492C355D4CF);
+  private static nint? _RootMotionWeightValueNodeIdxOffset;
 
   public ref short RootMotionWeightValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_RootMotionWeightValueNodeIdxOffset);
+    get {
+      if (_RootMotionWeightValueNodeIdxOffset == null) {
+        _RootMotionWeightValueNodeIdxOffset = Schema.GetOffset(0xB5F2C492C355D4CF);
+      }
+      return ref _Handle.AsRef<short>(_RootMotionWeightValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _IsSynchronizedOffset = Schema.GetOffset(0xB5F2C492DCF1E06B);
+  private static nint? _IsSynchronizedOffset;
 
   public ref bool IsSynchronized {
-    get => ref _Handle.AsRef<bool>(_IsSynchronizedOffset);
+    get {
+      if (_IsSynchronizedOffset == null) {
+        _IsSynchronizedOffset = Schema.GetOffset(0xB5F2C492DCF1E06B);
+      }
+      return ref _Handle.AsRef<bool>(_IsSynchronizedOffset!.Value);
+    }
   }
-  private static readonly nint _IgnoreEventsOffset = Schema.GetOffset(0xB5F2C4920E574CA6);
+  private static nint? _IgnoreEventsOffset;
 
   public ref bool IgnoreEvents {
-    get => ref _Handle.AsRef<bool>(_IgnoreEventsOffset);
+    get {
+      if (_IgnoreEventsOffset == null) {
+        _IgnoreEventsOffset = Schema.GetOffset(0xB5F2C4920E574CA6);
+      }
+      return ref _Handle.AsRef<bool>(_IgnoreEventsOffset!.Value);
+    }
   }
-  private static readonly nint _IsStateMachineLayerOffset = Schema.GetOffset(0xB5F2C492EE48C9D0);
+  private static nint? _IsStateMachineLayerOffset;
 
   public ref bool IsStateMachineLayer {
-    get => ref _Handle.AsRef<bool>(_IsStateMachineLayerOffset);
+    get {
+      if (_IsStateMachineLayerOffset == null) {
+        _IsStateMachineLayerOffset = Schema.GetOffset(0xB5F2C492EE48C9D0);
+      }
+      return ref _Handle.AsRef<bool>(_IsStateMachineLayerOffset!.Value);
+    }
   }
-  private static readonly nint _BlendModeOffset = Schema.GetOffset(0xB5F2C4928D5006AB);
+  private static nint? _BlendModeOffset;
 
   public ref NmPoseBlendMode_t BlendMode {
-    get => ref _Handle.AsRef<NmPoseBlendMode_t>(_BlendModeOffset);
+    get {
+      if (_BlendModeOffset == null) {
+        _BlendModeOffset = Schema.GetOffset(0xB5F2C4928D5006AB);
+      }
+      return ref _Handle.AsRef<NmPoseBlendMode_t>(_BlendModeOffset!.Value);
+    }
   }
 
 

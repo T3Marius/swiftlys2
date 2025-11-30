@@ -17,29 +17,45 @@ internal partial class CEntityComponentHelperImpl : SchemaClass, CEntityComponen
   public CEntityComponentHelperImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x714DB384DC74A14C);
+  private static nint? _FlagsOffset;
 
   public ref uint Flags {
-    get => ref _Handle.AsRef<uint>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x714DB384DC74A14C);
+      }
+      return ref _Handle.AsRef<uint>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _InfoOffset = Schema.GetOffset(0x714DB3840F0BFD1B);
+  private static nint? _InfoOffset;
 
   public EntComponentInfo_t? Info {
     get {
-      var ptr = _Handle.Read<nint>(_InfoOffset);
+      if (_InfoOffset == null) {
+        _InfoOffset = Schema.GetOffset(0x714DB3840F0BFD1B);
+      }
+      var ptr = _Handle.Read<nint>(_InfoOffset!.Value);
       return ptr.IsValidPtr() ? new EntComponentInfo_tImpl(ptr) : null;
     }
   }
-  private static readonly nint _PriorityOffset = Schema.GetOffset(0x714DB384E7EFB335);
+  private static nint? _PriorityOffset;
 
   public ref int Priority {
-    get => ref _Handle.AsRef<int>(_PriorityOffset);
+    get {
+      if (_PriorityOffset == null) {
+        _PriorityOffset = Schema.GetOffset(0x714DB384E7EFB335);
+      }
+      return ref _Handle.AsRef<int>(_PriorityOffset!.Value);
+    }
   }
-  private static readonly nint _NextOffset = Schema.GetOffset(0x714DB38432B11E0E);
+  private static nint? _NextOffset;
 
   public CEntityComponentHelper? Next {
     get {
-      var ptr = _Handle.Read<nint>(_NextOffset);
+      if (_NextOffset == null) {
+        _NextOffset = Schema.GetOffset(0x714DB38432B11E0E);
+      }
+      var ptr = _Handle.Read<nint>(_NextOffset!.Value);
       return ptr.IsValidPtr() ? new CEntityComponentHelperImpl(ptr) : null;
     }
   }

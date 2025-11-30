@@ -17,20 +17,35 @@ internal partial class CBaseFilterImpl : CLogicalEntityImpl, CBaseFilter {
   public CBaseFilterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NegatedOffset = Schema.GetOffset(0x2D59B2893803BF0D);
+  private static nint? _NegatedOffset;
 
   public ref bool Negated {
-    get => ref _Handle.AsRef<bool>(_NegatedOffset);
+    get {
+      if (_NegatedOffset == null) {
+        _NegatedOffset = Schema.GetOffset(0x2D59B2893803BF0D);
+      }
+      return ref _Handle.AsRef<bool>(_NegatedOffset!.Value);
+    }
   }
-  private static readonly nint _OnPassOffset = Schema.GetOffset(0x2D59B2899B527249);
+  private static nint? _OnPassOffset;
 
   public CEntityIOOutput OnPass {
-    get => new CEntityIOOutputImpl(_Handle + _OnPassOffset);
+    get {
+      if (_OnPassOffset == null) {
+        _OnPassOffset = Schema.GetOffset(0x2D59B2899B527249);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnPassOffset!.Value);
+    }
   }
-  private static readonly nint _OnFailOffset = Schema.GetOffset(0x2D59B289794EF854);
+  private static nint? _OnFailOffset;
 
   public CEntityIOOutput OnFail {
-    get => new CEntityIOOutputImpl(_Handle + _OnFailOffset);
+    get {
+      if (_OnFailOffset == null) {
+        _OnFailOffset = Schema.GetOffset(0x2D59B289794EF854);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnFailOffset!.Value);
+    }
   }
 
 

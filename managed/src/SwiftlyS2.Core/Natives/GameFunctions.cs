@@ -9,8 +9,8 @@ internal static class GameFunctions
 {
     private static readonly bool IsWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
     public static unsafe delegate* unmanaged< CTakeDamageInfo*, nint, nint, nint, Vector*, Vector*, float, int, int, void*, void > pCTakeDamageInfo_Constructor;
-    public static unsafe delegate* unmanaged< nint, Ray_t*, Vector, Vector, CTraceFilter*, CGameTrace*, void > pTraceShape;
-    public static unsafe delegate* unmanaged< Vector, Vector, BBox_t, CTraceFilter*, CGameTrace*, void > pTracePlayerBBox;
+    public static unsafe delegate* unmanaged< nint, Ray_t*, Vector*, Vector*, CTraceFilter*, CGameTrace*, void > pTraceShape;
+    public static unsafe delegate* unmanaged< Vector*, Vector*, BBox_t*, CTraceFilter*, CGameTrace*, void > pTracePlayerBBox;
     public static unsafe delegate* unmanaged< nint, IntPtr, void > pSetModel;
     public static unsafe delegate* unmanaged< nint, nint, byte, byte, byte, byte, void > pSetPlayerControllerPawn;
     public static unsafe delegate* unmanaged< nint, nint, float, void > pSetOrAddAttribute;
@@ -42,8 +42,8 @@ internal static class GameFunctions
         unsafe
         {
             pCTakeDamageInfo_Constructor = (delegate* unmanaged< CTakeDamageInfo*, nint, nint, nint, Vector*, Vector*, float, int, int, void*, void >)NativeSignatures.Fetch("CTakeDamageInfo::Constructor");
-            pTraceShape = (delegate* unmanaged< nint, Ray_t*, Vector, Vector, CTraceFilter*, CGameTrace*, void >)NativeSignatures.Fetch("TraceShape");
-            pTracePlayerBBox = (delegate* unmanaged< Vector, Vector, BBox_t, CTraceFilter*, CGameTrace*, void >)NativeSignatures.Fetch("TracePlayerBBox");
+            pTraceShape = (delegate* unmanaged< nint, Ray_t*, Vector*, Vector*, CTraceFilter*, CGameTrace*, void >)NativeSignatures.Fetch("TraceShape");
+            pTracePlayerBBox = (delegate* unmanaged< Vector*, Vector*, BBox_t*, CTraceFilter*, CGameTrace*, void >)NativeSignatures.Fetch("TracePlayerBBox");
             pSetModel = (delegate* unmanaged< nint, IntPtr, void >)NativeSignatures.Fetch("CBaseModelEntity::SetModel");
             pSetPlayerControllerPawn = (delegate* unmanaged< nint, nint, byte, byte, byte, byte, void >)NativeSignatures.Fetch("CBasePlayerController::SetPawn");
             pSetOrAddAttribute = (delegate* unmanaged< nint, IntPtr, float, void >)NativeSignatures.Fetch("CAttributeList::SetOrAddAttributeValueByName");
@@ -263,7 +263,7 @@ internal static class GameFunctions
         {
             unsafe
             {
-                pTracePlayerBBox(vecStart, vecEnd, bounds, pFilter, pTrace);
+                pTracePlayerBBox(&vecStart, &vecEnd, &bounds, pFilter, pTrace);
             }
         }
         catch (Exception e)
@@ -285,7 +285,7 @@ internal static class GameFunctions
         {
             unsafe
             {
-                pTraceShape(pEngineTrace, ray, vecStart, vecEnd, pFilter, pTrace);
+                pTraceShape(pEngineTrace, ray, &vecStart, &vecEnd, pFilter, pTrace);
             }
         }
         catch (Exception e)

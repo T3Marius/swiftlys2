@@ -17,10 +17,15 @@ internal partial class VMixEQ8Desc_tImpl : SchemaClass, VMixEQ8Desc_t {
   public VMixEQ8Desc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StagesOffset = Schema.GetOffset(0xBF8A6F07B955349A);
+  private static nint? _StagesOffset;
 
   public SchemaUntypedField Stages {
-    get => new SchemaUntypedField(_Handle + _StagesOffset);
+    get {
+      if (_StagesOffset == null) {
+        _StagesOffset = Schema.GetOffset(0xBF8A6F07B955349A);
+      }
+      return new SchemaUntypedField(_Handle + _StagesOffset!.Value);
+    }
   }
 
 

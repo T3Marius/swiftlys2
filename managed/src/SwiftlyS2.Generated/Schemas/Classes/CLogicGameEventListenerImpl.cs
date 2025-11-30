@@ -17,38 +17,69 @@ internal partial class CLogicGameEventListenerImpl : CLogicalEntityImpl, CLogicG
   public CLogicGameEventListenerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnEventFiredOffset = Schema.GetOffset(0xB18EF22E84EA158);
+  private static nint? _OnEventFiredOffset;
 
   public CEntityIOOutput OnEventFired {
-    get => new CEntityIOOutputImpl(_Handle + _OnEventFiredOffset);
+    get {
+      if (_OnEventFiredOffset == null) {
+        _OnEventFiredOffset = Schema.GetOffset(0xB18EF22E84EA158);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnEventFiredOffset!.Value);
+    }
   }
-  private static readonly nint _GameEventNameOffset = Schema.GetOffset(0xB18EF22C6581BAE);
+  private static nint? _GameEventNameOffset;
 
   public string GameEventName {
     get {
-      var ptr = _Handle.Read<nint>(_GameEventNameOffset);
+      if (_GameEventNameOffset == null) {
+        _GameEventNameOffset = Schema.GetOffset(0xB18EF22C6581BAE);
+      }
+      var ptr = _Handle.Read<nint>(_GameEventNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _GameEventNameOffset, value);
+    set {
+      if (_GameEventNameOffset == null) {
+        _GameEventNameOffset = Schema.GetOffset(0xB18EF22C6581BAE);
+      }
+      Schema.SetString(_Handle, _GameEventNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _GameEventItemOffset = Schema.GetOffset(0xB18EF22ACB669EE);
+  private static nint? _GameEventItemOffset;
 
   public string GameEventItem {
     get {
-      var ptr = _Handle.Read<nint>(_GameEventItemOffset);
+      if (_GameEventItemOffset == null) {
+        _GameEventItemOffset = Schema.GetOffset(0xB18EF22ACB669EE);
+      }
+      var ptr = _Handle.Read<nint>(_GameEventItemOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _GameEventItemOffset, value);
+    set {
+      if (_GameEventItemOffset == null) {
+        _GameEventItemOffset = Schema.GetOffset(0xB18EF22ACB669EE);
+      }
+      Schema.SetString(_Handle, _GameEventItemOffset!.Value, value);
+    }
   } 
-  private static readonly nint _EnabledOffset = Schema.GetOffset(0xB18EF226154EB7E);
+  private static nint? _EnabledOffset;
 
   public ref bool Enabled {
-    get => ref _Handle.AsRef<bool>(_EnabledOffset);
+    get {
+      if (_EnabledOffset == null) {
+        _EnabledOffset = Schema.GetOffset(0xB18EF226154EB7E);
+      }
+      return ref _Handle.AsRef<bool>(_EnabledOffset!.Value);
+    }
   }
-  private static readonly nint _StartDisabledOffset = Schema.GetOffset(0xB18EF2261ED0C4F);
+  private static nint? _StartDisabledOffset;
 
   public ref bool StartDisabled {
-    get => ref _Handle.AsRef<bool>(_StartDisabledOffset);
+    get {
+      if (_StartDisabledOffset == null) {
+        _StartDisabledOffset = Schema.GetOffset(0xB18EF2261ED0C4F);
+      }
+      return ref _Handle.AsRef<bool>(_StartDisabledOffset!.Value);
+    }
   }
 
   public void EnabledUpdated() {

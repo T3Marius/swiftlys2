@@ -17,15 +17,25 @@ internal partial class CNmTargetPointNode__CDefinitionImpl : CNmVectorValueNode_
   public CNmTargetPointNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputValueNodeIdxOffset = Schema.GetOffset(0xCF5C70C495E89F27);
+  private static nint? _InputValueNodeIdxOffset;
 
   public ref short InputValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputValueNodeIdxOffset);
+    get {
+      if (_InputValueNodeIdxOffset == null) {
+        _InputValueNodeIdxOffset = Schema.GetOffset(0xCF5C70C495E89F27);
+      }
+      return ref _Handle.AsRef<short>(_InputValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _IsWorldSpaceTargetOffset = Schema.GetOffset(0xCF5C70C4B81D53F2);
+  private static nint? _IsWorldSpaceTargetOffset;
 
   public ref bool IsWorldSpaceTarget {
-    get => ref _Handle.AsRef<bool>(_IsWorldSpaceTargetOffset);
+    get {
+      if (_IsWorldSpaceTargetOffset == null) {
+        _IsWorldSpaceTargetOffset = Schema.GetOffset(0xCF5C70C4B81D53F2);
+      }
+      return ref _Handle.AsRef<bool>(_IsWorldSpaceTargetOffset!.Value);
+    }
   }
 
 

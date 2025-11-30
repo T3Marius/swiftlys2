@@ -17,30 +17,55 @@ internal partial class FeFitMatrix_tImpl : SchemaClass, FeFitMatrix_t {
   public FeFitMatrix_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneOffset = Schema.GetOffset(0xB8804215DB90E18F);
+  private static nint? _BoneOffset;
 
   public ref CTransform Bone {
-    get => ref _Handle.AsRef<CTransform>(_BoneOffset);
+    get {
+      if (_BoneOffset == null) {
+        _BoneOffset = Schema.GetOffset(0xB8804215DB90E18F);
+      }
+      return ref _Handle.AsRef<CTransform>(_BoneOffset!.Value);
+    }
   }
-  private static readonly nint _CenterOffset = Schema.GetOffset(0xB88042157CA60028);
+  private static nint? _CenterOffset;
 
   public ref Vector Center {
-    get => ref _Handle.AsRef<Vector>(_CenterOffset);
+    get {
+      if (_CenterOffset == null) {
+        _CenterOffset = Schema.GetOffset(0xB88042157CA60028);
+      }
+      return ref _Handle.AsRef<Vector>(_CenterOffset!.Value);
+    }
   }
-  private static readonly nint _EndOffset = Schema.GetOffset(0xB8804215FE4CFBD6);
+  private static nint? _EndOffset;
 
   public ref ushort End {
-    get => ref _Handle.AsRef<ushort>(_EndOffset);
+    get {
+      if (_EndOffset == null) {
+        _EndOffset = Schema.GetOffset(0xB8804215FE4CFBD6);
+      }
+      return ref _Handle.AsRef<ushort>(_EndOffset!.Value);
+    }
   }
-  private static readonly nint _NodeOffset = Schema.GetOffset(0xB8804215CD6694B9);
+  private static nint? _NodeOffset;
 
   public ref ushort Node {
-    get => ref _Handle.AsRef<ushort>(_NodeOffset);
+    get {
+      if (_NodeOffset == null) {
+        _NodeOffset = Schema.GetOffset(0xB8804215CD6694B9);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeOffset!.Value);
+    }
   }
-  private static readonly nint _BeginDynamicOffset = Schema.GetOffset(0xB88042153F6B5607);
+  private static nint? _BeginDynamicOffset;
 
   public ref ushort BeginDynamic {
-    get => ref _Handle.AsRef<ushort>(_BeginDynamicOffset);
+    get {
+      if (_BeginDynamicOffset == null) {
+        _BeginDynamicOffset = Schema.GetOffset(0xB88042153F6B5607);
+      }
+      return ref _Handle.AsRef<ushort>(_BeginDynamicOffset!.Value);
+    }
   }
 
 

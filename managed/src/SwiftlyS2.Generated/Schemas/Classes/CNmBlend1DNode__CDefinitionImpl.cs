@@ -17,10 +17,15 @@ internal partial class CNmBlend1DNode__CDefinitionImpl : CNmParameterizedBlendNo
   public CNmBlend1DNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParameterizationOffset = Schema.GetOffset(0xA5E668CDE173A928);
+  private static nint? _ParameterizationOffset;
 
   public CNmParameterizedBlendNode__Parameterization_t Parameterization {
-    get => new CNmParameterizedBlendNode__Parameterization_tImpl(_Handle + _ParameterizationOffset);
+    get {
+      if (_ParameterizationOffset == null) {
+        _ParameterizationOffset = Schema.GetOffset(0xA5E668CDE173A928);
+      }
+      return new CNmParameterizedBlendNode__Parameterization_tImpl(_Handle + _ParameterizationOffset!.Value);
+    }
   }
 
 

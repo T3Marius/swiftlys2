@@ -30,8 +30,20 @@ internal class EventPlayerBlindImpl : GameEvent<EventPlayerBlind>, EventPlayerBl
   { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
   // user ID who threw the flash
+  public CCSPlayerController AttackerController
+  { get => Accessor.GetPlayerController("attacker"); }
+
+  // user ID who threw the flash
+  public CCSPlayerPawn AttackerPawn
+  { get => Accessor.GetPlayerPawn("attacker"); }
+
+  // user ID who threw the flash
+  public IPlayer AttackerPlayer
+  { get => Accessor.GetPlayer("attacker"); }
+
+  // user ID who threw the flash
   public int Attacker
-  { get => Accessor.GetPlayerSlot("attacker"); set => Accessor.SetPlayerSlot("attacker", value); }
+  { get => Accessor.GetInt32("attacker"); set => Accessor.SetInt32("attacker", value); }
 
   // the flashbang going off
   public short EntityID

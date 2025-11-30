@@ -17,40 +17,75 @@ internal partial class CDistanceRemainingMetricEvaluatorImpl : CMotionMetricEval
   public CDistanceRemainingMetricEvaluatorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaxDistanceOffset = Schema.GetOffset(0xEF12BCC898893360);
+  private static nint? _MaxDistanceOffset;
 
   public ref float MaxDistance {
-    get => ref _Handle.AsRef<float>(_MaxDistanceOffset);
+    get {
+      if (_MaxDistanceOffset == null) {
+        _MaxDistanceOffset = Schema.GetOffset(0xEF12BCC898893360);
+      }
+      return ref _Handle.AsRef<float>(_MaxDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _MinDistanceOffset = Schema.GetOffset(0xEF12BCC892BCAD06);
+  private static nint? _MinDistanceOffset;
 
   public ref float MinDistance {
-    get => ref _Handle.AsRef<float>(_MinDistanceOffset);
+    get {
+      if (_MinDistanceOffset == null) {
+        _MinDistanceOffset = Schema.GetOffset(0xEF12BCC892BCAD06);
+      }
+      return ref _Handle.AsRef<float>(_MinDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _StartGoalFilterDistanceOffset = Schema.GetOffset(0xEF12BCC8531B6E2B);
+  private static nint? _StartGoalFilterDistanceOffset;
 
   public ref float StartGoalFilterDistance {
-    get => ref _Handle.AsRef<float>(_StartGoalFilterDistanceOffset);
+    get {
+      if (_StartGoalFilterDistanceOffset == null) {
+        _StartGoalFilterDistanceOffset = Schema.GetOffset(0xEF12BCC8531B6E2B);
+      }
+      return ref _Handle.AsRef<float>(_StartGoalFilterDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _MaxGoalOvershootScaleOffset = Schema.GetOffset(0xEF12BCC8D2E0A335);
+  private static nint? _MaxGoalOvershootScaleOffset;
 
   public ref float MaxGoalOvershootScale {
-    get => ref _Handle.AsRef<float>(_MaxGoalOvershootScaleOffset);
+    get {
+      if (_MaxGoalOvershootScaleOffset == null) {
+        _MaxGoalOvershootScaleOffset = Schema.GetOffset(0xEF12BCC8D2E0A335);
+      }
+      return ref _Handle.AsRef<float>(_MaxGoalOvershootScaleOffset!.Value);
+    }
   }
-  private static readonly nint _FilterFixedMinDistanceOffset = Schema.GetOffset(0xEF12BCC85AD937B2);
+  private static nint? _FilterFixedMinDistanceOffset;
 
   public ref bool FilterFixedMinDistance {
-    get => ref _Handle.AsRef<bool>(_FilterFixedMinDistanceOffset);
+    get {
+      if (_FilterFixedMinDistanceOffset == null) {
+        _FilterFixedMinDistanceOffset = Schema.GetOffset(0xEF12BCC85AD937B2);
+      }
+      return ref _Handle.AsRef<bool>(_FilterFixedMinDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _FilterGoalDistanceOffset = Schema.GetOffset(0xEF12BCC8A9641DB3);
+  private static nint? _FilterGoalDistanceOffset;
 
   public ref bool FilterGoalDistance {
-    get => ref _Handle.AsRef<bool>(_FilterGoalDistanceOffset);
+    get {
+      if (_FilterGoalDistanceOffset == null) {
+        _FilterGoalDistanceOffset = Schema.GetOffset(0xEF12BCC8A9641DB3);
+      }
+      return ref _Handle.AsRef<bool>(_FilterGoalDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _FilterGoalOvershootOffset = Schema.GetOffset(0xEF12BCC89A875DD1);
+  private static nint? _FilterGoalOvershootOffset;
 
   public ref bool FilterGoalOvershoot {
-    get => ref _Handle.AsRef<bool>(_FilterGoalOvershootOffset);
+    get {
+      if (_FilterGoalOvershootOffset == null) {
+        _FilterGoalOvershootOffset = Schema.GetOffset(0xEF12BCC89A875DD1);
+      }
+      return ref _Handle.AsRef<bool>(_FilterGoalOvershootOffset!.Value);
+    }
   }
 
 

@@ -17,40 +17,75 @@ internal partial class C_INIT_VelocityRandomImpl : CParticleFunctionInitializerI
   public C_INIT_VelocityRandomImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0xFCCBA9E3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0xFCCBA9E3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _SpeedMinOffset = Schema.GetOffset(0xFCCBA9EB989E1F8);
+  private static nint? _SpeedMinOffset;
 
   public CPerParticleFloatInput SpeedMin {
-    get => new CPerParticleFloatInputImpl(_Handle + _SpeedMinOffset);
+    get {
+      if (_SpeedMinOffset == null) {
+        _SpeedMinOffset = Schema.GetOffset(0xFCCBA9EB989E1F8);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _SpeedMinOffset!.Value);
+    }
   }
-  private static readonly nint _SpeedMaxOffset = Schema.GetOffset(0xFCCBA9ECF9D8C52);
+  private static nint? _SpeedMaxOffset;
 
   public CPerParticleFloatInput SpeedMax {
-    get => new CPerParticleFloatInputImpl(_Handle + _SpeedMaxOffset);
+    get {
+      if (_SpeedMaxOffset == null) {
+        _SpeedMaxOffset = Schema.GetOffset(0xFCCBA9ECF9D8C52);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _SpeedMaxOffset!.Value);
+    }
   }
-  private static readonly nint _LocalCoordinateSystemSpeedMinOffset = Schema.GetOffset(0xFCCBA9EA4A0F1AE);
+  private static nint? _LocalCoordinateSystemSpeedMinOffset;
 
   public CPerParticleVecInput LocalCoordinateSystemSpeedMin {
-    get => new CPerParticleVecInputImpl(_Handle + _LocalCoordinateSystemSpeedMinOffset);
+    get {
+      if (_LocalCoordinateSystemSpeedMinOffset == null) {
+        _LocalCoordinateSystemSpeedMinOffset = Schema.GetOffset(0xFCCBA9EA4A0F1AE);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _LocalCoordinateSystemSpeedMinOffset!.Value);
+    }
   }
-  private static readonly nint _LocalCoordinateSystemSpeedMaxOffset = Schema.GetOffset(0xFCCBA9E968D53EC);
+  private static nint? _LocalCoordinateSystemSpeedMaxOffset;
 
   public CPerParticleVecInput LocalCoordinateSystemSpeedMax {
-    get => new CPerParticleVecInputImpl(_Handle + _LocalCoordinateSystemSpeedMaxOffset);
+    get {
+      if (_LocalCoordinateSystemSpeedMaxOffset == null) {
+        _LocalCoordinateSystemSpeedMaxOffset = Schema.GetOffset(0xFCCBA9E968D53EC);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _LocalCoordinateSystemSpeedMaxOffset!.Value);
+    }
   }
-  private static readonly nint _IgnoreDTOffset = Schema.GetOffset(0xFCCBA9E530C3863);
+  private static nint? _IgnoreDTOffset;
 
   public ref bool IgnoreDT {
-    get => ref _Handle.AsRef<bool>(_IgnoreDTOffset);
+    get {
+      if (_IgnoreDTOffset == null) {
+        _IgnoreDTOffset = Schema.GetOffset(0xFCCBA9E530C3863);
+      }
+      return ref _Handle.AsRef<bool>(_IgnoreDTOffset!.Value);
+    }
   }
-  private static readonly nint _RandomnessParametersOffset = Schema.GetOffset(0xFCCBA9E7EDF50AD);
+  private static nint? _RandomnessParametersOffset;
 
   public CRandomNumberGeneratorParameters RandomnessParameters {
-    get => new CRandomNumberGeneratorParametersImpl(_Handle + _RandomnessParametersOffset);
+    get {
+      if (_RandomnessParametersOffset == null) {
+        _RandomnessParametersOffset = Schema.GetOffset(0xFCCBA9E7EDF50AD);
+      }
+      return new CRandomNumberGeneratorParametersImpl(_Handle + _RandomnessParametersOffset!.Value);
+    }
   }
 
 

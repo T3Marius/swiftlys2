@@ -17,45 +17,85 @@ internal partial class CTextureBasedAnimatableImpl : CBaseModelEntityImpl, CText
   public CTextureBasedAnimatableImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LoopOffset = Schema.GetOffset(0xDB45ABACC668A4CB);
+  private static nint? _LoopOffset;
 
   public ref bool Loop {
-    get => ref _Handle.AsRef<bool>(_LoopOffset);
+    get {
+      if (_LoopOffset == null) {
+        _LoopOffset = Schema.GetOffset(0xDB45ABACC668A4CB);
+      }
+      return ref _Handle.AsRef<bool>(_LoopOffset!.Value);
+    }
   }
-  private static readonly nint _FPSOffset = Schema.GetOffset(0xDB45ABAC38CAA4F6);
+  private static nint? _FPSOffset;
 
   public ref float FPS {
-    get => ref _Handle.AsRef<float>(_FPSOffset);
+    get {
+      if (_FPSOffset == null) {
+        _FPSOffset = Schema.GetOffset(0xDB45ABAC38CAA4F6);
+      }
+      return ref _Handle.AsRef<float>(_FPSOffset!.Value);
+    }
   }
-  private static readonly nint _PositionKeysOffset = Schema.GetOffset(0xDB45ABACE6515850);
+  private static nint? _PositionKeysOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> PositionKeys {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_PositionKeysOffset);
+    get {
+      if (_PositionKeysOffset == null) {
+        _PositionKeysOffset = Schema.GetOffset(0xDB45ABACE6515850);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_PositionKeysOffset!.Value);
+    }
   }
-  private static readonly nint _RotationKeysOffset = Schema.GetOffset(0xDB45ABACDAC30C39);
+  private static nint? _RotationKeysOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> RotationKeys {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_RotationKeysOffset);
+    get {
+      if (_RotationKeysOffset == null) {
+        _RotationKeysOffset = Schema.GetOffset(0xDB45ABACDAC30C39);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_RotationKeysOffset!.Value);
+    }
   }
-  private static readonly nint _AnimationBoundsMinOffset = Schema.GetOffset(0xDB45ABAC8BDB4B58);
+  private static nint? _AnimationBoundsMinOffset;
 
   public ref Vector AnimationBoundsMin {
-    get => ref _Handle.AsRef<Vector>(_AnimationBoundsMinOffset);
+    get {
+      if (_AnimationBoundsMinOffset == null) {
+        _AnimationBoundsMinOffset = Schema.GetOffset(0xDB45ABAC8BDB4B58);
+      }
+      return ref _Handle.AsRef<Vector>(_AnimationBoundsMinOffset!.Value);
+    }
   }
-  private static readonly nint _AnimationBoundsMaxOffset = Schema.GetOffset(0xDB45ABACA1EEF5B2);
+  private static nint? _AnimationBoundsMaxOffset;
 
   public ref Vector AnimationBoundsMax {
-    get => ref _Handle.AsRef<Vector>(_AnimationBoundsMaxOffset);
+    get {
+      if (_AnimationBoundsMaxOffset == null) {
+        _AnimationBoundsMaxOffset = Schema.GetOffset(0xDB45ABACA1EEF5B2);
+      }
+      return ref _Handle.AsRef<Vector>(_AnimationBoundsMaxOffset!.Value);
+    }
   }
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0xDB45ABAC67FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public ref float StartTime {
-    get => ref _Handle.AsRef<float>(_StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0xDB45ABAC67FE9DC4);
+      }
+      return ref _Handle.AsRef<float>(_StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartFrameOffset = Schema.GetOffset(0xDB45ABACB534B906);
+  private static nint? _StartFrameOffset;
 
   public ref float StartFrame {
-    get => ref _Handle.AsRef<float>(_StartFrameOffset);
+    get {
+      if (_StartFrameOffset == null) {
+        _StartFrameOffset = Schema.GetOffset(0xDB45ABACB534B906);
+      }
+      return ref _Handle.AsRef<float>(_StartFrameOffset!.Value);
+    }
   }
 
   public void LoopUpdated() {

@@ -17,15 +17,25 @@ internal partial class CCSPlayer_PingServicesImpl : CPlayerPawnComponentImpl, CC
   public CCSPlayer_PingServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PlayerPingTokensOffset = Schema.GetOffset(0xC78D79CA55696280);
+  private static nint? _PlayerPingTokensOffset;
 
   public SchemaUntypedField PlayerPingTokens {
-    get => new SchemaUntypedField(_Handle + _PlayerPingTokensOffset);
+    get {
+      if (_PlayerPingTokensOffset == null) {
+        _PlayerPingTokensOffset = Schema.GetOffset(0xC78D79CA55696280);
+      }
+      return new SchemaUntypedField(_Handle + _PlayerPingTokensOffset!.Value);
+    }
   }
-  private static readonly nint _PlayerPingOffset = Schema.GetOffset(0xC78D79CA464EEA6E);
+  private static nint? _PlayerPingOffset;
 
   public ref CHandle<CPlayerPing> PlayerPing {
-    get => ref _Handle.AsRef<CHandle<CPlayerPing>>(_PlayerPingOffset);
+    get {
+      if (_PlayerPingOffset == null) {
+        _PlayerPingOffset = Schema.GetOffset(0xC78D79CA464EEA6E);
+      }
+      return ref _Handle.AsRef<CHandle<CPlayerPing>>(_PlayerPingOffset!.Value);
+    }
   }
 
   public void PlayerPingUpdated() {

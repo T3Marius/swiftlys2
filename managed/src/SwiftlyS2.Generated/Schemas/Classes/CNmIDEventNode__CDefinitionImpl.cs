@@ -17,20 +17,35 @@ internal partial class CNmIDEventNode__CDefinitionImpl : CNmIDValueNode__CDefini
   public CNmIDEventNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceStateNodeIdxOffset = Schema.GetOffset(0x6308800E63F0228C);
+  private static nint? _SourceStateNodeIdxOffset;
 
   public ref short SourceStateNodeIdx {
-    get => ref _Handle.AsRef<short>(_SourceStateNodeIdxOffset);
+    get {
+      if (_SourceStateNodeIdxOffset == null) {
+        _SourceStateNodeIdxOffset = Schema.GetOffset(0x6308800E63F0228C);
+      }
+      return ref _Handle.AsRef<short>(_SourceStateNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EventConditionRulesOffset = Schema.GetOffset(0x6308800EA904315F);
+  private static nint? _EventConditionRulesOffset;
 
   public CNmBitFlags EventConditionRules {
-    get => new CNmBitFlagsImpl(_Handle + _EventConditionRulesOffset);
+    get {
+      if (_EventConditionRulesOffset == null) {
+        _EventConditionRulesOffset = Schema.GetOffset(0x6308800EA904315F);
+      }
+      return new CNmBitFlagsImpl(_Handle + _EventConditionRulesOffset!.Value);
+    }
   }
-  private static readonly nint _DefaultValueOffset = Schema.GetOffset(0x6308800EBBE0341F);
+  private static nint? _DefaultValueOffset;
 
   public ref CGlobalSymbol DefaultValue {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_DefaultValueOffset);
+    get {
+      if (_DefaultValueOffset == null) {
+        _DefaultValueOffset = Schema.GetOffset(0x6308800EBBE0341F);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_DefaultValueOffset!.Value);
+    }
   }
 
 

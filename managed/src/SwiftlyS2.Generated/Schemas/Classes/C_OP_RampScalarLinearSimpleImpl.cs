@@ -17,25 +17,45 @@ internal partial class C_OP_RampScalarLinearSimpleImpl : CParticleFunctionOperat
   public C_OP_RampScalarLinearSimpleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RateOffset = Schema.GetOffset(0xCD04073EEC3280E7);
+  private static nint? _RateOffset;
 
   public ref float Rate {
-    get => ref _Handle.AsRef<float>(_RateOffset);
+    get {
+      if (_RateOffset == null) {
+        _RateOffset = Schema.GetOffset(0xCD04073EEC3280E7);
+      }
+      return ref _Handle.AsRef<float>(_RateOffset!.Value);
+    }
   }
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0xCD04073E67FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public ref float StartTime {
-    get => ref _Handle.AsRef<float>(_StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0xCD04073E67FE9DC4);
+      }
+      return ref _Handle.AsRef<float>(_StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndTimeOffset = Schema.GetOffset(0xCD04073E2041DF9D);
+  private static nint? _EndTimeOffset;
 
   public ref float EndTime {
-    get => ref _Handle.AsRef<float>(_EndTimeOffset);
+    get {
+      if (_EndTimeOffset == null) {
+        _EndTimeOffset = Schema.GetOffset(0xCD04073E2041DF9D);
+      }
+      return ref _Handle.AsRef<float>(_EndTimeOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOffset = Schema.GetOffset(0xCD04073EC257B93B);
+  private static nint? _FieldOffset;
 
   public ParticleAttributeIndex_t Field {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset);
+    get {
+      if (_FieldOffset == null) {
+        _FieldOffset = Schema.GetOffset(0xCD04073EC257B93B);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset!.Value);
+    }
   }
 
 

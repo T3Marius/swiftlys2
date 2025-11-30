@@ -17,32 +17,56 @@ internal partial class CTriggerGameEventImpl : CBaseTriggerImpl, CTriggerGameEve
   public CTriggerGameEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StrStartTouchEventNameOffset = Schema.GetOffset(0xF8B194884B1EB67A);
+  private static nint? _StrStartTouchEventNameOffset;
 
   public string StrStartTouchEventName {
     get {
-      var ptr = _Handle.Read<nint>(_StrStartTouchEventNameOffset);
+      if (_StrStartTouchEventNameOffset == null) {
+        _StrStartTouchEventNameOffset = Schema.GetOffset(0xF8B194884B1EB67A);
+      }
+      var ptr = _Handle.Read<nint>(_StrStartTouchEventNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrStartTouchEventNameOffset, value);
+    set {
+      if (_StrStartTouchEventNameOffset == null) {
+        _StrStartTouchEventNameOffset = Schema.GetOffset(0xF8B194884B1EB67A);
+      }
+      Schema.SetString(_Handle, _StrStartTouchEventNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StrEndTouchEventNameOffset = Schema.GetOffset(0xF8B194886EDE6893);
+  private static nint? _StrEndTouchEventNameOffset;
 
   public string StrEndTouchEventName {
     get {
-      var ptr = _Handle.Read<nint>(_StrEndTouchEventNameOffset);
+      if (_StrEndTouchEventNameOffset == null) {
+        _StrEndTouchEventNameOffset = Schema.GetOffset(0xF8B194886EDE6893);
+      }
+      var ptr = _Handle.Read<nint>(_StrEndTouchEventNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrEndTouchEventNameOffset, value);
+    set {
+      if (_StrEndTouchEventNameOffset == null) {
+        _StrEndTouchEventNameOffset = Schema.GetOffset(0xF8B194886EDE6893);
+      }
+      Schema.SetString(_Handle, _StrEndTouchEventNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StrTriggerIDOffset = Schema.GetOffset(0xF8B19488EA731D41);
+  private static nint? _StrTriggerIDOffset;
 
   public string StrTriggerID {
     get {
-      var ptr = _Handle.Read<nint>(_StrTriggerIDOffset);
+      if (_StrTriggerIDOffset == null) {
+        _StrTriggerIDOffset = Schema.GetOffset(0xF8B19488EA731D41);
+      }
+      var ptr = _Handle.Read<nint>(_StrTriggerIDOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrTriggerIDOffset, value);
+    set {
+      if (_StrTriggerIDOffset == null) {
+        _StrTriggerIDOffset = Schema.GetOffset(0xF8B19488EA731D41);
+      }
+      Schema.SetString(_Handle, _StrTriggerIDOffset!.Value, value);
+    }
   } 
 
   public void StrStartTouchEventNameUpdated() {

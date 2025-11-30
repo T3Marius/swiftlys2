@@ -17,30 +17,55 @@ internal partial class CSosGroupActionLimitSchemaImpl : CSosGroupActionSchemaImp
   public CSosGroupActionLimitSchemaImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaxCountOffset = Schema.GetOffset(0xE06D795E64BED864);
+  private static nint? _MaxCountOffset;
 
   public ref int MaxCount {
-    get => ref _Handle.AsRef<int>(_MaxCountOffset);
+    get {
+      if (_MaxCountOffset == null) {
+        _MaxCountOffset = Schema.GetOffset(0xE06D795E64BED864);
+      }
+      return ref _Handle.AsRef<int>(_MaxCountOffset!.Value);
+    }
   }
-  private static readonly nint _StopTypeOffset = Schema.GetOffset(0xE06D795E13397259);
+  private static nint? _StopTypeOffset;
 
   public ref SosActionStopType_t StopType {
-    get => ref _Handle.AsRef<SosActionStopType_t>(_StopTypeOffset);
+    get {
+      if (_StopTypeOffset == null) {
+        _StopTypeOffset = Schema.GetOffset(0xE06D795E13397259);
+      }
+      return ref _Handle.AsRef<SosActionStopType_t>(_StopTypeOffset!.Value);
+    }
   }
-  private static readonly nint _SortTypeOffset = Schema.GetOffset(0xE06D795E2E0E44B5);
+  private static nint? _SortTypeOffset;
 
   public ref SosActionLimitSortType_t SortType {
-    get => ref _Handle.AsRef<SosActionLimitSortType_t>(_SortTypeOffset);
+    get {
+      if (_SortTypeOffset == null) {
+        _SortTypeOffset = Schema.GetOffset(0xE06D795E2E0E44B5);
+      }
+      return ref _Handle.AsRef<SosActionLimitSortType_t>(_SortTypeOffset!.Value);
+    }
   }
-  private static readonly nint _StopImmediateOffset = Schema.GetOffset(0xE06D795E358D6B9A);
+  private static nint? _StopImmediateOffset;
 
   public ref bool StopImmediate {
-    get => ref _Handle.AsRef<bool>(_StopImmediateOffset);
+    get {
+      if (_StopImmediateOffset == null) {
+        _StopImmediateOffset = Schema.GetOffset(0xE06D795E358D6B9A);
+      }
+      return ref _Handle.AsRef<bool>(_StopImmediateOffset!.Value);
+    }
   }
-  private static readonly nint _CountStoppedOffset = Schema.GetOffset(0xE06D795EF40B23D5);
+  private static nint? _CountStoppedOffset;
 
   public ref bool CountStopped {
-    get => ref _Handle.AsRef<bool>(_CountStoppedOffset);
+    get {
+      if (_CountStoppedOffset == null) {
+        _CountStoppedOffset = Schema.GetOffset(0xE06D795EF40B23D5);
+      }
+      return ref _Handle.AsRef<bool>(_CountStoppedOffset!.Value);
+    }
   }
 
 

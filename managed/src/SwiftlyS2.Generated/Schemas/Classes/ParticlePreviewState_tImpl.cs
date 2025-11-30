@@ -17,106 +17,203 @@ internal partial class ParticlePreviewState_tImpl : SchemaClass, ParticlePreview
   public ParticlePreviewState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PreviewModelOffset = Schema.GetOffset(0x31FB1901BC4FDC14);
+  private static nint? _PreviewModelOffset;
 
   public string PreviewModel {
     get {
-      var ptr = _Handle.Read<nint>(_PreviewModelOffset);
+      if (_PreviewModelOffset == null) {
+        _PreviewModelOffset = Schema.GetOffset(0x31FB1901BC4FDC14);
+      }
+      var ptr = _Handle.Read<nint>(_PreviewModelOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PreviewModelOffset, value);
+    set {
+      if (_PreviewModelOffset == null) {
+        _PreviewModelOffset = Schema.GetOffset(0x31FB1901BC4FDC14);
+      }
+      Schema.SetString(_Handle, _PreviewModelOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ModSpecificDataOffset = Schema.GetOffset(0x31FB19011580A6CB);
+  private static nint? _ModSpecificDataOffset;
 
   public ref uint ModSpecificData {
-    get => ref _Handle.AsRef<uint>(_ModSpecificDataOffset);
+    get {
+      if (_ModSpecificDataOffset == null) {
+        _ModSpecificDataOffset = Schema.GetOffset(0x31FB19011580A6CB);
+      }
+      return ref _Handle.AsRef<uint>(_ModSpecificDataOffset!.Value);
+    }
   }
-  private static readonly nint _GroundTypeOffset = Schema.GetOffset(0x31FB190132DE357E);
+  private static nint? _GroundTypeOffset;
 
   public ref PetGroundType_t GroundType {
-    get => ref _Handle.AsRef<PetGroundType_t>(_GroundTypeOffset);
+    get {
+      if (_GroundTypeOffset == null) {
+        _GroundTypeOffset = Schema.GetOffset(0x31FB190132DE357E);
+      }
+      return ref _Handle.AsRef<PetGroundType_t>(_GroundTypeOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceNameOffset = Schema.GetOffset(0x31FB19012B4A24CB);
+  private static nint? _SequenceNameOffset;
 
   public string SequenceName {
     get {
-      var ptr = _Handle.Read<nint>(_SequenceNameOffset);
+      if (_SequenceNameOffset == null) {
+        _SequenceNameOffset = Schema.GetOffset(0x31FB19012B4A24CB);
+      }
+      var ptr = _Handle.Read<nint>(_SequenceNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SequenceNameOffset, value);
+    set {
+      if (_SequenceNameOffset == null) {
+        _SequenceNameOffset = Schema.GetOffset(0x31FB19012B4A24CB);
+      }
+      Schema.SetString(_Handle, _SequenceNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _FireParticleOnSequenceFrameOffset = Schema.GetOffset(0x31FB19014432CB48);
+  private static nint? _FireParticleOnSequenceFrameOffset;
 
   public ref int FireParticleOnSequenceFrame {
-    get => ref _Handle.AsRef<int>(_FireParticleOnSequenceFrameOffset);
+    get {
+      if (_FireParticleOnSequenceFrameOffset == null) {
+        _FireParticleOnSequenceFrameOffset = Schema.GetOffset(0x31FB19014432CB48);
+      }
+      return ref _Handle.AsRef<int>(_FireParticleOnSequenceFrameOffset!.Value);
+    }
   }
-  private static readonly nint _HitboxSetNameOffset = Schema.GetOffset(0x31FB19011ACA1CAE);
+  private static nint? _HitboxSetNameOffset;
 
   public string HitboxSetName {
     get {
-      var ptr = _Handle.Read<nint>(_HitboxSetNameOffset);
+      if (_HitboxSetNameOffset == null) {
+        _HitboxSetNameOffset = Schema.GetOffset(0x31FB19011ACA1CAE);
+      }
+      var ptr = _Handle.Read<nint>(_HitboxSetNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _HitboxSetNameOffset, value);
+    set {
+      if (_HitboxSetNameOffset == null) {
+        _HitboxSetNameOffset = Schema.GetOffset(0x31FB19011ACA1CAE);
+      }
+      Schema.SetString(_Handle, _HitboxSetNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _MaterialGroupNameOffset = Schema.GetOffset(0x31FB1901A6930C68);
+  private static nint? _MaterialGroupNameOffset;
 
   public string MaterialGroupName {
     get {
-      var ptr = _Handle.Read<nint>(_MaterialGroupNameOffset);
+      if (_MaterialGroupNameOffset == null) {
+        _MaterialGroupNameOffset = Schema.GetOffset(0x31FB1901A6930C68);
+      }
+      var ptr = _Handle.Read<nint>(_MaterialGroupNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _MaterialGroupNameOffset, value);
+    set {
+      if (_MaterialGroupNameOffset == null) {
+        _MaterialGroupNameOffset = Schema.GetOffset(0x31FB1901A6930C68);
+      }
+      Schema.SetString(_Handle, _MaterialGroupNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _BodyGroupsOffset = Schema.GetOffset(0x31FB1901893FA01D);
+  private static nint? _BodyGroupsOffset;
 
   public ref CUtlVector<ParticlePreviewBodyGroup_t> BodyGroups {
-    get => ref _Handle.AsRef<CUtlVector<ParticlePreviewBodyGroup_t>>(_BodyGroupsOffset);
+    get {
+      if (_BodyGroupsOffset == null) {
+        _BodyGroupsOffset = Schema.GetOffset(0x31FB1901893FA01D);
+      }
+      return ref _Handle.AsRef<CUtlVector<ParticlePreviewBodyGroup_t>>(_BodyGroupsOffset!.Value);
+    }
   }
-  private static readonly nint _PlaybackSpeedOffset = Schema.GetOffset(0x31FB1901FA2B402D);
+  private static nint? _PlaybackSpeedOffset;
 
   public ref float PlaybackSpeed {
-    get => ref _Handle.AsRef<float>(_PlaybackSpeedOffset);
+    get {
+      if (_PlaybackSpeedOffset == null) {
+        _PlaybackSpeedOffset = Schema.GetOffset(0x31FB1901FA2B402D);
+      }
+      return ref _Handle.AsRef<float>(_PlaybackSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _ParticleSimulationRateOffset = Schema.GetOffset(0x31FB1901F9FAF9E0);
+  private static nint? _ParticleSimulationRateOffset;
 
   public ref float ParticleSimulationRate {
-    get => ref _Handle.AsRef<float>(_ParticleSimulationRateOffset);
+    get {
+      if (_ParticleSimulationRateOffset == null) {
+        _ParticleSimulationRateOffset = Schema.GetOffset(0x31FB1901F9FAF9E0);
+      }
+      return ref _Handle.AsRef<float>(_ParticleSimulationRateOffset!.Value);
+    }
   }
-  private static readonly nint _ShouldDrawHitboxesOffset = Schema.GetOffset(0x31FB19016D95117E);
+  private static nint? _ShouldDrawHitboxesOffset;
 
   public ref bool ShouldDrawHitboxes {
-    get => ref _Handle.AsRef<bool>(_ShouldDrawHitboxesOffset);
+    get {
+      if (_ShouldDrawHitboxesOffset == null) {
+        _ShouldDrawHitboxesOffset = Schema.GetOffset(0x31FB19016D95117E);
+      }
+      return ref _Handle.AsRef<bool>(_ShouldDrawHitboxesOffset!.Value);
+    }
   }
-  private static readonly nint _ShouldDrawAttachmentsOffset = Schema.GetOffset(0x31FB19014EC43A36);
+  private static nint? _ShouldDrawAttachmentsOffset;
 
   public ref bool ShouldDrawAttachments {
-    get => ref _Handle.AsRef<bool>(_ShouldDrawAttachmentsOffset);
+    get {
+      if (_ShouldDrawAttachmentsOffset == null) {
+        _ShouldDrawAttachmentsOffset = Schema.GetOffset(0x31FB19014EC43A36);
+      }
+      return ref _Handle.AsRef<bool>(_ShouldDrawAttachmentsOffset!.Value);
+    }
   }
-  private static readonly nint _ShouldDrawAttachmentNamesOffset = Schema.GetOffset(0x31FB1901177CB28B);
+  private static nint? _ShouldDrawAttachmentNamesOffset;
 
   public ref bool ShouldDrawAttachmentNames {
-    get => ref _Handle.AsRef<bool>(_ShouldDrawAttachmentNamesOffset);
+    get {
+      if (_ShouldDrawAttachmentNamesOffset == null) {
+        _ShouldDrawAttachmentNamesOffset = Schema.GetOffset(0x31FB1901177CB28B);
+      }
+      return ref _Handle.AsRef<bool>(_ShouldDrawAttachmentNamesOffset!.Value);
+    }
   }
-  private static readonly nint _ShouldDrawControlPointAxesOffset = Schema.GetOffset(0x31FB1901A6A34D38);
+  private static nint? _ShouldDrawControlPointAxesOffset;
 
   public ref bool ShouldDrawControlPointAxes {
-    get => ref _Handle.AsRef<bool>(_ShouldDrawControlPointAxesOffset);
+    get {
+      if (_ShouldDrawControlPointAxesOffset == null) {
+        _ShouldDrawControlPointAxesOffset = Schema.GetOffset(0x31FB1901A6A34D38);
+      }
+      return ref _Handle.AsRef<bool>(_ShouldDrawControlPointAxesOffset!.Value);
+    }
   }
-  private static readonly nint _AnimationNonLoopingOffset = Schema.GetOffset(0x31FB1901F0071FD6);
+  private static nint? _AnimationNonLoopingOffset;
 
   public ref bool AnimationNonLooping {
-    get => ref _Handle.AsRef<bool>(_AnimationNonLoopingOffset);
+    get {
+      if (_AnimationNonLoopingOffset == null) {
+        _AnimationNonLoopingOffset = Schema.GetOffset(0x31FB1901F0071FD6);
+      }
+      return ref _Handle.AsRef<bool>(_AnimationNonLoopingOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceNameIsAnimClipPathOffset = Schema.GetOffset(0x31FB19013BFE81C7);
+  private static nint? _SequenceNameIsAnimClipPathOffset;
 
   public ref bool SequenceNameIsAnimClipPath {
-    get => ref _Handle.AsRef<bool>(_SequenceNameIsAnimClipPathOffset);
+    get {
+      if (_SequenceNameIsAnimClipPathOffset == null) {
+        _SequenceNameIsAnimClipPathOffset = Schema.GetOffset(0x31FB19013BFE81C7);
+      }
+      return ref _Handle.AsRef<bool>(_SequenceNameIsAnimClipPathOffset!.Value);
+    }
   }
-  private static readonly nint _PreviewGravityOffset = Schema.GetOffset(0x31FB1901A6B7913F);
+  private static nint? _PreviewGravityOffset;
 
   public ref Vector PreviewGravity {
-    get => ref _Handle.AsRef<Vector>(_PreviewGravityOffset);
+    get {
+      if (_PreviewGravityOffset == null) {
+        _PreviewGravityOffset = Schema.GetOffset(0x31FB1901A6B7913F);
+      }
+      return ref _Handle.AsRef<Vector>(_PreviewGravityOffset!.Value);
+    }
   }
 
 

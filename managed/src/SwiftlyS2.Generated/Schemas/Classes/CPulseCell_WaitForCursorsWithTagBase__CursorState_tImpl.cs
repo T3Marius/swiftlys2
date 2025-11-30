@@ -17,10 +17,15 @@ internal partial class CPulseCell_WaitForCursorsWithTagBase__CursorState_tImpl :
   public CPulseCell_WaitForCursorsWithTagBase__CursorState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagNameOffset = Schema.GetOffset(0x71EA6190647DC278);
+  private static nint? _TagNameOffset;
 
   public SchemaUntypedField TagName {
-    get => new SchemaUntypedField(_Handle + _TagNameOffset);
+    get {
+      if (_TagNameOffset == null) {
+        _TagNameOffset = Schema.GetOffset(0x71EA6190647DC278);
+      }
+      return new SchemaUntypedField(_Handle + _TagNameOffset!.Value);
+    }
   }
 
 

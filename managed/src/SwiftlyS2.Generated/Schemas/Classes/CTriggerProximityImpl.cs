@@ -17,34 +17,62 @@ internal partial class CTriggerProximityImpl : CBaseTriggerImpl, CTriggerProximi
   public CTriggerProximityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MeasureTargetOffset = Schema.GetOffset(0x98F0621FF81BC1A8);
+  private static nint? _MeasureTargetOffset;
 
   public ref CHandle<CBaseEntity> MeasureTarget {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_MeasureTargetOffset);
+    get {
+      if (_MeasureTargetOffset == null) {
+        _MeasureTargetOffset = Schema.GetOffset(0x98F0621FF81BC1A8);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_MeasureTargetOffset!.Value);
+    }
   }
-  private static readonly nint _MeasureTarget1Offset = Schema.GetOffset(0x98F0621F29C47B3A);
+  private static nint? _MeasureTarget1Offset;
 
   public string MeasureTarget1 {
     get {
-      var ptr = _Handle.Read<nint>(_MeasureTarget1Offset);
+      if (_MeasureTarget1Offset == null) {
+        _MeasureTarget1Offset = Schema.GetOffset(0x98F0621F29C47B3A);
+      }
+      var ptr = _Handle.Read<nint>(_MeasureTarget1Offset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _MeasureTarget1Offset, value);
+    set {
+      if (_MeasureTarget1Offset == null) {
+        _MeasureTarget1Offset = Schema.GetOffset(0x98F0621F29C47B3A);
+      }
+      Schema.SetString(_Handle, _MeasureTarget1Offset!.Value, value);
+    }
   } 
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x98F0621F2E1F6E07);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x98F0621F2E1F6E07);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _TouchersOffset = Schema.GetOffset(0x98F0621FA0F3A2B0);
+  private static nint? _TouchersOffset;
 
   public ref int Touchers {
-    get => ref _Handle.AsRef<int>(_TouchersOffset);
+    get {
+      if (_TouchersOffset == null) {
+        _TouchersOffset = Schema.GetOffset(0x98F0621FA0F3A2B0);
+      }
+      return ref _Handle.AsRef<int>(_TouchersOffset!.Value);
+    }
   }
-  private static readonly nint _NearestEntityDistanceOffset = Schema.GetOffset(0x98F0621F28AD73D5);
+  private static nint? _NearestEntityDistanceOffset;
 
   public SchemaUntypedField NearestEntityDistance {
-    get => new SchemaUntypedField(_Handle + _NearestEntityDistanceOffset);
+    get {
+      if (_NearestEntityDistanceOffset == null) {
+        _NearestEntityDistanceOffset = Schema.GetOffset(0x98F0621F28AD73D5);
+      }
+      return new SchemaUntypedField(_Handle + _NearestEntityDistanceOffset!.Value);
+    }
   }
 
 

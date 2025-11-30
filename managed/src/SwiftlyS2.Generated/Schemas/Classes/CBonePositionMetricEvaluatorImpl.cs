@@ -17,10 +17,15 @@ internal partial class CBonePositionMetricEvaluatorImpl : CMotionMetricEvaluator
   public CBonePositionMetricEvaluatorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneIndexOffset = Schema.GetOffset(0xB36923389F407B79);
+  private static nint? _BoneIndexOffset;
 
   public ref int BoneIndex {
-    get => ref _Handle.AsRef<int>(_BoneIndexOffset);
+    get {
+      if (_BoneIndexOffset == null) {
+        _BoneIndexOffset = Schema.GetOffset(0xB36923389F407B79);
+      }
+      return ref _Handle.AsRef<int>(_BoneIndexOffset!.Value);
+    }
   }
 
 

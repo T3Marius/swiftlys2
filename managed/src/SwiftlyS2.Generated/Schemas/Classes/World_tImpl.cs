@@ -17,25 +17,45 @@ internal partial class World_tImpl : SchemaClass, World_t {
   public World_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BuilderParamsOffset = Schema.GetOffset(0x4CBF8350CE4EEF26);
+  private static nint? _BuilderParamsOffset;
 
   public WorldBuilderParams_t BuilderParams {
-    get => new WorldBuilderParams_tImpl(_Handle + _BuilderParamsOffset);
+    get {
+      if (_BuilderParamsOffset == null) {
+        _BuilderParamsOffset = Schema.GetOffset(0x4CBF8350CE4EEF26);
+      }
+      return new WorldBuilderParams_tImpl(_Handle + _BuilderParamsOffset!.Value);
+    }
   }
-  private static readonly nint _WorldNodesOffset = Schema.GetOffset(0x4CBF835064F33530);
+  private static nint? _WorldNodesOffset;
 
   public ref CUtlVector<NodeData_t> WorldNodes {
-    get => ref _Handle.AsRef<CUtlVector<NodeData_t>>(_WorldNodesOffset);
+    get {
+      if (_WorldNodesOffset == null) {
+        _WorldNodesOffset = Schema.GetOffset(0x4CBF835064F33530);
+      }
+      return ref _Handle.AsRef<CUtlVector<NodeData_t>>(_WorldNodesOffset!.Value);
+    }
   }
-  private static readonly nint _WorldLightingInfoOffset = Schema.GetOffset(0x4CBF83508B843A17);
+  private static nint? _WorldLightingInfoOffset;
 
   public BakedLightingInfo_t WorldLightingInfo {
-    get => new BakedLightingInfo_tImpl(_Handle + _WorldLightingInfoOffset);
+    get {
+      if (_WorldLightingInfoOffset == null) {
+        _WorldLightingInfoOffset = Schema.GetOffset(0x4CBF83508B843A17);
+      }
+      return new BakedLightingInfo_tImpl(_Handle + _WorldLightingInfoOffset!.Value);
+    }
   }
-  private static readonly nint _EntityLumpsOffset = Schema.GetOffset(0x4CBF8350E4A85021);
+  private static nint? _EntityLumpsOffset;
 
   public ref CUtlVector<CStrongHandle<InfoForResourceTypeCEntityLump>> EntityLumps {
-    get => ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeCEntityLump>>>(_EntityLumpsOffset);
+    get {
+      if (_EntityLumpsOffset == null) {
+        _EntityLumpsOffset = Schema.GetOffset(0x4CBF8350E4A85021);
+      }
+      return ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeCEntityLump>>>(_EntityLumpsOffset!.Value);
+    }
   }
 
 

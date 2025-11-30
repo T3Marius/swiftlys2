@@ -17,30 +17,55 @@ internal partial class AmmoTypeInfo_tImpl : SchemaClass, AmmoTypeInfo_t {
   public AmmoTypeInfo_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaxCarryOffset = Schema.GetOffset(0xFC774B09B708280);
+  private static nint? _MaxCarryOffset;
 
   public ref int MaxCarry {
-    get => ref _Handle.AsRef<int>(_MaxCarryOffset);
+    get {
+      if (_MaxCarryOffset == null) {
+        _MaxCarryOffset = Schema.GetOffset(0xFC774B09B708280);
+      }
+      return ref _Handle.AsRef<int>(_MaxCarryOffset!.Value);
+    }
   }
-  private static readonly nint _SplashSizeOffset = Schema.GetOffset(0xFC774B045E320D3);
+  private static nint? _SplashSizeOffset;
 
   public CRangeInt SplashSize {
-    get => new CRangeIntImpl(_Handle + _SplashSizeOffset);
+    get {
+      if (_SplashSizeOffset == null) {
+        _SplashSizeOffset = Schema.GetOffset(0xFC774B045E320D3);
+      }
+      return new CRangeIntImpl(_Handle + _SplashSizeOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0xFC774B0CE6E9C28);
+  private static nint? _FlagsOffset;
 
   public ref AmmoFlags_t Flags {
-    get => ref _Handle.AsRef<AmmoFlags_t>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0xFC774B0CE6E9C28);
+      }
+      return ref _Handle.AsRef<AmmoFlags_t>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _MassOffset = Schema.GetOffset(0xFC774B0CD83D263);
+  private static nint? _MassOffset;
 
   public ref float Mass {
-    get => ref _Handle.AsRef<float>(_MassOffset);
+    get {
+      if (_MassOffset == null) {
+        _MassOffset = Schema.GetOffset(0xFC774B0CD83D263);
+      }
+      return ref _Handle.AsRef<float>(_MassOffset!.Value);
+    }
   }
-  private static readonly nint _SpeedOffset = Schema.GetOffset(0xFC774B0C631B7EA);
+  private static nint? _SpeedOffset;
 
   public CRangeFloat Speed {
-    get => new CRangeFloatImpl(_Handle + _SpeedOffset);
+    get {
+      if (_SpeedOffset == null) {
+        _SpeedOffset = Schema.GetOffset(0xFC774B0C631B7EA);
+      }
+      return new CRangeFloatImpl(_Handle + _SpeedOffset!.Value);
+    }
   }
 
 

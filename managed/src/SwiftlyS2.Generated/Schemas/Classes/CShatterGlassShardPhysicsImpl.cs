@@ -17,20 +17,35 @@ internal partial class CShatterGlassShardPhysicsImpl : CPhysicsPropImpl, CShatte
   public CShatterGlassShardPhysicsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DebrisOffset = Schema.GetOffset(0xC24E779865054BBA);
+  private static nint? _DebrisOffset;
 
   public ref bool Debris {
-    get => ref _Handle.AsRef<bool>(_DebrisOffset);
+    get {
+      if (_DebrisOffset == null) {
+        _DebrisOffset = Schema.GetOffset(0xC24E779865054BBA);
+      }
+      return ref _Handle.AsRef<bool>(_DebrisOffset!.Value);
+    }
   }
-  private static readonly nint _ParentShardOffset = Schema.GetOffset(0xC24E7798E3717B41);
+  private static nint? _ParentShardOffset;
 
   public ref uint ParentShard {
-    get => ref _Handle.AsRef<uint>(_ParentShardOffset);
+    get {
+      if (_ParentShardOffset == null) {
+        _ParentShardOffset = Schema.GetOffset(0xC24E7798E3717B41);
+      }
+      return ref _Handle.AsRef<uint>(_ParentShardOffset!.Value);
+    }
   }
-  private static readonly nint _ShardDescOffset = Schema.GetOffset(0xC24E77982CBF17C6);
+  private static nint? _ShardDescOffset;
 
   public shard_model_desc_t ShardDesc {
-    get => new shard_model_desc_tImpl(_Handle + _ShardDescOffset);
+    get {
+      if (_ShardDescOffset == null) {
+        _ShardDescOffset = Schema.GetOffset(0xC24E77982CBF17C6);
+      }
+      return new shard_model_desc_tImpl(_Handle + _ShardDescOffset!.Value);
+    }
   }
 
   public void ShardDescUpdated() {

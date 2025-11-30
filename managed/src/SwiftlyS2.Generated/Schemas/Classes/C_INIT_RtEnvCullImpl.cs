@@ -17,49 +17,92 @@ internal partial class C_INIT_RtEnvCullImpl : CParticleFunctionInitializerImpl, 
   public C_INIT_RtEnvCullImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TestDirOffset = Schema.GetOffset(0xEA96DD4FC17166B4);
+  private static nint? _TestDirOffset;
 
   public ref Vector TestDir {
-    get => ref _Handle.AsRef<Vector>(_TestDirOffset);
+    get {
+      if (_TestDirOffset == null) {
+        _TestDirOffset = Schema.GetOffset(0xEA96DD4FC17166B4);
+      }
+      return ref _Handle.AsRef<Vector>(_TestDirOffset!.Value);
+    }
   }
-  private static readonly nint _TestNormalOffset = Schema.GetOffset(0xEA96DD4FD4AC77F2);
+  private static nint? _TestNormalOffset;
 
   public ref Vector TestNormal {
-    get => ref _Handle.AsRef<Vector>(_TestNormalOffset);
+    get {
+      if (_TestNormalOffset == null) {
+        _TestNormalOffset = Schema.GetOffset(0xEA96DD4FD4AC77F2);
+      }
+      return ref _Handle.AsRef<Vector>(_TestNormalOffset!.Value);
+    }
   }
-  private static readonly nint _UseVelocityOffset = Schema.GetOffset(0xEA96DD4F5E806BAF);
+  private static nint? _UseVelocityOffset;
 
   public ref bool UseVelocity {
-    get => ref _Handle.AsRef<bool>(_UseVelocityOffset);
+    get {
+      if (_UseVelocityOffset == null) {
+        _UseVelocityOffset = Schema.GetOffset(0xEA96DD4F5E806BAF);
+      }
+      return ref _Handle.AsRef<bool>(_UseVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _CullOnMissOffset = Schema.GetOffset(0xEA96DD4F5E118398);
+  private static nint? _CullOnMissOffset;
 
   public ref bool CullOnMiss {
-    get => ref _Handle.AsRef<bool>(_CullOnMissOffset);
+    get {
+      if (_CullOnMissOffset == null) {
+        _CullOnMissOffset = Schema.GetOffset(0xEA96DD4F5E118398);
+      }
+      return ref _Handle.AsRef<bool>(_CullOnMissOffset!.Value);
+    }
   }
-  private static readonly nint _LifeAdjustOffset = Schema.GetOffset(0xEA96DD4FA38568F0);
+  private static nint? _LifeAdjustOffset;
 
   public ref bool LifeAdjust {
-    get => ref _Handle.AsRef<bool>(_LifeAdjustOffset);
+    get {
+      if (_LifeAdjustOffset == null) {
+        _LifeAdjustOffset = Schema.GetOffset(0xEA96DD4FA38568F0);
+      }
+      return ref _Handle.AsRef<bool>(_LifeAdjustOffset!.Value);
+    }
   }
-  private static readonly nint _RtEnvNameOffset = Schema.GetOffset(0xEA96DD4FC32A9775);
+  private static nint? _RtEnvNameOffset;
 
   public string RtEnvName {
     get {
-      var ptr = _Handle + _RtEnvNameOffset;
-      return Schema.GetString(ptr);
+        if (_RtEnvNameOffset == null) {
+            _RtEnvNameOffset = Schema.GetOffset(0xEA96DD4FC32A9775);
+        }
+        var ptr = _Handle + _RtEnvNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _RtEnvNameOffset, value, 128);
+    set {
+        if (_RtEnvNameOffset == null) {
+            _RtEnvNameOffset = Schema.GetOffset(0xEA96DD4FC32A9775);
+        }
+        Schema.SetFixedString(_Handle, _RtEnvNameOffset!.Value, value, 128);
+    }
   } 
-  private static readonly nint _RTEnvCPOffset = Schema.GetOffset(0xEA96DD4F01881731);
+  private static nint? _RTEnvCPOffset;
 
   public ref int RTEnvCP {
-    get => ref _Handle.AsRef<int>(_RTEnvCPOffset);
+    get {
+      if (_RTEnvCPOffset == null) {
+        _RTEnvCPOffset = Schema.GetOffset(0xEA96DD4F01881731);
+      }
+      return ref _Handle.AsRef<int>(_RTEnvCPOffset!.Value);
+    }
   }
-  private static readonly nint _ComponentOffset = Schema.GetOffset(0xEA96DD4FBFD0952C);
+  private static nint? _ComponentOffset;
 
   public ref int Component {
-    get => ref _Handle.AsRef<int>(_ComponentOffset);
+    get {
+      if (_ComponentOffset == null) {
+        _ComponentOffset = Schema.GetOffset(0xEA96DD4FBFD0952C);
+      }
+      return ref _Handle.AsRef<int>(_ComponentOffset!.Value);
+    }
   }
 
 

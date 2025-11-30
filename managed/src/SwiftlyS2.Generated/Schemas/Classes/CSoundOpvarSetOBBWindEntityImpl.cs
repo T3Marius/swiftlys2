@@ -17,45 +17,85 @@ internal partial class CSoundOpvarSetOBBWindEntityImpl : CSoundOpvarSetPointBase
   public CSoundOpvarSetOBBWindEntityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinsOffset = Schema.GetOffset(0xEC8310EF421BB730);
+  private static nint? _MinsOffset;
 
   public ref Vector Mins {
-    get => ref _Handle.AsRef<Vector>(_MinsOffset);
+    get {
+      if (_MinsOffset == null) {
+        _MinsOffset = Schema.GetOffset(0xEC8310EF421BB730);
+      }
+      return ref _Handle.AsRef<Vector>(_MinsOffset!.Value);
+    }
   }
-  private static readonly nint _MaxsOffset = Schema.GetOffset(0xEC8310EFC0C1CE6A);
+  private static nint? _MaxsOffset;
 
   public ref Vector Maxs {
-    get => ref _Handle.AsRef<Vector>(_MaxsOffset);
+    get {
+      if (_MaxsOffset == null) {
+        _MaxsOffset = Schema.GetOffset(0xEC8310EFC0C1CE6A);
+      }
+      return ref _Handle.AsRef<Vector>(_MaxsOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceMinsOffset = Schema.GetOffset(0xEC8310EF84189833);
+  private static nint? _DistanceMinsOffset;
 
   public ref Vector DistanceMins {
-    get => ref _Handle.AsRef<Vector>(_DistanceMinsOffset);
+    get {
+      if (_DistanceMinsOffset == null) {
+        _DistanceMinsOffset = Schema.GetOffset(0xEC8310EF84189833);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceMinsOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceMaxsOffset = Schema.GetOffset(0xEC8310EF2AF856F1);
+  private static nint? _DistanceMaxsOffset;
 
   public ref Vector DistanceMaxs {
-    get => ref _Handle.AsRef<Vector>(_DistanceMaxsOffset);
+    get {
+      if (_DistanceMaxsOffset == null) {
+        _DistanceMaxsOffset = Schema.GetOffset(0xEC8310EF2AF856F1);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _WindMinOffset = Schema.GetOffset(0xEC8310EF24871B93);
+  private static nint? _WindMinOffset;
 
   public ref float WindMin {
-    get => ref _Handle.AsRef<float>(_WindMinOffset);
+    get {
+      if (_WindMinOffset == null) {
+        _WindMinOffset = Schema.GetOffset(0xEC8310EF24871B93);
+      }
+      return ref _Handle.AsRef<float>(_WindMinOffset!.Value);
+    }
   }
-  private static readonly nint _WindMaxOffset = Schema.GetOffset(0xEC8310EF3A9C58ED);
+  private static nint? _WindMaxOffset;
 
   public ref float WindMax {
-    get => ref _Handle.AsRef<float>(_WindMaxOffset);
+    get {
+      if (_WindMaxOffset == null) {
+        _WindMaxOffset = Schema.GetOffset(0xEC8310EF3A9C58ED);
+      }
+      return ref _Handle.AsRef<float>(_WindMaxOffset!.Value);
+    }
   }
-  private static readonly nint _WindMapMinOffset = Schema.GetOffset(0xEC8310EF2A2DE5A7);
+  private static nint? _WindMapMinOffset;
 
   public ref float WindMapMin {
-    get => ref _Handle.AsRef<float>(_WindMapMinOffset);
+    get {
+      if (_WindMapMinOffset == null) {
+        _WindMapMinOffset = Schema.GetOffset(0xEC8310EF2A2DE5A7);
+      }
+      return ref _Handle.AsRef<float>(_WindMapMinOffset!.Value);
+    }
   }
-  private static readonly nint _WindMapMaxOffset = Schema.GetOffset(0xEC8310EF1842E409);
+  private static nint? _WindMapMaxOffset;
 
   public ref float WindMapMax {
-    get => ref _Handle.AsRef<float>(_WindMapMaxOffset);
+    get {
+      if (_WindMapMaxOffset == null) {
+        _WindMapMaxOffset = Schema.GetOffset(0xEC8310EF1842E409);
+      }
+      return ref _Handle.AsRef<float>(_WindMapMaxOffset!.Value);
+    }
   }
 
 

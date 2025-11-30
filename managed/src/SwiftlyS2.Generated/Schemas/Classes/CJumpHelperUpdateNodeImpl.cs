@@ -17,43 +17,78 @@ internal partial class CJumpHelperUpdateNodeImpl : CSequenceUpdateNodeImpl, CJum
   public CJumpHelperUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TargetParamOffset = Schema.GetOffset(0xB5EA3127D85B45EB);
+  private static nint? _TargetParamOffset;
 
   public CAnimParamHandle TargetParam {
-    get => new CAnimParamHandleImpl(_Handle + _TargetParamOffset);
+    get {
+      if (_TargetParamOffset == null) {
+        _TargetParamOffset = Schema.GetOffset(0xB5EA3127D85B45EB);
+      }
+      return new CAnimParamHandleImpl(_Handle + _TargetParamOffset!.Value);
+    }
   }
-  private static readonly nint _OriginalJumpMovementOffset = Schema.GetOffset(0xB5EA31277E064DE5);
+  private static nint? _OriginalJumpMovementOffset;
 
   public ref Vector OriginalJumpMovement {
-    get => ref _Handle.AsRef<Vector>(_OriginalJumpMovementOffset);
+    get {
+      if (_OriginalJumpMovementOffset == null) {
+        _OriginalJumpMovementOffset = Schema.GetOffset(0xB5EA31277E064DE5);
+      }
+      return ref _Handle.AsRef<Vector>(_OriginalJumpMovementOffset!.Value);
+    }
   }
-  private static readonly nint _OriginalJumpDurationOffset = Schema.GetOffset(0xB5EA3127DC8F3370);
+  private static nint? _OriginalJumpDurationOffset;
 
   public ref float OriginalJumpDuration {
-    get => ref _Handle.AsRef<float>(_OriginalJumpDurationOffset);
+    get {
+      if (_OriginalJumpDurationOffset == null) {
+        _OriginalJumpDurationOffset = Schema.GetOffset(0xB5EA3127DC8F3370);
+      }
+      return ref _Handle.AsRef<float>(_OriginalJumpDurationOffset!.Value);
+    }
   }
-  private static readonly nint _JumpStartCycleOffset = Schema.GetOffset(0xB5EA31275B46CD7D);
+  private static nint? _JumpStartCycleOffset;
 
   public ref float JumpStartCycle {
-    get => ref _Handle.AsRef<float>(_JumpStartCycleOffset);
+    get {
+      if (_JumpStartCycleOffset == null) {
+        _JumpStartCycleOffset = Schema.GetOffset(0xB5EA31275B46CD7D);
+      }
+      return ref _Handle.AsRef<float>(_JumpStartCycleOffset!.Value);
+    }
   }
-  private static readonly nint _JumpEndCycleOffset = Schema.GetOffset(0xB5EA3127FDF5C656);
+  private static nint? _JumpEndCycleOffset;
 
   public ref float JumpEndCycle {
-    get => ref _Handle.AsRef<float>(_JumpEndCycleOffset);
+    get {
+      if (_JumpEndCycleOffset == null) {
+        _JumpEndCycleOffset = Schema.GetOffset(0xB5EA3127FDF5C656);
+      }
+      return ref _Handle.AsRef<float>(_JumpEndCycleOffset!.Value);
+    }
   }
-  private static readonly nint _CorrectionMethodOffset = Schema.GetOffset(0xB5EA31271E19BA51);
+  private static nint? _CorrectionMethodOffset;
 
   public ref JumpCorrectionMethod CorrectionMethod {
-    get => ref _Handle.AsRef<JumpCorrectionMethod>(_CorrectionMethodOffset);
+    get {
+      if (_CorrectionMethodOffset == null) {
+        _CorrectionMethodOffset = Schema.GetOffset(0xB5EA31271E19BA51);
+      }
+      return ref _Handle.AsRef<JumpCorrectionMethod>(_CorrectionMethodOffset!.Value);
+    }
   }
   public ISchemaFixedArray<bool> TranslationAxis {
     get => new SchemaFixedArray<bool>(_Handle, 0xB5EA3127F062387D, 3, 1, 1);
   }
-  private static readonly nint _ScaleSpeedOffset = Schema.GetOffset(0xB5EA31272776330C);
+  private static nint? _ScaleSpeedOffset;
 
   public ref bool ScaleSpeed {
-    get => ref _Handle.AsRef<bool>(_ScaleSpeedOffset);
+    get {
+      if (_ScaleSpeedOffset == null) {
+        _ScaleSpeedOffset = Schema.GetOffset(0xB5EA31272776330C);
+      }
+      return ref _Handle.AsRef<bool>(_ScaleSpeedOffset!.Value);
+    }
   }
 
 

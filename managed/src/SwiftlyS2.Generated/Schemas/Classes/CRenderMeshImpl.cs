@@ -17,41 +17,74 @@ internal partial class CRenderMeshImpl : SchemaClass, CRenderMesh {
   public CRenderMeshImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SceneObjectsOffset = Schema.GetOffset(0x8593C3BF332235A1);
+  private static nint? _SceneObjectsOffset;
 
   public SchemaUntypedField SceneObjects {
-    get => new SchemaUntypedField(_Handle + _SceneObjectsOffset);
+    get {
+      if (_SceneObjectsOffset == null) {
+        _SceneObjectsOffset = Schema.GetOffset(0x8593C3BF332235A1);
+      }
+      return new SchemaUntypedField(_Handle + _SceneObjectsOffset!.Value);
+    }
   }
-  private static readonly nint _ConstraintsOffset = Schema.GetOffset(0x8593C3BF251CBAAB);
+  private static nint? _ConstraintsOffset;
 
   public ref CUtlLeanVector<PointerTo<CBaseConstraint>, int> Constraints {
-    get => ref _Handle.AsRef<CUtlLeanVector<PointerTo<CBaseConstraint>, int>>(_ConstraintsOffset);
+    get {
+      if (_ConstraintsOffset == null) {
+        _ConstraintsOffset = Schema.GetOffset(0x8593C3BF251CBAAB);
+      }
+      return ref _Handle.AsRef<CUtlLeanVector<PointerTo<CBaseConstraint>, int>>(_ConstraintsOffset!.Value);
+    }
   }
-  private static readonly nint _SkeletonOffset = Schema.GetOffset(0x8593C3BFE77F030E);
+  private static nint? _SkeletonOffset;
 
   public CRenderSkeleton Skeleton {
-    get => new CRenderSkeletonImpl(_Handle + _SkeletonOffset);
+    get {
+      if (_SkeletonOffset == null) {
+        _SkeletonOffset = Schema.GetOffset(0x8593C3BFE77F030E);
+      }
+      return new CRenderSkeletonImpl(_Handle + _SkeletonOffset!.Value);
+    }
   }
-  private static readonly nint _UseUV2ForChartingOffset = Schema.GetOffset(0x8593C3BFFE2DF46A);
+  private static nint? _UseUV2ForChartingOffset;
 
   public ref bool UseUV2ForCharting {
-    get => ref _Handle.AsRef<bool>(_UseUV2ForChartingOffset);
+    get {
+      if (_UseUV2ForChartingOffset == null) {
+        _UseUV2ForChartingOffset = Schema.GetOffset(0x8593C3BFFE2DF46A);
+      }
+      return ref _Handle.AsRef<bool>(_UseUV2ForChartingOffset!.Value);
+    }
   }
-  private static readonly nint _EmbeddedMapMeshOffset = Schema.GetOffset(0x8593C3BF6E866052);
+  private static nint? _EmbeddedMapMeshOffset;
 
   public ref bool EmbeddedMapMesh {
-    get => ref _Handle.AsRef<bool>(_EmbeddedMapMeshOffset);
+    get {
+      if (_EmbeddedMapMeshOffset == null) {
+        _EmbeddedMapMeshOffset = Schema.GetOffset(0x8593C3BF6E866052);
+      }
+      return ref _Handle.AsRef<bool>(_EmbeddedMapMeshOffset!.Value);
+    }
   }
-  private static readonly nint _MeshDeformParamsOffset = Schema.GetOffset(0x8593C3BF061DBB9B);
+  private static nint? _MeshDeformParamsOffset;
 
   public DynamicMeshDeformParams_t MeshDeformParams {
-    get => new DynamicMeshDeformParams_tImpl(_Handle + _MeshDeformParamsOffset);
+    get {
+      if (_MeshDeformParamsOffset == null) {
+        _MeshDeformParamsOffset = Schema.GetOffset(0x8593C3BF061DBB9B);
+      }
+      return new DynamicMeshDeformParams_tImpl(_Handle + _MeshDeformParamsOffset!.Value);
+    }
   }
-  private static readonly nint _GroomDataOffset = Schema.GetOffset(0x8593C3BFCFCDEA93);
+  private static nint? _GroomDataOffset;
 
   public CRenderGroom? GroomData {
     get {
-      var ptr = _Handle.Read<nint>(_GroomDataOffset);
+      if (_GroomDataOffset == null) {
+        _GroomDataOffset = Schema.GetOffset(0x8593C3BFCFCDEA93);
+      }
+      var ptr = _Handle.Read<nint>(_GroomDataOffset!.Value);
       return ptr.IsValidPtr() ? new CRenderGroomImpl(ptr) : null;
     }
   }

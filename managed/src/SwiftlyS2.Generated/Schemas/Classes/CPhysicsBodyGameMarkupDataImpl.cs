@@ -17,10 +17,15 @@ internal partial class CPhysicsBodyGameMarkupDataImpl : SchemaClass, CPhysicsBod
   public CPhysicsBodyGameMarkupDataImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PhysicsBodyMarkupByBoneNameOffset = Schema.GetOffset(0x29262AE188A1FE22);
+  private static nint? _PhysicsBodyMarkupByBoneNameOffset;
 
   public SchemaUntypedField PhysicsBodyMarkupByBoneName {
-    get => new SchemaUntypedField(_Handle + _PhysicsBodyMarkupByBoneNameOffset);
+    get {
+      if (_PhysicsBodyMarkupByBoneNameOffset == null) {
+        _PhysicsBodyMarkupByBoneNameOffset = Schema.GetOffset(0x29262AE188A1FE22);
+      }
+      return new SchemaUntypedField(_Handle + _PhysicsBodyMarkupByBoneNameOffset!.Value);
+    }
   }
 
 

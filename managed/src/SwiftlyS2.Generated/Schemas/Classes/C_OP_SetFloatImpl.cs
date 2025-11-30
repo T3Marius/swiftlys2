@@ -17,25 +17,45 @@ internal partial class C_OP_SetFloatImpl : CParticleFunctionOperatorImpl, C_OP_S
   public C_OP_SetFloatImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputValueOffset = Schema.GetOffset(0xF719E43734445438);
+  private static nint? _InputValueOffset;
 
   public CPerParticleFloatInput InputValue {
-    get => new CPerParticleFloatInputImpl(_Handle + _InputValueOffset);
+    get {
+      if (_InputValueOffset == null) {
+        _InputValueOffset = Schema.GetOffset(0xF719E43734445438);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InputValueOffset!.Value);
+    }
   }
-  private static readonly nint _OutputFieldOffset = Schema.GetOffset(0xF719E437324F6F74);
+  private static nint? _OutputFieldOffset;
 
   public ParticleAttributeIndex_t OutputField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset);
+    get {
+      if (_OutputFieldOffset == null) {
+        _OutputFieldOffset = Schema.GetOffset(0xF719E437324F6F74);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset!.Value);
+    }
   }
-  private static readonly nint _SetMethodOffset = Schema.GetOffset(0xF719E437FB53C31E);
+  private static nint? _SetMethodOffset;
 
   public ref ParticleSetMethod_t SetMethod {
-    get => ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset);
+    get {
+      if (_SetMethodOffset == null) {
+        _SetMethodOffset = Schema.GetOffset(0xF719E437FB53C31E);
+      }
+      return ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset!.Value);
+    }
   }
-  private static readonly nint _LerpOffset = Schema.GetOffset(0xF719E4375C17F8E8);
+  private static nint? _LerpOffset;
 
   public CPerParticleFloatInput Lerp {
-    get => new CPerParticleFloatInputImpl(_Handle + _LerpOffset);
+    get {
+      if (_LerpOffset == null) {
+        _LerpOffset = Schema.GetOffset(0xF719E4375C17F8E8);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _LerpOffset!.Value);
+    }
   }
 
 

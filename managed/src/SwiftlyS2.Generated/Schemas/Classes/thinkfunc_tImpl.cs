@@ -17,25 +17,45 @@ internal partial class thinkfunc_tImpl : SchemaClass, thinkfunc_t {
   public thinkfunc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FnOffset = Schema.GetOffset(0x8ED693FAD922E237);
+  private static nint? _FnOffset;
 
   public SchemaUntypedField Fn {
-    get => new SchemaUntypedField(_Handle + _FnOffset);
+    get {
+      if (_FnOffset == null) {
+        _FnOffset = Schema.GetOffset(0x8ED693FAD922E237);
+      }
+      return new SchemaUntypedField(_Handle + _FnOffset!.Value);
+    }
   }
-  private static readonly nint _ContextOffset = Schema.GetOffset(0x8ED693FAB16905F8);
+  private static nint? _ContextOffset;
 
   public ref CUtlStringToken Context {
-    get => ref _Handle.AsRef<CUtlStringToken>(_ContextOffset);
+    get {
+      if (_ContextOffset == null) {
+        _ContextOffset = Schema.GetOffset(0x8ED693FAB16905F8);
+      }
+      return ref _Handle.AsRef<CUtlStringToken>(_ContextOffset!.Value);
+    }
   }
-  private static readonly nint _NextThinkTickOffset = Schema.GetOffset(0x8ED693FAB7CEF021);
+  private static nint? _NextThinkTickOffset;
 
   public GameTick_t NextThinkTick {
-    get => new GameTick_tImpl(_Handle + _NextThinkTickOffset);
+    get {
+      if (_NextThinkTickOffset == null) {
+        _NextThinkTickOffset = Schema.GetOffset(0x8ED693FAB7CEF021);
+      }
+      return new GameTick_tImpl(_Handle + _NextThinkTickOffset!.Value);
+    }
   }
-  private static readonly nint _LastThinkTickOffset = Schema.GetOffset(0x8ED693FACE8FE7F2);
+  private static nint? _LastThinkTickOffset;
 
   public GameTick_t LastThinkTick {
-    get => new GameTick_tImpl(_Handle + _LastThinkTickOffset);
+    get {
+      if (_LastThinkTickOffset == null) {
+        _LastThinkTickOffset = Schema.GetOffset(0x8ED693FACE8FE7F2);
+      }
+      return new GameTick_tImpl(_Handle + _LastThinkTickOffset!.Value);
+    }
   }
 
 

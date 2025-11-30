@@ -17,25 +17,45 @@ internal partial class CTriggerImpactImpl : CTriggerMultipleImpl, CTriggerImpact
   public CTriggerImpactImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MagnitudeOffset = Schema.GetOffset(0x2A6A2B48ED0A1D8B);
+  private static nint? _MagnitudeOffset;
 
   public ref float Magnitude {
-    get => ref _Handle.AsRef<float>(_MagnitudeOffset);
+    get {
+      if (_MagnitudeOffset == null) {
+        _MagnitudeOffset = Schema.GetOffset(0x2A6A2B48ED0A1D8B);
+      }
+      return ref _Handle.AsRef<float>(_MagnitudeOffset!.Value);
+    }
   }
-  private static readonly nint _NoiseOffset = Schema.GetOffset(0x2A6A2B48C0E47FDB);
+  private static nint? _NoiseOffset;
 
   public ref float Noise {
-    get => ref _Handle.AsRef<float>(_NoiseOffset);
+    get {
+      if (_NoiseOffset == null) {
+        _NoiseOffset = Schema.GetOffset(0x2A6A2B48C0E47FDB);
+      }
+      return ref _Handle.AsRef<float>(_NoiseOffset!.Value);
+    }
   }
-  private static readonly nint _ViewkickOffset = Schema.GetOffset(0x2A6A2B48C8BC3FC4);
+  private static nint? _ViewkickOffset;
 
   public ref float Viewkick {
-    get => ref _Handle.AsRef<float>(_ViewkickOffset);
+    get {
+      if (_ViewkickOffset == null) {
+        _ViewkickOffset = Schema.GetOffset(0x2A6A2B48C8BC3FC4);
+      }
+      return ref _Handle.AsRef<float>(_ViewkickOffset!.Value);
+    }
   }
-  private static readonly nint _OutputForceOffset = Schema.GetOffset(0x2A6A2B488653AFA9);
+  private static nint? _OutputForceOffset;
 
   public SchemaUntypedField OutputForce {
-    get => new SchemaUntypedField(_Handle + _OutputForceOffset);
+    get {
+      if (_OutputForceOffset == null) {
+        _OutputForceOffset = Schema.GetOffset(0x2A6A2B488653AFA9);
+      }
+      return new SchemaUntypedField(_Handle + _OutputForceOffset!.Value);
+    }
   }
 
 

@@ -17,39 +17,72 @@ internal partial class CPointHurtImpl : CPointEntityImpl, CPointHurt {
   public CPointHurtImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DamageOffset = Schema.GetOffset(0x4FEAE151C56D69C);
+  private static nint? _DamageOffset;
 
   public ref int Damage {
-    get => ref _Handle.AsRef<int>(_DamageOffset);
+    get {
+      if (_DamageOffset == null) {
+        _DamageOffset = Schema.GetOffset(0x4FEAE151C56D69C);
+      }
+      return ref _Handle.AsRef<int>(_DamageOffset!.Value);
+    }
   }
-  private static readonly nint _BitsDamageTypeOffset = Schema.GetOffset(0x4FEAE15EEAC35FC);
+  private static nint? _BitsDamageTypeOffset;
 
   public ref DamageTypes_t BitsDamageType {
-    get => ref _Handle.AsRef<DamageTypes_t>(_BitsDamageTypeOffset);
+    get {
+      if (_BitsDamageTypeOffset == null) {
+        _BitsDamageTypeOffset = Schema.GetOffset(0x4FEAE15EEAC35FC);
+      }
+      return ref _Handle.AsRef<DamageTypes_t>(_BitsDamageTypeOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x4FEAE155ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x4FEAE155ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _DelayOffset = Schema.GetOffset(0x4FEAE157D68FD6E);
+  private static nint? _DelayOffset;
 
   public ref float Delay {
-    get => ref _Handle.AsRef<float>(_DelayOffset);
+    get {
+      if (_DelayOffset == null) {
+        _DelayOffset = Schema.GetOffset(0x4FEAE157D68FD6E);
+      }
+      return ref _Handle.AsRef<float>(_DelayOffset!.Value);
+    }
   }
-  private static readonly nint _StrTargetOffset = Schema.GetOffset(0x4FEAE15B8F64879);
+  private static nint? _StrTargetOffset;
 
   public string StrTarget {
     get {
-      var ptr = _Handle.Read<nint>(_StrTargetOffset);
+      if (_StrTargetOffset == null) {
+        _StrTargetOffset = Schema.GetOffset(0x4FEAE15B8F64879);
+      }
+      var ptr = _Handle.Read<nint>(_StrTargetOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrTargetOffset, value);
+    set {
+      if (_StrTargetOffset == null) {
+        _StrTargetOffset = Schema.GetOffset(0x4FEAE15B8F64879);
+      }
+      Schema.SetString(_Handle, _StrTargetOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ActivatorOffset = Schema.GetOffset(0x4FEAE159C480B5A);
+  private static nint? _ActivatorOffset;
 
   public ref CHandle<CBaseEntity> Activator {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_ActivatorOffset);
+    get {
+      if (_ActivatorOffset == null) {
+        _ActivatorOffset = Schema.GetOffset(0x4FEAE159C480B5A);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_ActivatorOffset!.Value);
+    }
   }
 
 

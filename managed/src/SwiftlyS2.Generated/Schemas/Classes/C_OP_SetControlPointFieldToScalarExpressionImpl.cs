@@ -17,35 +17,65 @@ internal partial class C_OP_SetControlPointFieldToScalarExpressionImpl : CPartic
   public C_OP_SetControlPointFieldToScalarExpressionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ExpressionOffset = Schema.GetOffset(0x6A8A3411160B2427);
+  private static nint? _ExpressionOffset;
 
   public ref ScalarExpressionType_t Expression {
-    get => ref _Handle.AsRef<ScalarExpressionType_t>(_ExpressionOffset);
+    get {
+      if (_ExpressionOffset == null) {
+        _ExpressionOffset = Schema.GetOffset(0x6A8A3411160B2427);
+      }
+      return ref _Handle.AsRef<ScalarExpressionType_t>(_ExpressionOffset!.Value);
+    }
   }
-  private static readonly nint _Input1Offset = Schema.GetOffset(0x6A8A3411E9DA2E24);
+  private static nint? _Input1Offset;
 
   public CParticleCollectionFloatInput Input1 {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _Input1Offset);
+    get {
+      if (_Input1Offset == null) {
+        _Input1Offset = Schema.GetOffset(0x6A8A3411E9DA2E24);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _Input1Offset!.Value);
+    }
   }
-  private static readonly nint _Input2Offset = Schema.GetOffset(0x6A8A3411ECDA32DD);
+  private static nint? _Input2Offset;
 
   public CParticleCollectionFloatInput Input2 {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _Input2Offset);
+    get {
+      if (_Input2Offset == null) {
+        _Input2Offset = Schema.GetOffset(0x6A8A3411ECDA32DD);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _Input2Offset!.Value);
+    }
   }
-  private static readonly nint _OutputRemapOffset = Schema.GetOffset(0x6A8A34111239396F);
+  private static nint? _OutputRemapOffset;
 
   public CParticleRemapFloatInput OutputRemap {
-    get => new CParticleRemapFloatInputImpl(_Handle + _OutputRemapOffset);
+    get {
+      if (_OutputRemapOffset == null) {
+        _OutputRemapOffset = Schema.GetOffset(0x6A8A34111239396F);
+      }
+      return new CParticleRemapFloatInputImpl(_Handle + _OutputRemapOffset!.Value);
+    }
   }
-  private static readonly nint _OutputCPOffset = Schema.GetOffset(0x6A8A341150DF5703);
+  private static nint? _OutputCPOffset;
 
   public ref int OutputCP {
-    get => ref _Handle.AsRef<int>(_OutputCPOffset);
+    get {
+      if (_OutputCPOffset == null) {
+        _OutputCPOffset = Schema.GetOffset(0x6A8A341150DF5703);
+      }
+      return ref _Handle.AsRef<int>(_OutputCPOffset!.Value);
+    }
   }
-  private static readonly nint _OutVectorFieldOffset = Schema.GetOffset(0x6A8A3411F9041E74);
+  private static nint? _OutVectorFieldOffset;
 
   public ref int OutVectorField {
-    get => ref _Handle.AsRef<int>(_OutVectorFieldOffset);
+    get {
+      if (_OutVectorFieldOffset == null) {
+        _OutVectorFieldOffset = Schema.GetOffset(0x6A8A3411F9041E74);
+      }
+      return ref _Handle.AsRef<int>(_OutVectorFieldOffset!.Value);
+    }
   }
 
 

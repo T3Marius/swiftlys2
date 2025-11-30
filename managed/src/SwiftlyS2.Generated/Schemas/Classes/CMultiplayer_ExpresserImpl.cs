@@ -17,10 +17,15 @@ internal partial class CMultiplayer_ExpresserImpl : CAI_ExpresserWithFollowupImp
   public CMultiplayer_ExpresserImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AllowMultipleScenesOffset = Schema.GetOffset(0x19772F22AE5FCD97);
+  private static nint? _AllowMultipleScenesOffset;
 
   public ref bool AllowMultipleScenes {
-    get => ref _Handle.AsRef<bool>(_AllowMultipleScenesOffset);
+    get {
+      if (_AllowMultipleScenesOffset == null) {
+        _AllowMultipleScenesOffset = Schema.GetOffset(0x19772F22AE5FCD97);
+      }
+      return ref _Handle.AsRef<bool>(_AllowMultipleScenesOffset!.Value);
+    }
   }
 
 

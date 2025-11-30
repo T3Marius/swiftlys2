@@ -17,20 +17,35 @@ internal partial class VMixSubgraphSwitchDesc_tImpl : SchemaClass, VMixSubgraphS
   public VMixSubgraphSwitchDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InterpolationModeOffset = Schema.GetOffset(0x9671DF890C06348A);
+  private static nint? _InterpolationModeOffset;
 
   public ref VMixSubgraphSwitchInterpolationType_t InterpolationMode {
-    get => ref _Handle.AsRef<VMixSubgraphSwitchInterpolationType_t>(_InterpolationModeOffset);
+    get {
+      if (_InterpolationModeOffset == null) {
+        _InterpolationModeOffset = Schema.GetOffset(0x9671DF890C06348A);
+      }
+      return ref _Handle.AsRef<VMixSubgraphSwitchInterpolationType_t>(_InterpolationModeOffset!.Value);
+    }
   }
-  private static readonly nint _OnlyTailsOnFadeOutOffset = Schema.GetOffset(0x9671DF89B74519D7);
+  private static nint? _OnlyTailsOnFadeOutOffset;
 
   public ref bool OnlyTailsOnFadeOut {
-    get => ref _Handle.AsRef<bool>(_OnlyTailsOnFadeOutOffset);
+    get {
+      if (_OnlyTailsOnFadeOutOffset == null) {
+        _OnlyTailsOnFadeOutOffset = Schema.GetOffset(0x9671DF89B74519D7);
+      }
+      return ref _Handle.AsRef<bool>(_OnlyTailsOnFadeOutOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolationTimeOffset = Schema.GetOffset(0x9671DF896D3B0FB6);
+  private static nint? _InterpolationTimeOffset;
 
   public ref float InterpolationTime {
-    get => ref _Handle.AsRef<float>(_InterpolationTimeOffset);
+    get {
+      if (_InterpolationTimeOffset == null) {
+        _InterpolationTimeOffset = Schema.GetOffset(0x9671DF896D3B0FB6);
+      }
+      return ref _Handle.AsRef<float>(_InterpolationTimeOffset!.Value);
+    }
   }
 
 

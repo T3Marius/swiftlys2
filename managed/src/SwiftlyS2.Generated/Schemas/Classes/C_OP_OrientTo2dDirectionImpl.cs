@@ -17,20 +17,35 @@ internal partial class C_OP_OrientTo2dDirectionImpl : CParticleFunctionOperatorI
   public C_OP_OrientTo2dDirectionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RotOffsetOffset = Schema.GetOffset(0x2AC61F04D1EA9CDF);
+  private static nint? _RotOffsetOffset;
 
   public ref float RotOffset {
-    get => ref _Handle.AsRef<float>(_RotOffsetOffset);
+    get {
+      if (_RotOffsetOffset == null) {
+        _RotOffsetOffset = Schema.GetOffset(0x2AC61F04D1EA9CDF);
+      }
+      return ref _Handle.AsRef<float>(_RotOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _SpinStrengthOffset = Schema.GetOffset(0x2AC61F0412520F26);
+  private static nint? _SpinStrengthOffset;
 
   public ref float SpinStrength {
-    get => ref _Handle.AsRef<float>(_SpinStrengthOffset);
+    get {
+      if (_SpinStrengthOffset == null) {
+        _SpinStrengthOffset = Schema.GetOffset(0x2AC61F0412520F26);
+      }
+      return ref _Handle.AsRef<float>(_SpinStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x2AC61F04E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x2AC61F04E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
 
 

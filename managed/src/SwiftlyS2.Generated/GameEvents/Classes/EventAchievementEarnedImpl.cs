@@ -18,8 +18,20 @@ internal class EventAchievementEarnedImpl : GameEvent<EventAchievementEarned>, E
   }
 
   // entindex of the player
+  public CCSPlayerController PlayerController
+  { get => Accessor.GetPlayerController("player"); }
+
+  // entindex of the player
+  public CCSPlayerPawn PlayerPawn
+  { get => Accessor.GetPlayerPawn("player"); }
+
+  // entindex of the player
+  public IPlayer PlayerPlayer
+  { get => Accessor.GetPlayer("player"); }
+
+  // entindex of the player
   public int Player
-  { get => Accessor.GetPlayerSlot("player"); set => Accessor.SetPlayerSlot("player", value); }
+  { get => Accessor.GetInt32("player"); set => Accessor.SetInt32("player", value); }
 
   // achievement ID
   public short Achievement

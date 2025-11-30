@@ -17,30 +17,55 @@ internal partial class ParamSpan_tImpl : SchemaClass, ParamSpan_t {
   public ParamSpan_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SamplesOffset = Schema.GetOffset(0x5EE209D9364CA9DC);
+  private static nint? _SamplesOffset;
 
   public ref CUtlVector<ParamSpanSample_t> Samples {
-    get => ref _Handle.AsRef<CUtlVector<ParamSpanSample_t>>(_SamplesOffset);
+    get {
+      if (_SamplesOffset == null) {
+        _SamplesOffset = Schema.GetOffset(0x5EE209D9364CA9DC);
+      }
+      return ref _Handle.AsRef<CUtlVector<ParamSpanSample_t>>(_SamplesOffset!.Value);
+    }
   }
-  private static readonly nint _ParamOffset = Schema.GetOffset(0x5EE209D9679286A4);
+  private static nint? _ParamOffset;
 
   public CAnimParamHandle Param {
-    get => new CAnimParamHandleImpl(_Handle + _ParamOffset);
+    get {
+      if (_ParamOffset == null) {
+        _ParamOffset = Schema.GetOffset(0x5EE209D9679286A4);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParamOffset!.Value);
+    }
   }
-  private static readonly nint _ParamTypeOffset = Schema.GetOffset(0x5EE209D9F05DFDD9);
+  private static nint? _ParamTypeOffset;
 
   public ref AnimParamType_t ParamType {
-    get => ref _Handle.AsRef<AnimParamType_t>(_ParamTypeOffset);
+    get {
+      if (_ParamTypeOffset == null) {
+        _ParamTypeOffset = Schema.GetOffset(0x5EE209D9F05DFDD9);
+      }
+      return ref _Handle.AsRef<AnimParamType_t>(_ParamTypeOffset!.Value);
+    }
   }
-  private static readonly nint _StartCycleOffset = Schema.GetOffset(0x5EE209D9ABB46051);
+  private static nint? _StartCycleOffset;
 
   public ref float StartCycle {
-    get => ref _Handle.AsRef<float>(_StartCycleOffset);
+    get {
+      if (_StartCycleOffset == null) {
+        _StartCycleOffset = Schema.GetOffset(0x5EE209D9ABB46051);
+      }
+      return ref _Handle.AsRef<float>(_StartCycleOffset!.Value);
+    }
   }
-  private static readonly nint _EndCycleOffset = Schema.GetOffset(0x5EE209D9176E8F62);
+  private static nint? _EndCycleOffset;
 
   public ref float EndCycle {
-    get => ref _Handle.AsRef<float>(_EndCycleOffset);
+    get {
+      if (_EndCycleOffset == null) {
+        _EndCycleOffset = Schema.GetOffset(0x5EE209D9176E8F62);
+      }
+      return ref _Handle.AsRef<float>(_EndCycleOffset!.Value);
+    }
   }
 
 

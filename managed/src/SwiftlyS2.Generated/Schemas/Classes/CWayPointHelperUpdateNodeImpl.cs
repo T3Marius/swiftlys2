@@ -17,30 +17,55 @@ internal partial class CWayPointHelperUpdateNodeImpl : CUnaryUpdateNodeImpl, CWa
   public CWayPointHelperUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StartCycleOffset = Schema.GetOffset(0x109BD628ABB46051);
+  private static nint? _StartCycleOffset;
 
   public ref float StartCycle {
-    get => ref _Handle.AsRef<float>(_StartCycleOffset);
+    get {
+      if (_StartCycleOffset == null) {
+        _StartCycleOffset = Schema.GetOffset(0x109BD628ABB46051);
+      }
+      return ref _Handle.AsRef<float>(_StartCycleOffset!.Value);
+    }
   }
-  private static readonly nint _EndCycleOffset = Schema.GetOffset(0x109BD628176E8F62);
+  private static nint? _EndCycleOffset;
 
   public ref float EndCycle {
-    get => ref _Handle.AsRef<float>(_EndCycleOffset);
+    get {
+      if (_EndCycleOffset == null) {
+        _EndCycleOffset = Schema.GetOffset(0x109BD628176E8F62);
+      }
+      return ref _Handle.AsRef<float>(_EndCycleOffset!.Value);
+    }
   }
-  private static readonly nint _OnlyGoalsOffset = Schema.GetOffset(0x109BD6283526BA11);
+  private static nint? _OnlyGoalsOffset;
 
   public ref bool OnlyGoals {
-    get => ref _Handle.AsRef<bool>(_OnlyGoalsOffset);
+    get {
+      if (_OnlyGoalsOffset == null) {
+        _OnlyGoalsOffset = Schema.GetOffset(0x109BD6283526BA11);
+      }
+      return ref _Handle.AsRef<bool>(_OnlyGoalsOffset!.Value);
+    }
   }
-  private static readonly nint _PreventOvershootOffset = Schema.GetOffset(0x109BD628B161EADA);
+  private static nint? _PreventOvershootOffset;
 
   public ref bool PreventOvershoot {
-    get => ref _Handle.AsRef<bool>(_PreventOvershootOffset);
+    get {
+      if (_PreventOvershootOffset == null) {
+        _PreventOvershootOffset = Schema.GetOffset(0x109BD628B161EADA);
+      }
+      return ref _Handle.AsRef<bool>(_PreventOvershootOffset!.Value);
+    }
   }
-  private static readonly nint _PreventUndershootOffset = Schema.GetOffset(0x109BD628C22276F8);
+  private static nint? _PreventUndershootOffset;
 
   public ref bool PreventUndershoot {
-    get => ref _Handle.AsRef<bool>(_PreventUndershootOffset);
+    get {
+      if (_PreventUndershootOffset == null) {
+        _PreventUndershootOffset = Schema.GetOffset(0x109BD628C22276F8);
+      }
+      return ref _Handle.AsRef<bool>(_PreventUndershootOffset!.Value);
+    }
   }
 
 

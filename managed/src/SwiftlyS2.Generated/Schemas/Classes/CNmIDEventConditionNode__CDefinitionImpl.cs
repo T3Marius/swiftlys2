@@ -17,20 +17,35 @@ internal partial class CNmIDEventConditionNode__CDefinitionImpl : CNmBoolValueNo
   public CNmIDEventConditionNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceStateNodeIdxOffset = Schema.GetOffset(0xBD2C5F7563F0228C);
+  private static nint? _SourceStateNodeIdxOffset;
 
   public ref short SourceStateNodeIdx {
-    get => ref _Handle.AsRef<short>(_SourceStateNodeIdxOffset);
+    get {
+      if (_SourceStateNodeIdxOffset == null) {
+        _SourceStateNodeIdxOffset = Schema.GetOffset(0xBD2C5F7563F0228C);
+      }
+      return ref _Handle.AsRef<short>(_SourceStateNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EventConditionRulesOffset = Schema.GetOffset(0xBD2C5F75A904315F);
+  private static nint? _EventConditionRulesOffset;
 
   public CNmBitFlags EventConditionRules {
-    get => new CNmBitFlagsImpl(_Handle + _EventConditionRulesOffset);
+    get {
+      if (_EventConditionRulesOffset == null) {
+        _EventConditionRulesOffset = Schema.GetOffset(0xBD2C5F75A904315F);
+      }
+      return new CNmBitFlagsImpl(_Handle + _EventConditionRulesOffset!.Value);
+    }
   }
-  private static readonly nint _EventIDsOffset = Schema.GetOffset(0xBD2C5F75E7543F93);
+  private static nint? _EventIDsOffset;
 
   public SchemaUntypedField EventIDs {
-    get => new SchemaUntypedField(_Handle + _EventIDsOffset);
+    get {
+      if (_EventIDsOffset == null) {
+        _EventIDsOffset = Schema.GetOffset(0xBD2C5F75E7543F93);
+      }
+      return new SchemaUntypedField(_Handle + _EventIDsOffset!.Value);
+    }
   }
 
 

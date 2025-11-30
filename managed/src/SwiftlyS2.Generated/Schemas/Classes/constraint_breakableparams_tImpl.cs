@@ -17,28 +17,48 @@ internal partial class constraint_breakableparams_tImpl : SchemaClass, constrain
   public constraint_breakableparams_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StrengthOffset = Schema.GetOffset(0xEDA0F377E07A18B0);
+  private static nint? _StrengthOffset;
 
   public ref float Strength {
-    get => ref _Handle.AsRef<float>(_StrengthOffset);
+    get {
+      if (_StrengthOffset == null) {
+        _StrengthOffset = Schema.GetOffset(0xEDA0F377E07A18B0);
+      }
+      return ref _Handle.AsRef<float>(_StrengthOffset!.Value);
+    }
   }
-  private static readonly nint _ForceLimitOffset = Schema.GetOffset(0xEDA0F3777F2D0897);
+  private static nint? _ForceLimitOffset;
 
   public ref float ForceLimit {
-    get => ref _Handle.AsRef<float>(_ForceLimitOffset);
+    get {
+      if (_ForceLimitOffset == null) {
+        _ForceLimitOffset = Schema.GetOffset(0xEDA0F3777F2D0897);
+      }
+      return ref _Handle.AsRef<float>(_ForceLimitOffset!.Value);
+    }
   }
-  private static readonly nint _TorqueLimitOffset = Schema.GetOffset(0xEDA0F37777EB0DDE);
+  private static nint? _TorqueLimitOffset;
 
   public ref float TorqueLimit {
-    get => ref _Handle.AsRef<float>(_TorqueLimitOffset);
+    get {
+      if (_TorqueLimitOffset == null) {
+        _TorqueLimitOffset = Schema.GetOffset(0xEDA0F37777EB0DDE);
+      }
+      return ref _Handle.AsRef<float>(_TorqueLimitOffset!.Value);
+    }
   }
   public ISchemaFixedArray<float> BodyMassScale {
     get => new SchemaFixedArray<float>(_Handle, 0xEDA0F3775BED8FB5, 2, 4, 4);
   }
-  private static readonly nint _IsActiveOffset = Schema.GetOffset(0xEDA0F3773D94F45F);
+  private static nint? _IsActiveOffset;
 
   public ref bool IsActive {
-    get => ref _Handle.AsRef<bool>(_IsActiveOffset);
+    get {
+      if (_IsActiveOffset == null) {
+        _IsActiveOffset = Schema.GetOffset(0xEDA0F3773D94F45F);
+      }
+      return ref _Handle.AsRef<bool>(_IsActiveOffset!.Value);
+    }
   }
 
 

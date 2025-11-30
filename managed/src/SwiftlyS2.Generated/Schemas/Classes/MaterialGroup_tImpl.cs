@@ -17,19 +17,32 @@ internal partial class MaterialGroup_tImpl : SchemaClass, MaterialGroup_t {
   public MaterialGroup_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x702431604D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x702431604D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x702431604D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _MaterialsOffset = Schema.GetOffset(0x7024316060E46909);
+  private static nint? _MaterialsOffset;
 
   public ref CUtlVector<CStrongHandle<InfoForResourceTypeIMaterial2>> Materials {
-    get => ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeIMaterial2>>>(_MaterialsOffset);
+    get {
+      if (_MaterialsOffset == null) {
+        _MaterialsOffset = Schema.GetOffset(0x7024316060E46909);
+      }
+      return ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeIMaterial2>>>(_MaterialsOffset!.Value);
+    }
   }
 
 

@@ -17,30 +17,55 @@ internal partial class PulseGraphExecutionHistoryEntry_tImpl : SchemaClass, Puls
   public PulseGraphExecutionHistoryEntry_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CursorIDOffset = Schema.GetOffset(0x9346B0AB0B44CBF6);
+  private static nint? _CursorIDOffset;
 
   public PulseCursorID_t CursorID {
-    get => new PulseCursorID_tImpl(_Handle + _CursorIDOffset);
+    get {
+      if (_CursorIDOffset == null) {
+        _CursorIDOffset = Schema.GetOffset(0x9346B0AB0B44CBF6);
+      }
+      return new PulseCursorID_tImpl(_Handle + _CursorIDOffset!.Value);
+    }
   }
-  private static readonly nint _EditorIDOffset = Schema.GetOffset(0x9346B0AB74188E69);
+  private static nint? _EditorIDOffset;
 
   public PulseDocNodeID_t EditorID {
-    get => new PulseDocNodeID_tImpl(_Handle + _EditorIDOffset);
+    get {
+      if (_EditorIDOffset == null) {
+        _EditorIDOffset = Schema.GetOffset(0x9346B0AB74188E69);
+      }
+      return new PulseDocNodeID_tImpl(_Handle + _EditorIDOffset!.Value);
+    }
   }
-  private static readonly nint _ExecTimeOffset = Schema.GetOffset(0x9346B0ABFAE08483);
+  private static nint? _ExecTimeOffset;
 
   public ref float ExecTime {
-    get => ref _Handle.AsRef<float>(_ExecTimeOffset);
+    get {
+      if (_ExecTimeOffset == null) {
+        _ExecTimeOffset = Schema.GetOffset(0x9346B0ABFAE08483);
+      }
+      return ref _Handle.AsRef<float>(_ExecTimeOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x9346B0AB5E9538F5);
+  private static nint? _FlagsOffset;
 
   public ref uint Flags {
-    get => ref _Handle.AsRef<uint>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x9346B0AB5E9538F5);
+      }
+      return ref _Handle.AsRef<uint>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _TagNameOffset = Schema.GetOffset(0x9346B0ABBD7B50F8);
+  private static nint? _TagNameOffset;
 
   public SchemaUntypedField TagName {
-    get => new SchemaUntypedField(_Handle + _TagNameOffset);
+    get {
+      if (_TagNameOffset == null) {
+        _TagNameOffset = Schema.GetOffset(0x9346B0ABBD7B50F8);
+      }
+      return new SchemaUntypedField(_Handle + _TagNameOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class CPointTeleportImpl : CServerOnlyPointEntityImpl, CPointTe
   public CPointTeleportImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SaveOriginOffset = Schema.GetOffset(0x9AE1393FD9277FA6);
+  private static nint? _SaveOriginOffset;
 
   public ref Vector SaveOrigin {
-    get => ref _Handle.AsRef<Vector>(_SaveOriginOffset);
+    get {
+      if (_SaveOriginOffset == null) {
+        _SaveOriginOffset = Schema.GetOffset(0x9AE1393FD9277FA6);
+      }
+      return ref _Handle.AsRef<Vector>(_SaveOriginOffset!.Value);
+    }
   }
-  private static readonly nint _SaveAnglesOffset = Schema.GetOffset(0x9AE1393FD68F48DC);
+  private static nint? _SaveAnglesOffset;
 
   public ref QAngle SaveAngles {
-    get => ref _Handle.AsRef<QAngle>(_SaveAnglesOffset);
+    get {
+      if (_SaveAnglesOffset == null) {
+        _SaveAnglesOffset = Schema.GetOffset(0x9AE1393FD68F48DC);
+      }
+      return ref _Handle.AsRef<QAngle>(_SaveAnglesOffset!.Value);
+    }
   }
-  private static readonly nint _TeleportParentedEntitiesOffset = Schema.GetOffset(0x9AE1393F20FFB18C);
+  private static nint? _TeleportParentedEntitiesOffset;
 
   public ref bool TeleportParentedEntities {
-    get => ref _Handle.AsRef<bool>(_TeleportParentedEntitiesOffset);
+    get {
+      if (_TeleportParentedEntitiesOffset == null) {
+        _TeleportParentedEntitiesOffset = Schema.GetOffset(0x9AE1393F20FFB18C);
+      }
+      return ref _Handle.AsRef<bool>(_TeleportParentedEntitiesOffset!.Value);
+    }
   }
-  private static readonly nint _TeleportUseCurrentAngleOffset = Schema.GetOffset(0x9AE1393F528952CD);
+  private static nint? _TeleportUseCurrentAngleOffset;
 
   public ref bool TeleportUseCurrentAngle {
-    get => ref _Handle.AsRef<bool>(_TeleportUseCurrentAngleOffset);
+    get {
+      if (_TeleportUseCurrentAngleOffset == null) {
+        _TeleportUseCurrentAngleOffset = Schema.GetOffset(0x9AE1393F528952CD);
+      }
+      return ref _Handle.AsRef<bool>(_TeleportUseCurrentAngleOffset!.Value);
+    }
   }
 
 

@@ -17,28 +17,49 @@ internal partial class CFuncInteractionLayerClipImpl : CBaseModelEntityImpl, CFu
   public CFuncInteractionLayerClipImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x5A9288DF3A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x5A9288DF3A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
-  private static readonly nint _InteractsAsOffset = Schema.GetOffset(0x5A9288DF488FC5DC);
+  private static nint? _InteractsAsOffset;
 
   public string InteractsAs {
     get {
-      var ptr = _Handle.Read<nint>(_InteractsAsOffset);
+      if (_InteractsAsOffset == null) {
+        _InteractsAsOffset = Schema.GetOffset(0x5A9288DF488FC5DC);
+      }
+      var ptr = _Handle.Read<nint>(_InteractsAsOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _InteractsAsOffset, value);
+    set {
+      if (_InteractsAsOffset == null) {
+        _InteractsAsOffset = Schema.GetOffset(0x5A9288DF488FC5DC);
+      }
+      Schema.SetString(_Handle, _InteractsAsOffset!.Value, value);
+    }
   } 
-  private static readonly nint _InteractsWithOffset = Schema.GetOffset(0x5A9288DF84AB4214);
+  private static nint? _InteractsWithOffset;
 
   public string InteractsWith {
     get {
-      var ptr = _Handle.Read<nint>(_InteractsWithOffset);
+      if (_InteractsWithOffset == null) {
+        _InteractsWithOffset = Schema.GetOffset(0x5A9288DF84AB4214);
+      }
+      var ptr = _Handle.Read<nint>(_InteractsWithOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _InteractsWithOffset, value);
+    set {
+      if (_InteractsWithOffset == null) {
+        _InteractsWithOffset = Schema.GetOffset(0x5A9288DF84AB4214);
+      }
+      Schema.SetString(_Handle, _InteractsWithOffset!.Value, value);
+    }
   } 
 
 

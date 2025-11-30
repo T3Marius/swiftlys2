@@ -17,24 +17,42 @@ internal partial class CAttributeManager__cached_attribute_float_tImpl : SchemaC
   public CAttributeManager__cached_attribute_float_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InOffset = Schema.GetOffset(0xE3C5A1BAD526F734);
+  private static nint? _InOffset;
 
   public ref float In {
-    get => ref _Handle.AsRef<float>(_InOffset);
+    get {
+      if (_InOffset == null) {
+        _InOffset = Schema.GetOffset(0xE3C5A1BAD526F734);
+      }
+      return ref _Handle.AsRef<float>(_InOffset!.Value);
+    }
   }
-  private static readonly nint _AttribHookOffset = Schema.GetOffset(0xE3C5A1BACD388D67);
+  private static nint? _AttribHookOffset;
 
   public string AttribHook {
     get {
-      var ptr = _Handle.Read<nint>(_AttribHookOffset);
+      if (_AttribHookOffset == null) {
+        _AttribHookOffset = Schema.GetOffset(0xE3C5A1BACD388D67);
+      }
+      var ptr = _Handle.Read<nint>(_AttribHookOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _AttribHookOffset, value);
+    set {
+      if (_AttribHookOffset == null) {
+        _AttribHookOffset = Schema.GetOffset(0xE3C5A1BACD388D67);
+      }
+      Schema.SetString(_Handle, _AttribHookOffset!.Value, value);
+    }
   } 
-  private static readonly nint _OutOffset = Schema.GetOffset(0xE3C5A1BA546B7BE1);
+  private static nint? _OutOffset;
 
   public ref float Out {
-    get => ref _Handle.AsRef<float>(_OutOffset);
+    get {
+      if (_OutOffset == null) {
+        _OutOffset = Schema.GetOffset(0xE3C5A1BA546B7BE1);
+      }
+      return ref _Handle.AsRef<float>(_OutOffset!.Value);
+    }
   }
 
 

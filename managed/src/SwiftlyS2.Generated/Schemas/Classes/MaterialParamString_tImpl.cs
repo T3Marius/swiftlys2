@@ -17,14 +17,22 @@ internal partial class MaterialParamString_tImpl : MaterialParam_tImpl, Material
   public MaterialParamString_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xDB5EB0676B99AEEA);
+  private static nint? _ValueOffset;
 
   public string Value {
     get {
-      var ptr = _Handle.Read<nint>(_ValueOffset);
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xDB5EB0676B99AEEA);
+      }
+      var ptr = _Handle.Read<nint>(_ValueOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ValueOffset, value);
+    set {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xDB5EB0676B99AEEA);
+      }
+      Schema.SetString(_Handle, _ValueOffset!.Value, value);
+    }
   } 
 
 

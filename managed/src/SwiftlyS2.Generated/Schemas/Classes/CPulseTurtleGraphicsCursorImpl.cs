@@ -17,25 +17,45 @@ internal partial class CPulseTurtleGraphicsCursorImpl : CPulseExecCursorImpl, CP
   public CPulseTurtleGraphicsCursorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ColorOffset = Schema.GetOffset(0x6153058ED7D017D8);
+  private static nint? _ColorOffset;
 
   public ref Color Color {
-    get => ref _Handle.AsRef<Color>(_ColorOffset);
+    get {
+      if (_ColorOffset == null) {
+        _ColorOffset = Schema.GetOffset(0x6153058ED7D017D8);
+      }
+      return ref _Handle.AsRef<Color>(_ColorOffset!.Value);
+    }
   }
-  private static readonly nint _PosOffset = Schema.GetOffset(0x6153058EDE9CFC5D);
+  private static nint? _PosOffset;
 
   public ref Vector2D Pos {
-    get => ref _Handle.AsRef<Vector2D>(_PosOffset);
+    get {
+      if (_PosOffset == null) {
+        _PosOffset = Schema.GetOffset(0x6153058EDE9CFC5D);
+      }
+      return ref _Handle.AsRef<Vector2D>(_PosOffset!.Value);
+    }
   }
-  private static readonly nint _HeadingDegOffset = Schema.GetOffset(0x6153058E63288B7D);
+  private static nint? _HeadingDegOffset;
 
   public ref float HeadingDeg {
-    get => ref _Handle.AsRef<float>(_HeadingDegOffset);
+    get {
+      if (_HeadingDegOffset == null) {
+        _HeadingDegOffset = Schema.GetOffset(0x6153058E63288B7D);
+      }
+      return ref _Handle.AsRef<float>(_HeadingDegOffset!.Value);
+    }
   }
-  private static readonly nint _PenUpOffset = Schema.GetOffset(0x6153058E2252C6FD);
+  private static nint? _PenUpOffset;
 
   public ref bool PenUp {
-    get => ref _Handle.AsRef<bool>(_PenUpOffset);
+    get {
+      if (_PenUpOffset == null) {
+        _PenUpOffset = Schema.GetOffset(0x6153058E2252C6FD);
+      }
+      return ref _Handle.AsRef<bool>(_PenUpOffset!.Value);
+    }
   }
 
 

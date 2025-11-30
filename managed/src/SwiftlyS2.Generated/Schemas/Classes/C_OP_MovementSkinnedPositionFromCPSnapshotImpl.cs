@@ -17,65 +17,125 @@ internal partial class C_OP_MovementSkinnedPositionFromCPSnapshotImpl : CParticl
   public C_OP_MovementSkinnedPositionFromCPSnapshotImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SnapshotControlPointNumberOffset = Schema.GetOffset(0x6BA7A3C29D3EEDD);
+  private static nint? _SnapshotControlPointNumberOffset;
 
   public ref int SnapshotControlPointNumber {
-    get => ref _Handle.AsRef<int>(_SnapshotControlPointNumberOffset);
+    get {
+      if (_SnapshotControlPointNumberOffset == null) {
+        _SnapshotControlPointNumberOffset = Schema.GetOffset(0x6BA7A3C29D3EEDD);
+      }
+      return ref _Handle.AsRef<int>(_SnapshotControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x6BA7A3C3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x6BA7A3C3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _RandomOffset = Schema.GetOffset(0x6BA7A3CD13B9DC2);
+  private static nint? _RandomOffset;
 
   public ref bool Random {
-    get => ref _Handle.AsRef<bool>(_RandomOffset);
+    get {
+      if (_RandomOffset == null) {
+        _RandomOffset = Schema.GetOffset(0x6BA7A3CD13B9DC2);
+      }
+      return ref _Handle.AsRef<bool>(_RandomOffset!.Value);
+    }
   }
-  private static readonly nint _RandomSeedOffset = Schema.GetOffset(0x6BA7A3C6388F067);
+  private static nint? _RandomSeedOffset;
 
   public ref int RandomSeed {
-    get => ref _Handle.AsRef<int>(_RandomSeedOffset);
+    get {
+      if (_RandomSeedOffset == null) {
+        _RandomSeedOffset = Schema.GetOffset(0x6BA7A3C6388F067);
+      }
+      return ref _Handle.AsRef<int>(_RandomSeedOffset!.Value);
+    }
   }
-  private static readonly nint _SetNormalOffset = Schema.GetOffset(0x6BA7A3C542722AC);
+  private static nint? _SetNormalOffset;
 
   public ref bool SetNormal {
-    get => ref _Handle.AsRef<bool>(_SetNormalOffset);
+    get {
+      if (_SetNormalOffset == null) {
+        _SetNormalOffset = Schema.GetOffset(0x6BA7A3C542722AC);
+      }
+      return ref _Handle.AsRef<bool>(_SetNormalOffset!.Value);
+    }
   }
-  private static readonly nint _SetRadiusOffset = Schema.GetOffset(0x6BA7A3C918808D1);
+  private static nint? _SetRadiusOffset;
 
   public ref bool SetRadius {
-    get => ref _Handle.AsRef<bool>(_SetRadiusOffset);
+    get {
+      if (_SetRadiusOffset == null) {
+        _SetRadiusOffset = Schema.GetOffset(0x6BA7A3C918808D1);
+      }
+      return ref _Handle.AsRef<bool>(_SetRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _IndexTypeOffset = Schema.GetOffset(0x6BA7A3CDEEB271F);
+  private static nint? _IndexTypeOffset;
 
   public ref SnapshotIndexType_t IndexType {
-    get => ref _Handle.AsRef<SnapshotIndexType_t>(_IndexTypeOffset);
+    get {
+      if (_IndexTypeOffset == null) {
+        _IndexTypeOffset = Schema.GetOffset(0x6BA7A3CDEEB271F);
+      }
+      return ref _Handle.AsRef<SnapshotIndexType_t>(_IndexTypeOffset!.Value);
+    }
   }
-  private static readonly nint _ReadIndexOffset = Schema.GetOffset(0x6BA7A3C7E9602C9);
+  private static nint? _ReadIndexOffset;
 
   public CPerParticleFloatInput ReadIndex {
-    get => new CPerParticleFloatInputImpl(_Handle + _ReadIndexOffset);
+    get {
+      if (_ReadIndexOffset == null) {
+        _ReadIndexOffset = Schema.GetOffset(0x6BA7A3C7E9602C9);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ReadIndexOffset!.Value);
+    }
   }
-  private static readonly nint _IncrementOffset = Schema.GetOffset(0x6BA7A3CB3721674);
+  private static nint? _IncrementOffset;
 
   public CParticleCollectionFloatInput Increment {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _IncrementOffset);
+    get {
+      if (_IncrementOffset == null) {
+        _IncrementOffset = Schema.GetOffset(0x6BA7A3CB3721674);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _IncrementOffset!.Value);
+    }
   }
-  private static readonly nint _FullLoopIncrementOffset = Schema.GetOffset(0x6BA7A3C278D3497);
+  private static nint? _FullLoopIncrementOffset;
 
   public CParticleCollectionFloatInput FullLoopIncrement {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _FullLoopIncrementOffset);
+    get {
+      if (_FullLoopIncrementOffset == null) {
+        _FullLoopIncrementOffset = Schema.GetOffset(0x6BA7A3C278D3497);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _FullLoopIncrementOffset!.Value);
+    }
   }
-  private static readonly nint _SnapShotStartPointOffset = Schema.GetOffset(0x6BA7A3CA7DF116B);
+  private static nint? _SnapShotStartPointOffset;
 
   public CParticleCollectionFloatInput SnapShotStartPoint {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _SnapShotStartPointOffset);
+    get {
+      if (_SnapShotStartPointOffset == null) {
+        _SnapShotStartPointOffset = Schema.GetOffset(0x6BA7A3CA7DF116B);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _SnapShotStartPointOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolationOffset = Schema.GetOffset(0x6BA7A3CCF55B987);
+  private static nint? _InterpolationOffset;
 
   public CPerParticleFloatInput Interpolation {
-    get => new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset);
+    get {
+      if (_InterpolationOffset == null) {
+        _InterpolationOffset = Schema.GetOffset(0x6BA7A3CCF55B987);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset!.Value);
+    }
   }
 
 

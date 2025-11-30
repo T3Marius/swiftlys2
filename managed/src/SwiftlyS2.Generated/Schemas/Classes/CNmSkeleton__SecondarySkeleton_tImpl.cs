@@ -17,15 +17,25 @@ internal partial class CNmSkeleton__SecondarySkeleton_tImpl : SchemaClass, CNmSk
   public CNmSkeleton__SecondarySkeleton_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AttachToBoneIDOffset = Schema.GetOffset(0x50F456DAB2F06B3A);
+  private static nint? _AttachToBoneIDOffset;
 
   public ref CGlobalSymbol AttachToBoneID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_AttachToBoneIDOffset);
+    get {
+      if (_AttachToBoneIDOffset == null) {
+        _AttachToBoneIDOffset = Schema.GetOffset(0x50F456DAB2F06B3A);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_AttachToBoneIDOffset!.Value);
+    }
   }
-  private static readonly nint _SkeletonOffset = Schema.GetOffset(0x50F456DAE77F030E);
+  private static nint? _SkeletonOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCNmSkeleton> Skeleton {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmSkeleton>>(_SkeletonOffset);
+    get {
+      if (_SkeletonOffset == null) {
+        _SkeletonOffset = Schema.GetOffset(0x50F456DAE77F030E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmSkeleton>>(_SkeletonOffset!.Value);
+    }
   }
 
 

@@ -17,19 +17,32 @@ internal partial class CVirtualAnimParameterImpl : CAnimParameterBaseImpl, CVirt
   public CVirtualAnimParameterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ExpressionStringOffset = Schema.GetOffset(0x3D45915B3039426E);
+  private static nint? _ExpressionStringOffset;
 
   public string ExpressionString {
     get {
-      var ptr = _Handle.Read<nint>(_ExpressionStringOffset);
+      if (_ExpressionStringOffset == null) {
+        _ExpressionStringOffset = Schema.GetOffset(0x3D45915B3039426E);
+      }
+      var ptr = _Handle.Read<nint>(_ExpressionStringOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ExpressionStringOffset, value);
+    set {
+      if (_ExpressionStringOffset == null) {
+        _ExpressionStringOffset = Schema.GetOffset(0x3D45915B3039426E);
+      }
+      Schema.SetString(_Handle, _ExpressionStringOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ParamTypeOffset = Schema.GetOffset(0x3D45915BF05DFDD9);
+  private static nint? _ParamTypeOffset;
 
   public ref AnimParamType_t ParamType {
-    get => ref _Handle.AsRef<AnimParamType_t>(_ParamTypeOffset);
+    get {
+      if (_ParamTypeOffset == null) {
+        _ParamTypeOffset = Schema.GetOffset(0x3D45915BF05DFDD9);
+      }
+      return ref _Handle.AsRef<AnimParamType_t>(_ParamTypeOffset!.Value);
+    }
   }
 
 

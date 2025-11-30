@@ -17,30 +17,55 @@ internal partial class VMixDualCompressorDesc_tImpl : SchemaClass, VMixDualCompr
   public VMixDualCompressorDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RMSTimeMSOffset = Schema.GetOffset(0x6B9BDFD8FB749526);
+  private static nint? _RMSTimeMSOffset;
 
   public ref float RMSTimeMS {
-    get => ref _Handle.AsRef<float>(_RMSTimeMSOffset);
+    get {
+      if (_RMSTimeMSOffset == null) {
+        _RMSTimeMSOffset = Schema.GetOffset(0x6B9BDFD8FB749526);
+      }
+      return ref _Handle.AsRef<float>(_RMSTimeMSOffset!.Value);
+    }
   }
-  private static readonly nint _FldbKneeWidthOffset = Schema.GetOffset(0x6B9BDFD835532FF2);
+  private static nint? _FldbKneeWidthOffset;
 
   public ref float FldbKneeWidth {
-    get => ref _Handle.AsRef<float>(_FldbKneeWidthOffset);
+    get {
+      if (_FldbKneeWidthOffset == null) {
+        _FldbKneeWidthOffset = Schema.GetOffset(0x6B9BDFD835532FF2);
+      }
+      return ref _Handle.AsRef<float>(_FldbKneeWidthOffset!.Value);
+    }
   }
-  private static readonly nint _WetMixOffset = Schema.GetOffset(0x6B9BDFD8D5453C15);
+  private static nint? _WetMixOffset;
 
   public ref float WetMix {
-    get => ref _Handle.AsRef<float>(_WetMixOffset);
+    get {
+      if (_WetMixOffset == null) {
+        _WetMixOffset = Schema.GetOffset(0x6B9BDFD8D5453C15);
+      }
+      return ref _Handle.AsRef<float>(_WetMixOffset!.Value);
+    }
   }
-  private static readonly nint _PeakModeOffset = Schema.GetOffset(0x6B9BDFD887DF35F9);
+  private static nint? _PeakModeOffset;
 
   public ref bool PeakMode {
-    get => ref _Handle.AsRef<bool>(_PeakModeOffset);
+    get {
+      if (_PeakModeOffset == null) {
+        _PeakModeOffset = Schema.GetOffset(0x6B9BDFD887DF35F9);
+      }
+      return ref _Handle.AsRef<bool>(_PeakModeOffset!.Value);
+    }
   }
-  private static readonly nint _BandDescOffset = Schema.GetOffset(0x6B9BDFD804203F47);
+  private static nint? _BandDescOffset;
 
   public VMixDynamicsBand_t BandDesc {
-    get => new VMixDynamicsBand_tImpl(_Handle + _BandDescOffset);
+    get {
+      if (_BandDescOffset == null) {
+        _BandDescOffset = Schema.GetOffset(0x6B9BDFD804203F47);
+      }
+      return new VMixDynamicsBand_tImpl(_Handle + _BandDescOffset!.Value);
+    }
   }
 
 

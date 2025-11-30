@@ -18,15 +18,36 @@ internal class EventShowDeathpanelImpl : GameEvent<EventShowDeathpanel>, EventSh
   }
 
   // endindex of the one who was killed
+  public CCSPlayerController VictimController
+  { get => Accessor.GetPlayerController("victim"); }
+
+  // endindex of the one who was killed
+  public CCSPlayerPawn VictimPawn
+  { get => Accessor.GetPlayerPawn("victim"); }
+
+  // endindex of the one who was killed
+  public IPlayer VictimPlayer
+  { get => Accessor.GetPlayer("victim"); }
+
+  // endindex of the one who was killed
   public int Victim
-  { get => Accessor.GetPlayerSlot("victim"); set => Accessor.SetPlayerSlot("victim", value); }
+  { get => Accessor.GetInt32("victim"); set => Accessor.SetInt32("victim", value); }
 
   // entindex of the killer entity
   public nint Killer
   { get => Accessor.GetPtr("killer"); set => Accessor.SetPtr("killer", value); }
 
+  public CCSPlayerController KillerControllerController
+  { get => Accessor.GetPlayerController("killer_controller"); }
+
+  public CCSPlayerPawn KillerControllerPawn
+  { get => Accessor.GetPlayerPawn("killer_controller"); }
+
+  public IPlayer KillerControllerPlayer
+  { get => Accessor.GetPlayer("killer_controller"); }
+
   public int KillerController
-  { get => Accessor.GetPlayerSlot("killer_controller"); set => Accessor.SetPlayerSlot("killer_controller", value); }
+  { get => Accessor.GetInt32("killer_controller"); set => Accessor.SetInt32("killer_controller", value); }
 
   public short HitsTaken
   { get => (short)Accessor.GetInt32("hits_taken"); set => Accessor.SetInt32("hits_taken", value); }

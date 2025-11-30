@@ -17,15 +17,25 @@ internal partial class CRandomNumberGeneratorParametersImpl : SchemaClass, CRand
   public CRandomNumberGeneratorParametersImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DistributeEvenlyOffset = Schema.GetOffset(0x60FDB8F9BED90721);
+  private static nint? _DistributeEvenlyOffset;
 
   public ref bool DistributeEvenly {
-    get => ref _Handle.AsRef<bool>(_DistributeEvenlyOffset);
+    get {
+      if (_DistributeEvenlyOffset == null) {
+        _DistributeEvenlyOffset = Schema.GetOffset(0x60FDB8F9BED90721);
+      }
+      return ref _Handle.AsRef<bool>(_DistributeEvenlyOffset!.Value);
+    }
   }
-  private static readonly nint _SeedOffset = Schema.GetOffset(0x60FDB8F99A113550);
+  private static nint? _SeedOffset;
 
   public ref int Seed {
-    get => ref _Handle.AsRef<int>(_SeedOffset);
+    get {
+      if (_SeedOffset == null) {
+        _SeedOffset = Schema.GetOffset(0x60FDB8F99A113550);
+      }
+      return ref _Handle.AsRef<int>(_SeedOffset!.Value);
+    }
   }
 
 

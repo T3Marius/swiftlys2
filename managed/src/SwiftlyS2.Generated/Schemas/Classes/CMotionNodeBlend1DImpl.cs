@@ -17,15 +17,25 @@ internal partial class CMotionNodeBlend1DImpl : CMotionNodeImpl, CMotionNodeBlen
   public CMotionNodeBlend1DImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BlendItemsOffset = Schema.GetOffset(0xB34B43D2BCCB1A7C);
+  private static nint? _BlendItemsOffset;
 
   public ref CUtlVector<MotionBlendItem> BlendItems {
-    get => ref _Handle.AsRef<CUtlVector<MotionBlendItem>>(_BlendItemsOffset);
+    get {
+      if (_BlendItemsOffset == null) {
+        _BlendItemsOffset = Schema.GetOffset(0xB34B43D2BCCB1A7C);
+      }
+      return ref _Handle.AsRef<CUtlVector<MotionBlendItem>>(_BlendItemsOffset!.Value);
+    }
   }
-  private static readonly nint _ParamIndexOffset = Schema.GetOffset(0xB34B43D2CA6E6F52);
+  private static nint? _ParamIndexOffset;
 
   public ref int ParamIndex {
-    get => ref _Handle.AsRef<int>(_ParamIndexOffset);
+    get {
+      if (_ParamIndexOffset == null) {
+        _ParamIndexOffset = Schema.GetOffset(0xB34B43D2CA6E6F52);
+      }
+      return ref _Handle.AsRef<int>(_ParamIndexOffset!.Value);
+    }
   }
 
 

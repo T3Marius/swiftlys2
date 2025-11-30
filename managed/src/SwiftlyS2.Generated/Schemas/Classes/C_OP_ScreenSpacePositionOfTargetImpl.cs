@@ -17,30 +17,55 @@ internal partial class C_OP_ScreenSpacePositionOfTargetImpl : CParticleFunctionO
   public C_OP_ScreenSpacePositionOfTargetImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TargetPositionOffset = Schema.GetOffset(0x5FF537BA554C563B);
+  private static nint? _TargetPositionOffset;
 
   public CPerParticleVecInput TargetPosition {
-    get => new CPerParticleVecInputImpl(_Handle + _TargetPositionOffset);
+    get {
+      if (_TargetPositionOffset == null) {
+        _TargetPositionOffset = Schema.GetOffset(0x5FF537BA554C563B);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _TargetPositionOffset!.Value);
+    }
   }
-  private static readonly nint _OututBehindnessOffset = Schema.GetOffset(0x5FF537BADB123D49);
+  private static nint? _OututBehindnessOffset;
 
   public ref bool OututBehindness {
-    get => ref _Handle.AsRef<bool>(_OututBehindnessOffset);
+    get {
+      if (_OututBehindnessOffset == null) {
+        _OututBehindnessOffset = Schema.GetOffset(0x5FF537BADB123D49);
+      }
+      return ref _Handle.AsRef<bool>(_OututBehindnessOffset!.Value);
+    }
   }
-  private static readonly nint _BehindFieldOutputOffset = Schema.GetOffset(0x5FF537BA69F4F392);
+  private static nint? _BehindFieldOutputOffset;
 
   public ParticleAttributeIndex_t BehindFieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _BehindFieldOutputOffset);
+    get {
+      if (_BehindFieldOutputOffset == null) {
+        _BehindFieldOutputOffset = Schema.GetOffset(0x5FF537BA69F4F392);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _BehindFieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _BehindOutputRemapOffset = Schema.GetOffset(0x5FF537BA4B35FBF3);
+  private static nint? _BehindOutputRemapOffset;
 
   public CParticleRemapFloatInput BehindOutputRemap {
-    get => new CParticleRemapFloatInputImpl(_Handle + _BehindOutputRemapOffset);
+    get {
+      if (_BehindOutputRemapOffset == null) {
+        _BehindOutputRemapOffset = Schema.GetOffset(0x5FF537BA4B35FBF3);
+      }
+      return new CParticleRemapFloatInputImpl(_Handle + _BehindOutputRemapOffset!.Value);
+    }
   }
-  private static readonly nint _BehindSetMethodOffset = Schema.GetOffset(0x5FF537BAFE7A7BDA);
+  private static nint? _BehindSetMethodOffset;
 
   public ref ParticleSetMethod_t BehindSetMethod {
-    get => ref _Handle.AsRef<ParticleSetMethod_t>(_BehindSetMethodOffset);
+    get {
+      if (_BehindSetMethodOffset == null) {
+        _BehindSetMethodOffset = Schema.GetOffset(0x5FF537BAFE7A7BDA);
+      }
+      return ref _Handle.AsRef<ParticleSetMethod_t>(_BehindSetMethodOffset!.Value);
+    }
   }
 
 

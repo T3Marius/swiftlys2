@@ -17,69 +17,132 @@ internal partial class CBaseTriggerImpl : CBaseToggleImpl, CBaseTrigger {
   public CBaseTriggerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnStartTouchOffset = Schema.GetOffset(0x96DE10B1B4E38193);
+  private static nint? _OnStartTouchOffset;
 
   public CEntityIOOutput OnStartTouch {
-    get => new CEntityIOOutputImpl(_Handle + _OnStartTouchOffset);
+    get {
+      if (_OnStartTouchOffset == null) {
+        _OnStartTouchOffset = Schema.GetOffset(0x96DE10B1B4E38193);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnStartTouchOffset!.Value);
+    }
   }
-  private static readonly nint _OnStartTouchAllOffset = Schema.GetOffset(0x96DE10B1BE1133C6);
+  private static nint? _OnStartTouchAllOffset;
 
   public CEntityIOOutput OnStartTouchAll {
-    get => new CEntityIOOutputImpl(_Handle + _OnStartTouchAllOffset);
+    get {
+      if (_OnStartTouchAllOffset == null) {
+        _OnStartTouchAllOffset = Schema.GetOffset(0x96DE10B1BE1133C6);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnStartTouchAllOffset!.Value);
+    }
   }
-  private static readonly nint _OnEndTouchOffset = Schema.GetOffset(0x96DE10B15D181B48);
+  private static nint? _OnEndTouchOffset;
 
   public CEntityIOOutput OnEndTouch {
-    get => new CEntityIOOutputImpl(_Handle + _OnEndTouchOffset);
+    get {
+      if (_OnEndTouchOffset == null) {
+        _OnEndTouchOffset = Schema.GetOffset(0x96DE10B15D181B48);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnEndTouchOffset!.Value);
+    }
   }
-  private static readonly nint _OnEndTouchAllOffset = Schema.GetOffset(0x96DE10B1A5526E0B);
+  private static nint? _OnEndTouchAllOffset;
 
   public CEntityIOOutput OnEndTouchAll {
-    get => new CEntityIOOutputImpl(_Handle + _OnEndTouchAllOffset);
+    get {
+      if (_OnEndTouchAllOffset == null) {
+        _OnEndTouchAllOffset = Schema.GetOffset(0x96DE10B1A5526E0B);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnEndTouchAllOffset!.Value);
+    }
   }
-  private static readonly nint _OnTouchingOffset = Schema.GetOffset(0x96DE10B1CD69EB01);
+  private static nint? _OnTouchingOffset;
 
   public CEntityIOOutput OnTouching {
-    get => new CEntityIOOutputImpl(_Handle + _OnTouchingOffset);
+    get {
+      if (_OnTouchingOffset == null) {
+        _OnTouchingOffset = Schema.GetOffset(0x96DE10B1CD69EB01);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnTouchingOffset!.Value);
+    }
   }
-  private static readonly nint _OnTouchingEachEntityOffset = Schema.GetOffset(0x96DE10B1CBC29227);
+  private static nint? _OnTouchingEachEntityOffset;
 
   public CEntityIOOutput OnTouchingEachEntity {
-    get => new CEntityIOOutputImpl(_Handle + _OnTouchingEachEntityOffset);
+    get {
+      if (_OnTouchingEachEntityOffset == null) {
+        _OnTouchingEachEntityOffset = Schema.GetOffset(0x96DE10B1CBC29227);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnTouchingEachEntityOffset!.Value);
+    }
   }
-  private static readonly nint _OnNotTouchingOffset = Schema.GetOffset(0x96DE10B19603AF34);
+  private static nint? _OnNotTouchingOffset;
 
   public CEntityIOOutput OnNotTouching {
-    get => new CEntityIOOutputImpl(_Handle + _OnNotTouchingOffset);
+    get {
+      if (_OnNotTouchingOffset == null) {
+        _OnNotTouchingOffset = Schema.GetOffset(0x96DE10B19603AF34);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnNotTouchingOffset!.Value);
+    }
   }
-  private static readonly nint _TouchingEntitiesOffset = Schema.GetOffset(0x96DE10B1070A5E2D);
+  private static nint? _TouchingEntitiesOffset;
 
   public ref CUtlVector<CHandle<CBaseEntity>> TouchingEntities {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CBaseEntity>>>(_TouchingEntitiesOffset);
+    get {
+      if (_TouchingEntitiesOffset == null) {
+        _TouchingEntitiesOffset = Schema.GetOffset(0x96DE10B1070A5E2D);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CBaseEntity>>>(_TouchingEntitiesOffset!.Value);
+    }
   }
-  private static readonly nint _FilterNameOffset = Schema.GetOffset(0x96DE10B109C86445);
+  private static nint? _FilterNameOffset;
 
   public string FilterName {
     get {
-      var ptr = _Handle.Read<nint>(_FilterNameOffset);
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0x96DE10B109C86445);
+      }
+      var ptr = _Handle.Read<nint>(_FilterNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FilterNameOffset, value);
+    set {
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0x96DE10B109C86445);
+      }
+      Schema.SetString(_Handle, _FilterNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _FilterOffset = Schema.GetOffset(0x96DE10B145D9E0B1);
+  private static nint? _FilterOffset;
 
   public ref CHandle<CBaseFilter> Filter {
-    get => ref _Handle.AsRef<CHandle<CBaseFilter>>(_FilterOffset);
+    get {
+      if (_FilterOffset == null) {
+        _FilterOffset = Schema.GetOffset(0x96DE10B145D9E0B1);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseFilter>>(_FilterOffset!.Value);
+    }
   }
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x96DE10B13A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x96DE10B13A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
-  private static readonly nint _UseAsyncQueriesOffset = Schema.GetOffset(0x96DE10B1DDD8EB18);
+  private static nint? _UseAsyncQueriesOffset;
 
   public ref bool UseAsyncQueries {
-    get => ref _Handle.AsRef<bool>(_UseAsyncQueriesOffset);
+    get {
+      if (_UseAsyncQueriesOffset == null) {
+        _UseAsyncQueriesOffset = Schema.GetOffset(0x96DE10B1DDD8EB18);
+      }
+      return ref _Handle.AsRef<bool>(_UseAsyncQueriesOffset!.Value);
+    }
   }
 
   public void DisabledUpdated() {

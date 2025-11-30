@@ -17,15 +17,25 @@ internal partial class PulseGraphExecutionHistoryNodeDesc_tImpl : SchemaClass, P
   public PulseGraphExecutionHistoryNodeDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StrCellDescOffset = Schema.GetOffset(0x7F4ECA02AD3F01DD);
+  private static nint? _StrCellDescOffset;
 
   public ref CBufferString StrCellDesc {
-    get => ref _Handle.AsRef<CBufferString>(_StrCellDescOffset);
+    get {
+      if (_StrCellDescOffset == null) {
+        _StrCellDescOffset = Schema.GetOffset(0x7F4ECA02AD3F01DD);
+      }
+      return ref _Handle.AsRef<CBufferString>(_StrCellDescOffset!.Value);
+    }
   }
-  private static readonly nint _StrBindingNameOffset = Schema.GetOffset(0x7F4ECA021A5069AA);
+  private static nint? _StrBindingNameOffset;
 
   public SchemaUntypedField StrBindingName {
-    get => new SchemaUntypedField(_Handle + _StrBindingNameOffset);
+    get {
+      if (_StrBindingNameOffset == null) {
+        _StrBindingNameOffset = Schema.GetOffset(0x7F4ECA021A5069AA);
+      }
+      return new SchemaUntypedField(_Handle + _StrBindingNameOffset!.Value);
+    }
   }
 
 

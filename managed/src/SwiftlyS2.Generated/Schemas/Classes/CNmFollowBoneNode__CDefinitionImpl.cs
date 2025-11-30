@@ -17,25 +17,45 @@ internal partial class CNmFollowBoneNode__CDefinitionImpl : CNmPassthroughNode__
   public CNmFollowBoneNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneOffset = Schema.GetOffset(0x51BD725C8020F02F);
+  private static nint? _BoneOffset;
 
   public ref CGlobalSymbol Bone {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_BoneOffset);
+    get {
+      if (_BoneOffset == null) {
+        _BoneOffset = Schema.GetOffset(0x51BD725C8020F02F);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_BoneOffset!.Value);
+    }
   }
-  private static readonly nint _FollowTargetBoneOffset = Schema.GetOffset(0x51BD725C38216D8B);
+  private static nint? _FollowTargetBoneOffset;
 
   public ref CGlobalSymbol FollowTargetBone {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_FollowTargetBoneOffset);
+    get {
+      if (_FollowTargetBoneOffset == null) {
+        _FollowTargetBoneOffset = Schema.GetOffset(0x51BD725C38216D8B);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_FollowTargetBoneOffset!.Value);
+    }
   }
-  private static readonly nint _EnabledNodeIdxOffset = Schema.GetOffset(0x51BD725CF7CDF5E9);
+  private static nint? _EnabledNodeIdxOffset;
 
   public ref short EnabledNodeIdx {
-    get => ref _Handle.AsRef<short>(_EnabledNodeIdxOffset);
+    get {
+      if (_EnabledNodeIdxOffset == null) {
+        _EnabledNodeIdxOffset = Schema.GetOffset(0x51BD725CF7CDF5E9);
+      }
+      return ref _Handle.AsRef<short>(_EnabledNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _ModeOffset = Schema.GetOffset(0x51BD725C90FD5BB2);
+  private static nint? _ModeOffset;
 
   public ref NmFollowBoneMode_t Mode {
-    get => ref _Handle.AsRef<NmFollowBoneMode_t>(_ModeOffset);
+    get {
+      if (_ModeOffset == null) {
+        _ModeOffset = Schema.GetOffset(0x51BD725C90FD5BB2);
+      }
+      return ref _Handle.AsRef<NmFollowBoneMode_t>(_ModeOffset!.Value);
+    }
   }
 
 

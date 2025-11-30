@@ -17,44 +17,82 @@ internal partial class CPointPushImpl : CPointEntityImpl, CPointPush {
   public CPointPushImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EnabledOffset = Schema.GetOffset(0x282695C06154EB7E);
+  private static nint? _EnabledOffset;
 
   public ref bool Enabled {
-    get => ref _Handle.AsRef<bool>(_EnabledOffset);
+    get {
+      if (_EnabledOffset == null) {
+        _EnabledOffset = Schema.GetOffset(0x282695C06154EB7E);
+      }
+      return ref _Handle.AsRef<bool>(_EnabledOffset!.Value);
+    }
   }
-  private static readonly nint _MagnitudeOffset = Schema.GetOffset(0x282695C0ED0A1D8B);
+  private static nint? _MagnitudeOffset;
 
   public ref float Magnitude {
-    get => ref _Handle.AsRef<float>(_MagnitudeOffset);
+    get {
+      if (_MagnitudeOffset == null) {
+        _MagnitudeOffset = Schema.GetOffset(0x282695C0ED0A1D8B);
+      }
+      return ref _Handle.AsRef<float>(_MagnitudeOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x282695C05ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x282695C05ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _InnerRadiusOffset = Schema.GetOffset(0x282695C032121407);
+  private static nint? _InnerRadiusOffset;
 
   public ref float InnerRadius {
-    get => ref _Handle.AsRef<float>(_InnerRadiusOffset);
+    get {
+      if (_InnerRadiusOffset == null) {
+        _InnerRadiusOffset = Schema.GetOffset(0x282695C032121407);
+      }
+      return ref _Handle.AsRef<float>(_InnerRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _ConeOfInfluenceOffset = Schema.GetOffset(0x282695C02EA47D9C);
+  private static nint? _ConeOfInfluenceOffset;
 
   public ref float ConeOfInfluence {
-    get => ref _Handle.AsRef<float>(_ConeOfInfluenceOffset);
+    get {
+      if (_ConeOfInfluenceOffset == null) {
+        _ConeOfInfluenceOffset = Schema.GetOffset(0x282695C02EA47D9C);
+      }
+      return ref _Handle.AsRef<float>(_ConeOfInfluenceOffset!.Value);
+    }
   }
-  private static readonly nint _FilterNameOffset = Schema.GetOffset(0x282695C042E1968C);
+  private static nint? _FilterNameOffset;
 
   public string FilterName {
     get {
-      var ptr = _Handle.Read<nint>(_FilterNameOffset);
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0x282695C042E1968C);
+      }
+      var ptr = _Handle.Read<nint>(_FilterNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FilterNameOffset, value);
+    set {
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0x282695C042E1968C);
+      }
+      Schema.SetString(_Handle, _FilterNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _FilterOffset = Schema.GetOffset(0x282695C045D9E0B1);
+  private static nint? _FilterOffset;
 
   public ref CHandle<CBaseFilter> Filter {
-    get => ref _Handle.AsRef<CHandle<CBaseFilter>>(_FilterOffset);
+    get {
+      if (_FilterOffset == null) {
+        _FilterOffset = Schema.GetOffset(0x282695C045D9E0B1);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseFilter>>(_FilterOffset!.Value);
+    }
   }
 
 

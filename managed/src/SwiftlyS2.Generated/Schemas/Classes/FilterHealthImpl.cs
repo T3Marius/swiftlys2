@@ -17,20 +17,35 @@ internal partial class FilterHealthImpl : CBaseFilterImpl, FilterHealth {
   public FilterHealthImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AdrenalineActiveOffset = Schema.GetOffset(0x4DD06C81671CFB30);
+  private static nint? _AdrenalineActiveOffset;
 
   public ref bool AdrenalineActive {
-    get => ref _Handle.AsRef<bool>(_AdrenalineActiveOffset);
+    get {
+      if (_AdrenalineActiveOffset == null) {
+        _AdrenalineActiveOffset = Schema.GetOffset(0x4DD06C81671CFB30);
+      }
+      return ref _Handle.AsRef<bool>(_AdrenalineActiveOffset!.Value);
+    }
   }
-  private static readonly nint _HealthMinOffset = Schema.GetOffset(0x4DD06C8117D5C166);
+  private static nint? _HealthMinOffset;
 
   public ref int HealthMin {
-    get => ref _Handle.AsRef<int>(_HealthMinOffset);
+    get {
+      if (_HealthMinOffset == null) {
+        _HealthMinOffset = Schema.GetOffset(0x4DD06C8117D5C166);
+      }
+      return ref _Handle.AsRef<int>(_HealthMinOffset!.Value);
+    }
   }
-  private static readonly nint _HealthMaxOffset = Schema.GetOffset(0x4DD06C8129E96574);
+  private static nint? _HealthMaxOffset;
 
   public ref int HealthMax {
-    get => ref _Handle.AsRef<int>(_HealthMaxOffset);
+    get {
+      if (_HealthMaxOffset == null) {
+        _HealthMaxOffset = Schema.GetOffset(0x4DD06C8129E96574);
+      }
+      return ref _Handle.AsRef<int>(_HealthMaxOffset!.Value);
+    }
   }
 
 

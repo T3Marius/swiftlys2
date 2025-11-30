@@ -17,30 +17,55 @@ internal partial class C_OP_SetGravityToCPImpl : CParticleFunctionPreEmissionImp
   public C_OP_SetGravityToCPImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CPInputOffset = Schema.GetOffset(0xBA369CBDFB805736);
+  private static nint? _CPInputOffset;
 
   public ref int CPInput {
-    get => ref _Handle.AsRef<int>(_CPInputOffset);
+    get {
+      if (_CPInputOffset == null) {
+        _CPInputOffset = Schema.GetOffset(0xBA369CBDFB805736);
+      }
+      return ref _Handle.AsRef<int>(_CPInputOffset!.Value);
+    }
   }
-  private static readonly nint _CPOutputOffset = Schema.GetOffset(0xBA369CBD2077C953);
+  private static nint? _CPOutputOffset;
 
   public ref int CPOutput {
-    get => ref _Handle.AsRef<int>(_CPOutputOffset);
+    get {
+      if (_CPOutputOffset == null) {
+        _CPOutputOffset = Schema.GetOffset(0xBA369CBD2077C953);
+      }
+      return ref _Handle.AsRef<int>(_CPOutputOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0xBA369CBDB731A42F);
+  private static nint? _ScaleOffset;
 
   public CParticleCollectionFloatInput Scale {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0xBA369CBDB731A42F);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _SetOrientationOffset = Schema.GetOffset(0xBA369CBDE1390E37);
+  private static nint? _SetOrientationOffset;
 
   public ref bool SetOrientation {
-    get => ref _Handle.AsRef<bool>(_SetOrientationOffset);
+    get {
+      if (_SetOrientationOffset == null) {
+        _SetOrientationOffset = Schema.GetOffset(0xBA369CBDE1390E37);
+      }
+      return ref _Handle.AsRef<bool>(_SetOrientationOffset!.Value);
+    }
   }
-  private static readonly nint _SetZDownOffset = Schema.GetOffset(0xBA369CBDE2673E97);
+  private static nint? _SetZDownOffset;
 
   public ref bool SetZDown {
-    get => ref _Handle.AsRef<bool>(_SetZDownOffset);
+    get {
+      if (_SetZDownOffset == null) {
+        _SetZDownOffset = Schema.GetOffset(0xBA369CBDE2673E97);
+      }
+      return ref _Handle.AsRef<bool>(_SetZDownOffset!.Value);
+    }
   }
 
 

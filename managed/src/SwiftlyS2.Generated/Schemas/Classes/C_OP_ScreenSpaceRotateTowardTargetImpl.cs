@@ -17,25 +17,45 @@ internal partial class C_OP_ScreenSpaceRotateTowardTargetImpl : CParticleFunctio
   public C_OP_ScreenSpaceRotateTowardTargetImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TargetPositionOffset = Schema.GetOffset(0xD66164FC554C563B);
+  private static nint? _TargetPositionOffset;
 
   public CPerParticleVecInput TargetPosition {
-    get => new CPerParticleVecInputImpl(_Handle + _TargetPositionOffset);
+    get {
+      if (_TargetPositionOffset == null) {
+        _TargetPositionOffset = Schema.GetOffset(0xD66164FC554C563B);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _TargetPositionOffset!.Value);
+    }
   }
-  private static readonly nint _OutputRemapOffset = Schema.GetOffset(0xD66164FC1239396F);
+  private static nint? _OutputRemapOffset;
 
   public CParticleRemapFloatInput OutputRemap {
-    get => new CParticleRemapFloatInputImpl(_Handle + _OutputRemapOffset);
+    get {
+      if (_OutputRemapOffset == null) {
+        _OutputRemapOffset = Schema.GetOffset(0xD66164FC1239396F);
+      }
+      return new CParticleRemapFloatInputImpl(_Handle + _OutputRemapOffset!.Value);
+    }
   }
-  private static readonly nint _SetMethodOffset = Schema.GetOffset(0xD66164FCFB53C31E);
+  private static nint? _SetMethodOffset;
 
   public ref ParticleSetMethod_t SetMethod {
-    get => ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset);
+    get {
+      if (_SetMethodOffset == null) {
+        _SetMethodOffset = Schema.GetOffset(0xD66164FCFB53C31E);
+      }
+      return ref _Handle.AsRef<ParticleSetMethod_t>(_SetMethodOffset!.Value);
+    }
   }
-  private static readonly nint _ScreenEdgeAlignmentDistanceOffset = Schema.GetOffset(0xD66164FCDB3D3EAC);
+  private static nint? _ScreenEdgeAlignmentDistanceOffset;
 
   public CPerParticleFloatInput ScreenEdgeAlignmentDistance {
-    get => new CPerParticleFloatInputImpl(_Handle + _ScreenEdgeAlignmentDistanceOffset);
+    get {
+      if (_ScreenEdgeAlignmentDistanceOffset == null) {
+        _ScreenEdgeAlignmentDistanceOffset = Schema.GetOffset(0xD66164FCDB3D3EAC);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ScreenEdgeAlignmentDistanceOffset!.Value);
+    }
   }
 
 

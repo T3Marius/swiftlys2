@@ -17,40 +17,75 @@ internal partial class CNmIKJointImpl : SchemaClass, CNmIKJoint {
   public CNmIKJointImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParentIndexOffset = Schema.GetOffset(0x31287449134E2DE7);
+  private static nint? _ParentIndexOffset;
 
   public ref int ParentIndex {
-    get => ref _Handle.AsRef<int>(_ParentIndexOffset);
+    get {
+      if (_ParentIndexOffset == null) {
+        _ParentIndexOffset = Schema.GetOffset(0x31287449134E2DE7);
+      }
+      return ref _Handle.AsRef<int>(_ParentIndexOffset!.Value);
+    }
   }
-  private static readonly nint _BodyIndexOffset = Schema.GetOffset(0x312874492B50B497);
+  private static nint? _BodyIndexOffset;
 
   public ref int BodyIndex {
-    get => ref _Handle.AsRef<int>(_BodyIndexOffset);
+    get {
+      if (_BodyIndexOffset == null) {
+        _BodyIndexOffset = Schema.GetOffset(0x312874492B50B497);
+      }
+      return ref _Handle.AsRef<int>(_BodyIndexOffset!.Value);
+    }
   }
-  private static readonly nint _XLocalFrameOffset = Schema.GetOffset(0x31287449AD5CD897);
+  private static nint? _XLocalFrameOffset;
 
   public ref CTransform XLocalFrame {
-    get => ref _Handle.AsRef<CTransform>(_XLocalFrameOffset);
+    get {
+      if (_XLocalFrameOffset == null) {
+        _XLocalFrameOffset = Schema.GetOffset(0x31287449AD5CD897);
+      }
+      return ref _Handle.AsRef<CTransform>(_XLocalFrameOffset!.Value);
+    }
   }
-  private static readonly nint _SwingLimitOffset = Schema.GetOffset(0x31287449279A44C2);
+  private static nint? _SwingLimitOffset;
 
   public ref float SwingLimit {
-    get => ref _Handle.AsRef<float>(_SwingLimitOffset);
+    get {
+      if (_SwingLimitOffset == null) {
+        _SwingLimitOffset = Schema.GetOffset(0x31287449279A44C2);
+      }
+      return ref _Handle.AsRef<float>(_SwingLimitOffset!.Value);
+    }
   }
-  private static readonly nint _MinTwistLimitOffset = Schema.GetOffset(0x3128744914A803B7);
+  private static nint? _MinTwistLimitOffset;
 
   public ref float MinTwistLimit {
-    get => ref _Handle.AsRef<float>(_MinTwistLimitOffset);
+    get {
+      if (_MinTwistLimitOffset == null) {
+        _MinTwistLimitOffset = Schema.GetOffset(0x3128744914A803B7);
+      }
+      return ref _Handle.AsRef<float>(_MinTwistLimitOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTwistLimitOffset = Schema.GetOffset(0x31287449F1241F7D);
+  private static nint? _MaxTwistLimitOffset;
 
   public ref float MaxTwistLimit {
-    get => ref _Handle.AsRef<float>(_MaxTwistLimitOffset);
+    get {
+      if (_MaxTwistLimitOffset == null) {
+        _MaxTwistLimitOffset = Schema.GetOffset(0x31287449F1241F7D);
+      }
+      return ref _Handle.AsRef<float>(_MaxTwistLimitOffset!.Value);
+    }
   }
-  private static readonly nint _WeightOffset = Schema.GetOffset(0x312874497B81E7AB);
+  private static nint? _WeightOffset;
 
   public ref float Weight {
-    get => ref _Handle.AsRef<float>(_WeightOffset);
+    get {
+      if (_WeightOffset == null) {
+        _WeightOffset = Schema.GetOffset(0x312874497B81E7AB);
+      }
+      return ref _Handle.AsRef<float>(_WeightOffset!.Value);
+    }
   }
 
 

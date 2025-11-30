@@ -17,30 +17,55 @@ internal partial class PostProcessingFogScatteringParameters_tImpl : SchemaClass
   public PostProcessingFogScatteringParameters_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0xAE3B2EF52E1F6E07);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0xAE3B2EF52E1F6E07);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0xAE3B2EF555E6EFAD);
+  private static nint? _ScaleOffset;
 
   public ref float Scale {
-    get => ref _Handle.AsRef<float>(_ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0xAE3B2EF555E6EFAD);
+      }
+      return ref _Handle.AsRef<float>(_ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _CubemapScaleOffset = Schema.GetOffset(0xAE3B2EF593A389D0);
+  private static nint? _CubemapScaleOffset;
 
   public ref float CubemapScale {
-    get => ref _Handle.AsRef<float>(_CubemapScaleOffset);
+    get {
+      if (_CubemapScaleOffset == null) {
+        _CubemapScaleOffset = Schema.GetOffset(0xAE3B2EF593A389D0);
+      }
+      return ref _Handle.AsRef<float>(_CubemapScaleOffset!.Value);
+    }
   }
-  private static readonly nint _VolumetricScaleOffset = Schema.GetOffset(0xAE3B2EF515A15A21);
+  private static nint? _VolumetricScaleOffset;
 
   public ref float VolumetricScale {
-    get => ref _Handle.AsRef<float>(_VolumetricScaleOffset);
+    get {
+      if (_VolumetricScaleOffset == null) {
+        _VolumetricScaleOffset = Schema.GetOffset(0xAE3B2EF515A15A21);
+      }
+      return ref _Handle.AsRef<float>(_VolumetricScaleOffset!.Value);
+    }
   }
-  private static readonly nint _GradientScaleOffset = Schema.GetOffset(0xAE3B2EF58473F465);
+  private static nint? _GradientScaleOffset;
 
   public ref float GradientScale {
-    get => ref _Handle.AsRef<float>(_GradientScaleOffset);
+    get {
+      if (_GradientScaleOffset == null) {
+        _GradientScaleOffset = Schema.GetOffset(0xAE3B2EF58473F465);
+      }
+      return ref _Handle.AsRef<float>(_GradientScaleOffset!.Value);
+    }
   }
 
 

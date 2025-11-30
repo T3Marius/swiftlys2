@@ -17,19 +17,32 @@ internal partial class CModelConfigElement_CommandImpl : CModelConfigElementImpl
   public CModelConfigElement_CommandImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CommandOffset = Schema.GetOffset(0x89334ED93A5BBC32);
+  private static nint? _CommandOffset;
 
   public string Command {
     get {
-      var ptr = _Handle.Read<nint>(_CommandOffset);
+      if (_CommandOffset == null) {
+        _CommandOffset = Schema.GetOffset(0x89334ED93A5BBC32);
+      }
+      var ptr = _Handle.Read<nint>(_CommandOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _CommandOffset, value);
+    set {
+      if (_CommandOffset == null) {
+        _CommandOffset = Schema.GetOffset(0x89334ED93A5BBC32);
+      }
+      Schema.SetString(_Handle, _CommandOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ArgsOffset = Schema.GetOffset(0x89334ED9DAB98BBC);
+  private static nint? _ArgsOffset;
 
   public SchemaUntypedField Args {
-    get => new SchemaUntypedField(_Handle + _ArgsOffset);
+    get {
+      if (_ArgsOffset == null) {
+        _ArgsOffset = Schema.GetOffset(0x89334ED9DAB98BBC);
+      }
+      return new SchemaUntypedField(_Handle + _ArgsOffset!.Value);
+    }
   }
 
 

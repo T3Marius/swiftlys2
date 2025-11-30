@@ -17,49 +17,92 @@ internal partial class CColorCorrectionVolumeImpl : CBaseTriggerImpl, CColorCorr
   public CColorCorrectionVolumeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaxWeightOffset = Schema.GetOffset(0x78A9E01BEE8A2F2D);
+  private static nint? _MaxWeightOffset;
 
   public ref float MaxWeight {
-    get => ref _Handle.AsRef<float>(_MaxWeightOffset);
+    get {
+      if (_MaxWeightOffset == null) {
+        _MaxWeightOffset = Schema.GetOffset(0x78A9E01BEE8A2F2D);
+      }
+      return ref _Handle.AsRef<float>(_MaxWeightOffset!.Value);
+    }
   }
-  private static readonly nint _FadeDurationOffset = Schema.GetOffset(0x78A9E01B46550027);
+  private static nint? _FadeDurationOffset;
 
   public ref float FadeDuration {
-    get => ref _Handle.AsRef<float>(_FadeDurationOffset);
+    get {
+      if (_FadeDurationOffset == null) {
+        _FadeDurationOffset = Schema.GetOffset(0x78A9E01B46550027);
+      }
+      return ref _Handle.AsRef<float>(_FadeDurationOffset!.Value);
+    }
   }
-  private static readonly nint _WeightOffset = Schema.GetOffset(0x78A9E01BBF415739);
+  private static nint? _WeightOffset;
 
   public ref float Weight {
-    get => ref _Handle.AsRef<float>(_WeightOffset);
+    get {
+      if (_WeightOffset == null) {
+        _WeightOffset = Schema.GetOffset(0x78A9E01BBF415739);
+      }
+      return ref _Handle.AsRef<float>(_WeightOffset!.Value);
+    }
   }
-  private static readonly nint _LookupFilenameOffset = Schema.GetOffset(0x78A9E01B2611A2C6);
+  private static nint? _LookupFilenameOffset;
 
   public string LookupFilename {
     get {
-      var ptr = _Handle + _LookupFilenameOffset;
-      return Schema.GetString(ptr);
+        if (_LookupFilenameOffset == null) {
+            _LookupFilenameOffset = Schema.GetOffset(0x78A9E01B2611A2C6);
+        }
+        var ptr = _Handle + _LookupFilenameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _LookupFilenameOffset, value, 512);
+    set {
+        if (_LookupFilenameOffset == null) {
+            _LookupFilenameOffset = Schema.GetOffset(0x78A9E01B2611A2C6);
+        }
+        Schema.SetFixedString(_Handle, _LookupFilenameOffset!.Value, value, 512);
+    }
   } 
-  private static readonly nint _LastEnterWeightOffset = Schema.GetOffset(0x78A9E01B2F53D64D);
+  private static nint? _LastEnterWeightOffset;
 
   public ref float LastEnterWeight {
-    get => ref _Handle.AsRef<float>(_LastEnterWeightOffset);
+    get {
+      if (_LastEnterWeightOffset == null) {
+        _LastEnterWeightOffset = Schema.GetOffset(0x78A9E01B2F53D64D);
+      }
+      return ref _Handle.AsRef<float>(_LastEnterWeightOffset!.Value);
+    }
   }
-  private static readonly nint _LastEnterTimeOffset = Schema.GetOffset(0x78A9E01B01977F10);
+  private static nint? _LastEnterTimeOffset;
 
   public GameTime_t LastEnterTime {
-    get => new GameTime_tImpl(_Handle + _LastEnterTimeOffset);
+    get {
+      if (_LastEnterTimeOffset == null) {
+        _LastEnterTimeOffset = Schema.GetOffset(0x78A9E01B01977F10);
+      }
+      return new GameTime_tImpl(_Handle + _LastEnterTimeOffset!.Value);
+    }
   }
-  private static readonly nint _LastExitWeightOffset = Schema.GetOffset(0x78A9E01B59C9642D);
+  private static nint? _LastExitWeightOffset;
 
   public ref float LastExitWeight {
-    get => ref _Handle.AsRef<float>(_LastExitWeightOffset);
+    get {
+      if (_LastExitWeightOffset == null) {
+        _LastExitWeightOffset = Schema.GetOffset(0x78A9E01B59C9642D);
+      }
+      return ref _Handle.AsRef<float>(_LastExitWeightOffset!.Value);
+    }
   }
-  private static readonly nint _LastExitTimeOffset = Schema.GetOffset(0x78A9E01B183C8DF0);
+  private static nint? _LastExitTimeOffset;
 
   public GameTime_t LastExitTime {
-    get => new GameTime_tImpl(_Handle + _LastExitTimeOffset);
+    get {
+      if (_LastExitTimeOffset == null) {
+        _LastExitTimeOffset = Schema.GetOffset(0x78A9E01B183C8DF0);
+      }
+      return new GameTime_tImpl(_Handle + _LastExitTimeOffset!.Value);
+    }
   }
 
   public void MaxWeightUpdated() {

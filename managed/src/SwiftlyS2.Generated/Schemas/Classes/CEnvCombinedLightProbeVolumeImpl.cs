@@ -17,150 +17,295 @@ internal partial class CEnvCombinedLightProbeVolumeImpl : CBaseEntityImpl, CEnvC
   public CEnvCombinedLightProbeVolumeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _Entity_ColorOffset = Schema.GetOffset(0xA73B1B927B17F98E);
+  private static nint? _Entity_ColorOffset;
 
   public ref Color Entity_Color {
-    get => ref _Handle.AsRef<Color>(_Entity_ColorOffset);
+    get {
+      if (_Entity_ColorOffset == null) {
+        _Entity_ColorOffset = Schema.GetOffset(0xA73B1B927B17F98E);
+      }
+      return ref _Handle.AsRef<Color>(_Entity_ColorOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_flBrightnessOffset = Schema.GetOffset(0xA73B1B92917416BA);
+  private static nint? _Entity_flBrightnessOffset;
 
   public ref float Entity_flBrightness {
-    get => ref _Handle.AsRef<float>(_Entity_flBrightnessOffset);
+    get {
+      if (_Entity_flBrightnessOffset == null) {
+        _Entity_flBrightnessOffset = Schema.GetOffset(0xA73B1B92917416BA);
+      }
+      return ref _Handle.AsRef<float>(_Entity_flBrightnessOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hCubemapTextureOffset = Schema.GetOffset(0xA73B1B924906C709);
+  private static nint? _Entity_hCubemapTextureOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hCubemapTexture {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hCubemapTextureOffset);
+    get {
+      if (_Entity_hCubemapTextureOffset == null) {
+        _Entity_hCubemapTextureOffset = Schema.GetOffset(0xA73B1B924906C709);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hCubemapTextureOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_bCustomCubemapTextureOffset = Schema.GetOffset(0xA73B1B921E6DC6A4);
+  private static nint? _Entity_bCustomCubemapTextureOffset;
 
   public ref bool Entity_bCustomCubemapTexture {
-    get => ref _Handle.AsRef<bool>(_Entity_bCustomCubemapTextureOffset);
+    get {
+      if (_Entity_bCustomCubemapTextureOffset == null) {
+        _Entity_bCustomCubemapTextureOffset = Schema.GetOffset(0xA73B1B921E6DC6A4);
+      }
+      return ref _Handle.AsRef<bool>(_Entity_bCustomCubemapTextureOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeTexture_AmbientCubeOffset = Schema.GetOffset(0xA73B1B92148FA944);
+  private static nint? _Entity_hLightProbeTexture_AmbientCubeOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeTexture_AmbientCube {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_AmbientCubeOffset);
+    get {
+      if (_Entity_hLightProbeTexture_AmbientCubeOffset == null) {
+        _Entity_hLightProbeTexture_AmbientCubeOffset = Schema.GetOffset(0xA73B1B92148FA944);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_AmbientCubeOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeTexture_SDFOffset = Schema.GetOffset(0xA73B1B92B0D8BE62);
+  private static nint? _Entity_hLightProbeTexture_SDFOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeTexture_SDF {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SDFOffset);
+    get {
+      if (_Entity_hLightProbeTexture_SDFOffset == null) {
+        _Entity_hLightProbeTexture_SDFOffset = Schema.GetOffset(0xA73B1B92B0D8BE62);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SDFOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeTexture_SH2_DCOffset = Schema.GetOffset(0xA73B1B92C9357F5E);
+  private static nint? _Entity_hLightProbeTexture_SH2_DCOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeTexture_SH2_DC {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_DCOffset);
+    get {
+      if (_Entity_hLightProbeTexture_SH2_DCOffset == null) {
+        _Entity_hLightProbeTexture_SH2_DCOffset = Schema.GetOffset(0xA73B1B92C9357F5E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_DCOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeTexture_SH2_ROffset = Schema.GetOffset(0xA73B1B920E80FF9F);
+  private static nint? _Entity_hLightProbeTexture_SH2_ROffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeTexture_SH2_R {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_ROffset);
+    get {
+      if (_Entity_hLightProbeTexture_SH2_ROffset == null) {
+        _Entity_hLightProbeTexture_SH2_ROffset = Schema.GetOffset(0xA73B1B920E80FF9F);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_ROffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeTexture_SH2_GOffset = Schema.GetOffset(0xA73B1B92198110F0);
+  private static nint? _Entity_hLightProbeTexture_SH2_GOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeTexture_SH2_G {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_GOffset);
+    get {
+      if (_Entity_hLightProbeTexture_SH2_GOffset == null) {
+        _Entity_hLightProbeTexture_SH2_GOffset = Schema.GetOffset(0xA73B1B92198110F0);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_GOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeTexture_SH2_BOffset = Schema.GetOffset(0xA73B1B921E8118CF);
+  private static nint? _Entity_hLightProbeTexture_SH2_BOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeTexture_SH2_B {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_BOffset);
+    get {
+      if (_Entity_hLightProbeTexture_SH2_BOffset == null) {
+        _Entity_hLightProbeTexture_SH2_BOffset = Schema.GetOffset(0xA73B1B921E8118CF);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeTexture_SH2_BOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeDirectLightIndicesTextureOffset = Schema.GetOffset(0xA73B1B922251ACF2);
+  private static nint? _Entity_hLightProbeDirectLightIndicesTextureOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeDirectLightIndicesTexture {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeDirectLightIndicesTextureOffset);
+    get {
+      if (_Entity_hLightProbeDirectLightIndicesTextureOffset == null) {
+        _Entity_hLightProbeDirectLightIndicesTextureOffset = Schema.GetOffset(0xA73B1B922251ACF2);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeDirectLightIndicesTextureOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeDirectLightScalarsTextureOffset = Schema.GetOffset(0xA73B1B92A463880E);
+  private static nint? _Entity_hLightProbeDirectLightScalarsTextureOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeDirectLightScalarsTexture {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeDirectLightScalarsTextureOffset);
+    get {
+      if (_Entity_hLightProbeDirectLightScalarsTextureOffset == null) {
+        _Entity_hLightProbeDirectLightScalarsTextureOffset = Schema.GetOffset(0xA73B1B92A463880E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeDirectLightScalarsTextureOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_hLightProbeDirectLightShadowsTextureOffset = Schema.GetOffset(0xA73B1B9294B00D56);
+  private static nint? _Entity_hLightProbeDirectLightShadowsTextureOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> Entity_hLightProbeDirectLightShadowsTexture {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeDirectLightShadowsTextureOffset);
+    get {
+      if (_Entity_hLightProbeDirectLightShadowsTextureOffset == null) {
+        _Entity_hLightProbeDirectLightShadowsTextureOffset = Schema.GetOffset(0xA73B1B9294B00D56);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_Entity_hLightProbeDirectLightShadowsTextureOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_vBoxMinsOffset = Schema.GetOffset(0xA73B1B92D35AD599);
+  private static nint? _Entity_vBoxMinsOffset;
 
   public ref Vector Entity_vBoxMins {
-    get => ref _Handle.AsRef<Vector>(_Entity_vBoxMinsOffset);
+    get {
+      if (_Entity_vBoxMinsOffset == null) {
+        _Entity_vBoxMinsOffset = Schema.GetOffset(0xA73B1B92D35AD599);
+      }
+      return ref _Handle.AsRef<Vector>(_Entity_vBoxMinsOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_vBoxMaxsOffset = Schema.GetOffset(0xA73B1B927C83608B);
+  private static nint? _Entity_vBoxMaxsOffset;
 
   public ref Vector Entity_vBoxMaxs {
-    get => ref _Handle.AsRef<Vector>(_Entity_vBoxMaxsOffset);
+    get {
+      if (_Entity_vBoxMaxsOffset == null) {
+        _Entity_vBoxMaxsOffset = Schema.GetOffset(0xA73B1B927C83608B);
+      }
+      return ref _Handle.AsRef<Vector>(_Entity_vBoxMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_bMoveableOffset = Schema.GetOffset(0xA73B1B9254059592);
+  private static nint? _Entity_bMoveableOffset;
 
   public ref bool Entity_bMoveable {
-    get => ref _Handle.AsRef<bool>(_Entity_bMoveableOffset);
+    get {
+      if (_Entity_bMoveableOffset == null) {
+        _Entity_bMoveableOffset = Schema.GetOffset(0xA73B1B9254059592);
+      }
+      return ref _Handle.AsRef<bool>(_Entity_bMoveableOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nHandshakeOffset = Schema.GetOffset(0xA73B1B92069A2774);
+  private static nint? _Entity_nHandshakeOffset;
 
   public ref int Entity_nHandshake {
-    get => ref _Handle.AsRef<int>(_Entity_nHandshakeOffset);
+    get {
+      if (_Entity_nHandshakeOffset == null) {
+        _Entity_nHandshakeOffset = Schema.GetOffset(0xA73B1B92069A2774);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nHandshakeOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nEnvCubeMapArrayIndexOffset = Schema.GetOffset(0xA73B1B9221687DA4);
+  private static nint? _Entity_nEnvCubeMapArrayIndexOffset;
 
   public ref int Entity_nEnvCubeMapArrayIndex {
-    get => ref _Handle.AsRef<int>(_Entity_nEnvCubeMapArrayIndexOffset);
+    get {
+      if (_Entity_nEnvCubeMapArrayIndexOffset == null) {
+        _Entity_nEnvCubeMapArrayIndexOffset = Schema.GetOffset(0xA73B1B9221687DA4);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nEnvCubeMapArrayIndexOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nPriorityOffset = Schema.GetOffset(0xA73B1B92BAACBFAB);
+  private static nint? _Entity_nPriorityOffset;
 
   public ref int Entity_nPriority {
-    get => ref _Handle.AsRef<int>(_Entity_nPriorityOffset);
+    get {
+      if (_Entity_nPriorityOffset == null) {
+        _Entity_nPriorityOffset = Schema.GetOffset(0xA73B1B92BAACBFAB);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nPriorityOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_bStartDisabledOffset = Schema.GetOffset(0xA73B1B92D04F520D);
+  private static nint? _Entity_bStartDisabledOffset;
 
   public ref bool Entity_bStartDisabled {
-    get => ref _Handle.AsRef<bool>(_Entity_bStartDisabledOffset);
+    get {
+      if (_Entity_bStartDisabledOffset == null) {
+        _Entity_bStartDisabledOffset = Schema.GetOffset(0xA73B1B92D04F520D);
+      }
+      return ref _Handle.AsRef<bool>(_Entity_bStartDisabledOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_flEdgeFadeDistOffset = Schema.GetOffset(0xA73B1B92B6CBA4FE);
+  private static nint? _Entity_flEdgeFadeDistOffset;
 
   public ref float Entity_flEdgeFadeDist {
-    get => ref _Handle.AsRef<float>(_Entity_flEdgeFadeDistOffset);
+    get {
+      if (_Entity_flEdgeFadeDistOffset == null) {
+        _Entity_flEdgeFadeDistOffset = Schema.GetOffset(0xA73B1B92B6CBA4FE);
+      }
+      return ref _Handle.AsRef<float>(_Entity_flEdgeFadeDistOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_vEdgeFadeDistsOffset = Schema.GetOffset(0xA73B1B92B07D9139);
+  private static nint? _Entity_vEdgeFadeDistsOffset;
 
   public ref Vector Entity_vEdgeFadeDists {
-    get => ref _Handle.AsRef<Vector>(_Entity_vEdgeFadeDistsOffset);
+    get {
+      if (_Entity_vEdgeFadeDistsOffset == null) {
+        _Entity_vEdgeFadeDistsOffset = Schema.GetOffset(0xA73B1B92B07D9139);
+      }
+      return ref _Handle.AsRef<Vector>(_Entity_vEdgeFadeDistsOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nLightProbeSizeXOffset = Schema.GetOffset(0xA73B1B929A840E10);
+  private static nint? _Entity_nLightProbeSizeXOffset;
 
   public ref int Entity_nLightProbeSizeX {
-    get => ref _Handle.AsRef<int>(_Entity_nLightProbeSizeXOffset);
+    get {
+      if (_Entity_nLightProbeSizeXOffset == null) {
+        _Entity_nLightProbeSizeXOffset = Schema.GetOffset(0xA73B1B929A840E10);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nLightProbeSizeXOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nLightProbeSizeYOffset = Schema.GetOffset(0xA73B1B929B840FA3);
+  private static nint? _Entity_nLightProbeSizeYOffset;
 
   public ref int Entity_nLightProbeSizeY {
-    get => ref _Handle.AsRef<int>(_Entity_nLightProbeSizeYOffset);
+    get {
+      if (_Entity_nLightProbeSizeYOffset == null) {
+        _Entity_nLightProbeSizeYOffset = Schema.GetOffset(0xA73B1B929B840FA3);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nLightProbeSizeYOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nLightProbeSizeZOffset = Schema.GetOffset(0xA73B1B929C841136);
+  private static nint? _Entity_nLightProbeSizeZOffset;
 
   public ref int Entity_nLightProbeSizeZ {
-    get => ref _Handle.AsRef<int>(_Entity_nLightProbeSizeZOffset);
+    get {
+      if (_Entity_nLightProbeSizeZOffset == null) {
+        _Entity_nLightProbeSizeZOffset = Schema.GetOffset(0xA73B1B929C841136);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nLightProbeSizeZOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nLightProbeAtlasXOffset = Schema.GetOffset(0xA73B1B9253C9E610);
+  private static nint? _Entity_nLightProbeAtlasXOffset;
 
   public ref int Entity_nLightProbeAtlasX {
-    get => ref _Handle.AsRef<int>(_Entity_nLightProbeAtlasXOffset);
+    get {
+      if (_Entity_nLightProbeAtlasXOffset == null) {
+        _Entity_nLightProbeAtlasXOffset = Schema.GetOffset(0xA73B1B9253C9E610);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nLightProbeAtlasXOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nLightProbeAtlasYOffset = Schema.GetOffset(0xA73B1B9254C9E7A3);
+  private static nint? _Entity_nLightProbeAtlasYOffset;
 
   public ref int Entity_nLightProbeAtlasY {
-    get => ref _Handle.AsRef<int>(_Entity_nLightProbeAtlasYOffset);
+    get {
+      if (_Entity_nLightProbeAtlasYOffset == null) {
+        _Entity_nLightProbeAtlasYOffset = Schema.GetOffset(0xA73B1B9254C9E7A3);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nLightProbeAtlasYOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_nLightProbeAtlasZOffset = Schema.GetOffset(0xA73B1B9255C9E936);
+  private static nint? _Entity_nLightProbeAtlasZOffset;
 
   public ref int Entity_nLightProbeAtlasZ {
-    get => ref _Handle.AsRef<int>(_Entity_nLightProbeAtlasZOffset);
+    get {
+      if (_Entity_nLightProbeAtlasZOffset == null) {
+        _Entity_nLightProbeAtlasZOffset = Schema.GetOffset(0xA73B1B9255C9E936);
+      }
+      return ref _Handle.AsRef<int>(_Entity_nLightProbeAtlasZOffset!.Value);
+    }
   }
-  private static readonly nint _Entity_bEnabledOffset = Schema.GetOffset(0xA73B1B92453FD9DC);
+  private static nint? _Entity_bEnabledOffset;
 
   public ref bool Entity_bEnabled {
-    get => ref _Handle.AsRef<bool>(_Entity_bEnabledOffset);
+    get {
+      if (_Entity_bEnabledOffset == null) {
+        _Entity_bEnabledOffset = Schema.GetOffset(0xA73B1B92453FD9DC);
+      }
+      return ref _Handle.AsRef<bool>(_Entity_bEnabledOffset!.Value);
+    }
   }
 
   public void Entity_ColorUpdated() {

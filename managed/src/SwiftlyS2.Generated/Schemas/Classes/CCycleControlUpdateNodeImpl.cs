@@ -17,20 +17,35 @@ internal partial class CCycleControlUpdateNodeImpl : CUnaryUpdateNodeImpl, CCycl
   public CCycleControlUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueSourceOffset = Schema.GetOffset(0xB811C15CD4D5B6B7);
+  private static nint? _ValueSourceOffset;
 
   public ref AnimValueSource ValueSource {
-    get => ref _Handle.AsRef<AnimValueSource>(_ValueSourceOffset);
+    get {
+      if (_ValueSourceOffset == null) {
+        _ValueSourceOffset = Schema.GetOffset(0xB811C15CD4D5B6B7);
+      }
+      return ref _Handle.AsRef<AnimValueSource>(_ValueSourceOffset!.Value);
+    }
   }
-  private static readonly nint _ParamIndexOffset = Schema.GetOffset(0xB811C15C61990A86);
+  private static nint? _ParamIndexOffset;
 
   public CAnimParamHandle ParamIndex {
-    get => new CAnimParamHandleImpl(_Handle + _ParamIndexOffset);
+    get {
+      if (_ParamIndexOffset == null) {
+        _ParamIndexOffset = Schema.GetOffset(0xB811C15C61990A86);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParamIndexOffset!.Value);
+    }
   }
-  private static readonly nint _LockWhenWaningOffset = Schema.GetOffset(0xB811C15CEED48004);
+  private static nint? _LockWhenWaningOffset;
 
   public ref bool LockWhenWaning {
-    get => ref _Handle.AsRef<bool>(_LockWhenWaningOffset);
+    get {
+      if (_LockWhenWaningOffset == null) {
+        _LockWhenWaningOffset = Schema.GetOffset(0xB811C15CEED48004);
+      }
+      return ref _Handle.AsRef<bool>(_LockWhenWaningOffset!.Value);
+    }
   }
 
 

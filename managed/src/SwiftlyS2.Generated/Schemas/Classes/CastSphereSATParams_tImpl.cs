@@ -17,36 +17,64 @@ internal partial class CastSphereSATParams_tImpl : SchemaClass, CastSphereSATPar
   public CastSphereSATParams_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RayStartOffset = Schema.GetOffset(0x6282EF48CB929F19);
+  private static nint? _RayStartOffset;
 
   public ref Vector RayStart {
-    get => ref _Handle.AsRef<Vector>(_RayStartOffset);
+    get {
+      if (_RayStartOffset == null) {
+        _RayStartOffset = Schema.GetOffset(0x6282EF48CB929F19);
+      }
+      return ref _Handle.AsRef<Vector>(_RayStartOffset!.Value);
+    }
   }
-  private static readonly nint _RayDeltaOffset = Schema.GetOffset(0x6282EF4874156D5B);
+  private static nint? _RayDeltaOffset;
 
   public ref Vector RayDelta {
-    get => ref _Handle.AsRef<Vector>(_RayDeltaOffset);
+    get {
+      if (_RayDeltaOffset == null) {
+        _RayDeltaOffset = Schema.GetOffset(0x6282EF4874156D5B);
+      }
+      return ref _Handle.AsRef<Vector>(_RayDeltaOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x6282EF485ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x6282EF485ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _MaxFractionOffset = Schema.GetOffset(0x6282EF48BA58C801);
+  private static nint? _MaxFractionOffset;
 
   public ref float MaxFraction {
-    get => ref _Handle.AsRef<float>(_MaxFractionOffset);
+    get {
+      if (_MaxFractionOffset == null) {
+        _MaxFractionOffset = Schema.GetOffset(0x6282EF48BA58C801);
+      }
+      return ref _Handle.AsRef<float>(_MaxFractionOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x6282EF48B731A42F);
+  private static nint? _ScaleOffset;
 
   public ref float Scale {
-    get => ref _Handle.AsRef<float>(_ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x6282EF48B731A42F);
+      }
+      return ref _Handle.AsRef<float>(_ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _HullOffset = Schema.GetOffset(0x6282EF48FAD20488);
+  private static nint? _HullOffset;
 
   public RnHull_t? Hull {
     get {
-      var ptr = _Handle.Read<nint>(_HullOffset);
+      if (_HullOffset == null) {
+        _HullOffset = Schema.GetOffset(0x6282EF48FAD20488);
+      }
+      var ptr = _Handle.Read<nint>(_HullOffset!.Value);
       return ptr.IsValidPtr() ? new RnHull_tImpl(ptr) : null;
     }
   }

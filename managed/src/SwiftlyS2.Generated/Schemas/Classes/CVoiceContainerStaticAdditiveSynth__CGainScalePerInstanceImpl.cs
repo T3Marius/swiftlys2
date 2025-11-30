@@ -17,25 +17,45 @@ internal partial class CVoiceContainerStaticAdditiveSynth__CGainScalePerInstance
   public CVoiceContainerStaticAdditiveSynth__CGainScalePerInstanceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinVolumeOffset = Schema.GetOffset(0x9089F81B2CA4E2A3);
+  private static nint? _MinVolumeOffset;
 
   public ref float MinVolume {
-    get => ref _Handle.AsRef<float>(_MinVolumeOffset);
+    get {
+      if (_MinVolumeOffset == null) {
+        _MinVolumeOffset = Schema.GetOffset(0x9089F81B2CA4E2A3);
+      }
+      return ref _Handle.AsRef<float>(_MinVolumeOffset!.Value);
+    }
   }
-  private static readonly nint _InstancesAtMinVolumeOffset = Schema.GetOffset(0x9089F81BBA3DF3B8);
+  private static nint? _InstancesAtMinVolumeOffset;
 
   public ref int InstancesAtMinVolume {
-    get => ref _Handle.AsRef<int>(_InstancesAtMinVolumeOffset);
+    get {
+      if (_InstancesAtMinVolumeOffset == null) {
+        _InstancesAtMinVolumeOffset = Schema.GetOffset(0x9089F81BBA3DF3B8);
+      }
+      return ref _Handle.AsRef<int>(_InstancesAtMinVolumeOffset!.Value);
+    }
   }
-  private static readonly nint _MaxVolumeOffset = Schema.GetOffset(0x9089F81B25691B11);
+  private static nint? _MaxVolumeOffset;
 
   public ref float MaxVolume {
-    get => ref _Handle.AsRef<float>(_MaxVolumeOffset);
+    get {
+      if (_MaxVolumeOffset == null) {
+        _MaxVolumeOffset = Schema.GetOffset(0x9089F81B25691B11);
+      }
+      return ref _Handle.AsRef<float>(_MaxVolumeOffset!.Value);
+    }
   }
-  private static readonly nint _InstancesAtMaxVolumeOffset = Schema.GetOffset(0x9089F81B18EB3E46);
+  private static nint? _InstancesAtMaxVolumeOffset;
 
   public ref int InstancesAtMaxVolume {
-    get => ref _Handle.AsRef<int>(_InstancesAtMaxVolumeOffset);
+    get {
+      if (_InstancesAtMaxVolumeOffset == null) {
+        _InstancesAtMaxVolumeOffset = Schema.GetOffset(0x9089F81B18EB3E46);
+      }
+      return ref _Handle.AsRef<int>(_InstancesAtMaxVolumeOffset!.Value);
+    }
   }
 
 

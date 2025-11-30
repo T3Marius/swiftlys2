@@ -17,10 +17,15 @@ internal partial class RnSoftbodyParticle_tImpl : SchemaClass, RnSoftbodyParticl
   public RnSoftbodyParticle_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MassInvOffset = Schema.GetOffset(0xFC49E2986218E3D2);
+  private static nint? _MassInvOffset;
 
   public ref float MassInv {
-    get => ref _Handle.AsRef<float>(_MassInvOffset);
+    get {
+      if (_MassInvOffset == null) {
+        _MassInvOffset = Schema.GetOffset(0xFC49E2986218E3D2);
+      }
+      return ref _Handle.AsRef<float>(_MassInvOffset!.Value);
+    }
   }
 
 

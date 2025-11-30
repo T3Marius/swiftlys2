@@ -17,50 +17,95 @@ internal partial class CFootAdjustmentUpdateNodeImpl : CUnaryUpdateNodeImpl, CFo
   public CFootAdjustmentUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ClipsOffset = Schema.GetOffset(0x667ADE248CB21A38);
+  private static nint? _ClipsOffset;
 
   public ref CUtlVector<HSequence> Clips {
-    get => ref _Handle.AsRef<CUtlVector<HSequence>>(_ClipsOffset);
+    get {
+      if (_ClipsOffset == null) {
+        _ClipsOffset = Schema.GetOffset(0x667ADE248CB21A38);
+      }
+      return ref _Handle.AsRef<CUtlVector<HSequence>>(_ClipsOffset!.Value);
+    }
   }
-  private static readonly nint _BasePoseCacheHandleOffset = Schema.GetOffset(0x667ADE240690C505);
+  private static nint? _BasePoseCacheHandleOffset;
 
   public CPoseHandle BasePoseCacheHandle {
-    get => new CPoseHandleImpl(_Handle + _BasePoseCacheHandleOffset);
+    get {
+      if (_BasePoseCacheHandleOffset == null) {
+        _BasePoseCacheHandleOffset = Schema.GetOffset(0x667ADE240690C505);
+      }
+      return new CPoseHandleImpl(_Handle + _BasePoseCacheHandleOffset!.Value);
+    }
   }
-  private static readonly nint _FacingTargetOffset = Schema.GetOffset(0x667ADE24ED73C452);
+  private static nint? _FacingTargetOffset;
 
   public CAnimParamHandle FacingTarget {
-    get => new CAnimParamHandleImpl(_Handle + _FacingTargetOffset);
+    get {
+      if (_FacingTargetOffset == null) {
+        _FacingTargetOffset = Schema.GetOffset(0x667ADE24ED73C452);
+      }
+      return new CAnimParamHandleImpl(_Handle + _FacingTargetOffset!.Value);
+    }
   }
-  private static readonly nint _TurnTimeMinOffset = Schema.GetOffset(0x667ADE247BF2813F);
+  private static nint? _TurnTimeMinOffset;
 
   public ref float TurnTimeMin {
-    get => ref _Handle.AsRef<float>(_TurnTimeMinOffset);
+    get {
+      if (_TurnTimeMinOffset == null) {
+        _TurnTimeMinOffset = Schema.GetOffset(0x667ADE247BF2813F);
+      }
+      return ref _Handle.AsRef<float>(_TurnTimeMinOffset!.Value);
+    }
   }
-  private static readonly nint _TurnTimeMaxOffset = Schema.GetOffset(0x667ADE2489DF0F91);
+  private static nint? _TurnTimeMaxOffset;
 
   public ref float TurnTimeMax {
-    get => ref _Handle.AsRef<float>(_TurnTimeMaxOffset);
+    get {
+      if (_TurnTimeMaxOffset == null) {
+        _TurnTimeMaxOffset = Schema.GetOffset(0x667ADE2489DF0F91);
+      }
+      return ref _Handle.AsRef<float>(_TurnTimeMaxOffset!.Value);
+    }
   }
-  private static readonly nint _StepHeightMaxOffset = Schema.GetOffset(0x667ADE24C48F8DDC);
+  private static nint? _StepHeightMaxOffset;
 
   public ref float StepHeightMax {
-    get => ref _Handle.AsRef<float>(_StepHeightMaxOffset);
+    get {
+      if (_StepHeightMaxOffset == null) {
+        _StepHeightMaxOffset = Schema.GetOffset(0x667ADE24C48F8DDC);
+      }
+      return ref _Handle.AsRef<float>(_StepHeightMaxOffset!.Value);
+    }
   }
-  private static readonly nint _StepHeightMaxAngleOffset = Schema.GetOffset(0x667ADE24E36AE247);
+  private static nint? _StepHeightMaxAngleOffset;
 
   public ref float StepHeightMaxAngle {
-    get => ref _Handle.AsRef<float>(_StepHeightMaxAngleOffset);
+    get {
+      if (_StepHeightMaxAngleOffset == null) {
+        _StepHeightMaxAngleOffset = Schema.GetOffset(0x667ADE24E36AE247);
+      }
+      return ref _Handle.AsRef<float>(_StepHeightMaxAngleOffset!.Value);
+    }
   }
-  private static readonly nint _ResetChildOffset = Schema.GetOffset(0x667ADE2465CC88B6);
+  private static nint? _ResetChildOffset;
 
   public ref bool ResetChild {
-    get => ref _Handle.AsRef<bool>(_ResetChildOffset);
+    get {
+      if (_ResetChildOffset == null) {
+        _ResetChildOffset = Schema.GetOffset(0x667ADE2465CC88B6);
+      }
+      return ref _Handle.AsRef<bool>(_ResetChildOffset!.Value);
+    }
   }
-  private static readonly nint _AnimationDrivenOffset = Schema.GetOffset(0x667ADE24B5FFC0F3);
+  private static nint? _AnimationDrivenOffset;
 
   public ref bool AnimationDriven {
-    get => ref _Handle.AsRef<bool>(_AnimationDrivenOffset);
+    get {
+      if (_AnimationDrivenOffset == null) {
+        _AnimationDrivenOffset = Schema.GetOffset(0x667ADE24B5FFC0F3);
+      }
+      return ref _Handle.AsRef<bool>(_AnimationDrivenOffset!.Value);
+    }
   }
 
 

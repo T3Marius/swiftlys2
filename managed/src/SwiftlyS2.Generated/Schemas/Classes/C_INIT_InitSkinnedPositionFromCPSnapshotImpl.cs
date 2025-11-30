@@ -17,100 +17,195 @@ internal partial class C_INIT_InitSkinnedPositionFromCPSnapshotImpl : CParticleF
   public C_INIT_InitSkinnedPositionFromCPSnapshotImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SnapshotControlPointNumberOffset = Schema.GetOffset(0xD1B6E41429D3EEDD);
+  private static nint? _SnapshotControlPointNumberOffset;
 
   public ref int SnapshotControlPointNumber {
-    get => ref _Handle.AsRef<int>(_SnapshotControlPointNumberOffset);
+    get {
+      if (_SnapshotControlPointNumberOffset == null) {
+        _SnapshotControlPointNumberOffset = Schema.GetOffset(0xD1B6E41429D3EEDD);
+      }
+      return ref _Handle.AsRef<int>(_SnapshotControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0xD1B6E4143F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0xD1B6E4143F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _RandomOffset = Schema.GetOffset(0xD1B6E414D13B9DC2);
+  private static nint? _RandomOffset;
 
   public ref bool Random {
-    get => ref _Handle.AsRef<bool>(_RandomOffset);
+    get {
+      if (_RandomOffset == null) {
+        _RandomOffset = Schema.GetOffset(0xD1B6E414D13B9DC2);
+      }
+      return ref _Handle.AsRef<bool>(_RandomOffset!.Value);
+    }
   }
-  private static readonly nint _RandomSeedOffset = Schema.GetOffset(0xD1B6E4146388F067);
+  private static nint? _RandomSeedOffset;
 
   public ref int RandomSeed {
-    get => ref _Handle.AsRef<int>(_RandomSeedOffset);
+    get {
+      if (_RandomSeedOffset == null) {
+        _RandomSeedOffset = Schema.GetOffset(0xD1B6E4146388F067);
+      }
+      return ref _Handle.AsRef<int>(_RandomSeedOffset!.Value);
+    }
   }
-  private static readonly nint _RigidOffset = Schema.GetOffset(0xD1B6E414F9ED9C8C);
+  private static nint? _RigidOffset;
 
   public ref bool Rigid {
-    get => ref _Handle.AsRef<bool>(_RigidOffset);
+    get {
+      if (_RigidOffset == null) {
+        _RigidOffset = Schema.GetOffset(0xD1B6E414F9ED9C8C);
+      }
+      return ref _Handle.AsRef<bool>(_RigidOffset!.Value);
+    }
   }
-  private static readonly nint _SetNormalOffset = Schema.GetOffset(0xD1B6E414542722AC);
+  private static nint? _SetNormalOffset;
 
   public ref bool SetNormal {
-    get => ref _Handle.AsRef<bool>(_SetNormalOffset);
+    get {
+      if (_SetNormalOffset == null) {
+        _SetNormalOffset = Schema.GetOffset(0xD1B6E414542722AC);
+      }
+      return ref _Handle.AsRef<bool>(_SetNormalOffset!.Value);
+    }
   }
-  private static readonly nint _IgnoreDtOffset = Schema.GetOffset(0xD1B6E414330C0603);
+  private static nint? _IgnoreDtOffset;
 
   public ref bool IgnoreDt {
-    get => ref _Handle.AsRef<bool>(_IgnoreDtOffset);
+    get {
+      if (_IgnoreDtOffset == null) {
+        _IgnoreDtOffset = Schema.GetOffset(0xD1B6E414330C0603);
+      }
+      return ref _Handle.AsRef<bool>(_IgnoreDtOffset!.Value);
+    }
   }
-  private static readonly nint _MinNormalVelocityOffset = Schema.GetOffset(0xD1B6E414C1D5AB05);
+  private static nint? _MinNormalVelocityOffset;
 
   public ref float MinNormalVelocity {
-    get => ref _Handle.AsRef<float>(_MinNormalVelocityOffset);
+    get {
+      if (_MinNormalVelocityOffset == null) {
+        _MinNormalVelocityOffset = Schema.GetOffset(0xD1B6E414C1D5AB05);
+      }
+      return ref _Handle.AsRef<float>(_MinNormalVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _MaxNormalVelocityOffset = Schema.GetOffset(0xD1B6E4147D5C16C3);
+  private static nint? _MaxNormalVelocityOffset;
 
   public ref float MaxNormalVelocity {
-    get => ref _Handle.AsRef<float>(_MaxNormalVelocityOffset);
+    get {
+      if (_MaxNormalVelocityOffset == null) {
+        _MaxNormalVelocityOffset = Schema.GetOffset(0xD1B6E4147D5C16C3);
+      }
+      return ref _Handle.AsRef<float>(_MaxNormalVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _IndexTypeOffset = Schema.GetOffset(0xD1B6E414DEEB271F);
+  private static nint? _IndexTypeOffset;
 
   public ref SnapshotIndexType_t IndexType {
-    get => ref _Handle.AsRef<SnapshotIndexType_t>(_IndexTypeOffset);
+    get {
+      if (_IndexTypeOffset == null) {
+        _IndexTypeOffset = Schema.GetOffset(0xD1B6E414DEEB271F);
+      }
+      return ref _Handle.AsRef<SnapshotIndexType_t>(_IndexTypeOffset!.Value);
+    }
   }
-  private static readonly nint _ReadIndexOffset = Schema.GetOffset(0xD1B6E4147E9602C9);
+  private static nint? _ReadIndexOffset;
 
   public CPerParticleFloatInput ReadIndex {
-    get => new CPerParticleFloatInputImpl(_Handle + _ReadIndexOffset);
+    get {
+      if (_ReadIndexOffset == null) {
+        _ReadIndexOffset = Schema.GetOffset(0xD1B6E4147E9602C9);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ReadIndexOffset!.Value);
+    }
   }
-  private static readonly nint _IncrementOffset = Schema.GetOffset(0xD1B6E414B3721674);
+  private static nint? _IncrementOffset;
 
   public ref float Increment {
-    get => ref _Handle.AsRef<float>(_IncrementOffset);
+    get {
+      if (_IncrementOffset == null) {
+        _IncrementOffset = Schema.GetOffset(0xD1B6E414B3721674);
+      }
+      return ref _Handle.AsRef<float>(_IncrementOffset!.Value);
+    }
   }
-  private static readonly nint _FullLoopIncrementOffset = Schema.GetOffset(0xD1B6E414278D3497);
+  private static nint? _FullLoopIncrementOffset;
 
   public ref int FullLoopIncrement {
-    get => ref _Handle.AsRef<int>(_FullLoopIncrementOffset);
+    get {
+      if (_FullLoopIncrementOffset == null) {
+        _FullLoopIncrementOffset = Schema.GetOffset(0xD1B6E414278D3497);
+      }
+      return ref _Handle.AsRef<int>(_FullLoopIncrementOffset!.Value);
+    }
   }
-  private static readonly nint _SnapShotStartPointOffset = Schema.GetOffset(0xD1B6E414A7DF116B);
+  private static nint? _SnapShotStartPointOffset;
 
   public ref int SnapShotStartPoint {
-    get => ref _Handle.AsRef<int>(_SnapShotStartPointOffset);
+    get {
+      if (_SnapShotStartPointOffset == null) {
+        _SnapShotStartPointOffset = Schema.GetOffset(0xD1B6E414A7DF116B);
+      }
+      return ref _Handle.AsRef<int>(_SnapShotStartPointOffset!.Value);
+    }
   }
-  private static readonly nint _BoneVelocityOffset = Schema.GetOffset(0xD1B6E414B06BD382);
+  private static nint? _BoneVelocityOffset;
 
   public ref float BoneVelocity {
-    get => ref _Handle.AsRef<float>(_BoneVelocityOffset);
+    get {
+      if (_BoneVelocityOffset == null) {
+        _BoneVelocityOffset = Schema.GetOffset(0xD1B6E414B06BD382);
+      }
+      return ref _Handle.AsRef<float>(_BoneVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _BoneVelocityMaxOffset = Schema.GetOffset(0xD1B6E41434585F64);
+  private static nint? _BoneVelocityMaxOffset;
 
   public ref float BoneVelocityMax {
-    get => ref _Handle.AsRef<float>(_BoneVelocityMaxOffset);
+    get {
+      if (_BoneVelocityMaxOffset == null) {
+        _BoneVelocityMaxOffset = Schema.GetOffset(0xD1B6E41434585F64);
+      }
+      return ref _Handle.AsRef<float>(_BoneVelocityMaxOffset!.Value);
+    }
   }
-  private static readonly nint _CopyColorOffset = Schema.GetOffset(0xD1B6E41429F0EAEB);
+  private static nint? _CopyColorOffset;
 
   public ref bool CopyColor {
-    get => ref _Handle.AsRef<bool>(_CopyColorOffset);
+    get {
+      if (_CopyColorOffset == null) {
+        _CopyColorOffset = Schema.GetOffset(0xD1B6E41429F0EAEB);
+      }
+      return ref _Handle.AsRef<bool>(_CopyColorOffset!.Value);
+    }
   }
-  private static readonly nint _CopyAlphaOffset = Schema.GetOffset(0xD1B6E41443B2B278);
+  private static nint? _CopyAlphaOffset;
 
   public ref bool CopyAlpha {
-    get => ref _Handle.AsRef<bool>(_CopyAlphaOffset);
+    get {
+      if (_CopyAlphaOffset == null) {
+        _CopyAlphaOffset = Schema.GetOffset(0xD1B6E41443B2B278);
+      }
+      return ref _Handle.AsRef<bool>(_CopyAlphaOffset!.Value);
+    }
   }
-  private static readonly nint _SetRadiusOffset = Schema.GetOffset(0xD1B6E414918808D1);
+  private static nint? _SetRadiusOffset;
 
   public ref bool SetRadius {
-    get => ref _Handle.AsRef<bool>(_SetRadiusOffset);
+    get {
+      if (_SetRadiusOffset == null) {
+        _SetRadiusOffset = Schema.GetOffset(0xD1B6E414918808D1);
+      }
+      return ref _Handle.AsRef<bool>(_SetRadiusOffset!.Value);
+    }
   }
 
 

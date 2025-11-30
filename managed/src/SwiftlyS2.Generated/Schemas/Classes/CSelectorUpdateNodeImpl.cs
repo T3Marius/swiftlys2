@@ -17,55 +17,105 @@ internal partial class CSelectorUpdateNodeImpl : CAnimUpdateNodeBaseImpl, CSelec
   public CSelectorUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ChildrenOffset = Schema.GetOffset(0x23CD95F27415FA72);
+  private static nint? _ChildrenOffset;
 
   public ref CUtlVector<CAnimUpdateNodeRef> Children {
-    get => ref _Handle.AsRef<CUtlVector<CAnimUpdateNodeRef>>(_ChildrenOffset);
+    get {
+      if (_ChildrenOffset == null) {
+        _ChildrenOffset = Schema.GetOffset(0x23CD95F27415FA72);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimUpdateNodeRef>>(_ChildrenOffset!.Value);
+    }
   }
-  private static readonly nint _TagsOffset = Schema.GetOffset(0x23CD95F2B46C8540);
+  private static nint? _TagsOffset;
 
   public ref CUtlVector<byte> Tags {
-    get => ref _Handle.AsRef<CUtlVector<byte>>(_TagsOffset);
+    get {
+      if (_TagsOffset == null) {
+        _TagsOffset = Schema.GetOffset(0x23CD95F2B46C8540);
+      }
+      return ref _Handle.AsRef<CUtlVector<byte>>(_TagsOffset!.Value);
+    }
   }
-  private static readonly nint _BlendCurveOffset = Schema.GetOffset(0x23CD95F291978183);
+  private static nint? _BlendCurveOffset;
 
   public CBlendCurve BlendCurve {
-    get => new CBlendCurveImpl(_Handle + _BlendCurveOffset);
+    get {
+      if (_BlendCurveOffset == null) {
+        _BlendCurveOffset = Schema.GetOffset(0x23CD95F291978183);
+      }
+      return new CBlendCurveImpl(_Handle + _BlendCurveOffset!.Value);
+    }
   }
-  private static readonly nint _BlendTimeOffset = Schema.GetOffset(0x23CD95F2A6206E9F);
+  private static nint? _BlendTimeOffset;
 
   public SchemaUntypedField BlendTime {
-    get => new SchemaUntypedField(_Handle + _BlendTimeOffset);
+    get {
+      if (_BlendTimeOffset == null) {
+        _BlendTimeOffset = Schema.GetOffset(0x23CD95F2A6206E9F);
+      }
+      return new SchemaUntypedField(_Handle + _BlendTimeOffset!.Value);
+    }
   }
-  private static readonly nint _ParameterOffset = Schema.GetOffset(0x23CD95F20C7008F6);
+  private static nint? _ParameterOffset;
 
   public CAnimParamHandle Parameter {
-    get => new CAnimParamHandleImpl(_Handle + _ParameterOffset);
+    get {
+      if (_ParameterOffset == null) {
+        _ParameterOffset = Schema.GetOffset(0x23CD95F20C7008F6);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParameterOffset!.Value);
+    }
   }
-  private static readonly nint _TagIndexOffset = Schema.GetOffset(0x23CD95F2C2026AAD);
+  private static nint? _TagIndexOffset;
 
   public ref int TagIndex {
-    get => ref _Handle.AsRef<int>(_TagIndexOffset);
+    get {
+      if (_TagIndexOffset == null) {
+        _TagIndexOffset = Schema.GetOffset(0x23CD95F2C2026AAD);
+      }
+      return ref _Handle.AsRef<int>(_TagIndexOffset!.Value);
+    }
   }
-  private static readonly nint _TagBehaviorOffset = Schema.GetOffset(0x23CD95F2698EF70A);
+  private static nint? _TagBehaviorOffset;
 
   public ref SelectorTagBehavior_t TagBehavior {
-    get => ref _Handle.AsRef<SelectorTagBehavior_t>(_TagBehaviorOffset);
+    get {
+      if (_TagBehaviorOffset == null) {
+        _TagBehaviorOffset = Schema.GetOffset(0x23CD95F2698EF70A);
+      }
+      return ref _Handle.AsRef<SelectorTagBehavior_t>(_TagBehaviorOffset!.Value);
+    }
   }
-  private static readonly nint _ResetOnChangeOffset = Schema.GetOffset(0x23CD95F2E8AD58E9);
+  private static nint? _ResetOnChangeOffset;
 
   public ref bool ResetOnChange {
-    get => ref _Handle.AsRef<bool>(_ResetOnChangeOffset);
+    get {
+      if (_ResetOnChangeOffset == null) {
+        _ResetOnChangeOffset = Schema.GetOffset(0x23CD95F2E8AD58E9);
+      }
+      return ref _Handle.AsRef<bool>(_ResetOnChangeOffset!.Value);
+    }
   }
-  private static readonly nint _LockWhenWaningOffset = Schema.GetOffset(0x23CD95F2EED48004);
+  private static nint? _LockWhenWaningOffset;
 
   public ref bool LockWhenWaning {
-    get => ref _Handle.AsRef<bool>(_LockWhenWaningOffset);
+    get {
+      if (_LockWhenWaningOffset == null) {
+        _LockWhenWaningOffset = Schema.GetOffset(0x23CD95F2EED48004);
+      }
+      return ref _Handle.AsRef<bool>(_LockWhenWaningOffset!.Value);
+    }
   }
-  private static readonly nint _SyncCyclesOnChangeOffset = Schema.GetOffset(0x23CD95F25DD67E78);
+  private static nint? _SyncCyclesOnChangeOffset;
 
   public ref bool SyncCyclesOnChange {
-    get => ref _Handle.AsRef<bool>(_SyncCyclesOnChangeOffset);
+    get {
+      if (_SyncCyclesOnChangeOffset == null) {
+        _SyncCyclesOnChangeOffset = Schema.GetOffset(0x23CD95F25DD67E78);
+      }
+      return ref _Handle.AsRef<bool>(_SyncCyclesOnChangeOffset!.Value);
+    }
   }
 
 

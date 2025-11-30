@@ -17,29 +17,52 @@ internal partial class CAnimComponentUpdaterImpl : SchemaClass, CAnimComponentUp
   public CAnimComponentUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x3E0F51C74D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x3E0F51C74D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x3E0F51C74D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _IdOffset = Schema.GetOffset(0x3E0F51C7B4B6E980);
+  private static nint? _IdOffset;
 
   public AnimComponentID Id {
-    get => new AnimComponentIDImpl(_Handle + _IdOffset);
+    get {
+      if (_IdOffset == null) {
+        _IdOffset = Schema.GetOffset(0x3E0F51C7B4B6E980);
+      }
+      return new AnimComponentIDImpl(_Handle + _IdOffset!.Value);
+    }
   }
-  private static readonly nint _NetworkModeOffset = Schema.GetOffset(0x3E0F51C7E3307112);
+  private static nint? _NetworkModeOffset;
 
   public ref AnimNodeNetworkMode NetworkMode {
-    get => ref _Handle.AsRef<AnimNodeNetworkMode>(_NetworkModeOffset);
+    get {
+      if (_NetworkModeOffset == null) {
+        _NetworkModeOffset = Schema.GetOffset(0x3E0F51C7E3307112);
+      }
+      return ref _Handle.AsRef<AnimNodeNetworkMode>(_NetworkModeOffset!.Value);
+    }
   }
-  private static readonly nint _StartEnabledOffset = Schema.GetOffset(0x3E0F51C7500D5C24);
+  private static nint? _StartEnabledOffset;
 
   public ref bool StartEnabled {
-    get => ref _Handle.AsRef<bool>(_StartEnabledOffset);
+    get {
+      if (_StartEnabledOffset == null) {
+        _StartEnabledOffset = Schema.GetOffset(0x3E0F51C7500D5C24);
+      }
+      return ref _Handle.AsRef<bool>(_StartEnabledOffset!.Value);
+    }
   }
 
 

@@ -17,30 +17,55 @@ internal partial class FeSphereRigid_tImpl : SchemaClass, FeSphereRigid_t {
   public FeSphereRigid_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SphereOffset = Schema.GetOffset(0xA76DA0A39E2AC48C);
+  private static nint? _SphereOffset;
 
   public ref fltx4 Sphere {
-    get => ref _Handle.AsRef<fltx4>(_SphereOffset);
+    get {
+      if (_SphereOffset == null) {
+        _SphereOffset = Schema.GetOffset(0xA76DA0A39E2AC48C);
+      }
+      return ref _Handle.AsRef<fltx4>(_SphereOffset!.Value);
+    }
   }
-  private static readonly nint _NodeOffset = Schema.GetOffset(0xA76DA0A3CD6694B9);
+  private static nint? _NodeOffset;
 
   public ref ushort Node {
-    get => ref _Handle.AsRef<ushort>(_NodeOffset);
+    get {
+      if (_NodeOffset == null) {
+        _NodeOffset = Schema.GetOffset(0xA76DA0A3CD6694B9);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeOffset!.Value);
+    }
   }
-  private static readonly nint _CollisionMaskOffset = Schema.GetOffset(0xA76DA0A30ED3454F);
+  private static nint? _CollisionMaskOffset;
 
   public ref ushort CollisionMask {
-    get => ref _Handle.AsRef<ushort>(_CollisionMaskOffset);
+    get {
+      if (_CollisionMaskOffset == null) {
+        _CollisionMaskOffset = Schema.GetOffset(0xA76DA0A30ED3454F);
+      }
+      return ref _Handle.AsRef<ushort>(_CollisionMaskOffset!.Value);
+    }
   }
-  private static readonly nint _VertexMapIndexOffset = Schema.GetOffset(0xA76DA0A37B332E39);
+  private static nint? _VertexMapIndexOffset;
 
   public ref ushort VertexMapIndex {
-    get => ref _Handle.AsRef<ushort>(_VertexMapIndexOffset);
+    get {
+      if (_VertexMapIndexOffset == null) {
+        _VertexMapIndexOffset = Schema.GetOffset(0xA76DA0A37B332E39);
+      }
+      return ref _Handle.AsRef<ushort>(_VertexMapIndexOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0xA76DA0A3B8D52E48);
+  private static nint? _FlagsOffset;
 
   public ref ushort Flags {
-    get => ref _Handle.AsRef<ushort>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0xA76DA0A3B8D52E48);
+      }
+      return ref _Handle.AsRef<ushort>(_FlagsOffset!.Value);
+    }
   }
 
 

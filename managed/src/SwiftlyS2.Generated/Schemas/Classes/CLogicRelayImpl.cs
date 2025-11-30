@@ -17,30 +17,55 @@ internal partial class CLogicRelayImpl : CLogicalEntityImpl, CLogicRelay {
   public CLogicRelayImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x15CFD4B93A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x15CFD4B93A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
-  private static readonly nint _WaitForRefireOffset = Schema.GetOffset(0x15CFD4B9AB85983A);
+  private static nint? _WaitForRefireOffset;
 
   public ref bool WaitForRefire {
-    get => ref _Handle.AsRef<bool>(_WaitForRefireOffset);
+    get {
+      if (_WaitForRefireOffset == null) {
+        _WaitForRefireOffset = Schema.GetOffset(0x15CFD4B9AB85983A);
+      }
+      return ref _Handle.AsRef<bool>(_WaitForRefireOffset!.Value);
+    }
   }
-  private static readonly nint _TriggerOnceOffset = Schema.GetOffset(0x15CFD4B981D75586);
+  private static nint? _TriggerOnceOffset;
 
   public ref bool TriggerOnce {
-    get => ref _Handle.AsRef<bool>(_TriggerOnceOffset);
+    get {
+      if (_TriggerOnceOffset == null) {
+        _TriggerOnceOffset = Schema.GetOffset(0x15CFD4B981D75586);
+      }
+      return ref _Handle.AsRef<bool>(_TriggerOnceOffset!.Value);
+    }
   }
-  private static readonly nint _FastRetriggerOffset = Schema.GetOffset(0x15CFD4B91AD2302E);
+  private static nint? _FastRetriggerOffset;
 
   public ref bool FastRetrigger {
-    get => ref _Handle.AsRef<bool>(_FastRetriggerOffset);
+    get {
+      if (_FastRetriggerOffset == null) {
+        _FastRetriggerOffset = Schema.GetOffset(0x15CFD4B91AD2302E);
+      }
+      return ref _Handle.AsRef<bool>(_FastRetriggerOffset!.Value);
+    }
   }
-  private static readonly nint _PassthoughCallerOffset = Schema.GetOffset(0x15CFD4B969DA94C8);
+  private static nint? _PassthoughCallerOffset;
 
   public ref bool PassthoughCaller {
-    get => ref _Handle.AsRef<bool>(_PassthoughCallerOffset);
+    get {
+      if (_PassthoughCallerOffset == null) {
+        _PassthoughCallerOffset = Schema.GetOffset(0x15CFD4B969DA94C8);
+      }
+      return ref _Handle.AsRef<bool>(_PassthoughCallerOffset!.Value);
+    }
   }
 
 

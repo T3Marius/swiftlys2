@@ -17,20 +17,35 @@ internal partial class CMotionSearchDBImpl : SchemaClass, CMotionSearchDB {
   public CMotionSearchDBImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RootNodeOffset = Schema.GetOffset(0x5F49286C3D5FF0D);
+  private static nint? _RootNodeOffset;
 
   public CMotionSearchNode RootNode {
-    get => new CMotionSearchNodeImpl(_Handle + _RootNodeOffset);
+    get {
+      if (_RootNodeOffset == null) {
+        _RootNodeOffset = Schema.GetOffset(0x5F49286C3D5FF0D);
+      }
+      return new CMotionSearchNodeImpl(_Handle + _RootNodeOffset!.Value);
+    }
   }
-  private static readonly nint _ResidualQuantizerOffset = Schema.GetOffset(0x5F49286A3EDA009);
+  private static nint? _ResidualQuantizerOffset;
 
   public CProductQuantizer ResidualQuantizer {
-    get => new CProductQuantizerImpl(_Handle + _ResidualQuantizerOffset);
+    get {
+      if (_ResidualQuantizerOffset == null) {
+        _ResidualQuantizerOffset = Schema.GetOffset(0x5F49286A3EDA009);
+      }
+      return new CProductQuantizerImpl(_Handle + _ResidualQuantizerOffset!.Value);
+    }
   }
-  private static readonly nint _CodeIndicesOffset = Schema.GetOffset(0x5F49286767A76B1);
+  private static nint? _CodeIndicesOffset;
 
   public ref CUtlVector<MotionDBIndex> CodeIndices {
-    get => ref _Handle.AsRef<CUtlVector<MotionDBIndex>>(_CodeIndicesOffset);
+    get {
+      if (_CodeIndicesOffset == null) {
+        _CodeIndicesOffset = Schema.GetOffset(0x5F49286767A76B1);
+      }
+      return ref _Handle.AsRef<CUtlVector<MotionDBIndex>>(_CodeIndicesOffset!.Value);
+    }
   }
 
 

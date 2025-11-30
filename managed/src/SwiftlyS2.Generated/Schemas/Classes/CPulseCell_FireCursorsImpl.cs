@@ -17,25 +17,45 @@ internal partial class CPulseCell_FireCursorsImpl : CPulseCell_BaseYieldingInflo
   public CPulseCell_FireCursorsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OutflowsOffset = Schema.GetOffset(0x9BFA034F8F0AFDF8);
+  private static nint? _OutflowsOffset;
 
   public ref CUtlVector<CPulse_OutflowConnection> Outflows {
-    get => ref _Handle.AsRef<CUtlVector<CPulse_OutflowConnection>>(_OutflowsOffset);
+    get {
+      if (_OutflowsOffset == null) {
+        _OutflowsOffset = Schema.GetOffset(0x9BFA034F8F0AFDF8);
+      }
+      return ref _Handle.AsRef<CUtlVector<CPulse_OutflowConnection>>(_OutflowsOffset!.Value);
+    }
   }
-  private static readonly nint _WaitForChildOutflowsOffset = Schema.GetOffset(0x9BFA034F3F8E29C6);
+  private static nint? _WaitForChildOutflowsOffset;
 
   public ref bool WaitForChildOutflows {
-    get => ref _Handle.AsRef<bool>(_WaitForChildOutflowsOffset);
+    get {
+      if (_WaitForChildOutflowsOffset == null) {
+        _WaitForChildOutflowsOffset = Schema.GetOffset(0x9BFA034F3F8E29C6);
+      }
+      return ref _Handle.AsRef<bool>(_WaitForChildOutflowsOffset!.Value);
+    }
   }
-  private static readonly nint _OnFinishedOffset = Schema.GetOffset(0x9BFA034F8D903E5E);
+  private static nint? _OnFinishedOffset;
 
   public CPulse_ResumePoint OnFinished {
-    get => new CPulse_ResumePointImpl(_Handle + _OnFinishedOffset);
+    get {
+      if (_OnFinishedOffset == null) {
+        _OnFinishedOffset = Schema.GetOffset(0x9BFA034F8D903E5E);
+      }
+      return new CPulse_ResumePointImpl(_Handle + _OnFinishedOffset!.Value);
+    }
   }
-  private static readonly nint _OnCanceledOffset = Schema.GetOffset(0x9BFA034FF02162DB);
+  private static nint? _OnCanceledOffset;
 
   public CPulse_ResumePoint OnCanceled {
-    get => new CPulse_ResumePointImpl(_Handle + _OnCanceledOffset);
+    get {
+      if (_OnCanceledOffset == null) {
+        _OnCanceledOffset = Schema.GetOffset(0x9BFA034FF02162DB);
+      }
+      return new CPulse_ResumePointImpl(_Handle + _OnCanceledOffset!.Value);
+    }
   }
 
 

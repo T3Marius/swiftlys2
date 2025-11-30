@@ -17,15 +17,25 @@ internal partial class CNmFootstepEventIDNode__CDefinitionImpl : CNmIDValueNode_
   public CNmFootstepEventIDNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceStateNodeIdxOffset = Schema.GetOffset(0x2CDDA43263F0228C);
+  private static nint? _SourceStateNodeIdxOffset;
 
   public ref short SourceStateNodeIdx {
-    get => ref _Handle.AsRef<short>(_SourceStateNodeIdxOffset);
+    get {
+      if (_SourceStateNodeIdxOffset == null) {
+        _SourceStateNodeIdxOffset = Schema.GetOffset(0x2CDDA43263F0228C);
+      }
+      return ref _Handle.AsRef<short>(_SourceStateNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EventConditionRulesOffset = Schema.GetOffset(0x2CDDA432A904315F);
+  private static nint? _EventConditionRulesOffset;
 
   public CNmBitFlags EventConditionRules {
-    get => new CNmBitFlagsImpl(_Handle + _EventConditionRulesOffset);
+    get {
+      if (_EventConditionRulesOffset == null) {
+        _EventConditionRulesOffset = Schema.GetOffset(0x2CDDA432A904315F);
+      }
+      return new CNmBitFlagsImpl(_Handle + _EventConditionRulesOffset!.Value);
+    }
   }
 
 

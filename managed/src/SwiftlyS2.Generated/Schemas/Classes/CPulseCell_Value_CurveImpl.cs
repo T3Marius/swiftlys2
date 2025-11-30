@@ -17,10 +17,15 @@ internal partial class CPulseCell_Value_CurveImpl : CPulseCell_BaseValueImpl, CP
   public CPulseCell_Value_CurveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CurveOffset = Schema.GetOffset(0x63C5632D3389BB94);
+  private static nint? _CurveOffset;
 
   public SchemaUntypedField Curve {
-    get => new SchemaUntypedField(_Handle + _CurveOffset);
+    get {
+      if (_CurveOffset == null) {
+        _CurveOffset = Schema.GetOffset(0x63C5632D3389BB94);
+      }
+      return new SchemaUntypedField(_Handle + _CurveOffset!.Value);
+    }
   }
 
 

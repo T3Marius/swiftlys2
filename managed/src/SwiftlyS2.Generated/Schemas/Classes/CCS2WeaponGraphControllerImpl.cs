@@ -17,105 +17,205 @@ internal partial class CCS2WeaponGraphControllerImpl : CAnimGraphControllerBaseI
   public CCS2WeaponGraphControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActionOffset = Schema.GetOffset(0x8553337E7918619F);
+  private static nint? _ActionOffset;
 
   public SchemaUntypedField Action {
-    get => new SchemaUntypedField(_Handle + _ActionOffset);
+    get {
+      if (_ActionOffset == null) {
+        _ActionOffset = Schema.GetOffset(0x8553337E7918619F);
+      }
+      return new SchemaUntypedField(_Handle + _ActionOffset!.Value);
+    }
   }
-  private static readonly nint _ActionResetOffset = Schema.GetOffset(0x8553337E580F422E);
+  private static nint? _ActionResetOffset;
 
   public SchemaUntypedField ActionReset {
-    get => new SchemaUntypedField(_Handle + _ActionResetOffset);
+    get {
+      if (_ActionResetOffset == null) {
+        _ActionResetOffset = Schema.GetOffset(0x8553337E580F422E);
+      }
+      return new SchemaUntypedField(_Handle + _ActionResetOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponActionSpeedScaleOffset = Schema.GetOffset(0x8553337EC667EC52);
+  private static nint? _WeaponActionSpeedScaleOffset;
 
   public SchemaUntypedField WeaponActionSpeedScale {
-    get => new SchemaUntypedField(_Handle + _WeaponActionSpeedScaleOffset);
+    get {
+      if (_WeaponActionSpeedScaleOffset == null) {
+        _WeaponActionSpeedScaleOffset = Schema.GetOffset(0x8553337EC667EC52);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponActionSpeedScaleOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponCategoryOffset = Schema.GetOffset(0x8553337EE2B7A95D);
+  private static nint? _WeaponCategoryOffset;
 
   public SchemaUntypedField WeaponCategory {
-    get => new SchemaUntypedField(_Handle + _WeaponCategoryOffset);
+    get {
+      if (_WeaponCategoryOffset == null) {
+        _WeaponCategoryOffset = Schema.GetOffset(0x8553337EE2B7A95D);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponCategoryOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponTypeOffset = Schema.GetOffset(0x8553337E0C0E3309);
+  private static nint? _WeaponTypeOffset;
 
   public SchemaUntypedField WeaponType {
-    get => new SchemaUntypedField(_Handle + _WeaponTypeOffset);
+    get {
+      if (_WeaponTypeOffset == null) {
+        _WeaponTypeOffset = Schema.GetOffset(0x8553337E0C0E3309);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponTypeOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponExtraInfoOffset = Schema.GetOffset(0x8553337EF4004D3D);
+  private static nint? _WeaponExtraInfoOffset;
 
   public SchemaUntypedField WeaponExtraInfo {
-    get => new SchemaUntypedField(_Handle + _WeaponExtraInfoOffset);
+    get {
+      if (_WeaponExtraInfoOffset == null) {
+        _WeaponExtraInfoOffset = Schema.GetOffset(0x8553337EF4004D3D);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponExtraInfoOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponAmmoOffset = Schema.GetOffset(0x8553337ED1A06C75);
+  private static nint? _WeaponAmmoOffset;
 
   public SchemaUntypedField WeaponAmmo {
-    get => new SchemaUntypedField(_Handle + _WeaponAmmoOffset);
+    get {
+      if (_WeaponAmmoOffset == null) {
+        _WeaponAmmoOffset = Schema.GetOffset(0x8553337ED1A06C75);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponAmmoOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponAmmoMaxOffset = Schema.GetOffset(0x8553337EEE4C1969);
+  private static nint? _WeaponAmmoMaxOffset;
 
   public SchemaUntypedField WeaponAmmoMax {
-    get => new SchemaUntypedField(_Handle + _WeaponAmmoMaxOffset);
+    get {
+      if (_WeaponAmmoMaxOffset == null) {
+        _WeaponAmmoMaxOffset = Schema.GetOffset(0x8553337EEE4C1969);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponAmmoMaxOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponAmmoReserveOffset = Schema.GetOffset(0x8553337E000AC7BB);
+  private static nint? _WeaponAmmoReserveOffset;
 
   public SchemaUntypedField WeaponAmmoReserve {
-    get => new SchemaUntypedField(_Handle + _WeaponAmmoReserveOffset);
+    get {
+      if (_WeaponAmmoReserveOffset == null) {
+        _WeaponAmmoReserveOffset = Schema.GetOffset(0x8553337E000AC7BB);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponAmmoReserveOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponIsSilencedOffset = Schema.GetOffset(0x8553337EBF4E259C);
+  private static nint? _WeaponIsSilencedOffset;
 
   public SchemaUntypedField WeaponIsSilenced {
-    get => new SchemaUntypedField(_Handle + _WeaponIsSilencedOffset);
+    get {
+      if (_WeaponIsSilencedOffset == null) {
+        _WeaponIsSilencedOffset = Schema.GetOffset(0x8553337EBF4E259C);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponIsSilencedOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponIronsightAmountOffset = Schema.GetOffset(0x8553337E4239F6F6);
+  private static nint? _WeaponIronsightAmountOffset;
 
   public SchemaUntypedField WeaponIronsightAmount {
-    get => new SchemaUntypedField(_Handle + _WeaponIronsightAmountOffset);
+    get {
+      if (_WeaponIronsightAmountOffset == null) {
+        _WeaponIronsightAmountOffset = Schema.GetOffset(0x8553337E4239F6F6);
+      }
+      return new SchemaUntypedField(_Handle + _WeaponIronsightAmountOffset!.Value);
+    }
   }
-  private static readonly nint _IsUsingLegacyModelOffset = Schema.GetOffset(0x8553337EBA564E5D);
+  private static nint? _IsUsingLegacyModelOffset;
 
   public SchemaUntypedField IsUsingLegacyModel {
-    get => new SchemaUntypedField(_Handle + _IsUsingLegacyModelOffset);
+    get {
+      if (_IsUsingLegacyModelOffset == null) {
+        _IsUsingLegacyModelOffset = Schema.GetOffset(0x8553337EBA564E5D);
+      }
+      return new SchemaUntypedField(_Handle + _IsUsingLegacyModelOffset!.Value);
+    }
   }
-  private static readonly nint _IdleVariationOffset = Schema.GetOffset(0x8553337ECF0EF118);
+  private static nint? _IdleVariationOffset;
 
   public SchemaUntypedField IdleVariation {
-    get => new SchemaUntypedField(_Handle + _IdleVariationOffset);
+    get {
+      if (_IdleVariationOffset == null) {
+        _IdleVariationOffset = Schema.GetOffset(0x8553337ECF0EF118);
+      }
+      return new SchemaUntypedField(_Handle + _IdleVariationOffset!.Value);
+    }
   }
-  private static readonly nint _DeployVariationOffset = Schema.GetOffset(0x8553337E95BD68D7);
+  private static nint? _DeployVariationOffset;
 
   public SchemaUntypedField DeployVariation {
-    get => new SchemaUntypedField(_Handle + _DeployVariationOffset);
+    get {
+      if (_DeployVariationOffset == null) {
+        _DeployVariationOffset = Schema.GetOffset(0x8553337E95BD68D7);
+      }
+      return new SchemaUntypedField(_Handle + _DeployVariationOffset!.Value);
+    }
   }
-  private static readonly nint _AttackTypeOffset = Schema.GetOffset(0x8553337E0CCFAC15);
+  private static nint? _AttackTypeOffset;
 
   public SchemaUntypedField AttackType {
-    get => new SchemaUntypedField(_Handle + _AttackTypeOffset);
+    get {
+      if (_AttackTypeOffset == null) {
+        _AttackTypeOffset = Schema.GetOffset(0x8553337E0CCFAC15);
+      }
+      return new SchemaUntypedField(_Handle + _AttackTypeOffset!.Value);
+    }
   }
-  private static readonly nint _AttackThrowStrengthOffset = Schema.GetOffset(0x8553337EB4387222);
+  private static nint? _AttackThrowStrengthOffset;
 
   public SchemaUntypedField AttackThrowStrength {
-    get => new SchemaUntypedField(_Handle + _AttackThrowStrengthOffset);
+    get {
+      if (_AttackThrowStrengthOffset == null) {
+        _AttackThrowStrengthOffset = Schema.GetOffset(0x8553337EB4387222);
+      }
+      return new SchemaUntypedField(_Handle + _AttackThrowStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _AttackVariationOffset = Schema.GetOffset(0x8553337E70A63014);
+  private static nint? _AttackVariationOffset;
 
   public SchemaUntypedField AttackVariation {
-    get => new SchemaUntypedField(_Handle + _AttackVariationOffset);
+    get {
+      if (_AttackVariationOffset == null) {
+        _AttackVariationOffset = Schema.GetOffset(0x8553337E70A63014);
+      }
+      return new SchemaUntypedField(_Handle + _AttackVariationOffset!.Value);
+    }
   }
-  private static readonly nint _InspectVariationOffset = Schema.GetOffset(0x8553337EBDFCECA4);
+  private static nint? _InspectVariationOffset;
 
   public SchemaUntypedField InspectVariation {
-    get => new SchemaUntypedField(_Handle + _InspectVariationOffset);
+    get {
+      if (_InspectVariationOffset == null) {
+        _InspectVariationOffset = Schema.GetOffset(0x8553337EBDFCECA4);
+      }
+      return new SchemaUntypedField(_Handle + _InspectVariationOffset!.Value);
+    }
   }
-  private static readonly nint _InspectExtraInfoOffset = Schema.GetOffset(0x8553337EF50D283F);
+  private static nint? _InspectExtraInfoOffset;
 
   public SchemaUntypedField InspectExtraInfo {
-    get => new SchemaUntypedField(_Handle + _InspectExtraInfoOffset);
+    get {
+      if (_InspectExtraInfoOffset == null) {
+        _InspectExtraInfoOffset = Schema.GetOffset(0x8553337EF50D283F);
+      }
+      return new SchemaUntypedField(_Handle + _InspectExtraInfoOffset!.Value);
+    }
   }
-  private static readonly nint _ReloadStageOffset = Schema.GetOffset(0x8553337E7F8E072A);
+  private static nint? _ReloadStageOffset;
 
   public SchemaUntypedField ReloadStage {
-    get => new SchemaUntypedField(_Handle + _ReloadStageOffset);
+    get {
+      if (_ReloadStageOffset == null) {
+        _ReloadStageOffset = Schema.GetOffset(0x8553337E7F8E072A);
+      }
+      return new SchemaUntypedField(_Handle + _ReloadStageOffset!.Value);
+    }
   }
 
 

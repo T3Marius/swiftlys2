@@ -17,20 +17,35 @@ internal partial class CTriggerSaveImpl : CBaseTriggerImpl, CTriggerSave {
   public CTriggerSaveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ForceNewLevelUnitOffset = Schema.GetOffset(0xFA0C03F1473BFDE);
+  private static nint? _ForceNewLevelUnitOffset;
 
   public ref bool ForceNewLevelUnit {
-    get => ref _Handle.AsRef<bool>(_ForceNewLevelUnitOffset);
+    get {
+      if (_ForceNewLevelUnitOffset == null) {
+        _ForceNewLevelUnitOffset = Schema.GetOffset(0xFA0C03F1473BFDE);
+      }
+      return ref _Handle.AsRef<bool>(_ForceNewLevelUnitOffset!.Value);
+    }
   }
-  private static readonly nint _DangerousTimerOffset = Schema.GetOffset(0xFA0C03F5CF80EC4);
+  private static nint? _DangerousTimerOffset;
 
   public ref float DangerousTimer {
-    get => ref _Handle.AsRef<float>(_DangerousTimerOffset);
+    get {
+      if (_DangerousTimerOffset == null) {
+        _DangerousTimerOffset = Schema.GetOffset(0xFA0C03F5CF80EC4);
+      }
+      return ref _Handle.AsRef<float>(_DangerousTimerOffset!.Value);
+    }
   }
-  private static readonly nint _MinHitPointsOffset = Schema.GetOffset(0xFA0C03F2C7E0C57);
+  private static nint? _MinHitPointsOffset;
 
   public ref int MinHitPoints {
-    get => ref _Handle.AsRef<int>(_MinHitPointsOffset);
+    get {
+      if (_MinHitPointsOffset == null) {
+        _MinHitPointsOffset = Schema.GetOffset(0xFA0C03F2C7E0C57);
+      }
+      return ref _Handle.AsRef<int>(_MinHitPointsOffset!.Value);
+    }
   }
 
 

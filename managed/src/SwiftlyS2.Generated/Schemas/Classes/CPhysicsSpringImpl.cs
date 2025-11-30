@@ -17,53 +17,99 @@ internal partial class CPhysicsSpringImpl : CBaseEntityImpl, CPhysicsSpring {
   public CPhysicsSpringImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FrequencyOffset = Schema.GetOffset(0x5222EAAD2C16DD7);
+  private static nint? _FrequencyOffset;
 
   public ref float Frequency {
-    get => ref _Handle.AsRef<float>(_FrequencyOffset);
+    get {
+      if (_FrequencyOffset == null) {
+        _FrequencyOffset = Schema.GetOffset(0x5222EAAD2C16DD7);
+      }
+      return ref _Handle.AsRef<float>(_FrequencyOffset!.Value);
+    }
   }
-  private static readonly nint _DampingRatioOffset = Schema.GetOffset(0x5222EAAB40C859E);
+  private static nint? _DampingRatioOffset;
 
   public ref float DampingRatio {
-    get => ref _Handle.AsRef<float>(_DampingRatioOffset);
+    get {
+      if (_DampingRatioOffset == null) {
+        _DampingRatioOffset = Schema.GetOffset(0x5222EAAB40C859E);
+      }
+      return ref _Handle.AsRef<float>(_DampingRatioOffset!.Value);
+    }
   }
-  private static readonly nint _RestLengthOffset = Schema.GetOffset(0x5222EAA93AC4079);
+  private static nint? _RestLengthOffset;
 
   public ref float RestLength {
-    get => ref _Handle.AsRef<float>(_RestLengthOffset);
+    get {
+      if (_RestLengthOffset == null) {
+        _RestLengthOffset = Schema.GetOffset(0x5222EAA93AC4079);
+      }
+      return ref _Handle.AsRef<float>(_RestLengthOffset!.Value);
+    }
   }
-  private static readonly nint _NameAttachStartOffset = Schema.GetOffset(0x5222EAAD19CEDD5);
+  private static nint? _NameAttachStartOffset;
 
   public string NameAttachStart {
     get {
-      var ptr = _Handle.Read<nint>(_NameAttachStartOffset);
+      if (_NameAttachStartOffset == null) {
+        _NameAttachStartOffset = Schema.GetOffset(0x5222EAAD19CEDD5);
+      }
+      var ptr = _Handle.Read<nint>(_NameAttachStartOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameAttachStartOffset, value);
+    set {
+      if (_NameAttachStartOffset == null) {
+        _NameAttachStartOffset = Schema.GetOffset(0x5222EAAD19CEDD5);
+      }
+      Schema.SetString(_Handle, _NameAttachStartOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NameAttachEndOffset = Schema.GetOffset(0x5222EAACF4DE50C);
+  private static nint? _NameAttachEndOffset;
 
   public string NameAttachEnd {
     get {
-      var ptr = _Handle.Read<nint>(_NameAttachEndOffset);
+      if (_NameAttachEndOffset == null) {
+        _NameAttachEndOffset = Schema.GetOffset(0x5222EAACF4DE50C);
+      }
+      var ptr = _Handle.Read<nint>(_NameAttachEndOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameAttachEndOffset, value);
+    set {
+      if (_NameAttachEndOffset == null) {
+        _NameAttachEndOffset = Schema.GetOffset(0x5222EAACF4DE50C);
+      }
+      Schema.SetString(_Handle, _NameAttachEndOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StartOffset = Schema.GetOffset(0x5222EAAA539BEFF);
+  private static nint? _StartOffset;
 
   public ref Vector Start {
-    get => ref _Handle.AsRef<Vector>(_StartOffset);
+    get {
+      if (_StartOffset == null) {
+        _StartOffset = Schema.GetOffset(0x5222EAAA539BEFF);
+      }
+      return ref _Handle.AsRef<Vector>(_StartOffset!.Value);
+    }
   }
-  private static readonly nint _EndOffset = Schema.GetOffset(0x5222EAA5B29CFCA);
+  private static nint? _EndOffset;
 
   public ref Vector End {
-    get => ref _Handle.AsRef<Vector>(_EndOffset);
+    get {
+      if (_EndOffset == null) {
+        _EndOffset = Schema.GetOffset(0x5222EAA5B29CFCA);
+      }
+      return ref _Handle.AsRef<Vector>(_EndOffset!.Value);
+    }
   }
-  private static readonly nint _TeleportTickOffset = Schema.GetOffset(0x5222EAA027C0C6B);
+  private static nint? _TeleportTickOffset;
 
   public ref uint TeleportTick {
-    get => ref _Handle.AsRef<uint>(_TeleportTickOffset);
+    get {
+      if (_TeleportTickOffset == null) {
+        _TeleportTickOffset = Schema.GetOffset(0x5222EAA027C0C6B);
+      }
+      return ref _Handle.AsRef<uint>(_TeleportTickOffset!.Value);
+    }
   }
 
 

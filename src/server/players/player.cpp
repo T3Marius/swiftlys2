@@ -402,6 +402,16 @@ BlockedTransmitInfo& CPlayer::GetBlockedTransmittingBits()
     return m_bvBlockedTransmittingEntities;
 }
 
+bool CPlayer::IsFirstSpawn()
+{
+    return m_bFirstSpawn;
+}
+
+void CPlayer::SetFirstSpawn(bool state)
+{
+    m_bFirstSpawn = state;
+}
+
 extern void* g_pOnClientKeyStateChangedCallback;
 typedef IGameEventListener2* (*GetLegacyGameEventListener)(CPlayerSlot slot);
 

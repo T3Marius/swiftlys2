@@ -17,10 +17,15 @@ internal partial class EntitySpottedState_tImpl : SchemaClass, EntitySpottedStat
   public EntitySpottedState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SpottedOffset = Schema.GetOffset(0x6E33B0176DE4F1CA);
+  private static nint? _SpottedOffset;
 
   public ref bool Spotted {
-    get => ref _Handle.AsRef<bool>(_SpottedOffset);
+    get {
+      if (_SpottedOffset == null) {
+        _SpottedOffset = Schema.GetOffset(0x6E33B0176DE4F1CA);
+      }
+      return ref _Handle.AsRef<bool>(_SpottedOffset!.Value);
+    }
   }
   public ISchemaFixedArray<uint> SpottedByMask {
     get => new SchemaFixedArray<uint>(_Handle, 0x6E33B0170BD77207, 2, 4, 4);

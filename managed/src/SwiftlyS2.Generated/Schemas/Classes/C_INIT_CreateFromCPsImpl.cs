@@ -17,25 +17,45 @@ internal partial class C_INIT_CreateFromCPsImpl : CParticleFunctionInitializerIm
   public C_INIT_CreateFromCPsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IncrementOffset = Schema.GetOffset(0x2593FF962359F182);
+  private static nint? _IncrementOffset;
 
   public ref int Increment {
-    get => ref _Handle.AsRef<int>(_IncrementOffset);
+    get {
+      if (_IncrementOffset == null) {
+        _IncrementOffset = Schema.GetOffset(0x2593FF962359F182);
+      }
+      return ref _Handle.AsRef<int>(_IncrementOffset!.Value);
+    }
   }
-  private static readonly nint _MinCPOffset = Schema.GetOffset(0x2593FF9663AFBE98);
+  private static nint? _MinCPOffset;
 
   public ref int MinCP {
-    get => ref _Handle.AsRef<int>(_MinCPOffset);
+    get {
+      if (_MinCPOffset == null) {
+        _MinCPOffset = Schema.GetOffset(0x2593FF9663AFBE98);
+      }
+      return ref _Handle.AsRef<int>(_MinCPOffset!.Value);
+    }
   }
-  private static readonly nint _MaxCPOffset = Schema.GetOffset(0x2593FF964C307D96);
+  private static nint? _MaxCPOffset;
 
   public ref int MaxCP {
-    get => ref _Handle.AsRef<int>(_MaxCPOffset);
+    get {
+      if (_MaxCPOffset == null) {
+        _MaxCPOffset = Schema.GetOffset(0x2593FF964C307D96);
+      }
+      return ref _Handle.AsRef<int>(_MaxCPOffset!.Value);
+    }
   }
-  private static readonly nint _DynamicCPCountOffset = Schema.GetOffset(0x2593FF96DF30CE38);
+  private static nint? _DynamicCPCountOffset;
 
   public CParticleCollectionFloatInput DynamicCPCount {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _DynamicCPCountOffset);
+    get {
+      if (_DynamicCPCountOffset == null) {
+        _DynamicCPCountOffset = Schema.GetOffset(0x2593FF96DF30CE38);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _DynamicCPCountOffset!.Value);
+    }
   }
 
 

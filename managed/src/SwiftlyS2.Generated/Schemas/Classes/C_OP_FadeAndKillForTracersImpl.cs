@@ -17,35 +17,65 @@ internal partial class C_OP_FadeAndKillForTracersImpl : CParticleFunctionOperato
   public C_OP_FadeAndKillForTracersImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StartFadeInTimeOffset = Schema.GetOffset(0x776267EF39639779);
+  private static nint? _StartFadeInTimeOffset;
 
   public ref float StartFadeInTime {
-    get => ref _Handle.AsRef<float>(_StartFadeInTimeOffset);
+    get {
+      if (_StartFadeInTimeOffset == null) {
+        _StartFadeInTimeOffset = Schema.GetOffset(0x776267EF39639779);
+      }
+      return ref _Handle.AsRef<float>(_StartFadeInTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndFadeInTimeOffset = Schema.GetOffset(0x776267EF36A35C84);
+  private static nint? _EndFadeInTimeOffset;
 
   public ref float EndFadeInTime {
-    get => ref _Handle.AsRef<float>(_EndFadeInTimeOffset);
+    get {
+      if (_EndFadeInTimeOffset == null) {
+        _EndFadeInTimeOffset = Schema.GetOffset(0x776267EF36A35C84);
+      }
+      return ref _Handle.AsRef<float>(_EndFadeInTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartFadeOutTimeOffset = Schema.GetOffset(0x776267EF6ABCF324);
+  private static nint? _StartFadeOutTimeOffset;
 
   public ref float StartFadeOutTime {
-    get => ref _Handle.AsRef<float>(_StartFadeOutTimeOffset);
+    get {
+      if (_StartFadeOutTimeOffset == null) {
+        _StartFadeOutTimeOffset = Schema.GetOffset(0x776267EF6ABCF324);
+      }
+      return ref _Handle.AsRef<float>(_StartFadeOutTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndFadeOutTimeOffset = Schema.GetOffset(0x776267EFFE87D7E7);
+  private static nint? _EndFadeOutTimeOffset;
 
   public ref float EndFadeOutTime {
-    get => ref _Handle.AsRef<float>(_EndFadeOutTimeOffset);
+    get {
+      if (_EndFadeOutTimeOffset == null) {
+        _EndFadeOutTimeOffset = Schema.GetOffset(0x776267EFFE87D7E7);
+      }
+      return ref _Handle.AsRef<float>(_EndFadeOutTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartAlphaOffset = Schema.GetOffset(0x776267EF6A7A5D0B);
+  private static nint? _StartAlphaOffset;
 
   public ref float StartAlpha {
-    get => ref _Handle.AsRef<float>(_StartAlphaOffset);
+    get {
+      if (_StartAlphaOffset == null) {
+        _StartAlphaOffset = Schema.GetOffset(0x776267EF6A7A5D0B);
+      }
+      return ref _Handle.AsRef<float>(_StartAlphaOffset!.Value);
+    }
   }
-  private static readonly nint _EndAlphaOffset = Schema.GetOffset(0x776267EF7A639CC0);
+  private static nint? _EndAlphaOffset;
 
   public ref float EndAlpha {
-    get => ref _Handle.AsRef<float>(_EndAlphaOffset);
+    get {
+      if (_EndAlphaOffset == null) {
+        _EndAlphaOffset = Schema.GetOffset(0x776267EF7A639CC0);
+      }
+      return ref _Handle.AsRef<float>(_EndAlphaOffset!.Value);
+    }
   }
 
 

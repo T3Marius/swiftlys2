@@ -17,20 +17,35 @@ internal partial class CNmIDSelectorNode__CDefinitionImpl : CNmIDValueNode__CDef
   public CNmIDSelectorNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ConditionNodeIndicesOffset = Schema.GetOffset(0x23876114A144D0F);
+  private static nint? _ConditionNodeIndicesOffset;
 
   public SchemaUntypedField ConditionNodeIndices {
-    get => new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset);
+    get {
+      if (_ConditionNodeIndicesOffset == null) {
+        _ConditionNodeIndicesOffset = Schema.GetOffset(0x23876114A144D0F);
+      }
+      return new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _ValuesOffset = Schema.GetOffset(0x2387611FBEDDADB);
+  private static nint? _ValuesOffset;
 
   public SchemaUntypedField Values {
-    get => new SchemaUntypedField(_Handle + _ValuesOffset);
+    get {
+      if (_ValuesOffset == null) {
+        _ValuesOffset = Schema.GetOffset(0x2387611FBEDDADB);
+      }
+      return new SchemaUntypedField(_Handle + _ValuesOffset!.Value);
+    }
   }
-  private static readonly nint _DefaultValueOffset = Schema.GetOffset(0x2387611BBE0341F);
+  private static nint? _DefaultValueOffset;
 
   public ref CGlobalSymbol DefaultValue {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_DefaultValueOffset);
+    get {
+      if (_DefaultValueOffset == null) {
+        _DefaultValueOffset = Schema.GetOffset(0x2387611BBE0341F);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_DefaultValueOffset!.Value);
+    }
   }
 
 

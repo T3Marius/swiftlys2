@@ -17,10 +17,15 @@ internal partial class CEntityIOOutputImpl : SchemaClass, CEntityIOOutput {
   public CEntityIOOutputImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xCD5B084DCB0894A);
+  private static nint? _ValueOffset;
 
   public SchemaUntypedField Value {
-    get => new SchemaUntypedField(_Handle + _ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xCD5B084DCB0894A);
+      }
+      return new SchemaUntypedField(_Handle + _ValueOffset!.Value);
+    }
   }
 
 

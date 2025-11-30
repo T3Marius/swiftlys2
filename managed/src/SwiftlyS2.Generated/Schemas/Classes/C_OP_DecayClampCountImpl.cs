@@ -17,10 +17,15 @@ internal partial class C_OP_DecayClampCountImpl : CParticleFunctionOperatorImpl,
   public C_OP_DecayClampCountImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CountOffset = Schema.GetOffset(0xBBD38E0B7D31AC08);
+  private static nint? _CountOffset;
 
   public CParticleCollectionFloatInput Count {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _CountOffset);
+    get {
+      if (_CountOffset == null) {
+        _CountOffset = Schema.GetOffset(0xBBD38E0B7D31AC08);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _CountOffset!.Value);
+    }
   }
 
 

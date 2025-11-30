@@ -17,28 +17,49 @@ internal partial class C_INIT_RandomModelSequenceImpl : CParticleFunctionInitial
   public C_INIT_RandomModelSequenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActivityNameOffset = Schema.GetOffset(0x2F450DC3BF0C5087);
+  private static nint? _ActivityNameOffset;
 
   public string ActivityName {
     get {
-      var ptr = _Handle + _ActivityNameOffset;
-      return Schema.GetString(ptr);
+        if (_ActivityNameOffset == null) {
+            _ActivityNameOffset = Schema.GetOffset(0x2F450DC3BF0C5087);
+        }
+        var ptr = _Handle + _ActivityNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _ActivityNameOffset, value, 256);
+    set {
+        if (_ActivityNameOffset == null) {
+            _ActivityNameOffset = Schema.GetOffset(0x2F450DC3BF0C5087);
+        }
+        Schema.SetFixedString(_Handle, _ActivityNameOffset!.Value, value, 256);
+    }
   } 
-  private static readonly nint _SequenceNameOffset = Schema.GetOffset(0x2F450DC3A270F66B);
+  private static nint? _SequenceNameOffset;
 
   public string SequenceName {
     get {
-      var ptr = _Handle + _SequenceNameOffset;
-      return Schema.GetString(ptr);
+        if (_SequenceNameOffset == null) {
+            _SequenceNameOffset = Schema.GetOffset(0x2F450DC3A270F66B);
+        }
+        var ptr = _Handle + _SequenceNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _SequenceNameOffset, value, 256);
+    set {
+        if (_SequenceNameOffset == null) {
+            _SequenceNameOffset = Schema.GetOffset(0x2F450DC3A270F66B);
+        }
+        Schema.SetFixedString(_Handle, _SequenceNameOffset!.Value, value, 256);
+    }
   } 
-  private static readonly nint _ModelOffset = Schema.GetOffset(0x2F450DC3E100C814);
+  private static nint? _ModelOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCModel> Model {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset);
+    get {
+      if (_ModelOffset == null) {
+        _ModelOffset = Schema.GetOffset(0x2F450DC3E100C814);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset!.Value);
+    }
   }
 
 

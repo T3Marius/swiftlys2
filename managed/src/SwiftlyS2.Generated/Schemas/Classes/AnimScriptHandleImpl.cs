@@ -17,10 +17,15 @@ internal partial class AnimScriptHandleImpl : SchemaClass, AnimScriptHandle {
   public AnimScriptHandleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IdOffset = Schema.GetOffset(0x8A9EC535B4B6E980);
+  private static nint? _IdOffset;
 
   public ref uint Id {
-    get => ref _Handle.AsRef<uint>(_IdOffset);
+    get {
+      if (_IdOffset == null) {
+        _IdOffset = Schema.GetOffset(0x8A9EC535B4B6E980);
+      }
+      return ref _Handle.AsRef<uint>(_IdOffset!.Value);
+    }
   }
 
 

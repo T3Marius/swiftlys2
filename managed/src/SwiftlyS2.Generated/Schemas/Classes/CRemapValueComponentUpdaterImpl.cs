@@ -17,10 +17,15 @@ internal partial class CRemapValueComponentUpdaterImpl : CAnimComponentUpdaterIm
   public CRemapValueComponentUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ItemsOffset = Schema.GetOffset(0xA80D46C07A87EDAF);
+  private static nint? _ItemsOffset;
 
   public ref CUtlVector<CRemapValueUpdateItem> Items {
-    get => ref _Handle.AsRef<CUtlVector<CRemapValueUpdateItem>>(_ItemsOffset);
+    get {
+      if (_ItemsOffset == null) {
+        _ItemsOffset = Schema.GetOffset(0xA80D46C07A87EDAF);
+      }
+      return ref _Handle.AsRef<CUtlVector<CRemapValueUpdateItem>>(_ItemsOffset!.Value);
+    }
   }
 
 

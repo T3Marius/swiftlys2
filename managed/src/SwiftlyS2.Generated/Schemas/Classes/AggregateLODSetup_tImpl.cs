@@ -17,20 +17,35 @@ internal partial class AggregateLODSetup_tImpl : SchemaClass, AggregateLODSetup_
   public AggregateLODSetup_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LODOriginOffset = Schema.GetOffset(0xA931690332EC7486);
+  private static nint? _LODOriginOffset;
 
   public ref Vector LODOrigin {
-    get => ref _Handle.AsRef<Vector>(_LODOriginOffset);
+    get {
+      if (_LODOriginOffset == null) {
+        _LODOriginOffset = Schema.GetOffset(0xA931690332EC7486);
+      }
+      return ref _Handle.AsRef<Vector>(_LODOriginOffset!.Value);
+    }
   }
-  private static readonly nint _MaxObjectScaleOffset = Schema.GetOffset(0xA9316903D0DAF878);
+  private static nint? _MaxObjectScaleOffset;
 
   public ref float MaxObjectScale {
-    get => ref _Handle.AsRef<float>(_MaxObjectScaleOffset);
+    get {
+      if (_MaxObjectScaleOffset == null) {
+        _MaxObjectScaleOffset = Schema.GetOffset(0xA9316903D0DAF878);
+      }
+      return ref _Handle.AsRef<float>(_MaxObjectScaleOffset!.Value);
+    }
   }
-  private static readonly nint _SwitchDistancesOffset = Schema.GetOffset(0xA9316903E49F3FC3);
+  private static nint? _SwitchDistancesOffset;
 
   public ref CUtlVector<float> SwitchDistances {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_SwitchDistancesOffset);
+    get {
+      if (_SwitchDistancesOffset == null) {
+        _SwitchDistancesOffset = Schema.GetOffset(0xA9316903E49F3FC3);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_SwitchDistancesOffset!.Value);
+    }
   }
 
 

@@ -17,20 +17,35 @@ internal partial class CSoundContainerReferenceArrayImpl : SchemaClass, CSoundCo
   public CSoundContainerReferenceArrayImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _UseReferenceOffset = Schema.GetOffset(0x80FA0E8A45BCD5C9);
+  private static nint? _UseReferenceOffset;
 
   public ref bool UseReference {
-    get => ref _Handle.AsRef<bool>(_UseReferenceOffset);
+    get {
+      if (_UseReferenceOffset == null) {
+        _UseReferenceOffset = Schema.GetOffset(0x80FA0E8A45BCD5C9);
+      }
+      return ref _Handle.AsRef<bool>(_UseReferenceOffset!.Value);
+    }
   }
-  private static readonly nint _SoundsOffset = Schema.GetOffset(0x80FA0E8ABD919645);
+  private static nint? _SoundsOffset;
 
   public ref CUtlVector<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>> Sounds {
-    get => ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>>(_SoundsOffset);
+    get {
+      if (_SoundsOffset == null) {
+        _SoundsOffset = Schema.GetOffset(0x80FA0E8ABD919645);
+      }
+      return ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>>(_SoundsOffset!.Value);
+    }
   }
-  private static readonly nint _Sounds1Offset = Schema.GetOffset(0x80FA0E8AAA82BE1F);
+  private static nint? _Sounds1Offset;
 
   public ref CUtlVector<PointerTo<CVoiceContainerBase>> Sounds1 {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<CVoiceContainerBase>>>(_Sounds1Offset);
+    get {
+      if (_Sounds1Offset == null) {
+        _Sounds1Offset = Schema.GetOffset(0x80FA0E8AAA82BE1F);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<CVoiceContainerBase>>>(_Sounds1Offset!.Value);
+    }
   }
 
 

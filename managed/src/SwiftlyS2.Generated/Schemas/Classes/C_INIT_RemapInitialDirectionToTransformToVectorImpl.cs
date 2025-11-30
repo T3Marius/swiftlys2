@@ -17,35 +17,65 @@ internal partial class C_INIT_RemapInitialDirectionToTransformToVectorImpl : CPa
   public C_INIT_RemapInitialDirectionToTransformToVectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TransformInputOffset = Schema.GetOffset(0xB8FCDAFFB3FDC289);
+  private static nint? _TransformInputOffset;
 
   public CParticleTransformInput TransformInput {
-    get => new CParticleTransformInputImpl(_Handle + _TransformInputOffset);
+    get {
+      if (_TransformInputOffset == null) {
+        _TransformInputOffset = Schema.GetOffset(0xB8FCDAFFB3FDC289);
+      }
+      return new CParticleTransformInputImpl(_Handle + _TransformInputOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0xB8FCDAFFE5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0xB8FCDAFFE5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0xB8FCDAFFB731A42F);
+  private static nint? _ScaleOffset;
 
   public ref float Scale {
-    get => ref _Handle.AsRef<float>(_ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0xB8FCDAFFB731A42F);
+      }
+      return ref _Handle.AsRef<float>(_ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _OffsetRotOffset = Schema.GetOffset(0xB8FCDAFFB414F849);
+  private static nint? _OffsetRotOffset;
 
   public ref float OffsetRot {
-    get => ref _Handle.AsRef<float>(_OffsetRotOffset);
+    get {
+      if (_OffsetRotOffset == null) {
+        _OffsetRotOffset = Schema.GetOffset(0xB8FCDAFFB414F849);
+      }
+      return ref _Handle.AsRef<float>(_OffsetRotOffset!.Value);
+    }
   }
-  private static readonly nint _OffsetAxisOffset = Schema.GetOffset(0xB8FCDAFFFAB4918F);
+  private static nint? _OffsetAxisOffset;
 
   public ref Vector OffsetAxis {
-    get => ref _Handle.AsRef<Vector>(_OffsetAxisOffset);
+    get {
+      if (_OffsetAxisOffset == null) {
+        _OffsetAxisOffset = Schema.GetOffset(0xB8FCDAFFFAB4918F);
+      }
+      return ref _Handle.AsRef<Vector>(_OffsetAxisOffset!.Value);
+    }
   }
-  private static readonly nint _NormalizeOffset = Schema.GetOffset(0xB8FCDAFF48BC424C);
+  private static nint? _NormalizeOffset;
 
   public ref bool Normalize {
-    get => ref _Handle.AsRef<bool>(_NormalizeOffset);
+    get {
+      if (_NormalizeOffset == null) {
+        _NormalizeOffset = Schema.GetOffset(0xB8FCDAFF48BC424C);
+      }
+      return ref _Handle.AsRef<bool>(_NormalizeOffset!.Value);
+    }
   }
 
 

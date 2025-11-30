@@ -17,34 +17,62 @@ internal partial class FunctionInfo_tImpl : SchemaClass, FunctionInfo_t {
   public FunctionInfo_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xFCE0933A4D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xFCE0933A4D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xFCE0933A4D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NameTokenOffset = Schema.GetOffset(0xFCE0933A9293FEF3);
+  private static nint? _NameTokenOffset;
 
   public ref CUtlStringToken NameToken {
-    get => ref _Handle.AsRef<CUtlStringToken>(_NameTokenOffset);
+    get {
+      if (_NameTokenOffset == null) {
+        _NameTokenOffset = Schema.GetOffset(0xFCE0933A9293FEF3);
+      }
+      return ref _Handle.AsRef<CUtlStringToken>(_NameTokenOffset!.Value);
+    }
   }
-  private static readonly nint _ParamCountOffset = Schema.GetOffset(0xFCE0933ADD5DEEAD);
+  private static nint? _ParamCountOffset;
 
   public ref int ParamCount {
-    get => ref _Handle.AsRef<int>(_ParamCountOffset);
+    get {
+      if (_ParamCountOffset == null) {
+        _ParamCountOffset = Schema.GetOffset(0xFCE0933ADD5DEEAD);
+      }
+      return ref _Handle.AsRef<int>(_ParamCountOffset!.Value);
+    }
   }
-  private static readonly nint _IndexOffset = Schema.GetOffset(0xFCE0933AB73DBE67);
+  private static nint? _IndexOffset;
 
   public FuseFunctionIndex_t Index {
-    get => new FuseFunctionIndex_tImpl(_Handle + _IndexOffset);
+    get {
+      if (_IndexOffset == null) {
+        _IndexOffset = Schema.GetOffset(0xFCE0933AB73DBE67);
+      }
+      return new FuseFunctionIndex_tImpl(_Handle + _IndexOffset!.Value);
+    }
   }
-  private static readonly nint _IsPureOffset = Schema.GetOffset(0xFCE0933AA5A65B13);
+  private static nint? _IsPureOffset;
 
   public ref bool IsPure {
-    get => ref _Handle.AsRef<bool>(_IsPureOffset);
+    get {
+      if (_IsPureOffset == null) {
+        _IsPureOffset = Schema.GetOffset(0xFCE0933AA5A65B13);
+      }
+      return ref _Handle.AsRef<bool>(_IsPureOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class CMarkupVolumeWithRefImpl : CMarkupVolumeTaggedImpl, CMark
   public CMarkupVolumeWithRefImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _UseRefOffset = Schema.GetOffset(0x12AA97857F572B29);
+  private static nint? _UseRefOffset;
 
   public ref bool UseRef {
-    get => ref _Handle.AsRef<bool>(_UseRefOffset);
+    get {
+      if (_UseRefOffset == null) {
+        _UseRefOffset = Schema.GetOffset(0x12AA97857F572B29);
+      }
+      return ref _Handle.AsRef<bool>(_UseRefOffset!.Value);
+    }
   }
-  private static readonly nint _RefPosEntitySpaceOffset = Schema.GetOffset(0x12AA978532BBDFAB);
+  private static nint? _RefPosEntitySpaceOffset;
 
   public ref Vector RefPosEntitySpace {
-    get => ref _Handle.AsRef<Vector>(_RefPosEntitySpaceOffset);
+    get {
+      if (_RefPosEntitySpaceOffset == null) {
+        _RefPosEntitySpaceOffset = Schema.GetOffset(0x12AA978532BBDFAB);
+      }
+      return ref _Handle.AsRef<Vector>(_RefPosEntitySpaceOffset!.Value);
+    }
   }
-  private static readonly nint _RefPosWorldSpaceOffset = Schema.GetOffset(0x12AA97856139C236);
+  private static nint? _RefPosWorldSpaceOffset;
 
   public ref Vector RefPosWorldSpace {
-    get => ref _Handle.AsRef<Vector>(_RefPosWorldSpaceOffset);
+    get {
+      if (_RefPosWorldSpaceOffset == null) {
+        _RefPosWorldSpaceOffset = Schema.GetOffset(0x12AA97856139C236);
+      }
+      return ref _Handle.AsRef<Vector>(_RefPosWorldSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _RefDotOffset = Schema.GetOffset(0x12AA9785584DB957);
+  private static nint? _RefDotOffset;
 
   public ref float RefDot {
-    get => ref _Handle.AsRef<float>(_RefDotOffset);
+    get {
+      if (_RefDotOffset == null) {
+        _RefDotOffset = Schema.GetOffset(0x12AA9785584DB957);
+      }
+      return ref _Handle.AsRef<float>(_RefDotOffset!.Value);
+    }
   }
 
 

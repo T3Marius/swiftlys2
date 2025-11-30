@@ -17,11 +17,14 @@ internal partial class CSkeletonAnimationControllerImpl : ISkeletonAnimationCont
   public CSkeletonAnimationControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SkeletonInstanceOffset = Schema.GetOffset(0x47164D01F28853);
+  private static nint? _SkeletonInstanceOffset;
 
   public CSkeletonInstance? SkeletonInstance {
     get {
-      var ptr = _Handle.Read<nint>(_SkeletonInstanceOffset);
+      if (_SkeletonInstanceOffset == null) {
+        _SkeletonInstanceOffset = Schema.GetOffset(0x47164D01F28853);
+      }
+      var ptr = _Handle.Read<nint>(_SkeletonInstanceOffset!.Value);
       return ptr.IsValidPtr() ? new CSkeletonInstanceImpl(ptr) : null;
     }
   }

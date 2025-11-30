@@ -17,20 +17,35 @@ internal partial class C_OP_RenderFlattenGrassImpl : CParticleFunctionRendererIm
   public C_OP_RenderFlattenGrassImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlattenStrengthOffset = Schema.GetOffset(0x81877FD959D69362);
+  private static nint? _FlattenStrengthOffset;
 
   public ref float FlattenStrength {
-    get => ref _Handle.AsRef<float>(_FlattenStrengthOffset);
+    get {
+      if (_FlattenStrengthOffset == null) {
+        _FlattenStrengthOffset = Schema.GetOffset(0x81877FD959D69362);
+      }
+      return ref _Handle.AsRef<float>(_FlattenStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _StrengthFieldOverrideOffset = Schema.GetOffset(0x81877FD91996F4F8);
+  private static nint? _StrengthFieldOverrideOffset;
 
   public ParticleAttributeIndex_t StrengthFieldOverride {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _StrengthFieldOverrideOffset);
+    get {
+      if (_StrengthFieldOverrideOffset == null) {
+        _StrengthFieldOverrideOffset = Schema.GetOffset(0x81877FD91996F4F8);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _StrengthFieldOverrideOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusScaleOffset = Schema.GetOffset(0x81877FD9A7A20159);
+  private static nint? _RadiusScaleOffset;
 
   public ref float RadiusScale {
-    get => ref _Handle.AsRef<float>(_RadiusScaleOffset);
+    get {
+      if (_RadiusScaleOffset == null) {
+        _RadiusScaleOffset = Schema.GetOffset(0x81877FD9A7A20159);
+      }
+      return ref _Handle.AsRef<float>(_RadiusScaleOffset!.Value);
+    }
   }
 
 

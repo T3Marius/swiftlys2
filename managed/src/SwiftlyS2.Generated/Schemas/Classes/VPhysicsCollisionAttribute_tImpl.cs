@@ -17,45 +17,85 @@ internal partial class VPhysicsCollisionAttribute_tImpl : SchemaClass, VPhysicsC
   public VPhysicsCollisionAttribute_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InteractsAsOffset = Schema.GetOffset(0x7E9FC931062B2708);
+  private static nint? _InteractsAsOffset;
 
   public ref ulong InteractsAs {
-    get => ref _Handle.AsRef<ulong>(_InteractsAsOffset);
+    get {
+      if (_InteractsAsOffset == null) {
+        _InteractsAsOffset = Schema.GetOffset(0x7E9FC931062B2708);
+      }
+      return ref _Handle.AsRef<ulong>(_InteractsAsOffset!.Value);
+    }
   }
-  private static readonly nint _InteractsWithOffset = Schema.GetOffset(0x7E9FC93139179720);
+  private static nint? _InteractsWithOffset;
 
   public ref ulong InteractsWith {
-    get => ref _Handle.AsRef<ulong>(_InteractsWithOffset);
+    get {
+      if (_InteractsWithOffset == null) {
+        _InteractsWithOffset = Schema.GetOffset(0x7E9FC93139179720);
+      }
+      return ref _Handle.AsRef<ulong>(_InteractsWithOffset!.Value);
+    }
   }
-  private static readonly nint _InteractsExcludeOffset = Schema.GetOffset(0x7E9FC9314D765732);
+  private static nint? _InteractsExcludeOffset;
 
   public ref ulong InteractsExclude {
-    get => ref _Handle.AsRef<ulong>(_InteractsExcludeOffset);
+    get {
+      if (_InteractsExcludeOffset == null) {
+        _InteractsExcludeOffset = Schema.GetOffset(0x7E9FC9314D765732);
+      }
+      return ref _Handle.AsRef<ulong>(_InteractsExcludeOffset!.Value);
+    }
   }
-  private static readonly nint _EntityIdOffset = Schema.GetOffset(0x7E9FC9312E71588B);
+  private static nint? _EntityIdOffset;
 
   public ref uint EntityId {
-    get => ref _Handle.AsRef<uint>(_EntityIdOffset);
+    get {
+      if (_EntityIdOffset == null) {
+        _EntityIdOffset = Schema.GetOffset(0x7E9FC9312E71588B);
+      }
+      return ref _Handle.AsRef<uint>(_EntityIdOffset!.Value);
+    }
   }
-  private static readonly nint _OwnerIdOffset = Schema.GetOffset(0x7E9FC931DD9F9E45);
+  private static nint? _OwnerIdOffset;
 
   public ref uint OwnerId {
-    get => ref _Handle.AsRef<uint>(_OwnerIdOffset);
+    get {
+      if (_OwnerIdOffset == null) {
+        _OwnerIdOffset = Schema.GetOffset(0x7E9FC931DD9F9E45);
+      }
+      return ref _Handle.AsRef<uint>(_OwnerIdOffset!.Value);
+    }
   }
-  private static readonly nint _HierarchyIdOffset = Schema.GetOffset(0x7E9FC931E2479899);
+  private static nint? _HierarchyIdOffset;
 
   public ref ushort HierarchyId {
-    get => ref _Handle.AsRef<ushort>(_HierarchyIdOffset);
+    get {
+      if (_HierarchyIdOffset == null) {
+        _HierarchyIdOffset = Schema.GetOffset(0x7E9FC931E2479899);
+      }
+      return ref _Handle.AsRef<ushort>(_HierarchyIdOffset!.Value);
+    }
   }
-  private static readonly nint _CollisionGroupOffset = Schema.GetOffset(0x7E9FC9310AC0C752);
+  private static nint? _CollisionGroupOffset;
 
   public ref byte CollisionGroup {
-    get => ref _Handle.AsRef<byte>(_CollisionGroupOffset);
+    get {
+      if (_CollisionGroupOffset == null) {
+        _CollisionGroupOffset = Schema.GetOffset(0x7E9FC9310AC0C752);
+      }
+      return ref _Handle.AsRef<byte>(_CollisionGroupOffset!.Value);
+    }
   }
-  private static readonly nint _CollisionFunctionMaskOffset = Schema.GetOffset(0x7E9FC931FC7E6DAF);
+  private static nint? _CollisionFunctionMaskOffset;
 
   public ref byte CollisionFunctionMask {
-    get => ref _Handle.AsRef<byte>(_CollisionFunctionMaskOffset);
+    get {
+      if (_CollisionFunctionMaskOffset == null) {
+        _CollisionFunctionMaskOffset = Schema.GetOffset(0x7E9FC931FC7E6DAF);
+      }
+      return ref _Handle.AsRef<byte>(_CollisionFunctionMaskOffset!.Value);
+    }
   }
 
   public void InteractsAsUpdated() {

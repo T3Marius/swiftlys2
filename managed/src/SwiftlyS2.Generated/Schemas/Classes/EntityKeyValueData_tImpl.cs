@@ -17,15 +17,25 @@ internal partial class EntityKeyValueData_tImpl : SchemaClass, EntityKeyValueDat
   public EntityKeyValueData_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ConnectionsOffset = Schema.GetOffset(0x66FE4A4558F33FBE);
+  private static nint? _ConnectionsOffset;
 
   public ref CUtlVector<EntityIOConnectionData_t> Connections {
-    get => ref _Handle.AsRef<CUtlVector<EntityIOConnectionData_t>>(_ConnectionsOffset);
+    get {
+      if (_ConnectionsOffset == null) {
+        _ConnectionsOffset = Schema.GetOffset(0x66FE4A4558F33FBE);
+      }
+      return ref _Handle.AsRef<CUtlVector<EntityIOConnectionData_t>>(_ConnectionsOffset!.Value);
+    }
   }
-  private static readonly nint _KeyValuesDataOffset = Schema.GetOffset(0x66FE4A451BD58EB2);
+  private static nint? _KeyValuesDataOffset;
 
   public ref CUtlBinaryBlock KeyValuesData {
-    get => ref _Handle.AsRef<CUtlBinaryBlock>(_KeyValuesDataOffset);
+    get {
+      if (_KeyValuesDataOffset == null) {
+        _KeyValuesDataOffset = Schema.GetOffset(0x66FE4A451BD58EB2);
+      }
+      return ref _Handle.AsRef<CUtlBinaryBlock>(_KeyValuesDataOffset!.Value);
+    }
   }
 
 

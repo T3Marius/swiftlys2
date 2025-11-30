@@ -17,15 +17,25 @@ internal partial class AutoRoomDoorwayPairs_tImpl : SchemaClass, AutoRoomDoorway
   public AutoRoomDoorwayPairs_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _P1Offset = Schema.GetOffset(0x735A94BECD01805E);
+  private static nint? _P1Offset;
 
   public ref Vector P1 {
-    get => ref _Handle.AsRef<Vector>(_P1Offset);
+    get {
+      if (_P1Offset == null) {
+        _P1Offset = Schema.GetOffset(0x735A94BECD01805E);
+      }
+      return ref _Handle.AsRef<Vector>(_P1Offset!.Value);
+    }
   }
-  private static readonly nint _P2Offset = Schema.GetOffset(0x735A94BECC017ECB);
+  private static nint? _P2Offset;
 
   public ref Vector P2 {
-    get => ref _Handle.AsRef<Vector>(_P2Offset);
+    get {
+      if (_P2Offset == null) {
+        _P2Offset = Schema.GetOffset(0x735A94BECC017ECB);
+      }
+      return ref _Handle.AsRef<Vector>(_P2Offset!.Value);
+    }
   }
 
 

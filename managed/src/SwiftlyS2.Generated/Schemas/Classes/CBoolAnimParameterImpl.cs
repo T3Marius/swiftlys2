@@ -17,10 +17,15 @@ internal partial class CBoolAnimParameterImpl : CConcreteAnimParameterImpl, CBoo
   public CBoolAnimParameterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DefaultValueOffset = Schema.GetOffset(0x3BF60C6A26126DF);
+  private static nint? _DefaultValueOffset;
 
   public ref bool DefaultValue {
-    get => ref _Handle.AsRef<bool>(_DefaultValueOffset);
+    get {
+      if (_DefaultValueOffset == null) {
+        _DefaultValueOffset = Schema.GetOffset(0x3BF60C6A26126DF);
+      }
+      return ref _Handle.AsRef<bool>(_DefaultValueOffset!.Value);
+    }
   }
 
 

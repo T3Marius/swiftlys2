@@ -17,35 +17,65 @@ internal partial class VMixFilterDesc_tImpl : SchemaClass, VMixFilterDesc_t {
   public VMixFilterDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FilterTypeOffset = Schema.GetOffset(0x39A87B6971861EDB);
+  private static nint? _FilterTypeOffset;
 
   public ref VMixFilterType_t FilterType {
-    get => ref _Handle.AsRef<VMixFilterType_t>(_FilterTypeOffset);
+    get {
+      if (_FilterTypeOffset == null) {
+        _FilterTypeOffset = Schema.GetOffset(0x39A87B6971861EDB);
+      }
+      return ref _Handle.AsRef<VMixFilterType_t>(_FilterTypeOffset!.Value);
+    }
   }
-  private static readonly nint _FilterSlopeOffset = Schema.GetOffset(0x39A87B696387D992);
+  private static nint? _FilterSlopeOffset;
 
   public ref VMixFilterSlope_t FilterSlope {
-    get => ref _Handle.AsRef<VMixFilterSlope_t>(_FilterSlopeOffset);
+    get {
+      if (_FilterSlopeOffset == null) {
+        _FilterSlopeOffset = Schema.GetOffset(0x39A87B696387D992);
+      }
+      return ref _Handle.AsRef<VMixFilterSlope_t>(_FilterSlopeOffset!.Value);
+    }
   }
-  private static readonly nint _EnabledOffset = Schema.GetOffset(0x39A87B696154EB7E);
+  private static nint? _EnabledOffset;
 
   public ref bool Enabled {
-    get => ref _Handle.AsRef<bool>(_EnabledOffset);
+    get {
+      if (_EnabledOffset == null) {
+        _EnabledOffset = Schema.GetOffset(0x39A87B696154EB7E);
+      }
+      return ref _Handle.AsRef<bool>(_EnabledOffset!.Value);
+    }
   }
-  private static readonly nint _FldbGainOffset = Schema.GetOffset(0x39A87B6931BF2DF2);
+  private static nint? _FldbGainOffset;
 
   public ref float FldbGain {
-    get => ref _Handle.AsRef<float>(_FldbGainOffset);
+    get {
+      if (_FldbGainOffset == null) {
+        _FldbGainOffset = Schema.GetOffset(0x39A87B6931BF2DF2);
+      }
+      return ref _Handle.AsRef<float>(_FldbGainOffset!.Value);
+    }
   }
-  private static readonly nint _CutoffFreqOffset = Schema.GetOffset(0x39A87B691E8CBE8C);
+  private static nint? _CutoffFreqOffset;
 
   public ref float CutoffFreq {
-    get => ref _Handle.AsRef<float>(_CutoffFreqOffset);
+    get {
+      if (_CutoffFreqOffset == null) {
+        _CutoffFreqOffset = Schema.GetOffset(0x39A87B691E8CBE8C);
+      }
+      return ref _Handle.AsRef<float>(_CutoffFreqOffset!.Value);
+    }
   }
-  private static readonly nint _QOffset = Schema.GetOffset(0x39A87B6996122E3A);
+  private static nint? _QOffset;
 
   public ref float Q {
-    get => ref _Handle.AsRef<float>(_QOffset);
+    get {
+      if (_QOffset == null) {
+        _QOffset = Schema.GetOffset(0x39A87B6996122E3A);
+      }
+      return ref _Handle.AsRef<float>(_QOffset!.Value);
+    }
   }
 
 

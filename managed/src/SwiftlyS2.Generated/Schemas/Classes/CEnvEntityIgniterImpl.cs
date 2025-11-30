@@ -17,10 +17,15 @@ internal partial class CEnvEntityIgniterImpl : CBaseEntityImpl, CEnvEntityIgnite
   public CEnvEntityIgniterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LifetimeOffset = Schema.GetOffset(0xF8FFE95A39B35564);
+  private static nint? _LifetimeOffset;
 
   public ref float Lifetime {
-    get => ref _Handle.AsRef<float>(_LifetimeOffset);
+    get {
+      if (_LifetimeOffset == null) {
+        _LifetimeOffset = Schema.GetOffset(0xF8FFE95A39B35564);
+      }
+      return ref _Handle.AsRef<float>(_LifetimeOffset!.Value);
+    }
   }
 
 

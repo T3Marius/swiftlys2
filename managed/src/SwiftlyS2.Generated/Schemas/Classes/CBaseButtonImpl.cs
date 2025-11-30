@@ -17,154 +17,297 @@ internal partial class CBaseButtonImpl : CBaseToggleImpl, CBaseButton {
   public CBaseButtonImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MoveEntitySpaceOffset = Schema.GetOffset(0x1911FA7F325319F9);
+  private static nint? _MoveEntitySpaceOffset;
 
   public ref QAngle MoveEntitySpace {
-    get => ref _Handle.AsRef<QAngle>(_MoveEntitySpaceOffset);
+    get {
+      if (_MoveEntitySpaceOffset == null) {
+        _MoveEntitySpaceOffset = Schema.GetOffset(0x1911FA7F325319F9);
+      }
+      return ref _Handle.AsRef<QAngle>(_MoveEntitySpaceOffset!.Value);
+    }
   }
-  private static readonly nint _StayPushedOffset = Schema.GetOffset(0x1911FA7FF5E81349);
+  private static nint? _StayPushedOffset;
 
   public ref bool StayPushed {
-    get => ref _Handle.AsRef<bool>(_StayPushedOffset);
+    get {
+      if (_StayPushedOffset == null) {
+        _StayPushedOffset = Schema.GetOffset(0x1911FA7FF5E81349);
+      }
+      return ref _Handle.AsRef<bool>(_StayPushedOffset!.Value);
+    }
   }
-  private static readonly nint _RotatingOffset = Schema.GetOffset(0x1911FA7F6DAD9199);
+  private static nint? _RotatingOffset;
 
   public ref bool Rotating {
-    get => ref _Handle.AsRef<bool>(_RotatingOffset);
+    get {
+      if (_RotatingOffset == null) {
+        _RotatingOffset = Schema.GetOffset(0x1911FA7F6DAD9199);
+      }
+      return ref _Handle.AsRef<bool>(_RotatingOffset!.Value);
+    }
   }
-  private static readonly nint _LsOffset = Schema.GetOffset(0x1911FA7FD3B05E88);
+  private static nint? _LsOffset;
 
   public locksound_t Ls {
-    get => new locksound_tImpl(_Handle + _LsOffset);
+    get {
+      if (_LsOffset == null) {
+        _LsOffset = Schema.GetOffset(0x1911FA7FD3B05E88);
+      }
+      return new locksound_tImpl(_Handle + _LsOffset!.Value);
+    }
   }
-  private static readonly nint _UseSoundOffset = Schema.GetOffset(0x1911FA7FCCC8AC24);
+  private static nint? _UseSoundOffset;
 
   public string UseSound {
     get {
-      var ptr = _Handle.Read<nint>(_UseSoundOffset);
+      if (_UseSoundOffset == null) {
+        _UseSoundOffset = Schema.GetOffset(0x1911FA7FCCC8AC24);
+      }
+      var ptr = _Handle.Read<nint>(_UseSoundOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _UseSoundOffset, value);
+    set {
+      if (_UseSoundOffset == null) {
+        _UseSoundOffset = Schema.GetOffset(0x1911FA7FCCC8AC24);
+      }
+      Schema.SetString(_Handle, _UseSoundOffset!.Value, value);
+    }
   } 
-  private static readonly nint _LockedSoundOffset = Schema.GetOffset(0x1911FA7FB3FCB84B);
+  private static nint? _LockedSoundOffset;
 
   public string LockedSound {
     get {
-      var ptr = _Handle.Read<nint>(_LockedSoundOffset);
+      if (_LockedSoundOffset == null) {
+        _LockedSoundOffset = Schema.GetOffset(0x1911FA7FB3FCB84B);
+      }
+      var ptr = _Handle.Read<nint>(_LockedSoundOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _LockedSoundOffset, value);
+    set {
+      if (_LockedSoundOffset == null) {
+        _LockedSoundOffset = Schema.GetOffset(0x1911FA7FB3FCB84B);
+      }
+      Schema.SetString(_Handle, _LockedSoundOffset!.Value, value);
+    }
   } 
-  private static readonly nint _UnlockedSoundOffset = Schema.GetOffset(0x1911FA7FDC697A96);
+  private static nint? _UnlockedSoundOffset;
 
   public string UnlockedSound {
     get {
-      var ptr = _Handle.Read<nint>(_UnlockedSoundOffset);
+      if (_UnlockedSoundOffset == null) {
+        _UnlockedSoundOffset = Schema.GetOffset(0x1911FA7FDC697A96);
+      }
+      var ptr = _Handle.Read<nint>(_UnlockedSoundOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _UnlockedSoundOffset, value);
+    set {
+      if (_UnlockedSoundOffset == null) {
+        _UnlockedSoundOffset = Schema.GetOffset(0x1911FA7FDC697A96);
+      }
+      Schema.SetString(_Handle, _UnlockedSoundOffset!.Value, value);
+    }
   } 
-  private static readonly nint _OverrideAnticipationNameOffset = Schema.GetOffset(0x1911FA7FDBCCC724);
+  private static nint? _OverrideAnticipationNameOffset;
 
   public string OverrideAnticipationName {
     get {
-      var ptr = _Handle.Read<nint>(_OverrideAnticipationNameOffset);
+      if (_OverrideAnticipationNameOffset == null) {
+        _OverrideAnticipationNameOffset = Schema.GetOffset(0x1911FA7FDBCCC724);
+      }
+      var ptr = _Handle.Read<nint>(_OverrideAnticipationNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _OverrideAnticipationNameOffset, value);
+    set {
+      if (_OverrideAnticipationNameOffset == null) {
+        _OverrideAnticipationNameOffset = Schema.GetOffset(0x1911FA7FDBCCC724);
+      }
+      Schema.SetString(_Handle, _OverrideAnticipationNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _LockedOffset = Schema.GetOffset(0x1911FA7FD08E97F3);
+  private static nint? _LockedOffset;
 
   public ref bool Locked {
-    get => ref _Handle.AsRef<bool>(_LockedOffset);
+    get {
+      if (_LockedOffset == null) {
+        _LockedOffset = Schema.GetOffset(0x1911FA7FD08E97F3);
+      }
+      return ref _Handle.AsRef<bool>(_LockedOffset!.Value);
+    }
   }
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x1911FA7F3A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x1911FA7F3A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
-  private static readonly nint _UseLockedTimeOffset = Schema.GetOffset(0x1911FA7FE94A05A1);
+  private static nint? _UseLockedTimeOffset;
 
   public GameTime_t UseLockedTime {
-    get => new GameTime_tImpl(_Handle + _UseLockedTimeOffset);
+    get {
+      if (_UseLockedTimeOffset == null) {
+        _UseLockedTimeOffset = Schema.GetOffset(0x1911FA7FE94A05A1);
+      }
+      return new GameTime_tImpl(_Handle + _UseLockedTimeOffset!.Value);
+    }
   }
-  private static readonly nint _SolidBspOffset = Schema.GetOffset(0x1911FA7FA50CEC89);
+  private static nint? _SolidBspOffset;
 
   public ref bool SolidBsp {
-    get => ref _Handle.AsRef<bool>(_SolidBspOffset);
+    get {
+      if (_SolidBspOffset == null) {
+        _SolidBspOffset = Schema.GetOffset(0x1911FA7FA50CEC89);
+      }
+      return ref _Handle.AsRef<bool>(_SolidBspOffset!.Value);
+    }
   }
-  private static readonly nint _OnDamagedOffset = Schema.GetOffset(0x1911FA7F1667F41F);
+  private static nint? _OnDamagedOffset;
 
   public CEntityIOOutput OnDamaged {
-    get => new CEntityIOOutputImpl(_Handle + _OnDamagedOffset);
+    get {
+      if (_OnDamagedOffset == null) {
+        _OnDamagedOffset = Schema.GetOffset(0x1911FA7F1667F41F);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnDamagedOffset!.Value);
+    }
   }
-  private static readonly nint _OnPressedOffset = Schema.GetOffset(0x1911FA7F6707E726);
+  private static nint? _OnPressedOffset;
 
   public CEntityIOOutput OnPressed {
-    get => new CEntityIOOutputImpl(_Handle + _OnPressedOffset);
+    get {
+      if (_OnPressedOffset == null) {
+        _OnPressedOffset = Schema.GetOffset(0x1911FA7F6707E726);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnPressedOffset!.Value);
+    }
   }
-  private static readonly nint _OnUseLockedOffset = Schema.GetOffset(0x1911FA7FE603388D);
+  private static nint? _OnUseLockedOffset;
 
   public CEntityIOOutput OnUseLocked {
-    get => new CEntityIOOutputImpl(_Handle + _OnUseLockedOffset);
+    get {
+      if (_OnUseLockedOffset == null) {
+        _OnUseLockedOffset = Schema.GetOffset(0x1911FA7FE603388D);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnUseLockedOffset!.Value);
+    }
   }
-  private static readonly nint _OnInOffset = Schema.GetOffset(0x1911FA7FE9F7186F);
+  private static nint? _OnInOffset;
 
   public CEntityIOOutput OnIn {
-    get => new CEntityIOOutputImpl(_Handle + _OnInOffset);
+    get {
+      if (_OnInOffset == null) {
+        _OnInOffset = Schema.GetOffset(0x1911FA7FE9F7186F);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnInOffset!.Value);
+    }
   }
-  private static readonly nint _OnOutOffset = Schema.GetOffset(0x1911FA7FF28E1D54);
+  private static nint? _OnOutOffset;
 
   public CEntityIOOutput OnOut {
-    get => new CEntityIOOutputImpl(_Handle + _OnOutOffset);
+    get {
+      if (_OnOutOffset == null) {
+        _OnOutOffset = Schema.GetOffset(0x1911FA7FF28E1D54);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnOutOffset!.Value);
+    }
   }
-  private static readonly nint _StateOffset = Schema.GetOffset(0x1911FA7F7C824322);
+  private static nint? _StateOffset;
 
   public ref int State {
-    get => ref _Handle.AsRef<int>(_StateOffset);
+    get {
+      if (_StateOffset == null) {
+        _StateOffset = Schema.GetOffset(0x1911FA7F7C824322);
+      }
+      return ref _Handle.AsRef<int>(_StateOffset!.Value);
+    }
   }
-  private static readonly nint _ConstraintOffset = Schema.GetOffset(0x1911FA7F16F916EC);
+  private static nint? _ConstraintOffset;
 
   public ref CHandle<CEntityInstance> Constraint {
-    get => ref _Handle.AsRef<CHandle<CEntityInstance>>(_ConstraintOffset);
+    get {
+      if (_ConstraintOffset == null) {
+        _ConstraintOffset = Schema.GetOffset(0x1911FA7F16F916EC);
+      }
+      return ref _Handle.AsRef<CHandle<CEntityInstance>>(_ConstraintOffset!.Value);
+    }
   }
-  private static readonly nint _ConstraintParentOffset = Schema.GetOffset(0x1911FA7F0E2D0AA4);
+  private static nint? _ConstraintParentOffset;
 
   public ref CHandle<CEntityInstance> ConstraintParent {
-    get => ref _Handle.AsRef<CHandle<CEntityInstance>>(_ConstraintParentOffset);
+    get {
+      if (_ConstraintParentOffset == null) {
+        _ConstraintParentOffset = Schema.GetOffset(0x1911FA7F0E2D0AA4);
+      }
+      return ref _Handle.AsRef<CHandle<CEntityInstance>>(_ConstraintParentOffset!.Value);
+    }
   }
-  private static readonly nint _ForceNpcExcludeOffset = Schema.GetOffset(0x1911FA7F4194963F);
+  private static nint? _ForceNpcExcludeOffset;
 
   public ref bool ForceNpcExclude {
-    get => ref _Handle.AsRef<bool>(_ForceNpcExcludeOffset);
+    get {
+      if (_ForceNpcExcludeOffset == null) {
+        _ForceNpcExcludeOffset = Schema.GetOffset(0x1911FA7F4194963F);
+      }
+      return ref _Handle.AsRef<bool>(_ForceNpcExcludeOffset!.Value);
+    }
   }
-  private static readonly nint _GlowEntityOffset = Schema.GetOffset(0x1911FA7F8B25D228);
+  private static nint? _GlowEntityOffset;
 
   public string GlowEntity {
     get {
-      var ptr = _Handle.Read<nint>(_GlowEntityOffset);
+      if (_GlowEntityOffset == null) {
+        _GlowEntityOffset = Schema.GetOffset(0x1911FA7F8B25D228);
+      }
+      var ptr = _Handle.Read<nint>(_GlowEntityOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _GlowEntityOffset, value);
+    set {
+      if (_GlowEntityOffset == null) {
+        _GlowEntityOffset = Schema.GetOffset(0x1911FA7F8B25D228);
+      }
+      Schema.SetString(_Handle, _GlowEntityOffset!.Value, value);
+    }
   } 
-  private static readonly nint _GlowEntity1Offset = Schema.GetOffset(0x1911FA7F35C883E7);
+  private static nint? _GlowEntity1Offset;
 
   public ref CHandle<CBaseModelEntity> GlowEntity1 {
-    get => ref _Handle.AsRef<CHandle<CBaseModelEntity>>(_GlowEntity1Offset);
+    get {
+      if (_GlowEntity1Offset == null) {
+        _GlowEntity1Offset = Schema.GetOffset(0x1911FA7F35C883E7);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseModelEntity>>(_GlowEntity1Offset!.Value);
+    }
   }
-  private static readonly nint _UsableOffset = Schema.GetOffset(0x1911FA7F44B8E369);
+  private static nint? _UsableOffset;
 
   public ref bool Usable {
-    get => ref _Handle.AsRef<bool>(_UsableOffset);
+    get {
+      if (_UsableOffset == null) {
+        _UsableOffset = Schema.GetOffset(0x1911FA7F44B8E369);
+      }
+      return ref _Handle.AsRef<bool>(_UsableOffset!.Value);
+    }
   }
-  private static readonly nint _DisplayTextOffset = Schema.GetOffset(0x1911FA7FDE5320C5);
+  private static nint? _DisplayTextOffset;
 
   public string DisplayText {
     get {
-      var ptr = _Handle.Read<nint>(_DisplayTextOffset);
+      if (_DisplayTextOffset == null) {
+        _DisplayTextOffset = Schema.GetOffset(0x1911FA7FDE5320C5);
+      }
+      var ptr = _Handle.Read<nint>(_DisplayTextOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _DisplayTextOffset, value);
+    set {
+      if (_DisplayTextOffset == null) {
+        _DisplayTextOffset = Schema.GetOffset(0x1911FA7FDE5320C5);
+      }
+      Schema.SetString(_Handle, _DisplayTextOffset!.Value, value);
+    }
   } 
 
   public void GlowEntity1Updated() {

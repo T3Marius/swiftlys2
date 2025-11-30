@@ -17,19 +17,32 @@ internal partial class CPointGamestatsCounterImpl : CPointEntityImpl, CPointGame
   public CPointGamestatsCounterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StrStatisticNameOffset = Schema.GetOffset(0xDB27C27354212AB1);
+  private static nint? _StrStatisticNameOffset;
 
   public string StrStatisticName {
     get {
-      var ptr = _Handle.Read<nint>(_StrStatisticNameOffset);
+      if (_StrStatisticNameOffset == null) {
+        _StrStatisticNameOffset = Schema.GetOffset(0xDB27C27354212AB1);
+      }
+      var ptr = _Handle.Read<nint>(_StrStatisticNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrStatisticNameOffset, value);
+    set {
+      if (_StrStatisticNameOffset == null) {
+        _StrStatisticNameOffset = Schema.GetOffset(0xDB27C27354212AB1);
+      }
+      Schema.SetString(_Handle, _StrStatisticNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0xDB27C2733A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0xDB27C2733A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
 
 

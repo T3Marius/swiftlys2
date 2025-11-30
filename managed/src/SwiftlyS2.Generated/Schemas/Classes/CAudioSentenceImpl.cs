@@ -17,25 +17,45 @@ internal partial class CAudioSentenceImpl : SchemaClass, CAudioSentence {
   public CAudioSentenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ShouldVoiceDuckOffset = Schema.GetOffset(0x25F8D719C546CD15);
+  private static nint? _ShouldVoiceDuckOffset;
 
   public ref bool ShouldVoiceDuck {
-    get => ref _Handle.AsRef<bool>(_ShouldVoiceDuckOffset);
+    get {
+      if (_ShouldVoiceDuckOffset == null) {
+        _ShouldVoiceDuckOffset = Schema.GetOffset(0x25F8D719C546CD15);
+      }
+      return ref _Handle.AsRef<bool>(_ShouldVoiceDuckOffset!.Value);
+    }
   }
-  private static readonly nint _RunTimePhonemesOffset = Schema.GetOffset(0x25F8D719C0434838);
+  private static nint? _RunTimePhonemesOffset;
 
   public ref CUtlVector<CAudioPhonemeTag> RunTimePhonemes {
-    get => ref _Handle.AsRef<CUtlVector<CAudioPhonemeTag>>(_RunTimePhonemesOffset);
+    get {
+      if (_RunTimePhonemesOffset == null) {
+        _RunTimePhonemesOffset = Schema.GetOffset(0x25F8D719C0434838);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAudioPhonemeTag>>(_RunTimePhonemesOffset!.Value);
+    }
   }
-  private static readonly nint _EmphasisSamplesOffset = Schema.GetOffset(0x25F8D7194EBE8F82);
+  private static nint? _EmphasisSamplesOffset;
 
   public ref CUtlVector<CAudioEmphasisSample> EmphasisSamples {
-    get => ref _Handle.AsRef<CUtlVector<CAudioEmphasisSample>>(_EmphasisSamplesOffset);
+    get {
+      if (_EmphasisSamplesOffset == null) {
+        _EmphasisSamplesOffset = Schema.GetOffset(0x25F8D7194EBE8F82);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAudioEmphasisSample>>(_EmphasisSamplesOffset!.Value);
+    }
   }
-  private static readonly nint _MorphDataOffset = Schema.GetOffset(0x25F8D719A8207F65);
+  private static nint? _MorphDataOffset;
 
   public CAudioMorphData MorphData {
-    get => new CAudioMorphDataImpl(_Handle + _MorphDataOffset);
+    get {
+      if (_MorphDataOffset == null) {
+        _MorphDataOffset = Schema.GetOffset(0x25F8D719A8207F65);
+      }
+      return new CAudioMorphDataImpl(_Handle + _MorphDataOffset!.Value);
+    }
   }
 
 

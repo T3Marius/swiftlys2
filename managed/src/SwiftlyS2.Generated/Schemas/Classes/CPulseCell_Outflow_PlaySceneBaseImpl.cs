@@ -17,20 +17,35 @@ internal partial class CPulseCell_Outflow_PlaySceneBaseImpl : CPulseCell_BaseYie
   public CPulseCell_Outflow_PlaySceneBaseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnFinishedOffset = Schema.GetOffset(0x647C41D08D903E5E);
+  private static nint? _OnFinishedOffset;
 
   public CPulse_ResumePoint OnFinished {
-    get => new CPulse_ResumePointImpl(_Handle + _OnFinishedOffset);
+    get {
+      if (_OnFinishedOffset == null) {
+        _OnFinishedOffset = Schema.GetOffset(0x647C41D08D903E5E);
+      }
+      return new CPulse_ResumePointImpl(_Handle + _OnFinishedOffset!.Value);
+    }
   }
-  private static readonly nint _OnCanceledOffset = Schema.GetOffset(0x647C41D0F02162DB);
+  private static nint? _OnCanceledOffset;
 
   public CPulse_ResumePoint OnCanceled {
-    get => new CPulse_ResumePointImpl(_Handle + _OnCanceledOffset);
+    get {
+      if (_OnCanceledOffset == null) {
+        _OnCanceledOffset = Schema.GetOffset(0x647C41D0F02162DB);
+      }
+      return new CPulse_ResumePointImpl(_Handle + _OnCanceledOffset!.Value);
+    }
   }
-  private static readonly nint _TriggersOffset = Schema.GetOffset(0x647C41D06E7B12D0);
+  private static nint? _TriggersOffset;
 
   public ref CUtlVector<CPulse_OutflowConnection> Triggers {
-    get => ref _Handle.AsRef<CUtlVector<CPulse_OutflowConnection>>(_TriggersOffset);
+    get {
+      if (_TriggersOffset == null) {
+        _TriggersOffset = Schema.GetOffset(0x647C41D06E7B12D0);
+      }
+      return ref _Handle.AsRef<CUtlVector<CPulse_OutflowConnection>>(_TriggersOffset!.Value);
+    }
   }
 
 

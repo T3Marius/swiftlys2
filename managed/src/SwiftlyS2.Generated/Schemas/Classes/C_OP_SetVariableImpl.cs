@@ -17,35 +17,65 @@ internal partial class C_OP_SetVariableImpl : CParticleFunctionPreEmissionImpl, 
   public C_OP_SetVariableImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VariableReferenceOffset = Schema.GetOffset(0x9BAC801F3731E65A);
+  private static nint? _VariableReferenceOffset;
 
   public CParticleVariableRef VariableReference {
-    get => new CParticleVariableRefImpl(_Handle + _VariableReferenceOffset);
+    get {
+      if (_VariableReferenceOffset == null) {
+        _VariableReferenceOffset = Schema.GetOffset(0x9BAC801F3731E65A);
+      }
+      return new CParticleVariableRefImpl(_Handle + _VariableReferenceOffset!.Value);
+    }
   }
-  private static readonly nint _TransformInputOffset = Schema.GetOffset(0x9BAC801F3A9ED669);
+  private static nint? _TransformInputOffset;
 
   public CParticleTransformInput TransformInput {
-    get => new CParticleTransformInputImpl(_Handle + _TransformInputOffset);
+    get {
+      if (_TransformInputOffset == null) {
+        _TransformInputOffset = Schema.GetOffset(0x9BAC801F3A9ED669);
+      }
+      return new CParticleTransformInputImpl(_Handle + _TransformInputOffset!.Value);
+    }
   }
-  private static readonly nint _PositionOffsetOffset = Schema.GetOffset(0x9BAC801FC9C9DB1D);
+  private static nint? _PositionOffsetOffset;
 
   public ref Vector PositionOffset {
-    get => ref _Handle.AsRef<Vector>(_PositionOffsetOffset);
+    get {
+      if (_PositionOffsetOffset == null) {
+        _PositionOffsetOffset = Schema.GetOffset(0x9BAC801FC9C9DB1D);
+      }
+      return ref _Handle.AsRef<Vector>(_PositionOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _RotationOffsetOffset = Schema.GetOffset(0x9BAC801FD70314A4);
+  private static nint? _RotationOffsetOffset;
 
   public ref QAngle RotationOffset {
-    get => ref _Handle.AsRef<QAngle>(_RotationOffsetOffset);
+    get {
+      if (_RotationOffsetOffset == null) {
+        _RotationOffsetOffset = Schema.GetOffset(0x9BAC801FD70314A4);
+      }
+      return ref _Handle.AsRef<QAngle>(_RotationOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _InputOffset = Schema.GetOffset(0x9BAC801F1EA0ED5B);
+  private static nint? _InputOffset;
 
   public CParticleCollectionVecInput Input {
-    get => new CParticleCollectionVecInputImpl(_Handle + _InputOffset);
+    get {
+      if (_InputOffset == null) {
+        _InputOffset = Schema.GetOffset(0x9BAC801F1EA0ED5B);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _InputOffset!.Value);
+    }
   }
-  private static readonly nint _FloatInputOffset = Schema.GetOffset(0x9BAC801F7107333B);
+  private static nint? _FloatInputOffset;
 
   public CParticleCollectionFloatInput FloatInput {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _FloatInputOffset);
+    get {
+      if (_FloatInputOffset == null) {
+        _FloatInputOffset = Schema.GetOffset(0x9BAC801F7107333B);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _FloatInputOffset!.Value);
+    }
   }
 
 

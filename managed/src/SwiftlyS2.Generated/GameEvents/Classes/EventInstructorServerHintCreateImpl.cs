@@ -51,8 +51,20 @@ internal class EventInstructorServerHintCreateImpl : GameEvent<EventInstructorSe
   { get => Accessor.GetInt32("hint_target"); set => Accessor.SetInt32("hint_target", value); }
 
   // playerslot of the activator
+  public CCSPlayerController HintActivatorUseridController
+  { get => Accessor.GetPlayerController("hint_activator_userid"); }
+
+  // playerslot of the activator
+  public CCSPlayerPawn HintActivatorUseridPawn
+  { get => Accessor.GetPlayerPawn("hint_activator_userid"); }
+
+  // playerslot of the activator
+  public IPlayer HintActivatorUseridPlayer
+  { get => Accessor.GetPlayer("hint_activator_userid"); }
+
+  // playerslot of the activator
   public int HintActivatorUserid
-  { get => Accessor.GetPlayerSlot("hint_activator_userid"); set => Accessor.SetPlayerSlot("hint_activator_userid", value); }
+  { get => Accessor.GetInt32("hint_activator_userid"); set => Accessor.SetInt32("hint_activator_userid", value); }
 
   // how long in seconds until the hint automatically times out, 0 = never
   public short HintTimeout

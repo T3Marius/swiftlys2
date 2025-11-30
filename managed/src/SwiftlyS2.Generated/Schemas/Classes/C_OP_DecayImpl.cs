@@ -17,15 +17,25 @@ internal partial class C_OP_DecayImpl : CParticleFunctionOperatorImpl, C_OP_Deca
   public C_OP_DecayImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RopeDecayOffset = Schema.GetOffset(0x9342606D2A5D2225);
+  private static nint? _RopeDecayOffset;
 
   public ref bool RopeDecay {
-    get => ref _Handle.AsRef<bool>(_RopeDecayOffset);
+    get {
+      if (_RopeDecayOffset == null) {
+        _RopeDecayOffset = Schema.GetOffset(0x9342606D2A5D2225);
+      }
+      return ref _Handle.AsRef<bool>(_RopeDecayOffset!.Value);
+    }
   }
-  private static readonly nint _ForcePreserveParticleOrderOffset = Schema.GetOffset(0x9342606DFEB98B86);
+  private static nint? _ForcePreserveParticleOrderOffset;
 
   public ref bool ForcePreserveParticleOrder {
-    get => ref _Handle.AsRef<bool>(_ForcePreserveParticleOrderOffset);
+    get {
+      if (_ForcePreserveParticleOrderOffset == null) {
+        _ForcePreserveParticleOrderOffset = Schema.GetOffset(0x9342606DFEB98B86);
+      }
+      return ref _Handle.AsRef<bool>(_ForcePreserveParticleOrderOffset!.Value);
+    }
   }
 
 

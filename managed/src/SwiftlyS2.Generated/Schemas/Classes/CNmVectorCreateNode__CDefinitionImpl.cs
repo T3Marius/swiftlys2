@@ -17,25 +17,45 @@ internal partial class CNmVectorCreateNode__CDefinitionImpl : CNmVectorValueNode
   public CNmVectorCreateNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputVectorValueNodeIdxOffset = Schema.GetOffset(0xA7AE86C01EF0C864);
+  private static nint? _InputVectorValueNodeIdxOffset;
 
   public ref short InputVectorValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputVectorValueNodeIdxOffset);
+    get {
+      if (_InputVectorValueNodeIdxOffset == null) {
+        _InputVectorValueNodeIdxOffset = Schema.GetOffset(0xA7AE86C01EF0C864);
+      }
+      return ref _Handle.AsRef<short>(_InputVectorValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _InputValueXNodeIdxOffset = Schema.GetOffset(0xA7AE86C0F25367BB);
+  private static nint? _InputValueXNodeIdxOffset;
 
   public ref short InputValueXNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputValueXNodeIdxOffset);
+    get {
+      if (_InputValueXNodeIdxOffset == null) {
+        _InputValueXNodeIdxOffset = Schema.GetOffset(0xA7AE86C0F25367BB);
+      }
+      return ref _Handle.AsRef<short>(_InputValueXNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _InputValueYNodeIdxOffset = Schema.GetOffset(0xA7AE86C0D056A5E2);
+  private static nint? _InputValueYNodeIdxOffset;
 
   public ref short InputValueYNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputValueYNodeIdxOffset);
+    get {
+      if (_InputValueYNodeIdxOffset == null) {
+        _InputValueYNodeIdxOffset = Schema.GetOffset(0xA7AE86C0D056A5E2);
+      }
+      return ref _Handle.AsRef<short>(_InputValueYNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _InputValueZNodeIdxOffset = Schema.GetOffset(0xA7AE86C05ED1BD45);
+  private static nint? _InputValueZNodeIdxOffset;
 
   public ref short InputValueZNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputValueZNodeIdxOffset);
+    get {
+      if (_InputValueZNodeIdxOffset == null) {
+        _InputValueZNodeIdxOffset = Schema.GetOffset(0xA7AE86C05ED1BD45);
+      }
+      return ref _Handle.AsRef<short>(_InputValueZNodeIdxOffset!.Value);
+    }
   }
 
 

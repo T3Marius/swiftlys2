@@ -17,10 +17,15 @@ internal partial class CNmEntityAttributeIntEventImpl : CNmEntityAttributeEventB
   public CNmEntityAttributeIntEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IntValueOffset = Schema.GetOffset(0x22C4DC17BF67A7DB);
+  private static nint? _IntValueOffset;
 
   public ref int IntValue {
-    get => ref _Handle.AsRef<int>(_IntValueOffset);
+    get {
+      if (_IntValueOffset == null) {
+        _IntValueOffset = Schema.GetOffset(0x22C4DC17BF67A7DB);
+      }
+      return ref _Handle.AsRef<int>(_IntValueOffset!.Value);
+    }
   }
 
 

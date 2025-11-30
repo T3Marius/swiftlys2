@@ -17,25 +17,45 @@ internal partial class CNmIKBodyImpl : SchemaClass, CNmIKBody {
   public CNmIKBodyImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MassOffset = Schema.GetOffset(0x2162051FCD83D263);
+  private static nint? _MassOffset;
 
   public ref float Mass {
-    get => ref _Handle.AsRef<float>(_MassOffset);
+    get {
+      if (_MassOffset == null) {
+        _MassOffset = Schema.GetOffset(0x2162051FCD83D263);
+      }
+      return ref _Handle.AsRef<float>(_MassOffset!.Value);
+    }
   }
-  private static readonly nint _LocalMassCenterOffset = Schema.GetOffset(0x2162051FAFDB4EDD);
+  private static nint? _LocalMassCenterOffset;
 
   public ref Vector LocalMassCenter {
-    get => ref _Handle.AsRef<Vector>(_LocalMassCenterOffset);
+    get {
+      if (_LocalMassCenterOffset == null) {
+        _LocalMassCenterOffset = Schema.GetOffset(0x2162051FAFDB4EDD);
+      }
+      return ref _Handle.AsRef<Vector>(_LocalMassCenterOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x2162051F0A9FA917);
+  private static nint? _RadiusOffset;
 
   public ref Vector Radius {
-    get => ref _Handle.AsRef<Vector>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x2162051F0A9FA917);
+      }
+      return ref _Handle.AsRef<Vector>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _ResistanceOffset = Schema.GetOffset(0x2162051FE15D484E);
+  private static nint? _ResistanceOffset;
 
   public ref float Resistance {
-    get => ref _Handle.AsRef<float>(_ResistanceOffset);
+    get {
+      if (_ResistanceOffset == null) {
+        _ResistanceOffset = Schema.GetOffset(0x2162051FE15D484E);
+      }
+      return ref _Handle.AsRef<float>(_ResistanceOffset!.Value);
+    }
   }
 
 

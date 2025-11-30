@@ -17,10 +17,15 @@ internal partial class CPulseCell_Outflow_PlayVCDImpl : CPulseCell_Outflow_PlayS
   public CPulseCell_Outflow_PlayVCDImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ChoreoSceneOffset = Schema.GetOffset(0xB095B414AFC19AC7);
+  private static nint? _ChoreoSceneOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCChoreoSceneResource> ChoreoScene {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCChoreoSceneResource>>(_ChoreoSceneOffset);
+    get {
+      if (_ChoreoSceneOffset == null) {
+        _ChoreoSceneOffset = Schema.GetOffset(0xB095B414AFC19AC7);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCChoreoSceneResource>>(_ChoreoSceneOffset!.Value);
+    }
   }
 
 

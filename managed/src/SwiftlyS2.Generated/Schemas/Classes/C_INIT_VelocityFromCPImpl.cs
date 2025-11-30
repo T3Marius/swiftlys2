@@ -17,25 +17,45 @@ internal partial class C_INIT_VelocityFromCPImpl : CParticleFunctionInitializerI
   public C_INIT_VelocityFromCPImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VelocityInputOffset = Schema.GetOffset(0x1788D69A30C18956);
+  private static nint? _VelocityInputOffset;
 
   public CParticleCollectionVecInput VelocityInput {
-    get => new CParticleCollectionVecInputImpl(_Handle + _VelocityInputOffset);
+    get {
+      if (_VelocityInputOffset == null) {
+        _VelocityInputOffset = Schema.GetOffset(0x1788D69A30C18956);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _VelocityInputOffset!.Value);
+    }
   }
-  private static readonly nint _TransformInputOffset = Schema.GetOffset(0x1788D69A3A9ED669);
+  private static nint? _TransformInputOffset;
 
   public CParticleTransformInput TransformInput {
-    get => new CParticleTransformInputImpl(_Handle + _TransformInputOffset);
+    get {
+      if (_TransformInputOffset == null) {
+        _TransformInputOffset = Schema.GetOffset(0x1788D69A3A9ED669);
+      }
+      return new CParticleTransformInputImpl(_Handle + _TransformInputOffset!.Value);
+    }
   }
-  private static readonly nint _VelocityScaleOffset = Schema.GetOffset(0x1788D69AE161DDAA);
+  private static nint? _VelocityScaleOffset;
 
   public ref float VelocityScale {
-    get => ref _Handle.AsRef<float>(_VelocityScaleOffset);
+    get {
+      if (_VelocityScaleOffset == null) {
+        _VelocityScaleOffset = Schema.GetOffset(0x1788D69AE161DDAA);
+      }
+      return ref _Handle.AsRef<float>(_VelocityScaleOffset!.Value);
+    }
   }
-  private static readonly nint _DirectionOnlyOffset = Schema.GetOffset(0x1788D69A7F403B2C);
+  private static nint? _DirectionOnlyOffset;
 
   public ref bool DirectionOnly {
-    get => ref _Handle.AsRef<bool>(_DirectionOnlyOffset);
+    get {
+      if (_DirectionOnlyOffset == null) {
+        _DirectionOnlyOffset = Schema.GetOffset(0x1788D69A7F403B2C);
+      }
+      return ref _Handle.AsRef<bool>(_DirectionOnlyOffset!.Value);
+    }
   }
 
 

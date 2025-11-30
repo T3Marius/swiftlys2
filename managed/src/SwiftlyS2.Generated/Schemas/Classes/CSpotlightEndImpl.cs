@@ -17,25 +17,45 @@ internal partial class CSpotlightEndImpl : CBaseModelEntityImpl, CSpotlightEnd {
   public CSpotlightEndImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LightScaleOffset = Schema.GetOffset(0x49085AA3E5A1295D);
+  private static nint? _LightScaleOffset;
 
   public ref float LightScale {
-    get => ref _Handle.AsRef<float>(_LightScaleOffset);
+    get {
+      if (_LightScaleOffset == null) {
+        _LightScaleOffset = Schema.GetOffset(0x49085AA3E5A1295D);
+      }
+      return ref _Handle.AsRef<float>(_LightScaleOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x49085AA37C5B0533);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x49085AA37C5B0533);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _SpotlightDirOffset = Schema.GetOffset(0x49085AA3EE68984A);
+  private static nint? _SpotlightDirOffset;
 
   public ref Vector SpotlightDir {
-    get => ref _Handle.AsRef<Vector>(_SpotlightDirOffset);
+    get {
+      if (_SpotlightDirOffset == null) {
+        _SpotlightDirOffset = Schema.GetOffset(0x49085AA3EE68984A);
+      }
+      return ref _Handle.AsRef<Vector>(_SpotlightDirOffset!.Value);
+    }
   }
-  private static readonly nint _SpotlightOrgOffset = Schema.GetOffset(0x49085AA34C84B367);
+  private static nint? _SpotlightOrgOffset;
 
   public ref Vector SpotlightOrg {
-    get => ref _Handle.AsRef<Vector>(_SpotlightOrgOffset);
+    get {
+      if (_SpotlightOrgOffset == null) {
+        _SpotlightOrgOffset = Schema.GetOffset(0x49085AA34C84B367);
+      }
+      return ref _Handle.AsRef<Vector>(_SpotlightOrgOffset!.Value);
+    }
   }
 
   public void LightScaleUpdated() {

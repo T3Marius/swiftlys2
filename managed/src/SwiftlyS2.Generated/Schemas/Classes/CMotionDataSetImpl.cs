@@ -17,15 +17,25 @@ internal partial class CMotionDataSetImpl : SchemaClass, CMotionDataSet {
   public CMotionDataSetImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _GroupsOffset = Schema.GetOffset(0x8AC1A050641FFE0D);
+  private static nint? _GroupsOffset;
 
   public ref CUtlVector<CMotionGraphGroup> Groups {
-    get => ref _Handle.AsRef<CUtlVector<CMotionGraphGroup>>(_GroupsOffset);
+    get {
+      if (_GroupsOffset == null) {
+        _GroupsOffset = Schema.GetOffset(0x8AC1A050641FFE0D);
+      }
+      return ref _Handle.AsRef<CUtlVector<CMotionGraphGroup>>(_GroupsOffset!.Value);
+    }
   }
-  private static readonly nint _DimensionCountOffset = Schema.GetOffset(0x8AC1A05036656C8E);
+  private static nint? _DimensionCountOffset;
 
   public ref int DimensionCount {
-    get => ref _Handle.AsRef<int>(_DimensionCountOffset);
+    get {
+      if (_DimensionCountOffset == null) {
+        _DimensionCountOffset = Schema.GetOffset(0x8AC1A05036656C8E);
+      }
+      return ref _Handle.AsRef<int>(_DimensionCountOffset!.Value);
+    }
   }
 
 

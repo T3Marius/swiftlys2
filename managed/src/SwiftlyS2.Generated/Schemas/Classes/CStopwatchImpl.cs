@@ -17,10 +17,15 @@ internal partial class CStopwatchImpl : CStopwatchBaseImpl, CStopwatch {
   public CStopwatchImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IntervalOffset = Schema.GetOffset(0x40B847F1320F7B8E);
+  private static nint? _IntervalOffset;
 
   public ref float Interval {
-    get => ref _Handle.AsRef<float>(_IntervalOffset);
+    get {
+      if (_IntervalOffset == null) {
+        _IntervalOffset = Schema.GetOffset(0x40B847F1320F7B8E);
+      }
+      return ref _Handle.AsRef<float>(_IntervalOffset!.Value);
+    }
   }
 
 

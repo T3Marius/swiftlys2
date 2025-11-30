@@ -17,35 +17,65 @@ internal partial class CVoiceContainerRandomSamplerImpl : CVoiceContainerBaseImp
   public CVoiceContainerRandomSamplerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AmplitudeOffset = Schema.GetOffset(0xDCA93E5CB44B0E18);
+  private static nint? _AmplitudeOffset;
 
   public ref float Amplitude {
-    get => ref _Handle.AsRef<float>(_AmplitudeOffset);
+    get {
+      if (_AmplitudeOffset == null) {
+        _AmplitudeOffset = Schema.GetOffset(0xDCA93E5CB44B0E18);
+      }
+      return ref _Handle.AsRef<float>(_AmplitudeOffset!.Value);
+    }
   }
-  private static readonly nint _AmplitudeJitterOffset = Schema.GetOffset(0xDCA93E5C108296CE);
+  private static nint? _AmplitudeJitterOffset;
 
   public ref float AmplitudeJitter {
-    get => ref _Handle.AsRef<float>(_AmplitudeJitterOffset);
+    get {
+      if (_AmplitudeJitterOffset == null) {
+        _AmplitudeJitterOffset = Schema.GetOffset(0xDCA93E5C108296CE);
+      }
+      return ref _Handle.AsRef<float>(_AmplitudeJitterOffset!.Value);
+    }
   }
-  private static readonly nint _TimeJitterOffset = Schema.GetOffset(0xDCA93E5C70047B44);
+  private static nint? _TimeJitterOffset;
 
   public ref float TimeJitter {
-    get => ref _Handle.AsRef<float>(_TimeJitterOffset);
+    get {
+      if (_TimeJitterOffset == null) {
+        _TimeJitterOffset = Schema.GetOffset(0xDCA93E5C70047B44);
+      }
+      return ref _Handle.AsRef<float>(_TimeJitterOffset!.Value);
+    }
   }
-  private static readonly nint _MaxLengthOffset = Schema.GetOffset(0xDCA93E5C87A8B4C7);
+  private static nint? _MaxLengthOffset;
 
   public ref float MaxLength {
-    get => ref _Handle.AsRef<float>(_MaxLengthOffset);
+    get {
+      if (_MaxLengthOffset == null) {
+        _MaxLengthOffset = Schema.GetOffset(0xDCA93E5C87A8B4C7);
+      }
+      return ref _Handle.AsRef<float>(_MaxLengthOffset!.Value);
+    }
   }
-  private static readonly nint _NumDelayVariationsOffset = Schema.GetOffset(0xDCA93E5C9356280C);
+  private static nint? _NumDelayVariationsOffset;
 
   public ref int NumDelayVariations {
-    get => ref _Handle.AsRef<int>(_NumDelayVariationsOffset);
+    get {
+      if (_NumDelayVariationsOffset == null) {
+        _NumDelayVariationsOffset = Schema.GetOffset(0xDCA93E5C9356280C);
+      }
+      return ref _Handle.AsRef<int>(_NumDelayVariationsOffset!.Value);
+    }
   }
-  private static readonly nint _GrainResourcesOffset = Schema.GetOffset(0xDCA93E5C95692BB9);
+  private static nint? _GrainResourcesOffset;
 
   public ref CUtlVector<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>> GrainResources {
-    get => ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>>(_GrainResourcesOffset);
+    get {
+      if (_GrainResourcesOffset == null) {
+        _GrainResourcesOffset = Schema.GetOffset(0xDCA93E5C95692BB9);
+      }
+      return ref _Handle.AsRef<CUtlVector<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>>(_GrainResourcesOffset!.Value);
+    }
   }
 
 

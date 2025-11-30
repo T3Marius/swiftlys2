@@ -17,45 +17,85 @@ internal partial class C_OP_SetPerChildControlPointImpl : CParticleFunctionOpera
   public C_OP_SetPerChildControlPointImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ChildGroupIDOffset = Schema.GetOffset(0xC456E2B9E3F3C965);
+  private static nint? _ChildGroupIDOffset;
 
   public ref int ChildGroupID {
-    get => ref _Handle.AsRef<int>(_ChildGroupIDOffset);
+    get {
+      if (_ChildGroupIDOffset == null) {
+        _ChildGroupIDOffset = Schema.GetOffset(0xC456E2B9E3F3C965);
+      }
+      return ref _Handle.AsRef<int>(_ChildGroupIDOffset!.Value);
+    }
   }
-  private static readonly nint _FirstControlPointOffset = Schema.GetOffset(0xC456E2B972117650);
+  private static nint? _FirstControlPointOffset;
 
   public ref int FirstControlPoint {
-    get => ref _Handle.AsRef<int>(_FirstControlPointOffset);
+    get {
+      if (_FirstControlPointOffset == null) {
+        _FirstControlPointOffset = Schema.GetOffset(0xC456E2B972117650);
+      }
+      return ref _Handle.AsRef<int>(_FirstControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _NumControlPointsOffset = Schema.GetOffset(0xC456E2B9551EBC4F);
+  private static nint? _NumControlPointsOffset;
 
   public ref int NumControlPoints {
-    get => ref _Handle.AsRef<int>(_NumControlPointsOffset);
+    get {
+      if (_NumControlPointsOffset == null) {
+        _NumControlPointsOffset = Schema.GetOffset(0xC456E2B9551EBC4F);
+      }
+      return ref _Handle.AsRef<int>(_NumControlPointsOffset!.Value);
+    }
   }
-  private static readonly nint _ParticleIncrementOffset = Schema.GetOffset(0xC456E2B973AF63D0);
+  private static nint? _ParticleIncrementOffset;
 
   public CParticleCollectionFloatInput ParticleIncrement {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ParticleIncrementOffset);
+    get {
+      if (_ParticleIncrementOffset == null) {
+        _ParticleIncrementOffset = Schema.GetOffset(0xC456E2B973AF63D0);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ParticleIncrementOffset!.Value);
+    }
   }
-  private static readonly nint _FirstSourcePointOffset = Schema.GetOffset(0xC456E2B99D7DC18E);
+  private static nint? _FirstSourcePointOffset;
 
   public CParticleCollectionFloatInput FirstSourcePoint {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _FirstSourcePointOffset);
+    get {
+      if (_FirstSourcePointOffset == null) {
+        _FirstSourcePointOffset = Schema.GetOffset(0xC456E2B99D7DC18E);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _FirstSourcePointOffset!.Value);
+    }
   }
-  private static readonly nint _SetOrientationOffset = Schema.GetOffset(0xC456E2B9E1390E37);
+  private static nint? _SetOrientationOffset;
 
   public ref bool SetOrientation {
-    get => ref _Handle.AsRef<bool>(_SetOrientationOffset);
+    get {
+      if (_SetOrientationOffset == null) {
+        _SetOrientationOffset = Schema.GetOffset(0xC456E2B9E1390E37);
+      }
+      return ref _Handle.AsRef<bool>(_SetOrientationOffset!.Value);
+    }
   }
-  private static readonly nint _OrientationFieldOffset = Schema.GetOffset(0xC456E2B9FFE45E9F);
+  private static nint? _OrientationFieldOffset;
 
   public ParticleAttributeIndex_t OrientationField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _OrientationFieldOffset);
+    get {
+      if (_OrientationFieldOffset == null) {
+        _OrientationFieldOffset = Schema.GetOffset(0xC456E2B9FFE45E9F);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _OrientationFieldOffset!.Value);
+    }
   }
-  private static readonly nint _NumBasedOnParticleCountOffset = Schema.GetOffset(0xC456E2B9401CC5D0);
+  private static nint? _NumBasedOnParticleCountOffset;
 
   public ref bool NumBasedOnParticleCount {
-    get => ref _Handle.AsRef<bool>(_NumBasedOnParticleCountOffset);
+    get {
+      if (_NumBasedOnParticleCountOffset == null) {
+        _NumBasedOnParticleCountOffset = Schema.GetOffset(0xC456E2B9401CC5D0);
+      }
+      return ref _Handle.AsRef<bool>(_NumBasedOnParticleCountOffset!.Value);
+    }
   }
 
 

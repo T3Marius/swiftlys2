@@ -20,30 +20,55 @@ internal partial class CPhysLengthImpl : CPhysConstraintImpl, CPhysLength {
   public ISchemaFixedArray<Vector> Offset {
     get => new SchemaFixedArray<Vector>(_Handle, 0x9203A50AF836806A, 2, 12, 4);
   }
-  private static readonly nint _AttachOffset = Schema.GetOffset(0x9203A50A4CAEA9A4);
+  private static nint? _AttachOffset;
 
   public ref Vector Attach {
-    get => ref _Handle.AsRef<Vector>(_AttachOffset);
+    get {
+      if (_AttachOffset == null) {
+        _AttachOffset = Schema.GetOffset(0x9203A50A4CAEA9A4);
+      }
+      return ref _Handle.AsRef<Vector>(_AttachOffset!.Value);
+    }
   }
-  private static readonly nint _AddLengthOffset = Schema.GetOffset(0x9203A50AA30AA6D8);
+  private static nint? _AddLengthOffset;
 
   public ref float AddLength {
-    get => ref _Handle.AsRef<float>(_AddLengthOffset);
+    get {
+      if (_AddLengthOffset == null) {
+        _AddLengthOffset = Schema.GetOffset(0x9203A50AA30AA6D8);
+      }
+      return ref _Handle.AsRef<float>(_AddLengthOffset!.Value);
+    }
   }
-  private static readonly nint _MinLengthOffset = Schema.GetOffset(0x9203A50A8FD988D7);
+  private static nint? _MinLengthOffset;
 
   public ref float MinLength {
-    get => ref _Handle.AsRef<float>(_MinLengthOffset);
+    get {
+      if (_MinLengthOffset == null) {
+        _MinLengthOffset = Schema.GetOffset(0x9203A50A8FD988D7);
+      }
+      return ref _Handle.AsRef<float>(_MinLengthOffset!.Value);
+    }
   }
-  private static readonly nint _TotalLengthOffset = Schema.GetOffset(0x9203A50A6825671D);
+  private static nint? _TotalLengthOffset;
 
   public ref float TotalLength {
-    get => ref _Handle.AsRef<float>(_TotalLengthOffset);
+    get {
+      if (_TotalLengthOffset == null) {
+        _TotalLengthOffset = Schema.GetOffset(0x9203A50A6825671D);
+      }
+      return ref _Handle.AsRef<float>(_TotalLengthOffset!.Value);
+    }
   }
-  private static readonly nint _EnableCollisionOffset = Schema.GetOffset(0x9203A50A1E5412CE);
+  private static nint? _EnableCollisionOffset;
 
   public ref bool EnableCollision {
-    get => ref _Handle.AsRef<bool>(_EnableCollisionOffset);
+    get {
+      if (_EnableCollisionOffset == null) {
+        _EnableCollisionOffset = Schema.GetOffset(0x9203A50A1E5412CE);
+      }
+      return ref _Handle.AsRef<bool>(_EnableCollisionOffset!.Value);
+    }
   }
 
 

@@ -17,80 +17,155 @@ internal partial class CPhysBoxImpl : CBreakableImpl, CPhysBox {
   public CPhysBoxImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DamageTypeOffset = Schema.GetOffset(0x914B502B17488B28);
+  private static nint? _DamageTypeOffset;
 
   public ref int DamageType {
-    get => ref _Handle.AsRef<int>(_DamageTypeOffset);
+    get {
+      if (_DamageTypeOffset == null) {
+        _DamageTypeOffset = Schema.GetOffset(0x914B502B17488B28);
+      }
+      return ref _Handle.AsRef<int>(_DamageTypeOffset!.Value);
+    }
   }
-  private static readonly nint _DamageToEnableMotionOffset = Schema.GetOffset(0x914B502B6A217278);
+  private static nint? _DamageToEnableMotionOffset;
 
   public ref int DamageToEnableMotion {
-    get => ref _Handle.AsRef<int>(_DamageToEnableMotionOffset);
+    get {
+      if (_DamageToEnableMotionOffset == null) {
+        _DamageToEnableMotionOffset = Schema.GetOffset(0x914B502B6A217278);
+      }
+      return ref _Handle.AsRef<int>(_DamageToEnableMotionOffset!.Value);
+    }
   }
-  private static readonly nint _ForceToEnableMotionOffset = Schema.GetOffset(0x914B502B95BEED1A);
+  private static nint? _ForceToEnableMotionOffset;
 
   public ref float ForceToEnableMotion {
-    get => ref _Handle.AsRef<float>(_ForceToEnableMotionOffset);
+    get {
+      if (_ForceToEnableMotionOffset == null) {
+        _ForceToEnableMotionOffset = Schema.GetOffset(0x914B502B95BEED1A);
+      }
+      return ref _Handle.AsRef<float>(_ForceToEnableMotionOffset!.Value);
+    }
   }
-  private static readonly nint _HoverPosePositionOffset = Schema.GetOffset(0x914B502BE70418E3);
+  private static nint? _HoverPosePositionOffset;
 
   public ref Vector HoverPosePosition {
-    get => ref _Handle.AsRef<Vector>(_HoverPosePositionOffset);
+    get {
+      if (_HoverPosePositionOffset == null) {
+        _HoverPosePositionOffset = Schema.GetOffset(0x914B502BE70418E3);
+      }
+      return ref _Handle.AsRef<Vector>(_HoverPosePositionOffset!.Value);
+    }
   }
-  private static readonly nint _HoverPoseAnglesOffset = Schema.GetOffset(0x914B502B086A1BC6);
+  private static nint? _HoverPoseAnglesOffset;
 
   public ref QAngle HoverPoseAngles {
-    get => ref _Handle.AsRef<QAngle>(_HoverPoseAnglesOffset);
+    get {
+      if (_HoverPoseAnglesOffset == null) {
+        _HoverPoseAnglesOffset = Schema.GetOffset(0x914B502B086A1BC6);
+      }
+      return ref _Handle.AsRef<QAngle>(_HoverPoseAnglesOffset!.Value);
+    }
   }
-  private static readonly nint _NotSolidToWorldOffset = Schema.GetOffset(0x914B502B13A06DE8);
+  private static nint? _NotSolidToWorldOffset;
 
   public ref bool NotSolidToWorld {
-    get => ref _Handle.AsRef<bool>(_NotSolidToWorldOffset);
+    get {
+      if (_NotSolidToWorldOffset == null) {
+        _NotSolidToWorldOffset = Schema.GetOffset(0x914B502B13A06DE8);
+      }
+      return ref _Handle.AsRef<bool>(_NotSolidToWorldOffset!.Value);
+    }
   }
-  private static readonly nint _EnableUseOutputOffset = Schema.GetOffset(0x914B502B2426C360);
+  private static nint? _EnableUseOutputOffset;
 
   public ref bool EnableUseOutput {
-    get => ref _Handle.AsRef<bool>(_EnableUseOutputOffset);
+    get {
+      if (_EnableUseOutputOffset == null) {
+        _EnableUseOutputOffset = Schema.GetOffset(0x914B502B2426C360);
+      }
+      return ref _Handle.AsRef<bool>(_EnableUseOutputOffset!.Value);
+    }
   }
-  private static readonly nint _HoverPoseFlagsOffset = Schema.GetOffset(0x914B502BE0BEF17B);
+  private static nint? _HoverPoseFlagsOffset;
 
   public ref HoverPoseFlags_t HoverPoseFlags {
-    get => ref _Handle.AsRef<HoverPoseFlags_t>(_HoverPoseFlagsOffset);
+    get {
+      if (_HoverPoseFlagsOffset == null) {
+        _HoverPoseFlagsOffset = Schema.GetOffset(0x914B502BE0BEF17B);
+      }
+      return ref _Handle.AsRef<HoverPoseFlags_t>(_HoverPoseFlagsOffset!.Value);
+    }
   }
-  private static readonly nint _TouchOutputPerEntityDelayOffset = Schema.GetOffset(0x914B502B0F1EF0C0);
+  private static nint? _TouchOutputPerEntityDelayOffset;
 
   public ref float TouchOutputPerEntityDelay {
-    get => ref _Handle.AsRef<float>(_TouchOutputPerEntityDelayOffset);
+    get {
+      if (_TouchOutputPerEntityDelayOffset == null) {
+        _TouchOutputPerEntityDelayOffset = Schema.GetOffset(0x914B502B0F1EF0C0);
+      }
+      return ref _Handle.AsRef<float>(_TouchOutputPerEntityDelayOffset!.Value);
+    }
   }
-  private static readonly nint _OnDamagedOffset = Schema.GetOffset(0x914B502B1667F41F);
+  private static nint? _OnDamagedOffset;
 
   public CEntityIOOutput OnDamaged {
-    get => new CEntityIOOutputImpl(_Handle + _OnDamagedOffset);
+    get {
+      if (_OnDamagedOffset == null) {
+        _OnDamagedOffset = Schema.GetOffset(0x914B502B1667F41F);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnDamagedOffset!.Value);
+    }
   }
-  private static readonly nint _OnAwakenedOffset = Schema.GetOffset(0x914B502B03EDBB66);
+  private static nint? _OnAwakenedOffset;
 
   public CEntityIOOutput OnAwakened {
-    get => new CEntityIOOutputImpl(_Handle + _OnAwakenedOffset);
+    get {
+      if (_OnAwakenedOffset == null) {
+        _OnAwakenedOffset = Schema.GetOffset(0x914B502B03EDBB66);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnAwakenedOffset!.Value);
+    }
   }
-  private static readonly nint _OnMotionEnabledOffset = Schema.GetOffset(0x914B502BBB216C9F);
+  private static nint? _OnMotionEnabledOffset;
 
   public CEntityIOOutput OnMotionEnabled {
-    get => new CEntityIOOutputImpl(_Handle + _OnMotionEnabledOffset);
+    get {
+      if (_OnMotionEnabledOffset == null) {
+        _OnMotionEnabledOffset = Schema.GetOffset(0x914B502BBB216C9F);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnMotionEnabledOffset!.Value);
+    }
   }
-  private static readonly nint _OnPlayerUseOffset = Schema.GetOffset(0x914B502B611C9A14);
+  private static nint? _OnPlayerUseOffset;
 
   public CEntityIOOutput OnPlayerUse {
-    get => new CEntityIOOutputImpl(_Handle + _OnPlayerUseOffset);
+    get {
+      if (_OnPlayerUseOffset == null) {
+        _OnPlayerUseOffset = Schema.GetOffset(0x914B502B611C9A14);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnPlayerUseOffset!.Value);
+    }
   }
-  private static readonly nint _OnStartTouchOffset = Schema.GetOffset(0x914B502BB4E38193);
+  private static nint? _OnStartTouchOffset;
 
   public CEntityIOOutput OnStartTouch {
-    get => new CEntityIOOutputImpl(_Handle + _OnStartTouchOffset);
+    get {
+      if (_OnStartTouchOffset == null) {
+        _OnStartTouchOffset = Schema.GetOffset(0x914B502BB4E38193);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnStartTouchOffset!.Value);
+    }
   }
-  private static readonly nint _CarryingPlayerOffset = Schema.GetOffset(0x914B502B0491B86F);
+  private static nint? _CarryingPlayerOffset;
 
   public ref CHandle<CBasePlayerPawn> CarryingPlayer {
-    get => ref _Handle.AsRef<CHandle<CBasePlayerPawn>>(_CarryingPlayerOffset);
+    get {
+      if (_CarryingPlayerOffset == null) {
+        _CarryingPlayerOffset = Schema.GetOffset(0x914B502B0491B86F);
+      }
+      return ref _Handle.AsRef<CHandle<CBasePlayerPawn>>(_CarryingPlayerOffset!.Value);
+    }
   }
 
 

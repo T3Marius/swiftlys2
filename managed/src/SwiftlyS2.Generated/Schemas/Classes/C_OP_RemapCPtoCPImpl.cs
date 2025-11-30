@@ -17,55 +17,105 @@ internal partial class C_OP_RemapCPtoCPImpl : CParticleFunctionPreEmissionImpl, 
   public C_OP_RemapCPtoCPImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputControlPointOffset = Schema.GetOffset(0xF7F0A2676A869E3E);
+  private static nint? _InputControlPointOffset;
 
   public ref int InputControlPoint {
-    get => ref _Handle.AsRef<int>(_InputControlPointOffset);
+    get {
+      if (_InputControlPointOffset == null) {
+        _InputControlPointOffset = Schema.GetOffset(0xF7F0A2676A869E3E);
+      }
+      return ref _Handle.AsRef<int>(_InputControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _OutputControlPointOffset = Schema.GetOffset(0xF7F0A267266B0FD9);
+  private static nint? _OutputControlPointOffset;
 
   public ref int OutputControlPoint {
-    get => ref _Handle.AsRef<int>(_OutputControlPointOffset);
+    get {
+      if (_OutputControlPointOffset == null) {
+        _OutputControlPointOffset = Schema.GetOffset(0xF7F0A267266B0FD9);
+      }
+      return ref _Handle.AsRef<int>(_OutputControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _InputFieldOffset = Schema.GetOffset(0xF7F0A267FB4C1579);
+  private static nint? _InputFieldOffset;
 
   public ref int InputField {
-    get => ref _Handle.AsRef<int>(_InputFieldOffset);
+    get {
+      if (_InputFieldOffset == null) {
+        _InputFieldOffset = Schema.GetOffset(0xF7F0A267FB4C1579);
+      }
+      return ref _Handle.AsRef<int>(_InputFieldOffset!.Value);
+    }
   }
-  private static readonly nint _OutputFieldOffset = Schema.GetOffset(0xF7F0A267324F6F74);
+  private static nint? _OutputFieldOffset;
 
   public ref int OutputField {
-    get => ref _Handle.AsRef<int>(_OutputFieldOffset);
+    get {
+      if (_OutputFieldOffset == null) {
+        _OutputFieldOffset = Schema.GetOffset(0xF7F0A267324F6F74);
+      }
+      return ref _Handle.AsRef<int>(_OutputFieldOffset!.Value);
+    }
   }
-  private static readonly nint _InputMinOffset = Schema.GetOffset(0xF7F0A267E88A0D0F);
+  private static nint? _InputMinOffset;
 
   public ref float InputMin {
-    get => ref _Handle.AsRef<float>(_InputMinOffset);
+    get {
+      if (_InputMinOffset == null) {
+        _InputMinOffset = Schema.GetOffset(0xF7F0A267E88A0D0F);
+      }
+      return ref _Handle.AsRef<float>(_InputMinOffset!.Value);
+    }
   }
-  private static readonly nint _InputMaxOffset = Schema.GetOffset(0xF7F0A267D6766901);
+  private static nint? _InputMaxOffset;
 
   public ref float InputMax {
-    get => ref _Handle.AsRef<float>(_InputMaxOffset);
+    get {
+      if (_InputMaxOffset == null) {
+        _InputMaxOffset = Schema.GetOffset(0xF7F0A267D6766901);
+      }
+      return ref _Handle.AsRef<float>(_InputMaxOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMinOffset = Schema.GetOffset(0xF7F0A2675F8D7716);
+  private static nint? _OutputMinOffset;
 
   public ref float OutputMin {
-    get => ref _Handle.AsRef<float>(_OutputMinOffset);
+    get {
+      if (_OutputMinOffset == null) {
+        _OutputMinOffset = Schema.GetOffset(0xF7F0A2675F8D7716);
+      }
+      return ref _Handle.AsRef<float>(_OutputMinOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMaxOffset = Schema.GetOffset(0xF7F0A26751A0E8C4);
+  private static nint? _OutputMaxOffset;
 
   public ref float OutputMax {
-    get => ref _Handle.AsRef<float>(_OutputMaxOffset);
+    get {
+      if (_OutputMaxOffset == null) {
+        _OutputMaxOffset = Schema.GetOffset(0xF7F0A26751A0E8C4);
+      }
+      return ref _Handle.AsRef<float>(_OutputMaxOffset!.Value);
+    }
   }
-  private static readonly nint _DerivativeOffset = Schema.GetOffset(0xF7F0A267D10213C0);
+  private static nint? _DerivativeOffset;
 
   public ref bool Derivative {
-    get => ref _Handle.AsRef<bool>(_DerivativeOffset);
+    get {
+      if (_DerivativeOffset == null) {
+        _DerivativeOffset = Schema.GetOffset(0xF7F0A267D10213C0);
+      }
+      return ref _Handle.AsRef<bool>(_DerivativeOffset!.Value);
+    }
   }
-  private static readonly nint _InterpRateOffset = Schema.GetOffset(0xF7F0A267D3B705A7);
+  private static nint? _InterpRateOffset;
 
   public ref float InterpRate {
-    get => ref _Handle.AsRef<float>(_InterpRateOffset);
+    get {
+      if (_InterpRateOffset == null) {
+        _InterpRateOffset = Schema.GetOffset(0xF7F0A267D3B705A7);
+      }
+      return ref _Handle.AsRef<float>(_InterpRateOffset!.Value);
+    }
   }
 
 

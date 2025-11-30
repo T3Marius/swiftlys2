@@ -17,30 +17,55 @@ internal partial class C_OP_RemapDistanceToLineSegmentBaseImpl : CParticleFuncti
   public C_OP_RemapDistanceToLineSegmentBaseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CP0Offset = Schema.GetOffset(0xD8219F7AD3B1E3E6);
+  private static nint? _CP0Offset;
 
   public ref int CP0 {
-    get => ref _Handle.AsRef<int>(_CP0Offset);
+    get {
+      if (_CP0Offset == null) {
+        _CP0Offset = Schema.GetOffset(0xD8219F7AD3B1E3E6);
+      }
+      return ref _Handle.AsRef<int>(_CP0Offset!.Value);
+    }
   }
-  private static readonly nint _CP1Offset = Schema.GetOffset(0xD8219F7AD4B1E579);
+  private static nint? _CP1Offset;
 
   public ref int CP1 {
-    get => ref _Handle.AsRef<int>(_CP1Offset);
+    get {
+      if (_CP1Offset == null) {
+        _CP1Offset = Schema.GetOffset(0xD8219F7AD4B1E579);
+      }
+      return ref _Handle.AsRef<int>(_CP1Offset!.Value);
+    }
   }
-  private static readonly nint _MinInputValueOffset = Schema.GetOffset(0xD8219F7ABDB4BC64);
+  private static nint? _MinInputValueOffset;
 
   public ref float MinInputValue {
-    get => ref _Handle.AsRef<float>(_MinInputValueOffset);
+    get {
+      if (_MinInputValueOffset == null) {
+        _MinInputValueOffset = Schema.GetOffset(0xD8219F7ABDB4BC64);
+      }
+      return ref _Handle.AsRef<float>(_MinInputValueOffset!.Value);
+    }
   }
-  private static readonly nint _MaxInputValueOffset = Schema.GetOffset(0xD8219F7A3EF75C2A);
+  private static nint? _MaxInputValueOffset;
 
   public ref float MaxInputValue {
-    get => ref _Handle.AsRef<float>(_MaxInputValueOffset);
+    get {
+      if (_MaxInputValueOffset == null) {
+        _MaxInputValueOffset = Schema.GetOffset(0xD8219F7A3EF75C2A);
+      }
+      return ref _Handle.AsRef<float>(_MaxInputValueOffset!.Value);
+    }
   }
-  private static readonly nint _InfiniteLineOffset = Schema.GetOffset(0xD8219F7A9C5BC47F);
+  private static nint? _InfiniteLineOffset;
 
   public ref bool InfiniteLine {
-    get => ref _Handle.AsRef<bool>(_InfiniteLineOffset);
+    get {
+      if (_InfiniteLineOffset == null) {
+        _InfiniteLineOffset = Schema.GetOffset(0xD8219F7A9C5BC47F);
+      }
+      return ref _Handle.AsRef<bool>(_InfiniteLineOffset!.Value);
+    }
   }
 
 

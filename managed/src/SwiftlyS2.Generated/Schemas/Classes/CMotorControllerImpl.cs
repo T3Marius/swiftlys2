@@ -17,25 +17,45 @@ internal partial class CMotorControllerImpl : SchemaClass, CMotorController {
   public CMotorControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SpeedOffset = Schema.GetOffset(0x1A8B9067A4BD35A0);
+  private static nint? _SpeedOffset;
 
   public ref float Speed {
-    get => ref _Handle.AsRef<float>(_SpeedOffset);
+    get {
+      if (_SpeedOffset == null) {
+        _SpeedOffset = Schema.GetOffset(0x1A8B9067A4BD35A0);
+      }
+      return ref _Handle.AsRef<float>(_SpeedOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTorqueOffset = Schema.GetOffset(0x1A8B90677880BF37);
+  private static nint? _MaxTorqueOffset;
 
   public ref float MaxTorque {
-    get => ref _Handle.AsRef<float>(_MaxTorqueOffset);
+    get {
+      if (_MaxTorqueOffset == null) {
+        _MaxTorqueOffset = Schema.GetOffset(0x1A8B90677880BF37);
+      }
+      return ref _Handle.AsRef<float>(_MaxTorqueOffset!.Value);
+    }
   }
-  private static readonly nint _AxisOffset = Schema.GetOffset(0x1A8B90672B06DE94);
+  private static nint? _AxisOffset;
 
   public ref Vector Axis {
-    get => ref _Handle.AsRef<Vector>(_AxisOffset);
+    get {
+      if (_AxisOffset == null) {
+        _AxisOffset = Schema.GetOffset(0x1A8B90672B06DE94);
+      }
+      return ref _Handle.AsRef<Vector>(_AxisOffset!.Value);
+    }
   }
-  private static readonly nint _InertiaFactorOffset = Schema.GetOffset(0x1A8B9067B824C94A);
+  private static nint? _InertiaFactorOffset;
 
   public ref float InertiaFactor {
-    get => ref _Handle.AsRef<float>(_InertiaFactorOffset);
+    get {
+      if (_InertiaFactorOffset == null) {
+        _InertiaFactorOffset = Schema.GetOffset(0x1A8B9067B824C94A);
+      }
+      return ref _Handle.AsRef<float>(_InertiaFactorOffset!.Value);
+    }
   }
 
 

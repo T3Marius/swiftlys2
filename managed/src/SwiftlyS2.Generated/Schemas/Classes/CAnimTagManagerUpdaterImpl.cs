@@ -17,10 +17,15 @@ internal partial class CAnimTagManagerUpdaterImpl : SchemaClass, CAnimTagManager
   public CAnimTagManagerUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagsOffset = Schema.GetOffset(0xF09D3FB1B46C8540);
+  private static nint? _TagsOffset;
 
   public ref CUtlVector<SchemaUntypedField> Tags {
-    get => ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_TagsOffset);
+    get {
+      if (_TagsOffset == null) {
+        _TagsOffset = Schema.GetOffset(0xF09D3FB1B46C8540);
+      }
+      return ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_TagsOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class CNmVirtualParameterVectorNode__CDefinitionImpl : CNmVecto
   public CNmVirtualParameterVectorNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ChildNodeIdxOffset = Schema.GetOffset(0xDD34E2D25C29A73C);
+  private static nint? _ChildNodeIdxOffset;
 
   public ref short ChildNodeIdx {
-    get => ref _Handle.AsRef<short>(_ChildNodeIdxOffset);
+    get {
+      if (_ChildNodeIdxOffset == null) {
+        _ChildNodeIdxOffset = Schema.GetOffset(0xDD34E2D25C29A73C);
+      }
+      return ref _Handle.AsRef<short>(_ChildNodeIdxOffset!.Value);
+    }
   }
 
 

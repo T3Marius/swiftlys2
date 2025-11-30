@@ -17,25 +17,45 @@ internal partial class constraint_axislimit_tImpl : SchemaClass, constraint_axis
   public constraint_axislimit_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinRotationOffset = Schema.GetOffset(0x610A06522A8C970B);
+  private static nint? _MinRotationOffset;
 
   public ref float MinRotation {
-    get => ref _Handle.AsRef<float>(_MinRotationOffset);
+    get {
+      if (_MinRotationOffset == null) {
+        _MinRotationOffset = Schema.GetOffset(0x610A06522A8C970B);
+      }
+      return ref _Handle.AsRef<float>(_MinRotationOffset!.Value);
+    }
   }
-  private static readonly nint _MaxRotationOffset = Schema.GetOffset(0x610A0652FEB73D49);
+  private static nint? _MaxRotationOffset;
 
   public ref float MaxRotation {
-    get => ref _Handle.AsRef<float>(_MaxRotationOffset);
+    get {
+      if (_MaxRotationOffset == null) {
+        _MaxRotationOffset = Schema.GetOffset(0x610A0652FEB73D49);
+      }
+      return ref _Handle.AsRef<float>(_MaxRotationOffset!.Value);
+    }
   }
-  private static readonly nint _MotorTargetAngSpeedOffset = Schema.GetOffset(0x610A0652C783A98E);
+  private static nint? _MotorTargetAngSpeedOffset;
 
   public ref float MotorTargetAngSpeed {
-    get => ref _Handle.AsRef<float>(_MotorTargetAngSpeedOffset);
+    get {
+      if (_MotorTargetAngSpeedOffset == null) {
+        _MotorTargetAngSpeedOffset = Schema.GetOffset(0x610A0652C783A98E);
+      }
+      return ref _Handle.AsRef<float>(_MotorTargetAngSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _MotorMaxTorqueOffset = Schema.GetOffset(0x610A0652808C4A00);
+  private static nint? _MotorMaxTorqueOffset;
 
   public ref float MotorMaxTorque {
-    get => ref _Handle.AsRef<float>(_MotorMaxTorqueOffset);
+    get {
+      if (_MotorMaxTorqueOffset == null) {
+        _MotorMaxTorqueOffset = Schema.GetOffset(0x610A0652808C4A00);
+      }
+      return ref _Handle.AsRef<float>(_MotorMaxTorqueOffset!.Value);
+    }
   }
 
 

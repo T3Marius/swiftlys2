@@ -17,15 +17,25 @@ internal partial class CFlexOpImpl : SchemaClass, CFlexOp {
   public CFlexOpImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OpCodeOffset = Schema.GetOffset(0xC684CC9A9850F387);
+  private static nint? _OpCodeOffset;
 
   public ref FlexOpCode_t OpCode {
-    get => ref _Handle.AsRef<FlexOpCode_t>(_OpCodeOffset);
+    get {
+      if (_OpCodeOffset == null) {
+        _OpCodeOffset = Schema.GetOffset(0xC684CC9A9850F387);
+      }
+      return ref _Handle.AsRef<FlexOpCode_t>(_OpCodeOffset!.Value);
+    }
   }
-  private static readonly nint _DataOffset = Schema.GetOffset(0xC684CC9A1621C725);
+  private static nint? _DataOffset;
 
   public ref int Data {
-    get => ref _Handle.AsRef<int>(_DataOffset);
+    get {
+      if (_DataOffset == null) {
+        _DataOffset = Schema.GetOffset(0xC684CC9A1621C725);
+      }
+      return ref _Handle.AsRef<int>(_DataOffset!.Value);
+    }
   }
 
 

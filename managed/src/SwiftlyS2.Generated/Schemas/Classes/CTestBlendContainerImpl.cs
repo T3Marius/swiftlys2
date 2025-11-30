@@ -17,15 +17,25 @@ internal partial class CTestBlendContainerImpl : CVoiceContainerBaseImpl, CTestB
   public CTestBlendContainerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FirstSoundOffset = Schema.GetOffset(0x3E7BF53C666B0138);
+  private static nint? _FirstSoundOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCVoiceContainerBase> FirstSound {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>(_FirstSoundOffset);
+    get {
+      if (_FirstSoundOffset == null) {
+        _FirstSoundOffset = Schema.GetOffset(0x3E7BF53C666B0138);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>(_FirstSoundOffset!.Value);
+    }
   }
-  private static readonly nint _SecondSoundOffset = Schema.GetOffset(0x3E7BF53CA2BC3E5C);
+  private static nint? _SecondSoundOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCVoiceContainerBase> SecondSound {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>(_SecondSoundOffset);
+    get {
+      if (_SecondSoundOffset == null) {
+        _SecondSoundOffset = Schema.GetOffset(0x3E7BF53CA2BC3E5C);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCVoiceContainerBase>>(_SecondSoundOffset!.Value);
+    }
   }
 
 

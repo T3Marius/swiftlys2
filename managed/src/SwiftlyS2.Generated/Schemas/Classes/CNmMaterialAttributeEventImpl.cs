@@ -17,39 +17,72 @@ internal partial class CNmMaterialAttributeEventImpl : CNmEventImpl, CNmMaterial
   public CNmMaterialAttributeEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AttributeNameOffset = Schema.GetOffset(0xFC131DA9168F02C);
+  private static nint? _AttributeNameOffset;
 
   public string AttributeName {
     get {
-      var ptr = _Handle.Read<nint>(_AttributeNameOffset);
+      if (_AttributeNameOffset == null) {
+        _AttributeNameOffset = Schema.GetOffset(0xFC131DA9168F02C);
+      }
+      var ptr = _Handle.Read<nint>(_AttributeNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _AttributeNameOffset, value);
+    set {
+      if (_AttributeNameOffset == null) {
+        _AttributeNameOffset = Schema.GetOffset(0xFC131DA9168F02C);
+      }
+      Schema.SetString(_Handle, _AttributeNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _AttributeNameTokenOffset = Schema.GetOffset(0xFC131DA4C1F86C9);
+  private static nint? _AttributeNameTokenOffset;
 
   public ref CUtlStringToken AttributeNameToken {
-    get => ref _Handle.AsRef<CUtlStringToken>(_AttributeNameTokenOffset);
+    get {
+      if (_AttributeNameTokenOffset == null) {
+        _AttributeNameTokenOffset = Schema.GetOffset(0xFC131DA4C1F86C9);
+      }
+      return ref _Handle.AsRef<CUtlStringToken>(_AttributeNameTokenOffset!.Value);
+    }
   }
-  private static readonly nint _XOffset = Schema.GetOffset(0xFC131DADBC57BA7);
+  private static nint? _XOffset;
 
   public SchemaUntypedField X {
-    get => new SchemaUntypedField(_Handle + _XOffset);
+    get {
+      if (_XOffset == null) {
+        _XOffset = Schema.GetOffset(0xFC131DADBC57BA7);
+      }
+      return new SchemaUntypedField(_Handle + _XOffset!.Value);
+    }
   }
-  private static readonly nint _YOffset = Schema.GetOffset(0xFC131DADAC57A14);
+  private static nint? _YOffset;
 
   public SchemaUntypedField Y {
-    get => new SchemaUntypedField(_Handle + _YOffset);
+    get {
+      if (_YOffset == null) {
+        _YOffset = Schema.GetOffset(0xFC131DADAC57A14);
+      }
+      return new SchemaUntypedField(_Handle + _YOffset!.Value);
+    }
   }
-  private static readonly nint _ZOffset = Schema.GetOffset(0xFC131DADDC57ECD);
+  private static nint? _ZOffset;
 
   public SchemaUntypedField Z {
-    get => new SchemaUntypedField(_Handle + _ZOffset);
+    get {
+      if (_ZOffset == null) {
+        _ZOffset = Schema.GetOffset(0xFC131DADDC57ECD);
+      }
+      return new SchemaUntypedField(_Handle + _ZOffset!.Value);
+    }
   }
-  private static readonly nint _WOffset = Schema.GetOffset(0xFC131DAD0C56A56);
+  private static nint? _WOffset;
 
   public SchemaUntypedField W {
-    get => new SchemaUntypedField(_Handle + _WOffset);
+    get {
+      if (_WOffset == null) {
+        _WOffset = Schema.GetOffset(0xFC131DAD0C56A56);
+      }
+      return new SchemaUntypedField(_Handle + _WOffset!.Value);
+    }
   }
 
 

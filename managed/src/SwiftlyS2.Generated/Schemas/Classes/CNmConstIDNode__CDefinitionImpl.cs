@@ -17,10 +17,15 @@ internal partial class CNmConstIDNode__CDefinitionImpl : CNmIDValueNode__CDefini
   public CNmConstIDNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xF68AB5F96B99AEEA);
+  private static nint? _ValueOffset;
 
   public ref CGlobalSymbol Value {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xF68AB5F96B99AEEA);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_ValueOffset!.Value);
+    }
   }
 
 

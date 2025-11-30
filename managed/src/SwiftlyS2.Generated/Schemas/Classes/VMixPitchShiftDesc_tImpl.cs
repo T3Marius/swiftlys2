@@ -17,25 +17,45 @@ internal partial class VMixPitchShiftDesc_tImpl : SchemaClass, VMixPitchShiftDes
   public VMixPitchShiftDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _GrainSampleCountOffset = Schema.GetOffset(0xE7EEA08D6AA1D059);
+  private static nint? _GrainSampleCountOffset;
 
   public ref int GrainSampleCount {
-    get => ref _Handle.AsRef<int>(_GrainSampleCountOffset);
+    get {
+      if (_GrainSampleCountOffset == null) {
+        _GrainSampleCountOffset = Schema.GetOffset(0xE7EEA08D6AA1D059);
+      }
+      return ref _Handle.AsRef<int>(_GrainSampleCountOffset!.Value);
+    }
   }
-  private static readonly nint _PitchShiftOffset = Schema.GetOffset(0xE7EEA08DD8E35569);
+  private static nint? _PitchShiftOffset;
 
   public ref float PitchShift {
-    get => ref _Handle.AsRef<float>(_PitchShiftOffset);
+    get {
+      if (_PitchShiftOffset == null) {
+        _PitchShiftOffset = Schema.GetOffset(0xE7EEA08DD8E35569);
+      }
+      return ref _Handle.AsRef<float>(_PitchShiftOffset!.Value);
+    }
   }
-  private static readonly nint _QualityOffset = Schema.GetOffset(0xE7EEA08D60857B42);
+  private static nint? _QualityOffset;
 
   public ref int Quality {
-    get => ref _Handle.AsRef<int>(_QualityOffset);
+    get {
+      if (_QualityOffset == null) {
+        _QualityOffset = Schema.GetOffset(0xE7EEA08D60857B42);
+      }
+      return ref _Handle.AsRef<int>(_QualityOffset!.Value);
+    }
   }
-  private static readonly nint _ProcTypeOffset = Schema.GetOffset(0xE7EEA08DB256235D);
+  private static nint? _ProcTypeOffset;
 
   public ref int ProcType {
-    get => ref _Handle.AsRef<int>(_ProcTypeOffset);
+    get {
+      if (_ProcTypeOffset == null) {
+        _ProcTypeOffset = Schema.GetOffset(0xE7EEA08DB256235D);
+      }
+      return ref _Handle.AsRef<int>(_ProcTypeOffset!.Value);
+    }
   }
 
 

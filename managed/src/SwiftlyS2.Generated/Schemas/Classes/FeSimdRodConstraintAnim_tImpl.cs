@@ -17,20 +17,35 @@ internal partial class FeSimdRodConstraintAnim_tImpl : SchemaClass, FeSimdRodCon
   public FeSimdRodConstraintAnim_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NodeOffset = Schema.GetOffset(0x22AFF313CD6694B9);
+  private static nint? _NodeOffset;
 
   public SchemaUntypedField Node {
-    get => new SchemaUntypedField(_Handle + _NodeOffset);
+    get {
+      if (_NodeOffset == null) {
+        _NodeOffset = Schema.GetOffset(0x22AFF313CD6694B9);
+      }
+      return new SchemaUntypedField(_Handle + _NodeOffset!.Value);
+    }
   }
-  private static readonly nint _F4Weight0Offset = Schema.GetOffset(0x22AFF3131FFC3579);
+  private static nint? _F4Weight0Offset;
 
   public ref fltx4 F4Weight0 {
-    get => ref _Handle.AsRef<fltx4>(_F4Weight0Offset);
+    get {
+      if (_F4Weight0Offset == null) {
+        _F4Weight0Offset = Schema.GetOffset(0x22AFF3131FFC3579);
+      }
+      return ref _Handle.AsRef<fltx4>(_F4Weight0Offset!.Value);
+    }
   }
-  private static readonly nint _F4RelaxationFactorOffset = Schema.GetOffset(0x22AFF313DF311F87);
+  private static nint? _F4RelaxationFactorOffset;
 
   public ref fltx4 F4RelaxationFactor {
-    get => ref _Handle.AsRef<fltx4>(_F4RelaxationFactorOffset);
+    get {
+      if (_F4RelaxationFactorOffset == null) {
+        _F4RelaxationFactorOffset = Schema.GetOffset(0x22AFF313DF311F87);
+      }
+      return ref _Handle.AsRef<fltx4>(_F4RelaxationFactorOffset!.Value);
+    }
   }
 
 

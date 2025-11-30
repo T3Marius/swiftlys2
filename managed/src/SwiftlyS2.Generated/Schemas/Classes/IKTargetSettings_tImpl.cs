@@ -17,30 +17,55 @@ internal partial class IKTargetSettings_tImpl : SchemaClass, IKTargetSettings_t 
   public IKTargetSettings_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TargetSourceOffset = Schema.GetOffset(0xE4055546D23809BD);
+  private static nint? _TargetSourceOffset;
 
   public ref IKTargetSource TargetSource {
-    get => ref _Handle.AsRef<IKTargetSource>(_TargetSourceOffset);
+    get {
+      if (_TargetSourceOffset == null) {
+        _TargetSourceOffset = Schema.GetOffset(0xE4055546D23809BD);
+      }
+      return ref _Handle.AsRef<IKTargetSource>(_TargetSourceOffset!.Value);
+    }
   }
-  private static readonly nint _BoneOffset = Schema.GetOffset(0xE4055546193FC60F);
+  private static nint? _BoneOffset;
 
   public IKBoneNameAndIndex_t Bone {
-    get => new IKBoneNameAndIndex_tImpl(_Handle + _BoneOffset);
+    get {
+      if (_BoneOffset == null) {
+        _BoneOffset = Schema.GetOffset(0xE4055546193FC60F);
+      }
+      return new IKBoneNameAndIndex_tImpl(_Handle + _BoneOffset!.Value);
+    }
   }
-  private static readonly nint _AnimgraphParameterNamePositionOffset = Schema.GetOffset(0xE4055546D9047CE3);
+  private static nint? _AnimgraphParameterNamePositionOffset;
 
   public AnimParamID AnimgraphParameterNamePosition {
-    get => new AnimParamIDImpl(_Handle + _AnimgraphParameterNamePositionOffset);
+    get {
+      if (_AnimgraphParameterNamePositionOffset == null) {
+        _AnimgraphParameterNamePositionOffset = Schema.GetOffset(0xE4055546D9047CE3);
+      }
+      return new AnimParamIDImpl(_Handle + _AnimgraphParameterNamePositionOffset!.Value);
+    }
   }
-  private static readonly nint _AnimgraphParameterNameOrientationOffset = Schema.GetOffset(0xE4055546C162E1CA);
+  private static nint? _AnimgraphParameterNameOrientationOffset;
 
   public AnimParamID AnimgraphParameterNameOrientation {
-    get => new AnimParamIDImpl(_Handle + _AnimgraphParameterNameOrientationOffset);
+    get {
+      if (_AnimgraphParameterNameOrientationOffset == null) {
+        _AnimgraphParameterNameOrientationOffset = Schema.GetOffset(0xE4055546C162E1CA);
+      }
+      return new AnimParamIDImpl(_Handle + _AnimgraphParameterNameOrientationOffset!.Value);
+    }
   }
-  private static readonly nint _TargetCoordSystemOffset = Schema.GetOffset(0xE40555469BF14938);
+  private static nint? _TargetCoordSystemOffset;
 
   public ref IKTargetCoordinateSystem TargetCoordSystem {
-    get => ref _Handle.AsRef<IKTargetCoordinateSystem>(_TargetCoordSystemOffset);
+    get {
+      if (_TargetCoordSystemOffset == null) {
+        _TargetCoordSystemOffset = Schema.GetOffset(0xE40555469BF14938);
+      }
+      return ref _Handle.AsRef<IKTargetCoordinateSystem>(_TargetCoordSystemOffset!.Value);
+    }
   }
 
 

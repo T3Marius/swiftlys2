@@ -17,15 +17,25 @@ internal partial class FeStiffHingeBuild_tImpl : SchemaClass, FeStiffHingeBuild_
   public FeStiffHingeBuild_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaxAngleOffset = Schema.GetOffset(0x41A81A5876FE0F8E);
+  private static nint? _MaxAngleOffset;
 
   public ref float MaxAngle {
-    get => ref _Handle.AsRef<float>(_MaxAngleOffset);
+    get {
+      if (_MaxAngleOffset == null) {
+        _MaxAngleOffset = Schema.GetOffset(0x41A81A5876FE0F8E);
+      }
+      return ref _Handle.AsRef<float>(_MaxAngleOffset!.Value);
+    }
   }
-  private static readonly nint _StrengthOffset = Schema.GetOffset(0x41A81A58AFA3323A);
+  private static nint? _StrengthOffset;
 
   public ref float Strength {
-    get => ref _Handle.AsRef<float>(_StrengthOffset);
+    get {
+      if (_StrengthOffset == null) {
+        _StrengthOffset = Schema.GetOffset(0x41A81A58AFA3323A);
+      }
+      return ref _Handle.AsRef<float>(_StrengthOffset!.Value);
+    }
   }
   public ISchemaFixedArray<float> MotionBias {
     get => new SchemaFixedArray<float>(_Handle, 0x41A81A582CDDBF14, 3, 4, 4);

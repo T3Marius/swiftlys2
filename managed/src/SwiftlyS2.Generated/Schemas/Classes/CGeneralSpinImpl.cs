@@ -17,20 +17,35 @@ internal partial class CGeneralSpinImpl : CParticleFunctionOperatorImpl, CGenera
   public CGeneralSpinImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SpinRateDegreesOffset = Schema.GetOffset(0xFC0422E2BF9AC820);
+  private static nint? _SpinRateDegreesOffset;
 
   public ref int SpinRateDegrees {
-    get => ref _Handle.AsRef<int>(_SpinRateDegreesOffset);
+    get {
+      if (_SpinRateDegreesOffset == null) {
+        _SpinRateDegreesOffset = Schema.GetOffset(0xFC0422E2BF9AC820);
+      }
+      return ref _Handle.AsRef<int>(_SpinRateDegreesOffset!.Value);
+    }
   }
-  private static readonly nint _SpinRateMinDegreesOffset = Schema.GetOffset(0xFC0422E2F3639852);
+  private static nint? _SpinRateMinDegreesOffset;
 
   public ref int SpinRateMinDegrees {
-    get => ref _Handle.AsRef<int>(_SpinRateMinDegreesOffset);
+    get {
+      if (_SpinRateMinDegreesOffset == null) {
+        _SpinRateMinDegreesOffset = Schema.GetOffset(0xFC0422E2F3639852);
+      }
+      return ref _Handle.AsRef<int>(_SpinRateMinDegreesOffset!.Value);
+    }
   }
-  private static readonly nint _SpinRateStopTimeOffset = Schema.GetOffset(0xFC0422E28365AFDE);
+  private static nint? _SpinRateStopTimeOffset;
 
   public ref float SpinRateStopTime {
-    get => ref _Handle.AsRef<float>(_SpinRateStopTimeOffset);
+    get {
+      if (_SpinRateStopTimeOffset == null) {
+        _SpinRateStopTimeOffset = Schema.GetOffset(0xFC0422E28365AFDE);
+      }
+      return ref _Handle.AsRef<float>(_SpinRateStopTimeOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class CPulseCell_LimitCount__Criteria_tImpl : SchemaClass, CPul
   public CPulseCell_LimitCount__Criteria_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LimitCountPassesOffset = Schema.GetOffset(0x3B47B1B460A35826);
+  private static nint? _LimitCountPassesOffset;
 
   public ref bool LimitCountPasses {
-    get => ref _Handle.AsRef<bool>(_LimitCountPassesOffset);
+    get {
+      if (_LimitCountPassesOffset == null) {
+        _LimitCountPassesOffset = Schema.GetOffset(0x3B47B1B460A35826);
+      }
+      return ref _Handle.AsRef<bool>(_LimitCountPassesOffset!.Value);
+    }
   }
 
 

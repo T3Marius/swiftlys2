@@ -17,35 +17,65 @@ internal partial class CPhysBallSocketImpl : CPhysConstraintImpl, CPhysBallSocke
   public CPhysBallSocketImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _JointFrictionOffset = Schema.GetOffset(0xDE2408965CA9FD47);
+  private static nint? _JointFrictionOffset;
 
   public ref float JointFriction {
-    get => ref _Handle.AsRef<float>(_JointFrictionOffset);
+    get {
+      if (_JointFrictionOffset == null) {
+        _JointFrictionOffset = Schema.GetOffset(0xDE2408965CA9FD47);
+      }
+      return ref _Handle.AsRef<float>(_JointFrictionOffset!.Value);
+    }
   }
-  private static readonly nint _EnableSwingLimitOffset = Schema.GetOffset(0xDE240896DADAC14B);
+  private static nint? _EnableSwingLimitOffset;
 
   public ref bool EnableSwingLimit {
-    get => ref _Handle.AsRef<bool>(_EnableSwingLimitOffset);
+    get {
+      if (_EnableSwingLimitOffset == null) {
+        _EnableSwingLimitOffset = Schema.GetOffset(0xDE240896DADAC14B);
+      }
+      return ref _Handle.AsRef<bool>(_EnableSwingLimitOffset!.Value);
+    }
   }
-  private static readonly nint _SwingLimitOffset = Schema.GetOffset(0xDE240896279A44C2);
+  private static nint? _SwingLimitOffset;
 
   public ref float SwingLimit {
-    get => ref _Handle.AsRef<float>(_SwingLimitOffset);
+    get {
+      if (_SwingLimitOffset == null) {
+        _SwingLimitOffset = Schema.GetOffset(0xDE240896279A44C2);
+      }
+      return ref _Handle.AsRef<float>(_SwingLimitOffset!.Value);
+    }
   }
-  private static readonly nint _EnableTwistLimitOffset = Schema.GetOffset(0xDE2408967DBEA570);
+  private static nint? _EnableTwistLimitOffset;
 
   public ref bool EnableTwistLimit {
-    get => ref _Handle.AsRef<bool>(_EnableTwistLimitOffset);
+    get {
+      if (_EnableTwistLimitOffset == null) {
+        _EnableTwistLimitOffset = Schema.GetOffset(0xDE2408967DBEA570);
+      }
+      return ref _Handle.AsRef<bool>(_EnableTwistLimitOffset!.Value);
+    }
   }
-  private static readonly nint _MinTwistAngleOffset = Schema.GetOffset(0xDE240896B6E6BB7F);
+  private static nint? _MinTwistAngleOffset;
 
   public ref float MinTwistAngle {
-    get => ref _Handle.AsRef<float>(_MinTwistAngleOffset);
+    get {
+      if (_MinTwistAngleOffset == null) {
+        _MinTwistAngleOffset = Schema.GetOffset(0xDE240896B6E6BB7F);
+      }
+      return ref _Handle.AsRef<float>(_MinTwistAngleOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTwistAngleOffset = Schema.GetOffset(0xDE24089690C63AD5);
+  private static nint? _MaxTwistAngleOffset;
 
   public ref float MaxTwistAngle {
-    get => ref _Handle.AsRef<float>(_MaxTwistAngleOffset);
+    get {
+      if (_MaxTwistAngleOffset == null) {
+        _MaxTwistAngleOffset = Schema.GetOffset(0xDE24089690C63AD5);
+      }
+      return ref _Handle.AsRef<float>(_MaxTwistAngleOffset!.Value);
+    }
   }
 
 

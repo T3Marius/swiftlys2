@@ -17,10 +17,15 @@ internal partial class CNmConstFloatNode__CDefinitionImpl : CNmFloatValueNode__C
   public CNmConstFloatNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xCB1D2D708DFCB984);
+  private static nint? _ValueOffset;
 
   public ref float Value {
-    get => ref _Handle.AsRef<float>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xCB1D2D708DFCB984);
+      }
+      return ref _Handle.AsRef<float>(_ValueOffset!.Value);
+    }
   }
 
 

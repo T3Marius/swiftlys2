@@ -17,55 +17,105 @@ internal partial class CCS2ChickenGraphControllerImpl : CAnimGraphControllerBase
   public CCS2ChickenGraphControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActionOffset = Schema.GetOffset(0xC887F1577918619F);
+  private static nint? _ActionOffset;
 
   public SchemaUntypedField Action {
-    get => new SchemaUntypedField(_Handle + _ActionOffset);
+    get {
+      if (_ActionOffset == null) {
+        _ActionOffset = Schema.GetOffset(0xC887F1577918619F);
+      }
+      return new SchemaUntypedField(_Handle + _ActionOffset!.Value);
+    }
   }
-  private static readonly nint _ActionSubtypeOffset = Schema.GetOffset(0xC887F157FC94FE0B);
+  private static nint? _ActionSubtypeOffset;
 
   public SchemaUntypedField ActionSubtype {
-    get => new SchemaUntypedField(_Handle + _ActionSubtypeOffset);
+    get {
+      if (_ActionSubtypeOffset == null) {
+        _ActionSubtypeOffset = Schema.GetOffset(0xC887F157FC94FE0B);
+      }
+      return new SchemaUntypedField(_Handle + _ActionSubtypeOffset!.Value);
+    }
   }
-  private static readonly nint _ActionResetOffset = Schema.GetOffset(0xC887F157580F422E);
+  private static nint? _ActionResetOffset;
 
   public SchemaUntypedField ActionReset {
-    get => new SchemaUntypedField(_Handle + _ActionResetOffset);
+    get {
+      if (_ActionResetOffset == null) {
+        _ActionResetOffset = Schema.GetOffset(0xC887F157580F422E);
+      }
+      return new SchemaUntypedField(_Handle + _ActionResetOffset!.Value);
+    }
   }
-  private static readonly nint _IdleVariationOffset = Schema.GetOffset(0xC887F157CF0EF118);
+  private static nint? _IdleVariationOffset;
 
   public SchemaUntypedField IdleVariation {
-    get => new SchemaUntypedField(_Handle + _IdleVariationOffset);
+    get {
+      if (_IdleVariationOffset == null) {
+        _IdleVariationOffset = Schema.GetOffset(0xC887F157CF0EF118);
+      }
+      return new SchemaUntypedField(_Handle + _IdleVariationOffset!.Value);
+    }
   }
-  private static readonly nint _RunVariationOffset = Schema.GetOffset(0xC887F1575E32595B);
+  private static nint? _RunVariationOffset;
 
   public SchemaUntypedField RunVariation {
-    get => new SchemaUntypedField(_Handle + _RunVariationOffset);
+    get {
+      if (_RunVariationOffset == null) {
+        _RunVariationOffset = Schema.GetOffset(0xC887F1575E32595B);
+      }
+      return new SchemaUntypedField(_Handle + _RunVariationOffset!.Value);
+    }
   }
-  private static readonly nint _PanicVariationOffset = Schema.GetOffset(0xC887F157802F1EA1);
+  private static nint? _PanicVariationOffset;
 
   public SchemaUntypedField PanicVariation {
-    get => new SchemaUntypedField(_Handle + _PanicVariationOffset);
+    get {
+      if (_PanicVariationOffset == null) {
+        _PanicVariationOffset = Schema.GetOffset(0xC887F157802F1EA1);
+      }
+      return new SchemaUntypedField(_Handle + _PanicVariationOffset!.Value);
+    }
   }
-  private static readonly nint _SquatVariationOffset = Schema.GetOffset(0xC887F15791127162);
+  private static nint? _SquatVariationOffset;
 
   public SchemaUntypedField SquatVariation {
-    get => new SchemaUntypedField(_Handle + _SquatVariationOffset);
+    get {
+      if (_SquatVariationOffset == null) {
+        _SquatVariationOffset = Schema.GetOffset(0xC887F15791127162);
+      }
+      return new SchemaUntypedField(_Handle + _SquatVariationOffset!.Value);
+    }
   }
-  private static readonly nint _InWaterOffset = Schema.GetOffset(0xC887F157E47F9BA9);
+  private static nint? _InWaterOffset;
 
   public SchemaUntypedField InWater {
-    get => new SchemaUntypedField(_Handle + _InWaterOffset);
+    get {
+      if (_InWaterOffset == null) {
+        _InWaterOffset = Schema.GetOffset(0xC887F157E47F9BA9);
+      }
+      return new SchemaUntypedField(_Handle + _InWaterOffset!.Value);
+    }
   }
-  private static readonly nint _HasActionCompletedEventOffset = Schema.GetOffset(0xC887F157CD4A37EA);
+  private static nint? _HasActionCompletedEventOffset;
 
   public ref bool HasActionCompletedEvent {
-    get => ref _Handle.AsRef<bool>(_HasActionCompletedEventOffset);
+    get {
+      if (_HasActionCompletedEventOffset == null) {
+        _HasActionCompletedEventOffset = Schema.GetOffset(0xC887F157CD4A37EA);
+      }
+      return ref _Handle.AsRef<bool>(_HasActionCompletedEventOffset!.Value);
+    }
   }
-  private static readonly nint _WaitingForCompletedEventOffset = Schema.GetOffset(0xC887F15754876F98);
+  private static nint? _WaitingForCompletedEventOffset;
 
   public ref bool WaitingForCompletedEvent {
-    get => ref _Handle.AsRef<bool>(_WaitingForCompletedEventOffset);
+    get {
+      if (_WaitingForCompletedEventOffset == null) {
+        _WaitingForCompletedEventOffset = Schema.GetOffset(0xC887F15754876F98);
+      }
+      return ref _Handle.AsRef<bool>(_WaitingForCompletedEventOffset!.Value);
+    }
   }
 
 

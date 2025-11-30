@@ -17,25 +17,45 @@ internal partial class RnNode_tImpl : SchemaClass, RnNode_t {
   public RnNode_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinOffset = Schema.GetOffset(0x7C7D54E2F4B0AA63);
+  private static nint? _MinOffset;
 
   public ref Vector Min {
-    get => ref _Handle.AsRef<Vector>(_MinOffset);
+    get {
+      if (_MinOffset == null) {
+        _MinOffset = Schema.GetOffset(0x7C7D54E2F4B0AA63);
+      }
+      return ref _Handle.AsRef<Vector>(_MinOffset!.Value);
+    }
   }
-  private static readonly nint _ChildrenOffset = Schema.GetOffset(0x7C7D54E2D0F4635E);
+  private static nint? _ChildrenOffset;
 
   public ref uint Children {
-    get => ref _Handle.AsRef<uint>(_ChildrenOffset);
+    get {
+      if (_ChildrenOffset == null) {
+        _ChildrenOffset = Schema.GetOffset(0x7C7D54E2D0F4635E);
+      }
+      return ref _Handle.AsRef<uint>(_ChildrenOffset!.Value);
+    }
   }
-  private static readonly nint _MaxOffset = Schema.GetOffset(0x7C7D54E2EAC4225D);
+  private static nint? _MaxOffset;
 
   public ref Vector Max {
-    get => ref _Handle.AsRef<Vector>(_MaxOffset);
+    get {
+      if (_MaxOffset == null) {
+        _MaxOffset = Schema.GetOffset(0x7C7D54E2EAC4225D);
+      }
+      return ref _Handle.AsRef<Vector>(_MaxOffset!.Value);
+    }
   }
-  private static readonly nint _TriangleOffsetOffset = Schema.GetOffset(0x7C7D54E2AFE22CE6);
+  private static nint? _TriangleOffsetOffset;
 
   public ref uint TriangleOffset {
-    get => ref _Handle.AsRef<uint>(_TriangleOffsetOffset);
+    get {
+      if (_TriangleOffsetOffset == null) {
+        _TriangleOffsetOffset = Schema.GetOffset(0x7C7D54E2AFE22CE6);
+      }
+      return ref _Handle.AsRef<uint>(_TriangleOffsetOffset!.Value);
+    }
   }
 
 

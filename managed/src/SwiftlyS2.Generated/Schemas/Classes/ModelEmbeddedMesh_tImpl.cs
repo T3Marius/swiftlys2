@@ -17,54 +17,102 @@ internal partial class ModelEmbeddedMesh_tImpl : SchemaClass, ModelEmbeddedMesh_
   public ModelEmbeddedMesh_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x9EB0DD6ECAE8A266);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x9EB0DD6ECAE8A266);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x9EB0DD6ECAE8A266);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _MeshIndexOffset = Schema.GetOffset(0x9EB0DD6E07C0EC64);
+  private static nint? _MeshIndexOffset;
 
   public ref int MeshIndex {
-    get => ref _Handle.AsRef<int>(_MeshIndexOffset);
+    get {
+      if (_MeshIndexOffset == null) {
+        _MeshIndexOffset = Schema.GetOffset(0x9EB0DD6E07C0EC64);
+      }
+      return ref _Handle.AsRef<int>(_MeshIndexOffset!.Value);
+    }
   }
-  private static readonly nint _DataBlockOffset = Schema.GetOffset(0x9EB0DD6E3D4FDE56);
+  private static nint? _DataBlockOffset;
 
   public ref int DataBlock {
-    get => ref _Handle.AsRef<int>(_DataBlockOffset);
+    get {
+      if (_DataBlockOffset == null) {
+        _DataBlockOffset = Schema.GetOffset(0x9EB0DD6E3D4FDE56);
+      }
+      return ref _Handle.AsRef<int>(_DataBlockOffset!.Value);
+    }
   }
-  private static readonly nint _MorphBlockOffset = Schema.GetOffset(0x9EB0DD6E73C9235E);
+  private static nint? _MorphBlockOffset;
 
   public ref int MorphBlock {
-    get => ref _Handle.AsRef<int>(_MorphBlockOffset);
+    get {
+      if (_MorphBlockOffset == null) {
+        _MorphBlockOffset = Schema.GetOffset(0x9EB0DD6E73C9235E);
+      }
+      return ref _Handle.AsRef<int>(_MorphBlockOffset!.Value);
+    }
   }
-  private static readonly nint _VertexBuffersOffset = Schema.GetOffset(0x9EB0DD6E967BB5EA);
+  private static nint? _VertexBuffersOffset;
 
   public ref CUtlVector<ModelMeshBufferData_t> VertexBuffers {
-    get => ref _Handle.AsRef<CUtlVector<ModelMeshBufferData_t>>(_VertexBuffersOffset);
+    get {
+      if (_VertexBuffersOffset == null) {
+        _VertexBuffersOffset = Schema.GetOffset(0x9EB0DD6E967BB5EA);
+      }
+      return ref _Handle.AsRef<CUtlVector<ModelMeshBufferData_t>>(_VertexBuffersOffset!.Value);
+    }
   }
-  private static readonly nint _IndexBuffersOffset = Schema.GetOffset(0x9EB0DD6EF9221876);
+  private static nint? _IndexBuffersOffset;
 
   public ref CUtlVector<ModelMeshBufferData_t> IndexBuffers {
-    get => ref _Handle.AsRef<CUtlVector<ModelMeshBufferData_t>>(_IndexBuffersOffset);
+    get {
+      if (_IndexBuffersOffset == null) {
+        _IndexBuffersOffset = Schema.GetOffset(0x9EB0DD6EF9221876);
+      }
+      return ref _Handle.AsRef<CUtlVector<ModelMeshBufferData_t>>(_IndexBuffersOffset!.Value);
+    }
   }
-  private static readonly nint _ToolsBuffersOffset = Schema.GetOffset(0x9EB0DD6ED56473DF);
+  private static nint? _ToolsBuffersOffset;
 
   public ref CUtlVector<ModelMeshBufferData_t> ToolsBuffers {
-    get => ref _Handle.AsRef<CUtlVector<ModelMeshBufferData_t>>(_ToolsBuffersOffset);
+    get {
+      if (_ToolsBuffersOffset == null) {
+        _ToolsBuffersOffset = Schema.GetOffset(0x9EB0DD6ED56473DF);
+      }
+      return ref _Handle.AsRef<CUtlVector<ModelMeshBufferData_t>>(_ToolsBuffersOffset!.Value);
+    }
   }
-  private static readonly nint _VBIBBlockOffset = Schema.GetOffset(0x9EB0DD6EF5E4DCB7);
+  private static nint? _VBIBBlockOffset;
 
   public ref int VBIBBlock {
-    get => ref _Handle.AsRef<int>(_VBIBBlockOffset);
+    get {
+      if (_VBIBBlockOffset == null) {
+        _VBIBBlockOffset = Schema.GetOffset(0x9EB0DD6EF5E4DCB7);
+      }
+      return ref _Handle.AsRef<int>(_VBIBBlockOffset!.Value);
+    }
   }
-  private static readonly nint _ToolsVBBlockOffset = Schema.GetOffset(0x9EB0DD6EB4D00411);
+  private static nint? _ToolsVBBlockOffset;
 
   public ref int ToolsVBBlock {
-    get => ref _Handle.AsRef<int>(_ToolsVBBlockOffset);
+    get {
+      if (_ToolsVBBlockOffset == null) {
+        _ToolsVBBlockOffset = Schema.GetOffset(0x9EB0DD6EB4D00411);
+      }
+      return ref _Handle.AsRef<int>(_ToolsVBBlockOffset!.Value);
+    }
   }
 
 

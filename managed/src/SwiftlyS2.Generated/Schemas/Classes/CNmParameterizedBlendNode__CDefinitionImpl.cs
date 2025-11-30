@@ -17,20 +17,35 @@ internal partial class CNmParameterizedBlendNode__CDefinitionImpl : CNmPoseNode_
   public CNmParameterizedBlendNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceNodeIndicesOffset = Schema.GetOffset(0x83A56F31E90F1FE1);
+  private static nint? _SourceNodeIndicesOffset;
 
   public SchemaUntypedField SourceNodeIndices {
-    get => new SchemaUntypedField(_Handle + _SourceNodeIndicesOffset);
+    get {
+      if (_SourceNodeIndicesOffset == null) {
+        _SourceNodeIndicesOffset = Schema.GetOffset(0x83A56F31E90F1FE1);
+      }
+      return new SchemaUntypedField(_Handle + _SourceNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _InputParameterValueNodeIdxOffset = Schema.GetOffset(0x83A56F31AEA94516);
+  private static nint? _InputParameterValueNodeIdxOffset;
 
   public ref short InputParameterValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputParameterValueNodeIdxOffset);
+    get {
+      if (_InputParameterValueNodeIdxOffset == null) {
+        _InputParameterValueNodeIdxOffset = Schema.GetOffset(0x83A56F31AEA94516);
+      }
+      return ref _Handle.AsRef<short>(_InputParameterValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _AllowLoopingOffset = Schema.GetOffset(0x83A56F31FEB26D98);
+  private static nint? _AllowLoopingOffset;
 
   public ref bool AllowLooping {
-    get => ref _Handle.AsRef<bool>(_AllowLoopingOffset);
+    get {
+      if (_AllowLoopingOffset == null) {
+        _AllowLoopingOffset = Schema.GetOffset(0x83A56F31FEB26D98);
+      }
+      return ref _Handle.AsRef<bool>(_AllowLoopingOffset!.Value);
+    }
   }
 
 

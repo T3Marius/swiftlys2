@@ -17,25 +17,45 @@ internal partial class PredictedDamageTag_tImpl : SchemaClass, PredictedDamageTa
   public PredictedDamageTag_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagTickOffset = Schema.GetOffset(0x43420069BBCAAE16);
+  private static nint? _TagTickOffset;
 
   public GameTick_t TagTick {
-    get => new GameTick_tImpl(_Handle + _TagTickOffset);
+    get {
+      if (_TagTickOffset == null) {
+        _TagTickOffset = Schema.GetOffset(0x43420069BBCAAE16);
+      }
+      return new GameTick_tImpl(_Handle + _TagTickOffset!.Value);
+    }
   }
-  private static readonly nint _FlinchModSmallOffset = Schema.GetOffset(0x4342006970E7E18A);
+  private static nint? _FlinchModSmallOffset;
 
   public ref float FlinchModSmall {
-    get => ref _Handle.AsRef<float>(_FlinchModSmallOffset);
+    get {
+      if (_FlinchModSmallOffset == null) {
+        _FlinchModSmallOffset = Schema.GetOffset(0x4342006970E7E18A);
+      }
+      return ref _Handle.AsRef<float>(_FlinchModSmallOffset!.Value);
+    }
   }
-  private static readonly nint _FlinchModLargeOffset = Schema.GetOffset(0x43420069E052DA66);
+  private static nint? _FlinchModLargeOffset;
 
   public ref float FlinchModLarge {
-    get => ref _Handle.AsRef<float>(_FlinchModLargeOffset);
+    get {
+      if (_FlinchModLargeOffset == null) {
+        _FlinchModLargeOffset = Schema.GetOffset(0x43420069E052DA66);
+      }
+      return ref _Handle.AsRef<float>(_FlinchModLargeOffset!.Value);
+    }
   }
-  private static readonly nint _FriendlyFireDamageReductionRatioOffset = Schema.GetOffset(0x43420069BA6A7F4D);
+  private static nint? _FriendlyFireDamageReductionRatioOffset;
 
   public ref float FriendlyFireDamageReductionRatio {
-    get => ref _Handle.AsRef<float>(_FriendlyFireDamageReductionRatioOffset);
+    get {
+      if (_FriendlyFireDamageReductionRatioOffset == null) {
+        _FriendlyFireDamageReductionRatioOffset = Schema.GetOffset(0x43420069BA6A7F4D);
+      }
+      return ref _Handle.AsRef<float>(_FriendlyFireDamageReductionRatioOffset!.Value);
+    }
   }
 
   public void TagTickUpdated() {

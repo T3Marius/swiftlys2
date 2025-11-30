@@ -17,30 +17,55 @@ internal partial class CSeqPoseParamDescImpl : SchemaClass, CSeqPoseParamDesc {
   public CSeqPoseParamDescImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x9276634463D22D49);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x9276634463D22D49);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _StartOffset = Schema.GetOffset(0x9276634405A20B85);
+  private static nint? _StartOffset;
 
   public ref float Start {
-    get => ref _Handle.AsRef<float>(_StartOffset);
+    get {
+      if (_StartOffset == null) {
+        _StartOffset = Schema.GetOffset(0x9276634405A20B85);
+      }
+      return ref _Handle.AsRef<float>(_StartOffset!.Value);
+    }
   }
-  private static readonly nint _EndOffset = Schema.GetOffset(0x927663449616A27C);
+  private static nint? _EndOffset;
 
   public ref float End {
-    get => ref _Handle.AsRef<float>(_EndOffset);
+    get {
+      if (_EndOffset == null) {
+        _EndOffset = Schema.GetOffset(0x927663449616A27C);
+      }
+      return ref _Handle.AsRef<float>(_EndOffset!.Value);
+    }
   }
-  private static readonly nint _LoopOffset = Schema.GetOffset(0x92766344DE666C85);
+  private static nint? _LoopOffset;
 
   public ref float Loop {
-    get => ref _Handle.AsRef<float>(_LoopOffset);
+    get {
+      if (_LoopOffset == null) {
+        _LoopOffset = Schema.GetOffset(0x92766344DE666C85);
+      }
+      return ref _Handle.AsRef<float>(_LoopOffset!.Value);
+    }
   }
-  private static readonly nint _LoopingOffset = Schema.GetOffset(0x9276634425449B0D);
+  private static nint? _LoopingOffset;
 
   public ref bool Looping {
-    get => ref _Handle.AsRef<bool>(_LoopingOffset);
+    get {
+      if (_LoopingOffset == null) {
+        _LoopingOffset = Schema.GetOffset(0x9276634425449B0D);
+      }
+      return ref _Handle.AsRef<bool>(_LoopingOffset!.Value);
+    }
   }
 
 

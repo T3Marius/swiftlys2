@@ -17,20 +17,35 @@ internal partial class CExpressionActionUpdaterImpl : CAnimActionUpdaterImpl, CE
   public CExpressionActionUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParamOffset = Schema.GetOffset(0x3B8502F3679286A4);
+  private static nint? _ParamOffset;
 
   public CAnimParamHandle Param {
-    get => new CAnimParamHandleImpl(_Handle + _ParamOffset);
+    get {
+      if (_ParamOffset == null) {
+        _ParamOffset = Schema.GetOffset(0x3B8502F3679286A4);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParamOffset!.Value);
+    }
   }
-  private static readonly nint _ParamTypeOffset = Schema.GetOffset(0x3B8502F3F05DFDD9);
+  private static nint? _ParamTypeOffset;
 
   public ref AnimParamType_t ParamType {
-    get => ref _Handle.AsRef<AnimParamType_t>(_ParamTypeOffset);
+    get {
+      if (_ParamTypeOffset == null) {
+        _ParamTypeOffset = Schema.GetOffset(0x3B8502F3F05DFDD9);
+      }
+      return ref _Handle.AsRef<AnimParamType_t>(_ParamTypeOffset!.Value);
+    }
   }
-  private static readonly nint _ScriptOffset = Schema.GetOffset(0x3B8502F329D70FB0);
+  private static nint? _ScriptOffset;
 
   public AnimScriptHandle Script {
-    get => new AnimScriptHandleImpl(_Handle + _ScriptOffset);
+    get {
+      if (_ScriptOffset == null) {
+        _ScriptOffset = Schema.GetOffset(0x3B8502F329D70FB0);
+      }
+      return new AnimScriptHandleImpl(_Handle + _ScriptOffset!.Value);
+    }
   }
 
 

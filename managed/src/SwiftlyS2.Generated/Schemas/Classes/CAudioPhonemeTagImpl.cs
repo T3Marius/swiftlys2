@@ -17,20 +17,35 @@ internal partial class CAudioPhonemeTagImpl : SchemaClass, CAudioPhonemeTag {
   public CAudioPhonemeTagImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0xBE68CF3E67FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public ref float StartTime {
-    get => ref _Handle.AsRef<float>(_StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0xBE68CF3E67FE9DC4);
+      }
+      return ref _Handle.AsRef<float>(_StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndTimeOffset = Schema.GetOffset(0xBE68CF3E2041DF9D);
+  private static nint? _EndTimeOffset;
 
   public ref float EndTime {
-    get => ref _Handle.AsRef<float>(_EndTimeOffset);
+    get {
+      if (_EndTimeOffset == null) {
+        _EndTimeOffset = Schema.GetOffset(0xBE68CF3E2041DF9D);
+      }
+      return ref _Handle.AsRef<float>(_EndTimeOffset!.Value);
+    }
   }
-  private static readonly nint _PhonemeCodeOffset = Schema.GetOffset(0xBE68CF3EBFB1B4C4);
+  private static nint? _PhonemeCodeOffset;
 
   public ref int PhonemeCode {
-    get => ref _Handle.AsRef<int>(_PhonemeCodeOffset);
+    get {
+      if (_PhonemeCodeOffset == null) {
+        _PhonemeCodeOffset = Schema.GetOffset(0xBE68CF3EBFB1B4C4);
+      }
+      return ref _Handle.AsRef<int>(_PhonemeCodeOffset!.Value);
+    }
   }
 
 

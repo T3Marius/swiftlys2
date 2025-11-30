@@ -17,15 +17,25 @@ internal partial class CEnvDetailControllerImpl : CBaseEntityImpl, CEnvDetailCon
   public CEnvDetailControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FadeStartDistOffset = Schema.GetOffset(0x585A7964FBFACAF3);
+  private static nint? _FadeStartDistOffset;
 
   public ref float FadeStartDist {
-    get => ref _Handle.AsRef<float>(_FadeStartDistOffset);
+    get {
+      if (_FadeStartDistOffset == null) {
+        _FadeStartDistOffset = Schema.GetOffset(0x585A7964FBFACAF3);
+      }
+      return ref _Handle.AsRef<float>(_FadeStartDistOffset!.Value);
+    }
   }
-  private static readonly nint _FadeEndDistOffset = Schema.GetOffset(0x585A79646DD6252A);
+  private static nint? _FadeEndDistOffset;
 
   public ref float FadeEndDist {
-    get => ref _Handle.AsRef<float>(_FadeEndDistOffset);
+    get {
+      if (_FadeEndDistOffset == null) {
+        _FadeEndDistOffset = Schema.GetOffset(0x585A79646DD6252A);
+      }
+      return ref _Handle.AsRef<float>(_FadeEndDistOffset!.Value);
+    }
   }
 
   public void FadeStartDistUpdated() {

@@ -17,29 +17,52 @@ internal partial class CLogicLineToEntityImpl : CLogicalEntityImpl, CLogicLineTo
   public CLogicLineToEntityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LineOffset = Schema.GetOffset(0x61067DC85589FAA7);
+  private static nint? _LineOffset;
 
   public SchemaUntypedField Line {
-    get => new SchemaUntypedField(_Handle + _LineOffset);
+    get {
+      if (_LineOffset == null) {
+        _LineOffset = Schema.GetOffset(0x61067DC85589FAA7);
+      }
+      return new SchemaUntypedField(_Handle + _LineOffset!.Value);
+    }
   }
-  private static readonly nint _SourceNameOffset = Schema.GetOffset(0x61067DC82F9BA2DB);
+  private static nint? _SourceNameOffset;
 
   public string SourceName {
     get {
-      var ptr = _Handle.Read<nint>(_SourceNameOffset);
+      if (_SourceNameOffset == null) {
+        _SourceNameOffset = Schema.GetOffset(0x61067DC82F9BA2DB);
+      }
+      var ptr = _Handle.Read<nint>(_SourceNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SourceNameOffset, value);
+    set {
+      if (_SourceNameOffset == null) {
+        _SourceNameOffset = Schema.GetOffset(0x61067DC82F9BA2DB);
+      }
+      Schema.SetString(_Handle, _SourceNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StartEntityOffset = Schema.GetOffset(0x61067DC8904F2828);
+  private static nint? _StartEntityOffset;
 
   public ref CHandle<CBaseEntity> StartEntity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_StartEntityOffset);
+    get {
+      if (_StartEntityOffset == null) {
+        _StartEntityOffset = Schema.GetOffset(0x61067DC8904F2828);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_StartEntityOffset!.Value);
+    }
   }
-  private static readonly nint _EndEntityOffset = Schema.GetOffset(0x61067DC89114A219);
+  private static nint? _EndEntityOffset;
 
   public ref CHandle<CBaseEntity> EndEntity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_EndEntityOffset);
+    get {
+      if (_EndEntityOffset == null) {
+        _EndEntityOffset = Schema.GetOffset(0x61067DC89114A219);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_EndEntityOffset!.Value);
+    }
   }
 
 

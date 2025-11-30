@@ -17,24 +17,42 @@ internal partial class MaterialVariable_tImpl : SchemaClass, MaterialVariable_t 
   public MaterialVariable_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StrVariableOffset = Schema.GetOffset(0xCACB71DBA52C3390);
+  private static nint? _StrVariableOffset;
 
   public string StrVariable {
     get {
-      var ptr = _Handle.Read<nint>(_StrVariableOffset);
+      if (_StrVariableOffset == null) {
+        _StrVariableOffset = Schema.GetOffset(0xCACB71DBA52C3390);
+      }
+      var ptr = _Handle.Read<nint>(_StrVariableOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrVariableOffset, value);
+    set {
+      if (_StrVariableOffset == null) {
+        _StrVariableOffset = Schema.GetOffset(0xCACB71DBA52C3390);
+      }
+      Schema.SetString(_Handle, _StrVariableOffset!.Value, value);
+    }
   } 
-  private static readonly nint _VariableFieldOffset = Schema.GetOffset(0xCACB71DBF868E9B3);
+  private static nint? _VariableFieldOffset;
 
   public ParticleAttributeIndex_t VariableField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _VariableFieldOffset);
+    get {
+      if (_VariableFieldOffset == null) {
+        _VariableFieldOffset = Schema.GetOffset(0xCACB71DBF868E9B3);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _VariableFieldOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0xCACB71DBB731A42F);
+  private static nint? _ScaleOffset;
 
   public ref float Scale {
-    get => ref _Handle.AsRef<float>(_ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0xCACB71DBB731A42F);
+      }
+      return ref _Handle.AsRef<float>(_ScaleOffset!.Value);
+    }
   }
 
 

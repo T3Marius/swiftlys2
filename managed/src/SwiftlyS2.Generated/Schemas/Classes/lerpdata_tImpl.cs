@@ -17,35 +17,65 @@ internal partial class lerpdata_tImpl : SchemaClass, lerpdata_t {
   public lerpdata_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EntOffset = Schema.GetOffset(0x70C58DAB8BBDB334);
+  private static nint? _EntOffset;
 
   public ref CHandle<CBaseEntity> Ent {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntOffset);
+    get {
+      if (_EntOffset == null) {
+        _EntOffset = Schema.GetOffset(0x70C58DAB8BBDB334);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntOffset!.Value);
+    }
   }
-  private static readonly nint _MoveTypeOffset = Schema.GetOffset(0x70C58DAB90BCCC1C);
+  private static nint? _MoveTypeOffset;
 
   public ref MoveType_t MoveType {
-    get => ref _Handle.AsRef<MoveType_t>(_MoveTypeOffset);
+    get {
+      if (_MoveTypeOffset == null) {
+        _MoveTypeOffset = Schema.GetOffset(0x70C58DAB90BCCC1C);
+      }
+      return ref _Handle.AsRef<MoveType_t>(_MoveTypeOffset!.Value);
+    }
   }
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0x70C58DAB67FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public GameTime_t StartTime {
-    get => new GameTime_tImpl(_Handle + _StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0x70C58DAB67FE9DC4);
+      }
+      return new GameTime_tImpl(_Handle + _StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartOriginOffset = Schema.GetOffset(0x70C58DAB7C574331);
+  private static nint? _StartOriginOffset;
 
   public ref Vector StartOrigin {
-    get => ref _Handle.AsRef<Vector>(_StartOriginOffset);
+    get {
+      if (_StartOriginOffset == null) {
+        _StartOriginOffset = Schema.GetOffset(0x70C58DAB7C574331);
+      }
+      return ref _Handle.AsRef<Vector>(_StartOriginOffset!.Value);
+    }
   }
-  private static readonly nint _StartRotOffset = Schema.GetOffset(0x70C58DAB6246A06D);
+  private static nint? _StartRotOffset;
 
   public ref Quaternion StartRot {
-    get => ref _Handle.AsRef<Quaternion>(_StartRotOffset);
+    get {
+      if (_StartRotOffset == null) {
+        _StartRotOffset = Schema.GetOffset(0x70C58DAB6246A06D);
+      }
+      return ref _Handle.AsRef<Quaternion>(_StartRotOffset!.Value);
+    }
   }
-  private static readonly nint _FXIndexOffset = Schema.GetOffset(0x70C58DAB1E8452FD);
+  private static nint? _FXIndexOffset;
 
   public ParticleIndex_t FXIndex {
-    get => new ParticleIndex_tImpl(_Handle + _FXIndexOffset);
+    get {
+      if (_FXIndexOffset == null) {
+        _FXIndexOffset = Schema.GetOffset(0x70C58DAB1E8452FD);
+      }
+      return new ParticleIndex_tImpl(_Handle + _FXIndexOffset!.Value);
+    }
   }
 
 

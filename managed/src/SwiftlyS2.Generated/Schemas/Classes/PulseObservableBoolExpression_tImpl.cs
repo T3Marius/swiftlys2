@@ -17,20 +17,35 @@ internal partial class PulseObservableBoolExpression_tImpl : SchemaClass, PulseO
   public PulseObservableBoolExpression_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EvaluateConnectionOffset = Schema.GetOffset(0x420AB396176904EE);
+  private static nint? _EvaluateConnectionOffset;
 
   public CPulse_OutflowConnection EvaluateConnection {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _EvaluateConnectionOffset);
+    get {
+      if (_EvaluateConnectionOffset == null) {
+        _EvaluateConnectionOffset = Schema.GetOffset(0x420AB396176904EE);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _EvaluateConnectionOffset!.Value);
+    }
   }
-  private static readonly nint _DependentObservableVarsOffset = Schema.GetOffset(0x420AB396C3F55B8B);
+  private static nint? _DependentObservableVarsOffset;
 
   public ref CUtlVector<PulseRuntimeVarIndex_t> DependentObservableVars {
-    get => ref _Handle.AsRef<CUtlVector<PulseRuntimeVarIndex_t>>(_DependentObservableVarsOffset);
+    get {
+      if (_DependentObservableVarsOffset == null) {
+        _DependentObservableVarsOffset = Schema.GetOffset(0x420AB396C3F55B8B);
+      }
+      return ref _Handle.AsRef<CUtlVector<PulseRuntimeVarIndex_t>>(_DependentObservableVarsOffset!.Value);
+    }
   }
-  private static readonly nint _DependentObservableBlackboardReferencesOffset = Schema.GetOffset(0x420AB3961EE1483A);
+  private static nint? _DependentObservableBlackboardReferencesOffset;
 
   public ref CUtlVector<PulseRuntimeBlackboardReferenceIndex_t> DependentObservableBlackboardReferences {
-    get => ref _Handle.AsRef<CUtlVector<PulseRuntimeBlackboardReferenceIndex_t>>(_DependentObservableBlackboardReferencesOffset);
+    get {
+      if (_DependentObservableBlackboardReferencesOffset == null) {
+        _DependentObservableBlackboardReferencesOffset = Schema.GetOffset(0x420AB3961EE1483A);
+      }
+      return ref _Handle.AsRef<CUtlVector<PulseRuntimeBlackboardReferenceIndex_t>>(_DependentObservableBlackboardReferencesOffset!.Value);
+    }
   }
 
 

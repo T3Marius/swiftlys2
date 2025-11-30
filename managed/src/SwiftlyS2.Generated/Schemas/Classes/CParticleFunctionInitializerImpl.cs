@@ -17,10 +17,15 @@ internal partial class CParticleFunctionInitializerImpl : CParticleFunctionImpl,
   public CParticleFunctionInitializerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AssociatedEmitterIndexOffset = Schema.GetOffset(0xA224E6D8D47B3DA5);
+  private static nint? _AssociatedEmitterIndexOffset;
 
   public ref int AssociatedEmitterIndex {
-    get => ref _Handle.AsRef<int>(_AssociatedEmitterIndexOffset);
+    get {
+      if (_AssociatedEmitterIndexOffset == null) {
+        _AssociatedEmitterIndexOffset = Schema.GetOffset(0xA224E6D8D47B3DA5);
+      }
+      return ref _Handle.AsRef<int>(_AssociatedEmitterIndexOffset!.Value);
+    }
   }
 
 

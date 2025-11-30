@@ -17,20 +17,35 @@ internal partial class C_OP_ClampVectorImpl : CParticleFunctionOperatorImpl, C_O
   public C_OP_ClampVectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x5977BF1BE5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x5977BF1BE5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMinOffset = Schema.GetOffset(0x5977BF1B2EFED678);
+  private static nint? _OutputMinOffset;
 
   public CPerParticleVecInput OutputMin {
-    get => new CPerParticleVecInputImpl(_Handle + _OutputMinOffset);
+    get {
+      if (_OutputMinOffset == null) {
+        _OutputMinOffset = Schema.GetOffset(0x5977BF1B2EFED678);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _OutputMinOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMaxOffset = Schema.GetOffset(0x5977BF1B451280D2);
+  private static nint? _OutputMaxOffset;
 
   public CPerParticleVecInput OutputMax {
-    get => new CPerParticleVecInputImpl(_Handle + _OutputMaxOffset);
+    get {
+      if (_OutputMaxOffset == null) {
+        _OutputMaxOffset = Schema.GetOffset(0x5977BF1B451280D2);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _OutputMaxOffset!.Value);
+    }
   }
 
 

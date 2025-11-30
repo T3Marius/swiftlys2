@@ -17,20 +17,35 @@ internal partial class CNmStateMachineNode__StateDefinition_tImpl : SchemaClass,
   public CNmStateMachineNode__StateDefinition_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StateNodeIdxOffset = Schema.GetOffset(0x539BB818074CB7A1);
+  private static nint? _StateNodeIdxOffset;
 
   public ref short StateNodeIdx {
-    get => ref _Handle.AsRef<short>(_StateNodeIdxOffset);
+    get {
+      if (_StateNodeIdxOffset == null) {
+        _StateNodeIdxOffset = Schema.GetOffset(0x539BB818074CB7A1);
+      }
+      return ref _Handle.AsRef<short>(_StateNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EntryConditionNodeIdxOffset = Schema.GetOffset(0x539BB8180B262993);
+  private static nint? _EntryConditionNodeIdxOffset;
 
   public ref short EntryConditionNodeIdx {
-    get => ref _Handle.AsRef<short>(_EntryConditionNodeIdxOffset);
+    get {
+      if (_EntryConditionNodeIdxOffset == null) {
+        _EntryConditionNodeIdxOffset = Schema.GetOffset(0x539BB8180B262993);
+      }
+      return ref _Handle.AsRef<short>(_EntryConditionNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _TransitionDefinitionsOffset = Schema.GetOffset(0x539BB818F02EF580);
+  private static nint? _TransitionDefinitionsOffset;
 
   public SchemaUntypedField TransitionDefinitions {
-    get => new SchemaUntypedField(_Handle + _TransitionDefinitionsOffset);
+    get {
+      if (_TransitionDefinitionsOffset == null) {
+        _TransitionDefinitionsOffset = Schema.GetOffset(0x539BB818F02EF580);
+      }
+      return new SchemaUntypedField(_Handle + _TransitionDefinitionsOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class GameTime_tImpl : SchemaClass, GameTime_t {
   public GameTime_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x1DBEBD4DDCB0894A);
+  private static nint? _ValueOffset;
 
   public ref float Value {
-    get => ref _Handle.AsRef<float>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x1DBEBD4DDCB0894A);
+      }
+      return ref _Handle.AsRef<float>(_ValueOffset!.Value);
+    }
   }
 
 

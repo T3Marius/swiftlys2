@@ -17,35 +17,65 @@ internal partial class CSeqSynthAnimDescImpl : SchemaClass, CSeqSynthAnimDesc {
   public CSeqSynthAnimDescImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x7D8317C163D22D49);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x7D8317C163D22D49);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x7D8317C1DC74A14C);
+  private static nint? _FlagsOffset;
 
   public CSeqSeqDescFlag Flags {
-    get => new CSeqSeqDescFlagImpl(_Handle + _FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x7D8317C1DC74A14C);
+      }
+      return new CSeqSeqDescFlagImpl(_Handle + _FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _TransitionOffset = Schema.GetOffset(0x7D8317C182B0A282);
+  private static nint? _TransitionOffset;
 
   public CSeqTransition Transition {
-    get => new CSeqTransitionImpl(_Handle + _TransitionOffset);
+    get {
+      if (_TransitionOffset == null) {
+        _TransitionOffset = Schema.GetOffset(0x7D8317C182B0A282);
+      }
+      return new CSeqTransitionImpl(_Handle + _TransitionOffset!.Value);
+    }
   }
-  private static readonly nint _LocalBaseReferenceOffset = Schema.GetOffset(0x7D8317C1FE93178E);
+  private static nint? _LocalBaseReferenceOffset;
 
   public ref short LocalBaseReference {
-    get => ref _Handle.AsRef<short>(_LocalBaseReferenceOffset);
+    get {
+      if (_LocalBaseReferenceOffset == null) {
+        _LocalBaseReferenceOffset = Schema.GetOffset(0x7D8317C1FE93178E);
+      }
+      return ref _Handle.AsRef<short>(_LocalBaseReferenceOffset!.Value);
+    }
   }
-  private static readonly nint _LocalBoneMaskOffset = Schema.GetOffset(0x7D8317C191EDF3D2);
+  private static nint? _LocalBoneMaskOffset;
 
   public ref short LocalBoneMask {
-    get => ref _Handle.AsRef<short>(_LocalBoneMaskOffset);
+    get {
+      if (_LocalBoneMaskOffset == null) {
+        _LocalBoneMaskOffset = Schema.GetOffset(0x7D8317C191EDF3D2);
+      }
+      return ref _Handle.AsRef<short>(_LocalBoneMaskOffset!.Value);
+    }
   }
-  private static readonly nint _ActivityArrayOffset = Schema.GetOffset(0x7D8317C138F0ACE1);
+  private static nint? _ActivityArrayOffset;
 
   public ref CUtlVector<CAnimActivity> ActivityArray {
-    get => ref _Handle.AsRef<CUtlVector<CAnimActivity>>(_ActivityArrayOffset);
+    get {
+      if (_ActivityArrayOffset == null) {
+        _ActivityArrayOffset = Schema.GetOffset(0x7D8317C138F0ACE1);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimActivity>>(_ActivityArrayOffset!.Value);
+    }
   }
 
 

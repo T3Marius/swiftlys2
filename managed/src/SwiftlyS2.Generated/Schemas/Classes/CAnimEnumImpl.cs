@@ -17,10 +17,15 @@ internal partial class CAnimEnumImpl : SchemaClass, CAnimEnum {
   public CAnimEnumImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xFB67C2A26B99AEEA);
+  private static nint? _ValueOffset;
 
   public ref byte Value {
-    get => ref _Handle.AsRef<byte>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xFB67C2A26B99AEEA);
+      }
+      return ref _Handle.AsRef<byte>(_ValueOffset!.Value);
+    }
   }
 
 

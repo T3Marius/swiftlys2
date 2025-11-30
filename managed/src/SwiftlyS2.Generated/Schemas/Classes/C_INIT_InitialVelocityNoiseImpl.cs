@@ -17,55 +17,105 @@ internal partial class C_INIT_InitialVelocityNoiseImpl : CParticleFunctionInitia
   public C_INIT_InitialVelocityNoiseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AbsValOffset = Schema.GetOffset(0x4F8B7A615311700A);
+  private static nint? _AbsValOffset;
 
   public ref Vector AbsVal {
-    get => ref _Handle.AsRef<Vector>(_AbsValOffset);
+    get {
+      if (_AbsValOffset == null) {
+        _AbsValOffset = Schema.GetOffset(0x4F8B7A615311700A);
+      }
+      return ref _Handle.AsRef<Vector>(_AbsValOffset!.Value);
+    }
   }
-  private static readonly nint _AbsValInvOffset = Schema.GetOffset(0x4F8B7A611ED9F679);
+  private static nint? _AbsValInvOffset;
 
   public ref Vector AbsValInv {
-    get => ref _Handle.AsRef<Vector>(_AbsValInvOffset);
+    get {
+      if (_AbsValInvOffset == null) {
+        _AbsValInvOffset = Schema.GetOffset(0x4F8B7A611ED9F679);
+      }
+      return ref _Handle.AsRef<Vector>(_AbsValInvOffset!.Value);
+    }
   }
-  private static readonly nint _OffsetLocOffset = Schema.GetOffset(0x4F8B7A61EFAB26AC);
+  private static nint? _OffsetLocOffset;
 
   public CPerParticleVecInput OffsetLoc {
-    get => new CPerParticleVecInputImpl(_Handle + _OffsetLocOffset);
+    get {
+      if (_OffsetLocOffset == null) {
+        _OffsetLocOffset = Schema.GetOffset(0x4F8B7A61EFAB26AC);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _OffsetLocOffset!.Value);
+    }
   }
-  private static readonly nint _OffsetOffset = Schema.GetOffset(0x4F8B7A617F14BA34);
+  private static nint? _OffsetOffset;
 
   public CPerParticleFloatInput Offset {
-    get => new CPerParticleFloatInputImpl(_Handle + _OffsetOffset);
+    get {
+      if (_OffsetOffset == null) {
+        _OffsetOffset = Schema.GetOffset(0x4F8B7A617F14BA34);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _OffsetOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMinOffset = Schema.GetOffset(0x4F8B7A612EFED678);
+  private static nint? _OutputMinOffset;
 
   public CPerParticleVecInput OutputMin {
-    get => new CPerParticleVecInputImpl(_Handle + _OutputMinOffset);
+    get {
+      if (_OutputMinOffset == null) {
+        _OutputMinOffset = Schema.GetOffset(0x4F8B7A612EFED678);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _OutputMinOffset!.Value);
+    }
   }
-  private static readonly nint _OutputMaxOffset = Schema.GetOffset(0x4F8B7A61451280D2);
+  private static nint? _OutputMaxOffset;
 
   public CPerParticleVecInput OutputMax {
-    get => new CPerParticleVecInputImpl(_Handle + _OutputMaxOffset);
+    get {
+      if (_OutputMaxOffset == null) {
+        _OutputMaxOffset = Schema.GetOffset(0x4F8B7A61451280D2);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _OutputMaxOffset!.Value);
+    }
   }
-  private static readonly nint _NoiseScaleOffset = Schema.GetOffset(0x4F8B7A6132FE2EF3);
+  private static nint? _NoiseScaleOffset;
 
   public CPerParticleFloatInput NoiseScale {
-    get => new CPerParticleFloatInputImpl(_Handle + _NoiseScaleOffset);
+    get {
+      if (_NoiseScaleOffset == null) {
+        _NoiseScaleOffset = Schema.GetOffset(0x4F8B7A6132FE2EF3);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _NoiseScaleOffset!.Value);
+    }
   }
-  private static readonly nint _NoiseScaleLocOffset = Schema.GetOffset(0x4F8B7A61A9F4B0DF);
+  private static nint? _NoiseScaleLocOffset;
 
   public CPerParticleFloatInput NoiseScaleLoc {
-    get => new CPerParticleFloatInputImpl(_Handle + _NoiseScaleLocOffset);
+    get {
+      if (_NoiseScaleLocOffset == null) {
+        _NoiseScaleLocOffset = Schema.GetOffset(0x4F8B7A61A9F4B0DF);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _NoiseScaleLocOffset!.Value);
+    }
   }
-  private static readonly nint _TransformInputOffset = Schema.GetOffset(0x4F8B7A61B3FDC289);
+  private static nint? _TransformInputOffset;
 
   public CParticleTransformInput TransformInput {
-    get => new CParticleTransformInputImpl(_Handle + _TransformInputOffset);
+    get {
+      if (_TransformInputOffset == null) {
+        _TransformInputOffset = Schema.GetOffset(0x4F8B7A61B3FDC289);
+      }
+      return new CParticleTransformInputImpl(_Handle + _TransformInputOffset!.Value);
+    }
   }
-  private static readonly nint _IgnoreDtOffset = Schema.GetOffset(0x4F8B7A61330C0603);
+  private static nint? _IgnoreDtOffset;
 
   public ref bool IgnoreDt {
-    get => ref _Handle.AsRef<bool>(_IgnoreDtOffset);
+    get {
+      if (_IgnoreDtOffset == null) {
+        _IgnoreDtOffset = Schema.GetOffset(0x4F8B7A61330C0603);
+      }
+      return ref _Handle.AsRef<bool>(_IgnoreDtOffset!.Value);
+    }
   }
 
 

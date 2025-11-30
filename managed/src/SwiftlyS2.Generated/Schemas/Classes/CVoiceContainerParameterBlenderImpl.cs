@@ -17,45 +17,85 @@ internal partial class CVoiceContainerParameterBlenderImpl : CVoiceContainerBase
   public CVoiceContainerParameterBlenderImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FirstSoundOffset = Schema.GetOffset(0xEC5F1A42666B0138);
+  private static nint? _FirstSoundOffset;
 
   public CSoundContainerReference FirstSound {
-    get => new CSoundContainerReferenceImpl(_Handle + _FirstSoundOffset);
+    get {
+      if (_FirstSoundOffset == null) {
+        _FirstSoundOffset = Schema.GetOffset(0xEC5F1A42666B0138);
+      }
+      return new CSoundContainerReferenceImpl(_Handle + _FirstSoundOffset!.Value);
+    }
   }
-  private static readonly nint _SecondSoundOffset = Schema.GetOffset(0xEC5F1A42A2BC3E5C);
+  private static nint? _SecondSoundOffset;
 
   public CSoundContainerReference SecondSound {
-    get => new CSoundContainerReferenceImpl(_Handle + _SecondSoundOffset);
+    get {
+      if (_SecondSoundOffset == null) {
+        _SecondSoundOffset = Schema.GetOffset(0xEC5F1A42A2BC3E5C);
+      }
+      return new CSoundContainerReferenceImpl(_Handle + _SecondSoundOffset!.Value);
+    }
   }
-  private static readonly nint _EnableOcclusionBlendOffset = Schema.GetOffset(0xEC5F1A42041C67C2);
+  private static nint? _EnableOcclusionBlendOffset;
 
   public ref bool EnableOcclusionBlend {
-    get => ref _Handle.AsRef<bool>(_EnableOcclusionBlendOffset);
+    get {
+      if (_EnableOcclusionBlendOffset == null) {
+        _EnableOcclusionBlendOffset = Schema.GetOffset(0xEC5F1A42041C67C2);
+      }
+      return ref _Handle.AsRef<bool>(_EnableOcclusionBlendOffset!.Value);
+    }
   }
-  private static readonly nint _Curve1Offset = Schema.GetOffset(0xEC5F1A423B9F58DF);
+  private static nint? _Curve1Offset;
 
   public SchemaUntypedField Curve1 {
-    get => new SchemaUntypedField(_Handle + _Curve1Offset);
+    get {
+      if (_Curve1Offset == null) {
+        _Curve1Offset = Schema.GetOffset(0xEC5F1A423B9F58DF);
+      }
+      return new SchemaUntypedField(_Handle + _Curve1Offset!.Value);
+    }
   }
-  private static readonly nint _Curve2Offset = Schema.GetOffset(0xEC5F1A423C9F5A72);
+  private static nint? _Curve2Offset;
 
   public SchemaUntypedField Curve2 {
-    get => new SchemaUntypedField(_Handle + _Curve2Offset);
+    get {
+      if (_Curve2Offset == null) {
+        _Curve2Offset = Schema.GetOffset(0xEC5F1A423C9F5A72);
+      }
+      return new SchemaUntypedField(_Handle + _Curve2Offset!.Value);
+    }
   }
-  private static readonly nint _EnableDistanceBlendOffset = Schema.GetOffset(0xEC5F1A428EDC5388);
+  private static nint? _EnableDistanceBlendOffset;
 
   public ref bool EnableDistanceBlend {
-    get => ref _Handle.AsRef<bool>(_EnableDistanceBlendOffset);
+    get {
+      if (_EnableDistanceBlendOffset == null) {
+        _EnableDistanceBlendOffset = Schema.GetOffset(0xEC5F1A428EDC5388);
+      }
+      return ref _Handle.AsRef<bool>(_EnableDistanceBlendOffset!.Value);
+    }
   }
-  private static readonly nint _Curve3Offset = Schema.GetOffset(0xEC5F1A423D9F5C05);
+  private static nint? _Curve3Offset;
 
   public SchemaUntypedField Curve3 {
-    get => new SchemaUntypedField(_Handle + _Curve3Offset);
+    get {
+      if (_Curve3Offset == null) {
+        _Curve3Offset = Schema.GetOffset(0xEC5F1A423D9F5C05);
+      }
+      return new SchemaUntypedField(_Handle + _Curve3Offset!.Value);
+    }
   }
-  private static readonly nint _Curve4Offset = Schema.GetOffset(0xEC5F1A42369F5100);
+  private static nint? _Curve4Offset;
 
   public SchemaUntypedField Curve4 {
-    get => new SchemaUntypedField(_Handle + _Curve4Offset);
+    get {
+      if (_Curve4Offset == null) {
+        _Curve4Offset = Schema.GetOffset(0xEC5F1A42369F5100);
+      }
+      return new SchemaUntypedField(_Handle + _Curve4Offset!.Value);
+    }
   }
 
 

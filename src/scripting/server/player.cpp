@@ -261,7 +261,7 @@ void Bridge_Player_TakeDamage(int playerid, void* dmginfo)
         return;
 
     static auto gamedata = g_ifaceService.FetchInterface<IGameDataManager>(GAMEDATA_INTERFACE_VERSION);
-    reinterpret_cast<int64_t (*)(void*, void*, void*)>(gamedata->GetSignatures()->Fetch("CBaseEntity::TakeDamage"))(player->GetPawn(), dmginfo, 0);
+    reinterpret_cast<int64_t(*)(void*, void*, void*)>(gamedata->GetSignatures()->Fetch("CBaseEntity::TakeDamage"))(player->GetPawn(), dmginfo, 0);
 }
 
 void Bridge_Player_Teleport(int playerid, Vector pos, QAngle angle, Vector vel)
@@ -333,7 +333,7 @@ void Bridge_Player_ExecuteCommand(int playerid, const char* command)
 
     ConCommandRef cmdRef(cmd[0]);
 
-    if (cmdRef.IsValidRef())
+    if (cmdRef.IsValidRef() && !cmdRef.IsFlagSet(FCVAR_SERVER_CAN_EXECUTE))
     {
         CCommandContext context(CommandTarget_t::CT_FIRST_SPLITSCREEN_CLIENT, CPlayerSlot(player->GetSlot()));
         cmdRef.Dispatch(context, cmd);
@@ -343,6 +343,16 @@ void Bridge_Player_ExecuteCommand(int playerid, const char* command)
         static auto engine = g_ifaceService.FetchInterface<IVEngineServer2>(INTERFACEVERSION_VENGINESERVER);
         engine->ClientCommand(player->GetSlot(), command);
     }
+}
+
+uint8_t Bridge_Player_IsFirstSpawn(int playerid)
+{
+    static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
+    auto player = playerManager->GetPlayer(playerid);
+    if (!player)
+        return 0;
+
+    return player->IsFirstSpawn() ? 1 : 0;
 }
 
 DEFINE_NATIVE("Player.SendMessage", Bridge_Player_SendMessage);
@@ -370,3 +380,4 @@ DEFINE_NATIVE("Player.SetCenterMenuRender", Bridge_Player_SetCenterMenuRender);
 DEFINE_NATIVE("Player.ClearCenterMenuRender", Bridge_Player_ClearCenterMenuRender);
 DEFINE_NATIVE("Player.HasMenuShown", Bridge_Player_HasMenuShown);
 DEFINE_NATIVE("Player.ExecuteCommand", Bridge_Player_ExecuteCommand);
+DEFINE_NATIVE("Player.IsFirstSpawn", Bridge_Player_IsFirstSpawn);

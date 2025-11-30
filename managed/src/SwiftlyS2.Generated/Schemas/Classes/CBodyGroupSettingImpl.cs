@@ -17,19 +17,32 @@ internal partial class CBodyGroupSettingImpl : SchemaClass, CBodyGroupSetting {
   public CBodyGroupSettingImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BodyGroupNameOffset = Schema.GetOffset(0xC078388F0E290077);
+  private static nint? _BodyGroupNameOffset;
 
   public string BodyGroupName {
     get {
-      var ptr = _Handle.Read<nint>(_BodyGroupNameOffset);
+      if (_BodyGroupNameOffset == null) {
+        _BodyGroupNameOffset = Schema.GetOffset(0xC078388F0E290077);
+      }
+      var ptr = _Handle.Read<nint>(_BodyGroupNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _BodyGroupNameOffset, value);
+    set {
+      if (_BodyGroupNameOffset == null) {
+        _BodyGroupNameOffset = Schema.GetOffset(0xC078388F0E290077);
+      }
+      Schema.SetString(_Handle, _BodyGroupNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _BodyGroupOptionOffset = Schema.GetOffset(0xC078388F09FA2D31);
+  private static nint? _BodyGroupOptionOffset;
 
   public ref int BodyGroupOption {
-    get => ref _Handle.AsRef<int>(_BodyGroupOptionOffset);
+    get {
+      if (_BodyGroupOptionOffset == null) {
+        _BodyGroupOptionOffset = Schema.GetOffset(0xC078388F09FA2D31);
+      }
+      return ref _Handle.AsRef<int>(_BodyGroupOptionOffset!.Value);
+    }
   }
 
 

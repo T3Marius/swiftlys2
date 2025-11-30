@@ -17,20 +17,35 @@ internal partial class CMarkupVolumeTagged_NavGameImpl : CMarkupVolumeWithRefImp
   public CMarkupVolumeTagged_NavGameImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ScopesOffset = Schema.GetOffset(0xFB4AC8A49E6C8A44);
+  private static nint? _ScopesOffset;
 
   public ref NavScopeFlags_t Scopes {
-    get => ref _Handle.AsRef<NavScopeFlags_t>(_ScopesOffset);
+    get {
+      if (_ScopesOffset == null) {
+        _ScopesOffset = Schema.GetOffset(0xFB4AC8A49E6C8A44);
+      }
+      return ref _Handle.AsRef<NavScopeFlags_t>(_ScopesOffset!.Value);
+    }
   }
-  private static readonly nint _FloodFillAttributeOffset = Schema.GetOffset(0xFB4AC8A4ECF24446);
+  private static nint? _FloodFillAttributeOffset;
 
   public ref bool FloodFillAttribute {
-    get => ref _Handle.AsRef<bool>(_FloodFillAttributeOffset);
+    get {
+      if (_FloodFillAttributeOffset == null) {
+        _FloodFillAttributeOffset = Schema.GetOffset(0xFB4AC8A4ECF24446);
+      }
+      return ref _Handle.AsRef<bool>(_FloodFillAttributeOffset!.Value);
+    }
   }
-  private static readonly nint _SplitNavSpaceOffset = Schema.GetOffset(0xFB4AC8A438B16FC2);
+  private static nint? _SplitNavSpaceOffset;
 
   public ref bool SplitNavSpace {
-    get => ref _Handle.AsRef<bool>(_SplitNavSpaceOffset);
+    get {
+      if (_SplitNavSpaceOffset == null) {
+        _SplitNavSpaceOffset = Schema.GetOffset(0xFB4AC8A438B16FC2);
+      }
+      return ref _Handle.AsRef<bool>(_SplitNavSpaceOffset!.Value);
+    }
   }
 
 

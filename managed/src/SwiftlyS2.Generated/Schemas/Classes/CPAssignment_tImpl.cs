@@ -17,20 +17,35 @@ internal partial class CPAssignment_tImpl : SchemaClass, CPAssignment_t {
   public CPAssignment_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CPNumberOffset = Schema.GetOffset(0xEB6A63F032CCA91F);
+  private static nint? _CPNumberOffset;
 
   public ref int CPNumber {
-    get => ref _Handle.AsRef<int>(_CPNumberOffset);
+    get {
+      if (_CPNumberOffset == null) {
+        _CPNumberOffset = Schema.GetOffset(0xEB6A63F032CCA91F);
+      }
+      return ref _Handle.AsRef<int>(_CPNumberOffset!.Value);
+    }
   }
-  private static readonly nint _PosOffset = Schema.GetOffset(0xEB6A63F0DFC9BE09);
+  private static nint? _PosOffset;
 
   public CPerParticleVecInput Pos {
-    get => new CPerParticleVecInputImpl(_Handle + _PosOffset);
+    get {
+      if (_PosOffset == null) {
+        _PosOffset = Schema.GetOffset(0xEB6A63F0DFC9BE09);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _PosOffset!.Value);
+    }
   }
-  private static readonly nint _OrientationModeOffset = Schema.GetOffset(0xEB6A63F0272947BA);
+  private static nint? _OrientationModeOffset;
 
   public ref ParticleOrientationSetMode_t OrientationMode {
-    get => ref _Handle.AsRef<ParticleOrientationSetMode_t>(_OrientationModeOffset);
+    get {
+      if (_OrientationModeOffset == null) {
+        _OrientationModeOffset = Schema.GetOffset(0xEB6A63F0272947BA);
+      }
+      return ref _Handle.AsRef<ParticleOrientationSetMode_t>(_OrientationModeOffset!.Value);
+    }
   }
 
 

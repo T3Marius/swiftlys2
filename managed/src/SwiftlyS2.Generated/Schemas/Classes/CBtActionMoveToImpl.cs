@@ -17,87 +17,166 @@ internal partial class CBtActionMoveToImpl : CBtNodeImpl, CBtActionMoveTo {
   public CBtActionMoveToImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DestinationInputKeyOffset = Schema.GetOffset(0xD3E75386EA98FEAB);
+  private static nint? _DestinationInputKeyOffset;
 
   public string DestinationInputKey {
     get {
-      var ptr = _Handle.Read<nint>(_DestinationInputKeyOffset);
+      if (_DestinationInputKeyOffset == null) {
+        _DestinationInputKeyOffset = Schema.GetOffset(0xD3E75386EA98FEAB);
+      }
+      var ptr = _Handle.Read<nint>(_DestinationInputKeyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _DestinationInputKeyOffset, value);
+    set {
+      if (_DestinationInputKeyOffset == null) {
+        _DestinationInputKeyOffset = Schema.GetOffset(0xD3E75386EA98FEAB);
+      }
+      Schema.SetString(_Handle, _DestinationInputKeyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _HidingSpotInputKeyOffset = Schema.GetOffset(0xD3E75386B3449D70);
+  private static nint? _HidingSpotInputKeyOffset;
 
   public string HidingSpotInputKey {
     get {
-      var ptr = _Handle.Read<nint>(_HidingSpotInputKeyOffset);
+      if (_HidingSpotInputKeyOffset == null) {
+        _HidingSpotInputKeyOffset = Schema.GetOffset(0xD3E75386B3449D70);
+      }
+      var ptr = _Handle.Read<nint>(_HidingSpotInputKeyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _HidingSpotInputKeyOffset, value);
+    set {
+      if (_HidingSpotInputKeyOffset == null) {
+        _HidingSpotInputKeyOffset = Schema.GetOffset(0xD3E75386B3449D70);
+      }
+      Schema.SetString(_Handle, _HidingSpotInputKeyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ThreatInputKeyOffset = Schema.GetOffset(0xD3E75386E8FD875B);
+  private static nint? _ThreatInputKeyOffset;
 
   public string ThreatInputKey {
     get {
-      var ptr = _Handle.Read<nint>(_ThreatInputKeyOffset);
+      if (_ThreatInputKeyOffset == null) {
+        _ThreatInputKeyOffset = Schema.GetOffset(0xD3E75386E8FD875B);
+      }
+      var ptr = _Handle.Read<nint>(_ThreatInputKeyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ThreatInputKeyOffset, value);
+    set {
+      if (_ThreatInputKeyOffset == null) {
+        _ThreatInputKeyOffset = Schema.GetOffset(0xD3E75386E8FD875B);
+      }
+      Schema.SetString(_Handle, _ThreatInputKeyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _DestinationOffset = Schema.GetOffset(0xD3E753868964CB9F);
+  private static nint? _DestinationOffset;
 
   public ref Vector Destination {
-    get => ref _Handle.AsRef<Vector>(_DestinationOffset);
+    get {
+      if (_DestinationOffset == null) {
+        _DestinationOffset = Schema.GetOffset(0xD3E753868964CB9F);
+      }
+      return ref _Handle.AsRef<Vector>(_DestinationOffset!.Value);
+    }
   }
-  private static readonly nint _AutoLookAdjustOffset = Schema.GetOffset(0xD3E75386CC24EFB6);
+  private static nint? _AutoLookAdjustOffset;
 
   public ref bool AutoLookAdjust {
-    get => ref _Handle.AsRef<bool>(_AutoLookAdjustOffset);
+    get {
+      if (_AutoLookAdjustOffset == null) {
+        _AutoLookAdjustOffset = Schema.GetOffset(0xD3E75386CC24EFB6);
+      }
+      return ref _Handle.AsRef<bool>(_AutoLookAdjustOffset!.Value);
+    }
   }
-  private static readonly nint _ComputePathOffset = Schema.GetOffset(0xD3E75386E6332AE9);
+  private static nint? _ComputePathOffset;
 
   public ref bool ComputePath {
-    get => ref _Handle.AsRef<bool>(_ComputePathOffset);
+    get {
+      if (_ComputePathOffset == null) {
+        _ComputePathOffset = Schema.GetOffset(0xD3E75386E6332AE9);
+      }
+      return ref _Handle.AsRef<bool>(_ComputePathOffset!.Value);
+    }
   }
-  private static readonly nint _DamagingAreasPenaltyCostOffset = Schema.GetOffset(0xD3E753868B6813F3);
+  private static nint? _DamagingAreasPenaltyCostOffset;
 
   public ref float DamagingAreasPenaltyCost {
-    get => ref _Handle.AsRef<float>(_DamagingAreasPenaltyCostOffset);
+    get {
+      if (_DamagingAreasPenaltyCostOffset == null) {
+        _DamagingAreasPenaltyCostOffset = Schema.GetOffset(0xD3E753868B6813F3);
+      }
+      return ref _Handle.AsRef<float>(_DamagingAreasPenaltyCostOffset!.Value);
+    }
   }
-  private static readonly nint _CheckApproximateCornersTimerOffset = Schema.GetOffset(0xD3E7538689360D84);
+  private static nint? _CheckApproximateCornersTimerOffset;
 
   public CountdownTimer CheckApproximateCornersTimer {
-    get => new CountdownTimerImpl(_Handle + _CheckApproximateCornersTimerOffset);
+    get {
+      if (_CheckApproximateCornersTimerOffset == null) {
+        _CheckApproximateCornersTimerOffset = Schema.GetOffset(0xD3E7538689360D84);
+      }
+      return new CountdownTimerImpl(_Handle + _CheckApproximateCornersTimerOffset!.Value);
+    }
   }
-  private static readonly nint _CheckHighPriorityItemOffset = Schema.GetOffset(0xD3E7538619EE60B4);
+  private static nint? _CheckHighPriorityItemOffset;
 
   public CountdownTimer CheckHighPriorityItem {
-    get => new CountdownTimerImpl(_Handle + _CheckHighPriorityItemOffset);
+    get {
+      if (_CheckHighPriorityItemOffset == null) {
+        _CheckHighPriorityItemOffset = Schema.GetOffset(0xD3E7538619EE60B4);
+      }
+      return new CountdownTimerImpl(_Handle + _CheckHighPriorityItemOffset!.Value);
+    }
   }
-  private static readonly nint _RepathTimerOffset = Schema.GetOffset(0xD3E753866BF3B99C);
+  private static nint? _RepathTimerOffset;
 
   public CountdownTimer RepathTimer {
-    get => new CountdownTimerImpl(_Handle + _RepathTimerOffset);
+    get {
+      if (_RepathTimerOffset == null) {
+        _RepathTimerOffset = Schema.GetOffset(0xD3E753866BF3B99C);
+      }
+      return new CountdownTimerImpl(_Handle + _RepathTimerOffset!.Value);
+    }
   }
-  private static readonly nint _ArrivalEpsilonOffset = Schema.GetOffset(0xD3E75386193730DE);
+  private static nint? _ArrivalEpsilonOffset;
 
   public ref float ArrivalEpsilon {
-    get => ref _Handle.AsRef<float>(_ArrivalEpsilonOffset);
+    get {
+      if (_ArrivalEpsilonOffset == null) {
+        _ArrivalEpsilonOffset = Schema.GetOffset(0xD3E75386193730DE);
+      }
+      return ref _Handle.AsRef<float>(_ArrivalEpsilonOffset!.Value);
+    }
   }
-  private static readonly nint _AdditionalArrivalEpsilon2DOffset = Schema.GetOffset(0xD3E7538601105845);
+  private static nint? _AdditionalArrivalEpsilon2DOffset;
 
   public ref float AdditionalArrivalEpsilon2D {
-    get => ref _Handle.AsRef<float>(_AdditionalArrivalEpsilon2DOffset);
+    get {
+      if (_AdditionalArrivalEpsilon2DOffset == null) {
+        _AdditionalArrivalEpsilon2DOffset = Schema.GetOffset(0xD3E7538601105845);
+      }
+      return ref _Handle.AsRef<float>(_AdditionalArrivalEpsilon2DOffset!.Value);
+    }
   }
-  private static readonly nint _HidingSpotCheckDistanceThresholdOffset = Schema.GetOffset(0xD3E75386BA171B2E);
+  private static nint? _HidingSpotCheckDistanceThresholdOffset;
 
   public ref float HidingSpotCheckDistanceThreshold {
-    get => ref _Handle.AsRef<float>(_HidingSpotCheckDistanceThresholdOffset);
+    get {
+      if (_HidingSpotCheckDistanceThresholdOffset == null) {
+        _HidingSpotCheckDistanceThresholdOffset = Schema.GetOffset(0xD3E75386BA171B2E);
+      }
+      return ref _Handle.AsRef<float>(_HidingSpotCheckDistanceThresholdOffset!.Value);
+    }
   }
-  private static readonly nint _NearestAreaDistanceThresholdOffset = Schema.GetOffset(0xD3E75386C5DEF260);
+  private static nint? _NearestAreaDistanceThresholdOffset;
 
   public ref float NearestAreaDistanceThreshold {
-    get => ref _Handle.AsRef<float>(_NearestAreaDistanceThresholdOffset);
+    get {
+      if (_NearestAreaDistanceThresholdOffset == null) {
+        _NearestAreaDistanceThresholdOffset = Schema.GetOffset(0xD3E75386C5DEF260);
+      }
+      return ref _Handle.AsRef<float>(_NearestAreaDistanceThresholdOffset!.Value);
+    }
   }
 
 

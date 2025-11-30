@@ -17,54 +17,102 @@ internal partial class C_OP_MoveToHitboxImpl : CParticleFunctionOperatorImpl, C_
   public C_OP_MoveToHitboxImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ModelInputOffset = Schema.GetOffset(0x4ACEA8FFEB74120E);
+  private static nint? _ModelInputOffset;
 
   public CParticleModelInput ModelInput {
-    get => new CParticleModelInputImpl(_Handle + _ModelInputOffset);
+    get {
+      if (_ModelInputOffset == null) {
+        _ModelInputOffset = Schema.GetOffset(0x4ACEA8FFEB74120E);
+      }
+      return new CParticleModelInputImpl(_Handle + _ModelInputOffset!.Value);
+    }
   }
-  private static readonly nint _TransformInputOffset = Schema.GetOffset(0x4ACEA8FF3A9ED669);
+  private static nint? _TransformInputOffset;
 
   public CParticleTransformInput TransformInput {
-    get => new CParticleTransformInputImpl(_Handle + _TransformInputOffset);
+    get {
+      if (_TransformInputOffset == null) {
+        _TransformInputOffset = Schema.GetOffset(0x4ACEA8FF3A9ED669);
+      }
+      return new CParticleTransformInputImpl(_Handle + _TransformInputOffset!.Value);
+    }
   }
-  private static readonly nint _LifeTimeLerpStartOffset = Schema.GetOffset(0x4ACEA8FFB9B0BE37);
+  private static nint? _LifeTimeLerpStartOffset;
 
   public ref float LifeTimeLerpStart {
-    get => ref _Handle.AsRef<float>(_LifeTimeLerpStartOffset);
+    get {
+      if (_LifeTimeLerpStartOffset == null) {
+        _LifeTimeLerpStartOffset = Schema.GetOffset(0x4ACEA8FFB9B0BE37);
+      }
+      return ref _Handle.AsRef<float>(_LifeTimeLerpStartOffset!.Value);
+    }
   }
-  private static readonly nint _LifeTimeLerpEndOffset = Schema.GetOffset(0x4ACEA8FF3BE2C292);
+  private static nint? _LifeTimeLerpEndOffset;
 
   public ref float LifeTimeLerpEnd {
-    get => ref _Handle.AsRef<float>(_LifeTimeLerpEndOffset);
+    get {
+      if (_LifeTimeLerpEndOffset == null) {
+        _LifeTimeLerpEndOffset = Schema.GetOffset(0x4ACEA8FF3BE2C292);
+      }
+      return ref _Handle.AsRef<float>(_LifeTimeLerpEndOffset!.Value);
+    }
   }
-  private static readonly nint _PrevPosScaleOffset = Schema.GetOffset(0x4ACEA8FF46CED122);
+  private static nint? _PrevPosScaleOffset;
 
   public ref float PrevPosScale {
-    get => ref _Handle.AsRef<float>(_PrevPosScaleOffset);
+    get {
+      if (_PrevPosScaleOffset == null) {
+        _PrevPosScaleOffset = Schema.GetOffset(0x4ACEA8FF46CED122);
+      }
+      return ref _Handle.AsRef<float>(_PrevPosScaleOffset!.Value);
+    }
   }
-  private static readonly nint _HitboxSetNameOffset = Schema.GetOffset(0x4ACEA8FF6A21BB0E);
+  private static nint? _HitboxSetNameOffset;
 
   public string HitboxSetName {
     get {
-      var ptr = _Handle + _HitboxSetNameOffset;
-      return Schema.GetString(ptr);
+        if (_HitboxSetNameOffset == null) {
+            _HitboxSetNameOffset = Schema.GetOffset(0x4ACEA8FF6A21BB0E);
+        }
+        var ptr = _Handle + _HitboxSetNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _HitboxSetNameOffset, value, 128);
+    set {
+        if (_HitboxSetNameOffset == null) {
+            _HitboxSetNameOffset = Schema.GetOffset(0x4ACEA8FF6A21BB0E);
+        }
+        Schema.SetFixedString(_Handle, _HitboxSetNameOffset!.Value, value, 128);
+    }
   } 
-  private static readonly nint _UseBonesOffset = Schema.GetOffset(0x4ACEA8FF10D1938B);
+  private static nint? _UseBonesOffset;
 
   public ref bool UseBones {
-    get => ref _Handle.AsRef<bool>(_UseBonesOffset);
+    get {
+      if (_UseBonesOffset == null) {
+        _UseBonesOffset = Schema.GetOffset(0x4ACEA8FF10D1938B);
+      }
+      return ref _Handle.AsRef<bool>(_UseBonesOffset!.Value);
+    }
   }
-  private static readonly nint _LerpTypeOffset = Schema.GetOffset(0x4ACEA8FF74114DCC);
+  private static nint? _LerpTypeOffset;
 
   public ref HitboxLerpType_t LerpType {
-    get => ref _Handle.AsRef<HitboxLerpType_t>(_LerpTypeOffset);
+    get {
+      if (_LerpTypeOffset == null) {
+        _LerpTypeOffset = Schema.GetOffset(0x4ACEA8FF74114DCC);
+      }
+      return ref _Handle.AsRef<HitboxLerpType_t>(_LerpTypeOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolationOffset = Schema.GetOffset(0x4ACEA8FFCF55B987);
+  private static nint? _InterpolationOffset;
 
   public CPerParticleFloatInput Interpolation {
-    get => new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset);
+    get {
+      if (_InterpolationOffset == null) {
+        _InterpolationOffset = Schema.GetOffset(0x4ACEA8FFCF55B987);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset!.Value);
+    }
   }
 
 

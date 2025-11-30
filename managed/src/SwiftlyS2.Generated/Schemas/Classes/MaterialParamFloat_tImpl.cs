@@ -17,10 +17,15 @@ internal partial class MaterialParamFloat_tImpl : MaterialParam_tImpl, MaterialP
   public MaterialParamFloat_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xB6A452E28DFCB984);
+  private static nint? _ValueOffset;
 
   public ref float Value {
-    get => ref _Handle.AsRef<float>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xB6A452E28DFCB984);
+      }
+      return ref _Handle.AsRef<float>(_ValueOffset!.Value);
+    }
   }
 
 

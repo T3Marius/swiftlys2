@@ -17,30 +17,55 @@ internal partial class CNmAimCSNode__CDefinitionImpl : CNmPassthroughNode__CDefi
   public CNmAimCSNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VerticalAngleNodeIdxOffset = Schema.GetOffset(0xE1CD14C20A1F17AD);
+  private static nint? _VerticalAngleNodeIdxOffset;
 
   public ref short VerticalAngleNodeIdx {
-    get => ref _Handle.AsRef<short>(_VerticalAngleNodeIdxOffset);
+    get {
+      if (_VerticalAngleNodeIdxOffset == null) {
+        _VerticalAngleNodeIdxOffset = Schema.GetOffset(0xE1CD14C20A1F17AD);
+      }
+      return ref _Handle.AsRef<short>(_VerticalAngleNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _HorizontalAngleNodeIdxOffset = Schema.GetOffset(0xE1CD14C28E2FD3DB);
+  private static nint? _HorizontalAngleNodeIdxOffset;
 
   public ref short HorizontalAngleNodeIdx {
-    get => ref _Handle.AsRef<short>(_HorizontalAngleNodeIdxOffset);
+    get {
+      if (_HorizontalAngleNodeIdxOffset == null) {
+        _HorizontalAngleNodeIdxOffset = Schema.GetOffset(0xE1CD14C28E2FD3DB);
+      }
+      return ref _Handle.AsRef<short>(_HorizontalAngleNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponCategoryNodeIdxOffset = Schema.GetOffset(0xE1CD14C216D198E4);
+  private static nint? _WeaponCategoryNodeIdxOffset;
 
   public ref short WeaponCategoryNodeIdx {
-    get => ref _Handle.AsRef<short>(_WeaponCategoryNodeIdxOffset);
+    get {
+      if (_WeaponCategoryNodeIdxOffset == null) {
+        _WeaponCategoryNodeIdxOffset = Schema.GetOffset(0xE1CD14C216D198E4);
+      }
+      return ref _Handle.AsRef<short>(_WeaponCategoryNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EnabledNodeIdxOffset = Schema.GetOffset(0xE1CD14C2F7CDF5E9);
+  private static nint? _EnabledNodeIdxOffset;
 
   public ref short EnabledNodeIdx {
-    get => ref _Handle.AsRef<short>(_EnabledNodeIdxOffset);
+    get {
+      if (_EnabledNodeIdxOffset == null) {
+        _EnabledNodeIdxOffset = Schema.GetOffset(0xE1CD14C2F7CDF5E9);
+      }
+      return ref _Handle.AsRef<short>(_EnabledNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _BlendTimeSecondsOffset = Schema.GetOffset(0xE1CD14C26D3A08FC);
+  private static nint? _BlendTimeSecondsOffset;
 
   public ref float BlendTimeSeconds {
-    get => ref _Handle.AsRef<float>(_BlendTimeSecondsOffset);
+    get {
+      if (_BlendTimeSecondsOffset == null) {
+        _BlendTimeSecondsOffset = Schema.GetOffset(0xE1CD14C26D3A08FC);
+      }
+      return ref _Handle.AsRef<float>(_BlendTimeSecondsOffset!.Value);
+    }
   }
 
 

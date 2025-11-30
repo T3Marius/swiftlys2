@@ -17,34 +17,62 @@ internal partial class CAnimTagBaseImpl : SchemaClass, CAnimTagBase {
   public CAnimTagBaseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x8F7709C44D8F5786);
+  private static nint? _NameOffset;
 
   public ref CGlobalSymbol Name {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x8F7709C44D8F5786);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _CommentOffset = Schema.GetOffset(0x8F7709C488A0B4DF);
+  private static nint? _CommentOffset;
 
   public string Comment {
     get {
-      var ptr = _Handle.Read<nint>(_CommentOffset);
+      if (_CommentOffset == null) {
+        _CommentOffset = Schema.GetOffset(0x8F7709C488A0B4DF);
+      }
+      var ptr = _Handle.Read<nint>(_CommentOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _CommentOffset, value);
+    set {
+      if (_CommentOffset == null) {
+        _CommentOffset = Schema.GetOffset(0x8F7709C488A0B4DF);
+      }
+      Schema.SetString(_Handle, _CommentOffset!.Value, value);
+    }
   } 
-  private static readonly nint _GroupOffset = Schema.GetOffset(0x8F7709C49FC645AC);
+  private static nint? _GroupOffset;
 
   public ref CGlobalSymbol Group {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_GroupOffset);
+    get {
+      if (_GroupOffset == null) {
+        _GroupOffset = Schema.GetOffset(0x8F7709C49FC645AC);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_GroupOffset!.Value);
+    }
   }
-  private static readonly nint _TagIDOffset = Schema.GetOffset(0x8F7709C41F65DDFE);
+  private static nint? _TagIDOffset;
 
   public AnimTagID TagID {
-    get => new AnimTagIDImpl(_Handle + _TagIDOffset);
+    get {
+      if (_TagIDOffset == null) {
+        _TagIDOffset = Schema.GetOffset(0x8F7709C41F65DDFE);
+      }
+      return new AnimTagIDImpl(_Handle + _TagIDOffset!.Value);
+    }
   }
-  private static readonly nint _IsReferencedOffset = Schema.GetOffset(0x8F7709C4CEABFB2A);
+  private static nint? _IsReferencedOffset;
 
   public ref bool IsReferenced {
-    get => ref _Handle.AsRef<bool>(_IsReferencedOffset);
+    get {
+      if (_IsReferencedOffset == null) {
+        _IsReferencedOffset = Schema.GetOffset(0x8F7709C4CEABFB2A);
+      }
+      return ref _Handle.AsRef<bool>(_IsReferencedOffset!.Value);
+    }
   }
 
 

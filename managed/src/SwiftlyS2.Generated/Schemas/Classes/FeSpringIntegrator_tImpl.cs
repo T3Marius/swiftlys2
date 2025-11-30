@@ -20,25 +20,45 @@ internal partial class FeSpringIntegrator_tImpl : SchemaClass, FeSpringIntegrato
   public ISchemaFixedArray<ushort> Node {
     get => new SchemaFixedArray<ushort>(_Handle, 0xFC6DF38BCD6694B9, 2, 2, 2);
   }
-  private static readonly nint _SpringRestLengthOffset = Schema.GetOffset(0xFC6DF38B28C609E8);
+  private static nint? _SpringRestLengthOffset;
 
   public ref float SpringRestLength {
-    get => ref _Handle.AsRef<float>(_SpringRestLengthOffset);
+    get {
+      if (_SpringRestLengthOffset == null) {
+        _SpringRestLengthOffset = Schema.GetOffset(0xFC6DF38B28C609E8);
+      }
+      return ref _Handle.AsRef<float>(_SpringRestLengthOffset!.Value);
+    }
   }
-  private static readonly nint _SpringConstantOffset = Schema.GetOffset(0xFC6DF38B9346E79E);
+  private static nint? _SpringConstantOffset;
 
   public ref float SpringConstant {
-    get => ref _Handle.AsRef<float>(_SpringConstantOffset);
+    get {
+      if (_SpringConstantOffset == null) {
+        _SpringConstantOffset = Schema.GetOffset(0xFC6DF38B9346E79E);
+      }
+      return ref _Handle.AsRef<float>(_SpringConstantOffset!.Value);
+    }
   }
-  private static readonly nint _SpringDampingOffset = Schema.GetOffset(0xFC6DF38B20E775D0);
+  private static nint? _SpringDampingOffset;
 
   public ref float SpringDamping {
-    get => ref _Handle.AsRef<float>(_SpringDampingOffset);
+    get {
+      if (_SpringDampingOffset == null) {
+        _SpringDampingOffset = Schema.GetOffset(0xFC6DF38B20E775D0);
+      }
+      return ref _Handle.AsRef<float>(_SpringDampingOffset!.Value);
+    }
   }
-  private static readonly nint _NodeWeight0Offset = Schema.GetOffset(0xFC6DF38B6E62FEA1);
+  private static nint? _NodeWeight0Offset;
 
   public ref float NodeWeight0 {
-    get => ref _Handle.AsRef<float>(_NodeWeight0Offset);
+    get {
+      if (_NodeWeight0Offset == null) {
+        _NodeWeight0Offset = Schema.GetOffset(0xFC6DF38B6E62FEA1);
+      }
+      return ref _Handle.AsRef<float>(_NodeWeight0Offset!.Value);
+    }
   }
 
 

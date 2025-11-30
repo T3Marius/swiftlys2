@@ -17,50 +17,95 @@ internal partial class CDynamicLightImpl : CBaseModelEntityImpl, CDynamicLight {
   public CDynamicLightImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActualFlagsOffset = Schema.GetOffset(0x5256F8E9E685EDEE);
+  private static nint? _ActualFlagsOffset;
 
   public ref byte ActualFlags {
-    get => ref _Handle.AsRef<byte>(_ActualFlagsOffset);
+    get {
+      if (_ActualFlagsOffset == null) {
+        _ActualFlagsOffset = Schema.GetOffset(0x5256F8E9E685EDEE);
+      }
+      return ref _Handle.AsRef<byte>(_ActualFlagsOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x5256F8E936B92FAC);
+  private static nint? _FlagsOffset;
 
   public ref byte Flags {
-    get => ref _Handle.AsRef<byte>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x5256F8E936B92FAC);
+      }
+      return ref _Handle.AsRef<byte>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _LightStyleOffset = Schema.GetOffset(0x5256F8E965232F30);
+  private static nint? _LightStyleOffset;
 
   public ref byte LightStyle {
-    get => ref _Handle.AsRef<byte>(_LightStyleOffset);
+    get {
+      if (_LightStyleOffset == null) {
+        _LightStyleOffset = Schema.GetOffset(0x5256F8E965232F30);
+      }
+      return ref _Handle.AsRef<byte>(_LightStyleOffset!.Value);
+    }
   }
-  private static readonly nint _OnOffset = Schema.GetOffset(0x5256F8E9DF026050);
+  private static nint? _OnOffset;
 
   public ref bool On {
-    get => ref _Handle.AsRef<bool>(_OnOffset);
+    get {
+      if (_OnOffset == null) {
+        _OnOffset = Schema.GetOffset(0x5256F8E9DF026050);
+      }
+      return ref _Handle.AsRef<bool>(_OnOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x5256F8E97C5B0533);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x5256F8E97C5B0533);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _ExponentOffset = Schema.GetOffset(0x5256F8E99BCA80C6);
+  private static nint? _ExponentOffset;
 
   public ref int Exponent {
-    get => ref _Handle.AsRef<int>(_ExponentOffset);
+    get {
+      if (_ExponentOffset == null) {
+        _ExponentOffset = Schema.GetOffset(0x5256F8E99BCA80C6);
+      }
+      return ref _Handle.AsRef<int>(_ExponentOffset!.Value);
+    }
   }
-  private static readonly nint _InnerAngleOffset = Schema.GetOffset(0x5256F8E91D12DC0E);
+  private static nint? _InnerAngleOffset;
 
   public ref float InnerAngle {
-    get => ref _Handle.AsRef<float>(_InnerAngleOffset);
+    get {
+      if (_InnerAngleOffset == null) {
+        _InnerAngleOffset = Schema.GetOffset(0x5256F8E91D12DC0E);
+      }
+      return ref _Handle.AsRef<float>(_InnerAngleOffset!.Value);
+    }
   }
-  private static readonly nint _OuterAngleOffset = Schema.GetOffset(0x5256F8E9328680EF);
+  private static nint? _OuterAngleOffset;
 
   public ref float OuterAngle {
-    get => ref _Handle.AsRef<float>(_OuterAngleOffset);
+    get {
+      if (_OuterAngleOffset == null) {
+        _OuterAngleOffset = Schema.GetOffset(0x5256F8E9328680EF);
+      }
+      return ref _Handle.AsRef<float>(_OuterAngleOffset!.Value);
+    }
   }
-  private static readonly nint _SpotRadiusOffset = Schema.GetOffset(0x5256F8E993FBE5BB);
+  private static nint? _SpotRadiusOffset;
 
   public ref float SpotRadius {
-    get => ref _Handle.AsRef<float>(_SpotRadiusOffset);
+    get {
+      if (_SpotRadiusOffset == null) {
+        _SpotRadiusOffset = Schema.GetOffset(0x5256F8E993FBE5BB);
+      }
+      return ref _Handle.AsRef<float>(_SpotRadiusOffset!.Value);
+    }
   }
 
   public void FlagsUpdated() {

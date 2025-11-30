@@ -17,15 +17,25 @@ internal partial class CNmSelectorNode__CDefinitionImpl : CNmPoseNode__CDefiniti
   public CNmSelectorNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OptionNodeIndicesOffset = Schema.GetOffset(0x4E964386DA97B15D);
+  private static nint? _OptionNodeIndicesOffset;
 
   public SchemaUntypedField OptionNodeIndices {
-    get => new SchemaUntypedField(_Handle + _OptionNodeIndicesOffset);
+    get {
+      if (_OptionNodeIndicesOffset == null) {
+        _OptionNodeIndicesOffset = Schema.GetOffset(0x4E964386DA97B15D);
+      }
+      return new SchemaUntypedField(_Handle + _OptionNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _ConditionNodeIndicesOffset = Schema.GetOffset(0x4E9643864A144D0F);
+  private static nint? _ConditionNodeIndicesOffset;
 
   public SchemaUntypedField ConditionNodeIndices {
-    get => new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset);
+    get {
+      if (_ConditionNodeIndicesOffset == null) {
+        _ConditionNodeIndicesOffset = Schema.GetOffset(0x4E9643864A144D0F);
+      }
+      return new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class C_OP_LerpToOtherAttributeImpl : CParticleFunctionOperator
   public C_OP_LerpToOtherAttributeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InterpolationOffset = Schema.GetOffset(0x1F92A80BCF55B987);
+  private static nint? _InterpolationOffset;
 
   public CPerParticleFloatInput Interpolation {
-    get => new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset);
+    get {
+      if (_InterpolationOffset == null) {
+        _InterpolationOffset = Schema.GetOffset(0x1F92A80BCF55B987);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset!.Value);
+    }
   }
-  private static readonly nint _FieldInputFromOffset = Schema.GetOffset(0x1F92A80BB0E75581);
+  private static nint? _FieldInputFromOffset;
 
   public ParticleAttributeIndex_t FieldInputFrom {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldInputFromOffset);
+    get {
+      if (_FieldInputFromOffset == null) {
+        _FieldInputFromOffset = Schema.GetOffset(0x1F92A80BB0E75581);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldInputFromOffset!.Value);
+    }
   }
-  private static readonly nint _FieldInputOffset = Schema.GetOffset(0x1F92A80BAE775669);
+  private static nint? _FieldInputOffset;
 
   public ParticleAttributeIndex_t FieldInput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset);
+    get {
+      if (_FieldInputOffset == null) {
+        _FieldInputOffset = Schema.GetOffset(0x1F92A80BAE775669);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x1F92A80BE5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x1F92A80BE5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
 
 

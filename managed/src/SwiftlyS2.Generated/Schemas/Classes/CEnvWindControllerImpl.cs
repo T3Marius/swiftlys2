@@ -17,60 +17,115 @@ internal partial class CEnvWindControllerImpl : CBaseEntityImpl, CEnvWindControl
   public CEnvWindControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EnvWindSharedOffset = Schema.GetOffset(0x85B1A0AB75DDCB0F);
+  private static nint? _EnvWindSharedOffset;
 
   public CEnvWindShared EnvWindShared {
-    get => new CEnvWindSharedImpl(_Handle + _EnvWindSharedOffset);
+    get {
+      if (_EnvWindSharedOffset == null) {
+        _EnvWindSharedOffset = Schema.GetOffset(0x85B1A0AB75DDCB0F);
+      }
+      return new CEnvWindSharedImpl(_Handle + _EnvWindSharedOffset!.Value);
+    }
   }
-  private static readonly nint _DirectionVariationOffset = Schema.GetOffset(0x85B1A0AB72560E57);
+  private static nint? _DirectionVariationOffset;
 
   public ref float DirectionVariation {
-    get => ref _Handle.AsRef<float>(_DirectionVariationOffset);
+    get {
+      if (_DirectionVariationOffset == null) {
+        _DirectionVariationOffset = Schema.GetOffset(0x85B1A0AB72560E57);
+      }
+      return ref _Handle.AsRef<float>(_DirectionVariationOffset!.Value);
+    }
   }
-  private static readonly nint _SpeedVariationOffset = Schema.GetOffset(0x85B1A0AB19844531);
+  private static nint? _SpeedVariationOffset;
 
   public ref float SpeedVariation {
-    get => ref _Handle.AsRef<float>(_SpeedVariationOffset);
+    get {
+      if (_SpeedVariationOffset == null) {
+        _SpeedVariationOffset = Schema.GetOffset(0x85B1A0AB19844531);
+      }
+      return ref _Handle.AsRef<float>(_SpeedVariationOffset!.Value);
+    }
   }
-  private static readonly nint _TurbulenceOffset = Schema.GetOffset(0x85B1A0AB8E2CE730);
+  private static nint? _TurbulenceOffset;
 
   public ref float Turbulence {
-    get => ref _Handle.AsRef<float>(_TurbulenceOffset);
+    get {
+      if (_TurbulenceOffset == null) {
+        _TurbulenceOffset = Schema.GetOffset(0x85B1A0AB8E2CE730);
+      }
+      return ref _Handle.AsRef<float>(_TurbulenceOffset!.Value);
+    }
   }
-  private static readonly nint _VolumeHalfExtentXYOffset = Schema.GetOffset(0x85B1A0AB2445F06D);
+  private static nint? _VolumeHalfExtentXYOffset;
 
   public ref float VolumeHalfExtentXY {
-    get => ref _Handle.AsRef<float>(_VolumeHalfExtentXYOffset);
+    get {
+      if (_VolumeHalfExtentXYOffset == null) {
+        _VolumeHalfExtentXYOffset = Schema.GetOffset(0x85B1A0AB2445F06D);
+      }
+      return ref _Handle.AsRef<float>(_VolumeHalfExtentXYOffset!.Value);
+    }
   }
-  private static readonly nint _VolumeHalfExtentZOffset = Schema.GetOffset(0x85B1A0AB9BA18280);
+  private static nint? _VolumeHalfExtentZOffset;
 
   public ref float VolumeHalfExtentZ {
-    get => ref _Handle.AsRef<float>(_VolumeHalfExtentZOffset);
+    get {
+      if (_VolumeHalfExtentZOffset == null) {
+        _VolumeHalfExtentZOffset = Schema.GetOffset(0x85B1A0AB9BA18280);
+      }
+      return ref _Handle.AsRef<float>(_VolumeHalfExtentZOffset!.Value);
+    }
   }
-  private static readonly nint _VolumeResolutionXYOffset = Schema.GetOffset(0x85B1A0AB97B5AB36);
+  private static nint? _VolumeResolutionXYOffset;
 
   public ref int VolumeResolutionXY {
-    get => ref _Handle.AsRef<int>(_VolumeResolutionXYOffset);
+    get {
+      if (_VolumeResolutionXYOffset == null) {
+        _VolumeResolutionXYOffset = Schema.GetOffset(0x85B1A0AB97B5AB36);
+      }
+      return ref _Handle.AsRef<int>(_VolumeResolutionXYOffset!.Value);
+    }
   }
-  private static readonly nint _VolumeResolutionZOffset = Schema.GetOffset(0x85B1A0ABA1610511);
+  private static nint? _VolumeResolutionZOffset;
 
   public ref int VolumeResolutionZ {
-    get => ref _Handle.AsRef<int>(_VolumeResolutionZOffset);
+    get {
+      if (_VolumeResolutionZOffset == null) {
+        _VolumeResolutionZOffset = Schema.GetOffset(0x85B1A0ABA1610511);
+      }
+      return ref _Handle.AsRef<int>(_VolumeResolutionZOffset!.Value);
+    }
   }
-  private static readonly nint _ClipmapLevelsOffset = Schema.GetOffset(0x85B1A0AB5B9AA8D4);
+  private static nint? _ClipmapLevelsOffset;
 
   public ref int ClipmapLevels {
-    get => ref _Handle.AsRef<int>(_ClipmapLevelsOffset);
+    get {
+      if (_ClipmapLevelsOffset == null) {
+        _ClipmapLevelsOffset = Schema.GetOffset(0x85B1A0AB5B9AA8D4);
+      }
+      return ref _Handle.AsRef<int>(_ClipmapLevelsOffset!.Value);
+    }
   }
-  private static readonly nint _IsMasterOffset = Schema.GetOffset(0x85B1A0ABDE5719A3);
+  private static nint? _IsMasterOffset;
 
   public ref bool IsMaster {
-    get => ref _Handle.AsRef<bool>(_IsMasterOffset);
+    get {
+      if (_IsMasterOffset == null) {
+        _IsMasterOffset = Schema.GetOffset(0x85B1A0ABDE5719A3);
+      }
+      return ref _Handle.AsRef<bool>(_IsMasterOffset!.Value);
+    }
   }
-  private static readonly nint _FirstTimeOffset = Schema.GetOffset(0x85B1A0ABD23C3138);
+  private static nint? _FirstTimeOffset;
 
   public ref bool FirstTime {
-    get => ref _Handle.AsRef<bool>(_FirstTimeOffset);
+    get {
+      if (_FirstTimeOffset == null) {
+        _FirstTimeOffset = Schema.GetOffset(0x85B1A0ABD23C3138);
+      }
+      return ref _Handle.AsRef<bool>(_FirstTimeOffset!.Value);
+    }
   }
 
   public void EnvWindSharedUpdated() {

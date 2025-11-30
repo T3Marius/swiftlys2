@@ -17,15 +17,25 @@ internal partial class CSoundEventAABBEntityImpl : CSoundEventEntityImpl, CSound
   public CSoundEventAABBEntityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinsOffset = Schema.GetOffset(0x9E5B084A421BB730);
+  private static nint? _MinsOffset;
 
   public ref Vector Mins {
-    get => ref _Handle.AsRef<Vector>(_MinsOffset);
+    get {
+      if (_MinsOffset == null) {
+        _MinsOffset = Schema.GetOffset(0x9E5B084A421BB730);
+      }
+      return ref _Handle.AsRef<Vector>(_MinsOffset!.Value);
+    }
   }
-  private static readonly nint _MaxsOffset = Schema.GetOffset(0x9E5B084AC0C1CE6A);
+  private static nint? _MaxsOffset;
 
   public ref Vector Maxs {
-    get => ref _Handle.AsRef<Vector>(_MaxsOffset);
+    get {
+      if (_MaxsOffset == null) {
+        _MaxsOffset = Schema.GetOffset(0x9E5B084AC0C1CE6A);
+      }
+      return ref _Handle.AsRef<Vector>(_MaxsOffset!.Value);
+    }
   }
 
   public void MinsUpdated() {

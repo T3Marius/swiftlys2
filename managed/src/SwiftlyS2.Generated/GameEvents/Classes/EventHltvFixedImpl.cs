@@ -42,6 +42,18 @@ internal class EventHltvFixedImpl : GameEvent<EventHltvFixed>, EventHltvFixed
   { get => Accessor.GetFloat("fov"); set => Accessor.SetFloat("fov", value); }
 
   // follow this player
+  public CCSPlayerController TargetController
+  { get => Accessor.GetPlayerController("target"); }
+
+  // follow this player
+  public CCSPlayerPawn TargetPawn
+  { get => Accessor.GetPlayerPawn("target"); }
+
+  // follow this player
+  public IPlayer TargetPlayer
+  { get => Accessor.GetPlayer("target"); }
+
+  // follow this player
   public int Target
-  { get => Accessor.GetPlayerSlot("target"); set => Accessor.SetPlayerSlot("target", value); }
+  { get => Accessor.GetInt32("target"); set => Accessor.SetInt32("target", value); }
 }

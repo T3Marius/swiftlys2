@@ -17,25 +17,45 @@ internal partial class CDestructiblePartsComponentImpl : SchemaClass, CDestructi
   public CDestructiblePartsComponentImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint ___m_pChainEntityOffset = Schema.GetOffset(0xE69A9E51F63F0E7D);
+  private static nint? ___m_pChainEntityOffset;
 
   public ref CNetworkVarChainer __m_pChainEntity {
-    get => ref _Handle.AsRef<CNetworkVarChainer>(___m_pChainEntityOffset);
+    get {
+      if (___m_pChainEntityOffset == null) {
+        ___m_pChainEntityOffset = Schema.GetOffset(0xE69A9E51F63F0E7D);
+      }
+      return ref _Handle.AsRef<CNetworkVarChainer>(___m_pChainEntityOffset!.Value);
+    }
   }
-  private static readonly nint _DamageTakenByHitGroupOffset = Schema.GetOffset(0xE69A9E51F137427A);
+  private static nint? _DamageTakenByHitGroupOffset;
 
   public ref CUtlVector<ushort> DamageTakenByHitGroup {
-    get => ref _Handle.AsRef<CUtlVector<ushort>>(_DamageTakenByHitGroupOffset);
+    get {
+      if (_DamageTakenByHitGroupOffset == null) {
+        _DamageTakenByHitGroupOffset = Schema.GetOffset(0xE69A9E51F137427A);
+      }
+      return ref _Handle.AsRef<CUtlVector<ushort>>(_DamageTakenByHitGroupOffset!.Value);
+    }
   }
-  private static readonly nint _OwnerOffset = Schema.GetOffset(0xE69A9E51F6D89572);
+  private static nint? _OwnerOffset;
 
   public ref CHandle<CBaseModelEntity> Owner {
-    get => ref _Handle.AsRef<CHandle<CBaseModelEntity>>(_OwnerOffset);
+    get {
+      if (_OwnerOffset == null) {
+        _OwnerOffset = Schema.GetOffset(0xE69A9E51F6D89572);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseModelEntity>>(_OwnerOffset!.Value);
+    }
   }
-  private static readonly nint _LastHitDamageLevelOffset = Schema.GetOffset(0xE69A9E51042B0657);
+  private static nint? _LastHitDamageLevelOffset;
 
   public ref int LastHitDamageLevel {
-    get => ref _Handle.AsRef<int>(_LastHitDamageLevelOffset);
+    get {
+      if (_LastHitDamageLevelOffset == null) {
+        _LastHitDamageLevelOffset = Schema.GetOffset(0xE69A9E51042B0657);
+      }
+      return ref _Handle.AsRef<int>(_LastHitDamageLevelOffset!.Value);
+    }
   }
 
   public void OwnerUpdated() {

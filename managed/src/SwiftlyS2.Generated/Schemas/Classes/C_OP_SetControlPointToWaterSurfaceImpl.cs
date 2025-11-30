@@ -17,40 +17,75 @@ internal partial class C_OP_SetControlPointToWaterSurfaceImpl : CParticleFunctio
   public C_OP_SetControlPointToWaterSurfaceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceCPOffset = Schema.GetOffset(0x5BA6BFAD4C01E3B7);
+  private static nint? _SourceCPOffset;
 
   public ref int SourceCP {
-    get => ref _Handle.AsRef<int>(_SourceCPOffset);
+    get {
+      if (_SourceCPOffset == null) {
+        _SourceCPOffset = Schema.GetOffset(0x5BA6BFAD4C01E3B7);
+      }
+      return ref _Handle.AsRef<int>(_SourceCPOffset!.Value);
+    }
   }
-  private static readonly nint _DestCPOffset = Schema.GetOffset(0x5BA6BFADE27355DA);
+  private static nint? _DestCPOffset;
 
   public ref int DestCP {
-    get => ref _Handle.AsRef<int>(_DestCPOffset);
+    get {
+      if (_DestCPOffset == null) {
+        _DestCPOffset = Schema.GetOffset(0x5BA6BFADE27355DA);
+      }
+      return ref _Handle.AsRef<int>(_DestCPOffset!.Value);
+    }
   }
-  private static readonly nint _FlowCPOffset = Schema.GetOffset(0x5BA6BFADF3D93292);
+  private static nint? _FlowCPOffset;
 
   public ref int FlowCP {
-    get => ref _Handle.AsRef<int>(_FlowCPOffset);
+    get {
+      if (_FlowCPOffset == null) {
+        _FlowCPOffset = Schema.GetOffset(0x5BA6BFADF3D93292);
+      }
+      return ref _Handle.AsRef<int>(_FlowCPOffset!.Value);
+    }
   }
-  private static readonly nint _ActiveCPOffset = Schema.GetOffset(0x5BA6BFADA12F97B0);
+  private static nint? _ActiveCPOffset;
 
   public ref int ActiveCP {
-    get => ref _Handle.AsRef<int>(_ActiveCPOffset);
+    get {
+      if (_ActiveCPOffset == null) {
+        _ActiveCPOffset = Schema.GetOffset(0x5BA6BFADA12F97B0);
+      }
+      return ref _Handle.AsRef<int>(_ActiveCPOffset!.Value);
+    }
   }
-  private static readonly nint _ActiveCPFieldOffset = Schema.GetOffset(0x5BA6BFAD61A1D27C);
+  private static nint? _ActiveCPFieldOffset;
 
   public ref int ActiveCPField {
-    get => ref _Handle.AsRef<int>(_ActiveCPFieldOffset);
+    get {
+      if (_ActiveCPFieldOffset == null) {
+        _ActiveCPFieldOffset = Schema.GetOffset(0x5BA6BFAD61A1D27C);
+      }
+      return ref _Handle.AsRef<int>(_ActiveCPFieldOffset!.Value);
+    }
   }
-  private static readonly nint _RetestRateOffset = Schema.GetOffset(0x5BA6BFAD38DA66AC);
+  private static nint? _RetestRateOffset;
 
   public CParticleCollectionFloatInput RetestRate {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _RetestRateOffset);
+    get {
+      if (_RetestRateOffset == null) {
+        _RetestRateOffset = Schema.GetOffset(0x5BA6BFAD38DA66AC);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _RetestRateOffset!.Value);
+    }
   }
-  private static readonly nint _AdaptiveThresholdOffset = Schema.GetOffset(0x5BA6BFADE64212D6);
+  private static nint? _AdaptiveThresholdOffset;
 
   public ref bool AdaptiveThreshold {
-    get => ref _Handle.AsRef<bool>(_AdaptiveThresholdOffset);
+    get {
+      if (_AdaptiveThresholdOffset == null) {
+        _AdaptiveThresholdOffset = Schema.GetOffset(0x5BA6BFADE64212D6);
+      }
+      return ref _Handle.AsRef<bool>(_AdaptiveThresholdOffset!.Value);
+    }
   }
 
 

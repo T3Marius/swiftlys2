@@ -17,10 +17,15 @@ internal partial class vphysics_save_cphysicsbody_tImpl : RnBodyDesc_tImpl, vphy
   public vphysics_save_cphysicsbody_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OldPointerOffset = Schema.GetOffset(0xC6818B0AA60623F3);
+  private static nint? _OldPointerOffset;
 
   public ref ulong OldPointer {
-    get => ref _Handle.AsRef<ulong>(_OldPointerOffset);
+    get {
+      if (_OldPointerOffset == null) {
+        _OldPointerOffset = Schema.GetOffset(0xC6818B0AA60623F3);
+      }
+      return ref _Handle.AsRef<ulong>(_OldPointerOffset!.Value);
+    }
   }
 
 

@@ -17,40 +17,75 @@ internal partial class C_INIT_ColorLitPerParticleImpl : CParticleFunctionInitial
   public C_INIT_ColorLitPerParticleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ColorMinOffset = Schema.GetOffset(0xA196BF87552A5834);
+  private static nint? _ColorMinOffset;
 
   public ref Color ColorMin {
-    get => ref _Handle.AsRef<Color>(_ColorMinOffset);
+    get {
+      if (_ColorMinOffset == null) {
+        _ColorMinOffset = Schema.GetOffset(0xA196BF87552A5834);
+      }
+      return ref _Handle.AsRef<Color>(_ColorMinOffset!.Value);
+    }
   }
-  private static readonly nint _ColorMaxOffset = Schema.GetOffset(0xA196BF87433DC396);
+  private static nint? _ColorMaxOffset;
 
   public ref Color ColorMax {
-    get => ref _Handle.AsRef<Color>(_ColorMaxOffset);
+    get {
+      if (_ColorMaxOffset == null) {
+        _ColorMaxOffset = Schema.GetOffset(0xA196BF87433DC396);
+      }
+      return ref _Handle.AsRef<Color>(_ColorMaxOffset!.Value);
+    }
   }
-  private static readonly nint _TintMinOffset = Schema.GetOffset(0xA196BF8750B36A60);
+  private static nint? _TintMinOffset;
 
   public ref Color TintMin {
-    get => ref _Handle.AsRef<Color>(_TintMinOffset);
+    get {
+      if (_TintMinOffset == null) {
+        _TintMinOffset = Schema.GetOffset(0xA196BF8750B36A60);
+      }
+      return ref _Handle.AsRef<Color>(_TintMinOffset!.Value);
+    }
   }
-  private static readonly nint _TintMaxOffset = Schema.GetOffset(0xA196BF8766A0054A);
+  private static nint? _TintMaxOffset;
 
   public ref Color TintMax {
-    get => ref _Handle.AsRef<Color>(_TintMaxOffset);
+    get {
+      if (_TintMaxOffset == null) {
+        _TintMaxOffset = Schema.GetOffset(0xA196BF8766A0054A);
+      }
+      return ref _Handle.AsRef<Color>(_TintMaxOffset!.Value);
+    }
   }
-  private static readonly nint _TintPercOffset = Schema.GetOffset(0xA196BF87E32BE3C6);
+  private static nint? _TintPercOffset;
 
   public ref float TintPerc {
-    get => ref _Handle.AsRef<float>(_TintPercOffset);
+    get {
+      if (_TintPercOffset == null) {
+        _TintPercOffset = Schema.GetOffset(0xA196BF87E32BE3C6);
+      }
+      return ref _Handle.AsRef<float>(_TintPercOffset!.Value);
+    }
   }
-  private static readonly nint _TintBlendModeOffset = Schema.GetOffset(0xA196BF87B80E5314);
+  private static nint? _TintBlendModeOffset;
 
   public ref ParticleColorBlendMode_t TintBlendMode {
-    get => ref _Handle.AsRef<ParticleColorBlendMode_t>(_TintBlendModeOffset);
+    get {
+      if (_TintBlendModeOffset == null) {
+        _TintBlendModeOffset = Schema.GetOffset(0xA196BF87B80E5314);
+      }
+      return ref _Handle.AsRef<ParticleColorBlendMode_t>(_TintBlendModeOffset!.Value);
+    }
   }
-  private static readonly nint _LightAmplificationOffset = Schema.GetOffset(0xA196BF87C8D7C0AD);
+  private static nint? _LightAmplificationOffset;
 
   public ref float LightAmplification {
-    get => ref _Handle.AsRef<float>(_LightAmplificationOffset);
+    get {
+      if (_LightAmplificationOffset == null) {
+        _LightAmplificationOffset = Schema.GetOffset(0xA196BF87C8D7C0AD);
+      }
+      return ref _Handle.AsRef<float>(_LightAmplificationOffset!.Value);
+    }
   }
 
 

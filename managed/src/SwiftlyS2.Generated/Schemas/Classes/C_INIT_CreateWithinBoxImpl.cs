@@ -17,35 +17,65 @@ internal partial class C_INIT_CreateWithinBoxImpl : CParticleFunctionInitializer
   public C_INIT_CreateWithinBoxImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinOffset = Schema.GetOffset(0x331A2B22B0765F37);
+  private static nint? _MinOffset;
 
   public CPerParticleVecInput Min {
-    get => new CPerParticleVecInputImpl(_Handle + _MinOffset);
+    get {
+      if (_MinOffset == null) {
+        _MinOffset = Schema.GetOffset(0x331A2B22B0765F37);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _MinOffset!.Value);
+    }
   }
-  private static readonly nint _MaxOffset = Schema.GetOffset(0x331A2B22BE89FCF9);
+  private static nint? _MaxOffset;
 
   public CPerParticleVecInput Max {
-    get => new CPerParticleVecInputImpl(_Handle + _MaxOffset);
+    get {
+      if (_MaxOffset == null) {
+        _MaxOffset = Schema.GetOffset(0x331A2B22BE89FCF9);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _MaxOffset!.Value);
+    }
   }
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x331A2B223F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x331A2B223F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _LocalSpaceOffset = Schema.GetOffset(0x331A2B2262418E6E);
+  private static nint? _LocalSpaceOffset;
 
   public ref bool LocalSpace {
-    get => ref _Handle.AsRef<bool>(_LocalSpaceOffset);
+    get {
+      if (_LocalSpaceOffset == null) {
+        _LocalSpaceOffset = Schema.GetOffset(0x331A2B2262418E6E);
+      }
+      return ref _Handle.AsRef<bool>(_LocalSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _RandomnessParametersOffset = Schema.GetOffset(0x331A2B227EDF50AD);
+  private static nint? _RandomnessParametersOffset;
 
   public CRandomNumberGeneratorParameters RandomnessParameters {
-    get => new CRandomNumberGeneratorParametersImpl(_Handle + _RandomnessParametersOffset);
+    get {
+      if (_RandomnessParametersOffset == null) {
+        _RandomnessParametersOffset = Schema.GetOffset(0x331A2B227EDF50AD);
+      }
+      return new CRandomNumberGeneratorParametersImpl(_Handle + _RandomnessParametersOffset!.Value);
+    }
   }
-  private static readonly nint _UseNewCodeOffset = Schema.GetOffset(0x331A2B227C6D1CDF);
+  private static nint? _UseNewCodeOffset;
 
   public ref bool UseNewCode {
-    get => ref _Handle.AsRef<bool>(_UseNewCodeOffset);
+    get {
+      if (_UseNewCodeOffset == null) {
+        _UseNewCodeOffset = Schema.GetOffset(0x331A2B227C6D1CDF);
+      }
+      return ref _Handle.AsRef<bool>(_UseNewCodeOffset!.Value);
+    }
   }
 
 

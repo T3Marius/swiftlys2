@@ -17,10 +17,15 @@ internal partial class PulseRuntimeDomainValueIndex_tImpl : SchemaClass, PulseRu
   public PulseRuntimeDomainValueIndex_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xCA672082DCB0894A);
+  private static nint? _ValueOffset;
 
   public ref short Value {
-    get => ref _Handle.AsRef<short>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xCA672082DCB0894A);
+      }
+      return ref _Handle.AsRef<short>(_ValueOffset!.Value);
+    }
   }
 
 

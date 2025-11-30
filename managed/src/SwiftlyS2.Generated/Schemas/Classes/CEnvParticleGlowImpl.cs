@@ -17,30 +17,55 @@ internal partial class CEnvParticleGlowImpl : CParticleSystemImpl, CEnvParticleG
   public CEnvParticleGlowImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AlphaScaleOffset = Schema.GetOffset(0x38100F3AEC6D3C25);
+  private static nint? _AlphaScaleOffset;
 
   public ref float AlphaScale {
-    get => ref _Handle.AsRef<float>(_AlphaScaleOffset);
+    get {
+      if (_AlphaScaleOffset == null) {
+        _AlphaScaleOffset = Schema.GetOffset(0x38100F3AEC6D3C25);
+      }
+      return ref _Handle.AsRef<float>(_AlphaScaleOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusScaleOffset = Schema.GetOffset(0x38100F3AA7A20159);
+  private static nint? _RadiusScaleOffset;
 
   public ref float RadiusScale {
-    get => ref _Handle.AsRef<float>(_RadiusScaleOffset);
+    get {
+      if (_RadiusScaleOffset == null) {
+        _RadiusScaleOffset = Schema.GetOffset(0x38100F3AA7A20159);
+      }
+      return ref _Handle.AsRef<float>(_RadiusScaleOffset!.Value);
+    }
   }
-  private static readonly nint _SelfIllumScaleOffset = Schema.GetOffset(0x38100F3A0478CE14);
+  private static nint? _SelfIllumScaleOffset;
 
   public ref float SelfIllumScale {
-    get => ref _Handle.AsRef<float>(_SelfIllumScaleOffset);
+    get {
+      if (_SelfIllumScaleOffset == null) {
+        _SelfIllumScaleOffset = Schema.GetOffset(0x38100F3A0478CE14);
+      }
+      return ref _Handle.AsRef<float>(_SelfIllumScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ColorTintOffset = Schema.GetOffset(0x38100F3AD55CDDFD);
+  private static nint? _ColorTintOffset;
 
   public ref Color ColorTint {
-    get => ref _Handle.AsRef<Color>(_ColorTintOffset);
+    get {
+      if (_ColorTintOffset == null) {
+        _ColorTintOffset = Schema.GetOffset(0x38100F3AD55CDDFD);
+      }
+      return ref _Handle.AsRef<Color>(_ColorTintOffset!.Value);
+    }
   }
-  private static readonly nint _TextureOverrideOffset = Schema.GetOffset(0x38100F3AEC1F5A56);
+  private static nint? _TextureOverrideOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCTextureBase> TextureOverride {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_TextureOverrideOffset);
+    get {
+      if (_TextureOverrideOffset == null) {
+        _TextureOverrideOffset = Schema.GetOffset(0x38100F3AEC1F5A56);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCTextureBase>>(_TextureOverrideOffset!.Value);
+    }
   }
 
   public void AlphaScaleUpdated() {

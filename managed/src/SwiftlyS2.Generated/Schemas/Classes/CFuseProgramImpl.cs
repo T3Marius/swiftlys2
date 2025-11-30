@@ -17,25 +17,45 @@ internal partial class CFuseProgramImpl : SchemaClass, CFuseProgram {
   public CFuseProgramImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ProgramBufferOffset = Schema.GetOffset(0x81E69119349962E1);
+  private static nint? _ProgramBufferOffset;
 
   public ref CUtlVector<byte> ProgramBuffer {
-    get => ref _Handle.AsRef<CUtlVector<byte>>(_ProgramBufferOffset);
+    get {
+      if (_ProgramBufferOffset == null) {
+        _ProgramBufferOffset = Schema.GetOffset(0x81E69119349962E1);
+      }
+      return ref _Handle.AsRef<CUtlVector<byte>>(_ProgramBufferOffset!.Value);
+    }
   }
-  private static readonly nint _VariablesReadOffset = Schema.GetOffset(0x81E691194C160BEA);
+  private static nint? _VariablesReadOffset;
 
   public ref CUtlVector<FuseVariableIndex_t> VariablesRead {
-    get => ref _Handle.AsRef<CUtlVector<FuseVariableIndex_t>>(_VariablesReadOffset);
+    get {
+      if (_VariablesReadOffset == null) {
+        _VariablesReadOffset = Schema.GetOffset(0x81E691194C160BEA);
+      }
+      return ref _Handle.AsRef<CUtlVector<FuseVariableIndex_t>>(_VariablesReadOffset!.Value);
+    }
   }
-  private static readonly nint _VariablesWrittenOffset = Schema.GetOffset(0x81E69119E9491C49);
+  private static nint? _VariablesWrittenOffset;
 
   public ref CUtlVector<FuseVariableIndex_t> VariablesWritten {
-    get => ref _Handle.AsRef<CUtlVector<FuseVariableIndex_t>>(_VariablesWrittenOffset);
+    get {
+      if (_VariablesWrittenOffset == null) {
+        _VariablesWrittenOffset = Schema.GetOffset(0x81E69119E9491C49);
+      }
+      return ref _Handle.AsRef<CUtlVector<FuseVariableIndex_t>>(_VariablesWrittenOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTempVarsUsedOffset = Schema.GetOffset(0x81E69119981A1518);
+  private static nint? _MaxTempVarsUsedOffset;
 
   public ref int MaxTempVarsUsed {
-    get => ref _Handle.AsRef<int>(_MaxTempVarsUsedOffset);
+    get {
+      if (_MaxTempVarsUsedOffset == null) {
+        _MaxTempVarsUsedOffset = Schema.GetOffset(0x81E69119981A1518);
+      }
+      return ref _Handle.AsRef<int>(_MaxTempVarsUsedOffset!.Value);
+    }
   }
 
 

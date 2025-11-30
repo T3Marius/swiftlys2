@@ -7,6 +7,7 @@ using SwiftlyS2.Shared;
 using SwiftlyS2.Core.Plugins;
 using SwiftlyS2.Core.Natives;
 using SwiftlyS2.Shared.Commands;
+using SwiftlyS2.Shared.Plugins;
 
 namespace SwiftlyS2.Core.Services;
 

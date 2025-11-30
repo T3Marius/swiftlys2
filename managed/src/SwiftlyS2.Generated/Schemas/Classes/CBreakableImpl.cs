@@ -17,88 +17,169 @@ internal partial class CBreakableImpl : CBaseModelEntityImpl, CBreakable {
   public CBreakableImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CPropDataComponentOffset = Schema.GetOffset(0xC5CDE329ACBC1DDE);
+  private static nint? _CPropDataComponentOffset;
 
   public CPropDataComponent CPropDataComponent {
-    get => new CPropDataComponentImpl(_Handle + _CPropDataComponentOffset);
+    get {
+      if (_CPropDataComponentOffset == null) {
+        _CPropDataComponentOffset = Schema.GetOffset(0xC5CDE329ACBC1DDE);
+      }
+      return new CPropDataComponentImpl(_Handle + _CPropDataComponentOffset!.Value);
+    }
   }
-  private static readonly nint _MaterialOffset = Schema.GetOffset(0xC5CDE3293BBD7CE0);
+  private static nint? _MaterialOffset;
 
   public ref Materials Material {
-    get => ref _Handle.AsRef<Materials>(_MaterialOffset);
+    get {
+      if (_MaterialOffset == null) {
+        _MaterialOffset = Schema.GetOffset(0xC5CDE3293BBD7CE0);
+      }
+      return ref _Handle.AsRef<Materials>(_MaterialOffset!.Value);
+    }
   }
-  private static readonly nint _BreakerOffset = Schema.GetOffset(0xC5CDE329161604FD);
+  private static nint? _BreakerOffset;
 
   public ref CHandle<CBaseEntity> Breaker {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_BreakerOffset);
+    get {
+      if (_BreakerOffset == null) {
+        _BreakerOffset = Schema.GetOffset(0xC5CDE329161604FD);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_BreakerOffset!.Value);
+    }
   }
-  private static readonly nint _ExplosionOffset = Schema.GetOffset(0xC5CDE3298FD2AD60);
+  private static nint? _ExplosionOffset;
 
   public ref Explosions Explosion {
-    get => ref _Handle.AsRef<Explosions>(_ExplosionOffset);
+    get {
+      if (_ExplosionOffset == null) {
+        _ExplosionOffset = Schema.GetOffset(0xC5CDE3298FD2AD60);
+      }
+      return ref _Handle.AsRef<Explosions>(_ExplosionOffset!.Value);
+    }
   }
-  private static readonly nint _SpawnObjectOffset = Schema.GetOffset(0xC5CDE329D32D7547);
+  private static nint? _SpawnObjectOffset;
 
   public string SpawnObject {
     get {
-      var ptr = _Handle.Read<nint>(_SpawnObjectOffset);
+      if (_SpawnObjectOffset == null) {
+        _SpawnObjectOffset = Schema.GetOffset(0xC5CDE329D32D7547);
+      }
+      var ptr = _Handle.Read<nint>(_SpawnObjectOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SpawnObjectOffset, value);
+    set {
+      if (_SpawnObjectOffset == null) {
+        _SpawnObjectOffset = Schema.GetOffset(0xC5CDE329D32D7547);
+      }
+      Schema.SetString(_Handle, _SpawnObjectOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PressureDelayOffset = Schema.GetOffset(0xC5CDE3294852270B);
+  private static nint? _PressureDelayOffset;
 
   public ref float PressureDelay {
-    get => ref _Handle.AsRef<float>(_PressureDelayOffset);
+    get {
+      if (_PressureDelayOffset == null) {
+        _PressureDelayOffset = Schema.GetOffset(0xC5CDE3294852270B);
+      }
+      return ref _Handle.AsRef<float>(_PressureDelayOffset!.Value);
+    }
   }
-  private static readonly nint _MinHealthDmgOffset = Schema.GetOffset(0xC5CDE32991F14A4A);
+  private static nint? _MinHealthDmgOffset;
 
   public ref int MinHealthDmg {
-    get => ref _Handle.AsRef<int>(_MinHealthDmgOffset);
+    get {
+      if (_MinHealthDmgOffset == null) {
+        _MinHealthDmgOffset = Schema.GetOffset(0xC5CDE32991F14A4A);
+      }
+      return ref _Handle.AsRef<int>(_MinHealthDmgOffset!.Value);
+    }
   }
-  private static readonly nint _PropDataOffset = Schema.GetOffset(0xC5CDE32958671088);
+  private static nint? _PropDataOffset;
 
   public string PropData {
     get {
-      var ptr = _Handle.Read<nint>(_PropDataOffset);
+      if (_PropDataOffset == null) {
+        _PropDataOffset = Schema.GetOffset(0xC5CDE32958671088);
+      }
+      var ptr = _Handle.Read<nint>(_PropDataOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PropDataOffset, value);
+    set {
+      if (_PropDataOffset == null) {
+        _PropDataOffset = Schema.GetOffset(0xC5CDE32958671088);
+      }
+      Schema.SetString(_Handle, _PropDataOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ImpactEnergyScaleOffset = Schema.GetOffset(0xC5CDE329C66BAC1B);
+  private static nint? _ImpactEnergyScaleOffset;
 
   public ref float ImpactEnergyScale {
-    get => ref _Handle.AsRef<float>(_ImpactEnergyScaleOffset);
+    get {
+      if (_ImpactEnergyScaleOffset == null) {
+        _ImpactEnergyScaleOffset = Schema.GetOffset(0xC5CDE329C66BAC1B);
+      }
+      return ref _Handle.AsRef<float>(_ImpactEnergyScaleOffset!.Value);
+    }
   }
-  private static readonly nint _OverrideBlockLOSOffset = Schema.GetOffset(0xC5CDE329E9152440);
+  private static nint? _OverrideBlockLOSOffset;
 
   public ref EOverrideBlockLOS_t OverrideBlockLOS {
-    get => ref _Handle.AsRef<EOverrideBlockLOS_t>(_OverrideBlockLOSOffset);
+    get {
+      if (_OverrideBlockLOSOffset == null) {
+        _OverrideBlockLOSOffset = Schema.GetOffset(0xC5CDE329E9152440);
+      }
+      return ref _Handle.AsRef<EOverrideBlockLOS_t>(_OverrideBlockLOSOffset!.Value);
+    }
   }
-  private static readonly nint _OnBreakOffset = Schema.GetOffset(0xC5CDE32946BFEC4F);
+  private static nint? _OnBreakOffset;
 
   public CEntityIOOutput OnBreak {
-    get => new CEntityIOOutputImpl(_Handle + _OnBreakOffset);
+    get {
+      if (_OnBreakOffset == null) {
+        _OnBreakOffset = Schema.GetOffset(0xC5CDE32946BFEC4F);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnBreakOffset!.Value);
+    }
   }
-  private static readonly nint _OnHealthChangedOffset = Schema.GetOffset(0xC5CDE329EAC125B2);
+  private static nint? _OnHealthChangedOffset;
 
   public SchemaUntypedField OnHealthChanged {
-    get => new SchemaUntypedField(_Handle + _OnHealthChangedOffset);
+    get {
+      if (_OnHealthChangedOffset == null) {
+        _OnHealthChangedOffset = Schema.GetOffset(0xC5CDE329EAC125B2);
+      }
+      return new SchemaUntypedField(_Handle + _OnHealthChangedOffset!.Value);
+    }
   }
-  private static readonly nint _PerformanceModeOffset = Schema.GetOffset(0xC5CDE329C12B4C52);
+  private static nint? _PerformanceModeOffset;
 
   public ref PerformanceMode_t PerformanceMode {
-    get => ref _Handle.AsRef<PerformanceMode_t>(_PerformanceModeOffset);
+    get {
+      if (_PerformanceModeOffset == null) {
+        _PerformanceModeOffset = Schema.GetOffset(0xC5CDE329C12B4C52);
+      }
+      return ref _Handle.AsRef<PerformanceMode_t>(_PerformanceModeOffset!.Value);
+    }
   }
-  private static readonly nint _PhysicsAttackerOffset = Schema.GetOffset(0xC5CDE3297A5EB877);
+  private static nint? _PhysicsAttackerOffset;
 
   public ref CHandle<CBasePlayerPawn> PhysicsAttacker {
-    get => ref _Handle.AsRef<CHandle<CBasePlayerPawn>>(_PhysicsAttackerOffset);
+    get {
+      if (_PhysicsAttackerOffset == null) {
+        _PhysicsAttackerOffset = Schema.GetOffset(0xC5CDE3297A5EB877);
+      }
+      return ref _Handle.AsRef<CHandle<CBasePlayerPawn>>(_PhysicsAttackerOffset!.Value);
+    }
   }
-  private static readonly nint _LastPhysicsInfluenceTimeOffset = Schema.GetOffset(0xC5CDE3295B5C0E32);
+  private static nint? _LastPhysicsInfluenceTimeOffset;
 
   public GameTime_t LastPhysicsInfluenceTime {
-    get => new GameTime_tImpl(_Handle + _LastPhysicsInfluenceTimeOffset);
+    get {
+      if (_LastPhysicsInfluenceTimeOffset == null) {
+        _LastPhysicsInfluenceTimeOffset = Schema.GetOffset(0xC5CDE3295B5C0E32);
+      }
+      return new GameTime_tImpl(_Handle + _LastPhysicsInfluenceTimeOffset!.Value);
+    }
   }
 
   public void CPropDataComponentUpdated() {

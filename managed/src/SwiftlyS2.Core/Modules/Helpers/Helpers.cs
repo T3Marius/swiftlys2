@@ -90,7 +90,7 @@ internal class HelpersService : IHelpers
         { "ammo_50ae", 0 }
     };
 
-    public CCSWeaponBaseVData? GetWeaponCSDataFromKey(int unknown, string key)
+    public CCSWeaponBaseVData? GetWeaponCSDataFromKey( int unknown, string key )
     {
         nint weaponDataPtr = GameFunctions.GetWeaponCSDataFromKey(unknown, key);
         if (weaponDataPtr == 0)
@@ -100,12 +100,17 @@ internal class HelpersService : IHelpers
         return new CCSWeaponBaseVDataImpl(weaponDataPtr);
     }
 
-    public CCSWeaponBaseVData? GetWeaponCSDataFromKey(int itemDefinitionIndex)
+    public CCSWeaponBaseVData? GetWeaponCSDataFromKey( int itemDefinitionIndex )
     {
         return GetWeaponCSDataFromKey(-1, itemDefinitionIndex.ToString());
     }
 
-    public string? GetClassnameByDefinitionIndex(int itemDefinitionIndex)
+    public CCSWeaponBaseVData? GetWeaponCSDataFromKey( ItemDefinitionIndex itemDefinitionIndex )
+    {
+        return GetWeaponCSDataFromKey((int)itemDefinitionIndex);
+    }
+
+    public string? GetClassnameByDefinitionIndex( int itemDefinitionIndex )
     {
         foreach (var kvp in WeaponItemDefinitionIndices)
         {
@@ -117,13 +122,14 @@ internal class HelpersService : IHelpers
         return null;
     }
 
-    public int? GetDefinitionIndexByClassname(string classname)
+    public string? GetClassnameByDefinitionIndex( ItemDefinitionIndex itemDefinitionIndex )
     {
-        if (WeaponItemDefinitionIndices.TryGetValue(classname, out int index))
-        {
-            return index;
-        }
-        return null;
+        return GetClassnameByDefinitionIndex((int)itemDefinitionIndex);
+    }
+
+    public int? GetDefinitionIndexByClassname( string classname )
+    {
+        return WeaponItemDefinitionIndices.TryGetValue(classname, out var index) ? index : null;
     }
 
 }

@@ -17,20 +17,35 @@ internal partial class CNmBoneMaskBlendNode__CDefinitionImpl : CNmBoneMaskValueN
   public CNmBoneMaskBlendNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceMaskNodeIdxOffset = Schema.GetOffset(0x551EA0BCFF243A47);
+  private static nint? _SourceMaskNodeIdxOffset;
 
   public ref short SourceMaskNodeIdx {
-    get => ref _Handle.AsRef<short>(_SourceMaskNodeIdxOffset);
+    get {
+      if (_SourceMaskNodeIdxOffset == null) {
+        _SourceMaskNodeIdxOffset = Schema.GetOffset(0x551EA0BCFF243A47);
+      }
+      return ref _Handle.AsRef<short>(_SourceMaskNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _TargetMaskNodeIdxOffset = Schema.GetOffset(0x551EA0BC74E90A6F);
+  private static nint? _TargetMaskNodeIdxOffset;
 
   public ref short TargetMaskNodeIdx {
-    get => ref _Handle.AsRef<short>(_TargetMaskNodeIdxOffset);
+    get {
+      if (_TargetMaskNodeIdxOffset == null) {
+        _TargetMaskNodeIdxOffset = Schema.GetOffset(0x551EA0BC74E90A6F);
+      }
+      return ref _Handle.AsRef<short>(_TargetMaskNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _BlendWeightValueNodeIdxOffset = Schema.GetOffset(0x551EA0BC2735A990);
+  private static nint? _BlendWeightValueNodeIdxOffset;
 
   public ref short BlendWeightValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_BlendWeightValueNodeIdxOffset);
+    get {
+      if (_BlendWeightValueNodeIdxOffset == null) {
+        _BlendWeightValueNodeIdxOffset = Schema.GetOffset(0x551EA0BC2735A990);
+      }
+      return ref _Handle.AsRef<short>(_BlendWeightValueNodeIdxOffset!.Value);
+    }
   }
 
 

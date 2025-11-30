@@ -17,37 +17,66 @@ internal partial class VsInputSignatureElement_tImpl : SchemaClass, VsInputSigna
   public VsInputSignatureElement_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xFD3BBE5B5B47C92C);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle + _NameOffset;
-      return Schema.GetString(ptr);
+        if (_NameOffset == null) {
+            _NameOffset = Schema.GetOffset(0xFD3BBE5B5B47C92C);
+        }
+        var ptr = _Handle + _NameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _NameOffset, value, 64);
+    set {
+        if (_NameOffset == null) {
+            _NameOffset = Schema.GetOffset(0xFD3BBE5B5B47C92C);
+        }
+        Schema.SetFixedString(_Handle, _NameOffset!.Value, value, 64);
+    }
   } 
-  private static readonly nint _SemanticOffset = Schema.GetOffset(0xFD3BBE5B14684E6F);
+  private static nint? _SemanticOffset;
 
   public string Semantic {
     get {
-      var ptr = _Handle + _SemanticOffset;
-      return Schema.GetString(ptr);
+        if (_SemanticOffset == null) {
+            _SemanticOffset = Schema.GetOffset(0xFD3BBE5B14684E6F);
+        }
+        var ptr = _Handle + _SemanticOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _SemanticOffset, value, 64);
+    set {
+        if (_SemanticOffset == null) {
+            _SemanticOffset = Schema.GetOffset(0xFD3BBE5B14684E6F);
+        }
+        Schema.SetFixedString(_Handle, _SemanticOffset!.Value, value, 64);
+    }
   } 
-  private static readonly nint _D3DSemanticNameOffset = Schema.GetOffset(0xFD3BBE5B66524995);
+  private static nint? _D3DSemanticNameOffset;
 
   public string D3DSemanticName {
     get {
-      var ptr = _Handle + _D3DSemanticNameOffset;
-      return Schema.GetString(ptr);
+        if (_D3DSemanticNameOffset == null) {
+            _D3DSemanticNameOffset = Schema.GetOffset(0xFD3BBE5B66524995);
+        }
+        var ptr = _Handle + _D3DSemanticNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _D3DSemanticNameOffset, value, 64);
+    set {
+        if (_D3DSemanticNameOffset == null) {
+            _D3DSemanticNameOffset = Schema.GetOffset(0xFD3BBE5B66524995);
+        }
+        Schema.SetFixedString(_Handle, _D3DSemanticNameOffset!.Value, value, 64);
+    }
   } 
-  private static readonly nint _D3DSemanticIndexOffset = Schema.GetOffset(0xFD3BBE5B67F2BA80);
+  private static nint? _D3DSemanticIndexOffset;
 
   public ref int D3DSemanticIndex {
-    get => ref _Handle.AsRef<int>(_D3DSemanticIndexOffset);
+    get {
+      if (_D3DSemanticIndexOffset == null) {
+        _D3DSemanticIndexOffset = Schema.GetOffset(0xFD3BBE5B67F2BA80);
+      }
+      return ref _Handle.AsRef<int>(_D3DSemanticIndexOffset!.Value);
+    }
   }
 
 

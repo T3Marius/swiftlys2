@@ -17,15 +17,25 @@ internal partial class CWeaponBaseItemImpl : CCSWeaponBaseImpl, CWeaponBaseItem 
   public CWeaponBaseItemImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SequenceInProgressOffset = Schema.GetOffset(0xE4ECC3486DDA8858);
+  private static nint? _SequenceInProgressOffset;
 
   public ref bool SequenceInProgress {
-    get => ref _Handle.AsRef<bool>(_SequenceInProgressOffset);
+    get {
+      if (_SequenceInProgressOffset == null) {
+        _SequenceInProgressOffset = Schema.GetOffset(0xE4ECC3486DDA8858);
+      }
+      return ref _Handle.AsRef<bool>(_SequenceInProgressOffset!.Value);
+    }
   }
-  private static readonly nint _RedrawOffset = Schema.GetOffset(0xE4ECC348612F4EB2);
+  private static nint? _RedrawOffset;
 
   public ref bool Redraw {
-    get => ref _Handle.AsRef<bool>(_RedrawOffset);
+    get {
+      if (_RedrawOffset == null) {
+        _RedrawOffset = Schema.GetOffset(0xE4ECC348612F4EB2);
+      }
+      return ref _Handle.AsRef<bool>(_RedrawOffset!.Value);
+    }
   }
 
   public void SequenceInProgressUpdated() {

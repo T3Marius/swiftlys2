@@ -17,20 +17,35 @@ internal partial class TagSpan_tImpl : SchemaClass, TagSpan_t {
   public TagSpan_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagIndexOffset = Schema.GetOffset(0xA2611404D66997C9);
+  private static nint? _TagIndexOffset;
 
   public ref int TagIndex {
-    get => ref _Handle.AsRef<int>(_TagIndexOffset);
+    get {
+      if (_TagIndexOffset == null) {
+        _TagIndexOffset = Schema.GetOffset(0xA2611404D66997C9);
+      }
+      return ref _Handle.AsRef<int>(_TagIndexOffset!.Value);
+    }
   }
-  private static readonly nint _StartCycleOffset = Schema.GetOffset(0xA26114043A764D4F);
+  private static nint? _StartCycleOffset;
 
   public ref float StartCycle {
-    get => ref _Handle.AsRef<float>(_StartCycleOffset);
+    get {
+      if (_StartCycleOffset == null) {
+        _StartCycleOffset = Schema.GetOffset(0xA26114043A764D4F);
+      }
+      return ref _Handle.AsRef<float>(_StartCycleOffset!.Value);
+    }
   }
-  private static readonly nint _EndCycleOffset = Schema.GetOffset(0xA26114040B523694);
+  private static nint? _EndCycleOffset;
 
   public ref float EndCycle {
-    get => ref _Handle.AsRef<float>(_EndCycleOffset);
+    get {
+      if (_EndCycleOffset == null) {
+        _EndCycleOffset = Schema.GetOffset(0xA26114040B523694);
+      }
+      return ref _Handle.AsRef<float>(_EndCycleOffset!.Value);
+    }
   }
 
 

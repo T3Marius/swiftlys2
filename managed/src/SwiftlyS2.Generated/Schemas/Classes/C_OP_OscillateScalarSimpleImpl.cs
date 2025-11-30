@@ -17,30 +17,55 @@ internal partial class C_OP_OscillateScalarSimpleImpl : CParticleFunctionOperato
   public C_OP_OscillateScalarSimpleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RateOffset = Schema.GetOffset(0xDD611E3FEC3280E7);
+  private static nint? _RateOffset;
 
   public ref float Rate {
-    get => ref _Handle.AsRef<float>(_RateOffset);
+    get {
+      if (_RateOffset == null) {
+        _RateOffset = Schema.GetOffset(0xDD611E3FEC3280E7);
+      }
+      return ref _Handle.AsRef<float>(_RateOffset!.Value);
+    }
   }
-  private static readonly nint _FrequencyOffset = Schema.GetOffset(0xDD611E3FBCCAA981);
+  private static nint? _FrequencyOffset;
 
   public ref float Frequency {
-    get => ref _Handle.AsRef<float>(_FrequencyOffset);
+    get {
+      if (_FrequencyOffset == null) {
+        _FrequencyOffset = Schema.GetOffset(0xDD611E3FBCCAA981);
+      }
+      return ref _Handle.AsRef<float>(_FrequencyOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOffset = Schema.GetOffset(0xDD611E3FC257B93B);
+  private static nint? _FieldOffset;
 
   public ParticleAttributeIndex_t Field {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset);
+    get {
+      if (_FieldOffset == null) {
+        _FieldOffset = Schema.GetOffset(0xDD611E3FC257B93B);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset!.Value);
+    }
   }
-  private static readonly nint _OscMultOffset = Schema.GetOffset(0xDD611E3F16278E94);
+  private static nint? _OscMultOffset;
 
   public ref float OscMult {
-    get => ref _Handle.AsRef<float>(_OscMultOffset);
+    get {
+      if (_OscMultOffset == null) {
+        _OscMultOffset = Schema.GetOffset(0xDD611E3F16278E94);
+      }
+      return ref _Handle.AsRef<float>(_OscMultOffset!.Value);
+    }
   }
-  private static readonly nint _OscAddOffset = Schema.GetOffset(0xDD611E3F7B38A63D);
+  private static nint? _OscAddOffset;
 
   public ref float OscAdd {
-    get => ref _Handle.AsRef<float>(_OscAddOffset);
+    get {
+      if (_OscAddOffset == null) {
+        _OscAddOffset = Schema.GetOffset(0xDD611E3F7B38A63D);
+      }
+      return ref _Handle.AsRef<float>(_OscAddOffset!.Value);
+    }
   }
 
 

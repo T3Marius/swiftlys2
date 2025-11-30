@@ -17,15 +17,25 @@ internal partial class CPulseCell_Timeline__TimelineEvent_tImpl : SchemaClass, C
   public CPulseCell_Timeline__TimelineEvent_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TimeFromPreviousOffset = Schema.GetOffset(0x1CEAA89BD23FC4AF);
+  private static nint? _TimeFromPreviousOffset;
 
   public ref float TimeFromPrevious {
-    get => ref _Handle.AsRef<float>(_TimeFromPreviousOffset);
+    get {
+      if (_TimeFromPreviousOffset == null) {
+        _TimeFromPreviousOffset = Schema.GetOffset(0x1CEAA89BD23FC4AF);
+      }
+      return ref _Handle.AsRef<float>(_TimeFromPreviousOffset!.Value);
+    }
   }
-  private static readonly nint _EventOutflowOffset = Schema.GetOffset(0x1CEAA89BC72D3231);
+  private static nint? _EventOutflowOffset;
 
   public CPulse_OutflowConnection EventOutflow {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _EventOutflowOffset);
+    get {
+      if (_EventOutflowOffset == null) {
+        _EventOutflowOffset = Schema.GetOffset(0x1CEAA89BC72D3231);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _EventOutflowOffset!.Value);
+    }
   }
 
 

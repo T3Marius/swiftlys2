@@ -17,25 +17,45 @@ internal partial class PointCameraSettings_tImpl : SchemaClass, PointCameraSetti
   public PointCameraSettings_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NearBlurryDistanceOffset = Schema.GetOffset(0x4BE8175CEB0CA47E);
+  private static nint? _NearBlurryDistanceOffset;
 
   public ref float NearBlurryDistance {
-    get => ref _Handle.AsRef<float>(_NearBlurryDistanceOffset);
+    get {
+      if (_NearBlurryDistanceOffset == null) {
+        _NearBlurryDistanceOffset = Schema.GetOffset(0x4BE8175CEB0CA47E);
+      }
+      return ref _Handle.AsRef<float>(_NearBlurryDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _NearCrispDistanceOffset = Schema.GetOffset(0x4BE8175CF0C9A8C7);
+  private static nint? _NearCrispDistanceOffset;
 
   public ref float NearCrispDistance {
-    get => ref _Handle.AsRef<float>(_NearCrispDistanceOffset);
+    get {
+      if (_NearCrispDistanceOffset == null) {
+        _NearCrispDistanceOffset = Schema.GetOffset(0x4BE8175CF0C9A8C7);
+      }
+      return ref _Handle.AsRef<float>(_NearCrispDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _FarCrispDistanceOffset = Schema.GetOffset(0x4BE8175CE95AEE28);
+  private static nint? _FarCrispDistanceOffset;
 
   public ref float FarCrispDistance {
-    get => ref _Handle.AsRef<float>(_FarCrispDistanceOffset);
+    get {
+      if (_FarCrispDistanceOffset == null) {
+        _FarCrispDistanceOffset = Schema.GetOffset(0x4BE8175CE95AEE28);
+      }
+      return ref _Handle.AsRef<float>(_FarCrispDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _FarBlurryDistanceOffset = Schema.GetOffset(0x4BE8175CF8892257);
+  private static nint? _FarBlurryDistanceOffset;
 
   public ref float FarBlurryDistance {
-    get => ref _Handle.AsRef<float>(_FarBlurryDistanceOffset);
+    get {
+      if (_FarBlurryDistanceOffset == null) {
+        _FarBlurryDistanceOffset = Schema.GetOffset(0x4BE8175CF8892257);
+      }
+      return ref _Handle.AsRef<float>(_FarBlurryDistanceOffset!.Value);
+    }
   }
 
 

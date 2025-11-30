@@ -17,10 +17,15 @@ internal partial class CollisionGroupContext_tImpl : SchemaClass, CollisionGroup
   public CollisionGroupContext_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CollisionGroupNumberOffset = Schema.GetOffset(0xF923B00A9115013F);
+  private static nint? _CollisionGroupNumberOffset;
 
   public ref int CollisionGroupNumber {
-    get => ref _Handle.AsRef<int>(_CollisionGroupNumberOffset);
+    get {
+      if (_CollisionGroupNumberOffset == null) {
+        _CollisionGroupNumberOffset = Schema.GetOffset(0xF923B00A9115013F);
+      }
+      return ref _Handle.AsRef<int>(_CollisionGroupNumberOffset!.Value);
+    }
   }
 
 

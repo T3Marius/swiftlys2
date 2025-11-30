@@ -17,43 +17,79 @@ internal partial class CLogicCollisionPairImpl : CLogicalEntityImpl, CLogicColli
   public CLogicCollisionPairImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameAttach1Offset = Schema.GetOffset(0x9E0FC6AC6776530A);
+  private static nint? _NameAttach1Offset;
 
   public string NameAttach1 {
     get {
-      var ptr = _Handle.Read<nint>(_NameAttach1Offset);
+      if (_NameAttach1Offset == null) {
+        _NameAttach1Offset = Schema.GetOffset(0x9E0FC6AC6776530A);
+      }
+      var ptr = _Handle.Read<nint>(_NameAttach1Offset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameAttach1Offset, value);
+    set {
+      if (_NameAttach1Offset == null) {
+        _NameAttach1Offset = Schema.GetOffset(0x9E0FC6AC6776530A);
+      }
+      Schema.SetString(_Handle, _NameAttach1Offset!.Value, value);
+    }
   } 
-  private static readonly nint _NameAttach2Offset = Schema.GetOffset(0x9E0FC6AC66765177);
+  private static nint? _NameAttach2Offset;
 
   public string NameAttach2 {
     get {
-      var ptr = _Handle.Read<nint>(_NameAttach2Offset);
+      if (_NameAttach2Offset == null) {
+        _NameAttach2Offset = Schema.GetOffset(0x9E0FC6AC66765177);
+      }
+      var ptr = _Handle.Read<nint>(_NameAttach2Offset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameAttach2Offset, value);
+    set {
+      if (_NameAttach2Offset == null) {
+        _NameAttach2Offset = Schema.GetOffset(0x9E0FC6AC66765177);
+      }
+      Schema.SetString(_Handle, _NameAttach2Offset!.Value, value);
+    }
   } 
-  private static readonly nint _IncludeHierarchyOffset = Schema.GetOffset(0x9E0FC6ACC064916A);
+  private static nint? _IncludeHierarchyOffset;
 
   public ref bool IncludeHierarchy {
-    get => ref _Handle.AsRef<bool>(_IncludeHierarchyOffset);
+    get {
+      if (_IncludeHierarchyOffset == null) {
+        _IncludeHierarchyOffset = Schema.GetOffset(0x9E0FC6ACC064916A);
+      }
+      return ref _Handle.AsRef<bool>(_IncludeHierarchyOffset!.Value);
+    }
   }
-  private static readonly nint _SupportMultipleEntitiesWithSameNameOffset = Schema.GetOffset(0x9E0FC6ACD009870A);
+  private static nint? _SupportMultipleEntitiesWithSameNameOffset;
 
   public ref bool SupportMultipleEntitiesWithSameName {
-    get => ref _Handle.AsRef<bool>(_SupportMultipleEntitiesWithSameNameOffset);
+    get {
+      if (_SupportMultipleEntitiesWithSameNameOffset == null) {
+        _SupportMultipleEntitiesWithSameNameOffset = Schema.GetOffset(0x9E0FC6ACD009870A);
+      }
+      return ref _Handle.AsRef<bool>(_SupportMultipleEntitiesWithSameNameOffset!.Value);
+    }
   }
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x9E0FC6AC28A745A5);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x9E0FC6AC28A745A5);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
-  private static readonly nint _SucceededOffset = Schema.GetOffset(0x9E0FC6AC48FBF712);
+  private static nint? _SucceededOffset;
 
   public ref bool Succeeded {
-    get => ref _Handle.AsRef<bool>(_SucceededOffset);
+    get {
+      if (_SucceededOffset == null) {
+        _SucceededOffset = Schema.GetOffset(0x9E0FC6AC48FBF712);
+      }
+      return ref _Handle.AsRef<bool>(_SucceededOffset!.Value);
+    }
   }
 
 

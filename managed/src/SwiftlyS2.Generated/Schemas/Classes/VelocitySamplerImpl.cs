@@ -17,20 +17,35 @@ internal partial class VelocitySamplerImpl : SchemaClass, VelocitySampler {
   public VelocitySamplerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PrevSampleOffset = Schema.GetOffset(0x5547216E1BCE7EF2);
+  private static nint? _PrevSampleOffset;
 
   public ref Vector PrevSample {
-    get => ref _Handle.AsRef<Vector>(_PrevSampleOffset);
+    get {
+      if (_PrevSampleOffset == null) {
+        _PrevSampleOffset = Schema.GetOffset(0x5547216E1BCE7EF2);
+      }
+      return ref _Handle.AsRef<Vector>(_PrevSampleOffset!.Value);
+    }
   }
-  private static readonly nint _PrevSampleTimeOffset = Schema.GetOffset(0x5547216E0D491EE7);
+  private static nint? _PrevSampleTimeOffset;
 
   public GameTime_t PrevSampleTime {
-    get => new GameTime_tImpl(_Handle + _PrevSampleTimeOffset);
+    get {
+      if (_PrevSampleTimeOffset == null) {
+        _PrevSampleTimeOffset = Schema.GetOffset(0x5547216E0D491EE7);
+      }
+      return new GameTime_tImpl(_Handle + _PrevSampleTimeOffset!.Value);
+    }
   }
-  private static readonly nint _IdealSampleRateOffset = Schema.GetOffset(0x5547216EF1562586);
+  private static nint? _IdealSampleRateOffset;
 
   public ref float IdealSampleRate {
-    get => ref _Handle.AsRef<float>(_IdealSampleRateOffset);
+    get {
+      if (_IdealSampleRateOffset == null) {
+        _IdealSampleRateOffset = Schema.GetOffset(0x5547216EF1562586);
+      }
+      return ref _Handle.AsRef<float>(_IdealSampleRateOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class CPulseCell_Outflow_CycleOrdered__InstanceState_tImpl : Sc
   public CPulseCell_Outflow_CycleOrdered__InstanceState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NextIndexOffset = Schema.GetOffset(0xB3EBE505EFEC0D98);
+  private static nint? _NextIndexOffset;
 
   public ref int NextIndex {
-    get => ref _Handle.AsRef<int>(_NextIndexOffset);
+    get {
+      if (_NextIndexOffset == null) {
+        _NextIndexOffset = Schema.GetOffset(0xB3EBE505EFEC0D98);
+      }
+      return ref _Handle.AsRef<int>(_NextIndexOffset!.Value);
+    }
   }
 
 

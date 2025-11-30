@@ -17,15 +17,25 @@ internal partial class FeAntiTunnelGroupBuild_tImpl : SchemaClass, FeAntiTunnelG
   public FeAntiTunnelGroupBuild_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VertexMapHashOffset = Schema.GetOffset(0x8189225C06BCA0A3);
+  private static nint? _VertexMapHashOffset;
 
   public ref uint VertexMapHash {
-    get => ref _Handle.AsRef<uint>(_VertexMapHashOffset);
+    get {
+      if (_VertexMapHashOffset == null) {
+        _VertexMapHashOffset = Schema.GetOffset(0x8189225C06BCA0A3);
+      }
+      return ref _Handle.AsRef<uint>(_VertexMapHashOffset!.Value);
+    }
   }
-  private static readonly nint _CollisionMaskOffset = Schema.GetOffset(0x8189225C0CCF1BEF);
+  private static nint? _CollisionMaskOffset;
 
   public ref uint CollisionMask {
-    get => ref _Handle.AsRef<uint>(_CollisionMaskOffset);
+    get {
+      if (_CollisionMaskOffset == null) {
+        _CollisionMaskOffset = Schema.GetOffset(0x8189225C0CCF1BEF);
+      }
+      return ref _Handle.AsRef<uint>(_CollisionMaskOffset!.Value);
+    }
   }
 
 

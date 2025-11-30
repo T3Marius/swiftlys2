@@ -17,73 +17,139 @@ internal partial class CBtActionAimImpl : CBtNodeImpl, CBtActionAim {
   public CBtActionAimImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SensorInputKeyOffset = Schema.GetOffset(0x43587513D2B0D4C1);
+  private static nint? _SensorInputKeyOffset;
 
   public string SensorInputKey {
     get {
-      var ptr = _Handle.Read<nint>(_SensorInputKeyOffset);
+      if (_SensorInputKeyOffset == null) {
+        _SensorInputKeyOffset = Schema.GetOffset(0x43587513D2B0D4C1);
+      }
+      var ptr = _Handle.Read<nint>(_SensorInputKeyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SensorInputKeyOffset, value);
+    set {
+      if (_SensorInputKeyOffset == null) {
+        _SensorInputKeyOffset = Schema.GetOffset(0x43587513D2B0D4C1);
+      }
+      Schema.SetString(_Handle, _SensorInputKeyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _AimReadyKeyOffset = Schema.GetOffset(0x435875136718A4C7);
+  private static nint? _AimReadyKeyOffset;
 
   public string AimReadyKey {
     get {
-      var ptr = _Handle.Read<nint>(_AimReadyKeyOffset);
+      if (_AimReadyKeyOffset == null) {
+        _AimReadyKeyOffset = Schema.GetOffset(0x435875136718A4C7);
+      }
+      var ptr = _Handle.Read<nint>(_AimReadyKeyOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _AimReadyKeyOffset, value);
+    set {
+      if (_AimReadyKeyOffset == null) {
+        _AimReadyKeyOffset = Schema.GetOffset(0x435875136718A4C7);
+      }
+      Schema.SetString(_Handle, _AimReadyKeyOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ZoomCooldownTimestampOffset = Schema.GetOffset(0x43587513F2898D9F);
+  private static nint? _ZoomCooldownTimestampOffset;
 
   public ref float ZoomCooldownTimestamp {
-    get => ref _Handle.AsRef<float>(_ZoomCooldownTimestampOffset);
+    get {
+      if (_ZoomCooldownTimestampOffset == null) {
+        _ZoomCooldownTimestampOffset = Schema.GetOffset(0x43587513F2898D9F);
+      }
+      return ref _Handle.AsRef<float>(_ZoomCooldownTimestampOffset!.Value);
+    }
   }
-  private static readonly nint _DoneAimingOffset = Schema.GetOffset(0x43587513F2C3ADDE);
+  private static nint? _DoneAimingOffset;
 
   public ref bool DoneAiming {
-    get => ref _Handle.AsRef<bool>(_DoneAimingOffset);
+    get {
+      if (_DoneAimingOffset == null) {
+        _DoneAimingOffset = Schema.GetOffset(0x43587513F2C3ADDE);
+      }
+      return ref _Handle.AsRef<bool>(_DoneAimingOffset!.Value);
+    }
   }
-  private static readonly nint _LerpStartTimeOffset = Schema.GetOffset(0x43587513B67B575F);
+  private static nint? _LerpStartTimeOffset;
 
   public ref float LerpStartTime {
-    get => ref _Handle.AsRef<float>(_LerpStartTimeOffset);
+    get {
+      if (_LerpStartTimeOffset == null) {
+        _LerpStartTimeOffset = Schema.GetOffset(0x43587513B67B575F);
+      }
+      return ref _Handle.AsRef<float>(_LerpStartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _NextLookTargetLerpTimeOffset = Schema.GetOffset(0x43587513768D7F08);
+  private static nint? _NextLookTargetLerpTimeOffset;
 
   public ref float NextLookTargetLerpTime {
-    get => ref _Handle.AsRef<float>(_NextLookTargetLerpTimeOffset);
+    get {
+      if (_NextLookTargetLerpTimeOffset == null) {
+        _NextLookTargetLerpTimeOffset = Schema.GetOffset(0x43587513768D7F08);
+      }
+      return ref _Handle.AsRef<float>(_NextLookTargetLerpTimeOffset!.Value);
+    }
   }
-  private static readonly nint _PenaltyReductionRatioOffset = Schema.GetOffset(0x43587513BB3B4A10);
+  private static nint? _PenaltyReductionRatioOffset;
 
   public ref float PenaltyReductionRatio {
-    get => ref _Handle.AsRef<float>(_PenaltyReductionRatioOffset);
+    get {
+      if (_PenaltyReductionRatioOffset == null) {
+        _PenaltyReductionRatioOffset = Schema.GetOffset(0x43587513BB3B4A10);
+      }
+      return ref _Handle.AsRef<float>(_PenaltyReductionRatioOffset!.Value);
+    }
   }
-  private static readonly nint _NextLookTargetOffset = Schema.GetOffset(0x43587513C1D3F3CE);
+  private static nint? _NextLookTargetOffset;
 
   public ref QAngle NextLookTarget {
-    get => ref _Handle.AsRef<QAngle>(_NextLookTargetOffset);
+    get {
+      if (_NextLookTargetOffset == null) {
+        _NextLookTargetOffset = Schema.GetOffset(0x43587513C1D3F3CE);
+      }
+      return ref _Handle.AsRef<QAngle>(_NextLookTargetOffset!.Value);
+    }
   }
-  private static readonly nint _AimTimerOffset = Schema.GetOffset(0x4358751330E31F47);
+  private static nint? _AimTimerOffset;
 
   public CountdownTimer AimTimer {
-    get => new CountdownTimerImpl(_Handle + _AimTimerOffset);
+    get {
+      if (_AimTimerOffset == null) {
+        _AimTimerOffset = Schema.GetOffset(0x4358751330E31F47);
+      }
+      return new CountdownTimerImpl(_Handle + _AimTimerOffset!.Value);
+    }
   }
-  private static readonly nint _SniperHoldTimerOffset = Schema.GetOffset(0x43587513B206F2AC);
+  private static nint? _SniperHoldTimerOffset;
 
   public CountdownTimer SniperHoldTimer {
-    get => new CountdownTimerImpl(_Handle + _SniperHoldTimerOffset);
+    get {
+      if (_SniperHoldTimerOffset == null) {
+        _SniperHoldTimerOffset = Schema.GetOffset(0x43587513B206F2AC);
+      }
+      return new CountdownTimerImpl(_Handle + _SniperHoldTimerOffset!.Value);
+    }
   }
-  private static readonly nint _FocusIntervalTimerOffset = Schema.GetOffset(0x43587513267063CB);
+  private static nint? _FocusIntervalTimerOffset;
 
   public CountdownTimer FocusIntervalTimer {
-    get => new CountdownTimerImpl(_Handle + _FocusIntervalTimerOffset);
+    get {
+      if (_FocusIntervalTimerOffset == null) {
+        _FocusIntervalTimerOffset = Schema.GetOffset(0x43587513267063CB);
+      }
+      return new CountdownTimerImpl(_Handle + _FocusIntervalTimerOffset!.Value);
+    }
   }
-  private static readonly nint _AcquiredOffset = Schema.GetOffset(0x435875131D2FE5B5);
+  private static nint? _AcquiredOffset;
 
   public ref bool Acquired {
-    get => ref _Handle.AsRef<bool>(_AcquiredOffset);
+    get {
+      if (_AcquiredOffset == null) {
+        _AcquiredOffset = Schema.GetOffset(0x435875131D2FE5B5);
+      }
+      return ref _Handle.AsRef<bool>(_AcquiredOffset!.Value);
+    }
   }
 
 

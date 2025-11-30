@@ -17,29 +17,52 @@ internal partial class CMaterialAttributeAnimTagImpl : CAnimTagBaseImpl, CMateri
   public CMaterialAttributeAnimTagImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AttributeNameOffset = Schema.GetOffset(0x509D90A81408864C);
+  private static nint? _AttributeNameOffset;
 
   public string AttributeName {
     get {
-      var ptr = _Handle.Read<nint>(_AttributeNameOffset);
+      if (_AttributeNameOffset == null) {
+        _AttributeNameOffset = Schema.GetOffset(0x509D90A81408864C);
+      }
+      var ptr = _Handle.Read<nint>(_AttributeNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _AttributeNameOffset, value);
+    set {
+      if (_AttributeNameOffset == null) {
+        _AttributeNameOffset = Schema.GetOffset(0x509D90A81408864C);
+      }
+      Schema.SetString(_Handle, _AttributeNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _AttributeTypeOffset = Schema.GetOffset(0x509D90A84243CC37);
+  private static nint? _AttributeTypeOffset;
 
   public ref MatterialAttributeTagType_t AttributeType {
-    get => ref _Handle.AsRef<MatterialAttributeTagType_t>(_AttributeTypeOffset);
+    get {
+      if (_AttributeTypeOffset == null) {
+        _AttributeTypeOffset = Schema.GetOffset(0x509D90A84243CC37);
+      }
+      return ref _Handle.AsRef<MatterialAttributeTagType_t>(_AttributeTypeOffset!.Value);
+    }
   }
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x509D90A88DFCB984);
+  private static nint? _ValueOffset;
 
   public ref float Value {
-    get => ref _Handle.AsRef<float>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x509D90A88DFCB984);
+      }
+      return ref _Handle.AsRef<float>(_ValueOffset!.Value);
+    }
   }
-  private static readonly nint _ColorOffset = Schema.GetOffset(0x509D90A8D7D017D8);
+  private static nint? _ColorOffset;
 
   public ref Color Color {
-    get => ref _Handle.AsRef<Color>(_ColorOffset);
+    get {
+      if (_ColorOffset == null) {
+        _ColorOffset = Schema.GetOffset(0x509D90A8D7D017D8);
+      }
+      return ref _Handle.AsRef<Color>(_ColorOffset!.Value);
+    }
   }
 
 

@@ -17,20 +17,35 @@ internal partial class C_OP_PerParticleForceImpl : CParticleFunctionForceImpl, C
   public C_OP_PerParticleForceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ForceScaleOffset = Schema.GetOffset(0x70EFAEAD4817F390);
+  private static nint? _ForceScaleOffset;
 
   public CPerParticleFloatInput ForceScale {
-    get => new CPerParticleFloatInputImpl(_Handle + _ForceScaleOffset);
+    get {
+      if (_ForceScaleOffset == null) {
+        _ForceScaleOffset = Schema.GetOffset(0x70EFAEAD4817F390);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ForceScaleOffset!.Value);
+    }
   }
-  private static readonly nint _ForceOffset = Schema.GetOffset(0x70EFAEADE530B0A8);
+  private static nint? _ForceOffset;
 
   public CPerParticleVecInput Force {
-    get => new CPerParticleVecInputImpl(_Handle + _ForceOffset);
+    get {
+      if (_ForceOffset == null) {
+        _ForceOffset = Schema.GetOffset(0x70EFAEADE530B0A8);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _ForceOffset!.Value);
+    }
   }
-  private static readonly nint _CPOffset = Schema.GetOffset(0x70EFAEADEB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x70EFAEADEB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
 
 

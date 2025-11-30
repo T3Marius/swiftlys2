@@ -17,15 +17,25 @@ internal partial class CPointClientUIDialogImpl : CBaseClientUIEntityImpl, CPoin
   public CPointClientUIDialogImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActivatorOffset = Schema.GetOffset(0x1136C185AB093BB2);
+  private static nint? _ActivatorOffset;
 
   public ref CHandle<CBaseEntity> Activator {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_ActivatorOffset);
+    get {
+      if (_ActivatorOffset == null) {
+        _ActivatorOffset = Schema.GetOffset(0x1136C185AB093BB2);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_ActivatorOffset!.Value);
+    }
   }
-  private static readonly nint _StartEnabledOffset = Schema.GetOffset(0x1136C185500D5C24);
+  private static nint? _StartEnabledOffset;
 
   public ref bool StartEnabled {
-    get => ref _Handle.AsRef<bool>(_StartEnabledOffset);
+    get {
+      if (_StartEnabledOffset == null) {
+        _StartEnabledOffset = Schema.GetOffset(0x1136C185500D5C24);
+      }
+      return ref _Handle.AsRef<bool>(_StartEnabledOffset!.Value);
+    }
   }
 
   public void ActivatorUpdated() {

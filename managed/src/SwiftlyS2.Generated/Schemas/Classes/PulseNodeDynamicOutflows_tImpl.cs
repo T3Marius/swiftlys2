@@ -17,10 +17,15 @@ internal partial class PulseNodeDynamicOutflows_tImpl : SchemaClass, PulseNodeDy
   public PulseNodeDynamicOutflows_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OutflowsOffset = Schema.GetOffset(0x3F600DF58F0AFDF8);
+  private static nint? _OutflowsOffset;
 
   public ref CUtlVector<PulseNodeDynamicOutflows_t__DynamicOutflow_t> Outflows {
-    get => ref _Handle.AsRef<CUtlVector<PulseNodeDynamicOutflows_t__DynamicOutflow_t>>(_OutflowsOffset);
+    get {
+      if (_OutflowsOffset == null) {
+        _OutflowsOffset = Schema.GetOffset(0x3F600DF58F0AFDF8);
+      }
+      return ref _Handle.AsRef<CUtlVector<PulseNodeDynamicOutflows_t__DynamicOutflow_t>>(_OutflowsOffset!.Value);
+    }
   }
 
 

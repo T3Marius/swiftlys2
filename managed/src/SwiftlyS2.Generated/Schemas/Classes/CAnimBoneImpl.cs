@@ -17,40 +17,75 @@ internal partial class CAnimBoneImpl : SchemaClass, CAnimBone {
   public CAnimBoneImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x891F6AB94D8F5786);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x891F6AB94D8F5786);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _ParentOffset = Schema.GetOffset(0x891F6AB92FF7A69D);
+  private static nint? _ParentOffset;
 
   public ref int Parent {
-    get => ref _Handle.AsRef<int>(_ParentOffset);
+    get {
+      if (_ParentOffset == null) {
+        _ParentOffset = Schema.GetOffset(0x891F6AB92FF7A69D);
+      }
+      return ref _Handle.AsRef<int>(_ParentOffset!.Value);
+    }
   }
-  private static readonly nint _PosOffset = Schema.GetOffset(0x891F6AB944CEBEA9);
+  private static nint? _PosOffset;
 
   public ref Vector Pos {
-    get => ref _Handle.AsRef<Vector>(_PosOffset);
+    get {
+      if (_PosOffset == null) {
+        _PosOffset = Schema.GetOffset(0x891F6AB944CEBEA9);
+      }
+      return ref _Handle.AsRef<Vector>(_PosOffset!.Value);
+    }
   }
-  private static readonly nint _QuatOffset = Schema.GetOffset(0x891F6AB9157658BE);
+  private static nint? _QuatOffset;
 
   public SchemaUntypedField Quat {
-    get => new SchemaUntypedField(_Handle + _QuatOffset);
+    get {
+      if (_QuatOffset == null) {
+        _QuatOffset = Schema.GetOffset(0x891F6AB9157658BE);
+      }
+      return new SchemaUntypedField(_Handle + _QuatOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x891F6AB9C2A44391);
+  private static nint? _ScaleOffset;
 
   public ref float Scale {
-    get => ref _Handle.AsRef<float>(_ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x891F6AB9C2A44391);
+      }
+      return ref _Handle.AsRef<float>(_ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _AlignmentOffset = Schema.GetOffset(0x891F6AB9CA0E45D1);
+  private static nint? _AlignmentOffset;
 
   public SchemaUntypedField Alignment {
-    get => new SchemaUntypedField(_Handle + _AlignmentOffset);
+    get {
+      if (_AlignmentOffset == null) {
+        _AlignmentOffset = Schema.GetOffset(0x891F6AB9CA0E45D1);
+      }
+      return new SchemaUntypedField(_Handle + _AlignmentOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x891F6AB9DC74A14C);
+  private static nint? _FlagsOffset;
 
   public ref int Flags {
-    get => ref _Handle.AsRef<int>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x891F6AB9DC74A14C);
+      }
+      return ref _Handle.AsRef<int>(_FlagsOffset!.Value);
+    }
   }
 
 

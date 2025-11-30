@@ -17,10 +17,15 @@ internal partial class AnimNodeOutputIDImpl : SchemaClass, AnimNodeOutputID {
   public AnimNodeOutputIDImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IdOffset = Schema.GetOffset(0x3873FD84B4B6E980);
+  private static nint? _IdOffset;
 
   public ref uint Id {
-    get => ref _Handle.AsRef<uint>(_IdOffset);
+    get {
+      if (_IdOffset == null) {
+        _IdOffset = Schema.GetOffset(0x3873FD84B4B6E980);
+      }
+      return ref _Handle.AsRef<uint>(_IdOffset!.Value);
+    }
   }
 
 

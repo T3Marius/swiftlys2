@@ -17,21 +17,34 @@ internal partial class ResponseParamsImpl : SchemaClass, ResponseParams {
   public ResponseParamsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OddsOffset = Schema.GetOffset(0x5C5BE8C4E9B76DD7);
+  private static nint? _OddsOffset;
 
   public ref short Odds {
-    get => ref _Handle.AsRef<short>(_OddsOffset);
+    get {
+      if (_OddsOffset == null) {
+        _OddsOffset = Schema.GetOffset(0x5C5BE8C4E9B76DD7);
+      }
+      return ref _Handle.AsRef<short>(_OddsOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x5C5BE8C49C677A2C);
+  private static nint? _FlagsOffset;
 
   public ref short Flags {
-    get => ref _Handle.AsRef<short>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x5C5BE8C49C677A2C);
+      }
+      return ref _Handle.AsRef<short>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _FollowupOffset = Schema.GetOffset(0x5C5BE8C481D8C38F);
+  private static nint? _FollowupOffset;
 
   public ResponseFollowup? Followup {
     get {
-      var ptr = _Handle.Read<nint>(_FollowupOffset);
+      if (_FollowupOffset == null) {
+        _FollowupOffset = Schema.GetOffset(0x5C5BE8C481D8C38F);
+      }
+      var ptr = _Handle.Read<nint>(_FollowupOffset!.Value);
       return ptr.IsValidPtr() ? new ResponseFollowupImpl(ptr) : null;
     }
   }

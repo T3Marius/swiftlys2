@@ -17,85 +17,165 @@ internal partial class C_OP_GameDecalRendererImpl : CParticleFunctionRendererImp
   public C_OP_GameDecalRendererImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DecalGroupNameOffset = Schema.GetOffset(0x42DAAA6713ADF275);
+  private static nint? _DecalGroupNameOffset;
 
   public ref CGlobalSymbol DecalGroupName {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_DecalGroupNameOffset);
+    get {
+      if (_DecalGroupNameOffset == null) {
+        _DecalGroupNameOffset = Schema.GetOffset(0x42DAAA6713ADF275);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_DecalGroupNameOffset!.Value);
+    }
   }
-  private static readonly nint _EventTypeOffset = Schema.GetOffset(0x42DAAA67E1F9AA93);
+  private static nint? _EventTypeOffset;
 
   public ref EventTypeSelection_t EventType {
-    get => ref _Handle.AsRef<EventTypeSelection_t>(_EventTypeOffset);
+    get {
+      if (_EventTypeOffset == null) {
+        _EventTypeOffset = Schema.GetOffset(0x42DAAA67E1F9AA93);
+      }
+      return ref _Handle.AsRef<EventTypeSelection_t>(_EventTypeOffset!.Value);
+    }
   }
-  private static readonly nint _InteractionMaskOffset = Schema.GetOffset(0x42DAAA6776E7F97B);
+  private static nint? _InteractionMaskOffset;
 
   public ref ParticleCollisionMask_t InteractionMask {
-    get => ref _Handle.AsRef<ParticleCollisionMask_t>(_InteractionMaskOffset);
+    get {
+      if (_InteractionMaskOffset == null) {
+        _InteractionMaskOffset = Schema.GetOffset(0x42DAAA6776E7F97B);
+      }
+      return ref _Handle.AsRef<ParticleCollisionMask_t>(_InteractionMaskOffset!.Value);
+    }
   }
-  private static readonly nint _CollisionGroupOffset = Schema.GetOffset(0x42DAAA670AC0C752);
+  private static nint? _CollisionGroupOffset;
 
   public ref ParticleCollisionGroup_t CollisionGroup {
-    get => ref _Handle.AsRef<ParticleCollisionGroup_t>(_CollisionGroupOffset);
+    get {
+      if (_CollisionGroupOffset == null) {
+        _CollisionGroupOffset = Schema.GetOffset(0x42DAAA670AC0C752);
+      }
+      return ref _Handle.AsRef<ParticleCollisionGroup_t>(_CollisionGroupOffset!.Value);
+    }
   }
-  private static readonly nint _StartPosOffset = Schema.GetOffset(0x42DAAA6726654BFF);
+  private static nint? _StartPosOffset;
 
   public CPerParticleVecInput StartPos {
-    get => new CPerParticleVecInputImpl(_Handle + _StartPosOffset);
+    get {
+      if (_StartPosOffset == null) {
+        _StartPosOffset = Schema.GetOffset(0x42DAAA6726654BFF);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _StartPosOffset!.Value);
+    }
   }
-  private static readonly nint _EndPosOffset = Schema.GetOffset(0x42DAAA678DD24760);
+  private static nint? _EndPosOffset;
 
   public CPerParticleVecInput EndPos {
-    get => new CPerParticleVecInputImpl(_Handle + _EndPosOffset);
+    get {
+      if (_EndPosOffset == null) {
+        _EndPosOffset = Schema.GetOffset(0x42DAAA678DD24760);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _EndPosOffset!.Value);
+    }
   }
-  private static readonly nint _TraceBloatOffset = Schema.GetOffset(0x42DAAA674BE375F2);
+  private static nint? _TraceBloatOffset;
 
   public CPerParticleFloatInput TraceBloat {
-    get => new CPerParticleFloatInputImpl(_Handle + _TraceBloatOffset);
+    get {
+      if (_TraceBloatOffset == null) {
+        _TraceBloatOffset = Schema.GetOffset(0x42DAAA674BE375F2);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _TraceBloatOffset!.Value);
+    }
   }
-  private static readonly nint _DecalSizeOffset = Schema.GetOffset(0x42DAAA6788E12609);
+  private static nint? _DecalSizeOffset;
 
   public CPerParticleFloatInput DecalSize {
-    get => new CPerParticleFloatInputImpl(_Handle + _DecalSizeOffset);
+    get {
+      if (_DecalSizeOffset == null) {
+        _DecalSizeOffset = Schema.GetOffset(0x42DAAA6788E12609);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _DecalSizeOffset!.Value);
+    }
   }
-  private static readonly nint _DecalGroupIndexOffset = Schema.GetOffset(0x42DAAA6784206313);
+  private static nint? _DecalGroupIndexOffset;
 
   public CPerParticleFloatInput DecalGroupIndex {
-    get => new CPerParticleFloatInputImpl(_Handle + _DecalGroupIndexOffset);
+    get {
+      if (_DecalGroupIndexOffset == null) {
+        _DecalGroupIndexOffset = Schema.GetOffset(0x42DAAA6784206313);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _DecalGroupIndexOffset!.Value);
+    }
   }
-  private static readonly nint _DecalRotationOffset = Schema.GetOffset(0x42DAAA6788A29A9E);
+  private static nint? _DecalRotationOffset;
 
   public CPerParticleFloatInput DecalRotation {
-    get => new CPerParticleFloatInputImpl(_Handle + _DecalRotationOffset);
+    get {
+      if (_DecalRotationOffset == null) {
+        _DecalRotationOffset = Schema.GetOffset(0x42DAAA6788A29A9E);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _DecalRotationOffset!.Value);
+    }
   }
-  private static readonly nint _ModulationColorOffset = Schema.GetOffset(0x42DAAA67C39DA78E);
+  private static nint? _ModulationColorOffset;
 
   public CPerParticleVecInput ModulationColor {
-    get => new CPerParticleVecInputImpl(_Handle + _ModulationColorOffset);
+    get {
+      if (_ModulationColorOffset == null) {
+        _ModulationColorOffset = Schema.GetOffset(0x42DAAA67C39DA78E);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _ModulationColorOffset!.Value);
+    }
   }
-  private static readonly nint _UseGameDefaultDecalSizeOffset = Schema.GetOffset(0x42DAAA6749D51905);
+  private static nint? _UseGameDefaultDecalSizeOffset;
 
   public ref bool UseGameDefaultDecalSize {
-    get => ref _Handle.AsRef<bool>(_UseGameDefaultDecalSizeOffset);
+    get {
+      if (_UseGameDefaultDecalSizeOffset == null) {
+        _UseGameDefaultDecalSizeOffset = Schema.GetOffset(0x42DAAA6749D51905);
+      }
+      return ref _Handle.AsRef<bool>(_UseGameDefaultDecalSizeOffset!.Value);
+    }
   }
-  private static readonly nint _RandomDecalRotationOffset = Schema.GetOffset(0x42DAAA673B9BD1F1);
+  private static nint? _RandomDecalRotationOffset;
 
   public ref bool RandomDecalRotation {
-    get => ref _Handle.AsRef<bool>(_RandomDecalRotationOffset);
+    get {
+      if (_RandomDecalRotationOffset == null) {
+        _RandomDecalRotationOffset = Schema.GetOffset(0x42DAAA673B9BD1F1);
+      }
+      return ref _Handle.AsRef<bool>(_RandomDecalRotationOffset!.Value);
+    }
   }
-  private static readonly nint _RandomlySelectDecalInGroupOffset = Schema.GetOffset(0x42DAAA670519A84C);
+  private static nint? _RandomlySelectDecalInGroupOffset;
 
   public ref bool RandomlySelectDecalInGroup {
-    get => ref _Handle.AsRef<bool>(_RandomlySelectDecalInGroupOffset);
+    get {
+      if (_RandomlySelectDecalInGroupOffset == null) {
+        _RandomlySelectDecalInGroupOffset = Schema.GetOffset(0x42DAAA670519A84C);
+      }
+      return ref _Handle.AsRef<bool>(_RandomlySelectDecalInGroupOffset!.Value);
+    }
   }
-  private static readonly nint _NoDecalsOnOwnerOffset = Schema.GetOffset(0x42DAAA672B2ECEB4);
+  private static nint? _NoDecalsOnOwnerOffset;
 
   public ref bool NoDecalsOnOwner {
-    get => ref _Handle.AsRef<bool>(_NoDecalsOnOwnerOffset);
+    get {
+      if (_NoDecalsOnOwnerOffset == null) {
+        _NoDecalsOnOwnerOffset = Schema.GetOffset(0x42DAAA672B2ECEB4);
+      }
+      return ref _Handle.AsRef<bool>(_NoDecalsOnOwnerOffset!.Value);
+    }
   }
-  private static readonly nint _VisualizeTracesOffset = Schema.GetOffset(0x42DAAA67ED707633);
+  private static nint? _VisualizeTracesOffset;
 
   public ref bool VisualizeTraces {
-    get => ref _Handle.AsRef<bool>(_VisualizeTracesOffset);
+    get {
+      if (_VisualizeTracesOffset == null) {
+        _VisualizeTracesOffset = Schema.GetOffset(0x42DAAA67ED707633);
+      }
+      return ref _Handle.AsRef<bool>(_VisualizeTracesOffset!.Value);
+    }
   }
 
 

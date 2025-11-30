@@ -17,25 +17,45 @@ internal partial class EventAdvanceTick_tImpl : EventSimulate_tImpl, EventAdvanc
   public EventAdvanceTick_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CurrentTickOffset = Schema.GetOffset(0xB79597D53C23687B);
+  private static nint? _CurrentTickOffset;
 
   public ref int CurrentTick {
-    get => ref _Handle.AsRef<int>(_CurrentTickOffset);
+    get {
+      if (_CurrentTickOffset == null) {
+        _CurrentTickOffset = Schema.GetOffset(0xB79597D53C23687B);
+      }
+      return ref _Handle.AsRef<int>(_CurrentTickOffset!.Value);
+    }
   }
-  private static readonly nint _CurrentTickThisFrameOffset = Schema.GetOffset(0xB79597D509CE99F8);
+  private static nint? _CurrentTickThisFrameOffset;
 
   public ref int CurrentTickThisFrame {
-    get => ref _Handle.AsRef<int>(_CurrentTickThisFrameOffset);
+    get {
+      if (_CurrentTickThisFrameOffset == null) {
+        _CurrentTickThisFrameOffset = Schema.GetOffset(0xB79597D509CE99F8);
+      }
+      return ref _Handle.AsRef<int>(_CurrentTickThisFrameOffset!.Value);
+    }
   }
-  private static readonly nint _TotalTicksThisFrameOffset = Schema.GetOffset(0xB79597D524EA7826);
+  private static nint? _TotalTicksThisFrameOffset;
 
   public ref int TotalTicksThisFrame {
-    get => ref _Handle.AsRef<int>(_TotalTicksThisFrameOffset);
+    get {
+      if (_TotalTicksThisFrameOffset == null) {
+        _TotalTicksThisFrameOffset = Schema.GetOffset(0xB79597D524EA7826);
+      }
+      return ref _Handle.AsRef<int>(_TotalTicksThisFrameOffset!.Value);
+    }
   }
-  private static readonly nint _TotalTicksOffset = Schema.GetOffset(0xB79597D545397B31);
+  private static nint? _TotalTicksOffset;
 
   public ref int TotalTicks {
-    get => ref _Handle.AsRef<int>(_TotalTicksOffset);
+    get {
+      if (_TotalTicksOffset == null) {
+        _TotalTicksOffset = Schema.GetOffset(0xB79597D545397B31);
+      }
+      return ref _Handle.AsRef<int>(_TotalTicksOffset!.Value);
+    }
   }
 
 

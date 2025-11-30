@@ -17,20 +17,35 @@ internal partial class C_OP_LocalAccelerationForceImpl : CParticleFunctionForceI
   public C_OP_LocalAccelerationForceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CPOffset = Schema.GetOffset(0x3A562A9FEB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x3A562A9FEB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleCPOffset = Schema.GetOffset(0x3A562A9FDE3CC5E6);
+  private static nint? _ScaleCPOffset;
 
   public ref int ScaleCP {
-    get => ref _Handle.AsRef<int>(_ScaleCPOffset);
+    get {
+      if (_ScaleCPOffset == null) {
+        _ScaleCPOffset = Schema.GetOffset(0x3A562A9FDE3CC5E6);
+      }
+      return ref _Handle.AsRef<int>(_ScaleCPOffset!.Value);
+    }
   }
-  private static readonly nint _AccelOffset = Schema.GetOffset(0x3A562A9FEA9A0D73);
+  private static nint? _AccelOffset;
 
   public CParticleCollectionVecInput Accel {
-    get => new CParticleCollectionVecInputImpl(_Handle + _AccelOffset);
+    get {
+      if (_AccelOffset == null) {
+        _AccelOffset = Schema.GetOffset(0x3A562A9FEA9A0D73);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _AccelOffset!.Value);
+    }
   }
 
 

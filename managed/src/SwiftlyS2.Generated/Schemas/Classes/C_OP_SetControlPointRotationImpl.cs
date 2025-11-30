@@ -17,25 +17,45 @@ internal partial class C_OP_SetControlPointRotationImpl : CParticleFunctionPreEm
   public C_OP_SetControlPointRotationImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RotAxisOffset = Schema.GetOffset(0x8F20B2F891872163);
+  private static nint? _RotAxisOffset;
 
   public CParticleCollectionVecInput RotAxis {
-    get => new CParticleCollectionVecInputImpl(_Handle + _RotAxisOffset);
+    get {
+      if (_RotAxisOffset == null) {
+        _RotAxisOffset = Schema.GetOffset(0x8F20B2F891872163);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _RotAxisOffset!.Value);
+    }
   }
-  private static readonly nint _RotRateOffset = Schema.GetOffset(0x8F20B2F86747B556);
+  private static nint? _RotRateOffset;
 
   public CParticleCollectionFloatInput RotRate {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _RotRateOffset);
+    get {
+      if (_RotRateOffset == null) {
+        _RotRateOffset = Schema.GetOffset(0x8F20B2F86747B556);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _RotRateOffset!.Value);
+    }
   }
-  private static readonly nint _CPOffset = Schema.GetOffset(0x8F20B2F8EB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x8F20B2F8EB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
-  private static readonly nint _LocalCPOffset = Schema.GetOffset(0x8F20B2F8ACAAFF8F);
+  private static nint? _LocalCPOffset;
 
   public ref int LocalCP {
-    get => ref _Handle.AsRef<int>(_LocalCPOffset);
+    get {
+      if (_LocalCPOffset == null) {
+        _LocalCPOffset = Schema.GetOffset(0x8F20B2F8ACAAFF8F);
+      }
+      return ref _Handle.AsRef<int>(_LocalCPOffset!.Value);
+    }
   }
 
 

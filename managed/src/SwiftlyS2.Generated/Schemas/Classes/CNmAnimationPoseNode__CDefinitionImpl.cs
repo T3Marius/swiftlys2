@@ -17,30 +17,55 @@ internal partial class CNmAnimationPoseNode__CDefinitionImpl : CNmPoseNode__CDef
   public CNmAnimationPoseNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PoseTimeValueNodeIdxOffset = Schema.GetOffset(0xAEB5DD4EE17A4AC5);
+  private static nint? _PoseTimeValueNodeIdxOffset;
 
   public ref short PoseTimeValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_PoseTimeValueNodeIdxOffset);
+    get {
+      if (_PoseTimeValueNodeIdxOffset == null) {
+        _PoseTimeValueNodeIdxOffset = Schema.GetOffset(0xAEB5DD4EE17A4AC5);
+      }
+      return ref _Handle.AsRef<short>(_PoseTimeValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _DataSlotIdxOffset = Schema.GetOffset(0xAEB5DD4EB1C15B68);
+  private static nint? _DataSlotIdxOffset;
 
   public ref short DataSlotIdx {
-    get => ref _Handle.AsRef<short>(_DataSlotIdxOffset);
+    get {
+      if (_DataSlotIdxOffset == null) {
+        _DataSlotIdxOffset = Schema.GetOffset(0xAEB5DD4EB1C15B68);
+      }
+      return ref _Handle.AsRef<short>(_DataSlotIdxOffset!.Value);
+    }
   }
-  private static readonly nint _InputTimeRemapRangeOffset = Schema.GetOffset(0xAEB5DD4EE53BDBD4);
+  private static nint? _InputTimeRemapRangeOffset;
 
   public SchemaUntypedField InputTimeRemapRange {
-    get => new SchemaUntypedField(_Handle + _InputTimeRemapRangeOffset);
+    get {
+      if (_InputTimeRemapRangeOffset == null) {
+        _InputTimeRemapRangeOffset = Schema.GetOffset(0xAEB5DD4EE53BDBD4);
+      }
+      return new SchemaUntypedField(_Handle + _InputTimeRemapRangeOffset!.Value);
+    }
   }
-  private static readonly nint _UserSpecifiedTimeOffset = Schema.GetOffset(0xAEB5DD4E0D7319E7);
+  private static nint? _UserSpecifiedTimeOffset;
 
   public ref float UserSpecifiedTime {
-    get => ref _Handle.AsRef<float>(_UserSpecifiedTimeOffset);
+    get {
+      if (_UserSpecifiedTimeOffset == null) {
+        _UserSpecifiedTimeOffset = Schema.GetOffset(0xAEB5DD4E0D7319E7);
+      }
+      return ref _Handle.AsRef<float>(_UserSpecifiedTimeOffset!.Value);
+    }
   }
-  private static readonly nint _UseFramesAsInputOffset = Schema.GetOffset(0xAEB5DD4EF0C41386);
+  private static nint? _UseFramesAsInputOffset;
 
   public ref bool UseFramesAsInput {
-    get => ref _Handle.AsRef<bool>(_UseFramesAsInputOffset);
+    get {
+      if (_UseFramesAsInputOffset == null) {
+        _UseFramesAsInputOffset = Schema.GetOffset(0xAEB5DD4EF0C41386);
+      }
+      return ref _Handle.AsRef<bool>(_UseFramesAsInputOffset!.Value);
+    }
   }
 
 

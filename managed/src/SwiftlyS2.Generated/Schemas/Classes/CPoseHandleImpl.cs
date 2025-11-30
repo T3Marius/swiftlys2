@@ -17,15 +17,25 @@ internal partial class CPoseHandleImpl : SchemaClass, CPoseHandle {
   public CPoseHandleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IndexOffset = Schema.GetOffset(0x2F05C439B73DBE67);
+  private static nint? _IndexOffset;
 
   public ref ushort Index {
-    get => ref _Handle.AsRef<ushort>(_IndexOffset);
+    get {
+      if (_IndexOffset == null) {
+        _IndexOffset = Schema.GetOffset(0x2F05C439B73DBE67);
+      }
+      return ref _Handle.AsRef<ushort>(_IndexOffset!.Value);
+    }
   }
-  private static readonly nint _TypeOffset = Schema.GetOffset(0x2F05C43921B39888);
+  private static nint? _TypeOffset;
 
   public ref PoseType_t Type {
-    get => ref _Handle.AsRef<PoseType_t>(_TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0x2F05C43921B39888);
+      }
+      return ref _Handle.AsRef<PoseType_t>(_TypeOffset!.Value);
+    }
   }
 
 

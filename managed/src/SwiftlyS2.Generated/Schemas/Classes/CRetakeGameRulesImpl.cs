@@ -17,35 +17,65 @@ internal partial class CRetakeGameRulesImpl : SchemaClass, CRetakeGameRules {
   public CRetakeGameRulesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MatchSeedOffset = Schema.GetOffset(0x34813D492DE0044B);
+  private static nint? _MatchSeedOffset;
 
   public ref int MatchSeed {
-    get => ref _Handle.AsRef<int>(_MatchSeedOffset);
+    get {
+      if (_MatchSeedOffset == null) {
+        _MatchSeedOffset = Schema.GetOffset(0x34813D492DE0044B);
+      }
+      return ref _Handle.AsRef<int>(_MatchSeedOffset!.Value);
+    }
   }
-  private static readonly nint _BlockersPresentOffset = Schema.GetOffset(0x34813D49BE2F2F2D);
+  private static nint? _BlockersPresentOffset;
 
   public ref bool BlockersPresent {
-    get => ref _Handle.AsRef<bool>(_BlockersPresentOffset);
+    get {
+      if (_BlockersPresentOffset == null) {
+        _BlockersPresentOffset = Schema.GetOffset(0x34813D49BE2F2F2D);
+      }
+      return ref _Handle.AsRef<bool>(_BlockersPresentOffset!.Value);
+    }
   }
-  private static readonly nint _RoundInProgressOffset = Schema.GetOffset(0x34813D49AE69021B);
+  private static nint? _RoundInProgressOffset;
 
   public ref bool RoundInProgress {
-    get => ref _Handle.AsRef<bool>(_RoundInProgressOffset);
+    get {
+      if (_RoundInProgressOffset == null) {
+        _RoundInProgressOffset = Schema.GetOffset(0x34813D49AE69021B);
+      }
+      return ref _Handle.AsRef<bool>(_RoundInProgressOffset!.Value);
+    }
   }
-  private static readonly nint _FirstSecondHalfRoundOffset = Schema.GetOffset(0x34813D49E229A099);
+  private static nint? _FirstSecondHalfRoundOffset;
 
   public ref int FirstSecondHalfRound {
-    get => ref _Handle.AsRef<int>(_FirstSecondHalfRoundOffset);
+    get {
+      if (_FirstSecondHalfRoundOffset == null) {
+        _FirstSecondHalfRoundOffset = Schema.GetOffset(0x34813D49E229A099);
+      }
+      return ref _Handle.AsRef<int>(_FirstSecondHalfRoundOffset!.Value);
+    }
   }
-  private static readonly nint _BombSiteOffset = Schema.GetOffset(0x34813D49E7E88ECF);
+  private static nint? _BombSiteOffset;
 
   public ref int BombSite {
-    get => ref _Handle.AsRef<int>(_BombSiteOffset);
+    get {
+      if (_BombSiteOffset == null) {
+        _BombSiteOffset = Schema.GetOffset(0x34813D49E7E88ECF);
+      }
+      return ref _Handle.AsRef<int>(_BombSiteOffset!.Value);
+    }
   }
-  private static readonly nint _BombPlanterOffset = Schema.GetOffset(0x34813D491A1306A3);
+  private static nint? _BombPlanterOffset;
 
   public ref CHandle<CCSPlayerPawn> BombPlanter {
-    get => ref _Handle.AsRef<CHandle<CCSPlayerPawn>>(_BombPlanterOffset);
+    get {
+      if (_BombPlanterOffset == null) {
+        _BombPlanterOffset = Schema.GetOffset(0x34813D491A1306A3);
+      }
+      return ref _Handle.AsRef<CHandle<CCSPlayerPawn>>(_BombPlanterOffset!.Value);
+    }
   }
 
   public void MatchSeedUpdated() {

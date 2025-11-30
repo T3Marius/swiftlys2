@@ -17,35 +17,65 @@ internal partial class CPulse_CallInfoImpl : SchemaClass, CPulse_CallInfo {
   public CPulse_CallInfoImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PortNameOffset = Schema.GetOffset(0x6ADF88D807237B65);
+  private static nint? _PortNameOffset;
 
   public SchemaUntypedField PortName {
-    get => new SchemaUntypedField(_Handle + _PortNameOffset);
+    get {
+      if (_PortNameOffset == null) {
+        _PortNameOffset = Schema.GetOffset(0x6ADF88D807237B65);
+      }
+      return new SchemaUntypedField(_Handle + _PortNameOffset!.Value);
+    }
   }
-  private static readonly nint _EditorNodeIDOffset = Schema.GetOffset(0x6ADF88D88D964CBD);
+  private static nint? _EditorNodeIDOffset;
 
   public PulseDocNodeID_t EditorNodeID {
-    get => new PulseDocNodeID_tImpl(_Handle + _EditorNodeIDOffset);
+    get {
+      if (_EditorNodeIDOffset == null) {
+        _EditorNodeIDOffset = Schema.GetOffset(0x6ADF88D88D964CBD);
+      }
+      return new PulseDocNodeID_tImpl(_Handle + _EditorNodeIDOffset!.Value);
+    }
   }
-  private static readonly nint _RegisterMapOffset = Schema.GetOffset(0x6ADF88D87BD4CE96);
+  private static nint? _RegisterMapOffset;
 
   public PulseRegisterMap_t RegisterMap {
-    get => new PulseRegisterMap_tImpl(_Handle + _RegisterMapOffset);
+    get {
+      if (_RegisterMapOffset == null) {
+        _RegisterMapOffset = Schema.GetOffset(0x6ADF88D87BD4CE96);
+      }
+      return new PulseRegisterMap_tImpl(_Handle + _RegisterMapOffset!.Value);
+    }
   }
-  private static readonly nint _CallMethodIDOffset = Schema.GetOffset(0x6ADF88D805714471);
+  private static nint? _CallMethodIDOffset;
 
   public PulseDocNodeID_t CallMethodID {
-    get => new PulseDocNodeID_tImpl(_Handle + _CallMethodIDOffset);
+    get {
+      if (_CallMethodIDOffset == null) {
+        _CallMethodIDOffset = Schema.GetOffset(0x6ADF88D805714471);
+      }
+      return new PulseDocNodeID_tImpl(_Handle + _CallMethodIDOffset!.Value);
+    }
   }
-  private static readonly nint _SrcChunkOffset = Schema.GetOffset(0x6ADF88D8313F814A);
+  private static nint? _SrcChunkOffset;
 
   public PulseRuntimeChunkIndex_t SrcChunk {
-    get => new PulseRuntimeChunkIndex_tImpl(_Handle + _SrcChunkOffset);
+    get {
+      if (_SrcChunkOffset == null) {
+        _SrcChunkOffset = Schema.GetOffset(0x6ADF88D8313F814A);
+      }
+      return new PulseRuntimeChunkIndex_tImpl(_Handle + _SrcChunkOffset!.Value);
+    }
   }
-  private static readonly nint _SrcInstructionOffset = Schema.GetOffset(0x6ADF88D899E09AE7);
+  private static nint? _SrcInstructionOffset;
 
   public ref int SrcInstruction {
-    get => ref _Handle.AsRef<int>(_SrcInstructionOffset);
+    get {
+      if (_SrcInstructionOffset == null) {
+        _SrcInstructionOffset = Schema.GetOffset(0x6ADF88D899E09AE7);
+      }
+      return ref _Handle.AsRef<int>(_SrcInstructionOffset!.Value);
+    }
   }
 
 

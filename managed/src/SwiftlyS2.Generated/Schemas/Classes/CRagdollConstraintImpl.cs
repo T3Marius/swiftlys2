@@ -17,50 +17,95 @@ internal partial class CRagdollConstraintImpl : CPhysConstraintImpl, CRagdollCon
   public CRagdollConstraintImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _XminOffset = Schema.GetOffset(0xF36946DA76E67DC1);
+  private static nint? _XminOffset;
 
   public ref float Xmin {
-    get => ref _Handle.AsRef<float>(_XminOffset);
+    get {
+      if (_XminOffset == null) {
+        _XminOffset = Schema.GetOffset(0xF36946DA76E67DC1);
+      }
+      return ref _Handle.AsRef<float>(_XminOffset!.Value);
+    }
   }
-  private static readonly nint _XmaxOffset = Schema.GetOffset(0xF36946DA68F9EF6F);
+  private static nint? _XmaxOffset;
 
   public ref float Xmax {
-    get => ref _Handle.AsRef<float>(_XmaxOffset);
+    get {
+      if (_XmaxOffset == null) {
+        _XmaxOffset = Schema.GetOffset(0xF36946DA68F9EF6F);
+      }
+      return ref _Handle.AsRef<float>(_XmaxOffset!.Value);
+    }
   }
-  private static readonly nint _YminOffset = Schema.GetOffset(0xF36946DACE2F1828);
+  private static nint? _YminOffset;
 
   public ref float Ymin {
-    get => ref _Handle.AsRef<float>(_YminOffset);
+    get {
+      if (_YminOffset == null) {
+        _YminOffset = Schema.GetOffset(0xF36946DACE2F1828);
+      }
+      return ref _Handle.AsRef<float>(_YminOffset!.Value);
+    }
   }
-  private static readonly nint _YmaxOffset = Schema.GetOffset(0xF36946DAC4429022);
+  private static nint? _YmaxOffset;
 
   public ref float Ymax {
-    get => ref _Handle.AsRef<float>(_YmaxOffset);
+    get {
+      if (_YmaxOffset == null) {
+        _YmaxOffset = Schema.GetOffset(0xF36946DAC4429022);
+      }
+      return ref _Handle.AsRef<float>(_YmaxOffset!.Value);
+    }
   }
-  private static readonly nint _ZminOffset = Schema.GetOffset(0xF36946DAC34E881F);
+  private static nint? _ZminOffset;
 
   public ref float Zmin {
-    get => ref _Handle.AsRef<float>(_ZminOffset);
+    get {
+      if (_ZminOffset == null) {
+        _ZminOffset = Schema.GetOffset(0xF36946DAC34E881F);
+      }
+      return ref _Handle.AsRef<float>(_ZminOffset!.Value);
+    }
   }
-  private static readonly nint _ZmaxOffset = Schema.GetOffset(0xF36946DAD13B1671);
+  private static nint? _ZmaxOffset;
 
   public ref float Zmax {
-    get => ref _Handle.AsRef<float>(_ZmaxOffset);
+    get {
+      if (_ZmaxOffset == null) {
+        _ZmaxOffset = Schema.GetOffset(0xF36946DAD13B1671);
+      }
+      return ref _Handle.AsRef<float>(_ZmaxOffset!.Value);
+    }
   }
-  private static readonly nint _XfrictionOffset = Schema.GetOffset(0xF36946DA08758E19);
+  private static nint? _XfrictionOffset;
 
   public ref float Xfriction {
-    get => ref _Handle.AsRef<float>(_XfrictionOffset);
+    get {
+      if (_XfrictionOffset == null) {
+        _XfrictionOffset = Schema.GetOffset(0xF36946DA08758E19);
+      }
+      return ref _Handle.AsRef<float>(_XfrictionOffset!.Value);
+    }
   }
-  private static readonly nint _YfrictionOffset = Schema.GetOffset(0xF36946DAEFC8C6C6);
+  private static nint? _YfrictionOffset;
 
   public ref float Yfriction {
-    get => ref _Handle.AsRef<float>(_YfrictionOffset);
+    get {
+      if (_YfrictionOffset == null) {
+        _YfrictionOffset = Schema.GetOffset(0xF36946DAEFC8C6C6);
+      }
+      return ref _Handle.AsRef<float>(_YfrictionOffset!.Value);
+    }
   }
-  private static readonly nint _ZfrictionOffset = Schema.GetOffset(0xF36946DA5587BDC3);
+  private static nint? _ZfrictionOffset;
 
   public ref float Zfriction {
-    get => ref _Handle.AsRef<float>(_ZfrictionOffset);
+    get {
+      if (_ZfrictionOffset == null) {
+        _ZfrictionOffset = Schema.GetOffset(0xF36946DA5587BDC3);
+      }
+      return ref _Handle.AsRef<float>(_ZfrictionOffset!.Value);
+    }
   }
 
 

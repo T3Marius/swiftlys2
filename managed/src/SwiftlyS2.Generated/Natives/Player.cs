@@ -227,4 +227,11 @@ internal static class NativePlayer {
       pool.Return(commandBuffer);
     }
   }
+
+  private unsafe static delegate* unmanaged<int, byte> _IsFirstSpawn;
+
+  public unsafe static bool IsFirstSpawn(int playerid) {
+    var ret = _IsFirstSpawn(playerid);
+    return ret == 1;
+  }
 }

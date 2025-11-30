@@ -17,45 +17,85 @@ internal partial class SkeletonAnimCapture_t__FrameStamp_tImpl : SchemaClass, Sk
   public SkeletonAnimCapture_t__FrameStamp_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TimeOffset = Schema.GetOffset(0x4ECAEB4FC957229E);
+  private static nint? _TimeOffset;
 
   public ref float Time {
-    get => ref _Handle.AsRef<float>(_TimeOffset);
+    get {
+      if (_TimeOffset == null) {
+        _TimeOffset = Schema.GetOffset(0x4ECAEB4FC957229E);
+      }
+      return ref _Handle.AsRef<float>(_TimeOffset!.Value);
+    }
   }
-  private static readonly nint _EntitySimTimeOffset = Schema.GetOffset(0x4ECAEB4FAE2BAB2E);
+  private static nint? _EntitySimTimeOffset;
 
   public ref float EntitySimTime {
-    get => ref _Handle.AsRef<float>(_EntitySimTimeOffset);
+    get {
+      if (_EntitySimTimeOffset == null) {
+        _EntitySimTimeOffset = Schema.GetOffset(0x4ECAEB4FAE2BAB2E);
+      }
+      return ref _Handle.AsRef<float>(_EntitySimTimeOffset!.Value);
+    }
   }
-  private static readonly nint _TeleportTickOffset = Schema.GetOffset(0x4ECAEB4F7068242B);
+  private static nint? _TeleportTickOffset;
 
   public ref bool TeleportTick {
-    get => ref _Handle.AsRef<bool>(_TeleportTickOffset);
+    get {
+      if (_TeleportTickOffset == null) {
+        _TeleportTickOffset = Schema.GetOffset(0x4ECAEB4F7068242B);
+      }
+      return ref _Handle.AsRef<bool>(_TeleportTickOffset!.Value);
+    }
   }
-  private static readonly nint _PredictedOffset = Schema.GetOffset(0x4ECAEB4F419B6D9B);
+  private static nint? _PredictedOffset;
 
   public ref bool Predicted {
-    get => ref _Handle.AsRef<bool>(_PredictedOffset);
+    get {
+      if (_PredictedOffset == null) {
+        _PredictedOffset = Schema.GetOffset(0x4ECAEB4F419B6D9B);
+      }
+      return ref _Handle.AsRef<bool>(_PredictedOffset!.Value);
+    }
   }
-  private static readonly nint _CurTimeOffset = Schema.GetOffset(0x4ECAEB4F08036F9A);
+  private static nint? _CurTimeOffset;
 
   public ref float CurTime {
-    get => ref _Handle.AsRef<float>(_CurTimeOffset);
+    get {
+      if (_CurTimeOffset == null) {
+        _CurTimeOffset = Schema.GetOffset(0x4ECAEB4F08036F9A);
+      }
+      return ref _Handle.AsRef<float>(_CurTimeOffset!.Value);
+    }
   }
-  private static readonly nint _RealTimeOffset = Schema.GetOffset(0x4ECAEB4F1168EC02);
+  private static nint? _RealTimeOffset;
 
   public ref float RealTime {
-    get => ref _Handle.AsRef<float>(_RealTimeOffset);
+    get {
+      if (_RealTimeOffset == null) {
+        _RealTimeOffset = Schema.GetOffset(0x4ECAEB4F1168EC02);
+      }
+      return ref _Handle.AsRef<float>(_RealTimeOffset!.Value);
+    }
   }
-  private static readonly nint _FrameCountOffset = Schema.GetOffset(0x4ECAEB4F1DBCD049);
+  private static nint? _FrameCountOffset;
 
   public ref int FrameCount {
-    get => ref _Handle.AsRef<int>(_FrameCountOffset);
+    get {
+      if (_FrameCountOffset == null) {
+        _FrameCountOffset = Schema.GetOffset(0x4ECAEB4F1DBCD049);
+      }
+      return ref _Handle.AsRef<int>(_FrameCountOffset!.Value);
+    }
   }
-  private static readonly nint _TickCountOffset = Schema.GetOffset(0x4ECAEB4FE25E6B27);
+  private static nint? _TickCountOffset;
 
   public ref int TickCount {
-    get => ref _Handle.AsRef<int>(_TickCountOffset);
+    get {
+      if (_TickCountOffset == null) {
+        _TickCountOffset = Schema.GetOffset(0x4ECAEB4FE25E6B27);
+      }
+      return ref _Handle.AsRef<int>(_TickCountOffset!.Value);
+    }
   }
 
 

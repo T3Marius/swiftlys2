@@ -73,10 +73,17 @@ public class TestPlugin : BasePlugin
     }
 
     [Command("be")]
+    [CommandAlias("beh", false)]
     public void Test2Command( ICommandContext context )
     {
-        BenchContext.Controller = context.Sender!.RequiredController;
-        BenchmarkRunner.Run<PlayerBenchmarks>(new InProcessConfig());
+        Console.WriteLine("hello world\n");
+    }
+
+    [Command("CommandAliasTest")]
+    [CommandAlias("cat", true)]
+    public void CommandAliasTest( ICommandContext context )
+    {
+        context.Reply("CommandAliasTest\n");
     }
 
     [GameEventHandler(HookMode.Pre)]
@@ -202,6 +209,11 @@ public class TestPlugin : BasePlugin
         Core.Event.OnConVarValueChanged += ( @event ) =>
         {
             Console.WriteLine($"ConVar {@event.ConVarName} changed from {@event.OldValue} to {@event.NewValue} by player {@event.PlayerId}");
+        };
+
+        Core.Event.OnEntityIdentityAcceptInputHook += ( @event ) =>
+        {
+            Console.WriteLine($"EntityIdentityAcceptInput: {@event.EntityInstance.DesignerName} - {@event.InputName}");
         };
 
 
@@ -337,6 +349,42 @@ public class TestPlugin : BasePlugin
     CEntityKeyValues kv { get; set; }
     CEntityInstance entity { get; set; }
 
+    [Command("gd")]
+    public void TestCommandGD( ICommandContext ctx )
+    {
+        var player = ctx.Sender;
+        ctx.Reply($"Ground distance: {player!.RequiredPawn.GroundDistance}");
+    }
+
+    [Command("hh")]
+    public void TestCommandHH( ICommandContext _ )
+    {
+        var filter = new CTraceFilter {
+            IterateEntities = true,
+            QueryShapeAttributes = new() {
+                InteractsWith = MaskTrace.Player,
+                InteractsExclude = MaskTrace.Sky,
+                InteractsAs = MaskTrace.Player,
+                CollisionGroup = CollisionGroup.PlayerMovement,
+                ObjectSetMask = RnQueryObjectSet.All,
+                HitSolid = true
+            }
+        };
+
+        var start = new Vector(0, 0, 0);
+        var end = new Vector(0, 0, 100);
+
+        Console.WriteLine("AAA");
+        var ray = new Ray_t();
+        var trace = new CGameTrace();
+        Console.WriteLine("AAA");
+        Core.Trace.TraceShape(start, end, ray, filter, ref trace);
+
+        Console.WriteLine(trace.Entity.IsValid);
+
+
+    }
+
     [Command("tt")]
     public void TestCommand( ICommandContext context )
     {
@@ -352,27 +400,12 @@ public class TestPlugin : BasePlugin
         // entity.DispatchSpawn(kv);
         // Console.WriteLine("Spawned entity with keyvalues");
 
-        int j = 0;
-
-        var cvar = Core.ConVar.Find<bool>("sv_cheats")!;
-        Console.WriteLine(cvar);
-        Console.WriteLine(cvar.Value);
-        var cvar2 = Core.ConVar.Find<bool>("sv_autobunnyhopping")!;
-        Console.WriteLine(cvar2);
-        Console.WriteLine(cvar2.Value);
-
-        var cvar3 = Core.ConVar.Create<string>("sw_test_cvar", "Test cvar", "ABCDEFG");
-        Console.WriteLine(cvar3);
-        Console.WriteLine(cvar3.Value);
-
-        var cvar4 = Core.ConVar.Find<bool>("r_drawworld")!;
-
-        cvar2.ReplicateToClient(0, true);
-
-        cvar4.QueryClient(0, ( value ) =>
+        var pawn = context.Sender!.RequiredPawn;
+        var weapons = pawn.WeaponServices!.MyValidWeapons;
+        foreach (var weapon in weapons)
         {
-            Console.WriteLine("QueryCallback " + value);
-        });
+            weapon.AcceptInput("SetAmmoAmount", "9999");
+        }
     }
 
     [Command("w")]
@@ -852,6 +885,7 @@ public class TestPlugin : BasePlugin
         var player = context.Sender!;
         var menu = Core.MenusAPI
             .CreateBuilder()
+            .EnableExit()
             .SetPlayerFrozen(false)
             .Design.SetMaxVisibleItems(5)
             .Design.SetMenuTitle($"{HtmlGradient.GenerateGradientText("Redesigned Menu", "#00FA9A", "#F5FFFA")}")
@@ -1090,6 +1124,16 @@ public class TestPlugin : BasePlugin
             .ToList()
             .FirstOrDefault()
             ?.Teleport(player.PlayerPawn!.AbsOrigin!.Value, player.PlayerPawn!.EyeAngles, Vector.Zero);
+    }
+
+    [Command("los")]
+    public void LineOfSightCommand( ICommandContext context )
+    {
+        var player = context.Sender!;
+        Core.PlayerManager.GetAlive()
+            .Where(p => p.PlayerID != player.PlayerID)
+            .ToList()
+            .ForEach(targetPlayer => context.Reply($"Line of sight to {targetPlayer.Controller!.PlayerName}: {player.PlayerPawn!.HasLineOfSight(targetPlayer.PlayerPawn!)}"));
     }
 
     public override void Unload()

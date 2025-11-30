@@ -17,20 +17,35 @@ internal partial class FeFitInfluence_tImpl : SchemaClass, FeFitInfluence_t {
   public FeFitInfluence_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VertexNodeOffset = Schema.GetOffset(0xF8271D2105342743);
+  private static nint? _VertexNodeOffset;
 
   public ref uint VertexNode {
-    get => ref _Handle.AsRef<uint>(_VertexNodeOffset);
+    get {
+      if (_VertexNodeOffset == null) {
+        _VertexNodeOffset = Schema.GetOffset(0xF8271D2105342743);
+      }
+      return ref _Handle.AsRef<uint>(_VertexNodeOffset!.Value);
+    }
   }
-  private static readonly nint _WeightOffset = Schema.GetOffset(0xF8271D21CFFC66CB);
+  private static nint? _WeightOffset;
 
   public ref float Weight {
-    get => ref _Handle.AsRef<float>(_WeightOffset);
+    get {
+      if (_WeightOffset == null) {
+        _WeightOffset = Schema.GetOffset(0xF8271D21CFFC66CB);
+      }
+      return ref _Handle.AsRef<float>(_WeightOffset!.Value);
+    }
   }
-  private static readonly nint _MatrixNodeOffset = Schema.GetOffset(0xF8271D2189590174);
+  private static nint? _MatrixNodeOffset;
 
   public ref uint MatrixNode {
-    get => ref _Handle.AsRef<uint>(_MatrixNodeOffset);
+    get {
+      if (_MatrixNodeOffset == null) {
+        _MatrixNodeOffset = Schema.GetOffset(0xF8271D2189590174);
+      }
+      return ref _Handle.AsRef<uint>(_MatrixNodeOffset!.Value);
+    }
   }
 
 

@@ -17,65 +17,125 @@ internal partial class CPhysWheelConstraintImpl : CPhysConstraintImpl, CPhysWhee
   public CPhysWheelConstraintImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SuspensionFrequencyOffset = Schema.GetOffset(0x597D72C29D467E68);
+  private static nint? _SuspensionFrequencyOffset;
 
   public ref float SuspensionFrequency {
-    get => ref _Handle.AsRef<float>(_SuspensionFrequencyOffset);
+    get {
+      if (_SuspensionFrequencyOffset == null) {
+        _SuspensionFrequencyOffset = Schema.GetOffset(0x597D72C29D467E68);
+      }
+      return ref _Handle.AsRef<float>(_SuspensionFrequencyOffset!.Value);
+    }
   }
-  private static readonly nint _SuspensionDampingRatioOffset = Schema.GetOffset(0x597D72C2C2F8EAE3);
+  private static nint? _SuspensionDampingRatioOffset;
 
   public ref float SuspensionDampingRatio {
-    get => ref _Handle.AsRef<float>(_SuspensionDampingRatioOffset);
+    get {
+      if (_SuspensionDampingRatioOffset == null) {
+        _SuspensionDampingRatioOffset = Schema.GetOffset(0x597D72C2C2F8EAE3);
+      }
+      return ref _Handle.AsRef<float>(_SuspensionDampingRatioOffset!.Value);
+    }
   }
-  private static readonly nint _SuspensionHeightOffsetOffset = Schema.GetOffset(0x597D72C2B6CA3042);
+  private static nint? _SuspensionHeightOffsetOffset;
 
   public ref float SuspensionHeightOffset {
-    get => ref _Handle.AsRef<float>(_SuspensionHeightOffsetOffset);
+    get {
+      if (_SuspensionHeightOffsetOffset == null) {
+        _SuspensionHeightOffsetOffset = Schema.GetOffset(0x597D72C2B6CA3042);
+      }
+      return ref _Handle.AsRef<float>(_SuspensionHeightOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _EnableSuspensionLimitOffset = Schema.GetOffset(0x597D72C2B8A9BDC2);
+  private static nint? _EnableSuspensionLimitOffset;
 
   public ref bool EnableSuspensionLimit {
-    get => ref _Handle.AsRef<bool>(_EnableSuspensionLimitOffset);
+    get {
+      if (_EnableSuspensionLimitOffset == null) {
+        _EnableSuspensionLimitOffset = Schema.GetOffset(0x597D72C2B8A9BDC2);
+      }
+      return ref _Handle.AsRef<bool>(_EnableSuspensionLimitOffset!.Value);
+    }
   }
-  private static readonly nint _MinSuspensionOffsetOffset = Schema.GetOffset(0x597D72C2B94341AB);
+  private static nint? _MinSuspensionOffsetOffset;
 
   public ref float MinSuspensionOffset {
-    get => ref _Handle.AsRef<float>(_MinSuspensionOffsetOffset);
+    get {
+      if (_MinSuspensionOffsetOffset == null) {
+        _MinSuspensionOffsetOffset = Schema.GetOffset(0x597D72C2B94341AB);
+      }
+      return ref _Handle.AsRef<float>(_MinSuspensionOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _MaxSuspensionOffsetOffset = Schema.GetOffset(0x597D72C22EABFDE9);
+  private static nint? _MaxSuspensionOffsetOffset;
 
   public ref float MaxSuspensionOffset {
-    get => ref _Handle.AsRef<float>(_MaxSuspensionOffsetOffset);
+    get {
+      if (_MaxSuspensionOffsetOffset == null) {
+        _MaxSuspensionOffsetOffset = Schema.GetOffset(0x597D72C22EABFDE9);
+      }
+      return ref _Handle.AsRef<float>(_MaxSuspensionOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _EnableSteeringLimitOffset = Schema.GetOffset(0x597D72C25B75B454);
+  private static nint? _EnableSteeringLimitOffset;
 
   public ref bool EnableSteeringLimit {
-    get => ref _Handle.AsRef<bool>(_EnableSteeringLimitOffset);
+    get {
+      if (_EnableSteeringLimitOffset == null) {
+        _EnableSteeringLimitOffset = Schema.GetOffset(0x597D72C25B75B454);
+      }
+      return ref _Handle.AsRef<bool>(_EnableSteeringLimitOffset!.Value);
+    }
   }
-  private static readonly nint _MinSteeringAngleOffset = Schema.GetOffset(0x597D72C230EFC46D);
+  private static nint? _MinSteeringAngleOffset;
 
   public ref float MinSteeringAngle {
-    get => ref _Handle.AsRef<float>(_MinSteeringAngleOffset);
+    get {
+      if (_MinSteeringAngleOffset == null) {
+        _MinSteeringAngleOffset = Schema.GetOffset(0x597D72C230EFC46D);
+      }
+      return ref _Handle.AsRef<float>(_MinSteeringAngleOffset!.Value);
+    }
   }
-  private static readonly nint _MaxSteeringAngleOffset = Schema.GetOffset(0x597D72C2BA43F487);
+  private static nint? _MaxSteeringAngleOffset;
 
   public ref float MaxSteeringAngle {
-    get => ref _Handle.AsRef<float>(_MaxSteeringAngleOffset);
+    get {
+      if (_MaxSteeringAngleOffset == null) {
+        _MaxSteeringAngleOffset = Schema.GetOffset(0x597D72C2BA43F487);
+      }
+      return ref _Handle.AsRef<float>(_MaxSteeringAngleOffset!.Value);
+    }
   }
-  private static readonly nint _SteeringAxisFrictionOffset = Schema.GetOffset(0x597D72C24D13EF6B);
+  private static nint? _SteeringAxisFrictionOffset;
 
   public ref float SteeringAxisFriction {
-    get => ref _Handle.AsRef<float>(_SteeringAxisFrictionOffset);
+    get {
+      if (_SteeringAxisFrictionOffset == null) {
+        _SteeringAxisFrictionOffset = Schema.GetOffset(0x597D72C24D13EF6B);
+      }
+      return ref _Handle.AsRef<float>(_SteeringAxisFrictionOffset!.Value);
+    }
   }
-  private static readonly nint _SpinAxisFrictionOffset = Schema.GetOffset(0x597D72C266B468FC);
+  private static nint? _SpinAxisFrictionOffset;
 
   public ref float SpinAxisFriction {
-    get => ref _Handle.AsRef<float>(_SpinAxisFrictionOffset);
+    get {
+      if (_SpinAxisFrictionOffset == null) {
+        _SpinAxisFrictionOffset = Schema.GetOffset(0x597D72C266B468FC);
+      }
+      return ref _Handle.AsRef<float>(_SpinAxisFrictionOffset!.Value);
+    }
   }
-  private static readonly nint _SteeringMimicsEntityOffset = Schema.GetOffset(0x597D72C2CD5E886D);
+  private static nint? _SteeringMimicsEntityOffset;
 
   public ref CHandle<CBaseEntity> SteeringMimicsEntity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_SteeringMimicsEntityOffset);
+    get {
+      if (_SteeringMimicsEntityOffset == null) {
+        _SteeringMimicsEntityOffset = Schema.GetOffset(0x597D72C2CD5E886D);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_SteeringMimicsEntityOffset!.Value);
+    }
   }
 
 

@@ -17,85 +17,165 @@ internal partial class CBaseCSGrenadeProjectileImpl : CBaseGrenadeImpl, CBaseCSG
   public CBaseCSGrenadeProjectileImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InitialPositionOffset = Schema.GetOffset(0xC09C67027E9CA9C4);
+  private static nint? _InitialPositionOffset;
 
   public ref Vector InitialPosition {
-    get => ref _Handle.AsRef<Vector>(_InitialPositionOffset);
+    get {
+      if (_InitialPositionOffset == null) {
+        _InitialPositionOffset = Schema.GetOffset(0xC09C67027E9CA9C4);
+      }
+      return ref _Handle.AsRef<Vector>(_InitialPositionOffset!.Value);
+    }
   }
-  private static readonly nint _InitialVelocityOffset = Schema.GetOffset(0xC09C67027C20BD90);
+  private static nint? _InitialVelocityOffset;
 
   public ref Vector InitialVelocity {
-    get => ref _Handle.AsRef<Vector>(_InitialVelocityOffset);
+    get {
+      if (_InitialVelocityOffset == null) {
+        _InitialVelocityOffset = Schema.GetOffset(0xC09C67027C20BD90);
+      }
+      return ref _Handle.AsRef<Vector>(_InitialVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _BouncesOffset = Schema.GetOffset(0xC09C67026B81EBCE);
+  private static nint? _BouncesOffset;
 
   public ref int Bounces {
-    get => ref _Handle.AsRef<int>(_BouncesOffset);
+    get {
+      if (_BouncesOffset == null) {
+        _BouncesOffset = Schema.GetOffset(0xC09C67026B81EBCE);
+      }
+      return ref _Handle.AsRef<int>(_BouncesOffset!.Value);
+    }
   }
-  private static readonly nint _ExplodeEffectIndexOffset = Schema.GetOffset(0xC09C6702178B5975);
+  private static nint? _ExplodeEffectIndexOffset;
 
   public ref CStrongHandle<InfoForResourceTypeIParticleSystemDefinition> ExplodeEffectIndex {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>>(_ExplodeEffectIndexOffset);
+    get {
+      if (_ExplodeEffectIndexOffset == null) {
+        _ExplodeEffectIndexOffset = Schema.GetOffset(0xC09C6702178B5975);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIParticleSystemDefinition>>(_ExplodeEffectIndexOffset!.Value);
+    }
   }
-  private static readonly nint _ExplodeEffectTickBeginOffset = Schema.GetOffset(0xC09C67022F04F603);
+  private static nint? _ExplodeEffectTickBeginOffset;
 
   public ref int ExplodeEffectTickBegin {
-    get => ref _Handle.AsRef<int>(_ExplodeEffectTickBeginOffset);
+    get {
+      if (_ExplodeEffectTickBeginOffset == null) {
+        _ExplodeEffectTickBeginOffset = Schema.GetOffset(0xC09C67022F04F603);
+      }
+      return ref _Handle.AsRef<int>(_ExplodeEffectTickBeginOffset!.Value);
+    }
   }
-  private static readonly nint _ExplodeEffectOriginOffset = Schema.GetOffset(0xC09C6702AA7B4525);
+  private static nint? _ExplodeEffectOriginOffset;
 
   public ref Vector ExplodeEffectOrigin {
-    get => ref _Handle.AsRef<Vector>(_ExplodeEffectOriginOffset);
+    get {
+      if (_ExplodeEffectOriginOffset == null) {
+        _ExplodeEffectOriginOffset = Schema.GetOffset(0xC09C6702AA7B4525);
+      }
+      return ref _Handle.AsRef<Vector>(_ExplodeEffectOriginOffset!.Value);
+    }
   }
-  private static readonly nint _SpawnTimeOffset = Schema.GetOffset(0xC09C67029596A16B);
+  private static nint? _SpawnTimeOffset;
 
   public GameTime_t SpawnTime {
-    get => new GameTime_tImpl(_Handle + _SpawnTimeOffset);
+    get {
+      if (_SpawnTimeOffset == null) {
+        _SpawnTimeOffset = Schema.GetOffset(0xC09C67029596A16B);
+      }
+      return new GameTime_tImpl(_Handle + _SpawnTimeOffset!.Value);
+    }
   }
-  private static readonly nint _OGSExtraFlagsOffset = Schema.GetOffset(0xC09C670221F95684);
+  private static nint? _OGSExtraFlagsOffset;
 
   public ref byte OGSExtraFlags {
-    get => ref _Handle.AsRef<byte>(_OGSExtraFlagsOffset);
+    get {
+      if (_OGSExtraFlagsOffset == null) {
+        _OGSExtraFlagsOffset = Schema.GetOffset(0xC09C670221F95684);
+      }
+      return ref _Handle.AsRef<byte>(_OGSExtraFlagsOffset!.Value);
+    }
   }
-  private static readonly nint _DetonationRecordedOffset = Schema.GetOffset(0xC09C67024164A13C);
+  private static nint? _DetonationRecordedOffset;
 
   public ref bool DetonationRecorded {
-    get => ref _Handle.AsRef<bool>(_DetonationRecordedOffset);
+    get {
+      if (_DetonationRecordedOffset == null) {
+        _DetonationRecordedOffset = Schema.GetOffset(0xC09C67024164A13C);
+      }
+      return ref _Handle.AsRef<bool>(_DetonationRecordedOffset!.Value);
+    }
   }
-  private static readonly nint _ItemIndexOffset = Schema.GetOffset(0xC09C67025D8A6E7E);
+  private static nint? _ItemIndexOffset;
 
   public ref ushort ItemIndex {
-    get => ref _Handle.AsRef<ushort>(_ItemIndexOffset);
+    get {
+      if (_ItemIndexOffset == null) {
+        _ItemIndexOffset = Schema.GetOffset(0xC09C67025D8A6E7E);
+      }
+      return ref _Handle.AsRef<ushort>(_ItemIndexOffset!.Value);
+    }
   }
-  private static readonly nint _OriginalSpawnLocationOffset = Schema.GetOffset(0xC09C67025E59F382);
+  private static nint? _OriginalSpawnLocationOffset;
 
   public ref Vector OriginalSpawnLocation {
-    get => ref _Handle.AsRef<Vector>(_OriginalSpawnLocationOffset);
+    get {
+      if (_OriginalSpawnLocationOffset == null) {
+        _OriginalSpawnLocationOffset = Schema.GetOffset(0xC09C67025E59F382);
+      }
+      return ref _Handle.AsRef<Vector>(_OriginalSpawnLocationOffset!.Value);
+    }
   }
-  private static readonly nint _LastBounceSoundTimeOffset = Schema.GetOffset(0xC09C670206AF4AB7);
+  private static nint? _LastBounceSoundTimeOffset;
 
   public GameTime_t LastBounceSoundTime {
-    get => new GameTime_tImpl(_Handle + _LastBounceSoundTimeOffset);
+    get {
+      if (_LastBounceSoundTimeOffset == null) {
+        _LastBounceSoundTimeOffset = Schema.GetOffset(0xC09C670206AF4AB7);
+      }
+      return new GameTime_tImpl(_Handle + _LastBounceSoundTimeOffset!.Value);
+    }
   }
-  private static readonly nint _GrenadeSpinOffset = Schema.GetOffset(0xC09C67025A836591);
+  private static nint? _GrenadeSpinOffset;
 
   public SchemaUntypedField GrenadeSpin {
-    get => new SchemaUntypedField(_Handle + _GrenadeSpinOffset);
+    get {
+      if (_GrenadeSpinOffset == null) {
+        _GrenadeSpinOffset = Schema.GetOffset(0xC09C67025A836591);
+      }
+      return new SchemaUntypedField(_Handle + _GrenadeSpinOffset!.Value);
+    }
   }
-  private static readonly nint _LastHitSurfaceNormalOffset = Schema.GetOffset(0xC09C6702FAEF57FA);
+  private static nint? _LastHitSurfaceNormalOffset;
 
   public ref Vector LastHitSurfaceNormal {
-    get => ref _Handle.AsRef<Vector>(_LastHitSurfaceNormalOffset);
+    get {
+      if (_LastHitSurfaceNormalOffset == null) {
+        _LastHitSurfaceNormalOffset = Schema.GetOffset(0xC09C6702FAEF57FA);
+      }
+      return ref _Handle.AsRef<Vector>(_LastHitSurfaceNormalOffset!.Value);
+    }
   }
-  private static readonly nint _TicksAtZeroVelocityOffset = Schema.GetOffset(0xC09C6702A4946C6D);
+  private static nint? _TicksAtZeroVelocityOffset;
 
   public ref int TicksAtZeroVelocity {
-    get => ref _Handle.AsRef<int>(_TicksAtZeroVelocityOffset);
+    get {
+      if (_TicksAtZeroVelocityOffset == null) {
+        _TicksAtZeroVelocityOffset = Schema.GetOffset(0xC09C6702A4946C6D);
+      }
+      return ref _Handle.AsRef<int>(_TicksAtZeroVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _HasEverHitEnemyOffset = Schema.GetOffset(0xC09C670259285A50);
+  private static nint? _HasEverHitEnemyOffset;
 
   public ref bool HasEverHitEnemy {
-    get => ref _Handle.AsRef<bool>(_HasEverHitEnemyOffset);
+    get {
+      if (_HasEverHitEnemyOffset == null) {
+        _HasEverHitEnemyOffset = Schema.GetOffset(0xC09C670259285A50);
+      }
+      return ref _Handle.AsRef<bool>(_HasEverHitEnemyOffset!.Value);
+    }
   }
 
   public void InitialPositionUpdated() {

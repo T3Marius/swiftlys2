@@ -50,6 +50,7 @@ internal static class EventPublisher
             NativeEvents.RegisterOnClientProcessUsercmdsCallback((nint)(delegate* unmanaged< int, nint, int, byte, float, void >)&OnClientProcessUsercmds);
             NativeEvents.RegisterOnEntityTakeDamageCallback((nint)(delegate* unmanaged< nint, nint, nint, byte >)&OnEntityTakeDamage);
             NativeEvents.RegisterOnPrecacheResourceCallback((nint)(delegate* unmanaged< nint, void >)&OnPrecacheResource);
+            NativeEvents.RegisterOnStartupServerCallback((nint)(delegate* unmanaged< void >)&OnStartupServer);
             NativeConvars.AddConvarCreatedListener((nint)(delegate* unmanaged< nint, void >)&OnConVarCreated);
             NativeConvars.AddConCommandCreatedListener((nint)(delegate* unmanaged< nint, void >)&OnConCommandCreated);
             NativeConvars.AddGlobalChangeListener((nint)(delegate* unmanaged< nint, int, nint, nint, void >)&OnConVarValueChanged);
@@ -534,6 +535,24 @@ internal static class EventPublisher
         }
     }
 
+    [UnmanagedCallersOnly]
+    public static void OnStartupServer( )
+    {
+        if (_subscribers.Count == 0) return;
+        try
+        {
+            foreach (var subscriber in _subscribers)
+            {
+                subscriber.InvokeOnStartupServer();
+            }
+        } 
+        catch (Exception e)
+        {
+            if (!GlobalExceptionHandler.Handle(e)) return;
+            AnsiConsole.WriteException(e);
+        }
+    }
+
     [Obsolete("InvokeOnEntityTouchHook is deprecated. Use InvokeOnEntityStartTouch, InvokeOnEntityTouch, or InvokeOnEntityEndTouch instead.")]
     public static void InvokeOnEntityTouchHook( OnEntityTouchHookEvent @event )
     {
@@ -734,6 +753,23 @@ internal static class EventPublisher
             foreach (var subscriber in _subscribers)
             {
                 subscriber.InvokeOnPlayerPawnPostThinkHook(@event);
+            }
+        }
+        catch (Exception e)
+        {
+            if (!GlobalExceptionHandler.Handle(e)) return;
+            AnsiConsole.WriteException(e);
+        }
+    }
+
+    public static void InvokeOnEntityIdentityAcceptInputHook( OnEntityIdentityAcceptInputHookEvent @event )
+    {
+        if (_subscribers.Count == 0) return;
+        try
+        {
+            foreach (var subscriber in _subscribers)
+            {
+                subscriber.InvokeOnEntityIdentityAcceptInputHook(@event);
             }
         }
         catch (Exception e)

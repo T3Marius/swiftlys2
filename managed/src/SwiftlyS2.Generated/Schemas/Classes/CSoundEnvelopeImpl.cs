@@ -17,25 +17,45 @@ internal partial class CSoundEnvelopeImpl : SchemaClass, CSoundEnvelope {
   public CSoundEnvelopeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CurrentOffset = Schema.GetOffset(0xDF974C315AD334FA);
+  private static nint? _CurrentOffset;
 
   public ref float Current {
-    get => ref _Handle.AsRef<float>(_CurrentOffset);
+    get {
+      if (_CurrentOffset == null) {
+        _CurrentOffset = Schema.GetOffset(0xDF974C315AD334FA);
+      }
+      return ref _Handle.AsRef<float>(_CurrentOffset!.Value);
+    }
   }
-  private static readonly nint _TargetOffset = Schema.GetOffset(0xDF974C31FA08A9E8);
+  private static nint? _TargetOffset;
 
   public ref float Target {
-    get => ref _Handle.AsRef<float>(_TargetOffset);
+    get {
+      if (_TargetOffset == null) {
+        _TargetOffset = Schema.GetOffset(0xDF974C31FA08A9E8);
+      }
+      return ref _Handle.AsRef<float>(_TargetOffset!.Value);
+    }
   }
-  private static readonly nint _RateOffset = Schema.GetOffset(0xDF974C316C5ECD07);
+  private static nint? _RateOffset;
 
   public ref float Rate {
-    get => ref _Handle.AsRef<float>(_RateOffset);
+    get {
+      if (_RateOffset == null) {
+        _RateOffset = Schema.GetOffset(0xDF974C316C5ECD07);
+      }
+      return ref _Handle.AsRef<float>(_RateOffset!.Value);
+    }
   }
-  private static readonly nint _ForceupdateOffset = Schema.GetOffset(0xDF974C3131B01C25);
+  private static nint? _ForceupdateOffset;
 
   public ref bool Forceupdate {
-    get => ref _Handle.AsRef<bool>(_ForceupdateOffset);
+    get {
+      if (_ForceupdateOffset == null) {
+        _ForceupdateOffset = Schema.GetOffset(0xDF974C3131B01C25);
+      }
+      return ref _Handle.AsRef<bool>(_ForceupdateOffset!.Value);
+    }
   }
 
 

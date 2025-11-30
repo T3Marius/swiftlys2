@@ -18,12 +18,36 @@ internal class EventBulletDamageImpl : GameEvent<EventBulletDamage>, EventBullet
   }
 
   // player index who was hurt
+  public CCSPlayerController VictimController
+  { get => Accessor.GetPlayerController("victim"); }
+
+  // player index who was hurt
+  public CCSPlayerPawn VictimPawn
+  { get => Accessor.GetPlayerPawn("victim"); }
+
+  // player index who was hurt
+  public IPlayer VictimPlayer
+  { get => Accessor.GetPlayer("victim"); }
+
+  // player index who was hurt
   public int Victim
-  { get => Accessor.GetPlayerSlot("victim"); set => Accessor.SetPlayerSlot("victim", value); }
+  { get => Accessor.GetInt32("victim"); set => Accessor.SetInt32("victim", value); }
+
+  // player index who attacked
+  public CCSPlayerController AttackerController
+  { get => Accessor.GetPlayerController("attacker"); }
+
+  // player index who attacked
+  public CCSPlayerPawn AttackerPawn
+  { get => Accessor.GetPlayerPawn("attacker"); }
+
+  // player index who attacked
+  public IPlayer AttackerPlayer
+  { get => Accessor.GetPlayer("attacker"); }
 
   // player index who attacked
   public int Attacker
-  { get => Accessor.GetPlayerSlot("attacker"); set => Accessor.SetPlayerSlot("attacker", value); }
+  { get => Accessor.GetInt32("attacker"); set => Accessor.SetInt32("attacker", value); }
 
   // how far the bullet travelled before it hit the player
   public float Distance

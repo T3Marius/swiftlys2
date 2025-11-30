@@ -17,10 +17,15 @@ internal partial class RnMeshDesc_tImpl : RnShapeDesc_tImpl, RnMeshDesc_t {
   public RnMeshDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MeshOffset = Schema.GetOffset(0xB236F002DEAFA33C);
+  private static nint? _MeshOffset;
 
   public RnMesh_t Mesh {
-    get => new RnMesh_tImpl(_Handle + _MeshOffset);
+    get {
+      if (_MeshOffset == null) {
+        _MeshOffset = Schema.GetOffset(0xB236F002DEAFA33C);
+      }
+      return new RnMesh_tImpl(_Handle + _MeshOffset!.Value);
+    }
   }
 
 

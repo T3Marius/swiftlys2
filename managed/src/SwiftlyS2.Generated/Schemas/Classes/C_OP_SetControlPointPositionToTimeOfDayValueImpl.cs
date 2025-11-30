@@ -17,24 +17,42 @@ internal partial class C_OP_SetControlPointPositionToTimeOfDayValueImpl : CParti
   public C_OP_SetControlPointPositionToTimeOfDayValueImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x976831CB3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x976831CB3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _TimeOfDayParameterOffset = Schema.GetOffset(0x976831CB5B5E9DD3);
+  private static nint? _TimeOfDayParameterOffset;
 
   public string TimeOfDayParameter {
     get {
-      var ptr = _Handle + _TimeOfDayParameterOffset;
-      return Schema.GetString(ptr);
+        if (_TimeOfDayParameterOffset == null) {
+            _TimeOfDayParameterOffset = Schema.GetOffset(0x976831CB5B5E9DD3);
+        }
+        var ptr = _Handle + _TimeOfDayParameterOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _TimeOfDayParameterOffset, value, 128);
+    set {
+        if (_TimeOfDayParameterOffset == null) {
+            _TimeOfDayParameterOffset = Schema.GetOffset(0x976831CB5B5E9DD3);
+        }
+        Schema.SetFixedString(_Handle, _TimeOfDayParameterOffset!.Value, value, 128);
+    }
   } 
-  private static readonly nint _DefaultValueOffset = Schema.GetOffset(0x976831CB0A18BFDF);
+  private static nint? _DefaultValueOffset;
 
   public ref Vector DefaultValue {
-    get => ref _Handle.AsRef<Vector>(_DefaultValueOffset);
+    get {
+      if (_DefaultValueOffset == null) {
+        _DefaultValueOffset = Schema.GetOffset(0x976831CB0A18BFDF);
+      }
+      return ref _Handle.AsRef<Vector>(_DefaultValueOffset!.Value);
+    }
   }
 
 

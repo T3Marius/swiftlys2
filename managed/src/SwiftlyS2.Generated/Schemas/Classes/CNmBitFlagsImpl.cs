@@ -17,10 +17,15 @@ internal partial class CNmBitFlagsImpl : SchemaClass, CNmBitFlags {
   public CNmBitFlagsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x2D0B9CC1DC74A14C);
+  private static nint? _FlagsOffset;
 
   public ref uint Flags {
-    get => ref _Handle.AsRef<uint>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x2D0B9CC1DC74A14C);
+      }
+      return ref _Handle.AsRef<uint>(_FlagsOffset!.Value);
+    }
   }
 
 

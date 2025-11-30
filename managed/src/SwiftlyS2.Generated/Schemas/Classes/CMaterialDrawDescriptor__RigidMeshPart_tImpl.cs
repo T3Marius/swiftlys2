@@ -17,25 +17,45 @@ internal partial class CMaterialDrawDescriptor__RigidMeshPart_tImpl : SchemaClas
   public CMaterialDrawDescriptor__RigidMeshPart_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RigidBLASIndexOffset = Schema.GetOffset(0xD375EED8EE87873E);
+  private static nint? _RigidBLASIndexOffset;
 
   public ref ushort RigidBLASIndex {
-    get => ref _Handle.AsRef<ushort>(_RigidBLASIndexOffset);
+    get {
+      if (_RigidBLASIndexOffset == null) {
+        _RigidBLASIndexOffset = Schema.GetOffset(0xD375EED8EE87873E);
+      }
+      return ref _Handle.AsRef<ushort>(_RigidBLASIndexOffset!.Value);
+    }
   }
-  private static readonly nint _BoneIndexOffset = Schema.GetOffset(0xD375EED89F407B79);
+  private static nint? _BoneIndexOffset;
 
   public ref short BoneIndex {
-    get => ref _Handle.AsRef<short>(_BoneIndexOffset);
+    get {
+      if (_BoneIndexOffset == null) {
+        _BoneIndexOffset = Schema.GetOffset(0xD375EED89F407B79);
+      }
+      return ref _Handle.AsRef<short>(_BoneIndexOffset!.Value);
+    }
   }
-  private static readonly nint _StartIndexOffsetOffset = Schema.GetOffset(0xD375EED891EF1626);
+  private static nint? _StartIndexOffsetOffset;
 
   public ref uint StartIndexOffset {
-    get => ref _Handle.AsRef<uint>(_StartIndexOffsetOffset);
+    get {
+      if (_StartIndexOffsetOffset == null) {
+        _StartIndexOffsetOffset = Schema.GetOffset(0xD375EED891EF1626);
+      }
+      return ref _Handle.AsRef<uint>(_StartIndexOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _PrimitiveCountOffset = Schema.GetOffset(0xD375EED8B627A621);
+  private static nint? _PrimitiveCountOffset;
 
   public ref uint PrimitiveCount {
-    get => ref _Handle.AsRef<uint>(_PrimitiveCountOffset);
+    get {
+      if (_PrimitiveCountOffset == null) {
+        _PrimitiveCountOffset = Schema.GetOffset(0xD375EED8B627A621);
+      }
+      return ref _Handle.AsRef<uint>(_PrimitiveCountOffset!.Value);
+    }
   }
 
 

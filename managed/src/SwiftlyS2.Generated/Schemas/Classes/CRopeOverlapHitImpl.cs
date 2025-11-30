@@ -17,15 +17,25 @@ internal partial class CRopeOverlapHitImpl : SchemaClass, CRopeOverlapHit {
   public CRopeOverlapHitImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EntityOffset = Schema.GetOffset(0x9262EE3E6EBADCB0);
+  private static nint? _EntityOffset;
 
   public ref CHandle<CBaseEntity> Entity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset);
+    get {
+      if (_EntityOffset == null) {
+        _EntityOffset = Schema.GetOffset(0x9262EE3E6EBADCB0);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset!.Value);
+    }
   }
-  private static readonly nint _OverlappingLinksOffset = Schema.GetOffset(0x9262EE3E44D0B359);
+  private static nint? _OverlappingLinksOffset;
 
   public ref CUtlVector<int> OverlappingLinks {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_OverlappingLinksOffset);
+    get {
+      if (_OverlappingLinksOffset == null) {
+        _OverlappingLinksOffset = Schema.GetOffset(0x9262EE3E44D0B359);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_OverlappingLinksOffset!.Value);
+    }
   }
 
 

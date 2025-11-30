@@ -17,20 +17,35 @@ internal partial class CMotionNodeSequenceImpl : CMotionNodeImpl, CMotionNodeSeq
   public CMotionNodeSequenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagsOffset = Schema.GetOffset(0xA932DE59B46C8540);
+  private static nint? _TagsOffset;
 
   public ref CUtlVector<TagSpan_t> Tags {
-    get => ref _Handle.AsRef<CUtlVector<TagSpan_t>>(_TagsOffset);
+    get {
+      if (_TagsOffset == null) {
+        _TagsOffset = Schema.GetOffset(0xA932DE59B46C8540);
+      }
+      return ref _Handle.AsRef<CUtlVector<TagSpan_t>>(_TagsOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceOffset = Schema.GetOffset(0xA932DE59E0A0598E);
+  private static nint? _SequenceOffset;
 
   public HSequence Sequence {
-    get => new HSequenceImpl(_Handle + _SequenceOffset);
+    get {
+      if (_SequenceOffset == null) {
+        _SequenceOffset = Schema.GetOffset(0xA932DE59E0A0598E);
+      }
+      return new HSequenceImpl(_Handle + _SequenceOffset!.Value);
+    }
   }
-  private static readonly nint _PlaybackSpeedOffset = Schema.GetOffset(0xA932DE59FA2B402D);
+  private static nint? _PlaybackSpeedOffset;
 
   public ref float PlaybackSpeed {
-    get => ref _Handle.AsRef<float>(_PlaybackSpeedOffset);
+    get {
+      if (_PlaybackSpeedOffset == null) {
+        _PlaybackSpeedOffset = Schema.GetOffset(0xA932DE59FA2B402D);
+      }
+      return ref _Handle.AsRef<float>(_PlaybackSpeedOffset!.Value);
+    }
   }
 
 

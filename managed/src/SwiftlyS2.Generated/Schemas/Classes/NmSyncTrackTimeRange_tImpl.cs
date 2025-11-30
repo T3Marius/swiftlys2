@@ -17,15 +17,25 @@ internal partial class NmSyncTrackTimeRange_tImpl : SchemaClass, NmSyncTrackTime
   public NmSyncTrackTimeRange_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0xAECBDADF6330E7EE);
+  private static nint? _StartTimeOffset;
 
   public NmSyncTrackTime_t StartTime {
-    get => new NmSyncTrackTime_tImpl(_Handle + _StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0xAECBDADF6330E7EE);
+      }
+      return new NmSyncTrackTime_tImpl(_Handle + _StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndTimeOffset = Schema.GetOffset(0xAECBDADFEAD1A94B);
+  private static nint? _EndTimeOffset;
 
   public NmSyncTrackTime_t EndTime {
-    get => new NmSyncTrackTime_tImpl(_Handle + _EndTimeOffset);
+    get {
+      if (_EndTimeOffset == null) {
+        _EndTimeOffset = Schema.GetOffset(0xAECBDADFEAD1A94B);
+      }
+      return new NmSyncTrackTime_tImpl(_Handle + _EndTimeOffset!.Value);
+    }
   }
 
 

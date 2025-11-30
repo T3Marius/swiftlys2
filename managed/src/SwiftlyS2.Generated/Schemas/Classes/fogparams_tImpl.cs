@@ -17,130 +17,255 @@ internal partial class fogparams_tImpl : SchemaClass, fogparams_t {
   public fogparams_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DirPrimaryOffset = Schema.GetOffset(0xCE352DA69D025A12);
+  private static nint? _DirPrimaryOffset;
 
   public ref Vector DirPrimary {
-    get => ref _Handle.AsRef<Vector>(_DirPrimaryOffset);
+    get {
+      if (_DirPrimaryOffset == null) {
+        _DirPrimaryOffset = Schema.GetOffset(0xCE352DA69D025A12);
+      }
+      return ref _Handle.AsRef<Vector>(_DirPrimaryOffset!.Value);
+    }
   }
-  private static readonly nint _ColorPrimaryOffset = Schema.GetOffset(0xCE352DA6B7CCC646);
+  private static nint? _ColorPrimaryOffset;
 
   public ref Color ColorPrimary {
-    get => ref _Handle.AsRef<Color>(_ColorPrimaryOffset);
+    get {
+      if (_ColorPrimaryOffset == null) {
+        _ColorPrimaryOffset = Schema.GetOffset(0xCE352DA6B7CCC646);
+      }
+      return ref _Handle.AsRef<Color>(_ColorPrimaryOffset!.Value);
+    }
   }
-  private static readonly nint _ColorSecondaryOffset = Schema.GetOffset(0xCE352DA69E5EDE5A);
+  private static nint? _ColorSecondaryOffset;
 
   public ref Color ColorSecondary {
-    get => ref _Handle.AsRef<Color>(_ColorSecondaryOffset);
+    get {
+      if (_ColorSecondaryOffset == null) {
+        _ColorSecondaryOffset = Schema.GetOffset(0xCE352DA69E5EDE5A);
+      }
+      return ref _Handle.AsRef<Color>(_ColorSecondaryOffset!.Value);
+    }
   }
-  private static readonly nint _ColorPrimaryLerpToOffset = Schema.GetOffset(0xCE352DA6702FBD96);
+  private static nint? _ColorPrimaryLerpToOffset;
 
   public ref Color ColorPrimaryLerpTo {
-    get => ref _Handle.AsRef<Color>(_ColorPrimaryLerpToOffset);
+    get {
+      if (_ColorPrimaryLerpToOffset == null) {
+        _ColorPrimaryLerpToOffset = Schema.GetOffset(0xCE352DA6702FBD96);
+      }
+      return ref _Handle.AsRef<Color>(_ColorPrimaryLerpToOffset!.Value);
+    }
   }
-  private static readonly nint _ColorSecondaryLerpToOffset = Schema.GetOffset(0xCE352DA627E54D7A);
+  private static nint? _ColorSecondaryLerpToOffset;
 
   public ref Color ColorSecondaryLerpTo {
-    get => ref _Handle.AsRef<Color>(_ColorSecondaryLerpToOffset);
+    get {
+      if (_ColorSecondaryLerpToOffset == null) {
+        _ColorSecondaryLerpToOffset = Schema.GetOffset(0xCE352DA627E54D7A);
+      }
+      return ref _Handle.AsRef<Color>(_ColorSecondaryLerpToOffset!.Value);
+    }
   }
-  private static readonly nint _StartOffset = Schema.GetOffset(0xCE352DA6652B04DF);
+  private static nint? _StartOffset;
 
   public ref float Start {
-    get => ref _Handle.AsRef<float>(_StartOffset);
+    get {
+      if (_StartOffset == null) {
+        _StartOffset = Schema.GetOffset(0xCE352DA6652B04DF);
+      }
+      return ref _Handle.AsRef<float>(_StartOffset!.Value);
+    }
   }
-  private static readonly nint _EndOffset = Schema.GetOffset(0xCE352DA66A8E75AA);
+  private static nint? _EndOffset;
 
   public ref float End {
-    get => ref _Handle.AsRef<float>(_EndOffset);
+    get {
+      if (_EndOffset == null) {
+        _EndOffset = Schema.GetOffset(0xCE352DA66A8E75AA);
+      }
+      return ref _Handle.AsRef<float>(_EndOffset!.Value);
+    }
   }
-  private static readonly nint _FarzOffset = Schema.GetOffset(0xCE352DA60E9043FC);
+  private static nint? _FarzOffset;
 
   public ref float Farz {
-    get => ref _Handle.AsRef<float>(_FarzOffset);
+    get {
+      if (_FarzOffset == null) {
+        _FarzOffset = Schema.GetOffset(0xCE352DA60E9043FC);
+      }
+      return ref _Handle.AsRef<float>(_FarzOffset!.Value);
+    }
   }
-  private static readonly nint _MaxdensityOffset = Schema.GetOffset(0xCE352DA6C8F29F97);
+  private static nint? _MaxdensityOffset;
 
   public ref float Maxdensity {
-    get => ref _Handle.AsRef<float>(_MaxdensityOffset);
+    get {
+      if (_MaxdensityOffset == null) {
+        _MaxdensityOffset = Schema.GetOffset(0xCE352DA6C8F29F97);
+      }
+      return ref _Handle.AsRef<float>(_MaxdensityOffset!.Value);
+    }
   }
-  private static readonly nint _ExponentOffset = Schema.GetOffset(0xCE352DA632F1D446);
+  private static nint? _ExponentOffset;
 
   public ref float Exponent {
-    get => ref _Handle.AsRef<float>(_ExponentOffset);
+    get {
+      if (_ExponentOffset == null) {
+        _ExponentOffset = Schema.GetOffset(0xCE352DA632F1D446);
+      }
+      return ref _Handle.AsRef<float>(_ExponentOffset!.Value);
+    }
   }
-  private static readonly nint _HDRColorScaleOffset = Schema.GetOffset(0xCE352DA6E4EAF0DE);
+  private static nint? _HDRColorScaleOffset;
 
   public ref float HDRColorScale {
-    get => ref _Handle.AsRef<float>(_HDRColorScaleOffset);
+    get {
+      if (_HDRColorScaleOffset == null) {
+        _HDRColorScaleOffset = Schema.GetOffset(0xCE352DA6E4EAF0DE);
+      }
+      return ref _Handle.AsRef<float>(_HDRColorScaleOffset!.Value);
+    }
   }
-  private static readonly nint _SkyboxFogFactorOffset = Schema.GetOffset(0xCE352DA6A7ADD816);
+  private static nint? _SkyboxFogFactorOffset;
 
   public ref float SkyboxFogFactor {
-    get => ref _Handle.AsRef<float>(_SkyboxFogFactorOffset);
+    get {
+      if (_SkyboxFogFactorOffset == null) {
+        _SkyboxFogFactorOffset = Schema.GetOffset(0xCE352DA6A7ADD816);
+      }
+      return ref _Handle.AsRef<float>(_SkyboxFogFactorOffset!.Value);
+    }
   }
-  private static readonly nint _SkyboxFogFactorLerpToOffset = Schema.GetOffset(0xCE352DA6F366AC46);
+  private static nint? _SkyboxFogFactorLerpToOffset;
 
   public ref float SkyboxFogFactorLerpTo {
-    get => ref _Handle.AsRef<float>(_SkyboxFogFactorLerpToOffset);
+    get {
+      if (_SkyboxFogFactorLerpToOffset == null) {
+        _SkyboxFogFactorLerpToOffset = Schema.GetOffset(0xCE352DA6F366AC46);
+      }
+      return ref _Handle.AsRef<float>(_SkyboxFogFactorLerpToOffset!.Value);
+    }
   }
-  private static readonly nint _StartLerpToOffset = Schema.GetOffset(0xCE352DA6FF7E14AB);
+  private static nint? _StartLerpToOffset;
 
   public ref float StartLerpTo {
-    get => ref _Handle.AsRef<float>(_StartLerpToOffset);
+    get {
+      if (_StartLerpToOffset == null) {
+        _StartLerpToOffset = Schema.GetOffset(0xCE352DA6FF7E14AB);
+      }
+      return ref _Handle.AsRef<float>(_StartLerpToOffset!.Value);
+    }
   }
-  private static readonly nint _EndLerpToOffset = Schema.GetOffset(0xCE352DA6AB5FC36A);
+  private static nint? _EndLerpToOffset;
 
   public ref float EndLerpTo {
-    get => ref _Handle.AsRef<float>(_EndLerpToOffset);
+    get {
+      if (_EndLerpToOffset == null) {
+        _EndLerpToOffset = Schema.GetOffset(0xCE352DA6AB5FC36A);
+      }
+      return ref _Handle.AsRef<float>(_EndLerpToOffset!.Value);
+    }
   }
-  private static readonly nint _MaxdensityLerpToOffset = Schema.GetOffset(0xCE352DA6B2204BA3);
+  private static nint? _MaxdensityLerpToOffset;
 
   public ref float MaxdensityLerpTo {
-    get => ref _Handle.AsRef<float>(_MaxdensityLerpToOffset);
+    get {
+      if (_MaxdensityLerpToOffset == null) {
+        _MaxdensityLerpToOffset = Schema.GetOffset(0xCE352DA6B2204BA3);
+      }
+      return ref _Handle.AsRef<float>(_MaxdensityLerpToOffset!.Value);
+    }
   }
-  private static readonly nint _LerptimeOffset = Schema.GetOffset(0xCE352DA6F1157821);
+  private static nint? _LerptimeOffset;
 
   public GameTime_t Lerptime {
-    get => new GameTime_tImpl(_Handle + _LerptimeOffset);
+    get {
+      if (_LerptimeOffset == null) {
+        _LerptimeOffset = Schema.GetOffset(0xCE352DA6F1157821);
+      }
+      return new GameTime_tImpl(_Handle + _LerptimeOffset!.Value);
+    }
   }
-  private static readonly nint _DurationOffset = Schema.GetOffset(0xCE352DA62FA0FD0D);
+  private static nint? _DurationOffset;
 
   public ref float Duration {
-    get => ref _Handle.AsRef<float>(_DurationOffset);
+    get {
+      if (_DurationOffset == null) {
+        _DurationOffset = Schema.GetOffset(0xCE352DA62FA0FD0D);
+      }
+      return ref _Handle.AsRef<float>(_DurationOffset!.Value);
+    }
   }
-  private static readonly nint _BlendtobackgroundOffset = Schema.GetOffset(0xCE352DA617A07511);
+  private static nint? _BlendtobackgroundOffset;
 
   public ref float Blendtobackground {
-    get => ref _Handle.AsRef<float>(_BlendtobackgroundOffset);
+    get {
+      if (_BlendtobackgroundOffset == null) {
+        _BlendtobackgroundOffset = Schema.GetOffset(0xCE352DA617A07511);
+      }
+      return ref _Handle.AsRef<float>(_BlendtobackgroundOffset!.Value);
+    }
   }
-  private static readonly nint _ScatteringOffset = Schema.GetOffset(0xCE352DA6A6DF1F9F);
+  private static nint? _ScatteringOffset;
 
   public ref float Scattering {
-    get => ref _Handle.AsRef<float>(_ScatteringOffset);
+    get {
+      if (_ScatteringOffset == null) {
+        _ScatteringOffset = Schema.GetOffset(0xCE352DA6A6DF1F9F);
+      }
+      return ref _Handle.AsRef<float>(_ScatteringOffset!.Value);
+    }
   }
-  private static readonly nint _LocallightscaleOffset = Schema.GetOffset(0xCE352DA6D520D236);
+  private static nint? _LocallightscaleOffset;
 
   public ref float Locallightscale {
-    get => ref _Handle.AsRef<float>(_LocallightscaleOffset);
+    get {
+      if (_LocallightscaleOffset == null) {
+        _LocallightscaleOffset = Schema.GetOffset(0xCE352DA6D520D236);
+      }
+      return ref _Handle.AsRef<float>(_LocallightscaleOffset!.Value);
+    }
   }
-  private static readonly nint _EnableOffset = Schema.GetOffset(0xCE352DA6AF8BB8CE);
+  private static nint? _EnableOffset;
 
   public ref bool Enable {
-    get => ref _Handle.AsRef<bool>(_EnableOffset);
+    get {
+      if (_EnableOffset == null) {
+        _EnableOffset = Schema.GetOffset(0xCE352DA6AF8BB8CE);
+      }
+      return ref _Handle.AsRef<bool>(_EnableOffset!.Value);
+    }
   }
-  private static readonly nint _BlendOffset = Schema.GetOffset(0xCE352DA60BBC40D8);
+  private static nint? _BlendOffset;
 
   public ref bool Blend {
-    get => ref _Handle.AsRef<bool>(_BlendOffset);
+    get {
+      if (_BlendOffset == null) {
+        _BlendOffset = Schema.GetOffset(0xCE352DA60BBC40D8);
+      }
+      return ref _Handle.AsRef<bool>(_BlendOffset!.Value);
+    }
   }
-  private static readonly nint _Padding2Offset = Schema.GetOffset(0xCE352DA6BC87772C);
+  private static nint? _Padding2Offset;
 
   public ref bool Padding2 {
-    get => ref _Handle.AsRef<bool>(_Padding2Offset);
+    get {
+      if (_Padding2Offset == null) {
+        _Padding2Offset = Schema.GetOffset(0xCE352DA6BC87772C);
+      }
+      return ref _Handle.AsRef<bool>(_Padding2Offset!.Value);
+    }
   }
-  private static readonly nint _PaddingOffset = Schema.GetOffset(0xCE352DA6DC7CD796);
+  private static nint? _PaddingOffset;
 
   public ref bool Padding {
-    get => ref _Handle.AsRef<bool>(_PaddingOffset);
+    get {
+      if (_PaddingOffset == null) {
+        _PaddingOffset = Schema.GetOffset(0xCE352DA6DC7CD796);
+      }
+      return ref _Handle.AsRef<bool>(_PaddingOffset!.Value);
+    }
   }
 
   public void DirPrimaryUpdated() {

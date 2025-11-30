@@ -17,28 +17,48 @@ internal partial class CPlayer_WeaponServicesImpl : CPlayerPawnComponentImpl, CP
   public CPlayer_WeaponServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MyWeaponsOffset = Schema.GetOffset(0x634D22804C8A13A6);
+  private static nint? _MyWeaponsOffset;
 
   public ref CUtlVector<CHandle<CBasePlayerWeapon>> MyWeapons {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CBasePlayerWeapon>>>(_MyWeaponsOffset);
+    get {
+      if (_MyWeaponsOffset == null) {
+        _MyWeaponsOffset = Schema.GetOffset(0x634D22804C8A13A6);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CBasePlayerWeapon>>>(_MyWeaponsOffset!.Value);
+    }
   }
-  private static readonly nint _ActiveWeaponOffset = Schema.GetOffset(0x634D2280940131C5);
+  private static nint? _ActiveWeaponOffset;
 
   public ref CHandle<CBasePlayerWeapon> ActiveWeapon {
-    get => ref _Handle.AsRef<CHandle<CBasePlayerWeapon>>(_ActiveWeaponOffset);
+    get {
+      if (_ActiveWeaponOffset == null) {
+        _ActiveWeaponOffset = Schema.GetOffset(0x634D2280940131C5);
+      }
+      return ref _Handle.AsRef<CHandle<CBasePlayerWeapon>>(_ActiveWeaponOffset!.Value);
+    }
   }
-  private static readonly nint _LastWeaponOffset = Schema.GetOffset(0x634D2280EA5C9547);
+  private static nint? _LastWeaponOffset;
 
   public ref CHandle<CBasePlayerWeapon> LastWeapon {
-    get => ref _Handle.AsRef<CHandle<CBasePlayerWeapon>>(_LastWeaponOffset);
+    get {
+      if (_LastWeaponOffset == null) {
+        _LastWeaponOffset = Schema.GetOffset(0x634D2280EA5C9547);
+      }
+      return ref _Handle.AsRef<CHandle<CBasePlayerWeapon>>(_LastWeaponOffset!.Value);
+    }
   }
   public ISchemaFixedArray<ushort> Ammo {
     get => new SchemaFixedArray<ushort>(_Handle, 0x634D22800D59E6CA, 32, 2, 2);
   }
-  private static readonly nint _PreventWeaponPickupOffset = Schema.GetOffset(0x634D228093894029);
+  private static nint? _PreventWeaponPickupOffset;
 
   public ref bool PreventWeaponPickup {
-    get => ref _Handle.AsRef<bool>(_PreventWeaponPickupOffset);
+    get {
+      if (_PreventWeaponPickupOffset == null) {
+        _PreventWeaponPickupOffset = Schema.GetOffset(0x634D228093894029);
+      }
+      return ref _Handle.AsRef<bool>(_PreventWeaponPickupOffset!.Value);
+    }
   }
 
   public void MyWeaponsUpdated() {

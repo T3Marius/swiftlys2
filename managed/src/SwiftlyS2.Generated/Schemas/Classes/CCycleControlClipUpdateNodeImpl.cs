@@ -17,35 +17,65 @@ internal partial class CCycleControlClipUpdateNodeImpl : CLeafUpdateNodeImpl, CC
   public CCycleControlClipUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TagsOffset = Schema.GetOffset(0x57FEB5AAB46C8540);
+  private static nint? _TagsOffset;
 
   public ref CUtlVector<TagSpan_t> Tags {
-    get => ref _Handle.AsRef<CUtlVector<TagSpan_t>>(_TagsOffset);
+    get {
+      if (_TagsOffset == null) {
+        _TagsOffset = Schema.GetOffset(0x57FEB5AAB46C8540);
+      }
+      return ref _Handle.AsRef<CUtlVector<TagSpan_t>>(_TagsOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceOffset = Schema.GetOffset(0x57FEB5AAE0A0598E);
+  private static nint? _SequenceOffset;
 
   public HSequence Sequence {
-    get => new HSequenceImpl(_Handle + _SequenceOffset);
+    get {
+      if (_SequenceOffset == null) {
+        _SequenceOffset = Schema.GetOffset(0x57FEB5AAE0A0598E);
+      }
+      return new HSequenceImpl(_Handle + _SequenceOffset!.Value);
+    }
   }
-  private static readonly nint _DurationOffset = Schema.GetOffset(0x57FEB5AA3D9FF5AD);
+  private static nint? _DurationOffset;
 
   public ref float Duration {
-    get => ref _Handle.AsRef<float>(_DurationOffset);
+    get {
+      if (_DurationOffset == null) {
+        _DurationOffset = Schema.GetOffset(0x57FEB5AA3D9FF5AD);
+      }
+      return ref _Handle.AsRef<float>(_DurationOffset!.Value);
+    }
   }
-  private static readonly nint _ValueSourceOffset = Schema.GetOffset(0x57FEB5AAD4D5B6B7);
+  private static nint? _ValueSourceOffset;
 
   public ref AnimValueSource ValueSource {
-    get => ref _Handle.AsRef<AnimValueSource>(_ValueSourceOffset);
+    get {
+      if (_ValueSourceOffset == null) {
+        _ValueSourceOffset = Schema.GetOffset(0x57FEB5AAD4D5B6B7);
+      }
+      return ref _Handle.AsRef<AnimValueSource>(_ValueSourceOffset!.Value);
+    }
   }
-  private static readonly nint _ParamIndexOffset = Schema.GetOffset(0x57FEB5AA61990A86);
+  private static nint? _ParamIndexOffset;
 
   public CAnimParamHandle ParamIndex {
-    get => new CAnimParamHandleImpl(_Handle + _ParamIndexOffset);
+    get {
+      if (_ParamIndexOffset == null) {
+        _ParamIndexOffset = Schema.GetOffset(0x57FEB5AA61990A86);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParamIndexOffset!.Value);
+    }
   }
-  private static readonly nint _LockWhenWaningOffset = Schema.GetOffset(0x57FEB5AAEED48004);
+  private static nint? _LockWhenWaningOffset;
 
   public ref bool LockWhenWaning {
-    get => ref _Handle.AsRef<bool>(_LockWhenWaningOffset);
+    get {
+      if (_LockWhenWaningOffset == null) {
+        _LockWhenWaningOffset = Schema.GetOffset(0x57FEB5AAEED48004);
+      }
+      return ref _Handle.AsRef<bool>(_LockWhenWaningOffset!.Value);
+    }
   }
 
 

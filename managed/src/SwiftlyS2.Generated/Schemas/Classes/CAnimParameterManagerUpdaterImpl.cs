@@ -17,35 +17,65 @@ internal partial class CAnimParameterManagerUpdaterImpl : SchemaClass, CAnimPara
   public CAnimParameterManagerUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParametersOffset = Schema.GetOffset(0x2289044E99935479);
+  private static nint? _ParametersOffset;
 
   public ref CUtlVector<SchemaUntypedField> Parameters {
-    get => ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ParametersOffset);
+    get {
+      if (_ParametersOffset == null) {
+        _ParametersOffset = Schema.GetOffset(0x2289044E99935479);
+      }
+      return ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ParametersOffset!.Value);
+    }
   }
-  private static readonly nint _IdToIndexMapOffset = Schema.GetOffset(0x2289044E7B873A5F);
+  private static nint? _IdToIndexMapOffset;
 
   public SchemaUntypedField IdToIndexMap {
-    get => new SchemaUntypedField(_Handle + _IdToIndexMapOffset);
+    get {
+      if (_IdToIndexMapOffset == null) {
+        _IdToIndexMapOffset = Schema.GetOffset(0x2289044E7B873A5F);
+      }
+      return new SchemaUntypedField(_Handle + _IdToIndexMapOffset!.Value);
+    }
   }
-  private static readonly nint _NameToIndexMapOffset = Schema.GetOffset(0x2289044EDA1FC14D);
+  private static nint? _NameToIndexMapOffset;
 
   public SchemaUntypedField NameToIndexMap {
-    get => new SchemaUntypedField(_Handle + _NameToIndexMapOffset);
+    get {
+      if (_NameToIndexMapOffset == null) {
+        _NameToIndexMapOffset = Schema.GetOffset(0x2289044EDA1FC14D);
+      }
+      return new SchemaUntypedField(_Handle + _NameToIndexMapOffset!.Value);
+    }
   }
-  private static readonly nint _IndexToHandleOffset = Schema.GetOffset(0x2289044E3F943600);
+  private static nint? _IndexToHandleOffset;
 
   public ref CUtlVector<CAnimParamHandle> IndexToHandle {
-    get => ref _Handle.AsRef<CUtlVector<CAnimParamHandle>>(_IndexToHandleOffset);
+    get {
+      if (_IndexToHandleOffset == null) {
+        _IndexToHandleOffset = Schema.GetOffset(0x2289044E3F943600);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimParamHandle>>(_IndexToHandleOffset!.Value);
+    }
   }
-  private static readonly nint _AutoResetParamsOffset = Schema.GetOffset(0x2289044EA74F889F);
+  private static nint? _AutoResetParamsOffset;
 
   public ref CUtlVector<SchemaUntypedField> AutoResetParams {
-    get => ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_AutoResetParamsOffset);
+    get {
+      if (_AutoResetParamsOffset == null) {
+        _AutoResetParamsOffset = Schema.GetOffset(0x2289044EA74F889F);
+      }
+      return ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_AutoResetParamsOffset!.Value);
+    }
   }
-  private static readonly nint _AutoResetMapOffset = Schema.GetOffset(0x2289044E024CB2F5);
+  private static nint? _AutoResetMapOffset;
 
   public SchemaUntypedField AutoResetMap {
-    get => new SchemaUntypedField(_Handle + _AutoResetMapOffset);
+    get {
+      if (_AutoResetMapOffset == null) {
+        _AutoResetMapOffset = Schema.GetOffset(0x2289044E024CB2F5);
+      }
+      return new SchemaUntypedField(_Handle + _AutoResetMapOffset!.Value);
+    }
   }
 
 

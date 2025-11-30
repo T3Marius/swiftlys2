@@ -17,20 +17,35 @@ internal partial class FeNodeReverseOffset_tImpl : SchemaClass, FeNodeReverseOff
   public FeNodeReverseOffset_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OffsetOffset = Schema.GetOffset(0xA3D68D6AB2913856);
+  private static nint? _OffsetOffset;
 
   public ref Vector Offset {
-    get => ref _Handle.AsRef<Vector>(_OffsetOffset);
+    get {
+      if (_OffsetOffset == null) {
+        _OffsetOffset = Schema.GetOffset(0xA3D68D6AB2913856);
+      }
+      return ref _Handle.AsRef<Vector>(_OffsetOffset!.Value);
+    }
   }
-  private static readonly nint _BoneCtrlOffset = Schema.GetOffset(0xA3D68D6AE9730872);
+  private static nint? _BoneCtrlOffset;
 
   public ref ushort BoneCtrl {
-    get => ref _Handle.AsRef<ushort>(_BoneCtrlOffset);
+    get {
+      if (_BoneCtrlOffset == null) {
+        _BoneCtrlOffset = Schema.GetOffset(0xA3D68D6AE9730872);
+      }
+      return ref _Handle.AsRef<ushort>(_BoneCtrlOffset!.Value);
+    }
   }
-  private static readonly nint _TargetNodeOffset = Schema.GetOffset(0xA3D68D6A817BD540);
+  private static nint? _TargetNodeOffset;
 
   public ref ushort TargetNode {
-    get => ref _Handle.AsRef<ushort>(_TargetNodeOffset);
+    get {
+      if (_TargetNodeOffset == null) {
+        _TargetNodeOffset = Schema.GetOffset(0xA3D68D6A817BD540);
+      }
+      return ref _Handle.AsRef<ushort>(_TargetNodeOffset!.Value);
+    }
   }
 
 

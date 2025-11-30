@@ -19,12 +19,36 @@ internal class EventHltvChaseImpl : GameEvent<EventHltvChase>, EventHltvChase
   }
 
   // primary traget index
+  public CCSPlayerController Target1Controller
+  { get => Accessor.GetPlayerController("target1"); }
+
+  // primary traget index
+  public CCSPlayerPawn Target1Pawn
+  { get => Accessor.GetPlayerPawn("target1"); }
+
+  // primary traget index
+  public IPlayer Target1Player
+  { get => Accessor.GetPlayer("target1"); }
+
+  // primary traget index
   public int Target1
-  { get => Accessor.GetPlayerSlot("target1"); set => Accessor.SetPlayerSlot("target1", value); }
+  { get => Accessor.GetInt32("target1"); set => Accessor.SetInt32("target1", value); }
+
+  // secondary traget index or 0
+  public CCSPlayerController Target2Controller
+  { get => Accessor.GetPlayerController("target2"); }
+
+  // secondary traget index or 0
+  public CCSPlayerPawn Target2Pawn
+  { get => Accessor.GetPlayerPawn("target2"); }
+
+  // secondary traget index or 0
+  public IPlayer Target2Player
+  { get => Accessor.GetPlayer("target2"); }
 
   // secondary traget index or 0
   public int Target2
-  { get => Accessor.GetPlayerSlot("target2"); set => Accessor.SetPlayerSlot("target2", value); }
+  { get => Accessor.GetInt32("target2"); set => Accessor.SetInt32("target2", value); }
 
   // camera distance
   public short Distance

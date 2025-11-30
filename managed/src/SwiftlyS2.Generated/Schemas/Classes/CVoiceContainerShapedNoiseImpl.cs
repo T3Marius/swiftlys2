@@ -17,50 +17,95 @@ internal partial class CVoiceContainerShapedNoiseImpl : CVoiceContainerBaseImpl,
   public CVoiceContainerShapedNoiseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _UseCurveForFrequencyOffset = Schema.GetOffset(0xC58213629099DACC);
+  private static nint? _UseCurveForFrequencyOffset;
 
   public ref bool UseCurveForFrequency {
-    get => ref _Handle.AsRef<bool>(_UseCurveForFrequencyOffset);
+    get {
+      if (_UseCurveForFrequencyOffset == null) {
+        _UseCurveForFrequencyOffset = Schema.GetOffset(0xC58213629099DACC);
+      }
+      return ref _Handle.AsRef<bool>(_UseCurveForFrequencyOffset!.Value);
+    }
   }
-  private static readonly nint _FrequencyOffset = Schema.GetOffset(0xC5821362D2C16DD7);
+  private static nint? _FrequencyOffset;
 
   public ref float Frequency {
-    get => ref _Handle.AsRef<float>(_FrequencyOffset);
+    get {
+      if (_FrequencyOffset == null) {
+        _FrequencyOffset = Schema.GetOffset(0xC5821362D2C16DD7);
+      }
+      return ref _Handle.AsRef<float>(_FrequencyOffset!.Value);
+    }
   }
-  private static readonly nint _FrequencySweepOffset = Schema.GetOffset(0xC5821362B670CD0F);
+  private static nint? _FrequencySweepOffset;
 
   public SchemaUntypedField FrequencySweep {
-    get => new SchemaUntypedField(_Handle + _FrequencySweepOffset);
+    get {
+      if (_FrequencySweepOffset == null) {
+        _FrequencySweepOffset = Schema.GetOffset(0xC5821362B670CD0F);
+      }
+      return new SchemaUntypedField(_Handle + _FrequencySweepOffset!.Value);
+    }
   }
-  private static readonly nint _UseCurveForResonanceOffset = Schema.GetOffset(0xC582136265C91FBE);
+  private static nint? _UseCurveForResonanceOffset;
 
   public ref bool UseCurveForResonance {
-    get => ref _Handle.AsRef<bool>(_UseCurveForResonanceOffset);
+    get {
+      if (_UseCurveForResonanceOffset == null) {
+        _UseCurveForResonanceOffset = Schema.GetOffset(0xC582136265C91FBE);
+      }
+      return ref _Handle.AsRef<bool>(_UseCurveForResonanceOffset!.Value);
+    }
   }
-  private static readonly nint _ResonanceOffset = Schema.GetOffset(0xC582136283BEE2DD);
+  private static nint? _ResonanceOffset;
 
   public ref float Resonance {
-    get => ref _Handle.AsRef<float>(_ResonanceOffset);
+    get {
+      if (_ResonanceOffset == null) {
+        _ResonanceOffset = Schema.GetOffset(0xC582136283BEE2DD);
+      }
+      return ref _Handle.AsRef<float>(_ResonanceOffset!.Value);
+    }
   }
-  private static readonly nint _ResonanceSweepOffset = Schema.GetOffset(0xC582136250CFD679);
+  private static nint? _ResonanceSweepOffset;
 
   public SchemaUntypedField ResonanceSweep {
-    get => new SchemaUntypedField(_Handle + _ResonanceSweepOffset);
+    get {
+      if (_ResonanceSweepOffset == null) {
+        _ResonanceSweepOffset = Schema.GetOffset(0xC582136250CFD679);
+      }
+      return new SchemaUntypedField(_Handle + _ResonanceSweepOffset!.Value);
+    }
   }
-  private static readonly nint _UseCurveForAmplitudeOffset = Schema.GetOffset(0xC5821362F8970DD3);
+  private static nint? _UseCurveForAmplitudeOffset;
 
   public ref bool UseCurveForAmplitude {
-    get => ref _Handle.AsRef<bool>(_UseCurveForAmplitudeOffset);
+    get {
+      if (_UseCurveForAmplitudeOffset == null) {
+        _UseCurveForAmplitudeOffset = Schema.GetOffset(0xC5821362F8970DD3);
+      }
+      return ref _Handle.AsRef<bool>(_UseCurveForAmplitudeOffset!.Value);
+    }
   }
-  private static readonly nint _GainInDecibelsOffset = Schema.GetOffset(0xC5821362528C3F88);
+  private static nint? _GainInDecibelsOffset;
 
   public ref float GainInDecibels {
-    get => ref _Handle.AsRef<float>(_GainInDecibelsOffset);
+    get {
+      if (_GainInDecibelsOffset == null) {
+        _GainInDecibelsOffset = Schema.GetOffset(0xC5821362528C3F88);
+      }
+      return ref _Handle.AsRef<float>(_GainInDecibelsOffset!.Value);
+    }
   }
-  private static readonly nint _GainSweepOffset = Schema.GetOffset(0xC582136246A13F7A);
+  private static nint? _GainSweepOffset;
 
   public SchemaUntypedField GainSweep {
-    get => new SchemaUntypedField(_Handle + _GainSweepOffset);
+    get {
+      if (_GainSweepOffset == null) {
+        _GainSweepOffset = Schema.GetOffset(0xC582136246A13F7A);
+      }
+      return new SchemaUntypedField(_Handle + _GainSweepOffset!.Value);
+    }
   }
 
 

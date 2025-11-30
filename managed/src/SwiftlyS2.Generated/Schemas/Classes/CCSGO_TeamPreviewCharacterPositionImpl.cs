@@ -17,49 +17,92 @@ internal partial class CCSGO_TeamPreviewCharacterPositionImpl : CBaseEntityImpl,
   public CCSGO_TeamPreviewCharacterPositionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VariantOffset = Schema.GetOffset(0x58B5CA36B2DB2B42);
+  private static nint? _VariantOffset;
 
   public ref int Variant {
-    get => ref _Handle.AsRef<int>(_VariantOffset);
+    get {
+      if (_VariantOffset == null) {
+        _VariantOffset = Schema.GetOffset(0x58B5CA36B2DB2B42);
+      }
+      return ref _Handle.AsRef<int>(_VariantOffset!.Value);
+    }
   }
-  private static readonly nint _RandomOffset = Schema.GetOffset(0x58B5CA36850EF8CE);
+  private static nint? _RandomOffset;
 
   public ref int Random {
-    get => ref _Handle.AsRef<int>(_RandomOffset);
+    get {
+      if (_RandomOffset == null) {
+        _RandomOffset = Schema.GetOffset(0x58B5CA36850EF8CE);
+      }
+      return ref _Handle.AsRef<int>(_RandomOffset!.Value);
+    }
   }
-  private static readonly nint _OrdinalOffset = Schema.GetOffset(0x58B5CA364ABADF96);
+  private static nint? _OrdinalOffset;
 
   public ref int Ordinal {
-    get => ref _Handle.AsRef<int>(_OrdinalOffset);
+    get {
+      if (_OrdinalOffset == null) {
+        _OrdinalOffset = Schema.GetOffset(0x58B5CA364ABADF96);
+      }
+      return ref _Handle.AsRef<int>(_OrdinalOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponNameOffset = Schema.GetOffset(0x58B5CA3652FE8889);
+  private static nint? _WeaponNameOffset;
 
   public string WeaponName {
     get {
-      var ptr = _Handle.Read<nint>(_WeaponNameOffset);
+      if (_WeaponNameOffset == null) {
+        _WeaponNameOffset = Schema.GetOffset(0x58B5CA3652FE8889);
+      }
+      var ptr = _Handle.Read<nint>(_WeaponNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _WeaponNameOffset, value);
+    set {
+      if (_WeaponNameOffset == null) {
+        _WeaponNameOffset = Schema.GetOffset(0x58B5CA3652FE8889);
+      }
+      Schema.SetString(_Handle, _WeaponNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _XuidOffset = Schema.GetOffset(0x58B5CA36C61EB42B);
+  private static nint? _XuidOffset;
 
   public ref ulong Xuid {
-    get => ref _Handle.AsRef<ulong>(_XuidOffset);
+    get {
+      if (_XuidOffset == null) {
+        _XuidOffset = Schema.GetOffset(0x58B5CA36C61EB42B);
+      }
+      return ref _Handle.AsRef<ulong>(_XuidOffset!.Value);
+    }
   }
-  private static readonly nint _AgentItemOffset = Schema.GetOffset(0x58B5CA366B625605);
+  private static nint? _AgentItemOffset;
 
   public CEconItemView AgentItem {
-    get => new CEconItemViewImpl(_Handle + _AgentItemOffset);
+    get {
+      if (_AgentItemOffset == null) {
+        _AgentItemOffset = Schema.GetOffset(0x58B5CA366B625605);
+      }
+      return new CEconItemViewImpl(_Handle + _AgentItemOffset!.Value);
+    }
   }
-  private static readonly nint _GlovesItemOffset = Schema.GetOffset(0x58B5CA3692931DD0);
+  private static nint? _GlovesItemOffset;
 
   public CEconItemView GlovesItem {
-    get => new CEconItemViewImpl(_Handle + _GlovesItemOffset);
+    get {
+      if (_GlovesItemOffset == null) {
+        _GlovesItemOffset = Schema.GetOffset(0x58B5CA3692931DD0);
+      }
+      return new CEconItemViewImpl(_Handle + _GlovesItemOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponItemOffset = Schema.GetOffset(0x58B5CA3689437C5A);
+  private static nint? _WeaponItemOffset;
 
   public CEconItemView WeaponItem {
-    get => new CEconItemViewImpl(_Handle + _WeaponItemOffset);
+    get {
+      if (_WeaponItemOffset == null) {
+        _WeaponItemOffset = Schema.GetOffset(0x58B5CA3689437C5A);
+      }
+      return new CEconItemViewImpl(_Handle + _WeaponItemOffset!.Value);
+    }
   }
 
   public void VariantUpdated() {

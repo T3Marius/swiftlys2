@@ -17,233 +17,458 @@ internal partial class VPhysXConstraintParams_tImpl : SchemaClass, VPhysXConstra
   public VPhysXConstraintParams_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TypeOffset = Schema.GetOffset(0xF2BDF6AD18853D59);
+  private static nint? _TypeOffset;
 
   public ref byte Type {
-    get => ref _Handle.AsRef<byte>(_TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0xF2BDF6AD18853D59);
+      }
+      return ref _Handle.AsRef<byte>(_TypeOffset!.Value);
+    }
   }
-  private static readonly nint _TranslateMotionOffset = Schema.GetOffset(0xF2BDF6AD2A710A0B);
+  private static nint? _TranslateMotionOffset;
 
   public ref byte TranslateMotion {
-    get => ref _Handle.AsRef<byte>(_TranslateMotionOffset);
+    get {
+      if (_TranslateMotionOffset == null) {
+        _TranslateMotionOffset = Schema.GetOffset(0xF2BDF6AD2A710A0B);
+      }
+      return ref _Handle.AsRef<byte>(_TranslateMotionOffset!.Value);
+    }
   }
-  private static readonly nint _RotateMotionOffset = Schema.GetOffset(0xF2BDF6AD5EF89394);
+  private static nint? _RotateMotionOffset;
 
   public ref byte RotateMotion {
-    get => ref _Handle.AsRef<byte>(_RotateMotionOffset);
+    get {
+      if (_RotateMotionOffset == null) {
+        _RotateMotionOffset = Schema.GetOffset(0xF2BDF6AD5EF89394);
+      }
+      return ref _Handle.AsRef<byte>(_RotateMotionOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0xF2BDF6ADCE6E9C28);
+  private static nint? _FlagsOffset;
 
   public ref byte Flags {
-    get => ref _Handle.AsRef<byte>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0xF2BDF6ADCE6E9C28);
+      }
+      return ref _Handle.AsRef<byte>(_FlagsOffset!.Value);
+    }
   }
   public ISchemaFixedArray<Vector> Anchor {
     get => new SchemaFixedArray<Vector>(_Handle, 0xF2BDF6AD23E10E54, 2, 12, 4);
   }
-  private static readonly nint _AxesOffset = Schema.GetOffset(0xF2BDF6AD23115F58);
+  private static nint? _AxesOffset;
 
   public SchemaUntypedField Axes {
-    get => new SchemaUntypedField(_Handle + _AxesOffset);
+    get {
+      if (_AxesOffset == null) {
+        _AxesOffset = Schema.GetOffset(0xF2BDF6AD23115F58);
+      }
+      return new SchemaUntypedField(_Handle + _AxesOffset!.Value);
+    }
   }
-  private static readonly nint _MaxForceOffset = Schema.GetOffset(0xF2BDF6ADFA9D37B8);
+  private static nint? _MaxForceOffset;
 
   public ref float MaxForce {
-    get => ref _Handle.AsRef<float>(_MaxForceOffset);
+    get {
+      if (_MaxForceOffset == null) {
+        _MaxForceOffset = Schema.GetOffset(0xF2BDF6ADFA9D37B8);
+      }
+      return ref _Handle.AsRef<float>(_MaxForceOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTorqueOffset = Schema.GetOffset(0xF2BDF6AD7880BF37);
+  private static nint? _MaxTorqueOffset;
 
   public ref float MaxTorque {
-    get => ref _Handle.AsRef<float>(_MaxTorqueOffset);
+    get {
+      if (_MaxTorqueOffset == null) {
+        _MaxTorqueOffset = Schema.GetOffset(0xF2BDF6AD7880BF37);
+      }
+      return ref _Handle.AsRef<float>(_MaxTorqueOffset!.Value);
+    }
   }
-  private static readonly nint _LinearLimitValueOffset = Schema.GetOffset(0xF2BDF6ADB813ABE0);
+  private static nint? _LinearLimitValueOffset;
 
   public ref float LinearLimitValue {
-    get => ref _Handle.AsRef<float>(_LinearLimitValueOffset);
+    get {
+      if (_LinearLimitValueOffset == null) {
+        _LinearLimitValueOffset = Schema.GetOffset(0xF2BDF6ADB813ABE0);
+      }
+      return ref _Handle.AsRef<float>(_LinearLimitValueOffset!.Value);
+    }
   }
-  private static readonly nint _LinearLimitRestitutionOffset = Schema.GetOffset(0xF2BDF6AD4EB00271);
+  private static nint? _LinearLimitRestitutionOffset;
 
   public ref float LinearLimitRestitution {
-    get => ref _Handle.AsRef<float>(_LinearLimitRestitutionOffset);
+    get {
+      if (_LinearLimitRestitutionOffset == null) {
+        _LinearLimitRestitutionOffset = Schema.GetOffset(0xF2BDF6AD4EB00271);
+      }
+      return ref _Handle.AsRef<float>(_LinearLimitRestitutionOffset!.Value);
+    }
   }
-  private static readonly nint _LinearLimitSpringOffset = Schema.GetOffset(0xF2BDF6ADD69EE39A);
+  private static nint? _LinearLimitSpringOffset;
 
   public ref float LinearLimitSpring {
-    get => ref _Handle.AsRef<float>(_LinearLimitSpringOffset);
+    get {
+      if (_LinearLimitSpringOffset == null) {
+        _LinearLimitSpringOffset = Schema.GetOffset(0xF2BDF6ADD69EE39A);
+      }
+      return ref _Handle.AsRef<float>(_LinearLimitSpringOffset!.Value);
+    }
   }
-  private static readonly nint _LinearLimitDampingOffset = Schema.GetOffset(0xF2BDF6AD0F807887);
+  private static nint? _LinearLimitDampingOffset;
 
   public ref float LinearLimitDamping {
-    get => ref _Handle.AsRef<float>(_LinearLimitDampingOffset);
+    get {
+      if (_LinearLimitDampingOffset == null) {
+        _LinearLimitDampingOffset = Schema.GetOffset(0xF2BDF6AD0F807887);
+      }
+      return ref _Handle.AsRef<float>(_LinearLimitDampingOffset!.Value);
+    }
   }
-  private static readonly nint _TwistLowLimitValueOffset = Schema.GetOffset(0xF2BDF6AD2D2A931E);
+  private static nint? _TwistLowLimitValueOffset;
 
   public ref float TwistLowLimitValue {
-    get => ref _Handle.AsRef<float>(_TwistLowLimitValueOffset);
+    get {
+      if (_TwistLowLimitValueOffset == null) {
+        _TwistLowLimitValueOffset = Schema.GetOffset(0xF2BDF6AD2D2A931E);
+      }
+      return ref _Handle.AsRef<float>(_TwistLowLimitValueOffset!.Value);
+    }
   }
-  private static readonly nint _TwistLowLimitRestitutionOffset = Schema.GetOffset(0xF2BDF6AD58A6205B);
+  private static nint? _TwistLowLimitRestitutionOffset;
 
   public ref float TwistLowLimitRestitution {
-    get => ref _Handle.AsRef<float>(_TwistLowLimitRestitutionOffset);
+    get {
+      if (_TwistLowLimitRestitutionOffset == null) {
+        _TwistLowLimitRestitutionOffset = Schema.GetOffset(0xF2BDF6AD58A6205B);
+      }
+      return ref _Handle.AsRef<float>(_TwistLowLimitRestitutionOffset!.Value);
+    }
   }
-  private static readonly nint _TwistLowLimitSpringOffset = Schema.GetOffset(0xF2BDF6ADFD3EA378);
+  private static nint? _TwistLowLimitSpringOffset;
 
   public ref float TwistLowLimitSpring {
-    get => ref _Handle.AsRef<float>(_TwistLowLimitSpringOffset);
+    get {
+      if (_TwistLowLimitSpringOffset == null) {
+        _TwistLowLimitSpringOffset = Schema.GetOffset(0xF2BDF6ADFD3EA378);
+      }
+      return ref _Handle.AsRef<float>(_TwistLowLimitSpringOffset!.Value);
+    }
   }
-  private static readonly nint _TwistLowLimitDampingOffset = Schema.GetOffset(0xF2BDF6AD1C805229);
+  private static nint? _TwistLowLimitDampingOffset;
 
   public ref float TwistLowLimitDamping {
-    get => ref _Handle.AsRef<float>(_TwistLowLimitDampingOffset);
+    get {
+      if (_TwistLowLimitDampingOffset == null) {
+        _TwistLowLimitDampingOffset = Schema.GetOffset(0xF2BDF6AD1C805229);
+      }
+      return ref _Handle.AsRef<float>(_TwistLowLimitDampingOffset!.Value);
+    }
   }
-  private static readonly nint _TwistHighLimitValueOffset = Schema.GetOffset(0xF2BDF6ADE29F5844);
+  private static nint? _TwistHighLimitValueOffset;
 
   public ref float TwistHighLimitValue {
-    get => ref _Handle.AsRef<float>(_TwistHighLimitValueOffset);
+    get {
+      if (_TwistHighLimitValueOffset == null) {
+        _TwistHighLimitValueOffset = Schema.GetOffset(0xF2BDF6ADE29F5844);
+      }
+      return ref _Handle.AsRef<float>(_TwistHighLimitValueOffset!.Value);
+    }
   }
-  private static readonly nint _TwistHighLimitRestitutionOffset = Schema.GetOffset(0xF2BDF6AD6CDC5C9D);
+  private static nint? _TwistHighLimitRestitutionOffset;
 
   public ref float TwistHighLimitRestitution {
-    get => ref _Handle.AsRef<float>(_TwistHighLimitRestitutionOffset);
+    get {
+      if (_TwistHighLimitRestitutionOffset == null) {
+        _TwistHighLimitRestitutionOffset = Schema.GetOffset(0xF2BDF6AD6CDC5C9D);
+      }
+      return ref _Handle.AsRef<float>(_TwistHighLimitRestitutionOffset!.Value);
+    }
   }
-  private static readonly nint _TwistHighLimitSpringOffset = Schema.GetOffset(0xF2BDF6AD572B2446);
+  private static nint? _TwistHighLimitSpringOffset;
 
   public ref float TwistHighLimitSpring {
-    get => ref _Handle.AsRef<float>(_TwistHighLimitSpringOffset);
+    get {
+      if (_TwistHighLimitSpringOffset == null) {
+        _TwistHighLimitSpringOffset = Schema.GetOffset(0xF2BDF6AD572B2446);
+      }
+      return ref _Handle.AsRef<float>(_TwistHighLimitSpringOffset!.Value);
+    }
   }
-  private static readonly nint _TwistHighLimitDampingOffset = Schema.GetOffset(0xF2BDF6ADA25A11AB);
+  private static nint? _TwistHighLimitDampingOffset;
 
   public ref float TwistHighLimitDamping {
-    get => ref _Handle.AsRef<float>(_TwistHighLimitDampingOffset);
+    get {
+      if (_TwistHighLimitDampingOffset == null) {
+        _TwistHighLimitDampingOffset = Schema.GetOffset(0xF2BDF6ADA25A11AB);
+      }
+      return ref _Handle.AsRef<float>(_TwistHighLimitDampingOffset!.Value);
+    }
   }
-  private static readonly nint _Swing1LimitValueOffset = Schema.GetOffset(0xF2BDF6AD895D1418);
+  private static nint? _Swing1LimitValueOffset;
 
   public ref float Swing1LimitValue {
-    get => ref _Handle.AsRef<float>(_Swing1LimitValueOffset);
+    get {
+      if (_Swing1LimitValueOffset == null) {
+        _Swing1LimitValueOffset = Schema.GetOffset(0xF2BDF6AD895D1418);
+      }
+      return ref _Handle.AsRef<float>(_Swing1LimitValueOffset!.Value);
+    }
   }
-  private static readonly nint _Swing1LimitRestitutionOffset = Schema.GetOffset(0xF2BDF6ADEB0D3459);
+  private static nint? _Swing1LimitRestitutionOffset;
 
   public ref float Swing1LimitRestitution {
-    get => ref _Handle.AsRef<float>(_Swing1LimitRestitutionOffset);
+    get {
+      if (_Swing1LimitRestitutionOffset == null) {
+        _Swing1LimitRestitutionOffset = Schema.GetOffset(0xF2BDF6ADEB0D3459);
+      }
+      return ref _Handle.AsRef<float>(_Swing1LimitRestitutionOffset!.Value);
+    }
   }
-  private static readonly nint _Swing1LimitSpringOffset = Schema.GetOffset(0xF2BDF6ADE1EEAF92);
+  private static nint? _Swing1LimitSpringOffset;
 
   public ref float Swing1LimitSpring {
-    get => ref _Handle.AsRef<float>(_Swing1LimitSpringOffset);
+    get {
+      if (_Swing1LimitSpringOffset == null) {
+        _Swing1LimitSpringOffset = Schema.GetOffset(0xF2BDF6ADE1EEAF92);
+      }
+      return ref _Handle.AsRef<float>(_Swing1LimitSpringOffset!.Value);
+    }
   }
-  private static readonly nint _Swing1LimitDampingOffset = Schema.GetOffset(0xF2BDF6AD610E7A3F);
+  private static nint? _Swing1LimitDampingOffset;
 
   public ref float Swing1LimitDamping {
-    get => ref _Handle.AsRef<float>(_Swing1LimitDampingOffset);
+    get {
+      if (_Swing1LimitDampingOffset == null) {
+        _Swing1LimitDampingOffset = Schema.GetOffset(0xF2BDF6AD610E7A3F);
+      }
+      return ref _Handle.AsRef<float>(_Swing1LimitDampingOffset!.Value);
+    }
   }
-  private static readonly nint _Swing2LimitValueOffset = Schema.GetOffset(0xF2BDF6AD09643191);
+  private static nint? _Swing2LimitValueOffset;
 
   public ref float Swing2LimitValue {
-    get => ref _Handle.AsRef<float>(_Swing2LimitValueOffset);
+    get {
+      if (_Swing2LimitValueOffset == null) {
+        _Swing2LimitValueOffset = Schema.GetOffset(0xF2BDF6AD09643191);
+      }
+      return ref _Handle.AsRef<float>(_Swing2LimitValueOffset!.Value);
+    }
   }
-  private static readonly nint _Swing2LimitRestitutionOffset = Schema.GetOffset(0xF2BDF6ADFA0A151C);
+  private static nint? _Swing2LimitRestitutionOffset;
 
   public ref float Swing2LimitRestitution {
-    get => ref _Handle.AsRef<float>(_Swing2LimitRestitutionOffset);
+    get {
+      if (_Swing2LimitRestitutionOffset == null) {
+        _Swing2LimitRestitutionOffset = Schema.GetOffset(0xF2BDF6ADFA0A151C);
+      }
+      return ref _Handle.AsRef<float>(_Swing2LimitRestitutionOffset!.Value);
+    }
   }
-  private static readonly nint _Swing2LimitSpringOffset = Schema.GetOffset(0xF2BDF6AD9258456D);
+  private static nint? _Swing2LimitSpringOffset;
 
   public ref float Swing2LimitSpring {
-    get => ref _Handle.AsRef<float>(_Swing2LimitSpringOffset);
+    get {
+      if (_Swing2LimitSpringOffset == null) {
+        _Swing2LimitSpringOffset = Schema.GetOffset(0xF2BDF6AD9258456D);
+      }
+      return ref _Handle.AsRef<float>(_Swing2LimitSpringOffset!.Value);
+    }
   }
-  private static readonly nint _Swing2LimitDampingOffset = Schema.GetOffset(0xF2BDF6AD80E51186);
+  private static nint? _Swing2LimitDampingOffset;
 
   public ref float Swing2LimitDamping {
-    get => ref _Handle.AsRef<float>(_Swing2LimitDampingOffset);
+    get {
+      if (_Swing2LimitDampingOffset == null) {
+        _Swing2LimitDampingOffset = Schema.GetOffset(0xF2BDF6AD80E51186);
+      }
+      return ref _Handle.AsRef<float>(_Swing2LimitDampingOffset!.Value);
+    }
   }
-  private static readonly nint _GoalPositionOffset = Schema.GetOffset(0xF2BDF6AD02ACD9A1);
+  private static nint? _GoalPositionOffset;
 
   public ref Vector GoalPosition {
-    get => ref _Handle.AsRef<Vector>(_GoalPositionOffset);
+    get {
+      if (_GoalPositionOffset == null) {
+        _GoalPositionOffset = Schema.GetOffset(0xF2BDF6AD02ACD9A1);
+      }
+      return ref _Handle.AsRef<Vector>(_GoalPositionOffset!.Value);
+    }
   }
-  private static readonly nint _GoalOrientationOffset = Schema.GetOffset(0xF2BDF6ADA64626A8);
+  private static nint? _GoalOrientationOffset;
 
   public SchemaUntypedField GoalOrientation {
-    get => new SchemaUntypedField(_Handle + _GoalOrientationOffset);
+    get {
+      if (_GoalOrientationOffset == null) {
+        _GoalOrientationOffset = Schema.GetOffset(0xF2BDF6ADA64626A8);
+      }
+      return new SchemaUntypedField(_Handle + _GoalOrientationOffset!.Value);
+    }
   }
-  private static readonly nint _GoalAngularVelocityOffset = Schema.GetOffset(0xF2BDF6AD3FA6751F);
+  private static nint? _GoalAngularVelocityOffset;
 
   public ref Vector GoalAngularVelocity {
-    get => ref _Handle.AsRef<Vector>(_GoalAngularVelocityOffset);
+    get {
+      if (_GoalAngularVelocityOffset == null) {
+        _GoalAngularVelocityOffset = Schema.GetOffset(0xF2BDF6AD3FA6751F);
+      }
+      return ref _Handle.AsRef<Vector>(_GoalAngularVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _DriveSpringXOffset = Schema.GetOffset(0xF2BDF6ADC4001382);
+  private static nint? _DriveSpringXOffset;
 
   public ref float DriveSpringX {
-    get => ref _Handle.AsRef<float>(_DriveSpringXOffset);
+    get {
+      if (_DriveSpringXOffset == null) {
+        _DriveSpringXOffset = Schema.GetOffset(0xF2BDF6ADC4001382);
+      }
+      return ref _Handle.AsRef<float>(_DriveSpringXOffset!.Value);
+    }
   }
-  private static readonly nint _DriveSpringYOffset = Schema.GetOffset(0xF2BDF6ADC5001515);
+  private static nint? _DriveSpringYOffset;
 
   public ref float DriveSpringY {
-    get => ref _Handle.AsRef<float>(_DriveSpringYOffset);
+    get {
+      if (_DriveSpringYOffset == null) {
+        _DriveSpringYOffset = Schema.GetOffset(0xF2BDF6ADC5001515);
+      }
+      return ref _Handle.AsRef<float>(_DriveSpringYOffset!.Value);
+    }
   }
-  private static readonly nint _DriveSpringZOffset = Schema.GetOffset(0xF2BDF6ADC200105C);
+  private static nint? _DriveSpringZOffset;
 
   public ref float DriveSpringZ {
-    get => ref _Handle.AsRef<float>(_DriveSpringZOffset);
+    get {
+      if (_DriveSpringZOffset == null) {
+        _DriveSpringZOffset = Schema.GetOffset(0xF2BDF6ADC200105C);
+      }
+      return ref _Handle.AsRef<float>(_DriveSpringZOffset!.Value);
+    }
   }
-  private static readonly nint _DriveDampingXOffset = Schema.GetOffset(0xF2BDF6AD65958311);
+  private static nint? _DriveDampingXOffset;
 
   public ref float DriveDampingX {
-    get => ref _Handle.AsRef<float>(_DriveDampingXOffset);
+    get {
+      if (_DriveDampingXOffset == null) {
+        _DriveDampingXOffset = Schema.GetOffset(0xF2BDF6AD65958311);
+      }
+      return ref _Handle.AsRef<float>(_DriveDampingXOffset!.Value);
+    }
   }
-  private static readonly nint _DriveDampingYOffset = Schema.GetOffset(0xF2BDF6AD6495817E);
+  private static nint? _DriveDampingYOffset;
 
   public ref float DriveDampingY {
-    get => ref _Handle.AsRef<float>(_DriveDampingYOffset);
+    get {
+      if (_DriveDampingYOffset == null) {
+        _DriveDampingYOffset = Schema.GetOffset(0xF2BDF6AD6495817E);
+      }
+      return ref _Handle.AsRef<float>(_DriveDampingYOffset!.Value);
+    }
   }
-  private static readonly nint _DriveDampingZOffset = Schema.GetOffset(0xF2BDF6AD63957FEB);
+  private static nint? _DriveDampingZOffset;
 
   public ref float DriveDampingZ {
-    get => ref _Handle.AsRef<float>(_DriveDampingZOffset);
+    get {
+      if (_DriveDampingZOffset == null) {
+        _DriveDampingZOffset = Schema.GetOffset(0xF2BDF6AD63957FEB);
+      }
+      return ref _Handle.AsRef<float>(_DriveDampingZOffset!.Value);
+    }
   }
-  private static readonly nint _DriveSpringTwistOffset = Schema.GetOffset(0xF2BDF6AD779F67D1);
+  private static nint? _DriveSpringTwistOffset;
 
   public ref float DriveSpringTwist {
-    get => ref _Handle.AsRef<float>(_DriveSpringTwistOffset);
+    get {
+      if (_DriveSpringTwistOffset == null) {
+        _DriveSpringTwistOffset = Schema.GetOffset(0xF2BDF6AD779F67D1);
+      }
+      return ref _Handle.AsRef<float>(_DriveSpringTwistOffset!.Value);
+    }
   }
-  private static readonly nint _DriveSpringSwingOffset = Schema.GetOffset(0xF2BDF6ADE2653378);
+  private static nint? _DriveSpringSwingOffset;
 
   public ref float DriveSpringSwing {
-    get => ref _Handle.AsRef<float>(_DriveSpringSwingOffset);
+    get {
+      if (_DriveSpringSwingOffset == null) {
+        _DriveSpringSwingOffset = Schema.GetOffset(0xF2BDF6ADE2653378);
+      }
+      return ref _Handle.AsRef<float>(_DriveSpringSwingOffset!.Value);
+    }
   }
-  private static readonly nint _DriveSpringSlerpOffset = Schema.GetOffset(0xF2BDF6AD8422D78E);
+  private static nint? _DriveSpringSlerpOffset;
 
   public ref float DriveSpringSlerp {
-    get => ref _Handle.AsRef<float>(_DriveSpringSlerpOffset);
+    get {
+      if (_DriveSpringSlerpOffset == null) {
+        _DriveSpringSlerpOffset = Schema.GetOffset(0xF2BDF6AD8422D78E);
+      }
+      return ref _Handle.AsRef<float>(_DriveSpringSlerpOffset!.Value);
+    }
   }
-  private static readonly nint _DriveDampingTwistOffset = Schema.GetOffset(0xF2BDF6AD013F8FEA);
+  private static nint? _DriveDampingTwistOffset;
 
   public ref float DriveDampingTwist {
-    get => ref _Handle.AsRef<float>(_DriveDampingTwistOffset);
+    get {
+      if (_DriveDampingTwistOffset == null) {
+        _DriveDampingTwistOffset = Schema.GetOffset(0xF2BDF6AD013F8FEA);
+      }
+      return ref _Handle.AsRef<float>(_DriveDampingTwistOffset!.Value);
+    }
   }
-  private static readonly nint _DriveDampingSwingOffset = Schema.GetOffset(0xF2BDF6AD948D0F6B);
+  private static nint? _DriveDampingSwingOffset;
 
   public ref float DriveDampingSwing {
-    get => ref _Handle.AsRef<float>(_DriveDampingSwingOffset);
+    get {
+      if (_DriveDampingSwingOffset == null) {
+        _DriveDampingSwingOffset = Schema.GetOffset(0xF2BDF6AD948D0F6B);
+      }
+      return ref _Handle.AsRef<float>(_DriveDampingSwingOffset!.Value);
+    }
   }
-  private static readonly nint _DriveDampingSlerpOffset = Schema.GetOffset(0xF2BDF6ADDDD15859);
+  private static nint? _DriveDampingSlerpOffset;
 
   public ref float DriveDampingSlerp {
-    get => ref _Handle.AsRef<float>(_DriveDampingSlerpOffset);
+    get {
+      if (_DriveDampingSlerpOffset == null) {
+        _DriveDampingSlerpOffset = Schema.GetOffset(0xF2BDF6ADDDD15859);
+      }
+      return ref _Handle.AsRef<float>(_DriveDampingSlerpOffset!.Value);
+    }
   }
-  private static readonly nint _SolverIterationCountOffset = Schema.GetOffset(0xF2BDF6ADCB9C71C4);
+  private static nint? _SolverIterationCountOffset;
 
   public ref int SolverIterationCount {
-    get => ref _Handle.AsRef<int>(_SolverIterationCountOffset);
+    get {
+      if (_SolverIterationCountOffset == null) {
+        _SolverIterationCountOffset = Schema.GetOffset(0xF2BDF6ADCB9C71C4);
+      }
+      return ref _Handle.AsRef<int>(_SolverIterationCountOffset!.Value);
+    }
   }
-  private static readonly nint _ProjectionLinearToleranceOffset = Schema.GetOffset(0xF2BDF6AD644662E4);
+  private static nint? _ProjectionLinearToleranceOffset;
 
   public ref float ProjectionLinearTolerance {
-    get => ref _Handle.AsRef<float>(_ProjectionLinearToleranceOffset);
+    get {
+      if (_ProjectionLinearToleranceOffset == null) {
+        _ProjectionLinearToleranceOffset = Schema.GetOffset(0xF2BDF6AD644662E4);
+      }
+      return ref _Handle.AsRef<float>(_ProjectionLinearToleranceOffset!.Value);
+    }
   }
-  private static readonly nint _ProjectionAngularToleranceOffset = Schema.GetOffset(0xF2BDF6AD95309A51);
+  private static nint? _ProjectionAngularToleranceOffset;
 
   public ref float ProjectionAngularTolerance {
-    get => ref _Handle.AsRef<float>(_ProjectionAngularToleranceOffset);
+    get {
+      if (_ProjectionAngularToleranceOffset == null) {
+        _ProjectionAngularToleranceOffset = Schema.GetOffset(0xF2BDF6AD95309A51);
+      }
+      return ref _Handle.AsRef<float>(_ProjectionAngularToleranceOffset!.Value);
+    }
   }
 
 

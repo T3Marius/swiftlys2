@@ -17,54 +17,102 @@ internal partial class C_OP_SetCPOrientationToGroundNormalImpl : CParticleFuncti
   public C_OP_SetCPOrientationToGroundNormalImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InterpRateOffset = Schema.GetOffset(0x7BC52DA3D3B705A7);
+  private static nint? _InterpRateOffset;
 
   public ref float InterpRate {
-    get => ref _Handle.AsRef<float>(_InterpRateOffset);
+    get {
+      if (_InterpRateOffset == null) {
+        _InterpRateOffset = Schema.GetOffset(0x7BC52DA3D3B705A7);
+      }
+      return ref _Handle.AsRef<float>(_InterpRateOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTraceLengthOffset = Schema.GetOffset(0x7BC52DA3543C3798);
+  private static nint? _MaxTraceLengthOffset;
 
   public ref float MaxTraceLength {
-    get => ref _Handle.AsRef<float>(_MaxTraceLengthOffset);
+    get {
+      if (_MaxTraceLengthOffset == null) {
+        _MaxTraceLengthOffset = Schema.GetOffset(0x7BC52DA3543C3798);
+      }
+      return ref _Handle.AsRef<float>(_MaxTraceLengthOffset!.Value);
+    }
   }
-  private static readonly nint _ToleranceOffset = Schema.GetOffset(0x7BC52DA38C29728E);
+  private static nint? _ToleranceOffset;
 
   public ref float Tolerance {
-    get => ref _Handle.AsRef<float>(_ToleranceOffset);
+    get {
+      if (_ToleranceOffset == null) {
+        _ToleranceOffset = Schema.GetOffset(0x7BC52DA38C29728E);
+      }
+      return ref _Handle.AsRef<float>(_ToleranceOffset!.Value);
+    }
   }
-  private static readonly nint _TraceOffsetOffset = Schema.GetOffset(0x7BC52DA37EF6C397);
+  private static nint? _TraceOffsetOffset;
 
   public ref float TraceOffset {
-    get => ref _Handle.AsRef<float>(_TraceOffsetOffset);
+    get {
+      if (_TraceOffsetOffset == null) {
+        _TraceOffsetOffset = Schema.GetOffset(0x7BC52DA37EF6C397);
+      }
+      return ref _Handle.AsRef<float>(_TraceOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _CollisionGroupNameOffset = Schema.GetOffset(0x7BC52DA3D58A3195);
+  private static nint? _CollisionGroupNameOffset;
 
   public string CollisionGroupName {
     get {
-      var ptr = _Handle + _CollisionGroupNameOffset;
-      return Schema.GetString(ptr);
+        if (_CollisionGroupNameOffset == null) {
+            _CollisionGroupNameOffset = Schema.GetOffset(0x7BC52DA3D58A3195);
+        }
+        var ptr = _Handle + _CollisionGroupNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _CollisionGroupNameOffset, value, 128);
+    set {
+        if (_CollisionGroupNameOffset == null) {
+            _CollisionGroupNameOffset = Schema.GetOffset(0x7BC52DA3D58A3195);
+        }
+        Schema.SetFixedString(_Handle, _CollisionGroupNameOffset!.Value, value, 128);
+    }
   } 
-  private static readonly nint _TraceSetOffset = Schema.GetOffset(0x7BC52DA3BD26C5B2);
+  private static nint? _TraceSetOffset;
 
   public ref ParticleTraceSet_t TraceSet {
-    get => ref _Handle.AsRef<ParticleTraceSet_t>(_TraceSetOffset);
+    get {
+      if (_TraceSetOffset == null) {
+        _TraceSetOffset = Schema.GetOffset(0x7BC52DA3BD26C5B2);
+      }
+      return ref _Handle.AsRef<ParticleTraceSet_t>(_TraceSetOffset!.Value);
+    }
   }
-  private static readonly nint _InputCPOffset = Schema.GetOffset(0x7BC52DA3F39A3C14);
+  private static nint? _InputCPOffset;
 
   public ref int InputCP {
-    get => ref _Handle.AsRef<int>(_InputCPOffset);
+    get {
+      if (_InputCPOffset == null) {
+        _InputCPOffset = Schema.GetOffset(0x7BC52DA3F39A3C14);
+      }
+      return ref _Handle.AsRef<int>(_InputCPOffset!.Value);
+    }
   }
-  private static readonly nint _OutputCPOffset = Schema.GetOffset(0x7BC52DA350DF5703);
+  private static nint? _OutputCPOffset;
 
   public ref int OutputCP {
-    get => ref _Handle.AsRef<int>(_OutputCPOffset);
+    get {
+      if (_OutputCPOffset == null) {
+        _OutputCPOffset = Schema.GetOffset(0x7BC52DA350DF5703);
+      }
+      return ref _Handle.AsRef<int>(_OutputCPOffset!.Value);
+    }
   }
-  private static readonly nint _IncludeWaterOffset = Schema.GetOffset(0x7BC52DA3EB8D4646);
+  private static nint? _IncludeWaterOffset;
 
   public ref bool IncludeWater {
-    get => ref _Handle.AsRef<bool>(_IncludeWaterOffset);
+    get {
+      if (_IncludeWaterOffset == null) {
+        _IncludeWaterOffset = Schema.GetOffset(0x7BC52DA3EB8D4646);
+      }
+      return ref _Handle.AsRef<bool>(_IncludeWaterOffset!.Value);
+    }
   }
 
 

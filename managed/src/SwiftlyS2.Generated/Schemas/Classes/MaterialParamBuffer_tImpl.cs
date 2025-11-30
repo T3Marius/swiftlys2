@@ -17,10 +17,15 @@ internal partial class MaterialParamBuffer_tImpl : MaterialParam_tImpl, Material
   public MaterialParamBuffer_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x90FFBDB46B99AEEA);
+  private static nint? _ValueOffset;
 
   public ref CUtlBinaryBlock Value {
-    get => ref _Handle.AsRef<CUtlBinaryBlock>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x90FFBDB46B99AEEA);
+      }
+      return ref _Handle.AsRef<CUtlBinaryBlock>(_ValueOffset!.Value);
+    }
   }
 
 

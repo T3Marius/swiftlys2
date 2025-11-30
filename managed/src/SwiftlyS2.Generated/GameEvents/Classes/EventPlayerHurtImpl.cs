@@ -34,8 +34,20 @@ internal class EventPlayerHurtImpl : GameEvent<EventPlayerHurt>, EventPlayerHurt
   { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
   // player who attacked
+  public CCSPlayerController AttackerController
+  { get => Accessor.GetPlayerController("attacker"); }
+
+  // player who attacked
+  public CCSPlayerPawn AttackerPawn
+  { get => Accessor.GetPlayerPawn("attacker"); }
+
+  // player who attacked
+  public IPlayer AttackerPlayer
+  { get => Accessor.GetPlayer("attacker"); }
+
+  // player who attacked
   public int Attacker
-  { get => Accessor.GetPlayerSlot("attacker"); set => Accessor.SetPlayerSlot("attacker", value); }
+  { get => Accessor.GetInt32("attacker"); set => Accessor.SetInt32("attacker", value); }
 
   // remaining health points
   public byte Health

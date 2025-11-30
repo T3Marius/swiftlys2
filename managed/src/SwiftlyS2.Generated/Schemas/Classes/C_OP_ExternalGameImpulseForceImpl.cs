@@ -17,30 +17,55 @@ internal partial class C_OP_ExternalGameImpulseForceImpl : CParticleFunctionForc
   public C_OP_ExternalGameImpulseForceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ForceScaleOffset = Schema.GetOffset(0x9579EDD64817F390);
+  private static nint? _ForceScaleOffset;
 
   public CPerParticleFloatInput ForceScale {
-    get => new CPerParticleFloatInputImpl(_Handle + _ForceScaleOffset);
+    get {
+      if (_ForceScaleOffset == null) {
+        _ForceScaleOffset = Schema.GetOffset(0x9579EDD64817F390);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ForceScaleOffset!.Value);
+    }
   }
-  private static readonly nint _RopesOffset = Schema.GetOffset(0x9579EDD63A651EDA);
+  private static nint? _RopesOffset;
 
   public ref bool Ropes {
-    get => ref _Handle.AsRef<bool>(_RopesOffset);
+    get {
+      if (_RopesOffset == null) {
+        _RopesOffset = Schema.GetOffset(0x9579EDD63A651EDA);
+      }
+      return ref _Handle.AsRef<bool>(_RopesOffset!.Value);
+    }
   }
-  private static readonly nint _RopesZOnlyOffset = Schema.GetOffset(0x9579EDD686709BB2);
+  private static nint? _RopesZOnlyOffset;
 
   public ref bool RopesZOnly {
-    get => ref _Handle.AsRef<bool>(_RopesZOnlyOffset);
+    get {
+      if (_RopesZOnlyOffset == null) {
+        _RopesZOnlyOffset = Schema.GetOffset(0x9579EDD686709BB2);
+      }
+      return ref _Handle.AsRef<bool>(_RopesZOnlyOffset!.Value);
+    }
   }
-  private static readonly nint _ExplosionsOffset = Schema.GetOffset(0x9579EDD64CD39BC9);
+  private static nint? _ExplosionsOffset;
 
   public ref bool Explosions {
-    get => ref _Handle.AsRef<bool>(_ExplosionsOffset);
+    get {
+      if (_ExplosionsOffset == null) {
+        _ExplosionsOffset = Schema.GetOffset(0x9579EDD64CD39BC9);
+      }
+      return ref _Handle.AsRef<bool>(_ExplosionsOffset!.Value);
+    }
   }
-  private static readonly nint _ParticlesOffset = Schema.GetOffset(0x9579EDD6B287A104);
+  private static nint? _ParticlesOffset;
 
   public ref bool Particles {
-    get => ref _Handle.AsRef<bool>(_ParticlesOffset);
+    get {
+      if (_ParticlesOffset == null) {
+        _ParticlesOffset = Schema.GetOffset(0x9579EDD6B287A104);
+      }
+      return ref _Handle.AsRef<bool>(_ParticlesOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class CActionComponentUpdaterImpl : CAnimComponentUpdaterImpl, 
   public CActionComponentUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActionsOffset = Schema.GetOffset(0xA700EA248D622684);
+  private static nint? _ActionsOffset;
 
   public ref CUtlVector<SchemaUntypedField> Actions {
-    get => ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ActionsOffset);
+    get {
+      if (_ActionsOffset == null) {
+        _ActionsOffset = Schema.GetOffset(0xA700EA248D622684);
+      }
+      return ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ActionsOffset!.Value);
+    }
   }
 
 

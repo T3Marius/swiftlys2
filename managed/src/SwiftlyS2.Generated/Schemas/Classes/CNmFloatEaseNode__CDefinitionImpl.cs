@@ -17,30 +17,55 @@ internal partial class CNmFloatEaseNode__CDefinitionImpl : CNmFloatValueNode__CD
   public CNmFloatEaseNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EaseTimeOffset = Schema.GetOffset(0x9D7103D0A54FCC);
+  private static nint? _EaseTimeOffset;
 
   public ref float EaseTime {
-    get => ref _Handle.AsRef<float>(_EaseTimeOffset);
+    get {
+      if (_EaseTimeOffset == null) {
+        _EaseTimeOffset = Schema.GetOffset(0x9D7103D0A54FCC);
+      }
+      return ref _Handle.AsRef<float>(_EaseTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartValueOffset = Schema.GetOffset(0x9D710351C82C2A);
+  private static nint? _StartValueOffset;
 
   public ref float StartValue {
-    get => ref _Handle.AsRef<float>(_StartValueOffset);
+    get {
+      if (_StartValueOffset == null) {
+        _StartValueOffset = Schema.GetOffset(0x9D710351C82C2A);
+      }
+      return ref _Handle.AsRef<float>(_StartValueOffset!.Value);
+    }
   }
-  private static readonly nint _InputValueNodeIdxOffset = Schema.GetOffset(0x9D710395E89F27);
+  private static nint? _InputValueNodeIdxOffset;
 
   public ref short InputValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputValueNodeIdxOffset);
+    get {
+      if (_InputValueNodeIdxOffset == null) {
+        _InputValueNodeIdxOffset = Schema.GetOffset(0x9D710395E89F27);
+      }
+      return ref _Handle.AsRef<short>(_InputValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EasingOpOffset = Schema.GetOffset(0x9D7103CF457EAF);
+  private static nint? _EasingOpOffset;
 
   public ref NmEasingOperation_t EasingOp {
-    get => ref _Handle.AsRef<NmEasingOperation_t>(_EasingOpOffset);
+    get {
+      if (_EasingOpOffset == null) {
+        _EasingOpOffset = Schema.GetOffset(0x9D7103CF457EAF);
+      }
+      return ref _Handle.AsRef<NmEasingOperation_t>(_EasingOpOffset!.Value);
+    }
   }
-  private static readonly nint _UseStartValueOffset = Schema.GetOffset(0x9D710306DE6089);
+  private static nint? _UseStartValueOffset;
 
   public ref bool UseStartValue {
-    get => ref _Handle.AsRef<bool>(_UseStartValueOffset);
+    get {
+      if (_UseStartValueOffset == null) {
+        _UseStartValueOffset = Schema.GetOffset(0x9D710306DE6089);
+      }
+      return ref _Handle.AsRef<bool>(_UseStartValueOffset!.Value);
+    }
   }
 
 

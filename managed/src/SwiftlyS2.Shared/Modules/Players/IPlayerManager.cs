@@ -140,6 +140,7 @@ public interface IPlayerManagerService
     /// <param name="player">The player initiating the search.</param>
     /// <param name="target">The target player name or identifier.</param>
     /// <param name="searchMode">The search mode to apply.</param>
+    /// <param name="nameComparison">The string comparison mode for name matching. Defaults to <see cref="StringComparison.OrdinalIgnoreCase"/>.</param>
     /// <returns>A collection of players matching the search criteria.</returns>
-    public IEnumerable<IPlayer> FindTargettedPlayers( IPlayer player, string target, TargetSearchMode searchMode );
+    public IEnumerable<IPlayer> FindTargettedPlayers( IPlayer player, string target, TargetSearchMode searchMode, StringComparison nameComparison = StringComparison.OrdinalIgnoreCase );
 }

@@ -17,30 +17,55 @@ internal partial class CTestEffectImpl : CBaseEntityImpl, CTestEffect {
   public CTestEffectImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LoopOffset = Schema.GetOffset(0xF4103FBFFFB6D07A);
+  private static nint? _LoopOffset;
 
   public ref int Loop {
-    get => ref _Handle.AsRef<int>(_LoopOffset);
+    get {
+      if (_LoopOffset == null) {
+        _LoopOffset = Schema.GetOffset(0xF4103FBFFFB6D07A);
+      }
+      return ref _Handle.AsRef<int>(_LoopOffset!.Value);
+    }
   }
-  private static readonly nint _BeamOffset = Schema.GetOffset(0xF4103FBF54034EE3);
+  private static nint? _BeamOffset;
 
   public ref int Beam {
-    get => ref _Handle.AsRef<int>(_BeamOffset);
+    get {
+      if (_BeamOffset == null) {
+        _BeamOffset = Schema.GetOffset(0xF4103FBF54034EE3);
+      }
+      return ref _Handle.AsRef<int>(_BeamOffset!.Value);
+    }
   }
-  private static readonly nint _Beam1Offset = Schema.GetOffset(0xF4103FBFC4017428);
+  private static nint? _Beam1Offset;
 
   public SchemaUntypedField Beam1 {
-    get => new SchemaUntypedField(_Handle + _Beam1Offset);
+    get {
+      if (_Beam1Offset == null) {
+        _Beam1Offset = Schema.GetOffset(0xF4103FBFC4017428);
+      }
+      return new SchemaUntypedField(_Handle + _Beam1Offset!.Value);
+    }
   }
-  private static readonly nint _BeamTimeOffset = Schema.GetOffset(0xF4103FBF60293F01);
+  private static nint? _BeamTimeOffset;
 
   public SchemaUntypedField BeamTime {
-    get => new SchemaUntypedField(_Handle + _BeamTimeOffset);
+    get {
+      if (_BeamTimeOffset == null) {
+        _BeamTimeOffset = Schema.GetOffset(0xF4103FBF60293F01);
+      }
+      return new SchemaUntypedField(_Handle + _BeamTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0xF4103FBF67FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public GameTime_t StartTime {
-    get => new GameTime_tImpl(_Handle + _StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0xF4103FBF67FE9DC4);
+      }
+      return new GameTime_tImpl(_Handle + _StartTimeOffset!.Value);
+    }
   }
 
 

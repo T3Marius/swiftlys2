@@ -17,15 +17,25 @@ internal partial class CSolveIKChainUpdateNodeImpl : CUnaryUpdateNodeImpl, CSolv
   public CSolveIKChainUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TargetHandlesOffset = Schema.GetOffset(0xE78F1D1F98E248F7);
+  private static nint? _TargetHandlesOffset;
 
   public ref CUtlVector<CSolveIKTargetHandle_t> TargetHandles {
-    get => ref _Handle.AsRef<CUtlVector<CSolveIKTargetHandle_t>>(_TargetHandlesOffset);
+    get {
+      if (_TargetHandlesOffset == null) {
+        _TargetHandlesOffset = Schema.GetOffset(0xE78F1D1F98E248F7);
+      }
+      return ref _Handle.AsRef<CUtlVector<CSolveIKTargetHandle_t>>(_TargetHandlesOffset!.Value);
+    }
   }
-  private static readonly nint _OpFixedDataOffset = Schema.GetOffset(0xE78F1D1F6960AF8C);
+  private static nint? _OpFixedDataOffset;
 
   public SolveIKChainPoseOpFixedSettings_t OpFixedData {
-    get => new SolveIKChainPoseOpFixedSettings_tImpl(_Handle + _OpFixedDataOffset);
+    get {
+      if (_OpFixedDataOffset == null) {
+        _OpFixedDataOffset = Schema.GetOffset(0xE78F1D1F6960AF8C);
+      }
+      return new SolveIKChainPoseOpFixedSettings_tImpl(_Handle + _OpFixedDataOffset!.Value);
+    }
   }
 
 

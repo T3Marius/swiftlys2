@@ -17,34 +17,62 @@ internal partial class CPulseGraphExecutionHistoryImpl : SchemaClass, CPulseGrap
   public CPulseGraphExecutionHistoryImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InstanceIDOffset = Schema.GetOffset(0x2DC54ABB24192813);
+  private static nint? _InstanceIDOffset;
 
   public PulseGraphInstanceID_t InstanceID {
-    get => new PulseGraphInstanceID_tImpl(_Handle + _InstanceIDOffset);
+    get {
+      if (_InstanceIDOffset == null) {
+        _InstanceIDOffset = Schema.GetOffset(0x2DC54ABB24192813);
+      }
+      return new PulseGraphInstanceID_tImpl(_Handle + _InstanceIDOffset!.Value);
+    }
   }
-  private static readonly nint _StrFileNameOffset = Schema.GetOffset(0x2DC54ABB51B717E5);
+  private static nint? _StrFileNameOffset;
 
   public string StrFileName {
     get {
-      var ptr = _Handle.Read<nint>(_StrFileNameOffset);
+      if (_StrFileNameOffset == null) {
+        _StrFileNameOffset = Schema.GetOffset(0x2DC54ABB51B717E5);
+      }
+      var ptr = _Handle.Read<nint>(_StrFileNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrFileNameOffset, value);
+    set {
+      if (_StrFileNameOffset == null) {
+        _StrFileNameOffset = Schema.GetOffset(0x2DC54ABB51B717E5);
+      }
+      Schema.SetString(_Handle, _StrFileNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _HistoryOffset = Schema.GetOffset(0x2DC54ABBCFBC2CBF);
+  private static nint? _HistoryOffset;
 
   public ref CUtlVector<PointerTo<PulseGraphExecutionHistoryEntry_t>> History {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<PulseGraphExecutionHistoryEntry_t>>>(_HistoryOffset);
+    get {
+      if (_HistoryOffset == null) {
+        _HistoryOffset = Schema.GetOffset(0x2DC54ABBCFBC2CBF);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<PulseGraphExecutionHistoryEntry_t>>>(_HistoryOffset!.Value);
+    }
   }
-  private static readonly nint _MapCellDescOffset = Schema.GetOffset(0x2DC54ABB7E9FEC74);
+  private static nint? _MapCellDescOffset;
 
   public SchemaUntypedField MapCellDesc {
-    get => new SchemaUntypedField(_Handle + _MapCellDescOffset);
+    get {
+      if (_MapCellDescOffset == null) {
+        _MapCellDescOffset = Schema.GetOffset(0x2DC54ABB7E9FEC74);
+      }
+      return new SchemaUntypedField(_Handle + _MapCellDescOffset!.Value);
+    }
   }
-  private static readonly nint _MapCursorDescOffset = Schema.GetOffset(0x2DC54ABBED035BB6);
+  private static nint? _MapCursorDescOffset;
 
   public SchemaUntypedField MapCursorDesc {
-    get => new SchemaUntypedField(_Handle + _MapCursorDescOffset);
+    get {
+      if (_MapCursorDescOffset == null) {
+        _MapCursorDescOffset = Schema.GetOffset(0x2DC54ABBED035BB6);
+      }
+      return new SchemaUntypedField(_Handle + _MapCursorDescOffset!.Value);
+    }
   }
 
 

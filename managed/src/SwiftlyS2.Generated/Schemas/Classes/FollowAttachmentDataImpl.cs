@@ -17,15 +17,25 @@ internal partial class FollowAttachmentDataImpl : SchemaClass, FollowAttachmentD
   public FollowAttachmentDataImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneIndexOffset = Schema.GetOffset(0x7E37AD4D6AFA4155);
+  private static nint? _BoneIndexOffset;
 
   public ref int BoneIndex {
-    get => ref _Handle.AsRef<int>(_BoneIndexOffset);
+    get {
+      if (_BoneIndexOffset == null) {
+        _BoneIndexOffset = Schema.GetOffset(0x7E37AD4D6AFA4155);
+      }
+      return ref _Handle.AsRef<int>(_BoneIndexOffset!.Value);
+    }
   }
-  private static readonly nint _AttachmentHandleOffset = Schema.GetOffset(0x7E37AD4DA203035E);
+  private static nint? _AttachmentHandleOffset;
 
   public AttachmentHandle_t AttachmentHandle {
-    get => new AttachmentHandle_tImpl(_Handle + _AttachmentHandleOffset);
+    get {
+      if (_AttachmentHandleOffset == null) {
+        _AttachmentHandleOffset = Schema.GetOffset(0x7E37AD4DA203035E);
+      }
+      return new AttachmentHandle_tImpl(_Handle + _AttachmentHandleOffset!.Value);
+    }
   }
 
 

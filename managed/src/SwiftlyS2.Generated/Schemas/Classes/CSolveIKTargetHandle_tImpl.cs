@@ -17,15 +17,25 @@ internal partial class CSolveIKTargetHandle_tImpl : SchemaClass, CSolveIKTargetH
   public CSolveIKTargetHandle_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PositionHandleOffset = Schema.GetOffset(0xC2940485B066E3D4);
+  private static nint? _PositionHandleOffset;
 
   public CAnimParamHandle PositionHandle {
-    get => new CAnimParamHandleImpl(_Handle + _PositionHandleOffset);
+    get {
+      if (_PositionHandleOffset == null) {
+        _PositionHandleOffset = Schema.GetOffset(0xC2940485B066E3D4);
+      }
+      return new CAnimParamHandleImpl(_Handle + _PositionHandleOffset!.Value);
+    }
   }
-  private static readonly nint _OrientationHandleOffset = Schema.GetOffset(0xC294048597E9518F);
+  private static nint? _OrientationHandleOffset;
 
   public CAnimParamHandle OrientationHandle {
-    get => new CAnimParamHandleImpl(_Handle + _OrientationHandleOffset);
+    get {
+      if (_OrientationHandleOffset == null) {
+        _OrientationHandleOffset = Schema.GetOffset(0xC294048597E9518F);
+      }
+      return new CAnimParamHandleImpl(_Handle + _OrientationHandleOffset!.Value);
+    }
   }
 
 

@@ -17,44 +17,82 @@ internal partial class C_OP_DecayMaintainCountImpl : CParticleFunctionOperatorIm
   public C_OP_DecayMaintainCountImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParticlesToMaintainOffset = Schema.GetOffset(0x168E27F3537AE378);
+  private static nint? _ParticlesToMaintainOffset;
 
   public ref int ParticlesToMaintain {
-    get => ref _Handle.AsRef<int>(_ParticlesToMaintainOffset);
+    get {
+      if (_ParticlesToMaintainOffset == null) {
+        _ParticlesToMaintainOffset = Schema.GetOffset(0x168E27F3537AE378);
+      }
+      return ref _Handle.AsRef<int>(_ParticlesToMaintainOffset!.Value);
+    }
   }
-  private static readonly nint _DecayDelayOffset = Schema.GetOffset(0x168E27F38D6DD836);
+  private static nint? _DecayDelayOffset;
 
   public ref float DecayDelay {
-    get => ref _Handle.AsRef<float>(_DecayDelayOffset);
+    get {
+      if (_DecayDelayOffset == null) {
+        _DecayDelayOffset = Schema.GetOffset(0x168E27F38D6DD836);
+      }
+      return ref _Handle.AsRef<float>(_DecayDelayOffset!.Value);
+    }
   }
-  private static readonly nint _SnapshotControlPointOffset = Schema.GetOffset(0x168E27F3192638EC);
+  private static nint? _SnapshotControlPointOffset;
 
   public ref int SnapshotControlPoint {
-    get => ref _Handle.AsRef<int>(_SnapshotControlPointOffset);
+    get {
+      if (_SnapshotControlPointOffset == null) {
+        _SnapshotControlPointOffset = Schema.GetOffset(0x168E27F3192638EC);
+      }
+      return ref _Handle.AsRef<int>(_SnapshotControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _StrSnapshotSubsetOffset = Schema.GetOffset(0x168E27F3BD8A8E5E);
+  private static nint? _StrSnapshotSubsetOffset;
 
   public string StrSnapshotSubset {
     get {
-      var ptr = _Handle.Read<nint>(_StrSnapshotSubsetOffset);
+      if (_StrSnapshotSubsetOffset == null) {
+        _StrSnapshotSubsetOffset = Schema.GetOffset(0x168E27F3BD8A8E5E);
+      }
+      var ptr = _Handle.Read<nint>(_StrSnapshotSubsetOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrSnapshotSubsetOffset, value);
+    set {
+      if (_StrSnapshotSubsetOffset == null) {
+        _StrSnapshotSubsetOffset = Schema.GetOffset(0x168E27F3BD8A8E5E);
+      }
+      Schema.SetString(_Handle, _StrSnapshotSubsetOffset!.Value, value);
+    }
   } 
-  private static readonly nint _LifespanDecayOffset = Schema.GetOffset(0x168E27F39642CC6B);
+  private static nint? _LifespanDecayOffset;
 
   public ref bool LifespanDecay {
-    get => ref _Handle.AsRef<bool>(_LifespanDecayOffset);
+    get {
+      if (_LifespanDecayOffset == null) {
+        _LifespanDecayOffset = Schema.GetOffset(0x168E27F39642CC6B);
+      }
+      return ref _Handle.AsRef<bool>(_LifespanDecayOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x168E27F3B731A42F);
+  private static nint? _ScaleOffset;
 
   public CParticleCollectionFloatInput Scale {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x168E27F3B731A42F);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _KillNewestOffset = Schema.GetOffset(0x168E27F3B8EA2EC7);
+  private static nint? _KillNewestOffset;
 
   public ref bool KillNewest {
-    get => ref _Handle.AsRef<bool>(_KillNewestOffset);
+    get {
+      if (_KillNewestOffset == null) {
+        _KillNewestOffset = Schema.GetOffset(0x168E27F3B8EA2EC7);
+      }
+      return ref _Handle.AsRef<bool>(_KillNewestOffset!.Value);
+    }
   }
 
 

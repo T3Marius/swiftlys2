@@ -17,19 +17,32 @@ internal partial class ManifestTestResource_tImpl : SchemaClass, ManifestTestRes
   public ManifestTestResource_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xFF18C79F4D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xFF18C79F4D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xFF18C79F4D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ChildOffset = Schema.GetOffset(0xFF18C79F2827B07D);
+  private static nint? _ChildOffset;
 
   public ref CStrongHandle<InfoForResourceTypeManifestTestResource_t> Child {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeManifestTestResource_t>>(_ChildOffset);
+    get {
+      if (_ChildOffset == null) {
+        _ChildOffset = Schema.GetOffset(0xFF18C79F2827B07D);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeManifestTestResource_t>>(_ChildOffset!.Value);
+    }
   }
 
 

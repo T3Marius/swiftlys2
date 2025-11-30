@@ -17,10 +17,15 @@ internal partial class CFootTrajectoriesImpl : SchemaClass, CFootTrajectories {
   public CFootTrajectoriesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TrajectoriesOffset = Schema.GetOffset(0x5D019D277964C78C);
+  private static nint? _TrajectoriesOffset;
 
   public ref CUtlVector<CFootTrajectory> Trajectories {
-    get => ref _Handle.AsRef<CUtlVector<CFootTrajectory>>(_TrajectoriesOffset);
+    get {
+      if (_TrajectoriesOffset == null) {
+        _TrajectoriesOffset = Schema.GetOffset(0x5D019D277964C78C);
+      }
+      return ref _Handle.AsRef<CUtlVector<CFootTrajectory>>(_TrajectoriesOffset!.Value);
+    }
   }
 
 

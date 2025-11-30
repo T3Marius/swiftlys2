@@ -35,12 +35,36 @@ internal class EventPlayerDeathImpl : GameEvent<EventPlayerDeath>, EventPlayerDe
   { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
   // user ID who killed
+  public CCSPlayerController AttackerController
+  { get => Accessor.GetPlayerController("attacker"); }
+
+  // user ID who killed
+  public CCSPlayerPawn AttackerPawn
+  { get => Accessor.GetPlayerPawn("attacker"); }
+
+  // user ID who killed
+  public IPlayer AttackerPlayer
+  { get => Accessor.GetPlayer("attacker"); }
+
+  // user ID who killed
   public int Attacker
-  { get => Accessor.GetPlayerSlot("attacker"); set => Accessor.SetPlayerSlot("attacker", value); }
+  { get => Accessor.GetInt32("attacker"); set => Accessor.SetInt32("attacker", value); }
+
+  // player who assisted in the kill
+  public CCSPlayerController AssisterController
+  { get => Accessor.GetPlayerController("assister"); }
+
+  // player who assisted in the kill
+  public CCSPlayerPawn AssisterPawn
+  { get => Accessor.GetPlayerPawn("assister"); }
+
+  // player who assisted in the kill
+  public IPlayer AssisterPlayer
+  { get => Accessor.GetPlayer("assister"); }
 
   // player who assisted in the kill
   public int Assister
-  { get => Accessor.GetPlayerSlot("assister"); set => Accessor.SetPlayerSlot("assister", value); }
+  { get => Accessor.GetInt32("assister"); set => Accessor.SetInt32("assister", value); }
 
   // assister helped with a flash
   public bool AssistedFlash

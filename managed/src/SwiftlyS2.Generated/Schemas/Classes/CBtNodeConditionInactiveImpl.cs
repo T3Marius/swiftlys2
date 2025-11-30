@@ -17,20 +17,35 @@ internal partial class CBtNodeConditionInactiveImpl : CBtNodeConditionImpl, CBtN
   public CBtNodeConditionInactiveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RoundStartThresholdSecondsOffset = Schema.GetOffset(0x1AB44FB08A52CC47);
+  private static nint? _RoundStartThresholdSecondsOffset;
 
   public ref float RoundStartThresholdSeconds {
-    get => ref _Handle.AsRef<float>(_RoundStartThresholdSecondsOffset);
+    get {
+      if (_RoundStartThresholdSecondsOffset == null) {
+        _RoundStartThresholdSecondsOffset = Schema.GetOffset(0x1AB44FB08A52CC47);
+      }
+      return ref _Handle.AsRef<float>(_RoundStartThresholdSecondsOffset!.Value);
+    }
   }
-  private static readonly nint _SensorInactivityThresholdSecondsOffset = Schema.GetOffset(0x1AB44FB07E66A29F);
+  private static nint? _SensorInactivityThresholdSecondsOffset;
 
   public ref float SensorInactivityThresholdSeconds {
-    get => ref _Handle.AsRef<float>(_SensorInactivityThresholdSecondsOffset);
+    get {
+      if (_SensorInactivityThresholdSecondsOffset == null) {
+        _SensorInactivityThresholdSecondsOffset = Schema.GetOffset(0x1AB44FB07E66A29F);
+      }
+      return ref _Handle.AsRef<float>(_SensorInactivityThresholdSecondsOffset!.Value);
+    }
   }
-  private static readonly nint _SensorInactivityTimerOffset = Schema.GetOffset(0x1AB44FB0D921DF72);
+  private static nint? _SensorInactivityTimerOffset;
 
   public CountdownTimer SensorInactivityTimer {
-    get => new CountdownTimerImpl(_Handle + _SensorInactivityTimerOffset);
+    get {
+      if (_SensorInactivityTimerOffset == null) {
+        _SensorInactivityTimerOffset = Schema.GetOffset(0x1AB44FB0D921DF72);
+      }
+      return new CountdownTimerImpl(_Handle + _SensorInactivityTimerOffset!.Value);
+    }
   }
 
 

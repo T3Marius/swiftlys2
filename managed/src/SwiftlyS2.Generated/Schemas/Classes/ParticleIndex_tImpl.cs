@@ -17,10 +17,15 @@ internal partial class ParticleIndex_tImpl : SchemaClass, ParticleIndex_t {
   public ParticleIndex_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xA7ED25EEDCB0894A);
+  private static nint? _ValueOffset;
 
   public ref int Value {
-    get => ref _Handle.AsRef<int>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xA7ED25EEDCB0894A);
+      }
+      return ref _Handle.AsRef<int>(_ValueOffset!.Value);
+    }
   }
 
 

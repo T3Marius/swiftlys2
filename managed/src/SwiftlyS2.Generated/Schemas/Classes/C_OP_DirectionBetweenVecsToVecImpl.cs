@@ -17,20 +17,35 @@ internal partial class C_OP_DirectionBetweenVecsToVecImpl : CParticleFunctionOpe
   public C_OP_DirectionBetweenVecsToVecImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x6022BA82E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x6022BA82E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _Point1Offset = Schema.GetOffset(0x6022BA8204AD2BC0);
+  private static nint? _Point1Offset;
 
   public CPerParticleVecInput Point1 {
-    get => new CPerParticleVecInputImpl(_Handle + _Point1Offset);
+    get {
+      if (_Point1Offset == null) {
+        _Point1Offset = Schema.GetOffset(0x6022BA8204AD2BC0);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _Point1Offset!.Value);
+    }
   }
-  private static readonly nint _Point2Offset = Schema.GetOffset(0x6022BA8207AD3079);
+  private static nint? _Point2Offset;
 
   public CPerParticleVecInput Point2 {
-    get => new CPerParticleVecInputImpl(_Handle + _Point2Offset);
+    get {
+      if (_Point2Offset == null) {
+        _Point2Offset = Schema.GetOffset(0x6022BA8207AD3079);
+      }
+      return new CPerParticleVecInputImpl(_Handle + _Point2Offset!.Value);
+    }
   }
 
 

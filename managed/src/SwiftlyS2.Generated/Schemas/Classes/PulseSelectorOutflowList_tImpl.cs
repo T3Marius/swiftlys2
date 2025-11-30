@@ -17,10 +17,15 @@ internal partial class PulseSelectorOutflowList_tImpl : SchemaClass, PulseSelect
   public PulseSelectorOutflowList_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OutflowsOffset = Schema.GetOffset(0x2A880DD28F0AFDF8);
+  private static nint? _OutflowsOffset;
 
   public ref CUtlVector<OutflowWithRequirements_t> Outflows {
-    get => ref _Handle.AsRef<CUtlVector<OutflowWithRequirements_t>>(_OutflowsOffset);
+    get {
+      if (_OutflowsOffset == null) {
+        _OutflowsOffset = Schema.GetOffset(0x2A880DD28F0AFDF8);
+      }
+      return ref _Handle.AsRef<CUtlVector<OutflowWithRequirements_t>>(_OutflowsOffset!.Value);
+    }
   }
 
 

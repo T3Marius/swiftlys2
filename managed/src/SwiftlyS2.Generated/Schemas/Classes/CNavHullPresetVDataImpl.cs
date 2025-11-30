@@ -17,10 +17,15 @@ internal partial class CNavHullPresetVDataImpl : SchemaClass, CNavHullPresetVDat
   public CNavHullPresetVDataImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NavHullsOffset = Schema.GetOffset(0x9963D667366CCF96);
+  private static nint? _NavHullsOffset;
 
   public ref CUtlVector<CUtlString> NavHulls {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_NavHullsOffset);
+    get {
+      if (_NavHullsOffset == null) {
+        _NavHullsOffset = Schema.GetOffset(0x9963D667366CCF96);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_NavHullsOffset!.Value);
+    }
   }
 
 

@@ -17,45 +17,85 @@ internal partial class C_OP_SetControlPointOrientationImpl : CParticleFunctionPr
   public C_OP_SetControlPointOrientationImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _UseWorldLocationOffset = Schema.GetOffset(0x2461079CF371AED7);
+  private static nint? _UseWorldLocationOffset;
 
   public ref bool UseWorldLocation {
-    get => ref _Handle.AsRef<bool>(_UseWorldLocationOffset);
+    get {
+      if (_UseWorldLocationOffset == null) {
+        _UseWorldLocationOffset = Schema.GetOffset(0x2461079CF371AED7);
+      }
+      return ref _Handle.AsRef<bool>(_UseWorldLocationOffset!.Value);
+    }
   }
-  private static readonly nint _RandomizeOffset = Schema.GetOffset(0x2461079C4C98CC9C);
+  private static nint? _RandomizeOffset;
 
   public ref bool Randomize {
-    get => ref _Handle.AsRef<bool>(_RandomizeOffset);
+    get {
+      if (_RandomizeOffset == null) {
+        _RandomizeOffset = Schema.GetOffset(0x2461079C4C98CC9C);
+      }
+      return ref _Handle.AsRef<bool>(_RandomizeOffset!.Value);
+    }
   }
-  private static readonly nint _SetOnceOffset = Schema.GetOffset(0x2461079C6B261086);
+  private static nint? _SetOnceOffset;
 
   public ref bool SetOnce {
-    get => ref _Handle.AsRef<bool>(_SetOnceOffset);
+    get {
+      if (_SetOnceOffset == null) {
+        _SetOnceOffset = Schema.GetOffset(0x2461079C6B261086);
+      }
+      return ref _Handle.AsRef<bool>(_SetOnceOffset!.Value);
+    }
   }
-  private static readonly nint _CPOffset = Schema.GetOffset(0x2461079CEB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x2461079CEB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
-  private static readonly nint _HeadLocationOffset = Schema.GetOffset(0x2461079CA8ECDA78);
+  private static nint? _HeadLocationOffset;
 
   public ref int HeadLocation {
-    get => ref _Handle.AsRef<int>(_HeadLocationOffset);
+    get {
+      if (_HeadLocationOffset == null) {
+        _HeadLocationOffset = Schema.GetOffset(0x2461079CA8ECDA78);
+      }
+      return ref _Handle.AsRef<int>(_HeadLocationOffset!.Value);
+    }
   }
-  private static readonly nint _RotationOffset = Schema.GetOffset(0x2461079C1992E6BF);
+  private static nint? _RotationOffset;
 
   public ref QAngle Rotation {
-    get => ref _Handle.AsRef<QAngle>(_RotationOffset);
+    get {
+      if (_RotationOffset == null) {
+        _RotationOffset = Schema.GetOffset(0x2461079C1992E6BF);
+      }
+      return ref _Handle.AsRef<QAngle>(_RotationOffset!.Value);
+    }
   }
-  private static readonly nint _RotationBOffset = Schema.GetOffset(0x2461079C3F41A047);
+  private static nint? _RotationBOffset;
 
   public ref QAngle RotationB {
-    get => ref _Handle.AsRef<QAngle>(_RotationBOffset);
+    get {
+      if (_RotationBOffset == null) {
+        _RotationBOffset = Schema.GetOffset(0x2461079C3F41A047);
+      }
+      return ref _Handle.AsRef<QAngle>(_RotationBOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolationOffset = Schema.GetOffset(0x2461079CCF55B987);
+  private static nint? _InterpolationOffset;
 
   public CParticleCollectionFloatInput Interpolation {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _InterpolationOffset);
+    get {
+      if (_InterpolationOffset == null) {
+        _InterpolationOffset = Schema.GetOffset(0x2461079CCF55B987);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _InterpolationOffset!.Value);
+    }
   }
 
 

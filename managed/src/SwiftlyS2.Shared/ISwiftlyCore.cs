@@ -14,6 +14,7 @@ using SwiftlyS2.Shared.Menus;
 using SwiftlyS2.Shared.NetMessages;
 using SwiftlyS2.Shared.Permissions;
 using SwiftlyS2.Shared.Players;
+using SwiftlyS2.Shared.Plugins;
 using SwiftlyS2.Shared.Profiler;
 using SwiftlyS2.Shared.Scheduler;
 using SwiftlyS2.Shared.Services;
@@ -166,6 +167,10 @@ public interface ISwiftlyCore
     /// Game file system interface.
     /// </summary>
     public IGameFileSystem GameFileSystem { get; }
+    /// <summary>
+    /// Plugin manager.
+    /// </summary>
+    // public IPluginManager PluginManager { get; }
 
     /// <summary>
     /// Gets the file path to the plugin directory.

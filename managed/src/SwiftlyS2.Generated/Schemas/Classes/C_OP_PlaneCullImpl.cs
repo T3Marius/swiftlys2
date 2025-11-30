@@ -17,25 +17,45 @@ internal partial class C_OP_PlaneCullImpl : CParticleFunctionOperatorImpl, C_OP_
   public C_OP_PlaneCullImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PlaneControlPointOffset = Schema.GetOffset(0x352AAF45E621E9BC);
+  private static nint? _PlaneControlPointOffset;
 
   public ref int PlaneControlPoint {
-    get => ref _Handle.AsRef<int>(_PlaneControlPointOffset);
+    get {
+      if (_PlaneControlPointOffset == null) {
+        _PlaneControlPointOffset = Schema.GetOffset(0x352AAF45E621E9BC);
+      }
+      return ref _Handle.AsRef<int>(_PlaneControlPointOffset!.Value);
+    }
   }
-  private static readonly nint _PlaneDirectionOffset = Schema.GetOffset(0x352AAF45B00A585A);
+  private static nint? _PlaneDirectionOffset;
 
   public ref Vector PlaneDirection {
-    get => ref _Handle.AsRef<Vector>(_PlaneDirectionOffset);
+    get {
+      if (_PlaneDirectionOffset == null) {
+        _PlaneDirectionOffset = Schema.GetOffset(0x352AAF45B00A585A);
+      }
+      return ref _Handle.AsRef<Vector>(_PlaneDirectionOffset!.Value);
+    }
   }
-  private static readonly nint _LocalSpaceOffset = Schema.GetOffset(0x352AAF4562418E6E);
+  private static nint? _LocalSpaceOffset;
 
   public ref bool LocalSpace {
-    get => ref _Handle.AsRef<bool>(_LocalSpaceOffset);
+    get {
+      if (_LocalSpaceOffset == null) {
+        _LocalSpaceOffset = Schema.GetOffset(0x352AAF4562418E6E);
+      }
+      return ref _Handle.AsRef<bool>(_LocalSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _PlaneOffsetOffset = Schema.GetOffset(0x352AAF45D394676C);
+  private static nint? _PlaneOffsetOffset;
 
   public ref float PlaneOffset {
-    get => ref _Handle.AsRef<float>(_PlaneOffsetOffset);
+    get {
+      if (_PlaneOffsetOffset == null) {
+        _PlaneOffsetOffset = Schema.GetOffset(0x352AAF45D394676C);
+      }
+      return ref _Handle.AsRef<float>(_PlaneOffsetOffset!.Value);
+    }
   }
 
 

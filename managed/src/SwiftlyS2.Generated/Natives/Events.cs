@@ -163,4 +163,13 @@ internal static class NativeEvents {
   public unsafe static void RegisterOnPreworldUpdateCallback(nint callback) {
     _RegisterOnPreworldUpdateCallback(callback);
   }
+
+  private unsafe static delegate* unmanaged<nint, void> _RegisterOnStartupServerCallback;
+
+  /// <summary>
+  /// void
+  /// </summary>
+  public unsafe static void RegisterOnStartupServerCallback(nint callback) {
+    _RegisterOnStartupServerCallback(callback);
+  }
 }

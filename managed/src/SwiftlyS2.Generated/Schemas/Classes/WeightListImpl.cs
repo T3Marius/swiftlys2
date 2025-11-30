@@ -17,19 +17,32 @@ internal partial class WeightListImpl : SchemaClass, WeightList {
   public WeightListImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x4A08DD454D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x4A08DD454D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x4A08DD454D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _WeightsOffset = Schema.GetOffset(0x4A08DD4577B2F91E);
+  private static nint? _WeightsOffset;
 
   public ref CUtlVector<float> Weights {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_WeightsOffset);
+    get {
+      if (_WeightsOffset == null) {
+        _WeightsOffset = Schema.GetOffset(0x4A08DD4577B2F91E);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_WeightsOffset!.Value);
+    }
   }
 
 

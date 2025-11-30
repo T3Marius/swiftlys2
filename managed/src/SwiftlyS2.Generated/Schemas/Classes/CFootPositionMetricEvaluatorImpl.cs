@@ -17,15 +17,25 @@ internal partial class CFootPositionMetricEvaluatorImpl : CMotionMetricEvaluator
   public CFootPositionMetricEvaluatorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FootIndicesOffset = Schema.GetOffset(0x67E807C64C840316);
+  private static nint? _FootIndicesOffset;
 
   public ref CUtlVector<int> FootIndices {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_FootIndicesOffset);
+    get {
+      if (_FootIndicesOffset == null) {
+        _FootIndicesOffset = Schema.GetOffset(0x67E807C64C840316);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_FootIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _IgnoreSlopeOffset = Schema.GetOffset(0x67E807C6541E43F2);
+  private static nint? _IgnoreSlopeOffset;
 
   public ref bool IgnoreSlope {
-    get => ref _Handle.AsRef<bool>(_IgnoreSlopeOffset);
+    get {
+      if (_IgnoreSlopeOffset == null) {
+        _IgnoreSlopeOffset = Schema.GetOffset(0x67E807C6541E43F2);
+      }
+      return ref _Handle.AsRef<bool>(_IgnoreSlopeOffset!.Value);
+    }
   }
 
 

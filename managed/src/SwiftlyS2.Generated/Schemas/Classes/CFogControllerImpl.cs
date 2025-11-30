@@ -17,20 +17,35 @@ internal partial class CFogControllerImpl : CBaseEntityImpl, CFogController {
   public CFogControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FogOffset = Schema.GetOffset(0x719804B29014635F);
+  private static nint? _FogOffset;
 
   public fogparams_t Fog {
-    get => new fogparams_tImpl(_Handle + _FogOffset);
+    get {
+      if (_FogOffset == null) {
+        _FogOffset = Schema.GetOffset(0x719804B29014635F);
+      }
+      return new fogparams_tImpl(_Handle + _FogOffset!.Value);
+    }
   }
-  private static readonly nint _UseAnglesOffset = Schema.GetOffset(0x719804B2434C3DB4);
+  private static nint? _UseAnglesOffset;
 
   public ref bool UseAngles {
-    get => ref _Handle.AsRef<bool>(_UseAnglesOffset);
+    get {
+      if (_UseAnglesOffset == null) {
+        _UseAnglesOffset = Schema.GetOffset(0x719804B2434C3DB4);
+      }
+      return ref _Handle.AsRef<bool>(_UseAnglesOffset!.Value);
+    }
   }
-  private static readonly nint _ChangedVariablesOffset = Schema.GetOffset(0x719804B2BC173F39);
+  private static nint? _ChangedVariablesOffset;
 
   public ref int ChangedVariables {
-    get => ref _Handle.AsRef<int>(_ChangedVariablesOffset);
+    get {
+      if (_ChangedVariablesOffset == null) {
+        _ChangedVariablesOffset = Schema.GetOffset(0x719804B2BC173F39);
+      }
+      return ref _Handle.AsRef<int>(_ChangedVariablesOffset!.Value);
+    }
   }
 
   public void FogUpdated() {

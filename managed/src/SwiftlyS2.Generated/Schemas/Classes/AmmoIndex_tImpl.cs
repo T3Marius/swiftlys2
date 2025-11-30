@@ -17,10 +17,15 @@ internal partial class AmmoIndex_tImpl : SchemaClass, AmmoIndex_t {
   public AmmoIndex_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x47E6281EDCB0894A);
+  private static nint? _ValueOffset;
 
   public ref byte Value {
-    get => ref _Handle.AsRef<byte>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x47E6281EDCB0894A);
+      }
+      return ref _Handle.AsRef<byte>(_ValueOffset!.Value);
+    }
   }
 
 

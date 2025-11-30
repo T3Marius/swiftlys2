@@ -17,15 +17,25 @@ internal partial class CRandSimTimerImpl : CSimpleSimTimerImpl, CRandSimTimer {
   public CRandSimTimerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinIntervalOffset = Schema.GetOffset(0x6268F694BB35EE4);
+  private static nint? _MinIntervalOffset;
 
   public ref float MinInterval {
-    get => ref _Handle.AsRef<float>(_MinIntervalOffset);
+    get {
+      if (_MinIntervalOffset == null) {
+        _MinIntervalOffset = Schema.GetOffset(0x6268F694BB35EE4);
+      }
+      return ref _Handle.AsRef<float>(_MinIntervalOffset!.Value);
+    }
   }
-  private static readonly nint _MaxIntervalOffset = Schema.GetOffset(0x6268F69400B2156);
+  private static nint? _MaxIntervalOffset;
 
   public ref float MaxInterval {
-    get => ref _Handle.AsRef<float>(_MaxIntervalOffset);
+    get {
+      if (_MaxIntervalOffset == null) {
+        _MaxIntervalOffset = Schema.GetOffset(0x6268F69400B2156);
+      }
+      return ref _Handle.AsRef<float>(_MaxIntervalOffset!.Value);
+    }
   }
 
 

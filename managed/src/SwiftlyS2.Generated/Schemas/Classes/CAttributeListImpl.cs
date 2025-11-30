@@ -17,16 +17,24 @@ internal partial class CAttributeListImpl : SchemaClass, CAttributeList {
   public CAttributeListImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AttributesOffset = Schema.GetOffset(0x1028A18A7E139C14);
+  private static nint? _AttributesOffset;
 
   public ref CUtlVector<CEconItemAttribute> Attributes {
-    get => ref _Handle.AsRef<CUtlVector<CEconItemAttribute>>(_AttributesOffset);
+    get {
+      if (_AttributesOffset == null) {
+        _AttributesOffset = Schema.GetOffset(0x1028A18A7E139C14);
+      }
+      return ref _Handle.AsRef<CUtlVector<CEconItemAttribute>>(_AttributesOffset!.Value);
+    }
   }
-  private static readonly nint _ManagerOffset = Schema.GetOffset(0x1028A18AB9A09BE6);
+  private static nint? _ManagerOffset;
 
   public CAttributeManager? Manager {
     get {
-      var ptr = _Handle.Read<nint>(_ManagerOffset);
+      if (_ManagerOffset == null) {
+        _ManagerOffset = Schema.GetOffset(0x1028A18AB9A09BE6);
+      }
+      var ptr = _Handle.Read<nint>(_ManagerOffset!.Value);
       return ptr.IsValidPtr() ? new CAttributeManagerImpl(ptr) : null;
     }
   }

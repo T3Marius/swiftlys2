@@ -17,45 +17,85 @@ internal partial class CHitReactUpdateNodeImpl : CUnaryUpdateNodeImpl, CHitReact
   public CHitReactUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OpFixedSettingsOffset = Schema.GetOffset(0x64E4D4A7E533AB09);
+  private static nint? _OpFixedSettingsOffset;
 
   public HitReactFixedSettings_t OpFixedSettings {
-    get => new HitReactFixedSettings_tImpl(_Handle + _OpFixedSettingsOffset);
+    get {
+      if (_OpFixedSettingsOffset == null) {
+        _OpFixedSettingsOffset = Schema.GetOffset(0x64E4D4A7E533AB09);
+      }
+      return new HitReactFixedSettings_tImpl(_Handle + _OpFixedSettingsOffset!.Value);
+    }
   }
-  private static readonly nint _TriggerParamOffset = Schema.GetOffset(0x64E4D4A7AA3B4860);
+  private static nint? _TriggerParamOffset;
 
   public CAnimParamHandle TriggerParam {
-    get => new CAnimParamHandleImpl(_Handle + _TriggerParamOffset);
+    get {
+      if (_TriggerParamOffset == null) {
+        _TriggerParamOffset = Schema.GetOffset(0x64E4D4A7AA3B4860);
+      }
+      return new CAnimParamHandleImpl(_Handle + _TriggerParamOffset!.Value);
+    }
   }
-  private static readonly nint _HitBoneParamOffset = Schema.GetOffset(0x64E4D4A70CD5764D);
+  private static nint? _HitBoneParamOffset;
 
   public CAnimParamHandle HitBoneParam {
-    get => new CAnimParamHandleImpl(_Handle + _HitBoneParamOffset);
+    get {
+      if (_HitBoneParamOffset == null) {
+        _HitBoneParamOffset = Schema.GetOffset(0x64E4D4A70CD5764D);
+      }
+      return new CAnimParamHandleImpl(_Handle + _HitBoneParamOffset!.Value);
+    }
   }
-  private static readonly nint _HitOffsetParamOffset = Schema.GetOffset(0x64E4D4A7F1CA4A4A);
+  private static nint? _HitOffsetParamOffset;
 
   public CAnimParamHandle HitOffsetParam {
-    get => new CAnimParamHandleImpl(_Handle + _HitOffsetParamOffset);
+    get {
+      if (_HitOffsetParamOffset == null) {
+        _HitOffsetParamOffset = Schema.GetOffset(0x64E4D4A7F1CA4A4A);
+      }
+      return new CAnimParamHandleImpl(_Handle + _HitOffsetParamOffset!.Value);
+    }
   }
-  private static readonly nint _HitDirectionParamOffset = Schema.GetOffset(0x64E4D4A76F980EDC);
+  private static nint? _HitDirectionParamOffset;
 
   public CAnimParamHandle HitDirectionParam {
-    get => new CAnimParamHandleImpl(_Handle + _HitDirectionParamOffset);
+    get {
+      if (_HitDirectionParamOffset == null) {
+        _HitDirectionParamOffset = Schema.GetOffset(0x64E4D4A76F980EDC);
+      }
+      return new CAnimParamHandleImpl(_Handle + _HitDirectionParamOffset!.Value);
+    }
   }
-  private static readonly nint _HitStrengthParamOffset = Schema.GetOffset(0x64E4D4A7BD447408);
+  private static nint? _HitStrengthParamOffset;
 
   public CAnimParamHandle HitStrengthParam {
-    get => new CAnimParamHandleImpl(_Handle + _HitStrengthParamOffset);
+    get {
+      if (_HitStrengthParamOffset == null) {
+        _HitStrengthParamOffset = Schema.GetOffset(0x64E4D4A7BD447408);
+      }
+      return new CAnimParamHandleImpl(_Handle + _HitStrengthParamOffset!.Value);
+    }
   }
-  private static readonly nint _MinDelayBetweenHitsOffset = Schema.GetOffset(0x64E4D4A762EED38E);
+  private static nint? _MinDelayBetweenHitsOffset;
 
   public ref float MinDelayBetweenHits {
-    get => ref _Handle.AsRef<float>(_MinDelayBetweenHitsOffset);
+    get {
+      if (_MinDelayBetweenHitsOffset == null) {
+        _MinDelayBetweenHitsOffset = Schema.GetOffset(0x64E4D4A762EED38E);
+      }
+      return ref _Handle.AsRef<float>(_MinDelayBetweenHitsOffset!.Value);
+    }
   }
-  private static readonly nint _ResetChildOffset = Schema.GetOffset(0x64E4D4A765CC88B6);
+  private static nint? _ResetChildOffset;
 
   public ref bool ResetChild {
-    get => ref _Handle.AsRef<bool>(_ResetChildOffset);
+    get {
+      if (_ResetChildOffset == null) {
+        _ResetChildOffset = Schema.GetOffset(0x64E4D4A765CC88B6);
+      }
+      return ref _Handle.AsRef<bool>(_ResetChildOffset!.Value);
+    }
   }
 
 

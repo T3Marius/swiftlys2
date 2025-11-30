@@ -17,23 +17,39 @@ internal partial class CPulseGameBlackboardImpl : CBaseEntityImpl, CPulseGameBla
   public CPulseGameBlackboardImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StrGraphNameOffset = Schema.GetOffset(0xF9A17A20C99E48AF);
+  private static nint? _StrGraphNameOffset;
 
   public string StrGraphName {
     get {
-      var ptr = _Handle.Read<nint>(_StrGraphNameOffset);
+      if (_StrGraphNameOffset == null) {
+        _StrGraphNameOffset = Schema.GetOffset(0xF9A17A20C99E48AF);
+      }
+      var ptr = _Handle.Read<nint>(_StrGraphNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrGraphNameOffset, value);
+    set {
+      if (_StrGraphNameOffset == null) {
+        _StrGraphNameOffset = Schema.GetOffset(0xF9A17A20C99E48AF);
+      }
+      Schema.SetString(_Handle, _StrGraphNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StrStateBlobOffset = Schema.GetOffset(0xF9A17A2046708C2A);
+  private static nint? _StrStateBlobOffset;
 
   public string StrStateBlob {
     get {
-      var ptr = _Handle.Read<nint>(_StrStateBlobOffset);
+      if (_StrStateBlobOffset == null) {
+        _StrStateBlobOffset = Schema.GetOffset(0xF9A17A2046708C2A);
+      }
+      var ptr = _Handle.Read<nint>(_StrStateBlobOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrStateBlobOffset, value);
+    set {
+      if (_StrStateBlobOffset == null) {
+        _StrStateBlobOffset = Schema.GetOffset(0xF9A17A2046708C2A);
+      }
+      Schema.SetString(_Handle, _StrStateBlobOffset!.Value, value);
+    }
   } 
 
   public void StrGraphNameUpdated() {

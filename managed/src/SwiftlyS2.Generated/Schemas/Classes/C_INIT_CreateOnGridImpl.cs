@@ -17,55 +17,105 @@ internal partial class C_INIT_CreateOnGridImpl : CParticleFunctionInitializerImp
   public C_INIT_CreateOnGridImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _XCountOffset = Schema.GetOffset(0x2C82A08B6E80D4FA);
+  private static nint? _XCountOffset;
 
   public CParticleCollectionFloatInput XCount {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _XCountOffset);
+    get {
+      if (_XCountOffset == null) {
+        _XCountOffset = Schema.GetOffset(0x2C82A08B6E80D4FA);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _XCountOffset!.Value);
+    }
   }
-  private static readonly nint _YCountOffset = Schema.GetOffset(0x2C82A08B51D32897);
+  private static nint? _YCountOffset;
 
   public CParticleCollectionFloatInput YCount {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _YCountOffset);
+    get {
+      if (_YCountOffset == null) {
+        _YCountOffset = Schema.GetOffset(0x2C82A08B51D32897);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _YCountOffset!.Value);
+    }
   }
-  private static readonly nint _ZCountOffset = Schema.GetOffset(0x2C82A08BCCE7A908);
+  private static nint? _ZCountOffset;
 
   public CParticleCollectionFloatInput ZCount {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ZCountOffset);
+    get {
+      if (_ZCountOffset == null) {
+        _ZCountOffset = Schema.GetOffset(0x2C82A08BCCE7A908);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ZCountOffset!.Value);
+    }
   }
-  private static readonly nint _XSpacingOffset = Schema.GetOffset(0x2C82A08B374E0750);
+  private static nint? _XSpacingOffset;
 
   public CParticleCollectionFloatInput XSpacing {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _XSpacingOffset);
+    get {
+      if (_XSpacingOffset == null) {
+        _XSpacingOffset = Schema.GetOffset(0x2C82A08B374E0750);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _XSpacingOffset!.Value);
+    }
   }
-  private static readonly nint _YSpacingOffset = Schema.GetOffset(0x2C82A08B836B50C9);
+  private static nint? _YSpacingOffset;
 
   public CParticleCollectionFloatInput YSpacing {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _YSpacingOffset);
+    get {
+      if (_YSpacingOffset == null) {
+        _YSpacingOffset = Schema.GetOffset(0x2C82A08B836B50C9);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _YSpacingOffset!.Value);
+    }
   }
-  private static readonly nint _ZSpacingOffset = Schema.GetOffset(0x2C82A08BF78FF062);
+  private static nint? _ZSpacingOffset;
 
   public CParticleCollectionFloatInput ZSpacing {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ZSpacingOffset);
+    get {
+      if (_ZSpacingOffset == null) {
+        _ZSpacingOffset = Schema.GetOffset(0x2C82A08BF78FF062);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ZSpacingOffset!.Value);
+    }
   }
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x2C82A08B3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x2C82A08B3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _LocalSpaceOffset = Schema.GetOffset(0x2C82A08B62418E6E);
+  private static nint? _LocalSpaceOffset;
 
   public ref bool LocalSpace {
-    get => ref _Handle.AsRef<bool>(_LocalSpaceOffset);
+    get {
+      if (_LocalSpaceOffset == null) {
+        _LocalSpaceOffset = Schema.GetOffset(0x2C82A08B62418E6E);
+      }
+      return ref _Handle.AsRef<bool>(_LocalSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _CenterOffset = Schema.GetOffset(0x2C82A08B69BF05E4);
+  private static nint? _CenterOffset;
 
   public ref bool Center {
-    get => ref _Handle.AsRef<bool>(_CenterOffset);
+    get {
+      if (_CenterOffset == null) {
+        _CenterOffset = Schema.GetOffset(0x2C82A08B69BF05E4);
+      }
+      return ref _Handle.AsRef<bool>(_CenterOffset!.Value);
+    }
   }
-  private static readonly nint _HollowOffset = Schema.GetOffset(0x2C82A08B22E4957E);
+  private static nint? _HollowOffset;
 
   public ref bool Hollow {
-    get => ref _Handle.AsRef<bool>(_HollowOffset);
+    get {
+      if (_HollowOffset == null) {
+        _HollowOffset = Schema.GetOffset(0x2C82A08B22E4957E);
+      }
+      return ref _Handle.AsRef<bool>(_HollowOffset!.Value);
+    }
   }
 
 

@@ -17,60 +17,115 @@ internal partial class CSeqS1SeqDescImpl : SchemaClass, CSeqS1SeqDesc {
   public CSeqS1SeqDescImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x6EF8193563D22D49);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x6EF8193563D22D49);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x6EF81935DC74A14C);
+  private static nint? _FlagsOffset;
 
   public CSeqSeqDescFlag Flags {
-    get => new CSeqSeqDescFlagImpl(_Handle + _FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x6EF81935DC74A14C);
+      }
+      return new CSeqSeqDescFlagImpl(_Handle + _FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _FetchOffset = Schema.GetOffset(0x6EF81935ED8BE703);
+  private static nint? _FetchOffset;
 
   public CSeqMultiFetch Fetch {
-    get => new CSeqMultiFetchImpl(_Handle + _FetchOffset);
+    get {
+      if (_FetchOffset == null) {
+        _FetchOffset = Schema.GetOffset(0x6EF81935ED8BE703);
+      }
+      return new CSeqMultiFetchImpl(_Handle + _FetchOffset!.Value);
+    }
   }
-  private static readonly nint _LocalWeightlistOffset = Schema.GetOffset(0x6EF819356F64F49C);
+  private static nint? _LocalWeightlistOffset;
 
   public ref int LocalWeightlist {
-    get => ref _Handle.AsRef<int>(_LocalWeightlistOffset);
+    get {
+      if (_LocalWeightlistOffset == null) {
+        _LocalWeightlistOffset = Schema.GetOffset(0x6EF819356F64F49C);
+      }
+      return ref _Handle.AsRef<int>(_LocalWeightlistOffset!.Value);
+    }
   }
-  private static readonly nint _AutoLayerArrayOffset = Schema.GetOffset(0x6EF81935834EB170);
+  private static nint? _AutoLayerArrayOffset;
 
   public ref CUtlVector<CSeqAutoLayer> AutoLayerArray {
-    get => ref _Handle.AsRef<CUtlVector<CSeqAutoLayer>>(_AutoLayerArrayOffset);
+    get {
+      if (_AutoLayerArrayOffset == null) {
+        _AutoLayerArrayOffset = Schema.GetOffset(0x6EF81935834EB170);
+      }
+      return ref _Handle.AsRef<CUtlVector<CSeqAutoLayer>>(_AutoLayerArrayOffset!.Value);
+    }
   }
-  private static readonly nint _IKLockArrayOffset = Schema.GetOffset(0x6EF81935BF1FEC6B);
+  private static nint? _IKLockArrayOffset;
 
   public ref CUtlVector<CSeqIKLock> IKLockArray {
-    get => ref _Handle.AsRef<CUtlVector<CSeqIKLock>>(_IKLockArrayOffset);
+    get {
+      if (_IKLockArrayOffset == null) {
+        _IKLockArrayOffset = Schema.GetOffset(0x6EF81935BF1FEC6B);
+      }
+      return ref _Handle.AsRef<CUtlVector<CSeqIKLock>>(_IKLockArrayOffset!.Value);
+    }
   }
-  private static readonly nint _TransitionOffset = Schema.GetOffset(0x6EF8193582B0A282);
+  private static nint? _TransitionOffset;
 
   public CSeqTransition Transition {
-    get => new CSeqTransitionImpl(_Handle + _TransitionOffset);
+    get {
+      if (_TransitionOffset == null) {
+        _TransitionOffset = Schema.GetOffset(0x6EF8193582B0A282);
+      }
+      return new CSeqTransitionImpl(_Handle + _TransitionOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceKeysOffset = Schema.GetOffset(0x6EF81935C7ACD18C);
+  private static nint? _SequenceKeysOffset;
 
   public SchemaUntypedField SequenceKeys {
-    get => new SchemaUntypedField(_Handle + _SequenceKeysOffset);
+    get {
+      if (_SequenceKeysOffset == null) {
+        _SequenceKeysOffset = Schema.GetOffset(0x6EF81935C7ACD18C);
+      }
+      return new SchemaUntypedField(_Handle + _SequenceKeysOffset!.Value);
+    }
   }
-  private static readonly nint _LegacyKeyValueTextOffset = Schema.GetOffset(0x6EF81935D12D4AC1);
+  private static nint? _LegacyKeyValueTextOffset;
 
   public ref CBufferString LegacyKeyValueText {
-    get => ref _Handle.AsRef<CBufferString>(_LegacyKeyValueTextOffset);
+    get {
+      if (_LegacyKeyValueTextOffset == null) {
+        _LegacyKeyValueTextOffset = Schema.GetOffset(0x6EF81935D12D4AC1);
+      }
+      return ref _Handle.AsRef<CBufferString>(_LegacyKeyValueTextOffset!.Value);
+    }
   }
-  private static readonly nint _ActivityArrayOffset = Schema.GetOffset(0x6EF8193538F0ACE1);
+  private static nint? _ActivityArrayOffset;
 
   public ref CUtlVector<CAnimActivity> ActivityArray {
-    get => ref _Handle.AsRef<CUtlVector<CAnimActivity>>(_ActivityArrayOffset);
+    get {
+      if (_ActivityArrayOffset == null) {
+        _ActivityArrayOffset = Schema.GetOffset(0x6EF8193538F0ACE1);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimActivity>>(_ActivityArrayOffset!.Value);
+    }
   }
-  private static readonly nint _FootMotionOffset = Schema.GetOffset(0x6EF8193543CF70A3);
+  private static nint? _FootMotionOffset;
 
   public ref CUtlVector<CFootMotion> FootMotion {
-    get => ref _Handle.AsRef<CUtlVector<CFootMotion>>(_FootMotionOffset);
+    get {
+      if (_FootMotionOffset == null) {
+        _FootMotionOffset = Schema.GetOffset(0x6EF8193543CF70A3);
+      }
+      return ref _Handle.AsRef<CUtlVector<CFootMotion>>(_FootMotionOffset!.Value);
+    }
   }
 
 

@@ -17,57 +17,102 @@ internal partial class EntComponentInfo_tImpl : SchemaClass, EntComponentInfo_t 
   public EntComponentInfo_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xDEAD526A5B47C92C);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xDEAD526A5B47C92C);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xDEAD526A5B47C92C);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _CPPClassnameOffset = Schema.GetOffset(0xDEAD526A65BE3EC7);
+  private static nint? _CPPClassnameOffset;
 
   public string CPPClassname {
     get {
-      var ptr = _Handle.Read<nint>(_CPPClassnameOffset);
+      if (_CPPClassnameOffset == null) {
+        _CPPClassnameOffset = Schema.GetOffset(0xDEAD526A65BE3EC7);
+      }
+      var ptr = _Handle.Read<nint>(_CPPClassnameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _CPPClassnameOffset, value);
+    set {
+      if (_CPPClassnameOffset == null) {
+        _CPPClassnameOffset = Schema.GetOffset(0xDEAD526A65BE3EC7);
+      }
+      Schema.SetString(_Handle, _CPPClassnameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NetworkDataReferencedDescriptionOffset = Schema.GetOffset(0xDEAD526AB84E3342);
+  private static nint? _NetworkDataReferencedDescriptionOffset;
 
   public string NetworkDataReferencedDescription {
     get {
-      var ptr = _Handle.Read<nint>(_NetworkDataReferencedDescriptionOffset);
+      if (_NetworkDataReferencedDescriptionOffset == null) {
+        _NetworkDataReferencedDescriptionOffset = Schema.GetOffset(0xDEAD526AB84E3342);
+      }
+      var ptr = _Handle.Read<nint>(_NetworkDataReferencedDescriptionOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NetworkDataReferencedDescriptionOffset, value);
+    set {
+      if (_NetworkDataReferencedDescriptionOffset == null) {
+        _NetworkDataReferencedDescriptionOffset = Schema.GetOffset(0xDEAD526AB84E3342);
+      }
+      Schema.SetString(_Handle, _NetworkDataReferencedDescriptionOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NetworkDataReferencedPtrPropDescriptionOffset = Schema.GetOffset(0xDEAD526AFDC5489F);
+  private static nint? _NetworkDataReferencedPtrPropDescriptionOffset;
 
   public string NetworkDataReferencedPtrPropDescription {
     get {
-      var ptr = _Handle.Read<nint>(_NetworkDataReferencedPtrPropDescriptionOffset);
+      if (_NetworkDataReferencedPtrPropDescriptionOffset == null) {
+        _NetworkDataReferencedPtrPropDescriptionOffset = Schema.GetOffset(0xDEAD526AFDC5489F);
+      }
+      var ptr = _Handle.Read<nint>(_NetworkDataReferencedPtrPropDescriptionOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NetworkDataReferencedPtrPropDescriptionOffset, value);
+    set {
+      if (_NetworkDataReferencedPtrPropDescriptionOffset == null) {
+        _NetworkDataReferencedPtrPropDescriptionOffset = Schema.GetOffset(0xDEAD526AFDC5489F);
+      }
+      Schema.SetString(_Handle, _NetworkDataReferencedPtrPropDescriptionOffset!.Value, value);
+    }
   } 
-  private static readonly nint _RuntimeIndexOffset = Schema.GetOffset(0xDEAD526AB53184BD);
+  private static nint? _RuntimeIndexOffset;
 
   public ref int RuntimeIndex {
-    get => ref _Handle.AsRef<int>(_RuntimeIndexOffset);
+    get {
+      if (_RuntimeIndexOffset == null) {
+        _RuntimeIndexOffset = Schema.GetOffset(0xDEAD526AB53184BD);
+      }
+      return ref _Handle.AsRef<int>(_RuntimeIndexOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0xDEAD526ACE6E9C28);
+  private static nint? _FlagsOffset;
 
   public ref uint Flags {
-    get => ref _Handle.AsRef<uint>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0xDEAD526ACE6E9C28);
+      }
+      return ref _Handle.AsRef<uint>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _BaseClassComponentHelperOffset = Schema.GetOffset(0xDEAD526A9799DD51);
+  private static nint? _BaseClassComponentHelperOffset;
 
   public CEntityComponentHelper? BaseClassComponentHelper {
     get {
-      var ptr = _Handle.Read<nint>(_BaseClassComponentHelperOffset);
+      if (_BaseClassComponentHelperOffset == null) {
+        _BaseClassComponentHelperOffset = Schema.GetOffset(0xDEAD526A9799DD51);
+      }
+      var ptr = _Handle.Read<nint>(_BaseClassComponentHelperOffset!.Value);
       return ptr.IsValidPtr() ? new CEntityComponentHelperImpl(ptr) : null;
     }
   }

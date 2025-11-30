@@ -17,40 +17,75 @@ internal partial class CNmBlend2DNode__CDefinitionImpl : CNmPoseNode__CDefinitio
   public CNmBlend2DNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SourceNodeIndicesOffset = Schema.GetOffset(0x965A04D8E90F1FE1);
+  private static nint? _SourceNodeIndicesOffset;
 
   public SchemaUntypedField SourceNodeIndices {
-    get => new SchemaUntypedField(_Handle + _SourceNodeIndicesOffset);
+    get {
+      if (_SourceNodeIndicesOffset == null) {
+        _SourceNodeIndicesOffset = Schema.GetOffset(0x965A04D8E90F1FE1);
+      }
+      return new SchemaUntypedField(_Handle + _SourceNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _InputParameterNodeIdx0Offset = Schema.GetOffset(0x965A04D85A96A1AF);
+  private static nint? _InputParameterNodeIdx0Offset;
 
   public ref short InputParameterNodeIdx0 {
-    get => ref _Handle.AsRef<short>(_InputParameterNodeIdx0Offset);
+    get {
+      if (_InputParameterNodeIdx0Offset == null) {
+        _InputParameterNodeIdx0Offset = Schema.GetOffset(0x965A04D85A96A1AF);
+      }
+      return ref _Handle.AsRef<short>(_InputParameterNodeIdx0Offset!.Value);
+    }
   }
-  private static readonly nint _InputParameterNodeIdx1Offset = Schema.GetOffset(0x965A04D85996A01C);
+  private static nint? _InputParameterNodeIdx1Offset;
 
   public ref short InputParameterNodeIdx1 {
-    get => ref _Handle.AsRef<short>(_InputParameterNodeIdx1Offset);
+    get {
+      if (_InputParameterNodeIdx1Offset == null) {
+        _InputParameterNodeIdx1Offset = Schema.GetOffset(0x965A04D85996A01C);
+      }
+      return ref _Handle.AsRef<short>(_InputParameterNodeIdx1Offset!.Value);
+    }
   }
-  private static readonly nint _ValuesOffset = Schema.GetOffset(0x965A04D8FBEDDADB);
+  private static nint? _ValuesOffset;
 
   public SchemaUntypedField Values {
-    get => new SchemaUntypedField(_Handle + _ValuesOffset);
+    get {
+      if (_ValuesOffset == null) {
+        _ValuesOffset = Schema.GetOffset(0x965A04D8FBEDDADB);
+      }
+      return new SchemaUntypedField(_Handle + _ValuesOffset!.Value);
+    }
   }
-  private static readonly nint _IndicesOffset = Schema.GetOffset(0x965A04D8CF5DEE92);
+  private static nint? _IndicesOffset;
 
   public SchemaUntypedField Indices {
-    get => new SchemaUntypedField(_Handle + _IndicesOffset);
+    get {
+      if (_IndicesOffset == null) {
+        _IndicesOffset = Schema.GetOffset(0x965A04D8CF5DEE92);
+      }
+      return new SchemaUntypedField(_Handle + _IndicesOffset!.Value);
+    }
   }
-  private static readonly nint _HullIndicesOffset = Schema.GetOffset(0x965A04D8A014D83B);
+  private static nint? _HullIndicesOffset;
 
   public SchemaUntypedField HullIndices {
-    get => new SchemaUntypedField(_Handle + _HullIndicesOffset);
+    get {
+      if (_HullIndicesOffset == null) {
+        _HullIndicesOffset = Schema.GetOffset(0x965A04D8A014D83B);
+      }
+      return new SchemaUntypedField(_Handle + _HullIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _AllowLoopingOffset = Schema.GetOffset(0x965A04D8FEB26D98);
+  private static nint? _AllowLoopingOffset;
 
   public ref bool AllowLooping {
-    get => ref _Handle.AsRef<bool>(_AllowLoopingOffset);
+    get {
+      if (_AllowLoopingOffset == null) {
+        _AllowLoopingOffset = Schema.GetOffset(0x965A04D8FEB26D98);
+      }
+      return ref _Handle.AsRef<bool>(_AllowLoopingOffset!.Value);
+    }
   }
 
 

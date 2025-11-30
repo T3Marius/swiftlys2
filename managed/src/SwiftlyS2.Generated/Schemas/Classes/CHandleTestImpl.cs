@@ -17,15 +17,25 @@ internal partial class CHandleTestImpl : CBaseEntityImpl, CHandleTest {
   public CHandleTestImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _HandleOffset = Schema.GetOffset(0xCC5023E89D208453);
+  private static nint? _HandleOffset;
 
   public ref CHandle<CBaseEntity> Handle {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_HandleOffset);
+    get {
+      if (_HandleOffset == null) {
+        _HandleOffset = Schema.GetOffset(0xCC5023E89D208453);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_HandleOffset!.Value);
+    }
   }
-  private static readonly nint _SendHandleOffset = Schema.GetOffset(0xCC5023E8EACC8501);
+  private static nint? _SendHandleOffset;
 
   public ref bool SendHandle {
-    get => ref _Handle.AsRef<bool>(_SendHandleOffset);
+    get {
+      if (_SendHandleOffset == null) {
+        _SendHandleOffset = Schema.GetOffset(0xCC5023E8EACC8501);
+      }
+      return ref _Handle.AsRef<bool>(_SendHandleOffset!.Value);
+    }
   }
 
   public void HandleUpdated() {

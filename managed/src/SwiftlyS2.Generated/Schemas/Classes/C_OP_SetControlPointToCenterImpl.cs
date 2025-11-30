@@ -17,25 +17,45 @@ internal partial class C_OP_SetControlPointToCenterImpl : CParticleFunctionPreEm
   public C_OP_SetControlPointToCenterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CP1Offset = Schema.GetOffset(0xB2CEB7C2D4B1E579);
+  private static nint? _CP1Offset;
 
   public ref int CP1 {
-    get => ref _Handle.AsRef<int>(_CP1Offset);
+    get {
+      if (_CP1Offset == null) {
+        _CP1Offset = Schema.GetOffset(0xB2CEB7C2D4B1E579);
+      }
+      return ref _Handle.AsRef<int>(_CP1Offset!.Value);
+    }
   }
-  private static readonly nint _CP1PosOffset = Schema.GetOffset(0xB2CEB7C2408288D9);
+  private static nint? _CP1PosOffset;
 
   public ref Vector CP1Pos {
-    get => ref _Handle.AsRef<Vector>(_CP1PosOffset);
+    get {
+      if (_CP1PosOffset == null) {
+        _CP1PosOffset = Schema.GetOffset(0xB2CEB7C2408288D9);
+      }
+      return ref _Handle.AsRef<Vector>(_CP1PosOffset!.Value);
+    }
   }
-  private static readonly nint _UseAvgParticlePosOffset = Schema.GetOffset(0xB2CEB7C2399CEECC);
+  private static nint? _UseAvgParticlePosOffset;
 
   public ref bool UseAvgParticlePos {
-    get => ref _Handle.AsRef<bool>(_UseAvgParticlePosOffset);
+    get {
+      if (_UseAvgParticlePosOffset == null) {
+        _UseAvgParticlePosOffset = Schema.GetOffset(0xB2CEB7C2399CEECC);
+      }
+      return ref _Handle.AsRef<bool>(_UseAvgParticlePosOffset!.Value);
+    }
   }
-  private static readonly nint _SetParentOffset = Schema.GetOffset(0xB2CEB7C22D8246B7);
+  private static nint? _SetParentOffset;
 
   public ref ParticleParentSetMode_t SetParent {
-    get => ref _Handle.AsRef<ParticleParentSetMode_t>(_SetParentOffset);
+    get {
+      if (_SetParentOffset == null) {
+        _SetParentOffset = Schema.GetOffset(0xB2CEB7C22D8246B7);
+      }
+      return ref _Handle.AsRef<ParticleParentSetMode_t>(_SetParentOffset!.Value);
+    }
   }
 
 

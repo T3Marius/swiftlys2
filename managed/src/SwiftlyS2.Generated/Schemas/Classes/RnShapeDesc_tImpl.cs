@@ -17,39 +17,72 @@ internal partial class RnShapeDesc_tImpl : SchemaClass, RnShapeDesc_t {
   public RnShapeDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CollisionAttributeIndexOffset = Schema.GetOffset(0xA24D7D10C7B64DF7);
+  private static nint? _CollisionAttributeIndexOffset;
 
   public ref uint CollisionAttributeIndex {
-    get => ref _Handle.AsRef<uint>(_CollisionAttributeIndexOffset);
+    get {
+      if (_CollisionAttributeIndexOffset == null) {
+        _CollisionAttributeIndexOffset = Schema.GetOffset(0xA24D7D10C7B64DF7);
+      }
+      return ref _Handle.AsRef<uint>(_CollisionAttributeIndexOffset!.Value);
+    }
   }
-  private static readonly nint _SurfacePropertyIndexOffset = Schema.GetOffset(0xA24D7D106DED6187);
+  private static nint? _SurfacePropertyIndexOffset;
 
   public ref uint SurfacePropertyIndex {
-    get => ref _Handle.AsRef<uint>(_SurfacePropertyIndexOffset);
+    get {
+      if (_SurfacePropertyIndexOffset == null) {
+        _SurfacePropertyIndexOffset = Schema.GetOffset(0xA24D7D106DED6187);
+      }
+      return ref _Handle.AsRef<uint>(_SurfacePropertyIndexOffset!.Value);
+    }
   }
-  private static readonly nint _UserFriendlyNameOffset = Schema.GetOffset(0xA24D7D1000D4523E);
+  private static nint? _UserFriendlyNameOffset;
 
   public string UserFriendlyName {
     get {
-      var ptr = _Handle.Read<nint>(_UserFriendlyNameOffset);
+      if (_UserFriendlyNameOffset == null) {
+        _UserFriendlyNameOffset = Schema.GetOffset(0xA24D7D1000D4523E);
+      }
+      var ptr = _Handle.Read<nint>(_UserFriendlyNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _UserFriendlyNameOffset, value);
+    set {
+      if (_UserFriendlyNameOffset == null) {
+        _UserFriendlyNameOffset = Schema.GetOffset(0xA24D7D1000D4523E);
+      }
+      Schema.SetString(_Handle, _UserFriendlyNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _UserFriendlyNameSealedOffset = Schema.GetOffset(0xA24D7D1076DBAE3A);
+  private static nint? _UserFriendlyNameSealedOffset;
 
   public ref bool UserFriendlyNameSealed {
-    get => ref _Handle.AsRef<bool>(_UserFriendlyNameSealedOffset);
+    get {
+      if (_UserFriendlyNameSealedOffset == null) {
+        _UserFriendlyNameSealedOffset = Schema.GetOffset(0xA24D7D1076DBAE3A);
+      }
+      return ref _Handle.AsRef<bool>(_UserFriendlyNameSealedOffset!.Value);
+    }
   }
-  private static readonly nint _UserFriendlyNameLongOffset = Schema.GetOffset(0xA24D7D10F02591B8);
+  private static nint? _UserFriendlyNameLongOffset;
 
   public ref bool UserFriendlyNameLong {
-    get => ref _Handle.AsRef<bool>(_UserFriendlyNameLongOffset);
+    get {
+      if (_UserFriendlyNameLongOffset == null) {
+        _UserFriendlyNameLongOffset = Schema.GetOffset(0xA24D7D10F02591B8);
+      }
+      return ref _Handle.AsRef<bool>(_UserFriendlyNameLongOffset!.Value);
+    }
   }
-  private static readonly nint _ToolMaterialHashOffset = Schema.GetOffset(0xA24D7D105C3E2DDE);
+  private static nint? _ToolMaterialHashOffset;
 
   public ref uint ToolMaterialHash {
-    get => ref _Handle.AsRef<uint>(_ToolMaterialHashOffset);
+    get {
+      if (_ToolMaterialHashOffset == null) {
+        _ToolMaterialHashOffset = Schema.GetOffset(0xA24D7D105C3E2DDE);
+      }
+      return ref _Handle.AsRef<uint>(_ToolMaterialHashOffset!.Value);
+    }
   }
 
 

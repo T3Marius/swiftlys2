@@ -17,35 +17,65 @@ internal partial class C_INIT_RandomNamedModelElementImpl : CParticleFunctionIni
   public C_INIT_RandomNamedModelElementImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ModelOffset = Schema.GetOffset(0xA3E776D5E100C814);
+  private static nint? _ModelOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCModel> Model {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset);
+    get {
+      if (_ModelOffset == null) {
+        _ModelOffset = Schema.GetOffset(0xA3E776D5E100C814);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset!.Value);
+    }
   }
-  private static readonly nint _NamesOffset = Schema.GetOffset(0xA3E776D50DA776AF);
+  private static nint? _NamesOffset;
 
   public ref CUtlVector<CUtlString> Names {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_NamesOffset);
+    get {
+      if (_NamesOffset == null) {
+        _NamesOffset = Schema.GetOffset(0xA3E776D50DA776AF);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_NamesOffset!.Value);
+    }
   }
-  private static readonly nint _ShuffleOffset = Schema.GetOffset(0xA3E776D528BD2B2E);
+  private static nint? _ShuffleOffset;
 
   public ref bool Shuffle {
-    get => ref _Handle.AsRef<bool>(_ShuffleOffset);
+    get {
+      if (_ShuffleOffset == null) {
+        _ShuffleOffset = Schema.GetOffset(0xA3E776D528BD2B2E);
+      }
+      return ref _Handle.AsRef<bool>(_ShuffleOffset!.Value);
+    }
   }
-  private static readonly nint _LinearOffset = Schema.GetOffset(0xA3E776D5B9313720);
+  private static nint? _LinearOffset;
 
   public ref bool Linear {
-    get => ref _Handle.AsRef<bool>(_LinearOffset);
+    get {
+      if (_LinearOffset == null) {
+        _LinearOffset = Schema.GetOffset(0xA3E776D5B9313720);
+      }
+      return ref _Handle.AsRef<bool>(_LinearOffset!.Value);
+    }
   }
-  private static readonly nint _ModelFromRendererOffset = Schema.GetOffset(0xA3E776D5AEBA1F25);
+  private static nint? _ModelFromRendererOffset;
 
   public ref bool ModelFromRenderer {
-    get => ref _Handle.AsRef<bool>(_ModelFromRendererOffset);
+    get {
+      if (_ModelFromRendererOffset == null) {
+        _ModelFromRendererOffset = Schema.GetOffset(0xA3E776D5AEBA1F25);
+      }
+      return ref _Handle.AsRef<bool>(_ModelFromRendererOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0xA3E776D5E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0xA3E776D5E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
 
 

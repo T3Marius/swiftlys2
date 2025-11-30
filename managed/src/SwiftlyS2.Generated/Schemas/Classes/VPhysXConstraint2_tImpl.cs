@@ -17,25 +17,45 @@ internal partial class VPhysXConstraint2_tImpl : SchemaClass, VPhysXConstraint2_
   public VPhysXConstraint2_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x6FB758FDCE6E9C28);
+  private static nint? _FlagsOffset;
 
   public ref uint Flags {
-    get => ref _Handle.AsRef<uint>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x6FB758FDCE6E9C28);
+      }
+      return ref _Handle.AsRef<uint>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _ParentOffset = Schema.GetOffset(0x6FB758FD0AABB9D1);
+  private static nint? _ParentOffset;
 
   public ref ushort Parent {
-    get => ref _Handle.AsRef<ushort>(_ParentOffset);
+    get {
+      if (_ParentOffset == null) {
+        _ParentOffset = Schema.GetOffset(0x6FB758FD0AABB9D1);
+      }
+      return ref _Handle.AsRef<ushort>(_ParentOffset!.Value);
+    }
   }
-  private static readonly nint _ChildOffset = Schema.GetOffset(0x6FB758FDFE653481);
+  private static nint? _ChildOffset;
 
   public ref ushort Child {
-    get => ref _Handle.AsRef<ushort>(_ChildOffset);
+    get {
+      if (_ChildOffset == null) {
+        _ChildOffset = Schema.GetOffset(0x6FB758FDFE653481);
+      }
+      return ref _Handle.AsRef<ushort>(_ChildOffset!.Value);
+    }
   }
-  private static readonly nint _ParamsOffset = Schema.GetOffset(0x6FB758FD640EA8F3);
+  private static nint? _ParamsOffset;
 
   public VPhysXConstraintParams_t Params {
-    get => new VPhysXConstraintParams_tImpl(_Handle + _ParamsOffset);
+    get {
+      if (_ParamsOffset == null) {
+        _ParamsOffset = Schema.GetOffset(0x6FB758FD640EA8F3);
+      }
+      return new VPhysXConstraintParams_tImpl(_Handle + _ParamsOffset!.Value);
+    }
   }
 
 

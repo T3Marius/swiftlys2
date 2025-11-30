@@ -17,35 +17,65 @@ internal partial class CStateMachineUpdateNodeImpl : CAnimUpdateNodeBaseImpl, CS
   public CStateMachineUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StateMachineOffset = Schema.GetOffset(0xE2E7B91DBB7EEF2F);
+  private static nint? _StateMachineOffset;
 
   public CAnimStateMachineUpdater StateMachine {
-    get => new CAnimStateMachineUpdaterImpl(_Handle + _StateMachineOffset);
+    get {
+      if (_StateMachineOffset == null) {
+        _StateMachineOffset = Schema.GetOffset(0xE2E7B91DBB7EEF2F);
+      }
+      return new CAnimStateMachineUpdaterImpl(_Handle + _StateMachineOffset!.Value);
+    }
   }
-  private static readonly nint _StateDataOffset = Schema.GetOffset(0xE2E7B91D765EA6D6);
+  private static nint? _StateDataOffset;
 
   public ref CUtlVector<CStateNodeStateData> StateData {
-    get => ref _Handle.AsRef<CUtlVector<CStateNodeStateData>>(_StateDataOffset);
+    get {
+      if (_StateDataOffset == null) {
+        _StateDataOffset = Schema.GetOffset(0xE2E7B91D765EA6D6);
+      }
+      return ref _Handle.AsRef<CUtlVector<CStateNodeStateData>>(_StateDataOffset!.Value);
+    }
   }
-  private static readonly nint _TransitionDataOffset = Schema.GetOffset(0xE2E7B91D730EEA72);
+  private static nint? _TransitionDataOffset;
 
   public ref CUtlVector<CStateNodeTransitionData> TransitionData {
-    get => ref _Handle.AsRef<CUtlVector<CStateNodeTransitionData>>(_TransitionDataOffset);
+    get {
+      if (_TransitionDataOffset == null) {
+        _TransitionDataOffset = Schema.GetOffset(0xE2E7B91D730EEA72);
+      }
+      return ref _Handle.AsRef<CUtlVector<CStateNodeTransitionData>>(_TransitionDataOffset!.Value);
+    }
   }
-  private static readonly nint _BlockWaningTagsOffset = Schema.GetOffset(0xE2E7B91DB6999F75);
+  private static nint? _BlockWaningTagsOffset;
 
   public ref bool BlockWaningTags {
-    get => ref _Handle.AsRef<bool>(_BlockWaningTagsOffset);
+    get {
+      if (_BlockWaningTagsOffset == null) {
+        _BlockWaningTagsOffset = Schema.GetOffset(0xE2E7B91DB6999F75);
+      }
+      return ref _Handle.AsRef<bool>(_BlockWaningTagsOffset!.Value);
+    }
   }
-  private static readonly nint _LockStateWhenWaningOffset = Schema.GetOffset(0xE2E7B91D105A8C95);
+  private static nint? _LockStateWhenWaningOffset;
 
   public ref bool LockStateWhenWaning {
-    get => ref _Handle.AsRef<bool>(_LockStateWhenWaningOffset);
+    get {
+      if (_LockStateWhenWaningOffset == null) {
+        _LockStateWhenWaningOffset = Schema.GetOffset(0xE2E7B91D105A8C95);
+      }
+      return ref _Handle.AsRef<bool>(_LockStateWhenWaningOffset!.Value);
+    }
   }
-  private static readonly nint _ResetWhenActivatedOffset = Schema.GetOffset(0xE2E7B91DE7055CF7);
+  private static nint? _ResetWhenActivatedOffset;
 
   public ref bool ResetWhenActivated {
-    get => ref _Handle.AsRef<bool>(_ResetWhenActivatedOffset);
+    get {
+      if (_ResetWhenActivatedOffset == null) {
+        _ResetWhenActivatedOffset = Schema.GetOffset(0xE2E7B91DE7055CF7);
+      }
+      return ref _Handle.AsRef<bool>(_ResetWhenActivatedOffset!.Value);
+    }
   }
 
 

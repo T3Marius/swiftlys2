@@ -17,19 +17,32 @@ internal partial class CModelConfigElement_SetBodygroupOnAttachedModelsImpl : CM
   public CModelConfigElement_SetBodygroupOnAttachedModelsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _GroupNameOffset = Schema.GetOffset(0xCC9BDB84E0A55E67);
+  private static nint? _GroupNameOffset;
 
   public string GroupName {
     get {
-      var ptr = _Handle.Read<nint>(_GroupNameOffset);
+      if (_GroupNameOffset == null) {
+        _GroupNameOffset = Schema.GetOffset(0xCC9BDB84E0A55E67);
+      }
+      var ptr = _Handle.Read<nint>(_GroupNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _GroupNameOffset, value);
+    set {
+      if (_GroupNameOffset == null) {
+        _GroupNameOffset = Schema.GetOffset(0xCC9BDB84E0A55E67);
+      }
+      Schema.SetString(_Handle, _GroupNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ChoiceOffset = Schema.GetOffset(0xCC9BDB847CC11192);
+  private static nint? _ChoiceOffset;
 
   public ref int Choice {
-    get => ref _Handle.AsRef<int>(_ChoiceOffset);
+    get {
+      if (_ChoiceOffset == null) {
+        _ChoiceOffset = Schema.GetOffset(0xCC9BDB847CC11192);
+      }
+      return ref _Handle.AsRef<int>(_ChoiceOffset!.Value);
+    }
   }
 
 

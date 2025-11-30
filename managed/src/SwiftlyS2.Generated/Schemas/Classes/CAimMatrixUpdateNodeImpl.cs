@@ -17,35 +17,65 @@ internal partial class CAimMatrixUpdateNodeImpl : CUnaryUpdateNodeImpl, CAimMatr
   public CAimMatrixUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OpFixedSettingsOffset = Schema.GetOffset(0xB3687A53E533AB09);
+  private static nint? _OpFixedSettingsOffset;
 
   public AimMatrixOpFixedSettings_t OpFixedSettings {
-    get => new AimMatrixOpFixedSettings_tImpl(_Handle + _OpFixedSettingsOffset);
+    get {
+      if (_OpFixedSettingsOffset == null) {
+        _OpFixedSettingsOffset = Schema.GetOffset(0xB3687A53E533AB09);
+      }
+      return new AimMatrixOpFixedSettings_tImpl(_Handle + _OpFixedSettingsOffset!.Value);
+    }
   }
-  private static readonly nint _TargetOffset = Schema.GetOffset(0xB3687A53FA08A9E8);
+  private static nint? _TargetOffset;
 
   public ref AnimVectorSource Target {
-    get => ref _Handle.AsRef<AnimVectorSource>(_TargetOffset);
+    get {
+      if (_TargetOffset == null) {
+        _TargetOffset = Schema.GetOffset(0xB3687A53FA08A9E8);
+      }
+      return ref _Handle.AsRef<AnimVectorSource>(_TargetOffset!.Value);
+    }
   }
-  private static readonly nint _ParamIndexOffset = Schema.GetOffset(0xB3687A5361990A86);
+  private static nint? _ParamIndexOffset;
 
   public CAnimParamHandle ParamIndex {
-    get => new CAnimParamHandleImpl(_Handle + _ParamIndexOffset);
+    get {
+      if (_ParamIndexOffset == null) {
+        _ParamIndexOffset = Schema.GetOffset(0xB3687A5361990A86);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParamIndexOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceOffset = Schema.GetOffset(0xB3687A53E0A0598E);
+  private static nint? _SequenceOffset;
 
   public HSequence Sequence {
-    get => new HSequenceImpl(_Handle + _SequenceOffset);
+    get {
+      if (_SequenceOffset == null) {
+        _SequenceOffset = Schema.GetOffset(0xB3687A53E0A0598E);
+      }
+      return new HSequenceImpl(_Handle + _SequenceOffset!.Value);
+    }
   }
-  private static readonly nint _ResetChildOffset = Schema.GetOffset(0xB3687A5365CC88B6);
+  private static nint? _ResetChildOffset;
 
   public ref bool ResetChild {
-    get => ref _Handle.AsRef<bool>(_ResetChildOffset);
+    get {
+      if (_ResetChildOffset == null) {
+        _ResetChildOffset = Schema.GetOffset(0xB3687A5365CC88B6);
+      }
+      return ref _Handle.AsRef<bool>(_ResetChildOffset!.Value);
+    }
   }
-  private static readonly nint _LockWhenWaningOffset = Schema.GetOffset(0xB3687A53EED48004);
+  private static nint? _LockWhenWaningOffset;
 
   public ref bool LockWhenWaning {
-    get => ref _Handle.AsRef<bool>(_LockWhenWaningOffset);
+    get {
+      if (_LockWhenWaningOffset == null) {
+        _LockWhenWaningOffset = Schema.GetOffset(0xB3687A53EED48004);
+      }
+      return ref _Handle.AsRef<bool>(_LockWhenWaningOffset!.Value);
+    }
   }
 
 

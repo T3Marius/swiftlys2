@@ -17,20 +17,35 @@ internal partial class C_OP_SetControlPointToPlayerImpl : CParticleFunctionPreEm
   public C_OP_SetControlPointToPlayerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CP1Offset = Schema.GetOffset(0xD877DC8ED4B1E579);
+  private static nint? _CP1Offset;
 
   public ref int CP1 {
-    get => ref _Handle.AsRef<int>(_CP1Offset);
+    get {
+      if (_CP1Offset == null) {
+        _CP1Offset = Schema.GetOffset(0xD877DC8ED4B1E579);
+      }
+      return ref _Handle.AsRef<int>(_CP1Offset!.Value);
+    }
   }
-  private static readonly nint _CP1PosOffset = Schema.GetOffset(0xD877DC8E408288D9);
+  private static nint? _CP1PosOffset;
 
   public ref Vector CP1Pos {
-    get => ref _Handle.AsRef<Vector>(_CP1PosOffset);
+    get {
+      if (_CP1PosOffset == null) {
+        _CP1PosOffset = Schema.GetOffset(0xD877DC8E408288D9);
+      }
+      return ref _Handle.AsRef<Vector>(_CP1PosOffset!.Value);
+    }
   }
-  private static readonly nint _OrientToEyesOffset = Schema.GetOffset(0xD877DC8E3270E4F3);
+  private static nint? _OrientToEyesOffset;
 
   public ref bool OrientToEyes {
-    get => ref _Handle.AsRef<bool>(_OrientToEyesOffset);
+    get {
+      if (_OrientToEyesOffset == null) {
+        _OrientToEyesOffset = Schema.GetOffset(0xD877DC8E3270E4F3);
+      }
+      return ref _Handle.AsRef<bool>(_OrientToEyesOffset!.Value);
+    }
   }
 
 

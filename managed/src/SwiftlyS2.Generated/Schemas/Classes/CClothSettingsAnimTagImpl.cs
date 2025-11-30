@@ -17,29 +17,52 @@ internal partial class CClothSettingsAnimTagImpl : CAnimTagBaseImpl, CClothSetti
   public CClothSettingsAnimTagImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StiffnessOffset = Schema.GetOffset(0xF6B586864344C684);
+  private static nint? _StiffnessOffset;
 
   public ref float Stiffness {
-    get => ref _Handle.AsRef<float>(_StiffnessOffset);
+    get {
+      if (_StiffnessOffset == null) {
+        _StiffnessOffset = Schema.GetOffset(0xF6B586864344C684);
+      }
+      return ref _Handle.AsRef<float>(_StiffnessOffset!.Value);
+    }
   }
-  private static readonly nint _EaseInOffset = Schema.GetOffset(0xF6B586864514C026);
+  private static nint? _EaseInOffset;
 
   public ref float EaseIn {
-    get => ref _Handle.AsRef<float>(_EaseInOffset);
+    get {
+      if (_EaseInOffset == null) {
+        _EaseInOffset = Schema.GetOffset(0xF6B586864514C026);
+      }
+      return ref _Handle.AsRef<float>(_EaseInOffset!.Value);
+    }
   }
-  private static readonly nint _EaseOutOffset = Schema.GetOffset(0xF6B5868646B49C07);
+  private static nint? _EaseOutOffset;
 
   public ref float EaseOut {
-    get => ref _Handle.AsRef<float>(_EaseOutOffset);
+    get {
+      if (_EaseOutOffset == null) {
+        _EaseOutOffset = Schema.GetOffset(0xF6B5868646B49C07);
+      }
+      return ref _Handle.AsRef<float>(_EaseOutOffset!.Value);
+    }
   }
-  private static readonly nint _VertexSetOffset = Schema.GetOffset(0xF6B586863EE1A571);
+  private static nint? _VertexSetOffset;
 
   public string VertexSet {
     get {
-      var ptr = _Handle.Read<nint>(_VertexSetOffset);
+      if (_VertexSetOffset == null) {
+        _VertexSetOffset = Schema.GetOffset(0xF6B586863EE1A571);
+      }
+      var ptr = _Handle.Read<nint>(_VertexSetOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _VertexSetOffset, value);
+    set {
+      if (_VertexSetOffset == null) {
+        _VertexSetOffset = Schema.GetOffset(0xF6B586863EE1A571);
+      }
+      Schema.SetString(_Handle, _VertexSetOffset!.Value, value);
+    }
   } 
 
 

@@ -17,10 +17,15 @@ internal partial class CCSGameModeRulesImpl : SchemaClass, CCSGameModeRules {
   public CCSGameModeRulesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint ___m_pChainEntityOffset = Schema.GetOffset(0x5093D6A4F63F0E7D);
+  private static nint? ___m_pChainEntityOffset;
 
   public ref CNetworkVarChainer __m_pChainEntity {
-    get => ref _Handle.AsRef<CNetworkVarChainer>(___m_pChainEntityOffset);
+    get {
+      if (___m_pChainEntityOffset == null) {
+        ___m_pChainEntityOffset = Schema.GetOffset(0x5093D6A4F63F0E7D);
+      }
+      return ref _Handle.AsRef<CNetworkVarChainer>(___m_pChainEntityOffset!.Value);
+    }
   }
 
 

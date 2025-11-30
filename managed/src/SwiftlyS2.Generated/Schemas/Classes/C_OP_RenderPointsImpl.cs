@@ -17,10 +17,15 @@ internal partial class C_OP_RenderPointsImpl : CParticleFunctionRendererImpl, C_
   public C_OP_RenderPointsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaterialOffset = Schema.GetOffset(0x9B246DAE888CE42E);
+  private static nint? _MaterialOffset;
 
   public ref CStrongHandle<InfoForResourceTypeIMaterial2> Material {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_MaterialOffset);
+    get {
+      if (_MaterialOffset == null) {
+        _MaterialOffset = Schema.GetOffset(0x9B246DAE888CE42E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_MaterialOffset!.Value);
+    }
   }
 
 

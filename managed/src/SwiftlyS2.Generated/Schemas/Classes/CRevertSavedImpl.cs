@@ -17,20 +17,35 @@ internal partial class CRevertSavedImpl : CModelPointEntityImpl, CRevertSaved {
   public CRevertSavedImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LoadTimeOffset = Schema.GetOffset(0x8E0EAC0F9925A540);
+  private static nint? _LoadTimeOffset;
 
   public ref float LoadTime {
-    get => ref _Handle.AsRef<float>(_LoadTimeOffset);
+    get {
+      if (_LoadTimeOffset == null) {
+        _LoadTimeOffset = Schema.GetOffset(0x8E0EAC0F9925A540);
+      }
+      return ref _Handle.AsRef<float>(_LoadTimeOffset!.Value);
+    }
   }
-  private static readonly nint _DurationOffset = Schema.GetOffset(0x8E0EAC0F9879A98D);
+  private static nint? _DurationOffset;
 
   public ref float Duration {
-    get => ref _Handle.AsRef<float>(_DurationOffset);
+    get {
+      if (_DurationOffset == null) {
+        _DurationOffset = Schema.GetOffset(0x8E0EAC0F9879A98D);
+      }
+      return ref _Handle.AsRef<float>(_DurationOffset!.Value);
+    }
   }
-  private static readonly nint _HoldTimeOffset = Schema.GetOffset(0x8E0EAC0F105A1BF1);
+  private static nint? _HoldTimeOffset;
 
   public ref float HoldTime {
-    get => ref _Handle.AsRef<float>(_HoldTimeOffset);
+    get {
+      if (_HoldTimeOffset == null) {
+        _HoldTimeOffset = Schema.GetOffset(0x8E0EAC0F105A1BF1);
+      }
+      return ref _Handle.AsRef<float>(_HoldTimeOffset!.Value);
+    }
   }
 
 

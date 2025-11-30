@@ -17,25 +17,45 @@ internal partial class ragdollelement_tImpl : SchemaClass, ragdollelement_t {
   public ragdollelement_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OriginParentSpaceOffset = Schema.GetOffset(0x6DFDA0AB476AA8AB);
+  private static nint? _OriginParentSpaceOffset;
 
   public ref Vector OriginParentSpace {
-    get => ref _Handle.AsRef<Vector>(_OriginParentSpaceOffset);
+    get {
+      if (_OriginParentSpaceOffset == null) {
+        _OriginParentSpaceOffset = Schema.GetOffset(0x6DFDA0AB476AA8AB);
+      }
+      return ref _Handle.AsRef<Vector>(_OriginParentSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _ParentIndexOffset = Schema.GetOffset(0x6DFDA0ABFE49C863);
+  private static nint? _ParentIndexOffset;
 
   public ref int ParentIndex {
-    get => ref _Handle.AsRef<int>(_ParentIndexOffset);
+    get {
+      if (_ParentIndexOffset == null) {
+        _ParentIndexOffset = Schema.GetOffset(0x6DFDA0ABFE49C863);
+      }
+      return ref _Handle.AsRef<int>(_ParentIndexOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x6DFDA0AB5ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x6DFDA0AB5ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _HeightOffset = Schema.GetOffset(0x6DFDA0ABCAB61C56);
+  private static nint? _HeightOffset;
 
   public ref int Height {
-    get => ref _Handle.AsRef<int>(_HeightOffset);
+    get {
+      if (_HeightOffset == null) {
+        _HeightOffset = Schema.GetOffset(0x6DFDA0ABCAB61C56);
+      }
+      return ref _Handle.AsRef<int>(_HeightOffset!.Value);
+    }
   }
 
 

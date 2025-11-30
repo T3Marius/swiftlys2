@@ -17,39 +17,72 @@ internal partial class CConstraintTargetImpl : SchemaClass, CConstraintTarget {
   public CConstraintTargetImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OffsetOffset = Schema.GetOffset(0x8A562794DB445327);
+  private static nint? _OffsetOffset;
 
   public ref Quaternion Offset {
-    get => ref _Handle.AsRef<Quaternion>(_OffsetOffset);
+    get {
+      if (_OffsetOffset == null) {
+        _OffsetOffset = Schema.GetOffset(0x8A562794DB445327);
+      }
+      return ref _Handle.AsRef<Quaternion>(_OffsetOffset!.Value);
+    }
   }
-  private static readonly nint _Offset1Offset = Schema.GetOffset(0x8A562794FE159136);
+  private static nint? _Offset1Offset;
 
   public ref Vector Offset1 {
-    get => ref _Handle.AsRef<Vector>(_Offset1Offset);
+    get {
+      if (_Offset1Offset == null) {
+        _Offset1Offset = Schema.GetOffset(0x8A562794FE159136);
+      }
+      return ref _Handle.AsRef<Vector>(_Offset1Offset!.Value);
+    }
   }
-  private static readonly nint _BoneHashOffset = Schema.GetOffset(0x8A562794D4010F03);
+  private static nint? _BoneHashOffset;
 
   public ref uint BoneHash {
-    get => ref _Handle.AsRef<uint>(_BoneHashOffset);
+    get {
+      if (_BoneHashOffset == null) {
+        _BoneHashOffset = Schema.GetOffset(0x8A562794D4010F03);
+      }
+      return ref _Handle.AsRef<uint>(_BoneHashOffset!.Value);
+    }
   }
-  private static readonly nint _NameOffset = Schema.GetOffset(0x8A56279463D22D49);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x8A56279463D22D49);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x8A56279463D22D49);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _WeightOffset = Schema.GetOffset(0x8A5627947B81E7AB);
+  private static nint? _WeightOffset;
 
   public ref float Weight {
-    get => ref _Handle.AsRef<float>(_WeightOffset);
+    get {
+      if (_WeightOffset == null) {
+        _WeightOffset = Schema.GetOffset(0x8A5627947B81E7AB);
+      }
+      return ref _Handle.AsRef<float>(_WeightOffset!.Value);
+    }
   }
-  private static readonly nint _IsAttachmentOffset = Schema.GetOffset(0x8A562794794BF658);
+  private static nint? _IsAttachmentOffset;
 
   public ref bool IsAttachment {
-    get => ref _Handle.AsRef<bool>(_IsAttachmentOffset);
+    get {
+      if (_IsAttachmentOffset == null) {
+        _IsAttachmentOffset = Schema.GetOffset(0x8A562794794BF658);
+      }
+      return ref _Handle.AsRef<bool>(_IsAttachmentOffset!.Value);
+    }
   }
 
 

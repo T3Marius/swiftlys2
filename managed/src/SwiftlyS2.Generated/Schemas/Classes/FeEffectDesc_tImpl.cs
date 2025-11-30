@@ -17,29 +17,52 @@ internal partial class FeEffectDesc_tImpl : SchemaClass, FeEffectDesc_t {
   public FeEffectDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x3462F54326980769);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x3462F54326980769);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x3462F54326980769);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NameHashOffset = Schema.GetOffset(0x3462F543BA4B2BDE);
+  private static nint? _NameHashOffset;
 
   public ref uint NameHash {
-    get => ref _Handle.AsRef<uint>(_NameHashOffset);
+    get {
+      if (_NameHashOffset == null) {
+        _NameHashOffset = Schema.GetOffset(0x3462F543BA4B2BDE);
+      }
+      return ref _Handle.AsRef<uint>(_NameHashOffset!.Value);
+    }
   }
-  private static readonly nint _TypeOffset = Schema.GetOffset(0x3462F543EEF036F9);
+  private static nint? _TypeOffset;
 
   public ref int Type {
-    get => ref _Handle.AsRef<int>(_TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0x3462F543EEF036F9);
+      }
+      return ref _Handle.AsRef<int>(_TypeOffset!.Value);
+    }
   }
-  private static readonly nint _ParamsOffset = Schema.GetOffset(0x3462F543900020D3);
+  private static nint? _ParamsOffset;
 
   public SchemaUntypedField Params {
-    get => new SchemaUntypedField(_Handle + _ParamsOffset);
+    get {
+      if (_ParamsOffset == null) {
+        _ParamsOffset = Schema.GetOffset(0x3462F543900020D3);
+      }
+      return new SchemaUntypedField(_Handle + _ParamsOffset!.Value);
+    }
   }
 
 

@@ -17,75 +17,145 @@ internal partial class CTriggerHurtImpl : CBaseTriggerImpl, CTriggerHurt {
   public CTriggerHurtImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OriginalDamageOffset = Schema.GetOffset(0x8D02278785B50515);
+  private static nint? _OriginalDamageOffset;
 
   public ref float OriginalDamage {
-    get => ref _Handle.AsRef<float>(_OriginalDamageOffset);
+    get {
+      if (_OriginalDamageOffset == null) {
+        _OriginalDamageOffset = Schema.GetOffset(0x8D02278785B50515);
+      }
+      return ref _Handle.AsRef<float>(_OriginalDamageOffset!.Value);
+    }
   }
-  private static readonly nint _DamageOffset = Schema.GetOffset(0x8D022787DC60E53E);
+  private static nint? _DamageOffset;
 
   public ref float Damage {
-    get => ref _Handle.AsRef<float>(_DamageOffset);
+    get {
+      if (_DamageOffset == null) {
+        _DamageOffset = Schema.GetOffset(0x8D022787DC60E53E);
+      }
+      return ref _Handle.AsRef<float>(_DamageOffset!.Value);
+    }
   }
-  private static readonly nint _DamageCapOffset = Schema.GetOffset(0x8D022787AED58F86);
+  private static nint? _DamageCapOffset;
 
   public ref float DamageCap {
-    get => ref _Handle.AsRef<float>(_DamageCapOffset);
+    get {
+      if (_DamageCapOffset == null) {
+        _DamageCapOffset = Schema.GetOffset(0x8D022787AED58F86);
+      }
+      return ref _Handle.AsRef<float>(_DamageCapOffset!.Value);
+    }
   }
-  private static readonly nint _LastDmgTimeOffset = Schema.GetOffset(0x8D022787BF3F1360);
+  private static nint? _LastDmgTimeOffset;
 
   public GameTime_t LastDmgTime {
-    get => new GameTime_tImpl(_Handle + _LastDmgTimeOffset);
+    get {
+      if (_LastDmgTimeOffset == null) {
+        _LastDmgTimeOffset = Schema.GetOffset(0x8D022787BF3F1360);
+      }
+      return new GameTime_tImpl(_Handle + _LastDmgTimeOffset!.Value);
+    }
   }
-  private static readonly nint _ForgivenessDelayOffset = Schema.GetOffset(0x8D022787112B0E13);
+  private static nint? _ForgivenessDelayOffset;
 
   public ref float ForgivenessDelay {
-    get => ref _Handle.AsRef<float>(_ForgivenessDelayOffset);
+    get {
+      if (_ForgivenessDelayOffset == null) {
+        _ForgivenessDelayOffset = Schema.GetOffset(0x8D022787112B0E13);
+      }
+      return ref _Handle.AsRef<float>(_ForgivenessDelayOffset!.Value);
+    }
   }
-  private static readonly nint _BitsDamageInflictOffset = Schema.GetOffset(0x8D0227876F0ADA0F);
+  private static nint? _BitsDamageInflictOffset;
 
   public ref DamageTypes_t BitsDamageInflict {
-    get => ref _Handle.AsRef<DamageTypes_t>(_BitsDamageInflictOffset);
+    get {
+      if (_BitsDamageInflictOffset == null) {
+        _BitsDamageInflictOffset = Schema.GetOffset(0x8D0227876F0ADA0F);
+      }
+      return ref _Handle.AsRef<DamageTypes_t>(_BitsDamageInflictOffset!.Value);
+    }
   }
-  private static readonly nint _DamageModelOffset = Schema.GetOffset(0x8D022787076F74AD);
+  private static nint? _DamageModelOffset;
 
   public ref int DamageModel {
-    get => ref _Handle.AsRef<int>(_DamageModelOffset);
+    get {
+      if (_DamageModelOffset == null) {
+        _DamageModelOffset = Schema.GetOffset(0x8D022787076F74AD);
+      }
+      return ref _Handle.AsRef<int>(_DamageModelOffset!.Value);
+    }
   }
-  private static readonly nint _NoDmgForceOffset = Schema.GetOffset(0x8D0227878236F03D);
+  private static nint? _NoDmgForceOffset;
 
   public ref bool NoDmgForce {
-    get => ref _Handle.AsRef<bool>(_NoDmgForceOffset);
+    get {
+      if (_NoDmgForceOffset == null) {
+        _NoDmgForceOffset = Schema.GetOffset(0x8D0227878236F03D);
+      }
+      return ref _Handle.AsRef<bool>(_NoDmgForceOffset!.Value);
+    }
   }
-  private static readonly nint _DamageForceOffset = Schema.GetOffset(0x8D022787B66401B7);
+  private static nint? _DamageForceOffset;
 
   public ref Vector DamageForce {
-    get => ref _Handle.AsRef<Vector>(_DamageForceOffset);
+    get {
+      if (_DamageForceOffset == null) {
+        _DamageForceOffset = Schema.GetOffset(0x8D022787B66401B7);
+      }
+      return ref _Handle.AsRef<Vector>(_DamageForceOffset!.Value);
+    }
   }
-  private static readonly nint _ThinkAlwaysOffset = Schema.GetOffset(0x8D02278776BDBDDA);
+  private static nint? _ThinkAlwaysOffset;
 
   public ref bool ThinkAlways {
-    get => ref _Handle.AsRef<bool>(_ThinkAlwaysOffset);
+    get {
+      if (_ThinkAlwaysOffset == null) {
+        _ThinkAlwaysOffset = Schema.GetOffset(0x8D02278776BDBDDA);
+      }
+      return ref _Handle.AsRef<bool>(_ThinkAlwaysOffset!.Value);
+    }
   }
-  private static readonly nint _HurtThinkPeriodOffset = Schema.GetOffset(0x8D022787C98165F1);
+  private static nint? _HurtThinkPeriodOffset;
 
   public ref float HurtThinkPeriod {
-    get => ref _Handle.AsRef<float>(_HurtThinkPeriodOffset);
+    get {
+      if (_HurtThinkPeriodOffset == null) {
+        _HurtThinkPeriodOffset = Schema.GetOffset(0x8D022787C98165F1);
+      }
+      return ref _Handle.AsRef<float>(_HurtThinkPeriodOffset!.Value);
+    }
   }
-  private static readonly nint _OnHurtOffset = Schema.GetOffset(0x8D022787361573C1);
+  private static nint? _OnHurtOffset;
 
   public CEntityIOOutput OnHurt {
-    get => new CEntityIOOutputImpl(_Handle + _OnHurtOffset);
+    get {
+      if (_OnHurtOffset == null) {
+        _OnHurtOffset = Schema.GetOffset(0x8D022787361573C1);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnHurtOffset!.Value);
+    }
   }
-  private static readonly nint _OnHurtPlayerOffset = Schema.GetOffset(0x8D02278771C2F34C);
+  private static nint? _OnHurtPlayerOffset;
 
   public CEntityIOOutput OnHurtPlayer {
-    get => new CEntityIOOutputImpl(_Handle + _OnHurtPlayerOffset);
+    get {
+      if (_OnHurtPlayerOffset == null) {
+        _OnHurtPlayerOffset = Schema.GetOffset(0x8D02278771C2F34C);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnHurtPlayerOffset!.Value);
+    }
   }
-  private static readonly nint _HurtEntitiesOffset = Schema.GetOffset(0x8D0227874E045AC3);
+  private static nint? _HurtEntitiesOffset;
 
   public ref CUtlVector<CHandle<CBaseEntity>> HurtEntities {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CBaseEntity>>>(_HurtEntitiesOffset);
+    get {
+      if (_HurtEntitiesOffset == null) {
+        _HurtEntitiesOffset = Schema.GetOffset(0x8D0227874E045AC3);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CBaseEntity>>>(_HurtEntitiesOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class CFutureVelocityMetricEvaluatorImpl : CMotionMetricEvaluat
   public CFutureVelocityMetricEvaluatorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DistanceOffset = Schema.GetOffset(0xF0A3A8300DC4A68);
+  private static nint? _DistanceOffset;
 
   public ref float Distance {
-    get => ref _Handle.AsRef<float>(_DistanceOffset);
+    get {
+      if (_DistanceOffset == null) {
+        _DistanceOffset = Schema.GetOffset(0xF0A3A8300DC4A68);
+      }
+      return ref _Handle.AsRef<float>(_DistanceOffset!.Value);
+    }
   }
-  private static readonly nint _StoppingDistanceOffset = Schema.GetOffset(0xF0A3A8324979434);
+  private static nint? _StoppingDistanceOffset;
 
   public ref float StoppingDistance {
-    get => ref _Handle.AsRef<float>(_StoppingDistanceOffset);
+    get {
+      if (_StoppingDistanceOffset == null) {
+        _StoppingDistanceOffset = Schema.GetOffset(0xF0A3A8324979434);
+      }
+      return ref _Handle.AsRef<float>(_StoppingDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _TargetSpeedOffset = Schema.GetOffset(0xF0A3A839C627845);
+  private static nint? _TargetSpeedOffset;
 
   public ref float TargetSpeed {
-    get => ref _Handle.AsRef<float>(_TargetSpeedOffset);
+    get {
+      if (_TargetSpeedOffset == null) {
+        _TargetSpeedOffset = Schema.GetOffset(0xF0A3A839C627845);
+      }
+      return ref _Handle.AsRef<float>(_TargetSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _ModeOffset = Schema.GetOffset(0xF0A3A831050A633);
+  private static nint? _ModeOffset;
 
   public ref VelocityMetricMode Mode {
-    get => ref _Handle.AsRef<VelocityMetricMode>(_ModeOffset);
+    get {
+      if (_ModeOffset == null) {
+        _ModeOffset = Schema.GetOffset(0xF0A3A831050A633);
+      }
+      return ref _Handle.AsRef<VelocityMetricMode>(_ModeOffset!.Value);
+    }
   }
 
 

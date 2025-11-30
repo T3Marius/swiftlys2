@@ -17,20 +17,35 @@ internal partial class ServerAuthoritativeWeaponSlot_tImpl : SchemaClass, Server
   public ServerAuthoritativeWeaponSlot_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ClassOffset = Schema.GetOffset(0x8AF3F5CAECD2A54A);
+  private static nint? _ClassOffset;
 
   public ref ushort Class {
-    get => ref _Handle.AsRef<ushort>(_ClassOffset);
+    get {
+      if (_ClassOffset == null) {
+        _ClassOffset = Schema.GetOffset(0x8AF3F5CAECD2A54A);
+      }
+      return ref _Handle.AsRef<ushort>(_ClassOffset!.Value);
+    }
   }
-  private static readonly nint _SlotOffset = Schema.GetOffset(0x8AF3F5CAF5443C5E);
+  private static nint? _SlotOffset;
 
   public ref ushort Slot {
-    get => ref _Handle.AsRef<ushort>(_SlotOffset);
+    get {
+      if (_SlotOffset == null) {
+        _SlotOffset = Schema.GetOffset(0x8AF3F5CAF5443C5E);
+      }
+      return ref _Handle.AsRef<ushort>(_SlotOffset!.Value);
+    }
   }
-  private static readonly nint _ItemDefIdxOffset = Schema.GetOffset(0x8AF3F5CA7BE26777);
+  private static nint? _ItemDefIdxOffset;
 
   public ref ushort ItemDefIdx {
-    get => ref _Handle.AsRef<ushort>(_ItemDefIdxOffset);
+    get {
+      if (_ItemDefIdxOffset == null) {
+        _ItemDefIdxOffset = Schema.GetOffset(0x8AF3F5CA7BE26777);
+      }
+      return ref _Handle.AsRef<ushort>(_ItemDefIdxOffset!.Value);
+    }
   }
 
   public void ClassUpdated() {

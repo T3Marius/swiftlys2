@@ -17,15 +17,25 @@ internal partial class WeaponPurchaseCount_tImpl : SchemaClass, WeaponPurchaseCo
   public WeaponPurchaseCount_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ItemDefIndexOffset = Schema.GetOffset(0xF7F0C6E61BF10FB7);
+  private static nint? _ItemDefIndexOffset;
 
   public ref ushort ItemDefIndex {
-    get => ref _Handle.AsRef<ushort>(_ItemDefIndexOffset);
+    get {
+      if (_ItemDefIndexOffset == null) {
+        _ItemDefIndexOffset = Schema.GetOffset(0xF7F0C6E61BF10FB7);
+      }
+      return ref _Handle.AsRef<ushort>(_ItemDefIndexOffset!.Value);
+    }
   }
-  private static readonly nint _CountOffset = Schema.GetOffset(0xF7F0C6E67D31AC08);
+  private static nint? _CountOffset;
 
   public ref ushort Count {
-    get => ref _Handle.AsRef<ushort>(_CountOffset);
+    get {
+      if (_CountOffset == null) {
+        _CountOffset = Schema.GetOffset(0xF7F0C6E67D31AC08);
+      }
+      return ref _Handle.AsRef<ushort>(_CountOffset!.Value);
+    }
   }
 
   public void ItemDefIndexUpdated() {

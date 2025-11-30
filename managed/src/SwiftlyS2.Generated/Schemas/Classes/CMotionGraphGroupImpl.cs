@@ -17,30 +17,55 @@ internal partial class CMotionGraphGroupImpl : SchemaClass, CMotionGraphGroup {
   public CMotionGraphGroupImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SearchDBOffset = Schema.GetOffset(0x34D64AAF5662226F);
+  private static nint? _SearchDBOffset;
 
   public CMotionSearchDB SearchDB {
-    get => new CMotionSearchDBImpl(_Handle + _SearchDBOffset);
+    get {
+      if (_SearchDBOffset == null) {
+        _SearchDBOffset = Schema.GetOffset(0x34D64AAF5662226F);
+      }
+      return new CMotionSearchDBImpl(_Handle + _SearchDBOffset!.Value);
+    }
   }
-  private static readonly nint _MotionGraphsOffset = Schema.GetOffset(0x34D64AAFE9CB46D2);
+  private static nint? _MotionGraphsOffset;
 
   public ref CUtlVector<SchemaUntypedField> MotionGraphs {
-    get => ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_MotionGraphsOffset);
+    get {
+      if (_MotionGraphsOffset == null) {
+        _MotionGraphsOffset = Schema.GetOffset(0x34D64AAFE9CB46D2);
+      }
+      return ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_MotionGraphsOffset!.Value);
+    }
   }
-  private static readonly nint _MotionGraphConfigsOffset = Schema.GetOffset(0x34D64AAF8D9A544C);
+  private static nint? _MotionGraphConfigsOffset;
 
   public ref CUtlVector<CMotionGraphConfig> MotionGraphConfigs {
-    get => ref _Handle.AsRef<CUtlVector<CMotionGraphConfig>>(_MotionGraphConfigsOffset);
+    get {
+      if (_MotionGraphConfigsOffset == null) {
+        _MotionGraphConfigsOffset = Schema.GetOffset(0x34D64AAF8D9A544C);
+      }
+      return ref _Handle.AsRef<CUtlVector<CMotionGraphConfig>>(_MotionGraphConfigsOffset!.Value);
+    }
   }
-  private static readonly nint _SampleToConfigOffset = Schema.GetOffset(0x34D64AAF85EC9B7C);
+  private static nint? _SampleToConfigOffset;
 
   public ref CUtlVector<int> SampleToConfig {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_SampleToConfigOffset);
+    get {
+      if (_SampleToConfigOffset == null) {
+        _SampleToConfigOffset = Schema.GetOffset(0x34D64AAF85EC9B7C);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_SampleToConfigOffset!.Value);
+    }
   }
-  private static readonly nint _IsActiveScriptOffset = Schema.GetOffset(0x34D64AAFF2DBEC2A);
+  private static nint? _IsActiveScriptOffset;
 
   public AnimScriptHandle IsActiveScript {
-    get => new AnimScriptHandleImpl(_Handle + _IsActiveScriptOffset);
+    get {
+      if (_IsActiveScriptOffset == null) {
+        _IsActiveScriptOffset = Schema.GetOffset(0x34D64AAFF2DBEC2A);
+      }
+      return new AnimScriptHandleImpl(_Handle + _IsActiveScriptOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class CLogicActiveAutosaveImpl : CLogicAutosaveImpl, CLogicActi
   public CLogicActiveAutosaveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TriggerHitPointsOffset = Schema.GetOffset(0x9BBDEF887D8FAE5B);
+  private static nint? _TriggerHitPointsOffset;
 
   public ref int TriggerHitPoints {
-    get => ref _Handle.AsRef<int>(_TriggerHitPointsOffset);
+    get {
+      if (_TriggerHitPointsOffset == null) {
+        _TriggerHitPointsOffset = Schema.GetOffset(0x9BBDEF887D8FAE5B);
+      }
+      return ref _Handle.AsRef<int>(_TriggerHitPointsOffset!.Value);
+    }
   }
-  private static readonly nint _TimeToTriggerOffset = Schema.GetOffset(0x9BBDEF880C3F780D);
+  private static nint? _TimeToTriggerOffset;
 
   public ref float TimeToTrigger {
-    get => ref _Handle.AsRef<float>(_TimeToTriggerOffset);
+    get {
+      if (_TimeToTriggerOffset == null) {
+        _TimeToTriggerOffset = Schema.GetOffset(0x9BBDEF880C3F780D);
+      }
+      return ref _Handle.AsRef<float>(_TimeToTriggerOffset!.Value);
+    }
   }
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0x9BBDEF8867FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public GameTime_t StartTime {
-    get => new GameTime_tImpl(_Handle + _StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0x9BBDEF8867FE9DC4);
+      }
+      return new GameTime_tImpl(_Handle + _StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _DangerousTimeOffset = Schema.GetOffset(0x9BBDEF8819BC5644);
+  private static nint? _DangerousTimeOffset;
 
   public ref float DangerousTime {
-    get => ref _Handle.AsRef<float>(_DangerousTimeOffset);
+    get {
+      if (_DangerousTimeOffset == null) {
+        _DangerousTimeOffset = Schema.GetOffset(0x9BBDEF8819BC5644);
+      }
+      return ref _Handle.AsRef<float>(_DangerousTimeOffset!.Value);
+    }
   }
 
 

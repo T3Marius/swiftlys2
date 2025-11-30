@@ -17,40 +17,75 @@ internal partial class C_OP_RotateVectorImpl : CParticleFunctionOperatorImpl, C_
   public C_OP_RotateVectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x43DEF471E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x43DEF471E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _RotAxisMinOffset = Schema.GetOffset(0x43DEF471E51ED175);
+  private static nint? _RotAxisMinOffset;
 
   public ref Vector RotAxisMin {
-    get => ref _Handle.AsRef<Vector>(_RotAxisMinOffset);
+    get {
+      if (_RotAxisMinOffset == null) {
+        _RotAxisMinOffset = Schema.GetOffset(0x43DEF471E51ED175);
+      }
+      return ref _Handle.AsRef<Vector>(_RotAxisMinOffset!.Value);
+    }
   }
-  private static readonly nint _RotAxisMaxOffset = Schema.GetOffset(0x43DEF471CF32368B);
+  private static nint? _RotAxisMaxOffset;
 
   public ref Vector RotAxisMax {
-    get => ref _Handle.AsRef<Vector>(_RotAxisMaxOffset);
+    get {
+      if (_RotAxisMaxOffset == null) {
+        _RotAxisMaxOffset = Schema.GetOffset(0x43DEF471CF32368B);
+      }
+      return ref _Handle.AsRef<Vector>(_RotAxisMaxOffset!.Value);
+    }
   }
-  private static readonly nint _RotRateMinOffset = Schema.GetOffset(0x43DEF4710EE55F62);
+  private static nint? _RotRateMinOffset;
 
   public ref float RotRateMin {
-    get => ref _Handle.AsRef<float>(_RotRateMinOffset);
+    get {
+      if (_RotRateMinOffset == null) {
+        _RotRateMinOffset = Schema.GetOffset(0x43DEF4710EE55F62);
+      }
+      return ref _Handle.AsRef<float>(_RotRateMinOffset!.Value);
+    }
   }
-  private static readonly nint _RotRateMaxOffset = Schema.GetOffset(0x43DEF471F8D1B508);
+  private static nint? _RotRateMaxOffset;
 
   public ref float RotRateMax {
-    get => ref _Handle.AsRef<float>(_RotRateMaxOffset);
+    get {
+      if (_RotRateMaxOffset == null) {
+        _RotRateMaxOffset = Schema.GetOffset(0x43DEF471F8D1B508);
+      }
+      return ref _Handle.AsRef<float>(_RotRateMaxOffset!.Value);
+    }
   }
-  private static readonly nint _NormalizeOffset = Schema.GetOffset(0x43DEF47148BC424C);
+  private static nint? _NormalizeOffset;
 
   public ref bool Normalize {
-    get => ref _Handle.AsRef<bool>(_NormalizeOffset);
+    get {
+      if (_NormalizeOffset == null) {
+        _NormalizeOffset = Schema.GetOffset(0x43DEF47148BC424C);
+      }
+      return ref _Handle.AsRef<bool>(_NormalizeOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x43DEF471B731A42F);
+  private static nint? _ScaleOffset;
 
   public CPerParticleFloatInput Scale {
-    get => new CPerParticleFloatInputImpl(_Handle + _ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x43DEF471B731A42F);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ScaleOffset!.Value);
+    }
   }
 
 

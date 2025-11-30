@@ -17,14 +17,22 @@ internal partial class CNmBodyGroupEventImpl : CNmEventImpl, CNmBodyGroupEvent {
   public CNmBodyGroupEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _GroupNameOffset = Schema.GetOffset(0xBC3A0016025FB2C7);
+  private static nint? _GroupNameOffset;
 
   public string GroupName {
     get {
-      var ptr = _Handle.Read<nint>(_GroupNameOffset);
+      if (_GroupNameOffset == null) {
+        _GroupNameOffset = Schema.GetOffset(0xBC3A0016025FB2C7);
+      }
+      var ptr = _Handle.Read<nint>(_GroupNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _GroupNameOffset, value);
+    set {
+      if (_GroupNameOffset == null) {
+        _GroupNameOffset = Schema.GetOffset(0xBC3A0016025FB2C7);
+      }
+      Schema.SetString(_Handle, _GroupNameOffset!.Value, value);
+    }
   } 
 
 

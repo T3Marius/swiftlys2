@@ -17,20 +17,35 @@ internal partial class C_OP_RemapDistanceToLineSegmentToScalarImpl : C_OP_RemapD
   public C_OP_RemapDistanceToLineSegmentToScalarImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0xF4B67462E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0xF4B67462E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _MinOutputValueOffset = Schema.GetOffset(0xF4B67462F63C7011);
+  private static nint? _MinOutputValueOffset;
 
   public ref float MinOutputValue {
-    get => ref _Handle.AsRef<float>(_MinOutputValueOffset);
+    get {
+      if (_MinOutputValueOffset == null) {
+        _MinOutputValueOffset = Schema.GetOffset(0xF4B67462F63C7011);
+      }
+      return ref _Handle.AsRef<float>(_MinOutputValueOffset!.Value);
+    }
   }
-  private static readonly nint _MaxOutputValueOffset = Schema.GetOffset(0xF4B67462A91B71B3);
+  private static nint? _MaxOutputValueOffset;
 
   public ref float MaxOutputValue {
-    get => ref _Handle.AsRef<float>(_MaxOutputValueOffset);
+    get {
+      if (_MaxOutputValueOffset == null) {
+        _MaxOutputValueOffset = Schema.GetOffset(0xF4B67462A91B71B3);
+      }
+      return ref _Handle.AsRef<float>(_MaxOutputValueOffset!.Value);
+    }
   }
 
 

@@ -17,45 +17,85 @@ internal partial class CTestPulseIOImpl : CLogicalEntityImpl, CTestPulseIO {
   public CTestPulseIOImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnVariantVoidOffset = Schema.GetOffset(0x3CAD66134B0C5D73);
+  private static nint? _OnVariantVoidOffset;
 
   public CEntityIOOutput OnVariantVoid {
-    get => new CEntityIOOutputImpl(_Handle + _OnVariantVoidOffset);
+    get {
+      if (_OnVariantVoidOffset == null) {
+        _OnVariantVoidOffset = Schema.GetOffset(0x3CAD66134B0C5D73);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnVariantVoidOffset!.Value);
+    }
   }
-  private static readonly nint _OnVariantBoolOffset = Schema.GetOffset(0x3CAD66138350E481);
+  private static nint? _OnVariantBoolOffset;
 
   public CEntityIOOutput OnVariantBool {
-    get => new CEntityIOOutputImpl(_Handle + _OnVariantBoolOffset);
+    get {
+      if (_OnVariantBoolOffset == null) {
+        _OnVariantBoolOffset = Schema.GetOffset(0x3CAD66138350E481);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnVariantBoolOffset!.Value);
+    }
   }
-  private static readonly nint _OnVariantIntOffset = Schema.GetOffset(0x3CAD66131C6BA682);
+  private static nint? _OnVariantIntOffset;
 
   public CEntityIOOutput OnVariantInt {
-    get => new CEntityIOOutputImpl(_Handle + _OnVariantIntOffset);
+    get {
+      if (_OnVariantIntOffset == null) {
+        _OnVariantIntOffset = Schema.GetOffset(0x3CAD66131C6BA682);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnVariantIntOffset!.Value);
+    }
   }
-  private static readonly nint _OnVariantFloatOffset = Schema.GetOffset(0x3CAD661378E46379);
+  private static nint? _OnVariantFloatOffset;
 
   public CEntityIOOutput OnVariantFloat {
-    get => new CEntityIOOutputImpl(_Handle + _OnVariantFloatOffset);
+    get {
+      if (_OnVariantFloatOffset == null) {
+        _OnVariantFloatOffset = Schema.GetOffset(0x3CAD661378E46379);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnVariantFloatOffset!.Value);
+    }
   }
-  private static readonly nint _OnVariantStringOffset = Schema.GetOffset(0x3CAD6613DE2E3E5C);
+  private static nint? _OnVariantStringOffset;
 
   public CEntityIOOutput OnVariantString {
-    get => new CEntityIOOutputImpl(_Handle + _OnVariantStringOffset);
+    get {
+      if (_OnVariantStringOffset == null) {
+        _OnVariantStringOffset = Schema.GetOffset(0x3CAD6613DE2E3E5C);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnVariantStringOffset!.Value);
+    }
   }
-  private static readonly nint _OnVariantColorOffset = Schema.GetOffset(0x3CAD66139A1362C4);
+  private static nint? _OnVariantColorOffset;
 
   public CEntityIOOutput OnVariantColor {
-    get => new CEntityIOOutputImpl(_Handle + _OnVariantColorOffset);
+    get {
+      if (_OnVariantColorOffset == null) {
+        _OnVariantColorOffset = Schema.GetOffset(0x3CAD66139A1362C4);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnVariantColorOffset!.Value);
+    }
   }
-  private static readonly nint _OnVariantVectorOffset = Schema.GetOffset(0x3CAD6613A6D8BE1E);
+  private static nint? _OnVariantVectorOffset;
 
   public CEntityIOOutput OnVariantVector {
-    get => new CEntityIOOutputImpl(_Handle + _OnVariantVectorOffset);
+    get {
+      if (_OnVariantVectorOffset == null) {
+        _OnVariantVectorOffset = Schema.GetOffset(0x3CAD6613A6D8BE1E);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnVariantVectorOffset!.Value);
+    }
   }
-  private static readonly nint _AllowEmptyInputsOffset = Schema.GetOffset(0x3CAD661342A93BD2);
+  private static nint? _AllowEmptyInputsOffset;
 
   public ref bool AllowEmptyInputs {
-    get => ref _Handle.AsRef<bool>(_AllowEmptyInputsOffset);
+    get {
+      if (_AllowEmptyInputsOffset == null) {
+        _AllowEmptyInputsOffset = Schema.GetOffset(0x3CAD661342A93BD2);
+      }
+      return ref _Handle.AsRef<bool>(_AllowEmptyInputsOffset!.Value);
+    }
   }
 
 

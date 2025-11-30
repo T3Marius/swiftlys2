@@ -27,6 +27,18 @@ internal class EventHltvRankCameraImpl : GameEvent<EventHltvRankCamera>, EventHl
   { get => Accessor.GetFloat("rank"); set => Accessor.SetFloat("rank", value); }
 
   // best/closest target entity
+  public CCSPlayerController TargetController
+  { get => Accessor.GetPlayerController("target"); }
+
+  // best/closest target entity
+  public CCSPlayerPawn TargetPawn
+  { get => Accessor.GetPlayerPawn("target"); }
+
+  // best/closest target entity
+  public IPlayer TargetPlayer
+  { get => Accessor.GetPlayer("target"); }
+
+  // best/closest target entity
   public int Target
-  { get => Accessor.GetPlayerSlot("target"); set => Accessor.SetPlayerSlot("target", value); }
+  { get => Accessor.GetInt32("target"); set => Accessor.SetInt32("target", value); }
 }

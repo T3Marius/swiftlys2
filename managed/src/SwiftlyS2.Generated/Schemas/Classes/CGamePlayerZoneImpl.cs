@@ -17,25 +17,45 @@ internal partial class CGamePlayerZoneImpl : CRuleBrushEntityImpl, CGamePlayerZo
   public CGamePlayerZoneImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnPlayerInZoneOffset = Schema.GetOffset(0x35811C97FBD22730);
+  private static nint? _OnPlayerInZoneOffset;
 
   public CEntityIOOutput OnPlayerInZone {
-    get => new CEntityIOOutputImpl(_Handle + _OnPlayerInZoneOffset);
+    get {
+      if (_OnPlayerInZoneOffset == null) {
+        _OnPlayerInZoneOffset = Schema.GetOffset(0x35811C97FBD22730);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnPlayerInZoneOffset!.Value);
+    }
   }
-  private static readonly nint _OnPlayerOutZoneOffset = Schema.GetOffset(0x35811C97E3DE880D);
+  private static nint? _OnPlayerOutZoneOffset;
 
   public CEntityIOOutput OnPlayerOutZone {
-    get => new CEntityIOOutputImpl(_Handle + _OnPlayerOutZoneOffset);
+    get {
+      if (_OnPlayerOutZoneOffset == null) {
+        _OnPlayerOutZoneOffset = Schema.GetOffset(0x35811C97E3DE880D);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnPlayerOutZoneOffset!.Value);
+    }
   }
-  private static readonly nint _PlayersInCountOffset = Schema.GetOffset(0x35811C9706A59501);
+  private static nint? _PlayersInCountOffset;
 
   public SchemaUntypedField PlayersInCount {
-    get => new SchemaUntypedField(_Handle + _PlayersInCountOffset);
+    get {
+      if (_PlayersInCountOffset == null) {
+        _PlayersInCountOffset = Schema.GetOffset(0x35811C9706A59501);
+      }
+      return new SchemaUntypedField(_Handle + _PlayersInCountOffset!.Value);
+    }
   }
-  private static readonly nint _PlayersOutCountOffset = Schema.GetOffset(0x35811C976894D862);
+  private static nint? _PlayersOutCountOffset;
 
   public SchemaUntypedField PlayersOutCount {
-    get => new SchemaUntypedField(_Handle + _PlayersOutCountOffset);
+    get {
+      if (_PlayersOutCountOffset == null) {
+        _PlayersOutCountOffset = Schema.GetOffset(0x35811C976894D862);
+      }
+      return new SchemaUntypedField(_Handle + _PlayersOutCountOffset!.Value);
+    }
   }
 
 

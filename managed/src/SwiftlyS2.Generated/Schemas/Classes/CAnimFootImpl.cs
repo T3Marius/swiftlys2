@@ -17,34 +17,62 @@ internal partial class CAnimFootImpl : SchemaClass, CAnimFoot {
   public CAnimFootImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x583A05E34D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x583A05E34D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x583A05E34D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _BallOffsetOffset = Schema.GetOffset(0x583A05E3E3376F1B);
+  private static nint? _BallOffsetOffset;
 
   public ref Vector BallOffset {
-    get => ref _Handle.AsRef<Vector>(_BallOffsetOffset);
+    get {
+      if (_BallOffsetOffset == null) {
+        _BallOffsetOffset = Schema.GetOffset(0x583A05E3E3376F1B);
+      }
+      return ref _Handle.AsRef<Vector>(_BallOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _HeelOffsetOffset = Schema.GetOffset(0x583A05E3306AE608);
+  private static nint? _HeelOffsetOffset;
 
   public ref Vector HeelOffset {
-    get => ref _Handle.AsRef<Vector>(_HeelOffsetOffset);
+    get {
+      if (_HeelOffsetOffset == null) {
+        _HeelOffsetOffset = Schema.GetOffset(0x583A05E3306AE608);
+      }
+      return ref _Handle.AsRef<Vector>(_HeelOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _AnkleBoneIndexOffset = Schema.GetOffset(0x583A05E31E89F146);
+  private static nint? _AnkleBoneIndexOffset;
 
   public ref int AnkleBoneIndex {
-    get => ref _Handle.AsRef<int>(_AnkleBoneIndexOffset);
+    get {
+      if (_AnkleBoneIndexOffset == null) {
+        _AnkleBoneIndexOffset = Schema.GetOffset(0x583A05E31E89F146);
+      }
+      return ref _Handle.AsRef<int>(_AnkleBoneIndexOffset!.Value);
+    }
   }
-  private static readonly nint _ToeBoneIndexOffset = Schema.GetOffset(0x583A05E3EEF7CC57);
+  private static nint? _ToeBoneIndexOffset;
 
   public ref int ToeBoneIndex {
-    get => ref _Handle.AsRef<int>(_ToeBoneIndexOffset);
+    get {
+      if (_ToeBoneIndexOffset == null) {
+        _ToeBoneIndexOffset = Schema.GetOffset(0x583A05E3EEF7CC57);
+      }
+      return ref _Handle.AsRef<int>(_ToeBoneIndexOffset!.Value);
+    }
   }
 
 

@@ -17,40 +17,75 @@ internal partial class C_OP_FadeAndKillImpl : CParticleFunctionOperatorImpl, C_O
   public C_OP_FadeAndKillImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StartFadeInTimeOffset = Schema.GetOffset(0x66AFC90439639779);
+  private static nint? _StartFadeInTimeOffset;
 
   public ref float StartFadeInTime {
-    get => ref _Handle.AsRef<float>(_StartFadeInTimeOffset);
+    get {
+      if (_StartFadeInTimeOffset == null) {
+        _StartFadeInTimeOffset = Schema.GetOffset(0x66AFC90439639779);
+      }
+      return ref _Handle.AsRef<float>(_StartFadeInTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndFadeInTimeOffset = Schema.GetOffset(0x66AFC90436A35C84);
+  private static nint? _EndFadeInTimeOffset;
 
   public ref float EndFadeInTime {
-    get => ref _Handle.AsRef<float>(_EndFadeInTimeOffset);
+    get {
+      if (_EndFadeInTimeOffset == null) {
+        _EndFadeInTimeOffset = Schema.GetOffset(0x66AFC90436A35C84);
+      }
+      return ref _Handle.AsRef<float>(_EndFadeInTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartFadeOutTimeOffset = Schema.GetOffset(0x66AFC9046ABCF324);
+  private static nint? _StartFadeOutTimeOffset;
 
   public ref float StartFadeOutTime {
-    get => ref _Handle.AsRef<float>(_StartFadeOutTimeOffset);
+    get {
+      if (_StartFadeOutTimeOffset == null) {
+        _StartFadeOutTimeOffset = Schema.GetOffset(0x66AFC9046ABCF324);
+      }
+      return ref _Handle.AsRef<float>(_StartFadeOutTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndFadeOutTimeOffset = Schema.GetOffset(0x66AFC904FE87D7E7);
+  private static nint? _EndFadeOutTimeOffset;
 
   public ref float EndFadeOutTime {
-    get => ref _Handle.AsRef<float>(_EndFadeOutTimeOffset);
+    get {
+      if (_EndFadeOutTimeOffset == null) {
+        _EndFadeOutTimeOffset = Schema.GetOffset(0x66AFC904FE87D7E7);
+      }
+      return ref _Handle.AsRef<float>(_EndFadeOutTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartAlphaOffset = Schema.GetOffset(0x66AFC9046A7A5D0B);
+  private static nint? _StartAlphaOffset;
 
   public ref float StartAlpha {
-    get => ref _Handle.AsRef<float>(_StartAlphaOffset);
+    get {
+      if (_StartAlphaOffset == null) {
+        _StartAlphaOffset = Schema.GetOffset(0x66AFC9046A7A5D0B);
+      }
+      return ref _Handle.AsRef<float>(_StartAlphaOffset!.Value);
+    }
   }
-  private static readonly nint _EndAlphaOffset = Schema.GetOffset(0x66AFC9047A639CC0);
+  private static nint? _EndAlphaOffset;
 
   public ref float EndAlpha {
-    get => ref _Handle.AsRef<float>(_EndAlphaOffset);
+    get {
+      if (_EndAlphaOffset == null) {
+        _EndAlphaOffset = Schema.GetOffset(0x66AFC9047A639CC0);
+      }
+      return ref _Handle.AsRef<float>(_EndAlphaOffset!.Value);
+    }
   }
-  private static readonly nint _ForcePreserveParticleOrderOffset = Schema.GetOffset(0x66AFC904FEB98B86);
+  private static nint? _ForcePreserveParticleOrderOffset;
 
   public ref bool ForcePreserveParticleOrder {
-    get => ref _Handle.AsRef<bool>(_ForcePreserveParticleOrderOffset);
+    get {
+      if (_ForcePreserveParticleOrderOffset == null) {
+        _ForcePreserveParticleOrderOffset = Schema.GetOffset(0x66AFC904FEB98B86);
+      }
+      return ref _Handle.AsRef<bool>(_ForcePreserveParticleOrderOffset!.Value);
+    }
   }
 
 

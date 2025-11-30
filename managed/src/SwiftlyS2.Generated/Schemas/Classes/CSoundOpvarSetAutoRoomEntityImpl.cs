@@ -17,30 +17,55 @@ internal partial class CSoundOpvarSetAutoRoomEntityImpl : CSoundOpvarSetPointEnt
   public CSoundOpvarSetAutoRoomEntityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TraceResultsOffset = Schema.GetOffset(0x13ABD76E24ADC8DC);
+  private static nint? _TraceResultsOffset;
 
   public ref CUtlVector<SoundOpvarTraceResult_t> TraceResults {
-    get => ref _Handle.AsRef<CUtlVector<SoundOpvarTraceResult_t>>(_TraceResultsOffset);
+    get {
+      if (_TraceResultsOffset == null) {
+        _TraceResultsOffset = Schema.GetOffset(0x13ABD76E24ADC8DC);
+      }
+      return ref _Handle.AsRef<CUtlVector<SoundOpvarTraceResult_t>>(_TraceResultsOffset!.Value);
+    }
   }
-  private static readonly nint _DoorwayPairsOffset = Schema.GetOffset(0x13ABD76EFAD6453D);
+  private static nint? _DoorwayPairsOffset;
 
   public ref CUtlVector<AutoRoomDoorwayPairs_t> DoorwayPairs {
-    get => ref _Handle.AsRef<CUtlVector<AutoRoomDoorwayPairs_t>>(_DoorwayPairsOffset);
+    get {
+      if (_DoorwayPairsOffset == null) {
+        _DoorwayPairsOffset = Schema.GetOffset(0x13ABD76EFAD6453D);
+      }
+      return ref _Handle.AsRef<CUtlVector<AutoRoomDoorwayPairs_t>>(_DoorwayPairsOffset!.Value);
+    }
   }
-  private static readonly nint _SizeOffset = Schema.GetOffset(0x13ABD76E4CF0EBC6);
+  private static nint? _SizeOffset;
 
   public ref float Size {
-    get => ref _Handle.AsRef<float>(_SizeOffset);
+    get {
+      if (_SizeOffset == null) {
+        _SizeOffset = Schema.GetOffset(0x13ABD76E4CF0EBC6);
+      }
+      return ref _Handle.AsRef<float>(_SizeOffset!.Value);
+    }
   }
-  private static readonly nint _HeightToleranceOffset = Schema.GetOffset(0x13ABD76EB388225F);
+  private static nint? _HeightToleranceOffset;
 
   public ref float HeightTolerance {
-    get => ref _Handle.AsRef<float>(_HeightToleranceOffset);
+    get {
+      if (_HeightToleranceOffset == null) {
+        _HeightToleranceOffset = Schema.GetOffset(0x13ABD76EB388225F);
+      }
+      return ref _Handle.AsRef<float>(_HeightToleranceOffset!.Value);
+    }
   }
-  private static readonly nint _SizeSqrOffset = Schema.GetOffset(0x13ABD76E063EF878);
+  private static nint? _SizeSqrOffset;
 
   public ref float SizeSqr {
-    get => ref _Handle.AsRef<float>(_SizeSqrOffset);
+    get {
+      if (_SizeSqrOffset == null) {
+        _SizeSqrOffset = Schema.GetOffset(0x13ABD76E063EF878);
+      }
+      return ref _Handle.AsRef<float>(_SizeSqrOffset!.Value);
+    }
   }
 
 

@@ -17,25 +17,45 @@ internal partial class CTimeRemainingMetricEvaluatorImpl : CMotionMetricEvaluato
   public CTimeRemainingMetricEvaluatorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MatchByTimeRemainingOffset = Schema.GetOffset(0xAB802C86BB70462E);
+  private static nint? _MatchByTimeRemainingOffset;
 
   public ref bool MatchByTimeRemaining {
-    get => ref _Handle.AsRef<bool>(_MatchByTimeRemainingOffset);
+    get {
+      if (_MatchByTimeRemainingOffset == null) {
+        _MatchByTimeRemainingOffset = Schema.GetOffset(0xAB802C86BB70462E);
+      }
+      return ref _Handle.AsRef<bool>(_MatchByTimeRemainingOffset!.Value);
+    }
   }
-  private static readonly nint _MaxTimeRemainingOffset = Schema.GetOffset(0xAB802C8686818AD6);
+  private static nint? _MaxTimeRemainingOffset;
 
   public ref float MaxTimeRemaining {
-    get => ref _Handle.AsRef<float>(_MaxTimeRemainingOffset);
+    get {
+      if (_MaxTimeRemainingOffset == null) {
+        _MaxTimeRemainingOffset = Schema.GetOffset(0xAB802C8686818AD6);
+      }
+      return ref _Handle.AsRef<float>(_MaxTimeRemainingOffset!.Value);
+    }
   }
-  private static readonly nint _FilterByTimeRemainingOffset = Schema.GetOffset(0xAB802C8668E9E5BD);
+  private static nint? _FilterByTimeRemainingOffset;
 
   public ref bool FilterByTimeRemaining {
-    get => ref _Handle.AsRef<bool>(_FilterByTimeRemainingOffset);
+    get {
+      if (_FilterByTimeRemainingOffset == null) {
+        _FilterByTimeRemainingOffset = Schema.GetOffset(0xAB802C8668E9E5BD);
+      }
+      return ref _Handle.AsRef<bool>(_FilterByTimeRemainingOffset!.Value);
+    }
   }
-  private static readonly nint _MinTimeRemainingOffset = Schema.GetOffset(0xAB802C8604DD377C);
+  private static nint? _MinTimeRemainingOffset;
 
   public ref float MinTimeRemaining {
-    get => ref _Handle.AsRef<float>(_MinTimeRemainingOffset);
+    get {
+      if (_MinTimeRemainingOffset == null) {
+        _MinTimeRemainingOffset = Schema.GetOffset(0xAB802C8604DD377C);
+      }
+      return ref _Handle.AsRef<float>(_MinTimeRemainingOffset!.Value);
+    }
   }
 
 

@@ -17,30 +17,55 @@ internal partial class CEconItemAttributeImpl : SchemaClass, CEconItemAttribute 
   public CEconItemAttributeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AttributeDefinitionIndexOffset = Schema.GetOffset(0xBB0F80FC8DAFCD73);
+  private static nint? _AttributeDefinitionIndexOffset;
 
   public ref ushort AttributeDefinitionIndex {
-    get => ref _Handle.AsRef<ushort>(_AttributeDefinitionIndexOffset);
+    get {
+      if (_AttributeDefinitionIndexOffset == null) {
+        _AttributeDefinitionIndexOffset = Schema.GetOffset(0xBB0F80FC8DAFCD73);
+      }
+      return ref _Handle.AsRef<ushort>(_AttributeDefinitionIndexOffset!.Value);
+    }
   }
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xBB0F80FC8DFCB984);
+  private static nint? _ValueOffset;
 
   public ref float Value {
-    get => ref _Handle.AsRef<float>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xBB0F80FC8DFCB984);
+      }
+      return ref _Handle.AsRef<float>(_ValueOffset!.Value);
+    }
   }
-  private static readonly nint _InitialValueOffset = Schema.GetOffset(0xBB0F80FCE2DBFFF2);
+  private static nint? _InitialValueOffset;
 
   public ref float InitialValue {
-    get => ref _Handle.AsRef<float>(_InitialValueOffset);
+    get {
+      if (_InitialValueOffset == null) {
+        _InitialValueOffset = Schema.GetOffset(0xBB0F80FCE2DBFFF2);
+      }
+      return ref _Handle.AsRef<float>(_InitialValueOffset!.Value);
+    }
   }
-  private static readonly nint _RefundableCurrencyOffset = Schema.GetOffset(0xBB0F80FC1021E694);
+  private static nint? _RefundableCurrencyOffset;
 
   public ref int RefundableCurrency {
-    get => ref _Handle.AsRef<int>(_RefundableCurrencyOffset);
+    get {
+      if (_RefundableCurrencyOffset == null) {
+        _RefundableCurrencyOffset = Schema.GetOffset(0xBB0F80FC1021E694);
+      }
+      return ref _Handle.AsRef<int>(_RefundableCurrencyOffset!.Value);
+    }
   }
-  private static readonly nint _SetBonusOffset = Schema.GetOffset(0xBB0F80FCA5E9EA96);
+  private static nint? _SetBonusOffset;
 
   public ref bool SetBonus {
-    get => ref _Handle.AsRef<bool>(_SetBonusOffset);
+    get {
+      if (_SetBonusOffset == null) {
+        _SetBonusOffset = Schema.GetOffset(0xBB0F80FCA5E9EA96);
+      }
+      return ref _Handle.AsRef<bool>(_SetBonusOffset!.Value);
+    }
   }
 
   public void AttributeDefinitionIndexUpdated() {

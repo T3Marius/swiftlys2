@@ -17,10 +17,15 @@ internal partial class CUnaryUpdateNodeImpl : CAnimUpdateNodeBaseImpl, CUnaryUpd
   public CUnaryUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ChildNodeOffset = Schema.GetOffset(0x7A35EAF8C0359CFF);
+  private static nint? _ChildNodeOffset;
 
   public CAnimUpdateNodeRef ChildNode {
-    get => new CAnimUpdateNodeRefImpl(_Handle + _ChildNodeOffset);
+    get {
+      if (_ChildNodeOffset == null) {
+        _ChildNodeOffset = Schema.GetOffset(0x7A35EAF8C0359CFF);
+      }
+      return new CAnimUpdateNodeRefImpl(_Handle + _ChildNodeOffset!.Value);
+    }
   }
 
 

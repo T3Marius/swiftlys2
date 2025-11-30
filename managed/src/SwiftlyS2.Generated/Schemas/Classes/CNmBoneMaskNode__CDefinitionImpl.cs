@@ -17,10 +17,15 @@ internal partial class CNmBoneMaskNode__CDefinitionImpl : CNmBoneMaskValueNode__
   public CNmBoneMaskNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneMaskIDOffset = Schema.GetOffset(0xC50CAD4B5F09FD66);
+  private static nint? _BoneMaskIDOffset;
 
   public ref CGlobalSymbol BoneMaskID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_BoneMaskIDOffset);
+    get {
+      if (_BoneMaskIDOffset == null) {
+        _BoneMaskIDOffset = Schema.GetOffset(0xC50CAD4B5F09FD66);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_BoneMaskIDOffset!.Value);
+    }
   }
 
 

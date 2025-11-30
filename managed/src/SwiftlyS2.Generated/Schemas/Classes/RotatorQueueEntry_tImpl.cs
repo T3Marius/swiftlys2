@@ -17,15 +17,25 @@ internal partial class RotatorQueueEntry_tImpl : SchemaClass, RotatorQueueEntry_
   public RotatorQueueEntry_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TargetOffset = Schema.GetOffset(0x2A6B84384FFCC265);
+  private static nint? _TargetOffset;
 
   public ref Quaternion Target {
-    get => ref _Handle.AsRef<Quaternion>(_TargetOffset);
+    get {
+      if (_TargetOffset == null) {
+        _TargetOffset = Schema.GetOffset(0x2A6B84384FFCC265);
+      }
+      return ref _Handle.AsRef<Quaternion>(_TargetOffset!.Value);
+    }
   }
-  private static readonly nint _SpaceOffset = Schema.GetOffset(0x2A6B8438EC1BD596);
+  private static nint? _SpaceOffset;
 
   public ref RotatorTargetSpace_t Space {
-    get => ref _Handle.AsRef<RotatorTargetSpace_t>(_SpaceOffset);
+    get {
+      if (_SpaceOffset == null) {
+        _SpaceOffset = Schema.GetOffset(0x2A6B8438EC1BD596);
+      }
+      return ref _Handle.AsRef<RotatorTargetSpace_t>(_SpaceOffset!.Value);
+    }
   }
 
 

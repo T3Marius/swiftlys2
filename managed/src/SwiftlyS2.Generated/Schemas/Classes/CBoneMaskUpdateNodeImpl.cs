@@ -17,40 +17,75 @@ internal partial class CBoneMaskUpdateNodeImpl : CBinaryUpdateNodeImpl, CBoneMas
   public CBoneMaskUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WeightListIndexOffset = Schema.GetOffset(0x213CBA4D30288377);
+  private static nint? _WeightListIndexOffset;
 
   public ref int WeightListIndex {
-    get => ref _Handle.AsRef<int>(_WeightListIndexOffset);
+    get {
+      if (_WeightListIndexOffset == null) {
+        _WeightListIndexOffset = Schema.GetOffset(0x213CBA4D30288377);
+      }
+      return ref _Handle.AsRef<int>(_WeightListIndexOffset!.Value);
+    }
   }
-  private static readonly nint _RootMotionBlendOffset = Schema.GetOffset(0x213CBA4DAF24631C);
+  private static nint? _RootMotionBlendOffset;
 
   public ref float RootMotionBlend {
-    get => ref _Handle.AsRef<float>(_RootMotionBlendOffset);
+    get {
+      if (_RootMotionBlendOffset == null) {
+        _RootMotionBlendOffset = Schema.GetOffset(0x213CBA4DAF24631C);
+      }
+      return ref _Handle.AsRef<float>(_RootMotionBlendOffset!.Value);
+    }
   }
-  private static readonly nint _BlendSpaceOffset = Schema.GetOffset(0x213CBA4D9DCBC41E);
+  private static nint? _BlendSpaceOffset;
 
   public ref BoneMaskBlendSpace BlendSpace {
-    get => ref _Handle.AsRef<BoneMaskBlendSpace>(_BlendSpaceOffset);
+    get {
+      if (_BlendSpaceOffset == null) {
+        _BlendSpaceOffset = Schema.GetOffset(0x213CBA4D9DCBC41E);
+      }
+      return ref _Handle.AsRef<BoneMaskBlendSpace>(_BlendSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _FootMotionTimingOffset = Schema.GetOffset(0x213CBA4DBB17F13D);
+  private static nint? _FootMotionTimingOffset;
 
   public ref BinaryNodeChildOption FootMotionTiming {
-    get => ref _Handle.AsRef<BinaryNodeChildOption>(_FootMotionTimingOffset);
+    get {
+      if (_FootMotionTimingOffset == null) {
+        _FootMotionTimingOffset = Schema.GetOffset(0x213CBA4DBB17F13D);
+      }
+      return ref _Handle.AsRef<BinaryNodeChildOption>(_FootMotionTimingOffset!.Value);
+    }
   }
-  private static readonly nint _UseBlendScaleOffset = Schema.GetOffset(0x213CBA4DF5B40057);
+  private static nint? _UseBlendScaleOffset;
 
   public ref bool UseBlendScale {
-    get => ref _Handle.AsRef<bool>(_UseBlendScaleOffset);
+    get {
+      if (_UseBlendScaleOffset == null) {
+        _UseBlendScaleOffset = Schema.GetOffset(0x213CBA4DF5B40057);
+      }
+      return ref _Handle.AsRef<bool>(_UseBlendScaleOffset!.Value);
+    }
   }
-  private static readonly nint _BlendValueSourceOffset = Schema.GetOffset(0x213CBA4D7AB7C374);
+  private static nint? _BlendValueSourceOffset;
 
   public ref AnimValueSource BlendValueSource {
-    get => ref _Handle.AsRef<AnimValueSource>(_BlendValueSourceOffset);
+    get {
+      if (_BlendValueSourceOffset == null) {
+        _BlendValueSourceOffset = Schema.GetOffset(0x213CBA4D7AB7C374);
+      }
+      return ref _Handle.AsRef<AnimValueSource>(_BlendValueSourceOffset!.Value);
+    }
   }
-  private static readonly nint _BlendParameterOffset = Schema.GetOffset(0x213CBA4D40990659);
+  private static nint? _BlendParameterOffset;
 
   public CAnimParamHandle BlendParameter {
-    get => new CAnimParamHandleImpl(_Handle + _BlendParameterOffset);
+    get {
+      if (_BlendParameterOffset == null) {
+        _BlendParameterOffset = Schema.GetOffset(0x213CBA4D40990659);
+      }
+      return new CAnimParamHandleImpl(_Handle + _BlendParameterOffset!.Value);
+    }
   }
 
 

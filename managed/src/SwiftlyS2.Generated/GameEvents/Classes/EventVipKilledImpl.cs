@@ -34,6 +34,18 @@ internal class EventVipKilledImpl : GameEvent<EventVipKilled>, EventVipKilled
   { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
   // user ID who killed the VIP
+  public CCSPlayerController AttackerController
+  { get => Accessor.GetPlayerController("attacker"); }
+
+  // user ID who killed the VIP
+  public CCSPlayerPawn AttackerPawn
+  { get => Accessor.GetPlayerPawn("attacker"); }
+
+  // user ID who killed the VIP
+  public IPlayer AttackerPlayer
+  { get => Accessor.GetPlayer("attacker"); }
+
+  // user ID who killed the VIP
   public int Attacker
-  { get => Accessor.GetPlayerSlot("attacker"); set => Accessor.SetPlayerSlot("attacker", value); }
+  { get => Accessor.GetInt32("attacker"); set => Accessor.SetInt32("attacker", value); }
 }

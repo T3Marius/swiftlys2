@@ -473,8 +473,7 @@ def render_class(event: GameEventDef) -> str:
   for fname, fdef in event.fields.items():
     ftype = fdef.type_name
 
-    # userid override: expand to controller, pawn (readonly) and raw int (readwrite)
-    if fname.lower() == 'userid':
+    if ftype == 'player_controller' or ftype == 'player_controller_and_pawn' or fname.lower() == 'userid':
       base_prop = to_property_name(fname)  # UserId
       # Controller
       prop_name_ctrl = f"{base_prop}Controller"

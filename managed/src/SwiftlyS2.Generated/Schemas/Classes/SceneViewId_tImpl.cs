@@ -17,15 +17,25 @@ internal partial class SceneViewId_tImpl : SchemaClass, SceneViewId_t {
   public SceneViewId_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ViewIdOffset = Schema.GetOffset(0x66190338AE3CB1A1);
+  private static nint? _ViewIdOffset;
 
   public ref ulong ViewId {
-    get => ref _Handle.AsRef<ulong>(_ViewIdOffset);
+    get {
+      if (_ViewIdOffset == null) {
+        _ViewIdOffset = Schema.GetOffset(0x66190338AE3CB1A1);
+      }
+      return ref _Handle.AsRef<ulong>(_ViewIdOffset!.Value);
+    }
   }
-  private static readonly nint _FrameCountOffset = Schema.GetOffset(0x661903381DBCD049);
+  private static nint? _FrameCountOffset;
 
   public ref ulong FrameCount {
-    get => ref _Handle.AsRef<ulong>(_FrameCountOffset);
+    get {
+      if (_FrameCountOffset == null) {
+        _FrameCountOffset = Schema.GetOffset(0x661903381DBCD049);
+      }
+      return ref _Handle.AsRef<ulong>(_FrameCountOffset!.Value);
+    }
   }
 
 

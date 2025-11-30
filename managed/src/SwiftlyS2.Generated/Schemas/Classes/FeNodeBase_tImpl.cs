@@ -17,38 +17,68 @@ internal partial class FeNodeBase_tImpl : SchemaClass, FeNodeBase_t {
   public FeNodeBase_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NodeOffset = Schema.GetOffset(0x74CA29BECD6694B9);
+  private static nint? _NodeOffset;
 
   public ref ushort Node {
-    get => ref _Handle.AsRef<ushort>(_NodeOffset);
+    get {
+      if (_NodeOffset == null) {
+        _NodeOffset = Schema.GetOffset(0x74CA29BECD6694B9);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeOffset!.Value);
+    }
   }
   public ISchemaFixedArray<ushort> Dummy {
     get => new SchemaFixedArray<ushort>(_Handle, 0x74CA29BECD8BAE5F, 3, 2, 2);
   }
-  private static readonly nint _NodeX0Offset = Schema.GetOffset(0x74CA29BE81C7FEB9);
+  private static nint? _NodeX0Offset;
 
   public ref ushort NodeX0 {
-    get => ref _Handle.AsRef<ushort>(_NodeX0Offset);
+    get {
+      if (_NodeX0Offset == null) {
+        _NodeX0Offset = Schema.GetOffset(0x74CA29BE81C7FEB9);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeX0Offset!.Value);
+    }
   }
-  private static readonly nint _NodeX1Offset = Schema.GetOffset(0x74CA29BE80C7FD26);
+  private static nint? _NodeX1Offset;
 
   public ref ushort NodeX1 {
-    get => ref _Handle.AsRef<ushort>(_NodeX1Offset);
+    get {
+      if (_NodeX1Offset == null) {
+        _NodeX1Offset = Schema.GetOffset(0x74CA29BE80C7FD26);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeX1Offset!.Value);
+    }
   }
-  private static readonly nint _NodeY0Offset = Schema.GetOffset(0x74CA29BE7BC5B6B0);
+  private static nint? _NodeY0Offset;
 
   public ref ushort NodeY0 {
-    get => ref _Handle.AsRef<ushort>(_NodeY0Offset);
+    get {
+      if (_NodeY0Offset == null) {
+        _NodeY0Offset = Schema.GetOffset(0x74CA29BE7BC5B6B0);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeY0Offset!.Value);
+    }
   }
-  private static readonly nint _NodeY1Offset = Schema.GetOffset(0x74CA29BE7CC5B843);
+  private static nint? _NodeY1Offset;
 
   public ref ushort NodeY1 {
-    get => ref _Handle.AsRef<ushort>(_NodeY1Offset);
+    get {
+      if (_NodeY1Offset == null) {
+        _NodeY1Offset = Schema.GetOffset(0x74CA29BE7CC5B843);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeY1Offset!.Value);
+    }
   }
-  private static readonly nint _AdjustOffset = Schema.GetOffset(0x74CA29BE0F6C0983);
+  private static nint? _AdjustOffset;
 
   public SchemaUntypedField Adjust {
-    get => new SchemaUntypedField(_Handle + _AdjustOffset);
+    get {
+      if (_AdjustOffset == null) {
+        _AdjustOffset = Schema.GetOffset(0x74CA29BE0F6C0983);
+      }
+      return new SchemaUntypedField(_Handle + _AdjustOffset!.Value);
+    }
   }
 
 

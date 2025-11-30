@@ -17,25 +17,45 @@ internal partial class CountdownTimerImpl : SchemaClass, CountdownTimer {
   public CountdownTimerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DurationOffset = Schema.GetOffset(0x8A632F13D9FF5AD);
+  private static nint? _DurationOffset;
 
   public ref float Duration {
-    get => ref _Handle.AsRef<float>(_DurationOffset);
+    get {
+      if (_DurationOffset == null) {
+        _DurationOffset = Schema.GetOffset(0x8A632F13D9FF5AD);
+      }
+      return ref _Handle.AsRef<float>(_DurationOffset!.Value);
+    }
   }
-  private static readonly nint _TimestampOffset = Schema.GetOffset(0x8A632F1B6C56F43);
+  private static nint? _TimestampOffset;
 
   public GameTime_t Timestamp {
-    get => new GameTime_tImpl(_Handle + _TimestampOffset);
+    get {
+      if (_TimestampOffset == null) {
+        _TimestampOffset = Schema.GetOffset(0x8A632F1B6C56F43);
+      }
+      return new GameTime_tImpl(_Handle + _TimestampOffset!.Value);
+    }
   }
-  private static readonly nint _TimescaleOffset = Schema.GetOffset(0x8A632F18A240BBE);
+  private static nint? _TimescaleOffset;
 
   public ref float Timescale {
-    get => ref _Handle.AsRef<float>(_TimescaleOffset);
+    get {
+      if (_TimescaleOffset == null) {
+        _TimescaleOffset = Schema.GetOffset(0x8A632F18A240BBE);
+      }
+      return ref _Handle.AsRef<float>(_TimescaleOffset!.Value);
+    }
   }
-  private static readonly nint _WorldGroupIdOffset = Schema.GetOffset(0x8A632F17414B193);
+  private static nint? _WorldGroupIdOffset;
 
   public ref uint WorldGroupId {
-    get => ref _Handle.AsRef<uint>(_WorldGroupIdOffset);
+    get {
+      if (_WorldGroupIdOffset == null) {
+        _WorldGroupIdOffset = Schema.GetOffset(0x8A632F17414B193);
+      }
+      return ref _Handle.AsRef<uint>(_WorldGroupIdOffset!.Value);
+    }
   }
 
   public void DurationUpdated() {

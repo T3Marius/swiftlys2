@@ -17,10 +17,15 @@ internal partial class CPulseCell_Outflow_CycleRandomImpl : CPulseCell_BaseFlowI
   public CPulseCell_Outflow_CycleRandomImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OutputsOffset = Schema.GetOffset(0xF24A555AA38A89D5);
+  private static nint? _OutputsOffset;
 
   public ref CUtlVector<CPulse_OutflowConnection> Outputs {
-    get => ref _Handle.AsRef<CUtlVector<CPulse_OutflowConnection>>(_OutputsOffset);
+    get {
+      if (_OutputsOffset == null) {
+        _OutputsOffset = Schema.GetOffset(0xF24A555AA38A89D5);
+      }
+      return ref _Handle.AsRef<CUtlVector<CPulse_OutflowConnection>>(_OutputsOffset!.Value);
+    }
   }
 
 

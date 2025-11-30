@@ -17,30 +17,55 @@ internal partial class C_OP_RemapExternalWindToCPImpl : CParticleFunctionPreEmis
   public C_OP_RemapExternalWindToCPImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CPOffset = Schema.GetOffset(0x19366DF9EB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x19366DF9EB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
-  private static readonly nint _CPOutputOffset = Schema.GetOffset(0x19366DF92077C953);
+  private static nint? _CPOutputOffset;
 
   public ref int CPOutput {
-    get => ref _Handle.AsRef<int>(_CPOutputOffset);
+    get {
+      if (_CPOutputOffset == null) {
+        _CPOutputOffset = Schema.GetOffset(0x19366DF92077C953);
+      }
+      return ref _Handle.AsRef<int>(_CPOutputOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x19366DF95F596B51);
+  private static nint? _ScaleOffset;
 
   public CParticleCollectionVecInput Scale {
-    get => new CParticleCollectionVecInputImpl(_Handle + _ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x19366DF95F596B51);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _SetMagnitudeOffset = Schema.GetOffset(0x19366DF9B87FB05F);
+  private static nint? _SetMagnitudeOffset;
 
   public ref bool SetMagnitude {
-    get => ref _Handle.AsRef<bool>(_SetMagnitudeOffset);
+    get {
+      if (_SetMagnitudeOffset == null) {
+        _SetMagnitudeOffset = Schema.GetOffset(0x19366DF9B87FB05F);
+      }
+      return ref _Handle.AsRef<bool>(_SetMagnitudeOffset!.Value);
+    }
   }
-  private static readonly nint _OutVectorFieldOffset = Schema.GetOffset(0x19366DF9F9041E74);
+  private static nint? _OutVectorFieldOffset;
 
   public ref int OutVectorField {
-    get => ref _Handle.AsRef<int>(_OutVectorFieldOffset);
+    get {
+      if (_OutVectorFieldOffset == null) {
+        _OutVectorFieldOffset = Schema.GetOffset(0x19366DF9F9041E74);
+      }
+      return ref _Handle.AsRef<int>(_OutVectorFieldOffset!.Value);
+    }
   }
 
 

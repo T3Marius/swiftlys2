@@ -17,34 +17,62 @@ internal partial class C_OP_ModelCullImpl : CParticleFunctionOperatorImpl, C_OP_
   public C_OP_ModelCullImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0xED02878A3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0xED02878A3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _BoundBoxOffset = Schema.GetOffset(0xED02878AAB65CDDC);
+  private static nint? _BoundBoxOffset;
 
   public ref bool BoundBox {
-    get => ref _Handle.AsRef<bool>(_BoundBoxOffset);
+    get {
+      if (_BoundBoxOffset == null) {
+        _BoundBoxOffset = Schema.GetOffset(0xED02878AAB65CDDC);
+      }
+      return ref _Handle.AsRef<bool>(_BoundBoxOffset!.Value);
+    }
   }
-  private static readonly nint _CullOutsideOffset = Schema.GetOffset(0xED02878AA6EF9E04);
+  private static nint? _CullOutsideOffset;
 
   public ref bool CullOutside {
-    get => ref _Handle.AsRef<bool>(_CullOutsideOffset);
+    get {
+      if (_CullOutsideOffset == null) {
+        _CullOutsideOffset = Schema.GetOffset(0xED02878AA6EF9E04);
+      }
+      return ref _Handle.AsRef<bool>(_CullOutsideOffset!.Value);
+    }
   }
-  private static readonly nint _UseBonesOffset = Schema.GetOffset(0xED02878A10D1938B);
+  private static nint? _UseBonesOffset;
 
   public ref bool UseBones {
-    get => ref _Handle.AsRef<bool>(_UseBonesOffset);
+    get {
+      if (_UseBonesOffset == null) {
+        _UseBonesOffset = Schema.GetOffset(0xED02878A10D1938B);
+      }
+      return ref _Handle.AsRef<bool>(_UseBonesOffset!.Value);
+    }
   }
-  private static readonly nint _HitboxSetNameOffset = Schema.GetOffset(0xED02878A6A21BB0E);
+  private static nint? _HitboxSetNameOffset;
 
   public string HitboxSetName {
     get {
-      var ptr = _Handle + _HitboxSetNameOffset;
-      return Schema.GetString(ptr);
+        if (_HitboxSetNameOffset == null) {
+            _HitboxSetNameOffset = Schema.GetOffset(0xED02878A6A21BB0E);
+        }
+        var ptr = _Handle + _HitboxSetNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _HitboxSetNameOffset, value, 128);
+    set {
+        if (_HitboxSetNameOffset == null) {
+            _HitboxSetNameOffset = Schema.GetOffset(0xED02878A6A21BB0E);
+        }
+        Schema.SetFixedString(_Handle, _HitboxSetNameOffset!.Value, value, 128);
+    }
   } 
 
 

@@ -83,9 +83,10 @@ public abstract partial class MenuOptionBase : IMenuOption, IDisposable
         }
 
         // Console.WriteLine($"{GetType().Name} has been disposed.");
+        disposed = true;
+
         dynamicTextUpdater?.Dispose();
 
-        disposed = true;
         GC.SuppressFinalize(this);
     }
 

@@ -17,14 +17,22 @@ internal partial class CFilterClassImpl : CBaseFilterImpl, CFilterClass {
   public CFilterClassImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FilterClassOffset = Schema.GetOffset(0x31025D487FECB06);
+  private static nint? _FilterClassOffset;
 
   public string FilterClass {
     get {
-      var ptr = _Handle.Read<nint>(_FilterClassOffset);
+      if (_FilterClassOffset == null) {
+        _FilterClassOffset = Schema.GetOffset(0x31025D487FECB06);
+      }
+      var ptr = _Handle.Read<nint>(_FilterClassOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FilterClassOffset, value);
+    set {
+      if (_FilterClassOffset == null) {
+        _FilterClassOffset = Schema.GetOffset(0x31025D487FECB06);
+      }
+      Schema.SetString(_Handle, _FilterClassOffset!.Value, value);
+    }
   } 
 
 

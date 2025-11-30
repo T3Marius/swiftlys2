@@ -17,30 +17,55 @@ internal partial class CPulseCell_Test_MultiOutflow_WithParams_YieldingImpl : CP
   public CPulseCell_Test_MultiOutflow_WithParams_YieldingImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _Out1Offset = Schema.GetOffset(0xB412A25905F293AA);
+  private static nint? _Out1Offset;
 
   public SignatureOutflow_Continue Out1 {
-    get => new SignatureOutflow_ContinueImpl(_Handle + _Out1Offset);
+    get {
+      if (_Out1Offset == null) {
+        _Out1Offset = Schema.GetOffset(0xB412A25905F293AA);
+      }
+      return new SignatureOutflow_ContinueImpl(_Handle + _Out1Offset!.Value);
+    }
   }
-  private static readonly nint _AsyncChild1Offset = Schema.GetOffset(0xB412A2592CEBF78A);
+  private static nint? _AsyncChild1Offset;
 
   public SignatureOutflow_Continue AsyncChild1 {
-    get => new SignatureOutflow_ContinueImpl(_Handle + _AsyncChild1Offset);
+    get {
+      if (_AsyncChild1Offset == null) {
+        _AsyncChild1Offset = Schema.GetOffset(0xB412A2592CEBF78A);
+      }
+      return new SignatureOutflow_ContinueImpl(_Handle + _AsyncChild1Offset!.Value);
+    }
   }
-  private static readonly nint _AsyncChild2Offset = Schema.GetOffset(0xB412A2592BEBF5F7);
+  private static nint? _AsyncChild2Offset;
 
   public SignatureOutflow_Continue AsyncChild2 {
-    get => new SignatureOutflow_ContinueImpl(_Handle + _AsyncChild2Offset);
+    get {
+      if (_AsyncChild2Offset == null) {
+        _AsyncChild2Offset = Schema.GetOffset(0xB412A2592BEBF5F7);
+      }
+      return new SignatureOutflow_ContinueImpl(_Handle + _AsyncChild2Offset!.Value);
+    }
   }
-  private static readonly nint _YieldResume1Offset = Schema.GetOffset(0xB412A2596063DFA8);
+  private static nint? _YieldResume1Offset;
 
   public SignatureOutflow_Resume YieldResume1 {
-    get => new SignatureOutflow_ResumeImpl(_Handle + _YieldResume1Offset);
+    get {
+      if (_YieldResume1Offset == null) {
+        _YieldResume1Offset = Schema.GetOffset(0xB412A2596063DFA8);
+      }
+      return new SignatureOutflow_ResumeImpl(_Handle + _YieldResume1Offset!.Value);
+    }
   }
-  private static readonly nint _YieldResume2Offset = Schema.GetOffset(0xB412A2596363E461);
+  private static nint? _YieldResume2Offset;
 
   public SignatureOutflow_Resume YieldResume2 {
-    get => new SignatureOutflow_ResumeImpl(_Handle + _YieldResume2Offset);
+    get {
+      if (_YieldResume2Offset == null) {
+        _YieldResume2Offset = Schema.GetOffset(0xB412A2596363E461);
+      }
+      return new SignatureOutflow_ResumeImpl(_Handle + _YieldResume2Offset!.Value);
+    }
   }
 
 

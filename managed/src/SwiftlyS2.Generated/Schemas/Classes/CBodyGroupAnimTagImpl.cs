@@ -17,15 +17,25 @@ internal partial class CBodyGroupAnimTagImpl : CAnimTagBaseImpl, CBodyGroupAnimT
   public CBodyGroupAnimTagImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PriorityOffset = Schema.GetOffset(0x4FBB343CE7EFB335);
+  private static nint? _PriorityOffset;
 
   public ref int Priority {
-    get => ref _Handle.AsRef<int>(_PriorityOffset);
+    get {
+      if (_PriorityOffset == null) {
+        _PriorityOffset = Schema.GetOffset(0x4FBB343CE7EFB335);
+      }
+      return ref _Handle.AsRef<int>(_PriorityOffset!.Value);
+    }
   }
-  private static readonly nint _BodyGroupSettingsOffset = Schema.GetOffset(0x4FBB343C3BE7BAE1);
+  private static nint? _BodyGroupSettingsOffset;
 
   public ref CUtlVector<CBodyGroupSetting> BodyGroupSettings {
-    get => ref _Handle.AsRef<CUtlVector<CBodyGroupSetting>>(_BodyGroupSettingsOffset);
+    get {
+      if (_BodyGroupSettingsOffset == null) {
+        _BodyGroupSettingsOffset = Schema.GetOffset(0x4FBB343C3BE7BAE1);
+      }
+      return ref _Handle.AsRef<CUtlVector<CBodyGroupSetting>>(_BodyGroupSettingsOffset!.Value);
+    }
   }
 
 

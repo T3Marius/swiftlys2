@@ -17,10 +17,15 @@ internal partial class VMixEffectChainDesc_tImpl : SchemaClass, VMixEffectChainD
   public VMixEffectChainDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CrossfadeTimeOffset = Schema.GetOffset(0x993FEE3C5C1DD52);
+  private static nint? _CrossfadeTimeOffset;
 
   public ref float CrossfadeTime {
-    get => ref _Handle.AsRef<float>(_CrossfadeTimeOffset);
+    get {
+      if (_CrossfadeTimeOffset == null) {
+        _CrossfadeTimeOffset = Schema.GetOffset(0x993FEE3C5C1DD52);
+      }
+      return ref _Handle.AsRef<float>(_CrossfadeTimeOffset!.Value);
+    }
   }
 
 

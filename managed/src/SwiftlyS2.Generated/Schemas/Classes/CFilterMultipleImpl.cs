@@ -17,19 +17,32 @@ internal partial class CFilterMultipleImpl : CBaseFilterImpl, CFilterMultiple {
   public CFilterMultipleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FilterTypeOffset = Schema.GetOffset(0x6EA0578071861EDB);
+  private static nint? _FilterTypeOffset;
 
   public ref filter_t FilterType {
-    get => ref _Handle.AsRef<filter_t>(_FilterTypeOffset);
+    get {
+      if (_FilterTypeOffset == null) {
+        _FilterTypeOffset = Schema.GetOffset(0x6EA0578071861EDB);
+      }
+      return ref _Handle.AsRef<filter_t>(_FilterTypeOffset!.Value);
+    }
   }
-  private static readonly nint _FilterNameOffset = Schema.GetOffset(0x6EA0578009C86445);
+  private static nint? _FilterNameOffset;
 
   public string FilterName {
     get {
-      var ptr = _Handle.Read<nint>(_FilterNameOffset);
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0x6EA0578009C86445);
+      }
+      var ptr = _Handle.Read<nint>(_FilterNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FilterNameOffset, value);
+    set {
+      if (_FilterNameOffset == null) {
+        _FilterNameOffset = Schema.GetOffset(0x6EA0578009C86445);
+      }
+      Schema.SetString(_Handle, _FilterNameOffset!.Value, value);
+    }
   } 
   public ISchemaFixedArray<CHandle<CBaseEntity>> Filter {
     get => new SchemaFixedArray<CHandle<CBaseEntity>>(_Handle, 0x6EA0578045D9E0B1, 10, 4, 4);

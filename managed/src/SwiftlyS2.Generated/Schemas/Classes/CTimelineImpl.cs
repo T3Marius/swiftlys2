@@ -23,30 +23,55 @@ internal partial class CTimelineImpl : IntervalTimerImpl, CTimeline {
   public ISchemaFixedArray<int> ValueCounts {
     get => new SchemaFixedArray<int>(_Handle, 0x36D1E65961EF23CA, 64, 4, 4);
   }
-  private static readonly nint _BucketCountOffset = Schema.GetOffset(0x36D1E6596ACA5C8A);
+  private static nint? _BucketCountOffset;
 
   public ref int BucketCount {
-    get => ref _Handle.AsRef<int>(_BucketCountOffset);
+    get {
+      if (_BucketCountOffset == null) {
+        _BucketCountOffset = Schema.GetOffset(0x36D1E6596ACA5C8A);
+      }
+      return ref _Handle.AsRef<int>(_BucketCountOffset!.Value);
+    }
   }
-  private static readonly nint _IntervalOffset = Schema.GetOffset(0x36D1E659320F7B8E);
+  private static nint? _IntervalOffset;
 
   public ref float Interval {
-    get => ref _Handle.AsRef<float>(_IntervalOffset);
+    get {
+      if (_IntervalOffset == null) {
+        _IntervalOffset = Schema.GetOffset(0x36D1E659320F7B8E);
+      }
+      return ref _Handle.AsRef<float>(_IntervalOffset!.Value);
+    }
   }
-  private static readonly nint _FinalValueOffset = Schema.GetOffset(0x36D1E659534A71BA);
+  private static nint? _FinalValueOffset;
 
   public ref float FinalValue {
-    get => ref _Handle.AsRef<float>(_FinalValueOffset);
+    get {
+      if (_FinalValueOffset == null) {
+        _FinalValueOffset = Schema.GetOffset(0x36D1E659534A71BA);
+      }
+      return ref _Handle.AsRef<float>(_FinalValueOffset!.Value);
+    }
   }
-  private static readonly nint _CompressionTypeOffset = Schema.GetOffset(0x36D1E6593FD9B909);
+  private static nint? _CompressionTypeOffset;
 
   public ref TimelineCompression_t CompressionType {
-    get => ref _Handle.AsRef<TimelineCompression_t>(_CompressionTypeOffset);
+    get {
+      if (_CompressionTypeOffset == null) {
+        _CompressionTypeOffset = Schema.GetOffset(0x36D1E6593FD9B909);
+      }
+      return ref _Handle.AsRef<TimelineCompression_t>(_CompressionTypeOffset!.Value);
+    }
   }
-  private static readonly nint _StoppedOffset = Schema.GetOffset(0x36D1E6591C198C2E);
+  private static nint? _StoppedOffset;
 
   public ref bool Stopped {
-    get => ref _Handle.AsRef<bool>(_StoppedOffset);
+    get {
+      if (_StoppedOffset == null) {
+        _StoppedOffset = Schema.GetOffset(0x36D1E6591C198C2E);
+      }
+      return ref _Handle.AsRef<bool>(_StoppedOffset!.Value);
+    }
   }
 
   public void ValuesUpdated() {

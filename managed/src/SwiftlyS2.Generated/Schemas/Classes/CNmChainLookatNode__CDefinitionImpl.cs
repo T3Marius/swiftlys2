@@ -17,40 +17,75 @@ internal partial class CNmChainLookatNode__CDefinitionImpl : CNmPassthroughNode_
   public CNmChainLookatNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ChainEndBoneIDOffset = Schema.GetOffset(0x3D36690222B26274);
+  private static nint? _ChainEndBoneIDOffset;
 
   public ref CGlobalSymbol ChainEndBoneID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_ChainEndBoneIDOffset);
+    get {
+      if (_ChainEndBoneIDOffset == null) {
+        _ChainEndBoneIDOffset = Schema.GetOffset(0x3D36690222B26274);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_ChainEndBoneIDOffset!.Value);
+    }
   }
-  private static readonly nint _LookatTargetNodeIdxOffset = Schema.GetOffset(0x3D36690221A633B1);
+  private static nint? _LookatTargetNodeIdxOffset;
 
   public ref short LookatTargetNodeIdx {
-    get => ref _Handle.AsRef<short>(_LookatTargetNodeIdxOffset);
+    get {
+      if (_LookatTargetNodeIdxOffset == null) {
+        _LookatTargetNodeIdxOffset = Schema.GetOffset(0x3D36690221A633B1);
+      }
+      return ref _Handle.AsRef<short>(_LookatTargetNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _EnabledNodeIdxOffset = Schema.GetOffset(0x3D366902F7CDF5E9);
+  private static nint? _EnabledNodeIdxOffset;
 
   public ref short EnabledNodeIdx {
-    get => ref _Handle.AsRef<short>(_EnabledNodeIdxOffset);
+    get {
+      if (_EnabledNodeIdxOffset == null) {
+        _EnabledNodeIdxOffset = Schema.GetOffset(0x3D366902F7CDF5E9);
+      }
+      return ref _Handle.AsRef<short>(_EnabledNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _BlendTimeSecondsOffset = Schema.GetOffset(0x3D3669026D3A08FC);
+  private static nint? _BlendTimeSecondsOffset;
 
   public ref float BlendTimeSeconds {
-    get => ref _Handle.AsRef<float>(_BlendTimeSecondsOffset);
+    get {
+      if (_BlendTimeSecondsOffset == null) {
+        _BlendTimeSecondsOffset = Schema.GetOffset(0x3D3669026D3A08FC);
+      }
+      return ref _Handle.AsRef<float>(_BlendTimeSecondsOffset!.Value);
+    }
   }
-  private static readonly nint _ChainLengthOffset = Schema.GetOffset(0x3D366902ACB94336);
+  private static nint? _ChainLengthOffset;
 
   public ref byte ChainLength {
-    get => ref _Handle.AsRef<byte>(_ChainLengthOffset);
+    get {
+      if (_ChainLengthOffset == null) {
+        _ChainLengthOffset = Schema.GetOffset(0x3D366902ACB94336);
+      }
+      return ref _Handle.AsRef<byte>(_ChainLengthOffset!.Value);
+    }
   }
-  private static readonly nint _IsTargetInWorldSpaceOffset = Schema.GetOffset(0x3D3669025F56E0C5);
+  private static nint? _IsTargetInWorldSpaceOffset;
 
   public ref bool IsTargetInWorldSpace {
-    get => ref _Handle.AsRef<bool>(_IsTargetInWorldSpaceOffset);
+    get {
+      if (_IsTargetInWorldSpaceOffset == null) {
+        _IsTargetInWorldSpaceOffset = Schema.GetOffset(0x3D3669025F56E0C5);
+      }
+      return ref _Handle.AsRef<bool>(_IsTargetInWorldSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _ChainForwardDirOffset = Schema.GetOffset(0x3D36690298A5355A);
+  private static nint? _ChainForwardDirOffset;
 
   public ref Vector ChainForwardDir {
-    get => ref _Handle.AsRef<Vector>(_ChainForwardDirOffset);
+    get {
+      if (_ChainForwardDirOffset == null) {
+        _ChainForwardDirOffset = Schema.GetOffset(0x3D36690298A5355A);
+      }
+      return ref _Handle.AsRef<Vector>(_ChainForwardDirOffset!.Value);
+    }
   }
 
 

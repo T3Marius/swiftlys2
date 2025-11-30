@@ -17,44 +17,82 @@ internal partial class CPrecipitationVDataImpl : CEntitySubclassVDataBaseImpl, C
   public CPrecipitationVDataImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParticlePrecipitationEffectOffset = Schema.GetOffset(0x4F75C25D9E8770E0);
+  private static nint? _ParticlePrecipitationEffectOffset;
 
   public SchemaUntypedField ParticlePrecipitationEffect {
-    get => new SchemaUntypedField(_Handle + _ParticlePrecipitationEffectOffset);
+    get {
+      if (_ParticlePrecipitationEffectOffset == null) {
+        _ParticlePrecipitationEffectOffset = Schema.GetOffset(0x4F75C25D9E8770E0);
+      }
+      return new SchemaUntypedField(_Handle + _ParticlePrecipitationEffectOffset!.Value);
+    }
   }
-  private static readonly nint _InnerDistanceOffset = Schema.GetOffset(0x4F75C25D29845276);
+  private static nint? _InnerDistanceOffset;
 
   public ref float InnerDistance {
-    get => ref _Handle.AsRef<float>(_InnerDistanceOffset);
+    get {
+      if (_InnerDistanceOffset == null) {
+        _InnerDistanceOffset = Schema.GetOffset(0x4F75C25D29845276);
+      }
+      return ref _Handle.AsRef<float>(_InnerDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _AttachTypeOffset = Schema.GetOffset(0x4F75C25DC8613038);
+  private static nint? _AttachTypeOffset;
 
   public ref ParticleAttachment_t AttachType {
-    get => ref _Handle.AsRef<ParticleAttachment_t>(_AttachTypeOffset);
+    get {
+      if (_AttachTypeOffset == null) {
+        _AttachTypeOffset = Schema.GetOffset(0x4F75C25DC8613038);
+      }
+      return ref _Handle.AsRef<ParticleAttachment_t>(_AttachTypeOffset!.Value);
+    }
   }
-  private static readonly nint _BatchSameVolumeTypeOffset = Schema.GetOffset(0x4F75C25DDE7F21F7);
+  private static nint? _BatchSameVolumeTypeOffset;
 
   public ref bool BatchSameVolumeType {
-    get => ref _Handle.AsRef<bool>(_BatchSameVolumeTypeOffset);
+    get {
+      if (_BatchSameVolumeTypeOffset == null) {
+        _BatchSameVolumeTypeOffset = Schema.GetOffset(0x4F75C25DDE7F21F7);
+      }
+      return ref _Handle.AsRef<bool>(_BatchSameVolumeTypeOffset!.Value);
+    }
   }
-  private static readonly nint _RTEnvCPOffset = Schema.GetOffset(0x4F75C25D01881731);
+  private static nint? _RTEnvCPOffset;
 
   public ref int RTEnvCP {
-    get => ref _Handle.AsRef<int>(_RTEnvCPOffset);
+    get {
+      if (_RTEnvCPOffset == null) {
+        _RTEnvCPOffset = Schema.GetOffset(0x4F75C25D01881731);
+      }
+      return ref _Handle.AsRef<int>(_RTEnvCPOffset!.Value);
+    }
   }
-  private static readonly nint _RTEnvCPComponentOffset = Schema.GetOffset(0x4F75C25D968B054C);
+  private static nint? _RTEnvCPComponentOffset;
 
   public ref int RTEnvCPComponent {
-    get => ref _Handle.AsRef<int>(_RTEnvCPComponentOffset);
+    get {
+      if (_RTEnvCPComponentOffset == null) {
+        _RTEnvCPComponentOffset = Schema.GetOffset(0x4F75C25D968B054C);
+      }
+      return ref _Handle.AsRef<int>(_RTEnvCPComponentOffset!.Value);
+    }
   }
-  private static readonly nint _ModifierOffset = Schema.GetOffset(0x4F75C25D2742E611);
+  private static nint? _ModifierOffset;
 
   public string Modifier {
     get {
-      var ptr = _Handle.Read<nint>(_ModifierOffset);
+      if (_ModifierOffset == null) {
+        _ModifierOffset = Schema.GetOffset(0x4F75C25D2742E611);
+      }
+      var ptr = _Handle.Read<nint>(_ModifierOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ModifierOffset, value);
+    set {
+      if (_ModifierOffset == null) {
+        _ModifierOffset = Schema.GetOffset(0x4F75C25D2742E611);
+      }
+      Schema.SetString(_Handle, _ModifierOffset!.Value, value);
+    }
   } 
 
 

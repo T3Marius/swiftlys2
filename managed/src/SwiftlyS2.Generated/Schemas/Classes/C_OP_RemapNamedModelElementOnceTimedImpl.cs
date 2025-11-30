@@ -17,50 +17,95 @@ internal partial class C_OP_RemapNamedModelElementOnceTimedImpl : CParticleFunct
   public C_OP_RemapNamedModelElementOnceTimedImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ModelOffset = Schema.GetOffset(0xBD6F6D8CE100C814);
+  private static nint? _ModelOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCModel> Model {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset);
+    get {
+      if (_ModelOffset == null) {
+        _ModelOffset = Schema.GetOffset(0xBD6F6D8CE100C814);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset!.Value);
+    }
   }
-  private static readonly nint _InNamesOffset = Schema.GetOffset(0xBD6F6D8CC6BEF30A);
+  private static nint? _InNamesOffset;
 
   public ref CUtlVector<CUtlString> InNames {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_InNamesOffset);
+    get {
+      if (_InNamesOffset == null) {
+        _InNamesOffset = Schema.GetOffset(0xBD6F6D8CC6BEF30A);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_InNamesOffset!.Value);
+    }
   }
-  private static readonly nint _OutNamesOffset = Schema.GetOffset(0xBD6F6D8C4AEE2CFD);
+  private static nint? _OutNamesOffset;
 
   public ref CUtlVector<CUtlString> OutNames {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_OutNamesOffset);
+    get {
+      if (_OutNamesOffset == null) {
+        _OutNamesOffset = Schema.GetOffset(0xBD6F6D8C4AEE2CFD);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_OutNamesOffset!.Value);
+    }
   }
-  private static readonly nint _FallbackNamesOffset = Schema.GetOffset(0xBD6F6D8C5C686169);
+  private static nint? _FallbackNamesOffset;
 
   public ref CUtlVector<CUtlString> FallbackNames {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_FallbackNamesOffset);
+    get {
+      if (_FallbackNamesOffset == null) {
+        _FallbackNamesOffset = Schema.GetOffset(0xBD6F6D8C5C686169);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_FallbackNamesOffset!.Value);
+    }
   }
-  private static readonly nint _ModelFromRendererOffset = Schema.GetOffset(0xBD6F6D8CAEBA1F25);
+  private static nint? _ModelFromRendererOffset;
 
   public ref bool ModelFromRenderer {
-    get => ref _Handle.AsRef<bool>(_ModelFromRendererOffset);
+    get {
+      if (_ModelFromRendererOffset == null) {
+        _ModelFromRendererOffset = Schema.GetOffset(0xBD6F6D8CAEBA1F25);
+      }
+      return ref _Handle.AsRef<bool>(_ModelFromRendererOffset!.Value);
+    }
   }
-  private static readonly nint _ProportionalOffset = Schema.GetOffset(0xBD6F6D8C891F328A);
+  private static nint? _ProportionalOffset;
 
   public ref bool Proportional {
-    get => ref _Handle.AsRef<bool>(_ProportionalOffset);
+    get {
+      if (_ProportionalOffset == null) {
+        _ProportionalOffset = Schema.GetOffset(0xBD6F6D8C891F328A);
+      }
+      return ref _Handle.AsRef<bool>(_ProportionalOffset!.Value);
+    }
   }
-  private static readonly nint _FieldInputOffset = Schema.GetOffset(0xBD6F6D8CAE775669);
+  private static nint? _FieldInputOffset;
 
   public ParticleAttributeIndex_t FieldInput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset);
+    get {
+      if (_FieldInputOffset == null) {
+        _FieldInputOffset = Schema.GetOffset(0xBD6F6D8CAE775669);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0xBD6F6D8CE5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0xBD6F6D8CE5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _RemapTimeOffset = Schema.GetOffset(0xBD6F6D8CF436AC39);
+  private static nint? _RemapTimeOffset;
 
   public ref float RemapTime {
-    get => ref _Handle.AsRef<float>(_RemapTimeOffset);
+    get {
+      if (_RemapTimeOffset == null) {
+        _RemapTimeOffset = Schema.GetOffset(0xBD6F6D8CF436AC39);
+      }
+      return ref _Handle.AsRef<float>(_RemapTimeOffset!.Value);
+    }
   }
 
 

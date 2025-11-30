@@ -17,55 +17,105 @@ internal partial class AggregateSceneObject_tImpl : SchemaClass, AggregateSceneO
   public AggregateSceneObject_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AllFlagsOffset = Schema.GetOffset(0xEF81F2D4DD9F35F7);
+  private static nint? _AllFlagsOffset;
 
   public ref ObjectTypeFlags_t AllFlags {
-    get => ref _Handle.AsRef<ObjectTypeFlags_t>(_AllFlagsOffset);
+    get {
+      if (_AllFlagsOffset == null) {
+        _AllFlagsOffset = Schema.GetOffset(0xEF81F2D4DD9F35F7);
+      }
+      return ref _Handle.AsRef<ObjectTypeFlags_t>(_AllFlagsOffset!.Value);
+    }
   }
-  private static readonly nint _AnyFlagsOffset = Schema.GetOffset(0xEF81F2D456CC84B4);
+  private static nint? _AnyFlagsOffset;
 
   public ref ObjectTypeFlags_t AnyFlags {
-    get => ref _Handle.AsRef<ObjectTypeFlags_t>(_AnyFlagsOffset);
+    get {
+      if (_AnyFlagsOffset == null) {
+        _AnyFlagsOffset = Schema.GetOffset(0xEF81F2D456CC84B4);
+      }
+      return ref _Handle.AsRef<ObjectTypeFlags_t>(_AnyFlagsOffset!.Value);
+    }
   }
-  private static readonly nint _LayerOffset = Schema.GetOffset(0xEF81F2D4477C7B2A);
+  private static nint? _LayerOffset;
 
   public ref short Layer {
-    get => ref _Handle.AsRef<short>(_LayerOffset);
+    get {
+      if (_LayerOffset == null) {
+        _LayerOffset = Schema.GetOffset(0xEF81F2D4477C7B2A);
+      }
+      return ref _Handle.AsRef<short>(_LayerOffset!.Value);
+    }
   }
-  private static readonly nint _InstanceStreamOffset = Schema.GetOffset(0xEF81F2D4B5A8384A);
+  private static nint? _InstanceStreamOffset;
 
   public ref short InstanceStream {
-    get => ref _Handle.AsRef<short>(_InstanceStreamOffset);
+    get {
+      if (_InstanceStreamOffset == null) {
+        _InstanceStreamOffset = Schema.GetOffset(0xEF81F2D4B5A8384A);
+      }
+      return ref _Handle.AsRef<short>(_InstanceStreamOffset!.Value);
+    }
   }
-  private static readonly nint _VertexAlbedoStreamOffset = Schema.GetOffset(0xEF81F2D42540B1EA);
+  private static nint? _VertexAlbedoStreamOffset;
 
   public ref short VertexAlbedoStream {
-    get => ref _Handle.AsRef<short>(_VertexAlbedoStreamOffset);
+    get {
+      if (_VertexAlbedoStreamOffset == null) {
+        _VertexAlbedoStreamOffset = Schema.GetOffset(0xEF81F2D42540B1EA);
+      }
+      return ref _Handle.AsRef<short>(_VertexAlbedoStreamOffset!.Value);
+    }
   }
-  private static readonly nint _AggregateMeshesOffset = Schema.GetOffset(0xEF81F2D402570BA1);
+  private static nint? _AggregateMeshesOffset;
 
   public ref CUtlVector<AggregateMeshInfo_t> AggregateMeshes {
-    get => ref _Handle.AsRef<CUtlVector<AggregateMeshInfo_t>>(_AggregateMeshesOffset);
+    get {
+      if (_AggregateMeshesOffset == null) {
+        _AggregateMeshesOffset = Schema.GetOffset(0xEF81F2D402570BA1);
+      }
+      return ref _Handle.AsRef<CUtlVector<AggregateMeshInfo_t>>(_AggregateMeshesOffset!.Value);
+    }
   }
-  private static readonly nint _LodSetupsOffset = Schema.GetOffset(0xEF81F2D4B0CE61E2);
+  private static nint? _LodSetupsOffset;
 
   public ref CUtlVector<AggregateLODSetup_t> LodSetups {
-    get => ref _Handle.AsRef<CUtlVector<AggregateLODSetup_t>>(_LodSetupsOffset);
+    get {
+      if (_LodSetupsOffset == null) {
+        _LodSetupsOffset = Schema.GetOffset(0xEF81F2D4B0CE61E2);
+      }
+      return ref _Handle.AsRef<CUtlVector<AggregateLODSetup_t>>(_LodSetupsOffset!.Value);
+    }
   }
-  private static readonly nint _VisClusterMembershipOffset = Schema.GetOffset(0xEF81F2D4F2C828CD);
+  private static nint? _VisClusterMembershipOffset;
 
   public ref CUtlVector<ushort> VisClusterMembership {
-    get => ref _Handle.AsRef<CUtlVector<ushort>>(_VisClusterMembershipOffset);
+    get {
+      if (_VisClusterMembershipOffset == null) {
+        _VisClusterMembershipOffset = Schema.GetOffset(0xEF81F2D4F2C828CD);
+      }
+      return ref _Handle.AsRef<CUtlVector<ushort>>(_VisClusterMembershipOffset!.Value);
+    }
   }
-  private static readonly nint _FragmentTransformsOffset = Schema.GetOffset(0xEF81F2D4192EBA20);
+  private static nint? _FragmentTransformsOffset;
 
   public ref CUtlVector<matrix3x4_t> FragmentTransforms {
-    get => ref _Handle.AsRef<CUtlVector<matrix3x4_t>>(_FragmentTransformsOffset);
+    get {
+      if (_FragmentTransformsOffset == null) {
+        _FragmentTransformsOffset = Schema.GetOffset(0xEF81F2D4192EBA20);
+      }
+      return ref _Handle.AsRef<CUtlVector<matrix3x4_t>>(_FragmentTransformsOffset!.Value);
+    }
   }
-  private static readonly nint _RenderableModelOffset = Schema.GetOffset(0xEF81F2D42AEEFA82);
+  private static nint? _RenderableModelOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCModel> RenderableModel {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_RenderableModelOffset);
+    get {
+      if (_RenderableModelOffset == null) {
+        _RenderableModelOffset = Schema.GetOffset(0xEF81F2D42AEEFA82);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_RenderableModelOffset!.Value);
+    }
   }
 
 

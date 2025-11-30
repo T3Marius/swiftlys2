@@ -17,123 +17,238 @@ internal partial class CBeamImpl : CBaseModelEntityImpl, CBeam {
   public CBeamImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FrameRateOffset = Schema.GetOffset(0x4BCF3CE574BE5A46);
+  private static nint? _FrameRateOffset;
 
   public ref float FrameRate {
-    get => ref _Handle.AsRef<float>(_FrameRateOffset);
+    get {
+      if (_FrameRateOffset == null) {
+        _FrameRateOffset = Schema.GetOffset(0x4BCF3CE574BE5A46);
+      }
+      return ref _Handle.AsRef<float>(_FrameRateOffset!.Value);
+    }
   }
-  private static readonly nint _HDRColorScaleOffset = Schema.GetOffset(0x4BCF3CE5C930B3E8);
+  private static nint? _HDRColorScaleOffset;
 
   public ref float HDRColorScale {
-    get => ref _Handle.AsRef<float>(_HDRColorScaleOffset);
+    get {
+      if (_HDRColorScaleOffset == null) {
+        _HDRColorScaleOffset = Schema.GetOffset(0x4BCF3CE5C930B3E8);
+      }
+      return ref _Handle.AsRef<float>(_HDRColorScaleOffset!.Value);
+    }
   }
-  private static readonly nint _FireTimeOffset = Schema.GetOffset(0x4BCF3CE5873CD172);
+  private static nint? _FireTimeOffset;
 
   public GameTime_t FireTime {
-    get => new GameTime_tImpl(_Handle + _FireTimeOffset);
+    get {
+      if (_FireTimeOffset == null) {
+        _FireTimeOffset = Schema.GetOffset(0x4BCF3CE5873CD172);
+      }
+      return new GameTime_tImpl(_Handle + _FireTimeOffset!.Value);
+    }
   }
-  private static readonly nint _DamageOffset = Schema.GetOffset(0x4BCF3CE5DC60E53E);
+  private static nint? _DamageOffset;
 
   public ref float Damage {
-    get => ref _Handle.AsRef<float>(_DamageOffset);
+    get {
+      if (_DamageOffset == null) {
+        _DamageOffset = Schema.GetOffset(0x4BCF3CE5DC60E53E);
+      }
+      return ref _Handle.AsRef<float>(_DamageOffset!.Value);
+    }
   }
-  private static readonly nint _NumBeamEntsOffset = Schema.GetOffset(0x4BCF3CE5D7D7CDFA);
+  private static nint? _NumBeamEntsOffset;
 
   public ref byte NumBeamEnts {
-    get => ref _Handle.AsRef<byte>(_NumBeamEntsOffset);
+    get {
+      if (_NumBeamEntsOffset == null) {
+        _NumBeamEntsOffset = Schema.GetOffset(0x4BCF3CE5D7D7CDFA);
+      }
+      return ref _Handle.AsRef<byte>(_NumBeamEntsOffset!.Value);
+    }
   }
-  private static readonly nint _BaseMaterialOffset = Schema.GetOffset(0x4BCF3CE55B164FBF);
+  private static nint? _BaseMaterialOffset;
 
   public ref CStrongHandle<InfoForResourceTypeIMaterial2> BaseMaterial {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_BaseMaterialOffset);
+    get {
+      if (_BaseMaterialOffset == null) {
+        _BaseMaterialOffset = Schema.GetOffset(0x4BCF3CE55B164FBF);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_BaseMaterialOffset!.Value);
+    }
   }
-  private static readonly nint _HaloIndexOffset = Schema.GetOffset(0x4BCF3CE5F6B595E1);
+  private static nint? _HaloIndexOffset;
 
   public ref CStrongHandle<InfoForResourceTypeIMaterial2> HaloIndex {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_HaloIndexOffset);
+    get {
+      if (_HaloIndexOffset == null) {
+        _HaloIndexOffset = Schema.GetOffset(0x4BCF3CE5F6B595E1);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_HaloIndexOffset!.Value);
+    }
   }
-  private static readonly nint _BeamTypeOffset = Schema.GetOffset(0x4BCF3CE5E65D2926);
+  private static nint? _BeamTypeOffset;
 
   public ref BeamType_t BeamType {
-    get => ref _Handle.AsRef<BeamType_t>(_BeamTypeOffset);
+    get {
+      if (_BeamTypeOffset == null) {
+        _BeamTypeOffset = Schema.GetOffset(0x4BCF3CE5E65D2926);
+      }
+      return ref _Handle.AsRef<BeamType_t>(_BeamTypeOffset!.Value);
+    }
   }
-  private static readonly nint _BeamFlagsOffset = Schema.GetOffset(0x4BCF3CE5BB875091);
+  private static nint? _BeamFlagsOffset;
 
   public ref uint BeamFlags {
-    get => ref _Handle.AsRef<uint>(_BeamFlagsOffset);
+    get {
+      if (_BeamFlagsOffset == null) {
+        _BeamFlagsOffset = Schema.GetOffset(0x4BCF3CE5BB875091);
+      }
+      return ref _Handle.AsRef<uint>(_BeamFlagsOffset!.Value);
+    }
   }
   public ISchemaFixedArray<CHandle<CBaseEntity>> AttachEntity {
     get => new SchemaFixedArray<CHandle<CBaseEntity>>(_Handle, 0x4BCF3CE56BCDCAD1, 10, 4, 4);
   }
-  private static readonly nint _AttachIndexOffset = Schema.GetOffset(0x4BCF3CE5502E5BEC);
+  private static nint? _AttachIndexOffset;
 
   public SchemaUntypedField AttachIndex {
-    get => new SchemaUntypedField(_Handle + _AttachIndexOffset);
+    get {
+      if (_AttachIndexOffset == null) {
+        _AttachIndexOffset = Schema.GetOffset(0x4BCF3CE5502E5BEC);
+      }
+      return new SchemaUntypedField(_Handle + _AttachIndexOffset!.Value);
+    }
   }
-  private static readonly nint _WidthOffset = Schema.GetOffset(0x4BCF3CE55A6716D3);
+  private static nint? _WidthOffset;
 
   public ref float Width {
-    get => ref _Handle.AsRef<float>(_WidthOffset);
+    get {
+      if (_WidthOffset == null) {
+        _WidthOffset = Schema.GetOffset(0x4BCF3CE55A6716D3);
+      }
+      return ref _Handle.AsRef<float>(_WidthOffset!.Value);
+    }
   }
-  private static readonly nint _EndWidthOffset = Schema.GetOffset(0x4BCF3CE531E2A13A);
+  private static nint? _EndWidthOffset;
 
   public ref float EndWidth {
-    get => ref _Handle.AsRef<float>(_EndWidthOffset);
+    get {
+      if (_EndWidthOffset == null) {
+        _EndWidthOffset = Schema.GetOffset(0x4BCF3CE531E2A13A);
+      }
+      return ref _Handle.AsRef<float>(_EndWidthOffset!.Value);
+    }
   }
-  private static readonly nint _FadeLengthOffset = Schema.GetOffset(0x4BCF3CE5BDBE91AF);
+  private static nint? _FadeLengthOffset;
 
   public ref float FadeLength {
-    get => ref _Handle.AsRef<float>(_FadeLengthOffset);
+    get {
+      if (_FadeLengthOffset == null) {
+        _FadeLengthOffset = Schema.GetOffset(0x4BCF3CE5BDBE91AF);
+      }
+      return ref _Handle.AsRef<float>(_FadeLengthOffset!.Value);
+    }
   }
-  private static readonly nint _HaloScaleOffset = Schema.GetOffset(0x4BCF3CE5E01B893B);
+  private static nint? _HaloScaleOffset;
 
   public ref float HaloScale {
-    get => ref _Handle.AsRef<float>(_HaloScaleOffset);
+    get {
+      if (_HaloScaleOffset == null) {
+        _HaloScaleOffset = Schema.GetOffset(0x4BCF3CE5E01B893B);
+      }
+      return ref _Handle.AsRef<float>(_HaloScaleOffset!.Value);
+    }
   }
-  private static readonly nint _AmplitudeOffset = Schema.GetOffset(0x4BCF3CE56B89E71E);
+  private static nint? _AmplitudeOffset;
 
   public ref float Amplitude {
-    get => ref _Handle.AsRef<float>(_AmplitudeOffset);
+    get {
+      if (_AmplitudeOffset == null) {
+        _AmplitudeOffset = Schema.GetOffset(0x4BCF3CE56B89E71E);
+      }
+      return ref _Handle.AsRef<float>(_AmplitudeOffset!.Value);
+    }
   }
-  private static readonly nint _StartFrameOffset = Schema.GetOffset(0x4BCF3CE5EE6DF5C0);
+  private static nint? _StartFrameOffset;
 
   public ref float StartFrame {
-    get => ref _Handle.AsRef<float>(_StartFrameOffset);
+    get {
+      if (_StartFrameOffset == null) {
+        _StartFrameOffset = Schema.GetOffset(0x4BCF3CE5EE6DF5C0);
+      }
+      return ref _Handle.AsRef<float>(_StartFrameOffset!.Value);
+    }
   }
-  private static readonly nint _SpeedOffset = Schema.GetOffset(0x4BCF3CE5288671E4);
+  private static nint? _SpeedOffset;
 
   public ref float Speed {
-    get => ref _Handle.AsRef<float>(_SpeedOffset);
+    get {
+      if (_SpeedOffset == null) {
+        _SpeedOffset = Schema.GetOffset(0x4BCF3CE5288671E4);
+      }
+      return ref _Handle.AsRef<float>(_SpeedOffset!.Value);
+    }
   }
-  private static readonly nint _FrameOffset = Schema.GetOffset(0x4BCF3CE5F836C9F4);
+  private static nint? _FrameOffset;
 
   public ref float Frame {
-    get => ref _Handle.AsRef<float>(_FrameOffset);
+    get {
+      if (_FrameOffset == null) {
+        _FrameOffset = Schema.GetOffset(0x4BCF3CE5F836C9F4);
+      }
+      return ref _Handle.AsRef<float>(_FrameOffset!.Value);
+    }
   }
-  private static readonly nint _ClipStyleOffset = Schema.GetOffset(0x4BCF3CE51A311350);
+  private static nint? _ClipStyleOffset;
 
   public ref BeamClipStyle_t ClipStyle {
-    get => ref _Handle.AsRef<BeamClipStyle_t>(_ClipStyleOffset);
+    get {
+      if (_ClipStyleOffset == null) {
+        _ClipStyleOffset = Schema.GetOffset(0x4BCF3CE51A311350);
+      }
+      return ref _Handle.AsRef<BeamClipStyle_t>(_ClipStyleOffset!.Value);
+    }
   }
-  private static readonly nint _TurnedOffOffset = Schema.GetOffset(0x4BCF3CE5EC469948);
+  private static nint? _TurnedOffOffset;
 
   public ref bool TurnedOff {
-    get => ref _Handle.AsRef<bool>(_TurnedOffOffset);
+    get {
+      if (_TurnedOffOffset == null) {
+        _TurnedOffOffset = Schema.GetOffset(0x4BCF3CE5EC469948);
+      }
+      return ref _Handle.AsRef<bool>(_TurnedOffOffset!.Value);
+    }
   }
-  private static readonly nint _EndPosOffset = Schema.GetOffset(0x4BCF3CE58DD24760);
+  private static nint? _EndPosOffset;
 
   public ref Vector EndPos {
-    get => ref _Handle.AsRef<Vector>(_EndPosOffset);
+    get {
+      if (_EndPosOffset == null) {
+        _EndPosOffset = Schema.GetOffset(0x4BCF3CE58DD24760);
+      }
+      return ref _Handle.AsRef<Vector>(_EndPosOffset!.Value);
+    }
   }
-  private static readonly nint _EndEntityOffset = Schema.GetOffset(0x4BCF3CE561070A9F);
+  private static nint? _EndEntityOffset;
 
   public ref CHandle<CBaseEntity> EndEntity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_EndEntityOffset);
+    get {
+      if (_EndEntityOffset == null) {
+        _EndEntityOffset = Schema.GetOffset(0x4BCF3CE561070A9F);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_EndEntityOffset!.Value);
+    }
   }
-  private static readonly nint _DissolveTypeOffset = Schema.GetOffset(0x4BCF3CE579AB525E);
+  private static nint? _DissolveTypeOffset;
 
   public ref int DissolveType {
-    get => ref _Handle.AsRef<int>(_DissolveTypeOffset);
+    get {
+      if (_DissolveTypeOffset == null) {
+        _DissolveTypeOffset = Schema.GetOffset(0x4BCF3CE579AB525E);
+      }
+      return ref _Handle.AsRef<int>(_DissolveTypeOffset!.Value);
+    }
   }
 
   public void FrameRateUpdated() {

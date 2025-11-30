@@ -17,24 +17,42 @@ internal partial class CCSGameModeRules_DeathmatchImpl : CCSGameModeRulesImpl, C
   public CCSGameModeRules_DeathmatchImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DMBonusStartTimeOffset = Schema.GetOffset(0x77BC0D42870B2CD0);
+  private static nint? _DMBonusStartTimeOffset;
 
   public GameTime_t DMBonusStartTime {
-    get => new GameTime_tImpl(_Handle + _DMBonusStartTimeOffset);
+    get {
+      if (_DMBonusStartTimeOffset == null) {
+        _DMBonusStartTimeOffset = Schema.GetOffset(0x77BC0D42870B2CD0);
+      }
+      return new GameTime_tImpl(_Handle + _DMBonusStartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _DMBonusTimeLengthOffset = Schema.GetOffset(0x77BC0D42C4F13CC6);
+  private static nint? _DMBonusTimeLengthOffset;
 
   public ref float DMBonusTimeLength {
-    get => ref _Handle.AsRef<float>(_DMBonusTimeLengthOffset);
+    get {
+      if (_DMBonusTimeLengthOffset == null) {
+        _DMBonusTimeLengthOffset = Schema.GetOffset(0x77BC0D42C4F13CC6);
+      }
+      return ref _Handle.AsRef<float>(_DMBonusTimeLengthOffset!.Value);
+    }
   }
-  private static readonly nint _DMBonusWeaponOffset = Schema.GetOffset(0x77BC0D42A33FC260);
+  private static nint? _DMBonusWeaponOffset;
 
   public string DMBonusWeapon {
     get {
-      var ptr = _Handle.Read<nint>(_DMBonusWeaponOffset);
+      if (_DMBonusWeaponOffset == null) {
+        _DMBonusWeaponOffset = Schema.GetOffset(0x77BC0D42A33FC260);
+      }
+      var ptr = _Handle.Read<nint>(_DMBonusWeaponOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _DMBonusWeaponOffset, value);
+    set {
+      if (_DMBonusWeaponOffset == null) {
+        _DMBonusWeaponOffset = Schema.GetOffset(0x77BC0D42A33FC260);
+      }
+      Schema.SetString(_Handle, _DMBonusWeaponOffset!.Value, value);
+    }
   } 
 
   public void DMBonusStartTimeUpdated() {

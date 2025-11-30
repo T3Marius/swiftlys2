@@ -17,10 +17,15 @@ internal partial class RenderProjectedMaterial_tImpl : SchemaClass, RenderProjec
   public RenderProjectedMaterial_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaterialOffset = Schema.GetOffset(0x62AF09D5888CE42E);
+  private static nint? _MaterialOffset;
 
   public ref CStrongHandle<InfoForResourceTypeIMaterial2> Material {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_MaterialOffset);
+    get {
+      if (_MaterialOffset == null) {
+        _MaterialOffset = Schema.GetOffset(0x62AF09D5888CE42E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_MaterialOffset!.Value);
+    }
   }
 
 

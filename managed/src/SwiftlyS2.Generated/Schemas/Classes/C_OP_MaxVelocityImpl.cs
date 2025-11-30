@@ -17,25 +17,45 @@ internal partial class C_OP_MaxVelocityImpl : CParticleFunctionOperatorImpl, C_O
   public C_OP_MaxVelocityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MaxVelocityOffset = Schema.GetOffset(0xE7D67D7E281BD640);
+  private static nint? _MaxVelocityOffset;
 
   public ref float MaxVelocity {
-    get => ref _Handle.AsRef<float>(_MaxVelocityOffset);
+    get {
+      if (_MaxVelocityOffset == null) {
+        _MaxVelocityOffset = Schema.GetOffset(0xE7D67D7E281BD640);
+      }
+      return ref _Handle.AsRef<float>(_MaxVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _MinVelocityOffset = Schema.GetOffset(0xE7D67D7EAE8F0ADE);
+  private static nint? _MinVelocityOffset;
 
   public ref float MinVelocity {
-    get => ref _Handle.AsRef<float>(_MinVelocityOffset);
+    get {
+      if (_MinVelocityOffset == null) {
+        _MinVelocityOffset = Schema.GetOffset(0xE7D67D7EAE8F0ADE);
+      }
+      return ref _Handle.AsRef<float>(_MinVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _OverrideCPOffset = Schema.GetOffset(0xE7D67D7EDD495162);
+  private static nint? _OverrideCPOffset;
 
   public ref int OverrideCP {
-    get => ref _Handle.AsRef<int>(_OverrideCPOffset);
+    get {
+      if (_OverrideCPOffset == null) {
+        _OverrideCPOffset = Schema.GetOffset(0xE7D67D7EDD495162);
+      }
+      return ref _Handle.AsRef<int>(_OverrideCPOffset!.Value);
+    }
   }
-  private static readonly nint _OverrideCPFieldOffset = Schema.GetOffset(0xE7D67D7E2FF9A086);
+  private static nint? _OverrideCPFieldOffset;
 
   public ref int OverrideCPField {
-    get => ref _Handle.AsRef<int>(_OverrideCPFieldOffset);
+    get {
+      if (_OverrideCPFieldOffset == null) {
+        _OverrideCPFieldOffset = Schema.GetOffset(0xE7D67D7E2FF9A086);
+      }
+      return ref _Handle.AsRef<int>(_OverrideCPFieldOffset!.Value);
+    }
   }
 
 

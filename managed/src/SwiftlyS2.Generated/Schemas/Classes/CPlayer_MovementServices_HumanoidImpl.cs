@@ -17,70 +17,135 @@ internal partial class CPlayer_MovementServices_HumanoidImpl : CPlayer_MovementS
   public CPlayer_MovementServices_HumanoidImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StepSoundTimeOffset = Schema.GetOffset(0xB65FEA796DEC5F7D);
+  private static nint? _StepSoundTimeOffset;
 
   public ref float StepSoundTime {
-    get => ref _Handle.AsRef<float>(_StepSoundTimeOffset);
+    get {
+      if (_StepSoundTimeOffset == null) {
+        _StepSoundTimeOffset = Schema.GetOffset(0xB65FEA796DEC5F7D);
+      }
+      return ref _Handle.AsRef<float>(_StepSoundTimeOffset!.Value);
+    }
   }
-  private static readonly nint _FallVelocityOffset = Schema.GetOffset(0xB65FEA796D8D7D9D);
+  private static nint? _FallVelocityOffset;
 
   public ref float FallVelocity {
-    get => ref _Handle.AsRef<float>(_FallVelocityOffset);
+    get {
+      if (_FallVelocityOffset == null) {
+        _FallVelocityOffset = Schema.GetOffset(0xB65FEA796D8D7D9D);
+      }
+      return ref _Handle.AsRef<float>(_FallVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _InCrouchOffset = Schema.GetOffset(0xB65FEA79CF28FE64);
+  private static nint? _InCrouchOffset;
 
   public ref bool InCrouch {
-    get => ref _Handle.AsRef<bool>(_InCrouchOffset);
+    get {
+      if (_InCrouchOffset == null) {
+        _InCrouchOffset = Schema.GetOffset(0xB65FEA79CF28FE64);
+      }
+      return ref _Handle.AsRef<bool>(_InCrouchOffset!.Value);
+    }
   }
-  private static readonly nint _CrouchStateOffset = Schema.GetOffset(0xB65FEA7988282338);
+  private static nint? _CrouchStateOffset;
 
   public ref uint CrouchState {
-    get => ref _Handle.AsRef<uint>(_CrouchStateOffset);
+    get {
+      if (_CrouchStateOffset == null) {
+        _CrouchStateOffset = Schema.GetOffset(0xB65FEA7988282338);
+      }
+      return ref _Handle.AsRef<uint>(_CrouchStateOffset!.Value);
+    }
   }
-  private static readonly nint _CrouchTransitionStartTimeOffset = Schema.GetOffset(0xB65FEA79E89CEC2B);
+  private static nint? _CrouchTransitionStartTimeOffset;
 
   public GameTime_t CrouchTransitionStartTime {
-    get => new GameTime_tImpl(_Handle + _CrouchTransitionStartTimeOffset);
+    get {
+      if (_CrouchTransitionStartTimeOffset == null) {
+        _CrouchTransitionStartTimeOffset = Schema.GetOffset(0xB65FEA79E89CEC2B);
+      }
+      return new GameTime_tImpl(_Handle + _CrouchTransitionStartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _DuckedOffset = Schema.GetOffset(0xB65FEA7914A05A59);
+  private static nint? _DuckedOffset;
 
   public ref bool Ducked {
-    get => ref _Handle.AsRef<bool>(_DuckedOffset);
+    get {
+      if (_DuckedOffset == null) {
+        _DuckedOffset = Schema.GetOffset(0xB65FEA7914A05A59);
+      }
+      return ref _Handle.AsRef<bool>(_DuckedOffset!.Value);
+    }
   }
-  private static readonly nint _DuckingOffset = Schema.GetOffset(0xB65FEA798B221170);
+  private static nint? _DuckingOffset;
 
   public ref bool Ducking {
-    get => ref _Handle.AsRef<bool>(_DuckingOffset);
+    get {
+      if (_DuckingOffset == null) {
+        _DuckingOffset = Schema.GetOffset(0xB65FEA798B221170);
+      }
+      return ref _Handle.AsRef<bool>(_DuckingOffset!.Value);
+    }
   }
-  private static readonly nint _InDuckJumpOffset = Schema.GetOffset(0xB65FEA7917ADB523);
+  private static nint? _InDuckJumpOffset;
 
   public ref bool InDuckJump {
-    get => ref _Handle.AsRef<bool>(_InDuckJumpOffset);
+    get {
+      if (_InDuckJumpOffset == null) {
+        _InDuckJumpOffset = Schema.GetOffset(0xB65FEA7917ADB523);
+      }
+      return ref _Handle.AsRef<bool>(_InDuckJumpOffset!.Value);
+    }
   }
-  private static readonly nint _GroundNormalOffset = Schema.GetOffset(0xB65FEA79ED2C77CD);
+  private static nint? _GroundNormalOffset;
 
   public ref Vector GroundNormal {
-    get => ref _Handle.AsRef<Vector>(_GroundNormalOffset);
+    get {
+      if (_GroundNormalOffset == null) {
+        _GroundNormalOffset = Schema.GetOffset(0xB65FEA79ED2C77CD);
+      }
+      return ref _Handle.AsRef<Vector>(_GroundNormalOffset!.Value);
+    }
   }
-  private static readonly nint _SurfaceFrictionOffset = Schema.GetOffset(0xB65FEA792BCEE768);
+  private static nint? _SurfaceFrictionOffset;
 
   public ref float SurfaceFriction {
-    get => ref _Handle.AsRef<float>(_SurfaceFrictionOffset);
+    get {
+      if (_SurfaceFrictionOffset == null) {
+        _SurfaceFrictionOffset = Schema.GetOffset(0xB65FEA792BCEE768);
+      }
+      return ref _Handle.AsRef<float>(_SurfaceFrictionOffset!.Value);
+    }
   }
-  private static readonly nint _SurfacePropsOffset = Schema.GetOffset(0xB65FEA7974007B42);
+  private static nint? _SurfacePropsOffset;
 
   public ref CUtlStringToken SurfaceProps {
-    get => ref _Handle.AsRef<CUtlStringToken>(_SurfacePropsOffset);
+    get {
+      if (_SurfacePropsOffset == null) {
+        _SurfacePropsOffset = Schema.GetOffset(0xB65FEA7974007B42);
+      }
+      return ref _Handle.AsRef<CUtlStringToken>(_SurfacePropsOffset!.Value);
+    }
   }
-  private static readonly nint _StepsideOffset = Schema.GetOffset(0xB65FEA7919FC0520);
+  private static nint? _StepsideOffset;
 
   public ref int Stepside {
-    get => ref _Handle.AsRef<int>(_StepsideOffset);
+    get {
+      if (_StepsideOffset == null) {
+        _StepsideOffset = Schema.GetOffset(0xB65FEA7919FC0520);
+      }
+      return ref _Handle.AsRef<int>(_StepsideOffset!.Value);
+    }
   }
-  private static readonly nint _SmoothedVelocityOffset = Schema.GetOffset(0xB65FEA7999186E1D);
+  private static nint? _SmoothedVelocityOffset;
 
   public ref Vector SmoothedVelocity {
-    get => ref _Handle.AsRef<Vector>(_SmoothedVelocityOffset);
+    get {
+      if (_SmoothedVelocityOffset == null) {
+        _SmoothedVelocityOffset = Schema.GetOffset(0xB65FEA7999186E1D);
+      }
+      return ref _Handle.AsRef<Vector>(_SmoothedVelocityOffset!.Value);
+    }
   }
 
   public void FallVelocityUpdated() {

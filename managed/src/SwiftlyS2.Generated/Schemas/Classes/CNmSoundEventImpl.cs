@@ -17,52 +17,96 @@ internal partial class CNmSoundEventImpl : CNmEventImpl, CNmSoundEvent {
   public CNmSoundEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RelevanceOffset = Schema.GetOffset(0xDC15E5261E3F4008);
+  private static nint? _RelevanceOffset;
 
   public ref CNmEventRelevance_t Relevance {
-    get => ref _Handle.AsRef<CNmEventRelevance_t>(_RelevanceOffset);
+    get {
+      if (_RelevanceOffset == null) {
+        _RelevanceOffset = Schema.GetOffset(0xDC15E5261E3F4008);
+      }
+      return ref _Handle.AsRef<CNmEventRelevance_t>(_RelevanceOffset!.Value);
+    }
   }
-  private static readonly nint _NameOffset = Schema.GetOffset(0xDC15E5264D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xDC15E5264D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xDC15E5264D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PositionOffset = Schema.GetOffset(0xDC15E5264B57E0AA);
+  private static nint? _PositionOffset;
 
   public ref CNmSoundEvent__Position_t Position {
-    get => ref _Handle.AsRef<CNmSoundEvent__Position_t>(_PositionOffset);
+    get {
+      if (_PositionOffset == null) {
+        _PositionOffset = Schema.GetOffset(0xDC15E5264B57E0AA);
+      }
+      return ref _Handle.AsRef<CNmSoundEvent__Position_t>(_PositionOffset!.Value);
+    }
   }
-  private static readonly nint _AttachmentNameOffset = Schema.GetOffset(0xDC15E526295DA9CB);
+  private static nint? _AttachmentNameOffset;
 
   public string AttachmentName {
     get {
-      var ptr = _Handle.Read<nint>(_AttachmentNameOffset);
+      if (_AttachmentNameOffset == null) {
+        _AttachmentNameOffset = Schema.GetOffset(0xDC15E526295DA9CB);
+      }
+      var ptr = _Handle.Read<nint>(_AttachmentNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _AttachmentNameOffset, value);
+    set {
+      if (_AttachmentNameOffset == null) {
+        _AttachmentNameOffset = Schema.GetOffset(0xDC15E526295DA9CB);
+      }
+      Schema.SetString(_Handle, _AttachmentNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _TagsOffset = Schema.GetOffset(0xDC15E526B46C8540);
+  private static nint? _TagsOffset;
 
   public string Tags {
     get {
-      var ptr = _Handle.Read<nint>(_TagsOffset);
+      if (_TagsOffset == null) {
+        _TagsOffset = Schema.GetOffset(0xDC15E526B46C8540);
+      }
+      var ptr = _Handle.Read<nint>(_TagsOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _TagsOffset, value);
+    set {
+      if (_TagsOffset == null) {
+        _TagsOffset = Schema.GetOffset(0xDC15E526B46C8540);
+      }
+      Schema.SetString(_Handle, _TagsOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ContinuePlayingSoundAtDurationEndOffset = Schema.GetOffset(0xDC15E5262CB53E61);
+  private static nint? _ContinuePlayingSoundAtDurationEndOffset;
 
   public ref bool ContinuePlayingSoundAtDurationEnd {
-    get => ref _Handle.AsRef<bool>(_ContinuePlayingSoundAtDurationEndOffset);
+    get {
+      if (_ContinuePlayingSoundAtDurationEndOffset == null) {
+        _ContinuePlayingSoundAtDurationEndOffset = Schema.GetOffset(0xDC15E5262CB53E61);
+      }
+      return ref _Handle.AsRef<bool>(_ContinuePlayingSoundAtDurationEndOffset!.Value);
+    }
   }
-  private static readonly nint _DurationInterruptionThresholdOffset = Schema.GetOffset(0xDC15E5269F1AA35B);
+  private static nint? _DurationInterruptionThresholdOffset;
 
   public ref float DurationInterruptionThreshold {
-    get => ref _Handle.AsRef<float>(_DurationInterruptionThresholdOffset);
+    get {
+      if (_DurationInterruptionThresholdOffset == null) {
+        _DurationInterruptionThresholdOffset = Schema.GetOffset(0xDC15E5269F1AA35B);
+      }
+      return ref _Handle.AsRef<float>(_DurationInterruptionThresholdOffset!.Value);
+    }
   }
 
 

@@ -17,10 +17,15 @@ internal partial class CLODComponentUpdaterImpl : CAnimComponentUpdaterImpl, CLO
   public CLODComponentUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ServerLODOffset = Schema.GetOffset(0xDE1020D244E2C75);
+  private static nint? _ServerLODOffset;
 
   public ref int ServerLOD {
-    get => ref _Handle.AsRef<int>(_ServerLODOffset);
+    get {
+      if (_ServerLODOffset == null) {
+        _ServerLODOffset = Schema.GetOffset(0xDE1020D244E2C75);
+      }
+      return ref _Handle.AsRef<int>(_ServerLODOffset!.Value);
+    }
   }
 
 

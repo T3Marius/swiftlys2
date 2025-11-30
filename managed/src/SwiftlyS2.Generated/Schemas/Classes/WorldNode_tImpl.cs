@@ -17,79 +17,152 @@ internal partial class WorldNode_tImpl : SchemaClass, WorldNode_t {
   public WorldNode_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SceneObjectsOffset = Schema.GetOffset(0xFC310480332235A1);
+  private static nint? _SceneObjectsOffset;
 
   public ref CUtlVector<SceneObject_t> SceneObjects {
-    get => ref _Handle.AsRef<CUtlVector<SceneObject_t>>(_SceneObjectsOffset);
+    get {
+      if (_SceneObjectsOffset == null) {
+        _SceneObjectsOffset = Schema.GetOffset(0xFC310480332235A1);
+      }
+      return ref _Handle.AsRef<CUtlVector<SceneObject_t>>(_SceneObjectsOffset!.Value);
+    }
   }
-  private static readonly nint _VisClusterMembershipOffset = Schema.GetOffset(0xFC310480F2C828CD);
+  private static nint? _VisClusterMembershipOffset;
 
   public ref CUtlVector<ushort> VisClusterMembership {
-    get => ref _Handle.AsRef<CUtlVector<ushort>>(_VisClusterMembershipOffset);
+    get {
+      if (_VisClusterMembershipOffset == null) {
+        _VisClusterMembershipOffset = Schema.GetOffset(0xFC310480F2C828CD);
+      }
+      return ref _Handle.AsRef<CUtlVector<ushort>>(_VisClusterMembershipOffset!.Value);
+    }
   }
-  private static readonly nint _AggregateSceneObjectsOffset = Schema.GetOffset(0xFC31048072C832FC);
+  private static nint? _AggregateSceneObjectsOffset;
 
   public ref CUtlVector<AggregateSceneObject_t> AggregateSceneObjects {
-    get => ref _Handle.AsRef<CUtlVector<AggregateSceneObject_t>>(_AggregateSceneObjectsOffset);
+    get {
+      if (_AggregateSceneObjectsOffset == null) {
+        _AggregateSceneObjectsOffset = Schema.GetOffset(0xFC31048072C832FC);
+      }
+      return ref _Handle.AsRef<CUtlVector<AggregateSceneObject_t>>(_AggregateSceneObjectsOffset!.Value);
+    }
   }
-  private static readonly nint _ClutterSceneObjectsOffset = Schema.GetOffset(0xFC310480CB15C9CA);
+  private static nint? _ClutterSceneObjectsOffset;
 
   public ref CUtlVector<ClutterSceneObject_t> ClutterSceneObjects {
-    get => ref _Handle.AsRef<CUtlVector<ClutterSceneObject_t>>(_ClutterSceneObjectsOffset);
+    get {
+      if (_ClutterSceneObjectsOffset == null) {
+        _ClutterSceneObjectsOffset = Schema.GetOffset(0xFC310480CB15C9CA);
+      }
+      return ref _Handle.AsRef<CUtlVector<ClutterSceneObject_t>>(_ClutterSceneObjectsOffset!.Value);
+    }
   }
-  private static readonly nint _ExtraVertexStreamOverridesOffset = Schema.GetOffset(0xFC310480E2732A38);
+  private static nint? _ExtraVertexStreamOverridesOffset;
 
   public ref CUtlVector<ExtraVertexStreamOverride_t> ExtraVertexStreamOverrides {
-    get => ref _Handle.AsRef<CUtlVector<ExtraVertexStreamOverride_t>>(_ExtraVertexStreamOverridesOffset);
+    get {
+      if (_ExtraVertexStreamOverridesOffset == null) {
+        _ExtraVertexStreamOverridesOffset = Schema.GetOffset(0xFC310480E2732A38);
+      }
+      return ref _Handle.AsRef<CUtlVector<ExtraVertexStreamOverride_t>>(_ExtraVertexStreamOverridesOffset!.Value);
+    }
   }
-  private static readonly nint _MaterialOverridesOffset = Schema.GetOffset(0xFC3104809D810D99);
+  private static nint? _MaterialOverridesOffset;
 
   public ref CUtlVector<MaterialOverride_t> MaterialOverrides {
-    get => ref _Handle.AsRef<CUtlVector<MaterialOverride_t>>(_MaterialOverridesOffset);
+    get {
+      if (_MaterialOverridesOffset == null) {
+        _MaterialOverridesOffset = Schema.GetOffset(0xFC3104809D810D99);
+      }
+      return ref _Handle.AsRef<CUtlVector<MaterialOverride_t>>(_MaterialOverridesOffset!.Value);
+    }
   }
-  private static readonly nint _ExtraVertexStreamsOffset = Schema.GetOffset(0xFC310480544F1AA0);
+  private static nint? _ExtraVertexStreamsOffset;
 
   public ref CUtlVector<WorldNodeOnDiskBufferData_t> ExtraVertexStreams {
-    get => ref _Handle.AsRef<CUtlVector<WorldNodeOnDiskBufferData_t>>(_ExtraVertexStreamsOffset);
+    get {
+      if (_ExtraVertexStreamsOffset == null) {
+        _ExtraVertexStreamsOffset = Schema.GetOffset(0xFC310480544F1AA0);
+      }
+      return ref _Handle.AsRef<CUtlVector<WorldNodeOnDiskBufferData_t>>(_ExtraVertexStreamsOffset!.Value);
+    }
   }
-  private static readonly nint _AggregateInstanceStreamsOffset = Schema.GetOffset(0xFC31048038CAE4B8);
+  private static nint? _AggregateInstanceStreamsOffset;
 
   public ref CUtlVector<AggregateInstanceStreamOnDiskData_t> AggregateInstanceStreams {
-    get => ref _Handle.AsRef<CUtlVector<AggregateInstanceStreamOnDiskData_t>>(_AggregateInstanceStreamsOffset);
+    get {
+      if (_AggregateInstanceStreamsOffset == null) {
+        _AggregateInstanceStreamsOffset = Schema.GetOffset(0xFC31048038CAE4B8);
+      }
+      return ref _Handle.AsRef<CUtlVector<AggregateInstanceStreamOnDiskData_t>>(_AggregateInstanceStreamsOffset!.Value);
+    }
   }
-  private static readonly nint _VertexAlbedoStreamsOffset = Schema.GetOffset(0xFC3104803DD793DB);
+  private static nint? _VertexAlbedoStreamsOffset;
 
   public ref CUtlVector<AggregateVertexAlbedoStreamOnDiskData_t> VertexAlbedoStreams {
-    get => ref _Handle.AsRef<CUtlVector<AggregateVertexAlbedoStreamOnDiskData_t>>(_VertexAlbedoStreamsOffset);
+    get {
+      if (_VertexAlbedoStreamsOffset == null) {
+        _VertexAlbedoStreamsOffset = Schema.GetOffset(0xFC3104803DD793DB);
+      }
+      return ref _Handle.AsRef<CUtlVector<AggregateVertexAlbedoStreamOnDiskData_t>>(_VertexAlbedoStreamsOffset!.Value);
+    }
   }
-  private static readonly nint _LayerNamesOffset = Schema.GetOffset(0xFC3104806E877012);
+  private static nint? _LayerNamesOffset;
 
   public ref CUtlVector<CUtlString> LayerNames {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_LayerNamesOffset);
+    get {
+      if (_LayerNamesOffset == null) {
+        _LayerNamesOffset = Schema.GetOffset(0xFC3104806E877012);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_LayerNamesOffset!.Value);
+    }
   }
-  private static readonly nint _SceneObjectLayerIndicesOffset = Schema.GetOffset(0xFC310480F769C8CA);
+  private static nint? _SceneObjectLayerIndicesOffset;
 
   public ref CUtlVector<byte> SceneObjectLayerIndices {
-    get => ref _Handle.AsRef<CUtlVector<byte>>(_SceneObjectLayerIndicesOffset);
+    get {
+      if (_SceneObjectLayerIndicesOffset == null) {
+        _SceneObjectLayerIndicesOffset = Schema.GetOffset(0xFC310480F769C8CA);
+      }
+      return ref _Handle.AsRef<CUtlVector<byte>>(_SceneObjectLayerIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _GrassFileNameOffset = Schema.GetOffset(0xFC310480FDDFCFE0);
+  private static nint? _GrassFileNameOffset;
 
   public string GrassFileName {
     get {
-      var ptr = _Handle.Read<nint>(_GrassFileNameOffset);
+      if (_GrassFileNameOffset == null) {
+        _GrassFileNameOffset = Schema.GetOffset(0xFC310480FDDFCFE0);
+      }
+      var ptr = _Handle.Read<nint>(_GrassFileNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _GrassFileNameOffset, value);
+    set {
+      if (_GrassFileNameOffset == null) {
+        _GrassFileNameOffset = Schema.GetOffset(0xFC310480FDDFCFE0);
+      }
+      Schema.SetString(_Handle, _GrassFileNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NodeLightingInfoOffset = Schema.GetOffset(0xFC3104800E25D839);
+  private static nint? _NodeLightingInfoOffset;
 
   public BakedLightingInfo_t NodeLightingInfo {
-    get => new BakedLightingInfo_tImpl(_Handle + _NodeLightingInfoOffset);
+    get {
+      if (_NodeLightingInfoOffset == null) {
+        _NodeLightingInfoOffset = Schema.GetOffset(0xFC3104800E25D839);
+      }
+      return new BakedLightingInfo_tImpl(_Handle + _NodeLightingInfoOffset!.Value);
+    }
   }
-  private static readonly nint _HasBakedGeometryFlagOffset = Schema.GetOffset(0xFC310480943F4594);
+  private static nint? _HasBakedGeometryFlagOffset;
 
   public ref bool HasBakedGeometryFlag {
-    get => ref _Handle.AsRef<bool>(_HasBakedGeometryFlagOffset);
+    get {
+      if (_HasBakedGeometryFlagOffset == null) {
+        _HasBakedGeometryFlagOffset = Schema.GetOffset(0xFC310480943F4594);
+      }
+      return ref _Handle.AsRef<bool>(_HasBakedGeometryFlagOffset!.Value);
+    }
   }
 
 

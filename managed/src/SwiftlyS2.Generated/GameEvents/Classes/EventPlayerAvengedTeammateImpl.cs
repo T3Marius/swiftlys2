@@ -17,9 +17,27 @@ internal class EventPlayerAvengedTeammateImpl : GameEvent<EventPlayerAvengedTeam
   {
   }
 
+  public CCSPlayerController AvengerIdController
+  { get => Accessor.GetPlayerController("avenger_id"); }
+
+  public CCSPlayerPawn AvengerIdPawn
+  { get => Accessor.GetPlayerPawn("avenger_id"); }
+
+  public IPlayer AvengerIdPlayer
+  { get => Accessor.GetPlayer("avenger_id"); }
+
   public int AvengerId
-  { get => Accessor.GetPlayerSlot("avenger_id"); set => Accessor.SetPlayerSlot("avenger_id", value); }
+  { get => Accessor.GetInt32("avenger_id"); set => Accessor.SetInt32("avenger_id", value); }
+
+  public CCSPlayerController AvengedPlayerIdController
+  { get => Accessor.GetPlayerController("avenged_player_id"); }
+
+  public CCSPlayerPawn AvengedPlayerIdPawn
+  { get => Accessor.GetPlayerPawn("avenged_player_id"); }
+
+  public IPlayer AvengedPlayerIdPlayer
+  { get => Accessor.GetPlayer("avenged_player_id"); }
 
   public int AvengedPlayerId
-  { get => Accessor.GetPlayerSlot("avenged_player_id"); set => Accessor.SetPlayerSlot("avenged_player_id", value); }
+  { get => Accessor.GetInt32("avenged_player_id"); set => Accessor.SetInt32("avenged_player_id", value); }
 }

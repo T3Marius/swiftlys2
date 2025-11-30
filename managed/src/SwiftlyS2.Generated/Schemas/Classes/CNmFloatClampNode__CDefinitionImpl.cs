@@ -17,15 +17,25 @@ internal partial class CNmFloatClampNode__CDefinitionImpl : CNmFloatValueNode__C
   public CNmFloatClampNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputValueNodeIdxOffset = Schema.GetOffset(0x77C3AAE295E89F27);
+  private static nint? _InputValueNodeIdxOffset;
 
   public ref short InputValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_InputValueNodeIdxOffset);
+    get {
+      if (_InputValueNodeIdxOffset == null) {
+        _InputValueNodeIdxOffset = Schema.GetOffset(0x77C3AAE295E89F27);
+      }
+      return ref _Handle.AsRef<short>(_InputValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _ClampRangeOffset = Schema.GetOffset(0x77C3AAE2FED5C4A1);
+  private static nint? _ClampRangeOffset;
 
   public SchemaUntypedField ClampRange {
-    get => new SchemaUntypedField(_Handle + _ClampRangeOffset);
+    get {
+      if (_ClampRangeOffset == null) {
+        _ClampRangeOffset = Schema.GetOffset(0x77C3AAE2FED5C4A1);
+      }
+      return new SchemaUntypedField(_Handle + _ClampRangeOffset!.Value);
+    }
   }
 
 

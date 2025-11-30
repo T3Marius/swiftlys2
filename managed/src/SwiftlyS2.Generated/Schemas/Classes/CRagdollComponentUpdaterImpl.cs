@@ -17,55 +17,105 @@ internal partial class CRagdollComponentUpdaterImpl : CAnimComponentUpdaterImpl,
   public CRagdollComponentUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RagdollNodePathsOffset = Schema.GetOffset(0xDD5F05A990E04B90);
+  private static nint? _RagdollNodePathsOffset;
 
   public ref CUtlVector<CAnimNodePath> RagdollNodePaths {
-    get => ref _Handle.AsRef<CUtlVector<CAnimNodePath>>(_RagdollNodePathsOffset);
+    get {
+      if (_RagdollNodePathsOffset == null) {
+        _RagdollNodePathsOffset = Schema.GetOffset(0xDD5F05A990E04B90);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimNodePath>>(_RagdollNodePathsOffset!.Value);
+    }
   }
-  private static readonly nint _FollowAttachmentNodePathsOffset = Schema.GetOffset(0xDD5F05A95F8325EF);
+  private static nint? _FollowAttachmentNodePathsOffset;
 
   public ref CUtlVector<CAnimNodePath> FollowAttachmentNodePaths {
-    get => ref _Handle.AsRef<CUtlVector<CAnimNodePath>>(_FollowAttachmentNodePathsOffset);
+    get {
+      if (_FollowAttachmentNodePathsOffset == null) {
+        _FollowAttachmentNodePathsOffset = Schema.GetOffset(0xDD5F05A95F8325EF);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimNodePath>>(_FollowAttachmentNodePathsOffset!.Value);
+    }
   }
-  private static readonly nint _BoneIndicesOffset = Schema.GetOffset(0xDD5F05A9E93AB60C);
+  private static nint? _BoneIndicesOffset;
 
   public ref CUtlVector<int> BoneIndices {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_BoneIndicesOffset);
+    get {
+      if (_BoneIndicesOffset == null) {
+        _BoneIndicesOffset = Schema.GetOffset(0xDD5F05A9E93AB60C);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_BoneIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _BoneNamesOffset = Schema.GetOffset(0xDD5F05A93CC0D1ED);
+  private static nint? _BoneNamesOffset;
 
   public ref CUtlVector<CUtlString> BoneNames {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_BoneNamesOffset);
+    get {
+      if (_BoneNamesOffset == null) {
+        _BoneNamesOffset = Schema.GetOffset(0xDD5F05A93CC0D1ED);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_BoneNamesOffset!.Value);
+    }
   }
-  private static readonly nint _WeightListsOffset = Schema.GetOffset(0xDD5F05A9F50C4582);
+  private static nint? _WeightListsOffset;
 
   public ref CUtlVector<WeightList> WeightLists {
-    get => ref _Handle.AsRef<CUtlVector<WeightList>>(_WeightListsOffset);
+    get {
+      if (_WeightListsOffset == null) {
+        _WeightListsOffset = Schema.GetOffset(0xDD5F05A9F50C4582);
+      }
+      return ref _Handle.AsRef<CUtlVector<WeightList>>(_WeightListsOffset!.Value);
+    }
   }
-  private static readonly nint _BoneToWeightIndicesOffset = Schema.GetOffset(0xDD5F05A9CA322B97);
+  private static nint? _BoneToWeightIndicesOffset;
 
   public ref CUtlVector<int> BoneToWeightIndices {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_BoneToWeightIndicesOffset);
+    get {
+      if (_BoneToWeightIndicesOffset == null) {
+        _BoneToWeightIndicesOffset = Schema.GetOffset(0xDD5F05A9CA322B97);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_BoneToWeightIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _SpringFrequencyMinOffset = Schema.GetOffset(0xDD5F05A937C769A4);
+  private static nint? _SpringFrequencyMinOffset;
 
   public ref float SpringFrequencyMin {
-    get => ref _Handle.AsRef<float>(_SpringFrequencyMinOffset);
+    get {
+      if (_SpringFrequencyMinOffset == null) {
+        _SpringFrequencyMinOffset = Schema.GetOffset(0xDD5F05A937C769A4);
+      }
+      return ref _Handle.AsRef<float>(_SpringFrequencyMinOffset!.Value);
+    }
   }
-  private static readonly nint _SpringFrequencyMaxOffset = Schema.GetOffset(0xDD5F05A945DB0766);
+  private static nint? _SpringFrequencyMaxOffset;
 
   public ref float SpringFrequencyMax {
-    get => ref _Handle.AsRef<float>(_SpringFrequencyMaxOffset);
+    get {
+      if (_SpringFrequencyMaxOffset == null) {
+        _SpringFrequencyMaxOffset = Schema.GetOffset(0xDD5F05A945DB0766);
+      }
+      return ref _Handle.AsRef<float>(_SpringFrequencyMaxOffset!.Value);
+    }
   }
-  private static readonly nint _MaxStretchOffset = Schema.GetOffset(0xDD5F05A9BCF894C4);
+  private static nint? _MaxStretchOffset;
 
   public ref float MaxStretch {
-    get => ref _Handle.AsRef<float>(_MaxStretchOffset);
+    get {
+      if (_MaxStretchOffset == null) {
+        _MaxStretchOffset = Schema.GetOffset(0xDD5F05A9BCF894C4);
+      }
+      return ref _Handle.AsRef<float>(_MaxStretchOffset!.Value);
+    }
   }
-  private static readonly nint _SolidCollisionAtZeroWeightOffset = Schema.GetOffset(0xDD5F05A983AB44C3);
+  private static nint? _SolidCollisionAtZeroWeightOffset;
 
   public ref bool SolidCollisionAtZeroWeight {
-    get => ref _Handle.AsRef<bool>(_SolidCollisionAtZeroWeightOffset);
+    get {
+      if (_SolidCollisionAtZeroWeightOffset == null) {
+        _SolidCollisionAtZeroWeightOffset = Schema.GetOffset(0xDD5F05A983AB44C3);
+      }
+      return ref _Handle.AsRef<bool>(_SolidCollisionAtZeroWeightOffset!.Value);
+    }
   }
 
 

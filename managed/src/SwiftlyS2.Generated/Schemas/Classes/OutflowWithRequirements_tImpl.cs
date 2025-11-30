@@ -17,25 +17,45 @@ internal partial class OutflowWithRequirements_tImpl : SchemaClass, OutflowWithR
   public OutflowWithRequirements_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ConnectionOffset = Schema.GetOffset(0x5BFC4DD4D4CD5F59);
+  private static nint? _ConnectionOffset;
 
   public CPulse_OutflowConnection Connection {
-    get => new CPulse_OutflowConnectionImpl(_Handle + _ConnectionOffset);
+    get {
+      if (_ConnectionOffset == null) {
+        _ConnectionOffset = Schema.GetOffset(0x5BFC4DD4D4CD5F59);
+      }
+      return new CPulse_OutflowConnectionImpl(_Handle + _ConnectionOffset!.Value);
+    }
   }
-  private static readonly nint _DestinationFlowNodeIDOffset = Schema.GetOffset(0x5BFC4DD4C986A186);
+  private static nint? _DestinationFlowNodeIDOffset;
 
   public PulseDocNodeID_t DestinationFlowNodeID {
-    get => new PulseDocNodeID_tImpl(_Handle + _DestinationFlowNodeIDOffset);
+    get {
+      if (_DestinationFlowNodeIDOffset == null) {
+        _DestinationFlowNodeIDOffset = Schema.GetOffset(0x5BFC4DD4C986A186);
+      }
+      return new PulseDocNodeID_tImpl(_Handle + _DestinationFlowNodeIDOffset!.Value);
+    }
   }
-  private static readonly nint _RequirementNodeIDsOffset = Schema.GetOffset(0x5BFC4DD47DAC9EFE);
+  private static nint? _RequirementNodeIDsOffset;
 
   public ref CUtlVector<PulseDocNodeID_t> RequirementNodeIDs {
-    get => ref _Handle.AsRef<CUtlVector<PulseDocNodeID_t>>(_RequirementNodeIDsOffset);
+    get {
+      if (_RequirementNodeIDsOffset == null) {
+        _RequirementNodeIDsOffset = Schema.GetOffset(0x5BFC4DD47DAC9EFE);
+      }
+      return ref _Handle.AsRef<CUtlVector<PulseDocNodeID_t>>(_RequirementNodeIDsOffset!.Value);
+    }
   }
-  private static readonly nint _CursorStateBlockIndexOffset = Schema.GetOffset(0x5BFC4DD46CECC07B);
+  private static nint? _CursorStateBlockIndexOffset;
 
   public ref CUtlVector<int> CursorStateBlockIndex {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_CursorStateBlockIndexOffset);
+    get {
+      if (_CursorStateBlockIndexOffset == null) {
+        _CursorStateBlockIndexOffset = Schema.GetOffset(0x5BFC4DD46CECC07B);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_CursorStateBlockIndexOffset!.Value);
+    }
   }
 
 

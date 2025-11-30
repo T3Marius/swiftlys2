@@ -17,25 +17,45 @@ internal partial class CLogicNPCCounterAABBImpl : CLogicNPCCounterImpl, CLogicNP
   public CLogicNPCCounterAABBImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DistanceOuterMinsOffset = Schema.GetOffset(0x264C2C4B185EC6F4);
+  private static nint? _DistanceOuterMinsOffset;
 
   public ref Vector DistanceOuterMins {
-    get => ref _Handle.AsRef<Vector>(_DistanceOuterMinsOffset);
+    get {
+      if (_DistanceOuterMinsOffset == null) {
+        _DistanceOuterMinsOffset = Schema.GetOffset(0x264C2C4B185EC6F4);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceOuterMinsOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceOuterMaxsOffset = Schema.GetOffset(0x264C2C4B99738B36);
+  private static nint? _DistanceOuterMaxsOffset;
 
   public ref Vector DistanceOuterMaxs {
-    get => ref _Handle.AsRef<Vector>(_DistanceOuterMaxsOffset);
+    get {
+      if (_DistanceOuterMaxsOffset == null) {
+        _DistanceOuterMaxsOffset = Schema.GetOffset(0x264C2C4B99738B36);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceOuterMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _OuterMinsOffset = Schema.GetOffset(0x264C2C4B30928F3D);
+  private static nint? _OuterMinsOffset;
 
   public ref Vector OuterMins {
-    get => ref _Handle.AsRef<Vector>(_OuterMinsOffset);
+    get {
+      if (_OuterMinsOffset == null) {
+        _OuterMinsOffset = Schema.GetOffset(0x264C2C4B30928F3D);
+      }
+      return ref _Handle.AsRef<Vector>(_OuterMinsOffset!.Value);
+    }
   }
-  private static readonly nint _OuterMaxsOffset = Schema.GetOffset(0x264C2C4BC9A77947);
+  private static nint? _OuterMaxsOffset;
 
   public ref Vector OuterMaxs {
-    get => ref _Handle.AsRef<Vector>(_OuterMaxsOffset);
+    get {
+      if (_OuterMaxsOffset == null) {
+        _OuterMaxsOffset = Schema.GetOffset(0x264C2C4BC9A77947);
+      }
+      return ref _Handle.AsRef<Vector>(_OuterMaxsOffset!.Value);
+    }
   }
 
 

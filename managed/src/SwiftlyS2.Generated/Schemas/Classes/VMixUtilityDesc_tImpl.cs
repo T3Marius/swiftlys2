@@ -17,35 +17,65 @@ internal partial class VMixUtilityDesc_tImpl : SchemaClass, VMixUtilityDesc_t {
   public VMixUtilityDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OpOffset = Schema.GetOffset(0x9B3640C11384687E);
+  private static nint? _OpOffset;
 
   public ref VMixChannelOperation_t Op {
-    get => ref _Handle.AsRef<VMixChannelOperation_t>(_OpOffset);
+    get {
+      if (_OpOffset == null) {
+        _OpOffset = Schema.GetOffset(0x9B3640C11384687E);
+      }
+      return ref _Handle.AsRef<VMixChannelOperation_t>(_OpOffset!.Value);
+    }
   }
-  private static readonly nint _InputPanOffset = Schema.GetOffset(0x9B3640C17E813E04);
+  private static nint? _InputPanOffset;
 
   public ref float InputPan {
-    get => ref _Handle.AsRef<float>(_InputPanOffset);
+    get {
+      if (_InputPanOffset == null) {
+        _InputPanOffset = Schema.GetOffset(0x9B3640C17E813E04);
+      }
+      return ref _Handle.AsRef<float>(_InputPanOffset!.Value);
+    }
   }
-  private static readonly nint _OutputBalanceOffset = Schema.GetOffset(0x9B3640C1730ED266);
+  private static nint? _OutputBalanceOffset;
 
   public ref float OutputBalance {
-    get => ref _Handle.AsRef<float>(_OutputBalanceOffset);
+    get {
+      if (_OutputBalanceOffset == null) {
+        _OutputBalanceOffset = Schema.GetOffset(0x9B3640C1730ED266);
+      }
+      return ref _Handle.AsRef<float>(_OutputBalanceOffset!.Value);
+    }
   }
-  private static readonly nint _FldbOutputGainOffset = Schema.GetOffset(0x9B3640C167F97C23);
+  private static nint? _FldbOutputGainOffset;
 
   public ref float FldbOutputGain {
-    get => ref _Handle.AsRef<float>(_FldbOutputGainOffset);
+    get {
+      if (_FldbOutputGainOffset == null) {
+        _FldbOutputGainOffset = Schema.GetOffset(0x9B3640C167F97C23);
+      }
+      return ref _Handle.AsRef<float>(_FldbOutputGainOffset!.Value);
+    }
   }
-  private static readonly nint _BassMonoOffset = Schema.GetOffset(0x9B3640C1C65EDB7D);
+  private static nint? _BassMonoOffset;
 
   public ref bool BassMono {
-    get => ref _Handle.AsRef<bool>(_BassMonoOffset);
+    get {
+      if (_BassMonoOffset == null) {
+        _BassMonoOffset = Schema.GetOffset(0x9B3640C1C65EDB7D);
+      }
+      return ref _Handle.AsRef<bool>(_BassMonoOffset!.Value);
+    }
   }
-  private static readonly nint _BassFreqOffset = Schema.GetOffset(0x9B3640C13E71CC5A);
+  private static nint? _BassFreqOffset;
 
   public ref float BassFreq {
-    get => ref _Handle.AsRef<float>(_BassFreqOffset);
+    get {
+      if (_BassFreqOffset == null) {
+        _BassFreqOffset = Schema.GetOffset(0x9B3640C13E71CC5A);
+      }
+      return ref _Handle.AsRef<float>(_BassFreqOffset!.Value);
+    }
   }
 
 

@@ -17,59 +17,112 @@ internal partial class C_INIT_SetHitboxToModelImpl : CParticleFunctionInitialize
   public C_INIT_SetHitboxToModelImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x7129E7BA3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x7129E7BA3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _ForceInModelOffset = Schema.GetOffset(0x7129E7BAA3C747AC);
+  private static nint? _ForceInModelOffset;
 
   public ref int ForceInModel {
-    get => ref _Handle.AsRef<int>(_ForceInModelOffset);
+    get {
+      if (_ForceInModelOffset == null) {
+        _ForceInModelOffset = Schema.GetOffset(0x7129E7BAA3C747AC);
+      }
+      return ref _Handle.AsRef<int>(_ForceInModelOffset!.Value);
+    }
   }
-  private static readonly nint _EvenDistributionOffset = Schema.GetOffset(0x7129E7BA84932067);
+  private static nint? _EvenDistributionOffset;
 
   public ref bool EvenDistribution {
-    get => ref _Handle.AsRef<bool>(_EvenDistributionOffset);
+    get {
+      if (_EvenDistributionOffset == null) {
+        _EvenDistributionOffset = Schema.GetOffset(0x7129E7BA84932067);
+      }
+      return ref _Handle.AsRef<bool>(_EvenDistributionOffset!.Value);
+    }
   }
-  private static readonly nint _DesiredHitboxOffset = Schema.GetOffset(0x7129E7BAFD09531B);
+  private static nint? _DesiredHitboxOffset;
 
   public ref int DesiredHitbox {
-    get => ref _Handle.AsRef<int>(_DesiredHitboxOffset);
+    get {
+      if (_DesiredHitboxOffset == null) {
+        _DesiredHitboxOffset = Schema.GetOffset(0x7129E7BAFD09531B);
+      }
+      return ref _Handle.AsRef<int>(_DesiredHitboxOffset!.Value);
+    }
   }
-  private static readonly nint _HitBoxScaleOffset = Schema.GetOffset(0x7129E7BA58EE3FB7);
+  private static nint? _HitBoxScaleOffset;
 
   public CParticleCollectionVecInput HitBoxScale {
-    get => new CParticleCollectionVecInputImpl(_Handle + _HitBoxScaleOffset);
+    get {
+      if (_HitBoxScaleOffset == null) {
+        _HitBoxScaleOffset = Schema.GetOffset(0x7129E7BA58EE3FB7);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _HitBoxScaleOffset!.Value);
+    }
   }
-  private static readonly nint _DirectionBiasOffset = Schema.GetOffset(0x7129E7BA5A1697CF);
+  private static nint? _DirectionBiasOffset;
 
   public ref Vector DirectionBias {
-    get => ref _Handle.AsRef<Vector>(_DirectionBiasOffset);
+    get {
+      if (_DirectionBiasOffset == null) {
+        _DirectionBiasOffset = Schema.GetOffset(0x7129E7BA5A1697CF);
+      }
+      return ref _Handle.AsRef<Vector>(_DirectionBiasOffset!.Value);
+    }
   }
-  private static readonly nint _MaintainHitboxOffset = Schema.GetOffset(0x7129E7BAF2061926);
+  private static nint? _MaintainHitboxOffset;
 
   public ref bool MaintainHitbox {
-    get => ref _Handle.AsRef<bool>(_MaintainHitboxOffset);
+    get {
+      if (_MaintainHitboxOffset == null) {
+        _MaintainHitboxOffset = Schema.GetOffset(0x7129E7BAF2061926);
+      }
+      return ref _Handle.AsRef<bool>(_MaintainHitboxOffset!.Value);
+    }
   }
-  private static readonly nint _UseBonesOffset = Schema.GetOffset(0x7129E7BA10D1938B);
+  private static nint? _UseBonesOffset;
 
   public ref bool UseBones {
-    get => ref _Handle.AsRef<bool>(_UseBonesOffset);
+    get {
+      if (_UseBonesOffset == null) {
+        _UseBonesOffset = Schema.GetOffset(0x7129E7BA10D1938B);
+      }
+      return ref _Handle.AsRef<bool>(_UseBonesOffset!.Value);
+    }
   }
-  private static readonly nint _HitboxSetNameOffset = Schema.GetOffset(0x7129E7BA6A21BB0E);
+  private static nint? _HitboxSetNameOffset;
 
   public string HitboxSetName {
     get {
-      var ptr = _Handle + _HitboxSetNameOffset;
-      return Schema.GetString(ptr);
+        if (_HitboxSetNameOffset == null) {
+            _HitboxSetNameOffset = Schema.GetOffset(0x7129E7BA6A21BB0E);
+        }
+        var ptr = _Handle + _HitboxSetNameOffset!.Value;
+        return Schema.GetString(ptr);
     }
-    set => Schema.SetFixedString(_Handle, _HitboxSetNameOffset, value, 128);
+    set {
+        if (_HitboxSetNameOffset == null) {
+            _HitboxSetNameOffset = Schema.GetOffset(0x7129E7BA6A21BB0E);
+        }
+        Schema.SetFixedString(_Handle, _HitboxSetNameOffset!.Value, value, 128);
+    }
   } 
-  private static readonly nint _ShellSizeOffset = Schema.GetOffset(0x7129E7BA04D01B22);
+  private static nint? _ShellSizeOffset;
 
   public CParticleCollectionFloatInput ShellSize {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ShellSizeOffset);
+    get {
+      if (_ShellSizeOffset == null) {
+        _ShellSizeOffset = Schema.GetOffset(0x7129E7BA04D01B22);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ShellSizeOffset!.Value);
+    }
   }
 
 

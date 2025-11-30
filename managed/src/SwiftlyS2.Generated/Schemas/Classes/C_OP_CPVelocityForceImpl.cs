@@ -17,15 +17,25 @@ internal partial class C_OP_CPVelocityForceImpl : CParticleFunctionForceImpl, C_
   public C_OP_CPVelocityForceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x4C04FC843F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x4C04FC843F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x4C04FC84B731A42F);
+  private static nint? _ScaleOffset;
 
   public CPerParticleFloatInput Scale {
-    get => new CPerParticleFloatInputImpl(_Handle + _ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x4C04FC84B731A42F);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _ScaleOffset!.Value);
+    }
   }
 
 

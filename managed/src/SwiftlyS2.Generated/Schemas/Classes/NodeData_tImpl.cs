@@ -17,44 +17,82 @@ internal partial class NodeData_tImpl : SchemaClass, NodeData_t {
   public NodeData_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParentOffset = Schema.GetOffset(0xB09FAAA60AABB9D1);
+  private static nint? _ParentOffset;
 
   public ref int Parent {
-    get => ref _Handle.AsRef<int>(_ParentOffset);
+    get {
+      if (_ParentOffset == null) {
+        _ParentOffset = Schema.GetOffset(0xB09FAAA60AABB9D1);
+      }
+      return ref _Handle.AsRef<int>(_ParentOffset!.Value);
+    }
   }
-  private static readonly nint _OriginOffset = Schema.GetOffset(0xB09FAAA6F26E589B);
+  private static nint? _OriginOffset;
 
   public ref Vector Origin {
-    get => ref _Handle.AsRef<Vector>(_OriginOffset);
+    get {
+      if (_OriginOffset == null) {
+        _OriginOffset = Schema.GetOffset(0xB09FAAA6F26E589B);
+      }
+      return ref _Handle.AsRef<Vector>(_OriginOffset!.Value);
+    }
   }
-  private static readonly nint _MinBoundsOffset = Schema.GetOffset(0xB09FAAA6114799FE);
+  private static nint? _MinBoundsOffset;
 
   public ref Vector MinBounds {
-    get => ref _Handle.AsRef<Vector>(_MinBoundsOffset);
+    get {
+      if (_MinBoundsOffset == null) {
+        _MinBoundsOffset = Schema.GetOffset(0xB09FAAA6114799FE);
+      }
+      return ref _Handle.AsRef<Vector>(_MinBoundsOffset!.Value);
+    }
   }
-  private static readonly nint _MaxBoundsOffset = Schema.GetOffset(0xB09FAAA6C0B4CE60);
+  private static nint? _MaxBoundsOffset;
 
   public ref Vector MaxBounds {
-    get => ref _Handle.AsRef<Vector>(_MaxBoundsOffset);
+    get {
+      if (_MaxBoundsOffset == null) {
+        _MaxBoundsOffset = Schema.GetOffset(0xB09FAAA6C0B4CE60);
+      }
+      return ref _Handle.AsRef<Vector>(_MaxBoundsOffset!.Value);
+    }
   }
-  private static readonly nint _MinimumDistanceOffset = Schema.GetOffset(0xB09FAAA6D8B1200E);
+  private static nint? _MinimumDistanceOffset;
 
   public ref float MinimumDistance {
-    get => ref _Handle.AsRef<float>(_MinimumDistanceOffset);
+    get {
+      if (_MinimumDistanceOffset == null) {
+        _MinimumDistanceOffset = Schema.GetOffset(0xB09FAAA6D8B1200E);
+      }
+      return ref _Handle.AsRef<float>(_MinimumDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _ChildNodeIndicesOffset = Schema.GetOffset(0xB09FAAA63648C692);
+  private static nint? _ChildNodeIndicesOffset;
 
   public ref CUtlVector<int> ChildNodeIndices {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_ChildNodeIndicesOffset);
+    get {
+      if (_ChildNodeIndicesOffset == null) {
+        _ChildNodeIndicesOffset = Schema.GetOffset(0xB09FAAA63648C692);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_ChildNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _WorldNodePrefixOffset = Schema.GetOffset(0xB09FAAA662126457);
+  private static nint? _WorldNodePrefixOffset;
 
   public string WorldNodePrefix {
     get {
-      var ptr = _Handle.Read<nint>(_WorldNodePrefixOffset);
+      if (_WorldNodePrefixOffset == null) {
+        _WorldNodePrefixOffset = Schema.GetOffset(0xB09FAAA662126457);
+      }
+      var ptr = _Handle.Read<nint>(_WorldNodePrefixOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _WorldNodePrefixOffset, value);
+    set {
+      if (_WorldNodePrefixOffset == null) {
+        _WorldNodePrefixOffset = Schema.GetOffset(0xB09FAAA662126457);
+      }
+      Schema.SetString(_Handle, _WorldNodePrefixOffset!.Value, value);
+    }
   } 
 
 

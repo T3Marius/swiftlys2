@@ -17,25 +17,45 @@ internal partial class CConstantForceControllerImpl : SchemaClass, CConstantForc
   public CConstantForceControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LinearOffset = Schema.GetOffset(0x37030A8D6B6D1260);
+  private static nint? _LinearOffset;
 
   public ref Vector Linear {
-    get => ref _Handle.AsRef<Vector>(_LinearOffset);
+    get {
+      if (_LinearOffset == null) {
+        _LinearOffset = Schema.GetOffset(0x37030A8D6B6D1260);
+      }
+      return ref _Handle.AsRef<Vector>(_LinearOffset!.Value);
+    }
   }
-  private static readonly nint _AngularOffset = Schema.GetOffset(0x37030A8D74E0EB09);
+  private static nint? _AngularOffset;
 
   public SchemaUntypedField Angular {
-    get => new SchemaUntypedField(_Handle + _AngularOffset);
+    get {
+      if (_AngularOffset == null) {
+        _AngularOffset = Schema.GetOffset(0x37030A8D74E0EB09);
+      }
+      return new SchemaUntypedField(_Handle + _AngularOffset!.Value);
+    }
   }
-  private static readonly nint _LinearSaveOffset = Schema.GetOffset(0x37030A8D96B9953D);
+  private static nint? _LinearSaveOffset;
 
   public ref Vector LinearSave {
-    get => ref _Handle.AsRef<Vector>(_LinearSaveOffset);
+    get {
+      if (_LinearSaveOffset == null) {
+        _LinearSaveOffset = Schema.GetOffset(0x37030A8D96B9953D);
+      }
+      return ref _Handle.AsRef<Vector>(_LinearSaveOffset!.Value);
+    }
   }
-  private static readonly nint _AngularSaveOffset = Schema.GetOffset(0x37030A8D8294323C);
+  private static nint? _AngularSaveOffset;
 
   public SchemaUntypedField AngularSave {
-    get => new SchemaUntypedField(_Handle + _AngularSaveOffset);
+    get {
+      if (_AngularSaveOffset == null) {
+        _AngularSaveOffset = Schema.GetOffset(0x37030A8D8294323C);
+      }
+      return new SchemaUntypedField(_Handle + _AngularSaveOffset!.Value);
+    }
   }
 
 

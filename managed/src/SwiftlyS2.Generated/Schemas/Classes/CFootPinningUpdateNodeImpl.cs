@@ -17,25 +17,45 @@ internal partial class CFootPinningUpdateNodeImpl : CUnaryUpdateNodeImpl, CFootP
   public CFootPinningUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PoseOpFixedDataOffset = Schema.GetOffset(0x9D0C68166EC45627);
+  private static nint? _PoseOpFixedDataOffset;
 
   public FootPinningPoseOpFixedData_t PoseOpFixedData {
-    get => new FootPinningPoseOpFixedData_tImpl(_Handle + _PoseOpFixedDataOffset);
+    get {
+      if (_PoseOpFixedDataOffset == null) {
+        _PoseOpFixedDataOffset = Schema.GetOffset(0x9D0C68166EC45627);
+      }
+      return new FootPinningPoseOpFixedData_tImpl(_Handle + _PoseOpFixedDataOffset!.Value);
+    }
   }
-  private static readonly nint _TimingSourceOffset = Schema.GetOffset(0x9D0C68164D5A2DD7);
+  private static nint? _TimingSourceOffset;
 
   public ref FootPinningTimingSource TimingSource {
-    get => ref _Handle.AsRef<FootPinningTimingSource>(_TimingSourceOffset);
+    get {
+      if (_TimingSourceOffset == null) {
+        _TimingSourceOffset = Schema.GetOffset(0x9D0C68164D5A2DD7);
+      }
+      return ref _Handle.AsRef<FootPinningTimingSource>(_TimingSourceOffset!.Value);
+    }
   }
-  private static readonly nint _ParamsOffset = Schema.GetOffset(0x9D0C6816640EA8F3);
+  private static nint? _ParamsOffset;
 
   public ref CUtlVector<CAnimParamHandle> Params {
-    get => ref _Handle.AsRef<CUtlVector<CAnimParamHandle>>(_ParamsOffset);
+    get {
+      if (_ParamsOffset == null) {
+        _ParamsOffset = Schema.GetOffset(0x9D0C6816640EA8F3);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimParamHandle>>(_ParamsOffset!.Value);
+    }
   }
-  private static readonly nint _ResetChildOffset = Schema.GetOffset(0x9D0C681665CC88B6);
+  private static nint? _ResetChildOffset;
 
   public ref bool ResetChild {
-    get => ref _Handle.AsRef<bool>(_ResetChildOffset);
+    get {
+      if (_ResetChildOffset == null) {
+        _ResetChildOffset = Schema.GetOffset(0x9D0C681665CC88B6);
+      }
+      return ref _Handle.AsRef<bool>(_ResetChildOffset!.Value);
+    }
   }
 
 

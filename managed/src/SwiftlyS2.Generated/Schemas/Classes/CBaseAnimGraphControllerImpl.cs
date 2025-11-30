@@ -17,115 +17,225 @@ internal partial class CBaseAnimGraphControllerImpl : CSkeletonAnimationControll
   public CBaseAnimGraphControllerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AnimGraphNetworkedVarsOffset = Schema.GetOffset(0xFA1FB81EA83A7C39);
+  private static nint? _AnimGraphNetworkedVarsOffset;
 
   public CAnimGraphNetworkedVariables AnimGraphNetworkedVars {
-    get => new CAnimGraphNetworkedVariablesImpl(_Handle + _AnimGraphNetworkedVarsOffset);
+    get {
+      if (_AnimGraphNetworkedVarsOffset == null) {
+        _AnimGraphNetworkedVarsOffset = Schema.GetOffset(0xFA1FB81EA83A7C39);
+      }
+      return new CAnimGraphNetworkedVariablesImpl(_Handle + _AnimGraphNetworkedVarsOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceFinishedOffset = Schema.GetOffset(0xFA1FB81E5DB8EB16);
+  private static nint? _SequenceFinishedOffset;
 
   public ref bool SequenceFinished {
-    get => ref _Handle.AsRef<bool>(_SequenceFinishedOffset);
+    get {
+      if (_SequenceFinishedOffset == null) {
+        _SequenceFinishedOffset = Schema.GetOffset(0xFA1FB81E5DB8EB16);
+      }
+      return ref _Handle.AsRef<bool>(_SequenceFinishedOffset!.Value);
+    }
   }
-  private static readonly nint _SoundSyncTimeOffset = Schema.GetOffset(0xFA1FB81EE52B5EB4);
+  private static nint? _SoundSyncTimeOffset;
 
   public ref float SoundSyncTime {
-    get => ref _Handle.AsRef<float>(_SoundSyncTimeOffset);
+    get {
+      if (_SoundSyncTimeOffset == null) {
+        _SoundSyncTimeOffset = Schema.GetOffset(0xFA1FB81EE52B5EB4);
+      }
+      return ref _Handle.AsRef<float>(_SoundSyncTimeOffset!.Value);
+    }
   }
-  private static readonly nint _ActiveIKChainMaskOffset = Schema.GetOffset(0xFA1FB81E070EB774);
+  private static nint? _ActiveIKChainMaskOffset;
 
   public ref uint ActiveIKChainMask {
-    get => ref _Handle.AsRef<uint>(_ActiveIKChainMaskOffset);
+    get {
+      if (_ActiveIKChainMaskOffset == null) {
+        _ActiveIKChainMaskOffset = Schema.GetOffset(0xFA1FB81E070EB774);
+      }
+      return ref _Handle.AsRef<uint>(_ActiveIKChainMaskOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceOffset = Schema.GetOffset(0xFA1FB81EE0A0598E);
+  private static nint? _SequenceOffset;
 
   public HSequence Sequence {
-    get => new HSequenceImpl(_Handle + _SequenceOffset);
+    get {
+      if (_SequenceOffset == null) {
+        _SequenceOffset = Schema.GetOffset(0xFA1FB81EE0A0598E);
+      }
+      return new HSequenceImpl(_Handle + _SequenceOffset!.Value);
+    }
   }
-  private static readonly nint _SeqStartTimeOffset = Schema.GetOffset(0xFA1FB81E9120356F);
+  private static nint? _SeqStartTimeOffset;
 
   public GameTime_t SeqStartTime {
-    get => new GameTime_tImpl(_Handle + _SeqStartTimeOffset);
+    get {
+      if (_SeqStartTimeOffset == null) {
+        _SeqStartTimeOffset = Schema.GetOffset(0xFA1FB81E9120356F);
+      }
+      return new GameTime_tImpl(_Handle + _SeqStartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _SeqFixedCycleOffset = Schema.GetOffset(0xFA1FB81E77103EAE);
+  private static nint? _SeqFixedCycleOffset;
 
   public ref float SeqFixedCycle {
-    get => ref _Handle.AsRef<float>(_SeqFixedCycleOffset);
+    get {
+      if (_SeqFixedCycleOffset == null) {
+        _SeqFixedCycleOffset = Schema.GetOffset(0xFA1FB81E77103EAE);
+      }
+      return ref _Handle.AsRef<float>(_SeqFixedCycleOffset!.Value);
+    }
   }
-  private static readonly nint _AnimLoopModeOffset = Schema.GetOffset(0xFA1FB81E9C9688D9);
+  private static nint? _AnimLoopModeOffset;
 
   public ref AnimLoopMode_t AnimLoopMode {
-    get => ref _Handle.AsRef<AnimLoopMode_t>(_AnimLoopModeOffset);
+    get {
+      if (_AnimLoopModeOffset == null) {
+        _AnimLoopModeOffset = Schema.GetOffset(0xFA1FB81E9C9688D9);
+      }
+      return ref _Handle.AsRef<AnimLoopMode_t>(_AnimLoopModeOffset!.Value);
+    }
   }
-  private static readonly nint _PlaybackRateOffset = Schema.GetOffset(0xFA1FB81EC396F9D8);
+  private static nint? _PlaybackRateOffset;
 
   public ref CNetworkedQuantizedFloat PlaybackRate {
-    get => ref _Handle.AsRef<CNetworkedQuantizedFloat>(_PlaybackRateOffset);
+    get {
+      if (_PlaybackRateOffset == null) {
+        _PlaybackRateOffset = Schema.GetOffset(0xFA1FB81EC396F9D8);
+      }
+      return ref _Handle.AsRef<CNetworkedQuantizedFloat>(_PlaybackRateOffset!.Value);
+    }
   }
-  private static readonly nint _NotifyStateOffset = Schema.GetOffset(0xFA1FB81EEEDBFC3D);
+  private static nint? _NotifyStateOffset;
 
   public ref SequenceFinishNotifyState_t NotifyState {
-    get => ref _Handle.AsRef<SequenceFinishNotifyState_t>(_NotifyStateOffset);
+    get {
+      if (_NotifyStateOffset == null) {
+        _NotifyStateOffset = Schema.GetOffset(0xFA1FB81EEEDBFC3D);
+      }
+      return ref _Handle.AsRef<SequenceFinishNotifyState_t>(_NotifyStateOffset!.Value);
+    }
   }
-  private static readonly nint _NetworkedAnimationInputsChangedOffset = Schema.GetOffset(0xFA1FB81E97092075);
+  private static nint? _NetworkedAnimationInputsChangedOffset;
 
   public ref bool NetworkedAnimationInputsChanged {
-    get => ref _Handle.AsRef<bool>(_NetworkedAnimationInputsChangedOffset);
+    get {
+      if (_NetworkedAnimationInputsChangedOffset == null) {
+        _NetworkedAnimationInputsChangedOffset = Schema.GetOffset(0xFA1FB81E97092075);
+      }
+      return ref _Handle.AsRef<bool>(_NetworkedAnimationInputsChangedOffset!.Value);
+    }
   }
-  private static readonly nint _NetworkedSequenceChangedOffset = Schema.GetOffset(0xFA1FB81E9A05208F);
+  private static nint? _NetworkedSequenceChangedOffset;
 
   public ref bool NetworkedSequenceChanged {
-    get => ref _Handle.AsRef<bool>(_NetworkedSequenceChangedOffset);
+    get {
+      if (_NetworkedSequenceChangedOffset == null) {
+        _NetworkedSequenceChangedOffset = Schema.GetOffset(0xFA1FB81E9A05208F);
+      }
+      return ref _Handle.AsRef<bool>(_NetworkedSequenceChangedOffset!.Value);
+    }
   }
-  private static readonly nint _LastUpdateSkippedOffset = Schema.GetOffset(0xFA1FB81E53472D94);
+  private static nint? _LastUpdateSkippedOffset;
 
   public ref bool LastUpdateSkipped {
-    get => ref _Handle.AsRef<bool>(_LastUpdateSkippedOffset);
+    get {
+      if (_LastUpdateSkippedOffset == null) {
+        _LastUpdateSkippedOffset = Schema.GetOffset(0xFA1FB81E53472D94);
+      }
+      return ref _Handle.AsRef<bool>(_LastUpdateSkippedOffset!.Value);
+    }
   }
-  private static readonly nint _PrevAnimUpdateTimeOffset = Schema.GetOffset(0xFA1FB81E724643D3);
+  private static nint? _PrevAnimUpdateTimeOffset;
 
   public GameTime_t PrevAnimUpdateTime {
-    get => new GameTime_tImpl(_Handle + _PrevAnimUpdateTimeOffset);
+    get {
+      if (_PrevAnimUpdateTimeOffset == null) {
+        _PrevAnimUpdateTimeOffset = Schema.GetOffset(0xFA1FB81E724643D3);
+      }
+      return new GameTime_tImpl(_Handle + _PrevAnimUpdateTimeOffset!.Value);
+    }
   }
-  private static readonly nint _GraphDefinitionAG2Offset = Schema.GetOffset(0xFA1FB81EBE14922A);
+  private static nint? _GraphDefinitionAG2Offset;
 
   public ref CStrongHandle<InfoForResourceTypeCNmGraphDefinition> GraphDefinitionAG2 {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmGraphDefinition>>(_GraphDefinitionAG2Offset);
+    get {
+      if (_GraphDefinitionAG2Offset == null) {
+        _GraphDefinitionAG2Offset = Schema.GetOffset(0xFA1FB81EBE14922A);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmGraphDefinition>>(_GraphDefinitionAG2Offset!.Value);
+    }
   }
-  private static readonly nint _IsUsingAG2Offset = Schema.GetOffset(0xFA1FB81EB54DDF17);
+  private static nint? _IsUsingAG2Offset;
 
   public ref bool IsUsingAG2 {
-    get => ref _Handle.AsRef<bool>(_IsUsingAG2Offset);
+    get {
+      if (_IsUsingAG2Offset == null) {
+        _IsUsingAG2Offset = Schema.GetOffset(0xFA1FB81EB54DDF17);
+      }
+      return ref _Handle.AsRef<bool>(_IsUsingAG2Offset!.Value);
+    }
   }
-  private static readonly nint _SerializedPoseRecipeAG2Offset = Schema.GetOffset(0xFA1FB81E61B92D46);
+  private static nint? _SerializedPoseRecipeAG2Offset;
 
   public ref CUtlVector<byte> SerializedPoseRecipeAG2 {
-    get => ref _Handle.AsRef<CUtlVector<byte>>(_SerializedPoseRecipeAG2Offset);
+    get {
+      if (_SerializedPoseRecipeAG2Offset == null) {
+        _SerializedPoseRecipeAG2Offset = Schema.GetOffset(0xFA1FB81E61B92D46);
+      }
+      return ref _Handle.AsRef<CUtlVector<byte>>(_SerializedPoseRecipeAG2Offset!.Value);
+    }
   }
-  private static readonly nint _SerializePoseRecipeSizeAG2Offset = Schema.GetOffset(0xFA1FB81E0121F373);
+  private static nint? _SerializePoseRecipeSizeAG2Offset;
 
   public ref int SerializePoseRecipeSizeAG2 {
-    get => ref _Handle.AsRef<int>(_SerializePoseRecipeSizeAG2Offset);
+    get {
+      if (_SerializePoseRecipeSizeAG2Offset == null) {
+        _SerializePoseRecipeSizeAG2Offset = Schema.GetOffset(0xFA1FB81E0121F373);
+      }
+      return ref _Handle.AsRef<int>(_SerializePoseRecipeSizeAG2Offset!.Value);
+    }
   }
-  private static readonly nint _SerializePoseRecipeVersionAG2Offset = Schema.GetOffset(0xFA1FB81EC099725C);
+  private static nint? _SerializePoseRecipeVersionAG2Offset;
 
   public ref int SerializePoseRecipeVersionAG2 {
-    get => ref _Handle.AsRef<int>(_SerializePoseRecipeVersionAG2Offset);
+    get {
+      if (_SerializePoseRecipeVersionAG2Offset == null) {
+        _SerializePoseRecipeVersionAG2Offset = Schema.GetOffset(0xFA1FB81EC099725C);
+      }
+      return ref _Handle.AsRef<int>(_SerializePoseRecipeVersionAG2Offset!.Value);
+    }
   }
-  private static readonly nint _GraphCreationFlagsAG2Offset = Schema.GetOffset(0xFA1FB81EA3781101);
+  private static nint? _GraphCreationFlagsAG2Offset;
 
   public ref byte GraphCreationFlagsAG2 {
-    get => ref _Handle.AsRef<byte>(_GraphCreationFlagsAG2Offset);
+    get {
+      if (_GraphCreationFlagsAG2Offset == null) {
+        _GraphCreationFlagsAG2Offset = Schema.GetOffset(0xFA1FB81EA3781101);
+      }
+      return ref _Handle.AsRef<byte>(_GraphCreationFlagsAG2Offset!.Value);
+    }
   }
-  private static readonly nint _ServerGraphDefReloadCountAG2Offset = Schema.GetOffset(0xFA1FB81E6A8D1A13);
+  private static nint? _ServerGraphDefReloadCountAG2Offset;
 
   public ref int ServerGraphDefReloadCountAG2 {
-    get => ref _Handle.AsRef<int>(_ServerGraphDefReloadCountAG2Offset);
+    get {
+      if (_ServerGraphDefReloadCountAG2Offset == null) {
+        _ServerGraphDefReloadCountAG2Offset = Schema.GetOffset(0xFA1FB81E6A8D1A13);
+      }
+      return ref _Handle.AsRef<int>(_ServerGraphDefReloadCountAG2Offset!.Value);
+    }
   }
-  private static readonly nint _ServerSerializationContextIterationOffset = Schema.GetOffset(0xFA1FB81ED9F8A6D4);
+  private static nint? _ServerSerializationContextIterationOffset;
 
   public ref int ServerSerializationContextIteration {
-    get => ref _Handle.AsRef<int>(_ServerSerializationContextIterationOffset);
+    get {
+      if (_ServerSerializationContextIterationOffset == null) {
+        _ServerSerializationContextIterationOffset = Schema.GetOffset(0xFA1FB81ED9F8A6D4);
+      }
+      return ref _Handle.AsRef<int>(_ServerSerializationContextIterationOffset!.Value);
+    }
   }
 
   public void AnimGraphNetworkedVarsUpdated() {

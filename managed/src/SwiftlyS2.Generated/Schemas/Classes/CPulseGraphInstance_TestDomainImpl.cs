@@ -17,50 +17,95 @@ internal partial class CPulseGraphInstance_TestDomainImpl : CBasePulseGraphInsta
   public CPulseGraphInstance_TestDomainImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IsRunningUnitTestsOffset = Schema.GetOffset(0x1731648B356A8543);
+  private static nint? _IsRunningUnitTestsOffset;
 
   public ref bool IsRunningUnitTests {
-    get => ref _Handle.AsRef<bool>(_IsRunningUnitTestsOffset);
+    get {
+      if (_IsRunningUnitTestsOffset == null) {
+        _IsRunningUnitTestsOffset = Schema.GetOffset(0x1731648B356A8543);
+      }
+      return ref _Handle.AsRef<bool>(_IsRunningUnitTestsOffset!.Value);
+    }
   }
-  private static readonly nint _ExplicitTimeSteppingOffset = Schema.GetOffset(0x1731648BBDBCBA9A);
+  private static nint? _ExplicitTimeSteppingOffset;
 
   public ref bool ExplicitTimeStepping {
-    get => ref _Handle.AsRef<bool>(_ExplicitTimeSteppingOffset);
+    get {
+      if (_ExplicitTimeSteppingOffset == null) {
+        _ExplicitTimeSteppingOffset = Schema.GetOffset(0x1731648BBDBCBA9A);
+      }
+      return ref _Handle.AsRef<bool>(_ExplicitTimeSteppingOffset!.Value);
+    }
   }
-  private static readonly nint _ExpectingToDestroyWithYieldedCursorsOffset = Schema.GetOffset(0x1731648B8134CF7A);
+  private static nint? _ExpectingToDestroyWithYieldedCursorsOffset;
 
   public ref bool ExpectingToDestroyWithYieldedCursors {
-    get => ref _Handle.AsRef<bool>(_ExpectingToDestroyWithYieldedCursorsOffset);
+    get {
+      if (_ExpectingToDestroyWithYieldedCursorsOffset == null) {
+        _ExpectingToDestroyWithYieldedCursorsOffset = Schema.GetOffset(0x1731648B8134CF7A);
+      }
+      return ref _Handle.AsRef<bool>(_ExpectingToDestroyWithYieldedCursorsOffset!.Value);
+    }
   }
-  private static readonly nint _QuietTracepointsOffset = Schema.GetOffset(0x1731648B8C15006B);
+  private static nint? _QuietTracepointsOffset;
 
   public ref bool QuietTracepoints {
-    get => ref _Handle.AsRef<bool>(_QuietTracepointsOffset);
+    get {
+      if (_QuietTracepointsOffset == null) {
+        _QuietTracepointsOffset = Schema.GetOffset(0x1731648B8C15006B);
+      }
+      return ref _Handle.AsRef<bool>(_QuietTracepointsOffset!.Value);
+    }
   }
-  private static readonly nint _ExpectingCursorTerminatedDueToMaxInstructionsOffset = Schema.GetOffset(0x1731648BF984A235);
+  private static nint? _ExpectingCursorTerminatedDueToMaxInstructionsOffset;
 
   public ref bool ExpectingCursorTerminatedDueToMaxInstructions {
-    get => ref _Handle.AsRef<bool>(_ExpectingCursorTerminatedDueToMaxInstructionsOffset);
+    get {
+      if (_ExpectingCursorTerminatedDueToMaxInstructionsOffset == null) {
+        _ExpectingCursorTerminatedDueToMaxInstructionsOffset = Schema.GetOffset(0x1731648BF984A235);
+      }
+      return ref _Handle.AsRef<bool>(_ExpectingCursorTerminatedDueToMaxInstructionsOffset!.Value);
+    }
   }
-  private static readonly nint _CursorsTerminatedDueToMaxInstructionsOffset = Schema.GetOffset(0x1731648B8061C3CB);
+  private static nint? _CursorsTerminatedDueToMaxInstructionsOffset;
 
   public ref int CursorsTerminatedDueToMaxInstructions {
-    get => ref _Handle.AsRef<int>(_CursorsTerminatedDueToMaxInstructionsOffset);
+    get {
+      if (_CursorsTerminatedDueToMaxInstructionsOffset == null) {
+        _CursorsTerminatedDueToMaxInstructionsOffset = Schema.GetOffset(0x1731648B8061C3CB);
+      }
+      return ref _Handle.AsRef<int>(_CursorsTerminatedDueToMaxInstructionsOffset!.Value);
+    }
   }
-  private static readonly nint _NextValidateIndexOffset = Schema.GetOffset(0x1731648B5AE2F20E);
+  private static nint? _NextValidateIndexOffset;
 
   public ref int NextValidateIndex {
-    get => ref _Handle.AsRef<int>(_NextValidateIndexOffset);
+    get {
+      if (_NextValidateIndexOffset == null) {
+        _NextValidateIndexOffset = Schema.GetOffset(0x1731648B5AE2F20E);
+      }
+      return ref _Handle.AsRef<int>(_NextValidateIndexOffset!.Value);
+    }
   }
-  private static readonly nint _TracepointsOffset = Schema.GetOffset(0x1731648B04FCE4C9);
+  private static nint? _TracepointsOffset;
 
   public ref CUtlVector<CUtlString> Tracepoints {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_TracepointsOffset);
+    get {
+      if (_TracepointsOffset == null) {
+        _TracepointsOffset = Schema.GetOffset(0x1731648B04FCE4C9);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_TracepointsOffset!.Value);
+    }
   }
-  private static readonly nint _TestYesOrNoPathOffset = Schema.GetOffset(0x1731648B1322BA21);
+  private static nint? _TestYesOrNoPathOffset;
 
   public ref bool TestYesOrNoPath {
-    get => ref _Handle.AsRef<bool>(_TestYesOrNoPathOffset);
+    get {
+      if (_TestYesOrNoPathOffset == null) {
+        _TestYesOrNoPathOffset = Schema.GetOffset(0x1731648B1322BA21);
+      }
+      return ref _Handle.AsRef<bool>(_TestYesOrNoPathOffset!.Value);
+    }
   }
 
 

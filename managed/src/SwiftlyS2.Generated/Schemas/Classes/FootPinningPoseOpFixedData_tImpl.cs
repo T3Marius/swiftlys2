@@ -17,40 +17,75 @@ internal partial class FootPinningPoseOpFixedData_tImpl : SchemaClass, FootPinni
   public FootPinningPoseOpFixedData_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FootInfoOffset = Schema.GetOffset(0x87C487AD942F50C1);
+  private static nint? _FootInfoOffset;
 
   public ref CUtlVector<FootFixedData_t> FootInfo {
-    get => ref _Handle.AsRef<CUtlVector<FootFixedData_t>>(_FootInfoOffset);
+    get {
+      if (_FootInfoOffset == null) {
+        _FootInfoOffset = Schema.GetOffset(0x87C487AD942F50C1);
+      }
+      return ref _Handle.AsRef<CUtlVector<FootFixedData_t>>(_FootInfoOffset!.Value);
+    }
   }
-  private static readonly nint _BlendTimeOffset = Schema.GetOffset(0x87C487ADA6206E9F);
+  private static nint? _BlendTimeOffset;
 
   public ref float BlendTime {
-    get => ref _Handle.AsRef<float>(_BlendTimeOffset);
+    get {
+      if (_BlendTimeOffset == null) {
+        _BlendTimeOffset = Schema.GetOffset(0x87C487ADA6206E9F);
+      }
+      return ref _Handle.AsRef<float>(_BlendTimeOffset!.Value);
+    }
   }
-  private static readonly nint _LockBreakDistanceOffset = Schema.GetOffset(0x87C487AD71965CA0);
+  private static nint? _LockBreakDistanceOffset;
 
   public ref float LockBreakDistance {
-    get => ref _Handle.AsRef<float>(_LockBreakDistanceOffset);
+    get {
+      if (_LockBreakDistanceOffset == null) {
+        _LockBreakDistanceOffset = Schema.GetOffset(0x87C487AD71965CA0);
+      }
+      return ref _Handle.AsRef<float>(_LockBreakDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _MaxLegTwistOffset = Schema.GetOffset(0x87C487ADB79440DC);
+  private static nint? _MaxLegTwistOffset;
 
   public ref float MaxLegTwist {
-    get => ref _Handle.AsRef<float>(_MaxLegTwistOffset);
+    get {
+      if (_MaxLegTwistOffset == null) {
+        _MaxLegTwistOffset = Schema.GetOffset(0x87C487ADB79440DC);
+      }
+      return ref _Handle.AsRef<float>(_MaxLegTwistOffset!.Value);
+    }
   }
-  private static readonly nint _HipBoneIndexOffset = Schema.GetOffset(0x87C487AD12FFBC70);
+  private static nint? _HipBoneIndexOffset;
 
   public ref int HipBoneIndex {
-    get => ref _Handle.AsRef<int>(_HipBoneIndexOffset);
+    get {
+      if (_HipBoneIndexOffset == null) {
+        _HipBoneIndexOffset = Schema.GetOffset(0x87C487AD12FFBC70);
+      }
+      return ref _Handle.AsRef<int>(_HipBoneIndexOffset!.Value);
+    }
   }
-  private static readonly nint _ApplyLegTwistLimitsOffset = Schema.GetOffset(0x87C487AD95B3EE60);
+  private static nint? _ApplyLegTwistLimitsOffset;
 
   public ref bool ApplyLegTwistLimits {
-    get => ref _Handle.AsRef<bool>(_ApplyLegTwistLimitsOffset);
+    get {
+      if (_ApplyLegTwistLimitsOffset == null) {
+        _ApplyLegTwistLimitsOffset = Schema.GetOffset(0x87C487AD95B3EE60);
+      }
+      return ref _Handle.AsRef<bool>(_ApplyLegTwistLimitsOffset!.Value);
+    }
   }
-  private static readonly nint _ApplyFootRotationLimitsOffset = Schema.GetOffset(0x87C487AD7C3F5AED);
+  private static nint? _ApplyFootRotationLimitsOffset;
 
   public ref bool ApplyFootRotationLimits {
-    get => ref _Handle.AsRef<bool>(_ApplyFootRotationLimitsOffset);
+    get {
+      if (_ApplyFootRotationLimitsOffset == null) {
+        _ApplyFootRotationLimitsOffset = Schema.GetOffset(0x87C487AD7C3F5AED);
+      }
+      return ref _Handle.AsRef<bool>(_ApplyFootRotationLimitsOffset!.Value);
+    }
   }
 
 

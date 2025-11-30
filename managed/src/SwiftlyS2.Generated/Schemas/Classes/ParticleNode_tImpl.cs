@@ -17,40 +17,75 @@ internal partial class ParticleNode_tImpl : SchemaClass, ParticleNode_t {
   public ParticleNode_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EntityOffset = Schema.GetOffset(0xBECF421C6EBADCB0);
+  private static nint? _EntityOffset;
 
   public ref CHandle<CBaseEntity> Entity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset);
+    get {
+      if (_EntityOffset == null) {
+        _EntityOffset = Schema.GetOffset(0xBECF421C6EBADCB0);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset!.Value);
+    }
   }
-  private static readonly nint _IndexOffset = Schema.GetOffset(0xBECF421C8F270140);
+  private static nint? _IndexOffset;
 
   public ParticleIndex_t Index {
-    get => new ParticleIndex_tImpl(_Handle + _IndexOffset);
+    get {
+      if (_IndexOffset == null) {
+        _IndexOffset = Schema.GetOffset(0xBECF421C8F270140);
+      }
+      return new ParticleIndex_tImpl(_Handle + _IndexOffset!.Value);
+    }
   }
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0xBECF421C67FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public GameTime_t StartTime {
-    get => new GameTime_tImpl(_Handle + _StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0xBECF421C67FE9DC4);
+      }
+      return new GameTime_tImpl(_Handle + _StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _GrowthDurationOffset = Schema.GetOffset(0xBECF421CF0D91F70);
+  private static nint? _GrowthDurationOffset;
 
   public ref float GrowthDuration {
-    get => ref _Handle.AsRef<float>(_GrowthDurationOffset);
+    get {
+      if (_GrowthDurationOffset == null) {
+        _GrowthDurationOffset = Schema.GetOffset(0xBECF421CF0D91F70);
+      }
+      return ref _Handle.AsRef<float>(_GrowthDurationOffset!.Value);
+    }
   }
-  private static readonly nint _GrowthOriginOffset = Schema.GetOffset(0xBECF421C4A651090);
+  private static nint? _GrowthOriginOffset;
 
   public ref Vector GrowthOrigin {
-    get => ref _Handle.AsRef<Vector>(_GrowthOriginOffset);
+    get {
+      if (_GrowthOriginOffset == null) {
+        _GrowthOriginOffset = Schema.GetOffset(0xBECF421C4A651090);
+      }
+      return ref _Handle.AsRef<Vector>(_GrowthOriginOffset!.Value);
+    }
   }
-  private static readonly nint _EndcapTimeOffset = Schema.GetOffset(0xBECF421CCF1342BD);
+  private static nint? _EndcapTimeOffset;
 
   public ref float EndcapTime {
-    get => ref _Handle.AsRef<float>(_EndcapTimeOffset);
+    get {
+      if (_EndcapTimeOffset == null) {
+        _EndcapTimeOffset = Schema.GetOffset(0xBECF421CCF1342BD);
+      }
+      return ref _Handle.AsRef<float>(_EndcapTimeOffset!.Value);
+    }
   }
-  private static readonly nint _MarkedForDeleteOffset = Schema.GetOffset(0xBECF421C6C9EC48F);
+  private static nint? _MarkedForDeleteOffset;
 
   public ref bool MarkedForDelete {
-    get => ref _Handle.AsRef<bool>(_MarkedForDeleteOffset);
+    get {
+      if (_MarkedForDeleteOffset == null) {
+        _MarkedForDeleteOffset = Schema.GetOffset(0xBECF421C6C9EC48F);
+      }
+      return ref _Handle.AsRef<bool>(_MarkedForDeleteOffset!.Value);
+    }
   }
 
 

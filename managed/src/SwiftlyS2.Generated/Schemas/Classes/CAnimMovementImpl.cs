@@ -17,40 +17,75 @@ internal partial class CAnimMovementImpl : SchemaClass, CAnimMovement {
   public CAnimMovementImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EndframeOffset = Schema.GetOffset(0xF78C2AA2BD8E2D9B);
+  private static nint? _EndframeOffset;
 
   public ref int Endframe {
-    get => ref _Handle.AsRef<int>(_EndframeOffset);
+    get {
+      if (_EndframeOffset == null) {
+        _EndframeOffset = Schema.GetOffset(0xF78C2AA2BD8E2D9B);
+      }
+      return ref _Handle.AsRef<int>(_EndframeOffset!.Value);
+    }
   }
-  private static readonly nint _MotionflagsOffset = Schema.GetOffset(0xF78C2AA22261973E);
+  private static nint? _MotionflagsOffset;
 
   public ref int Motionflags {
-    get => ref _Handle.AsRef<int>(_MotionflagsOffset);
+    get {
+      if (_MotionflagsOffset == null) {
+        _MotionflagsOffset = Schema.GetOffset(0xF78C2AA22261973E);
+      }
+      return ref _Handle.AsRef<int>(_MotionflagsOffset!.Value);
+    }
   }
-  private static readonly nint _V0Offset = Schema.GetOffset(0xF78C2AA2954A47FB);
+  private static nint? _V0Offset;
 
   public ref float V0 {
-    get => ref _Handle.AsRef<float>(_V0Offset);
+    get {
+      if (_V0Offset == null) {
+        _V0Offset = Schema.GetOffset(0xF78C2AA2954A47FB);
+      }
+      return ref _Handle.AsRef<float>(_V0Offset!.Value);
+    }
   }
-  private static readonly nint _V1Offset = Schema.GetOffset(0xF78C2AA2944A4668);
+  private static nint? _V1Offset;
 
   public ref float V1 {
-    get => ref _Handle.AsRef<float>(_V1Offset);
+    get {
+      if (_V1Offset == null) {
+        _V1Offset = Schema.GetOffset(0xF78C2AA2944A4668);
+      }
+      return ref _Handle.AsRef<float>(_V1Offset!.Value);
+    }
   }
-  private static readonly nint _AngleOffset = Schema.GetOffset(0xF78C2AA2AD544418);
+  private static nint? _AngleOffset;
 
   public ref float Angle {
-    get => ref _Handle.AsRef<float>(_AngleOffset);
+    get {
+      if (_AngleOffset == null) {
+        _AngleOffset = Schema.GetOffset(0xF78C2AA2AD544418);
+      }
+      return ref _Handle.AsRef<float>(_AngleOffset!.Value);
+    }
   }
-  private static readonly nint _VectorOffset = Schema.GetOffset(0xF78C2AA28F89E802);
+  private static nint? _VectorOffset;
 
   public ref Vector Vector {
-    get => ref _Handle.AsRef<Vector>(_VectorOffset);
+    get {
+      if (_VectorOffset == null) {
+        _VectorOffset = Schema.GetOffset(0xF78C2AA28F89E802);
+      }
+      return ref _Handle.AsRef<Vector>(_VectorOffset!.Value);
+    }
   }
-  private static readonly nint _PositionOffset = Schema.GetOffset(0xF78C2AA2934F4E0A);
+  private static nint? _PositionOffset;
 
   public ref Vector Position {
-    get => ref _Handle.AsRef<Vector>(_PositionOffset);
+    get {
+      if (_PositionOffset == null) {
+        _PositionOffset = Schema.GetOffset(0xF78C2AA2934F4E0A);
+      }
+      return ref _Handle.AsRef<Vector>(_PositionOffset!.Value);
+    }
   }
 
 

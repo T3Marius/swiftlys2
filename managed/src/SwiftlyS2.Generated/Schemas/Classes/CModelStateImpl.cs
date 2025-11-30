@@ -17,49 +17,92 @@ internal partial class CModelStateImpl : SchemaClass, CModelState {
   public CModelStateImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ModelOffset = Schema.GetOffset(0xC0A51C0E100C814);
+  private static nint? _ModelOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCModel> Model {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset);
+    get {
+      if (_ModelOffset == null) {
+        _ModelOffset = Schema.GetOffset(0xC0A51C0E100C814);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCModel>>(_ModelOffset!.Value);
+    }
   }
-  private static readonly nint _ModelNameOffset = Schema.GetOffset(0xC0A51C0D7A1D881);
+  private static nint? _ModelNameOffset;
 
   public string ModelName {
     get {
-      var ptr = _Handle.Read<nint>(_ModelNameOffset);
+      if (_ModelNameOffset == null) {
+        _ModelNameOffset = Schema.GetOffset(0xC0A51C0D7A1D881);
+      }
+      var ptr = _Handle.Read<nint>(_ModelNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ModelNameOffset, value);
+    set {
+      if (_ModelNameOffset == null) {
+        _ModelNameOffset = Schema.GetOffset(0xC0A51C0D7A1D881);
+      }
+      Schema.SetString(_Handle, _ModelNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ClientClothCreationSuppressedOffset = Schema.GetOffset(0xC0A51C0953717E1);
+  private static nint? _ClientClothCreationSuppressedOffset;
 
   public ref bool ClientClothCreationSuppressed {
-    get => ref _Handle.AsRef<bool>(_ClientClothCreationSuppressedOffset);
+    get {
+      if (_ClientClothCreationSuppressedOffset == null) {
+        _ClientClothCreationSuppressedOffset = Schema.GetOffset(0xC0A51C0953717E1);
+      }
+      return ref _Handle.AsRef<bool>(_ClientClothCreationSuppressedOffset!.Value);
+    }
   }
-  private static readonly nint _MeshGroupMaskOffset = Schema.GetOffset(0xC0A51C009C93F2B);
+  private static nint? _MeshGroupMaskOffset;
 
   public ref ulong MeshGroupMask {
-    get => ref _Handle.AsRef<ulong>(_MeshGroupMaskOffset);
+    get {
+      if (_MeshGroupMaskOffset == null) {
+        _MeshGroupMaskOffset = Schema.GetOffset(0xC0A51C009C93F2B);
+      }
+      return ref _Handle.AsRef<ulong>(_MeshGroupMaskOffset!.Value);
+    }
   }
-  private static readonly nint _BodyGroupChoicesOffset = Schema.GetOffset(0xC0A51C02395D0B0);
+  private static nint? _BodyGroupChoicesOffset;
 
   public ref CUtlVector<int> BodyGroupChoices {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_BodyGroupChoicesOffset);
+    get {
+      if (_BodyGroupChoicesOffset == null) {
+        _BodyGroupChoicesOffset = Schema.GetOffset(0xC0A51C02395D0B0);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_BodyGroupChoicesOffset!.Value);
+    }
   }
-  private static readonly nint _IdealMotionTypeOffset = Schema.GetOffset(0xC0A51C00A904E94);
+  private static nint? _IdealMotionTypeOffset;
 
   public ref byte IdealMotionType {
-    get => ref _Handle.AsRef<byte>(_IdealMotionTypeOffset);
+    get {
+      if (_IdealMotionTypeOffset == null) {
+        _IdealMotionTypeOffset = Schema.GetOffset(0xC0A51C00A904E94);
+      }
+      return ref _Handle.AsRef<byte>(_IdealMotionTypeOffset!.Value);
+    }
   }
-  private static readonly nint _ForceLODOffset = Schema.GetOffset(0xC0A51C091D53D5F);
+  private static nint? _ForceLODOffset;
 
   public ref byte ForceLOD {
-    get => ref _Handle.AsRef<byte>(_ForceLODOffset);
+    get {
+      if (_ForceLODOffset == null) {
+        _ForceLODOffset = Schema.GetOffset(0xC0A51C091D53D5F);
+      }
+      return ref _Handle.AsRef<byte>(_ForceLODOffset!.Value);
+    }
   }
-  private static readonly nint _ClothUpdateFlagsOffset = Schema.GetOffset(0xC0A51C0C74A2B81);
+  private static nint? _ClothUpdateFlagsOffset;
 
   public ref byte ClothUpdateFlags {
-    get => ref _Handle.AsRef<byte>(_ClothUpdateFlagsOffset);
+    get {
+      if (_ClothUpdateFlagsOffset == null) {
+        _ClothUpdateFlagsOffset = Schema.GetOffset(0xC0A51C0C74A2B81);
+      }
+      return ref _Handle.AsRef<byte>(_ClothUpdateFlagsOffset!.Value);
+    }
   }
 
   public void ModelUpdated() {

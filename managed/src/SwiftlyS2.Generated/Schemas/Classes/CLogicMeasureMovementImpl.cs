@@ -17,62 +17,116 @@ internal partial class CLogicMeasureMovementImpl : CLogicalEntityImpl, CLogicMea
   public CLogicMeasureMovementImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StrMeasureTargetOffset = Schema.GetOffset(0x11EA274585646A89);
+  private static nint? _StrMeasureTargetOffset;
 
   public string StrMeasureTarget {
     get {
-      var ptr = _Handle.Read<nint>(_StrMeasureTargetOffset);
+      if (_StrMeasureTargetOffset == null) {
+        _StrMeasureTargetOffset = Schema.GetOffset(0x11EA274585646A89);
+      }
+      var ptr = _Handle.Read<nint>(_StrMeasureTargetOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrMeasureTargetOffset, value);
+    set {
+      if (_StrMeasureTargetOffset == null) {
+        _StrMeasureTargetOffset = Schema.GetOffset(0x11EA274585646A89);
+      }
+      Schema.SetString(_Handle, _StrMeasureTargetOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StrMeasureReferenceOffset = Schema.GetOffset(0x11EA2745CF4AF1BD);
+  private static nint? _StrMeasureReferenceOffset;
 
   public string StrMeasureReference {
     get {
-      var ptr = _Handle.Read<nint>(_StrMeasureReferenceOffset);
+      if (_StrMeasureReferenceOffset == null) {
+        _StrMeasureReferenceOffset = Schema.GetOffset(0x11EA2745CF4AF1BD);
+      }
+      var ptr = _Handle.Read<nint>(_StrMeasureReferenceOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrMeasureReferenceOffset, value);
+    set {
+      if (_StrMeasureReferenceOffset == null) {
+        _StrMeasureReferenceOffset = Schema.GetOffset(0x11EA2745CF4AF1BD);
+      }
+      Schema.SetString(_Handle, _StrMeasureReferenceOffset!.Value, value);
+    }
   } 
-  private static readonly nint _StrTargetReferenceOffset = Schema.GetOffset(0x11EA27453E928D56);
+  private static nint? _StrTargetReferenceOffset;
 
   public string StrTargetReference {
     get {
-      var ptr = _Handle.Read<nint>(_StrTargetReferenceOffset);
+      if (_StrTargetReferenceOffset == null) {
+        _StrTargetReferenceOffset = Schema.GetOffset(0x11EA27453E928D56);
+      }
+      var ptr = _Handle.Read<nint>(_StrTargetReferenceOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrTargetReferenceOffset, value);
+    set {
+      if (_StrTargetReferenceOffset == null) {
+        _StrTargetReferenceOffset = Schema.GetOffset(0x11EA27453E928D56);
+      }
+      Schema.SetString(_Handle, _StrTargetReferenceOffset!.Value, value);
+    }
   } 
-  private static readonly nint _MeasureTargetOffset = Schema.GetOffset(0x11EA2745F81BC1A8);
+  private static nint? _MeasureTargetOffset;
 
   public ref CHandle<CBaseEntity> MeasureTarget {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_MeasureTargetOffset);
+    get {
+      if (_MeasureTargetOffset == null) {
+        _MeasureTargetOffset = Schema.GetOffset(0x11EA2745F81BC1A8);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_MeasureTargetOffset!.Value);
+    }
   }
-  private static readonly nint _MeasureReferenceOffset = Schema.GetOffset(0x11EA274567F65D7A);
+  private static nint? _MeasureReferenceOffset;
 
   public ref CHandle<CBaseEntity> MeasureReference {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_MeasureReferenceOffset);
+    get {
+      if (_MeasureReferenceOffset == null) {
+        _MeasureReferenceOffset = Schema.GetOffset(0x11EA274567F65D7A);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_MeasureReferenceOffset!.Value);
+    }
   }
-  private static readonly nint _TargetOffset = Schema.GetOffset(0x11EA2745CE35901A);
+  private static nint? _TargetOffset;
 
   public ref CHandle<CBaseEntity> Target {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetOffset);
+    get {
+      if (_TargetOffset == null) {
+        _TargetOffset = Schema.GetOffset(0x11EA2745CE35901A);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetOffset!.Value);
+    }
   }
-  private static readonly nint _TargetReferenceOffset = Schema.GetOffset(0x11EA2745EB33504F);
+  private static nint? _TargetReferenceOffset;
 
   public ref CHandle<CBaseEntity> TargetReference {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetReferenceOffset);
+    get {
+      if (_TargetReferenceOffset == null) {
+        _TargetReferenceOffset = Schema.GetOffset(0x11EA2745EB33504F);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_TargetReferenceOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x11EA2745B731A42F);
+  private static nint? _ScaleOffset;
 
   public ref float Scale {
-    get => ref _Handle.AsRef<float>(_ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x11EA2745B731A42F);
+      }
+      return ref _Handle.AsRef<float>(_ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _MeasureTypeOffset = Schema.GetOffset(0x11EA274593190C1B);
+  private static nint? _MeasureTypeOffset;
 
   public ref int MeasureType {
-    get => ref _Handle.AsRef<int>(_MeasureTypeOffset);
+    get {
+      if (_MeasureTypeOffset == null) {
+        _MeasureTypeOffset = Schema.GetOffset(0x11EA274593190C1B);
+      }
+      return ref _Handle.AsRef<int>(_MeasureTypeOffset!.Value);
+    }
   }
 
 

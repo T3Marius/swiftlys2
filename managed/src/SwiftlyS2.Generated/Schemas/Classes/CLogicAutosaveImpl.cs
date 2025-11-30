@@ -17,20 +17,35 @@ internal partial class CLogicAutosaveImpl : CLogicalEntityImpl, CLogicAutosave {
   public CLogicAutosaveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ForceNewLevelUnitOffset = Schema.GetOffset(0xE30CCBF21473BFDE);
+  private static nint? _ForceNewLevelUnitOffset;
 
   public ref bool ForceNewLevelUnit {
-    get => ref _Handle.AsRef<bool>(_ForceNewLevelUnitOffset);
+    get {
+      if (_ForceNewLevelUnitOffset == null) {
+        _ForceNewLevelUnitOffset = Schema.GetOffset(0xE30CCBF21473BFDE);
+      }
+      return ref _Handle.AsRef<bool>(_ForceNewLevelUnitOffset!.Value);
+    }
   }
-  private static readonly nint _MinHitPointsOffset = Schema.GetOffset(0xE30CCBF22C7E0C57);
+  private static nint? _MinHitPointsOffset;
 
   public ref int MinHitPoints {
-    get => ref _Handle.AsRef<int>(_MinHitPointsOffset);
+    get {
+      if (_MinHitPointsOffset == null) {
+        _MinHitPointsOffset = Schema.GetOffset(0xE30CCBF22C7E0C57);
+      }
+      return ref _Handle.AsRef<int>(_MinHitPointsOffset!.Value);
+    }
   }
-  private static readonly nint _MinHitPointsToCommitOffset = Schema.GetOffset(0xE30CCBF23AAC1C7F);
+  private static nint? _MinHitPointsToCommitOffset;
 
   public ref int MinHitPointsToCommit {
-    get => ref _Handle.AsRef<int>(_MinHitPointsToCommitOffset);
+    get {
+      if (_MinHitPointsToCommitOffset == null) {
+        _MinHitPointsToCommitOffset = Schema.GetOffset(0xE30CCBF23AAC1C7F);
+      }
+      return ref _Handle.AsRef<int>(_MinHitPointsToCommitOffset!.Value);
+    }
   }
 
 

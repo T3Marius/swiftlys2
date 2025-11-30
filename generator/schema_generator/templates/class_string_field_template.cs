@@ -1,9 +1,17 @@
-  private static readonly nint _$NAME$Offset = Schema.GetOffset($HASH$);
+  private static nint? _$NAME$Offset;
 
   public string $NAME$ {
     get {
-      var ptr = _Handle.Read<nint>(_$NAME$Offset);
+      if (_$NAME$Offset == null) {
+        _$NAME$Offset = Schema.GetOffset($HASH$);
+      }
+      var ptr = _Handle.Read<nint>(_$NAME$Offset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _$NAME$Offset, value);
+    set {
+      if (_$NAME$Offset == null) {
+        _$NAME$Offset = Schema.GetOffset($HASH$);
+      }
+      Schema.SetString(_Handle, _$NAME$Offset!.Value, value);
+    }
   } 

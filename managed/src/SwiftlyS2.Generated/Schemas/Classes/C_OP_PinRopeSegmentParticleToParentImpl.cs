@@ -17,20 +17,35 @@ internal partial class C_OP_PinRopeSegmentParticleToParentImpl : CParticleFuncti
   public C_OP_PinRopeSegmentParticleToParentImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ParticleSelectionOffset = Schema.GetOffset(0x5F59F78EA2307EA7);
+  private static nint? _ParticleSelectionOffset;
 
   public ref ParticleSelection_t ParticleSelection {
-    get => ref _Handle.AsRef<ParticleSelection_t>(_ParticleSelectionOffset);
+    get {
+      if (_ParticleSelectionOffset == null) {
+        _ParticleSelectionOffset = Schema.GetOffset(0x5F59F78EA2307EA7);
+      }
+      return ref _Handle.AsRef<ParticleSelection_t>(_ParticleSelectionOffset!.Value);
+    }
   }
-  private static readonly nint _ParticleNumberOffset = Schema.GetOffset(0x5F59F78E12F26402);
+  private static nint? _ParticleNumberOffset;
 
   public CParticleCollectionFloatInput ParticleNumber {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ParticleNumberOffset);
+    get {
+      if (_ParticleNumberOffset == null) {
+        _ParticleNumberOffset = Schema.GetOffset(0x5F59F78E12F26402);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ParticleNumberOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolationOffset = Schema.GetOffset(0x5F59F78ECF55B987);
+  private static nint? _InterpolationOffset;
 
   public CPerParticleFloatInput Interpolation {
-    get => new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset);
+    get {
+      if (_InterpolationOffset == null) {
+        _InterpolationOffset = Schema.GetOffset(0x5F59F78ECF55B987);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset!.Value);
+    }
   }
 
 

@@ -25,3 +25,4 @@ void SetCenterMenuRender = int32 playerid, string text
 void ClearCenterMenuRender = int32 playerid
 bool HasMenuShown = int32 playerid
 void ExecuteCommand = int32 playerid, string command
+bool IsFirstSpawn = int32 playerid

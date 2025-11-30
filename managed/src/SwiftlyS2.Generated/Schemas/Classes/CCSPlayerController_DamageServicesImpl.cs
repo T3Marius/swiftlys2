@@ -17,15 +17,25 @@ internal partial class CCSPlayerController_DamageServicesImpl : CPlayerControlle
   public CCSPlayerController_DamageServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SendUpdateOffset = Schema.GetOffset(0xC354634BBB7D4BC2);
+  private static nint? _SendUpdateOffset;
 
   public ref int SendUpdate {
-    get => ref _Handle.AsRef<int>(_SendUpdateOffset);
+    get {
+      if (_SendUpdateOffset == null) {
+        _SendUpdateOffset = Schema.GetOffset(0xC354634BBB7D4BC2);
+      }
+      return ref _Handle.AsRef<int>(_SendUpdateOffset!.Value);
+    }
   }
-  private static readonly nint _DamageListOffset = Schema.GetOffset(0xC354634B48D4B628);
+  private static nint? _DamageListOffset;
 
   public ref CUtlVector<CDamageRecord> DamageList {
-    get => ref _Handle.AsRef<CUtlVector<CDamageRecord>>(_DamageListOffset);
+    get {
+      if (_DamageListOffset == null) {
+        _DamageListOffset = Schema.GetOffset(0xC354634B48D4B628);
+      }
+      return ref _Handle.AsRef<CUtlVector<CDamageRecord>>(_DamageListOffset!.Value);
+    }
   }
 
   public void SendUpdateUpdated() {

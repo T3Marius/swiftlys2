@@ -17,10 +17,15 @@ internal partial class CNmAndNode__CDefinitionImpl : CNmBoolValueNode__CDefiniti
   public CNmAndNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ConditionNodeIndicesOffset = Schema.GetOffset(0xC46B12E04A144D0F);
+  private static nint? _ConditionNodeIndicesOffset;
 
   public SchemaUntypedField ConditionNodeIndices {
-    get => new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset);
+    get {
+      if (_ConditionNodeIndicesOffset == null) {
+        _ConditionNodeIndicesOffset = Schema.GetOffset(0xC46B12E04A144D0F);
+      }
+      return new SchemaUntypedField(_Handle + _ConditionNodeIndicesOffset!.Value);
+    }
   }
 
 

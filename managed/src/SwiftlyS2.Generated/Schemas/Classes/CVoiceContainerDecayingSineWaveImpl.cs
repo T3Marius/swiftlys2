@@ -17,15 +17,25 @@ internal partial class CVoiceContainerDecayingSineWaveImpl : CVoiceContainerBase
   public CVoiceContainerDecayingSineWaveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FrequencyOffset = Schema.GetOffset(0x3383CD01D2C16DD7);
+  private static nint? _FrequencyOffset;
 
   public ref float Frequency {
-    get => ref _Handle.AsRef<float>(_FrequencyOffset);
+    get {
+      if (_FrequencyOffset == null) {
+        _FrequencyOffset = Schema.GetOffset(0x3383CD01D2C16DD7);
+      }
+      return ref _Handle.AsRef<float>(_FrequencyOffset!.Value);
+    }
   }
-  private static readonly nint _DecayTimeOffset = Schema.GetOffset(0x3383CD01E94A0656);
+  private static nint? _DecayTimeOffset;
 
   public ref float DecayTime {
-    get => ref _Handle.AsRef<float>(_DecayTimeOffset);
+    get {
+      if (_DecayTimeOffset == null) {
+        _DecayTimeOffset = Schema.GetOffset(0x3383CD01E94A0656);
+      }
+      return ref _Handle.AsRef<float>(_DecayTimeOffset!.Value);
+    }
   }
 
 

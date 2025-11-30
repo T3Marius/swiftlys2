@@ -17,50 +17,95 @@ internal partial class CEnvWindVolumeImpl : CBaseEntityImpl, CEnvWindVolume {
   public CEnvWindVolumeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ActiveOffset = Schema.GetOffset(0xCD7AC5418334208F);
+  private static nint? _ActiveOffset;
 
   public ref bool Active {
-    get => ref _Handle.AsRef<bool>(_ActiveOffset);
+    get {
+      if (_ActiveOffset == null) {
+        _ActiveOffset = Schema.GetOffset(0xCD7AC5418334208F);
+      }
+      return ref _Handle.AsRef<bool>(_ActiveOffset!.Value);
+    }
   }
-  private static readonly nint _BoxMinsOffset = Schema.GetOffset(0xCD7AC541D8201373);
+  private static nint? _BoxMinsOffset;
 
   public ref Vector BoxMins {
-    get => ref _Handle.AsRef<Vector>(_BoxMinsOffset);
+    get {
+      if (_BoxMinsOffset == null) {
+        _BoxMinsOffset = Schema.GetOffset(0xCD7AC541D8201373);
+      }
+      return ref _Handle.AsRef<Vector>(_BoxMinsOffset!.Value);
+    }
   }
-  private static readonly nint _BoxMaxsOffset = Schema.GetOffset(0xCD7AC541817A3B31);
+  private static nint? _BoxMaxsOffset;
 
   public ref Vector BoxMaxs {
-    get => ref _Handle.AsRef<Vector>(_BoxMaxsOffset);
+    get {
+      if (_BoxMaxsOffset == null) {
+        _BoxMaxsOffset = Schema.GetOffset(0xCD7AC541817A3B31);
+      }
+      return ref _Handle.AsRef<Vector>(_BoxMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _StartDisabledOffset = Schema.GetOffset(0xCD7AC54161ED0C4F);
+  private static nint? _StartDisabledOffset;
 
   public ref bool StartDisabled {
-    get => ref _Handle.AsRef<bool>(_StartDisabledOffset);
+    get {
+      if (_StartDisabledOffset == null) {
+        _StartDisabledOffset = Schema.GetOffset(0xCD7AC54161ED0C4F);
+      }
+      return ref _Handle.AsRef<bool>(_StartDisabledOffset!.Value);
+    }
   }
-  private static readonly nint _ShapeOffset = Schema.GetOffset(0xCD7AC54121208A02);
+  private static nint? _ShapeOffset;
 
   public ref int Shape {
-    get => ref _Handle.AsRef<int>(_ShapeOffset);
+    get {
+      if (_ShapeOffset == null) {
+        _ShapeOffset = Schema.GetOffset(0xCD7AC54121208A02);
+      }
+      return ref _Handle.AsRef<int>(_ShapeOffset!.Value);
+    }
   }
-  private static readonly nint _WindSpeedMultiplierOffset = Schema.GetOffset(0xCD7AC541A22A3F81);
+  private static nint? _WindSpeedMultiplierOffset;
 
   public ref float WindSpeedMultiplier {
-    get => ref _Handle.AsRef<float>(_WindSpeedMultiplierOffset);
+    get {
+      if (_WindSpeedMultiplierOffset == null) {
+        _WindSpeedMultiplierOffset = Schema.GetOffset(0xCD7AC541A22A3F81);
+      }
+      return ref _Handle.AsRef<float>(_WindSpeedMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _WindTurbulenceMultiplierOffset = Schema.GetOffset(0xCD7AC54120DA30CD);
+  private static nint? _WindTurbulenceMultiplierOffset;
 
   public ref float WindTurbulenceMultiplier {
-    get => ref _Handle.AsRef<float>(_WindTurbulenceMultiplierOffset);
+    get {
+      if (_WindTurbulenceMultiplierOffset == null) {
+        _WindTurbulenceMultiplierOffset = Schema.GetOffset(0xCD7AC54120DA30CD);
+      }
+      return ref _Handle.AsRef<float>(_WindTurbulenceMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _WindSpeedVariationMultiplierOffset = Schema.GetOffset(0xCD7AC5416B9AC20C);
+  private static nint? _WindSpeedVariationMultiplierOffset;
 
   public ref float WindSpeedVariationMultiplier {
-    get => ref _Handle.AsRef<float>(_WindSpeedVariationMultiplierOffset);
+    get {
+      if (_WindSpeedVariationMultiplierOffset == null) {
+        _WindSpeedVariationMultiplierOffset = Schema.GetOffset(0xCD7AC5416B9AC20C);
+      }
+      return ref _Handle.AsRef<float>(_WindSpeedVariationMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _WindDirectionVariationMultiplierOffset = Schema.GetOffset(0xCD7AC5417F3AB3AA);
+  private static nint? _WindDirectionVariationMultiplierOffset;
 
   public ref float WindDirectionVariationMultiplier {
-    get => ref _Handle.AsRef<float>(_WindDirectionVariationMultiplierOffset);
+    get {
+      if (_WindDirectionVariationMultiplierOffset == null) {
+        _WindDirectionVariationMultiplierOffset = Schema.GetOffset(0xCD7AC5417F3AB3AA);
+      }
+      return ref _Handle.AsRef<float>(_WindDirectionVariationMultiplierOffset!.Value);
+    }
   }
 
   public void ActiveUpdated() {

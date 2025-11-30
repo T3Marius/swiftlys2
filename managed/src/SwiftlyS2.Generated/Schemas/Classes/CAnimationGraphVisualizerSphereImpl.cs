@@ -17,20 +17,35 @@ internal partial class CAnimationGraphVisualizerSphereImpl : CAnimationGraphVisu
   public CAnimationGraphVisualizerSphereImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WsPositionOffset = Schema.GetOffset(0x85D725BDCA77AB88);
+  private static nint? _WsPositionOffset;
 
   public ref Vector WsPosition {
-    get => ref _Handle.AsRef<Vector>(_WsPositionOffset);
+    get {
+      if (_WsPositionOffset == null) {
+        _WsPositionOffset = Schema.GetOffset(0x85D725BDCA77AB88);
+      }
+      return ref _Handle.AsRef<Vector>(_WsPositionOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0x85D725BD5ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0x85D725BD5ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _ColorOffset = Schema.GetOffset(0x85D725BDD7D017D8);
+  private static nint? _ColorOffset;
 
   public ref Color Color {
-    get => ref _Handle.AsRef<Color>(_ColorOffset);
+    get {
+      if (_ColorOffset == null) {
+        _ColorOffset = Schema.GetOffset(0x85D725BDD7D017D8);
+      }
+      return ref _Handle.AsRef<Color>(_ColorOffset!.Value);
+    }
   }
 
 

@@ -17,24 +17,42 @@ internal partial class CTriggerSoundscapeImpl : CBaseTriggerImpl, CTriggerSounds
   public CTriggerSoundscapeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SoundscapeOffset = Schema.GetOffset(0xA8ED7219EF1F0180);
+  private static nint? _SoundscapeOffset;
 
   public ref CHandle<CEnvSoundscapeTriggerable> Soundscape {
-    get => ref _Handle.AsRef<CHandle<CEnvSoundscapeTriggerable>>(_SoundscapeOffset);
+    get {
+      if (_SoundscapeOffset == null) {
+        _SoundscapeOffset = Schema.GetOffset(0xA8ED7219EF1F0180);
+      }
+      return ref _Handle.AsRef<CHandle<CEnvSoundscapeTriggerable>>(_SoundscapeOffset!.Value);
+    }
   }
-  private static readonly nint _SoundscapeNameOffset = Schema.GetOffset(0xA8ED7219BDF7AA81);
+  private static nint? _SoundscapeNameOffset;
 
   public string SoundscapeName {
     get {
-      var ptr = _Handle.Read<nint>(_SoundscapeNameOffset);
+      if (_SoundscapeNameOffset == null) {
+        _SoundscapeNameOffset = Schema.GetOffset(0xA8ED7219BDF7AA81);
+      }
+      var ptr = _Handle.Read<nint>(_SoundscapeNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _SoundscapeNameOffset, value);
+    set {
+      if (_SoundscapeNameOffset == null) {
+        _SoundscapeNameOffset = Schema.GetOffset(0xA8ED7219BDF7AA81);
+      }
+      Schema.SetString(_Handle, _SoundscapeNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _SpectatorsOffset = Schema.GetOffset(0xA8ED7219149EB35B);
+  private static nint? _SpectatorsOffset;
 
   public ref CUtlVector<CHandle<CBasePlayerPawn>> Spectators {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CBasePlayerPawn>>>(_SpectatorsOffset);
+    get {
+      if (_SpectatorsOffset == null) {
+        _SpectatorsOffset = Schema.GetOffset(0xA8ED7219149EB35B);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CBasePlayerPawn>>>(_SpectatorsOffset!.Value);
+    }
   }
 
 

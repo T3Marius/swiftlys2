@@ -17,20 +17,35 @@ internal partial class C_OP_RemapVectortoCPImpl : CParticleFunctionOperatorImpl,
   public C_OP_RemapVectortoCPImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OutControlPointNumberOffset = Schema.GetOffset(0xADC661D7D021D73F);
+  private static nint? _OutControlPointNumberOffset;
 
   public ref int OutControlPointNumber {
-    get => ref _Handle.AsRef<int>(_OutControlPointNumberOffset);
+    get {
+      if (_OutControlPointNumberOffset == null) {
+        _OutControlPointNumberOffset = Schema.GetOffset(0xADC661D7D021D73F);
+      }
+      return ref _Handle.AsRef<int>(_OutControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _FieldInputOffset = Schema.GetOffset(0xADC661D7AE775669);
+  private static nint? _FieldInputOffset;
 
   public ParticleAttributeIndex_t FieldInput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset);
+    get {
+      if (_FieldInputOffset == null) {
+        _FieldInputOffset = Schema.GetOffset(0xADC661D7AE775669);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldInputOffset!.Value);
+    }
   }
-  private static readonly nint _ParticleNumberOffset = Schema.GetOffset(0xADC661D712F26402);
+  private static nint? _ParticleNumberOffset;
 
   public ref int ParticleNumber {
-    get => ref _Handle.AsRef<int>(_ParticleNumberOffset);
+    get {
+      if (_ParticleNumberOffset == null) {
+        _ParticleNumberOffset = Schema.GetOffset(0xADC661D712F26402);
+      }
+      return ref _Handle.AsRef<int>(_ParticleNumberOffset!.Value);
+    }
   }
 
 

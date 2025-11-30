@@ -17,20 +17,35 @@ internal partial class FeCtrlOffset_tImpl : SchemaClass, FeCtrlOffset_t {
   public FeCtrlOffset_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OffsetOffset = Schema.GetOffset(0x83912B89B2913856);
+  private static nint? _OffsetOffset;
 
   public ref Vector Offset {
-    get => ref _Handle.AsRef<Vector>(_OffsetOffset);
+    get {
+      if (_OffsetOffset == null) {
+        _OffsetOffset = Schema.GetOffset(0x83912B89B2913856);
+      }
+      return ref _Handle.AsRef<Vector>(_OffsetOffset!.Value);
+    }
   }
-  private static readonly nint _CtrlParentOffset = Schema.GetOffset(0x83912B8955049230);
+  private static nint? _CtrlParentOffset;
 
   public ref ushort CtrlParent {
-    get => ref _Handle.AsRef<ushort>(_CtrlParentOffset);
+    get {
+      if (_CtrlParentOffset == null) {
+        _CtrlParentOffset = Schema.GetOffset(0x83912B8955049230);
+      }
+      return ref _Handle.AsRef<ushort>(_CtrlParentOffset!.Value);
+    }
   }
-  private static readonly nint _CtrlChildOffset = Schema.GetOffset(0x83912B895BE48066);
+  private static nint? _CtrlChildOffset;
 
   public ref ushort CtrlChild {
-    get => ref _Handle.AsRef<ushort>(_CtrlChildOffset);
+    get {
+      if (_CtrlChildOffset == null) {
+        _CtrlChildOffset = Schema.GetOffset(0x83912B895BE48066);
+      }
+      return ref _Handle.AsRef<ushort>(_CtrlChildOffset!.Value);
+    }
   }
 
 

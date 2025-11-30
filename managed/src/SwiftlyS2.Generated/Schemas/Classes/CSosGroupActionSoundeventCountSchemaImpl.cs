@@ -17,19 +17,32 @@ internal partial class CSosGroupActionSoundeventCountSchemaImpl : CSosGroupActio
   public CSosGroupActionSoundeventCountSchemaImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ExcludeStoppedSoundsOffset = Schema.GetOffset(0x6A0D82691BDF6FB6);
+  private static nint? _ExcludeStoppedSoundsOffset;
 
   public ref bool ExcludeStoppedSounds {
-    get => ref _Handle.AsRef<bool>(_ExcludeStoppedSoundsOffset);
+    get {
+      if (_ExcludeStoppedSoundsOffset == null) {
+        _ExcludeStoppedSoundsOffset = Schema.GetOffset(0x6A0D82691BDF6FB6);
+      }
+      return ref _Handle.AsRef<bool>(_ExcludeStoppedSoundsOffset!.Value);
+    }
   }
-  private static readonly nint _StrCountKeyNameOffset = Schema.GetOffset(0x6A0D8269463A7AA5);
+  private static nint? _StrCountKeyNameOffset;
 
   public string StrCountKeyName {
     get {
-      var ptr = _Handle.Read<nint>(_StrCountKeyNameOffset);
+      if (_StrCountKeyNameOffset == null) {
+        _StrCountKeyNameOffset = Schema.GetOffset(0x6A0D8269463A7AA5);
+      }
+      var ptr = _Handle.Read<nint>(_StrCountKeyNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrCountKeyNameOffset, value);
+    set {
+      if (_StrCountKeyNameOffset == null) {
+        _StrCountKeyNameOffset = Schema.GetOffset(0x6A0D8269463A7AA5);
+      }
+      Schema.SetString(_Handle, _StrCountKeyNameOffset!.Value, value);
+    }
   } 
 
 

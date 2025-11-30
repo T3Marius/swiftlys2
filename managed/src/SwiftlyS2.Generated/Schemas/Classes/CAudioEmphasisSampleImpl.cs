@@ -17,15 +17,25 @@ internal partial class CAudioEmphasisSampleImpl : SchemaClass, CAudioEmphasisSam
   public CAudioEmphasisSampleImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TimeOffset = Schema.GetOffset(0x37D4D710C957229E);
+  private static nint? _TimeOffset;
 
   public ref float Time {
-    get => ref _Handle.AsRef<float>(_TimeOffset);
+    get {
+      if (_TimeOffset == null) {
+        _TimeOffset = Schema.GetOffset(0x37D4D710C957229E);
+      }
+      return ref _Handle.AsRef<float>(_TimeOffset!.Value);
+    }
   }
-  private static readonly nint _ValueOffset = Schema.GetOffset(0x37D4D7108DFCB984);
+  private static nint? _ValueOffset;
 
   public ref float Value {
-    get => ref _Handle.AsRef<float>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0x37D4D7108DFCB984);
+      }
+      return ref _Handle.AsRef<float>(_ValueOffset!.Value);
+    }
   }
 
 

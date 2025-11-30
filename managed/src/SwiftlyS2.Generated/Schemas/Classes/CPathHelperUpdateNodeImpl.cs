@@ -17,15 +17,25 @@ internal partial class CPathHelperUpdateNodeImpl : CUnaryUpdateNodeImpl, CPathHe
   public CPathHelperUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StoppingRadiusOffset = Schema.GetOffset(0xB24262C3172E3D9);
+  private static nint? _StoppingRadiusOffset;
 
   public ref float StoppingRadius {
-    get => ref _Handle.AsRef<float>(_StoppingRadiusOffset);
+    get {
+      if (_StoppingRadiusOffset == null) {
+        _StoppingRadiusOffset = Schema.GetOffset(0xB24262C3172E3D9);
+      }
+      return ref _Handle.AsRef<float>(_StoppingRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _StoppingSpeedScaleOffset = Schema.GetOffset(0xB24262CA2389D04);
+  private static nint? _StoppingSpeedScaleOffset;
 
   public ref float StoppingSpeedScale {
-    get => ref _Handle.AsRef<float>(_StoppingSpeedScaleOffset);
+    get {
+      if (_StoppingSpeedScaleOffset == null) {
+        _StoppingSpeedScaleOffset = Schema.GetOffset(0xB24262CA2389D04);
+      }
+      return ref _Handle.AsRef<float>(_StoppingSpeedScaleOffset!.Value);
+    }
   }
 
 

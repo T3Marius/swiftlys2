@@ -17,80 +17,155 @@ internal partial class CBlend2DUpdateNodeImpl : CAnimUpdateNodeBaseImpl, CBlend2
   public CBlend2DUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ItemsOffset = Schema.GetOffset(0xEA40B5A7A87EDAF);
+  private static nint? _ItemsOffset;
 
   public ref CUtlVector<BlendItem_t> Items {
-    get => ref _Handle.AsRef<CUtlVector<BlendItem_t>>(_ItemsOffset);
+    get {
+      if (_ItemsOffset == null) {
+        _ItemsOffset = Schema.GetOffset(0xEA40B5A7A87EDAF);
+      }
+      return ref _Handle.AsRef<CUtlVector<BlendItem_t>>(_ItemsOffset!.Value);
+    }
   }
-  private static readonly nint _TagsOffset = Schema.GetOffset(0xEA40B5AB46C8540);
+  private static nint? _TagsOffset;
 
   public ref CUtlVector<TagSpan_t> Tags {
-    get => ref _Handle.AsRef<CUtlVector<TagSpan_t>>(_TagsOffset);
+    get {
+      if (_TagsOffset == null) {
+        _TagsOffset = Schema.GetOffset(0xEA40B5AB46C8540);
+      }
+      return ref _Handle.AsRef<CUtlVector<TagSpan_t>>(_TagsOffset!.Value);
+    }
   }
-  private static readonly nint _ParamSpansOffset = Schema.GetOffset(0xEA40B5ADAC91553);
+  private static nint? _ParamSpansOffset;
 
   public CParamSpanUpdater ParamSpans {
-    get => new CParamSpanUpdaterImpl(_Handle + _ParamSpansOffset);
+    get {
+      if (_ParamSpansOffset == null) {
+        _ParamSpansOffset = Schema.GetOffset(0xEA40B5ADAC91553);
+      }
+      return new CParamSpanUpdaterImpl(_Handle + _ParamSpansOffset!.Value);
+    }
   }
-  private static readonly nint _NodeItemIndicesOffset = Schema.GetOffset(0xEA40B5AE050EB13);
+  private static nint? _NodeItemIndicesOffset;
 
   public ref CUtlVector<int> NodeItemIndices {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_NodeItemIndicesOffset);
+    get {
+      if (_NodeItemIndicesOffset == null) {
+        _NodeItemIndicesOffset = Schema.GetOffset(0xEA40B5AE050EB13);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_NodeItemIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _DampingOffset = Schema.GetOffset(0xEA40B5A15440FB5);
+  private static nint? _DampingOffset;
 
   public CAnimInputDamping Damping {
-    get => new CAnimInputDampingImpl(_Handle + _DampingOffset);
+    get {
+      if (_DampingOffset == null) {
+        _DampingOffset = Schema.GetOffset(0xEA40B5A15440FB5);
+      }
+      return new CAnimInputDampingImpl(_Handle + _DampingOffset!.Value);
+    }
   }
-  private static readonly nint _BlendSourceXOffset = Schema.GetOffset(0xEA40B5A6AABD08F);
+  private static nint? _BlendSourceXOffset;
 
   public ref AnimValueSource BlendSourceX {
-    get => ref _Handle.AsRef<AnimValueSource>(_BlendSourceXOffset);
+    get {
+      if (_BlendSourceXOffset == null) {
+        _BlendSourceXOffset = Schema.GetOffset(0xEA40B5A6AABD08F);
+      }
+      return ref _Handle.AsRef<AnimValueSource>(_BlendSourceXOffset!.Value);
+    }
   }
-  private static readonly nint _ParamXOffset = Schema.GetOffset(0xEA40B5A4D0E84BE);
+  private static nint? _ParamXOffset;
 
   public CAnimParamHandle ParamX {
-    get => new CAnimParamHandleImpl(_Handle + _ParamXOffset);
+    get {
+      if (_ParamXOffset == null) {
+        _ParamXOffset = Schema.GetOffset(0xEA40B5A4D0E84BE);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParamXOffset!.Value);
+    }
   }
-  private static readonly nint _BlendSourceYOffset = Schema.GetOffset(0xEA40B5A69ABCEFC);
+  private static nint? _BlendSourceYOffset;
 
   public ref AnimValueSource BlendSourceY {
-    get => ref _Handle.AsRef<AnimValueSource>(_BlendSourceYOffset);
+    get {
+      if (_BlendSourceYOffset == null) {
+        _BlendSourceYOffset = Schema.GetOffset(0xEA40B5A69ABCEFC);
+      }
+      return ref _Handle.AsRef<AnimValueSource>(_BlendSourceYOffset!.Value);
+    }
   }
-  private static readonly nint _ParamYOffset = Schema.GetOffset(0xEA40B5A4E0E8651);
+  private static nint? _ParamYOffset;
 
   public CAnimParamHandle ParamY {
-    get => new CAnimParamHandleImpl(_Handle + _ParamYOffset);
+    get {
+      if (_ParamYOffset == null) {
+        _ParamYOffset = Schema.GetOffset(0xEA40B5A4E0E8651);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParamYOffset!.Value);
+    }
   }
-  private static readonly nint _BlendModeOffset = Schema.GetOffset(0xEA40B5ADBED6224);
+  private static nint? _BlendModeOffset;
 
   public ref Blend2DMode BlendMode {
-    get => ref _Handle.AsRef<Blend2DMode>(_BlendModeOffset);
+    get {
+      if (_BlendModeOffset == null) {
+        _BlendModeOffset = Schema.GetOffset(0xEA40B5ADBED6224);
+      }
+      return ref _Handle.AsRef<Blend2DMode>(_BlendModeOffset!.Value);
+    }
   }
-  private static readonly nint _PlaybackSpeedOffset = Schema.GetOffset(0xEA40B5A1AFA7387);
+  private static nint? _PlaybackSpeedOffset;
 
   public ref float PlaybackSpeed {
-    get => ref _Handle.AsRef<float>(_PlaybackSpeedOffset);
+    get {
+      if (_PlaybackSpeedOffset == null) {
+        _PlaybackSpeedOffset = Schema.GetOffset(0xEA40B5A1AFA7387);
+      }
+      return ref _Handle.AsRef<float>(_PlaybackSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _LoopOffset = Schema.GetOffset(0xEA40B5AC668A4CB);
+  private static nint? _LoopOffset;
 
   public ref bool Loop {
-    get => ref _Handle.AsRef<bool>(_LoopOffset);
+    get {
+      if (_LoopOffset == null) {
+        _LoopOffset = Schema.GetOffset(0xEA40B5AC668A4CB);
+      }
+      return ref _Handle.AsRef<bool>(_LoopOffset!.Value);
+    }
   }
-  private static readonly nint _LockBlendOnResetOffset = Schema.GetOffset(0xEA40B5A76334223);
+  private static nint? _LockBlendOnResetOffset;
 
   public ref bool LockBlendOnReset {
-    get => ref _Handle.AsRef<bool>(_LockBlendOnResetOffset);
+    get {
+      if (_LockBlendOnResetOffset == null) {
+        _LockBlendOnResetOffset = Schema.GetOffset(0xEA40B5A76334223);
+      }
+      return ref _Handle.AsRef<bool>(_LockBlendOnResetOffset!.Value);
+    }
   }
-  private static readonly nint _LockWhenWaningOffset = Schema.GetOffset(0xEA40B5AEED48004);
+  private static nint? _LockWhenWaningOffset;
 
   public ref bool LockWhenWaning {
-    get => ref _Handle.AsRef<bool>(_LockWhenWaningOffset);
+    get {
+      if (_LockWhenWaningOffset == null) {
+        _LockWhenWaningOffset = Schema.GetOffset(0xEA40B5AEED48004);
+      }
+      return ref _Handle.AsRef<bool>(_LockWhenWaningOffset!.Value);
+    }
   }
-  private static readonly nint _AnimEventsAndTagsOnMostWeightedOnlyOffset = Schema.GetOffset(0xEA40B5AB97E1262);
+  private static nint? _AnimEventsAndTagsOnMostWeightedOnlyOffset;
 
   public ref bool AnimEventsAndTagsOnMostWeightedOnly {
-    get => ref _Handle.AsRef<bool>(_AnimEventsAndTagsOnMostWeightedOnlyOffset);
+    get {
+      if (_AnimEventsAndTagsOnMostWeightedOnlyOffset == null) {
+        _AnimEventsAndTagsOnMostWeightedOnlyOffset = Schema.GetOffset(0xEA40B5AB97E1262);
+      }
+      return ref _Handle.AsRef<bool>(_AnimEventsAndTagsOnMostWeightedOnlyOffset!.Value);
+    }
   }
 
 

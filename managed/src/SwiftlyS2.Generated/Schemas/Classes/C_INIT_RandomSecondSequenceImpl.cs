@@ -17,15 +17,25 @@ internal partial class C_INIT_RandomSecondSequenceImpl : CParticleFunctionInitia
   public C_INIT_RandomSecondSequenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SequenceMinOffset = Schema.GetOffset(0xC1CE11E0D30682F0);
+  private static nint? _SequenceMinOffset;
 
   public ref int SequenceMin {
-    get => ref _Handle.AsRef<int>(_SequenceMinOffset);
+    get {
+      if (_SequenceMinOffset == null) {
+        _SequenceMinOffset = Schema.GetOffset(0xC1CE11E0D30682F0);
+      }
+      return ref _Handle.AsRef<int>(_SequenceMinOffset!.Value);
+    }
   }
-  private static readonly nint _SequenceMaxOffset = Schema.GetOffset(0xC1CE11E0C8F2EB7A);
+  private static nint? _SequenceMaxOffset;
 
   public ref int SequenceMax {
-    get => ref _Handle.AsRef<int>(_SequenceMaxOffset);
+    get {
+      if (_SequenceMaxOffset == null) {
+        _SequenceMaxOffset = Schema.GetOffset(0xC1CE11E0C8F2EB7A);
+      }
+      return ref _Handle.AsRef<int>(_SequenceMaxOffset!.Value);
+    }
   }
 
 

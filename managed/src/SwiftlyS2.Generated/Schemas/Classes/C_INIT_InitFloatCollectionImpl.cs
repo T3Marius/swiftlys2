@@ -17,15 +17,25 @@ internal partial class C_INIT_InitFloatCollectionImpl : CParticleFunctionInitial
   public C_INIT_InitFloatCollectionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputValueOffset = Schema.GetOffset(0x70773EFA34445438);
+  private static nint? _InputValueOffset;
 
   public CParticleCollectionFloatInput InputValue {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _InputValueOffset);
+    get {
+      if (_InputValueOffset == null) {
+        _InputValueOffset = Schema.GetOffset(0x70773EFA34445438);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _InputValueOffset!.Value);
+    }
   }
-  private static readonly nint _OutputFieldOffset = Schema.GetOffset(0x70773EFA324F6F74);
+  private static nint? _OutputFieldOffset;
 
   public ParticleAttributeIndex_t OutputField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset);
+    get {
+      if (_OutputFieldOffset == null) {
+        _OutputFieldOffset = Schema.GetOffset(0x70773EFA324F6F74);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _OutputFieldOffset!.Value);
+    }
   }
 
 

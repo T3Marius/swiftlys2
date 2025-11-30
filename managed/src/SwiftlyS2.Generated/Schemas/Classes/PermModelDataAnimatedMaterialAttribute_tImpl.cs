@@ -17,19 +17,32 @@ internal partial class PermModelDataAnimatedMaterialAttribute_tImpl : SchemaClas
   public PermModelDataAnimatedMaterialAttribute_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AttributeNameOffset = Schema.GetOffset(0x6489C15F1408864C);
+  private static nint? _AttributeNameOffset;
 
   public string AttributeName {
     get {
-      var ptr = _Handle.Read<nint>(_AttributeNameOffset);
+      if (_AttributeNameOffset == null) {
+        _AttributeNameOffset = Schema.GetOffset(0x6489C15F1408864C);
+      }
+      var ptr = _Handle.Read<nint>(_AttributeNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _AttributeNameOffset, value);
+    set {
+      if (_AttributeNameOffset == null) {
+        _AttributeNameOffset = Schema.GetOffset(0x6489C15F1408864C);
+      }
+      Schema.SetString(_Handle, _AttributeNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NumChannelsOffset = Schema.GetOffset(0x6489C15FEA44FE77);
+  private static nint? _NumChannelsOffset;
 
   public ref int NumChannels {
-    get => ref _Handle.AsRef<int>(_NumChannelsOffset);
+    get {
+      if (_NumChannelsOffset == null) {
+        _NumChannelsOffset = Schema.GetOffset(0x6489C15FEA44FE77);
+      }
+      return ref _Handle.AsRef<int>(_NumChannelsOffset!.Value);
+    }
   }
 
 

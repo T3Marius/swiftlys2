@@ -17,29 +17,52 @@ internal partial class CBaseConstraintImpl : CBoneConstraintBaseImpl, CBaseConst
   public CBaseConstraintImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xE972C2844D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xE972C2844D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xE972C2844D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _UpVectorOffset = Schema.GetOffset(0xE972C28487645F1B);
+  private static nint? _UpVectorOffset;
 
   public ref Vector UpVector {
-    get => ref _Handle.AsRef<Vector>(_UpVectorOffset);
+    get {
+      if (_UpVectorOffset == null) {
+        _UpVectorOffset = Schema.GetOffset(0xE972C28487645F1B);
+      }
+      return ref _Handle.AsRef<Vector>(_UpVectorOffset!.Value);
+    }
   }
-  private static readonly nint _SlavesOffset = Schema.GetOffset(0xE972C284A62BA9E9);
+  private static nint? _SlavesOffset;
 
   public ref CUtlLeanVector<CConstraintSlave, int> Slaves {
-    get => ref _Handle.AsRef<CUtlLeanVector<CConstraintSlave, int>>(_SlavesOffset);
+    get {
+      if (_SlavesOffset == null) {
+        _SlavesOffset = Schema.GetOffset(0xE972C284A62BA9E9);
+      }
+      return ref _Handle.AsRef<CUtlLeanVector<CConstraintSlave, int>>(_SlavesOffset!.Value);
+    }
   }
-  private static readonly nint _TargetsOffset = Schema.GetOffset(0xE972C28436A2FF01);
+  private static nint? _TargetsOffset;
 
   public ref CUtlVector<CConstraintTarget> Targets {
-    get => ref _Handle.AsRef<CUtlVector<CConstraintTarget>>(_TargetsOffset);
+    get {
+      if (_TargetsOffset == null) {
+        _TargetsOffset = Schema.GetOffset(0xE972C28436A2FF01);
+      }
+      return ref _Handle.AsRef<CUtlVector<CConstraintTarget>>(_TargetsOffset!.Value);
+    }
   }
 
 

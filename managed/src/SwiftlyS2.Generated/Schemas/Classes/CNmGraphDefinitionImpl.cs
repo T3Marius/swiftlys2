@@ -17,60 +17,115 @@ internal partial class CNmGraphDefinitionImpl : SchemaClass, CNmGraphDefinition 
   public CNmGraphDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VariationIDOffset = Schema.GetOffset(0xE028E08C8B90A5E3);
+  private static nint? _VariationIDOffset;
 
   public ref CGlobalSymbol VariationID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_VariationIDOffset);
+    get {
+      if (_VariationIDOffset == null) {
+        _VariationIDOffset = Schema.GetOffset(0xE028E08C8B90A5E3);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_VariationIDOffset!.Value);
+    }
   }
-  private static readonly nint _SkeletonOffset = Schema.GetOffset(0xE028E08CE77F030E);
+  private static nint? _SkeletonOffset;
 
   public ref CStrongHandle<InfoForResourceTypeCNmSkeleton> Skeleton {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmSkeleton>>(_SkeletonOffset);
+    get {
+      if (_SkeletonOffset == null) {
+        _SkeletonOffset = Schema.GetOffset(0xE028E08CE77F030E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeCNmSkeleton>>(_SkeletonOffset!.Value);
+    }
   }
-  private static readonly nint _PersistentNodeIndicesOffset = Schema.GetOffset(0xE028E08C90896209);
+  private static nint? _PersistentNodeIndicesOffset;
 
   public ref CUtlVector<short> PersistentNodeIndices {
-    get => ref _Handle.AsRef<CUtlVector<short>>(_PersistentNodeIndicesOffset);
+    get {
+      if (_PersistentNodeIndicesOffset == null) {
+        _PersistentNodeIndicesOffset = Schema.GetOffset(0xE028E08C90896209);
+      }
+      return ref _Handle.AsRef<CUtlVector<short>>(_PersistentNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _RootNodeIdxOffset = Schema.GetOffset(0xE028E08C25EE94C4);
+  private static nint? _RootNodeIdxOffset;
 
   public ref short RootNodeIdx {
-    get => ref _Handle.AsRef<short>(_RootNodeIdxOffset);
+    get {
+      if (_RootNodeIdxOffset == null) {
+        _RootNodeIdxOffset = Schema.GetOffset(0xE028E08C25EE94C4);
+      }
+      return ref _Handle.AsRef<short>(_RootNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _ControlParameterIDsOffset = Schema.GetOffset(0xE028E08C500E5F9D);
+  private static nint? _ControlParameterIDsOffset;
 
   public ref CUtlVector<CGlobalSymbol> ControlParameterIDs {
-    get => ref _Handle.AsRef<CUtlVector<CGlobalSymbol>>(_ControlParameterIDsOffset);
+    get {
+      if (_ControlParameterIDsOffset == null) {
+        _ControlParameterIDsOffset = Schema.GetOffset(0xE028E08C500E5F9D);
+      }
+      return ref _Handle.AsRef<CUtlVector<CGlobalSymbol>>(_ControlParameterIDsOffset!.Value);
+    }
   }
-  private static readonly nint _VirtualParameterIDsOffset = Schema.GetOffset(0xE028E08CB54BB9E7);
+  private static nint? _VirtualParameterIDsOffset;
 
   public ref CUtlVector<CGlobalSymbol> VirtualParameterIDs {
-    get => ref _Handle.AsRef<CUtlVector<CGlobalSymbol>>(_VirtualParameterIDsOffset);
+    get {
+      if (_VirtualParameterIDsOffset == null) {
+        _VirtualParameterIDsOffset = Schema.GetOffset(0xE028E08CB54BB9E7);
+      }
+      return ref _Handle.AsRef<CUtlVector<CGlobalSymbol>>(_VirtualParameterIDsOffset!.Value);
+    }
   }
-  private static readonly nint _VirtualParameterNodeIndicesOffset = Schema.GetOffset(0xE028E08C1A18B610);
+  private static nint? _VirtualParameterNodeIndicesOffset;
 
   public ref CUtlVector<short> VirtualParameterNodeIndices {
-    get => ref _Handle.AsRef<CUtlVector<short>>(_VirtualParameterNodeIndicesOffset);
+    get {
+      if (_VirtualParameterNodeIndicesOffset == null) {
+        _VirtualParameterNodeIndicesOffset = Schema.GetOffset(0xE028E08C1A18B610);
+      }
+      return ref _Handle.AsRef<CUtlVector<short>>(_VirtualParameterNodeIndicesOffset!.Value);
+    }
   }
-  private static readonly nint _ReferencedGraphSlotsOffset = Schema.GetOffset(0xE028E08C6244F6FF);
+  private static nint? _ReferencedGraphSlotsOffset;
 
   public ref CUtlVector<CNmGraphDefinition__ReferencedGraphSlot_t> ReferencedGraphSlots {
-    get => ref _Handle.AsRef<CUtlVector<CNmGraphDefinition__ReferencedGraphSlot_t>>(_ReferencedGraphSlotsOffset);
+    get {
+      if (_ReferencedGraphSlotsOffset == null) {
+        _ReferencedGraphSlotsOffset = Schema.GetOffset(0xE028E08C6244F6FF);
+      }
+      return ref _Handle.AsRef<CUtlVector<CNmGraphDefinition__ReferencedGraphSlot_t>>(_ReferencedGraphSlotsOffset!.Value);
+    }
   }
-  private static readonly nint _ExternalGraphSlotsOffset = Schema.GetOffset(0xE028E08CECBCD94F);
+  private static nint? _ExternalGraphSlotsOffset;
 
   public ref CUtlVector<CNmGraphDefinition__ExternalGraphSlot_t> ExternalGraphSlots {
-    get => ref _Handle.AsRef<CUtlVector<CNmGraphDefinition__ExternalGraphSlot_t>>(_ExternalGraphSlotsOffset);
+    get {
+      if (_ExternalGraphSlotsOffset == null) {
+        _ExternalGraphSlotsOffset = Schema.GetOffset(0xE028E08CECBCD94F);
+      }
+      return ref _Handle.AsRef<CUtlVector<CNmGraphDefinition__ExternalGraphSlot_t>>(_ExternalGraphSlotsOffset!.Value);
+    }
   }
-  private static readonly nint _NodePathsOffset = Schema.GetOffset(0xE028E08CFF3E5A07);
+  private static nint? _NodePathsOffset;
 
   public ref CUtlVector<CUtlString> NodePaths {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_NodePathsOffset);
+    get {
+      if (_NodePathsOffset == null) {
+        _NodePathsOffset = Schema.GetOffset(0xE028E08CFF3E5A07);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_NodePathsOffset!.Value);
+    }
   }
-  private static readonly nint _ResourcesOffset = Schema.GetOffset(0xE028E08C227C3612);
+  private static nint? _ResourcesOffset;
 
   public ref CUtlVector<SchemaUntypedField> Resources {
-    get => ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ResourcesOffset);
+    get {
+      if (_ResourcesOffset == null) {
+        _ResourcesOffset = Schema.GetOffset(0xE028E08C227C3612);
+      }
+      return ref _Handle.AsRef<CUtlVector<SchemaUntypedField>>(_ResourcesOffset!.Value);
+    }
   }
 
 

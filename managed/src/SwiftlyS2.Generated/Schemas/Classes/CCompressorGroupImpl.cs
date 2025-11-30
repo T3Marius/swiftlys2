@@ -17,90 +17,175 @@ internal partial class CCompressorGroupImpl : SchemaClass, CCompressorGroup {
   public CCompressorGroupImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TotalElementCountOffset = Schema.GetOffset(0x8D9A46F69E4F56A2);
+  private static nint? _TotalElementCountOffset;
 
   public ref int TotalElementCount {
-    get => ref _Handle.AsRef<int>(_TotalElementCountOffset);
+    get {
+      if (_TotalElementCountOffset == null) {
+        _TotalElementCountOffset = Schema.GetOffset(0x8D9A46F69E4F56A2);
+      }
+      return ref _Handle.AsRef<int>(_TotalElementCountOffset!.Value);
+    }
   }
-  private static readonly nint _ChannelClassOffset = Schema.GetOffset(0x8D9A46F68F5E9AD5);
+  private static nint? _ChannelClassOffset;
 
   public ref CUtlVector<CString> ChannelClass {
-    get => ref _Handle.AsRef<CUtlVector<CString>>(_ChannelClassOffset);
+    get {
+      if (_ChannelClassOffset == null) {
+        _ChannelClassOffset = Schema.GetOffset(0x8D9A46F68F5E9AD5);
+      }
+      return ref _Handle.AsRef<CUtlVector<CString>>(_ChannelClassOffset!.Value);
+    }
   }
-  private static readonly nint _VariableNameOffset = Schema.GetOffset(0x8D9A46F6369599AB);
+  private static nint? _VariableNameOffset;
 
   public ref CUtlVector<CString> VariableName {
-    get => ref _Handle.AsRef<CUtlVector<CString>>(_VariableNameOffset);
+    get {
+      if (_VariableNameOffset == null) {
+        _VariableNameOffset = Schema.GetOffset(0x8D9A46F6369599AB);
+      }
+      return ref _Handle.AsRef<CUtlVector<CString>>(_VariableNameOffset!.Value);
+    }
   }
-  private static readonly nint _TypeOffset = Schema.GetOffset(0x8D9A46F618853D59);
+  private static nint? _TypeOffset;
 
   public ref CUtlVector<fieldtype_t> Type {
-    get => ref _Handle.AsRef<CUtlVector<fieldtype_t>>(_TypeOffset);
+    get {
+      if (_TypeOffset == null) {
+        _TypeOffset = Schema.GetOffset(0x8D9A46F618853D59);
+      }
+      return ref _Handle.AsRef<CUtlVector<fieldtype_t>>(_TypeOffset!.Value);
+    }
   }
-  private static readonly nint _FlagsOffset = Schema.GetOffset(0x8D9A46F6CE6E9C28);
+  private static nint? _FlagsOffset;
 
   public ref CUtlVector<int> Flags {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_FlagsOffset);
+    get {
+      if (_FlagsOffset == null) {
+        _FlagsOffset = Schema.GetOffset(0x8D9A46F6CE6E9C28);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_FlagsOffset!.Value);
+    }
   }
-  private static readonly nint _GroupingOffset = Schema.GetOffset(0x8D9A46F64308F10D);
+  private static nint? _GroupingOffset;
 
   public ref CUtlVector<CUtlString> Grouping {
-    get => ref _Handle.AsRef<CUtlVector<CUtlString>>(_GroupingOffset);
+    get {
+      if (_GroupingOffset == null) {
+        _GroupingOffset = Schema.GetOffset(0x8D9A46F64308F10D);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlString>>(_GroupingOffset!.Value);
+    }
   }
-  private static readonly nint _CompressorIndexOffset = Schema.GetOffset(0x8D9A46F67B4BF604);
+  private static nint? _CompressorIndexOffset;
 
   public ref CUtlVector<int> CompressorIndex {
-    get => ref _Handle.AsRef<CUtlVector<int>>(_CompressorIndexOffset);
+    get {
+      if (_CompressorIndexOffset == null) {
+        _CompressorIndexOffset = Schema.GetOffset(0x8D9A46F67B4BF604);
+      }
+      return ref _Handle.AsRef<CUtlVector<int>>(_CompressorIndexOffset!.Value);
+    }
   }
-  private static readonly nint _ElementNamesOffset = Schema.GetOffset(0x8D9A46F6D5BFAA00);
+  private static nint? _ElementNamesOffset;
 
   public ref CUtlVector<CUtlVector<CString>> ElementNames {
-    get => ref _Handle.AsRef<CUtlVector<CUtlVector<CString>>>(_ElementNamesOffset);
+    get {
+      if (_ElementNamesOffset == null) {
+        _ElementNamesOffset = Schema.GetOffset(0x8D9A46F6D5BFAA00);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlVector<CString>>>(_ElementNamesOffset!.Value);
+    }
   }
-  private static readonly nint _ElementUniqueIDOffset = Schema.GetOffset(0x8D9A46F64C95C12D);
+  private static nint? _ElementUniqueIDOffset;
 
   public ref CUtlVector<CUtlVector<int>> ElementUniqueID {
-    get => ref _Handle.AsRef<CUtlVector<CUtlVector<int>>>(_ElementUniqueIDOffset);
+    get {
+      if (_ElementUniqueIDOffset == null) {
+        _ElementUniqueIDOffset = Schema.GetOffset(0x8D9A46F64C95C12D);
+      }
+      return ref _Handle.AsRef<CUtlVector<CUtlVector<int>>>(_ElementUniqueIDOffset!.Value);
+    }
   }
-  private static readonly nint _ElementMaskOffset = Schema.GetOffset(0x8D9A46F67BBE1B07);
+  private static nint? _ElementMaskOffset;
 
   public ref CUtlVector<uint> ElementMask {
-    get => ref _Handle.AsRef<CUtlVector<uint>>(_ElementMaskOffset);
+    get {
+      if (_ElementMaskOffset == null) {
+        _ElementMaskOffset = Schema.GetOffset(0x8D9A46F67BBE1B07);
+      }
+      return ref _Handle.AsRef<CUtlVector<uint>>(_ElementMaskOffset!.Value);
+    }
   }
-  private static readonly nint _VectorCompressorOffset = Schema.GetOffset(0x8D9A46F61A8B6EBF);
+  private static nint? _VectorCompressorOffset;
 
   public ref CUtlVector<PointerTo<SchemaUntypedField>> VectorCompressor {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_VectorCompressorOffset);
+    get {
+      if (_VectorCompressorOffset == null) {
+        _VectorCompressorOffset = Schema.GetOffset(0x8D9A46F61A8B6EBF);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_VectorCompressorOffset!.Value);
+    }
   }
-  private static readonly nint _QuaternionCompressorOffset = Schema.GetOffset(0x8D9A46F6D4D751D4);
+  private static nint? _QuaternionCompressorOffset;
 
   public ref CUtlVector<PointerTo<SchemaUntypedField>> QuaternionCompressor {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_QuaternionCompressorOffset);
+    get {
+      if (_QuaternionCompressorOffset == null) {
+        _QuaternionCompressorOffset = Schema.GetOffset(0x8D9A46F6D4D751D4);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_QuaternionCompressorOffset!.Value);
+    }
   }
-  private static readonly nint _IntCompressorOffset = Schema.GetOffset(0x8D9A46F654D409FB);
+  private static nint? _IntCompressorOffset;
 
   public ref CUtlVector<PointerTo<SchemaUntypedField>> IntCompressor {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_IntCompressorOffset);
+    get {
+      if (_IntCompressorOffset == null) {
+        _IntCompressorOffset = Schema.GetOffset(0x8D9A46F654D409FB);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_IntCompressorOffset!.Value);
+    }
   }
-  private static readonly nint _BoolCompressorOffset = Schema.GetOffset(0x8D9A46F6359E7C24);
+  private static nint? _BoolCompressorOffset;
 
   public ref CUtlVector<PointerTo<SchemaUntypedField>> BoolCompressor {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_BoolCompressorOffset);
+    get {
+      if (_BoolCompressorOffset == null) {
+        _BoolCompressorOffset = Schema.GetOffset(0x8D9A46F6359E7C24);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_BoolCompressorOffset!.Value);
+    }
   }
-  private static readonly nint _ColorCompressorOffset = Schema.GetOffset(0x8D9A46F6088C2B29);
+  private static nint? _ColorCompressorOffset;
 
   public ref CUtlVector<PointerTo<SchemaUntypedField>> ColorCompressor {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_ColorCompressorOffset);
+    get {
+      if (_ColorCompressorOffset == null) {
+        _ColorCompressorOffset = Schema.GetOffset(0x8D9A46F6088C2B29);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_ColorCompressorOffset!.Value);
+    }
   }
-  private static readonly nint _Vector2DCompressorOffset = Schema.GetOffset(0x8D9A46F633C3F00D);
+  private static nint? _Vector2DCompressorOffset;
 
   public ref CUtlVector<PointerTo<SchemaUntypedField>> Vector2DCompressor {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_Vector2DCompressorOffset);
+    get {
+      if (_Vector2DCompressorOffset == null) {
+        _Vector2DCompressorOffset = Schema.GetOffset(0x8D9A46F633C3F00D);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_Vector2DCompressorOffset!.Value);
+    }
   }
-  private static readonly nint _Vector4DCompressorOffset = Schema.GetOffset(0x8D9A46F6E178618F);
+  private static nint? _Vector4DCompressorOffset;
 
   public ref CUtlVector<PointerTo<SchemaUntypedField>> Vector4DCompressor {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_Vector4DCompressorOffset);
+    get {
+      if (_Vector4DCompressorOffset == null) {
+        _Vector4DCompressorOffset = Schema.GetOffset(0x8D9A46F6E178618F);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<SchemaUntypedField>>>(_Vector4DCompressorOffset!.Value);
+    }
   }
 
 

@@ -17,52 +17,96 @@ internal partial class CAnimParameterBaseImpl : SchemaClass, CAnimParameterBase 
   public CAnimParameterBaseImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x9E097C8F4D8F5786);
+  private static nint? _NameOffset;
 
   public ref CGlobalSymbol Name {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x9E097C8F4D8F5786);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _CommentOffset = Schema.GetOffset(0x9E097C8F88A0B4DF);
+  private static nint? _CommentOffset;
 
   public string Comment {
     get {
-      var ptr = _Handle.Read<nint>(_CommentOffset);
+      if (_CommentOffset == null) {
+        _CommentOffset = Schema.GetOffset(0x9E097C8F88A0B4DF);
+      }
+      var ptr = _Handle.Read<nint>(_CommentOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _CommentOffset, value);
+    set {
+      if (_CommentOffset == null) {
+        _CommentOffset = Schema.GetOffset(0x9E097C8F88A0B4DF);
+      }
+      Schema.SetString(_Handle, _CommentOffset!.Value, value);
+    }
   } 
-  private static readonly nint _GroupOffset = Schema.GetOffset(0x9E097C8F9FC645AC);
+  private static nint? _GroupOffset;
 
   public string Group {
     get {
-      var ptr = _Handle.Read<nint>(_GroupOffset);
+      if (_GroupOffset == null) {
+        _GroupOffset = Schema.GetOffset(0x9E097C8F9FC645AC);
+      }
+      var ptr = _Handle.Read<nint>(_GroupOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _GroupOffset, value);
+    set {
+      if (_GroupOffset == null) {
+        _GroupOffset = Schema.GetOffset(0x9E097C8F9FC645AC);
+      }
+      Schema.SetString(_Handle, _GroupOffset!.Value, value);
+    }
   } 
-  private static readonly nint _IdOffset = Schema.GetOffset(0x9E097C8FB4B6E980);
+  private static nint? _IdOffset;
 
   public AnimParamID Id {
-    get => new AnimParamIDImpl(_Handle + _IdOffset);
+    get {
+      if (_IdOffset == null) {
+        _IdOffset = Schema.GetOffset(0x9E097C8FB4B6E980);
+      }
+      return new AnimParamIDImpl(_Handle + _IdOffset!.Value);
+    }
   }
-  private static readonly nint _ComponentNameOffset = Schema.GetOffset(0x9E097C8F7CAC3EA3);
+  private static nint? _ComponentNameOffset;
 
   public string ComponentName {
     get {
-      var ptr = _Handle.Read<nint>(_ComponentNameOffset);
+      if (_ComponentNameOffset == null) {
+        _ComponentNameOffset = Schema.GetOffset(0x9E097C8F7CAC3EA3);
+      }
+      var ptr = _Handle.Read<nint>(_ComponentNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ComponentNameOffset, value);
+    set {
+      if (_ComponentNameOffset == null) {
+        _ComponentNameOffset = Schema.GetOffset(0x9E097C8F7CAC3EA3);
+      }
+      Schema.SetString(_Handle, _ComponentNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NetworkingRequestedOffset = Schema.GetOffset(0x9E097C8FE57548D5);
+  private static nint? _NetworkingRequestedOffset;
 
   public ref bool NetworkingRequested {
-    get => ref _Handle.AsRef<bool>(_NetworkingRequestedOffset);
+    get {
+      if (_NetworkingRequestedOffset == null) {
+        _NetworkingRequestedOffset = Schema.GetOffset(0x9E097C8FE57548D5);
+      }
+      return ref _Handle.AsRef<bool>(_NetworkingRequestedOffset!.Value);
+    }
   }
-  private static readonly nint _IsReferencedOffset = Schema.GetOffset(0x9E097C8FCEABFB2A);
+  private static nint? _IsReferencedOffset;
 
   public ref bool IsReferenced {
-    get => ref _Handle.AsRef<bool>(_IsReferencedOffset);
+    get {
+      if (_IsReferencedOffset == null) {
+        _IsReferencedOffset = Schema.GetOffset(0x9E097C8FCEABFB2A);
+      }
+      return ref _Handle.AsRef<bool>(_IsReferencedOffset!.Value);
+    }
   }
 
 

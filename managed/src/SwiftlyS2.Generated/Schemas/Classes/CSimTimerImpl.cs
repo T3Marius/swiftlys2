@@ -17,10 +17,15 @@ internal partial class CSimTimerImpl : CSimpleSimTimerImpl, CSimTimer {
   public CSimTimerImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IntervalOffset = Schema.GetOffset(0xB9B19F86320F7B8E);
+  private static nint? _IntervalOffset;
 
   public ref float Interval {
-    get => ref _Handle.AsRef<float>(_IntervalOffset);
+    get {
+      if (_IntervalOffset == null) {
+        _IntervalOffset = Schema.GetOffset(0xB9B19F86320F7B8E);
+      }
+      return ref _Handle.AsRef<float>(_IntervalOffset!.Value);
+    }
   }
 
 

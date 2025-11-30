@@ -17,25 +17,45 @@ internal partial class CPulse_BlackboardReferenceImpl : SchemaClass, CPulse_Blac
   public CPulse_BlackboardReferenceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BlackboardResourceOffset = Schema.GetOffset(0xEF83970A45E704DE);
+  private static nint? _BlackboardResourceOffset;
 
   public ref CStrongHandle<InfoForResourceTypeIPulseGraphDef> BlackboardResource {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIPulseGraphDef>>(_BlackboardResourceOffset);
+    get {
+      if (_BlackboardResourceOffset == null) {
+        _BlackboardResourceOffset = Schema.GetOffset(0xEF83970A45E704DE);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIPulseGraphDef>>(_BlackboardResourceOffset!.Value);
+    }
   }
-  private static readonly nint _BlackboardResource1Offset = Schema.GetOffset(0xEF83970A83127470);
+  private static nint? _BlackboardResource1Offset;
 
   public SchemaUntypedField BlackboardResource1 {
-    get => new SchemaUntypedField(_Handle + _BlackboardResource1Offset);
+    get {
+      if (_BlackboardResource1Offset == null) {
+        _BlackboardResource1Offset = Schema.GetOffset(0xEF83970A83127470);
+      }
+      return new SchemaUntypedField(_Handle + _BlackboardResource1Offset!.Value);
+    }
   }
-  private static readonly nint _NodeIDOffset = Schema.GetOffset(0xEF83970A0FD6755C);
+  private static nint? _NodeIDOffset;
 
   public PulseDocNodeID_t NodeID {
-    get => new PulseDocNodeID_tImpl(_Handle + _NodeIDOffset);
+    get {
+      if (_NodeIDOffset == null) {
+        _NodeIDOffset = Schema.GetOffset(0xEF83970A0FD6755C);
+      }
+      return new PulseDocNodeID_tImpl(_Handle + _NodeIDOffset!.Value);
+    }
   }
-  private static readonly nint _NodeNameOffset = Schema.GetOffset(0xEF83970A3FB4DAAE);
+  private static nint? _NodeNameOffset;
 
   public ref CGlobalSymbol NodeName {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_NodeNameOffset);
+    get {
+      if (_NodeNameOffset == null) {
+        _NodeNameOffset = Schema.GetOffset(0xEF83970A3FB4DAAE);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_NodeNameOffset!.Value);
+    }
   }
 
 

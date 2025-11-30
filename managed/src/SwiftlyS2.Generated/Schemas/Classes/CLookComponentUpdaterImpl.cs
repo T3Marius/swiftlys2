@@ -17,50 +17,95 @@ internal partial class CLookComponentUpdaterImpl : CAnimComponentUpdaterImpl, CL
   public CLookComponentUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LookHeadingOffset = Schema.GetOffset(0xA3C6996DE7EA9C52);
+  private static nint? _LookHeadingOffset;
 
   public CAnimParamHandle LookHeading {
-    get => new CAnimParamHandleImpl(_Handle + _LookHeadingOffset);
+    get {
+      if (_LookHeadingOffset == null) {
+        _LookHeadingOffset = Schema.GetOffset(0xA3C6996DE7EA9C52);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookHeadingOffset!.Value);
+    }
   }
-  private static readonly nint _LookHeadingNormalizedOffset = Schema.GetOffset(0xA3C6996D305E6B07);
+  private static nint? _LookHeadingNormalizedOffset;
 
   public CAnimParamHandle LookHeadingNormalized {
-    get => new CAnimParamHandleImpl(_Handle + _LookHeadingNormalizedOffset);
+    get {
+      if (_LookHeadingNormalizedOffset == null) {
+        _LookHeadingNormalizedOffset = Schema.GetOffset(0xA3C6996D305E6B07);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookHeadingNormalizedOffset!.Value);
+    }
   }
-  private static readonly nint _LookHeadingVelocityOffset = Schema.GetOffset(0xA3C6996DF9527FD9);
+  private static nint? _LookHeadingVelocityOffset;
 
   public CAnimParamHandle LookHeadingVelocity {
-    get => new CAnimParamHandleImpl(_Handle + _LookHeadingVelocityOffset);
+    get {
+      if (_LookHeadingVelocityOffset == null) {
+        _LookHeadingVelocityOffset = Schema.GetOffset(0xA3C6996DF9527FD9);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookHeadingVelocityOffset!.Value);
+    }
   }
-  private static readonly nint _LookPitchOffset = Schema.GetOffset(0xA3C6996D3D4C7812);
+  private static nint? _LookPitchOffset;
 
   public CAnimParamHandle LookPitch {
-    get => new CAnimParamHandleImpl(_Handle + _LookPitchOffset);
+    get {
+      if (_LookPitchOffset == null) {
+        _LookPitchOffset = Schema.GetOffset(0xA3C6996D3D4C7812);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookPitchOffset!.Value);
+    }
   }
-  private static readonly nint _LookDistanceOffset = Schema.GetOffset(0xA3C6996DD4722447);
+  private static nint? _LookDistanceOffset;
 
   public CAnimParamHandle LookDistance {
-    get => new CAnimParamHandleImpl(_Handle + _LookDistanceOffset);
+    get {
+      if (_LookDistanceOffset == null) {
+        _LookDistanceOffset = Schema.GetOffset(0xA3C6996DD4722447);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookDistanceOffset!.Value);
+    }
   }
-  private static readonly nint _LookDirectionOffset = Schema.GetOffset(0xA3C6996DAF5526AD);
+  private static nint? _LookDirectionOffset;
 
   public CAnimParamHandle LookDirection {
-    get => new CAnimParamHandleImpl(_Handle + _LookDirectionOffset);
+    get {
+      if (_LookDirectionOffset == null) {
+        _LookDirectionOffset = Schema.GetOffset(0xA3C6996DAF5526AD);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookDirectionOffset!.Value);
+    }
   }
-  private static readonly nint _LookTargetOffset = Schema.GetOffset(0xA3C6996D3361F745);
+  private static nint? _LookTargetOffset;
 
   public CAnimParamHandle LookTarget {
-    get => new CAnimParamHandleImpl(_Handle + _LookTargetOffset);
+    get {
+      if (_LookTargetOffset == null) {
+        _LookTargetOffset = Schema.GetOffset(0xA3C6996D3361F745);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookTargetOffset!.Value);
+    }
   }
-  private static readonly nint _LookTargetWorldSpaceOffset = Schema.GetOffset(0xA3C6996DD1AC545F);
+  private static nint? _LookTargetWorldSpaceOffset;
 
   public CAnimParamHandle LookTargetWorldSpace {
-    get => new CAnimParamHandleImpl(_Handle + _LookTargetWorldSpaceOffset);
+    get {
+      if (_LookTargetWorldSpaceOffset == null) {
+        _LookTargetWorldSpaceOffset = Schema.GetOffset(0xA3C6996DD1AC545F);
+      }
+      return new CAnimParamHandleImpl(_Handle + _LookTargetWorldSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _NetworkLookTargetOffset = Schema.GetOffset(0xA3C6996D39F2F527);
+  private static nint? _NetworkLookTargetOffset;
 
   public ref bool NetworkLookTarget {
-    get => ref _Handle.AsRef<bool>(_NetworkLookTargetOffset);
+    get {
+      if (_NetworkLookTargetOffset == null) {
+        _NetworkLookTargetOffset = Schema.GetOffset(0xA3C6996D39F2F527);
+      }
+      return ref _Handle.AsRef<bool>(_NetworkLookTargetOffset!.Value);
+    }
   }
 
 

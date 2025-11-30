@@ -17,14 +17,22 @@ internal partial class CSoundStackSaveImpl : CLogicalEntityImpl, CSoundStackSave
   public CSoundStackSaveImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StackNameOffset = Schema.GetOffset(0xF9E7A22E3B3E9CD4);
+  private static nint? _StackNameOffset;
 
   public string StackName {
     get {
-      var ptr = _Handle.Read<nint>(_StackNameOffset);
+      if (_StackNameOffset == null) {
+        _StackNameOffset = Schema.GetOffset(0xF9E7A22E3B3E9CD4);
+      }
+      var ptr = _Handle.Read<nint>(_StackNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StackNameOffset, value);
+    set {
+      if (_StackNameOffset == null) {
+        _StackNameOffset = Schema.GetOffset(0xF9E7A22E3B3E9CD4);
+      }
+      Schema.SetString(_Handle, _StackNameOffset!.Value, value);
+    }
   } 
 
 

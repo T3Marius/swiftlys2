@@ -13,8 +13,26 @@ internal partial class CBaseEntityImpl : CBaseEntity
         }
     }
 
-    public Vector? AbsOrigin => CBodyComponent?.SceneNode?.AbsOrigin;
-    public QAngle? AbsRotation => CBodyComponent?.SceneNode?.AbsRotation;
+    public Vector? AbsOrigin {
+        get {
+            if (CBodyComponent == null) return null;
+            if (!CBodyComponent.IsValid) return null;
+            if (CBodyComponent.SceneNode == null) return null;
+            if (!CBodyComponent.SceneNode.IsValid) return null;
+
+            return CBodyComponent?.SceneNode?.AbsOrigin;
+        }
+    }
+    public QAngle? AbsRotation {
+        get {
+            if (CBodyComponent == null) return null;
+            if (!CBodyComponent.IsValid) return null;
+            if (CBodyComponent.SceneNode == null) return null;
+            if (!CBodyComponent.SceneNode.IsValid) return null;
+
+            return CBodyComponent?.SceneNode?.AbsRotation;
+        }
+    }
 
     public Team Team {
         get => (Team)TeamNum;

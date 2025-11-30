@@ -17,19 +17,32 @@ internal partial class CSSDSMsg_ViewRenderImpl : SchemaClass, CSSDSMsg_ViewRende
   public CSSDSMsg_ViewRenderImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ViewIdOffset = Schema.GetOffset(0x2CD48EEEE976CB25);
+  private static nint? _ViewIdOffset;
 
   public SceneViewId_t ViewId {
-    get => new SceneViewId_tImpl(_Handle + _ViewIdOffset);
+    get {
+      if (_ViewIdOffset == null) {
+        _ViewIdOffset = Schema.GetOffset(0x2CD48EEEE976CB25);
+      }
+      return new SceneViewId_tImpl(_Handle + _ViewIdOffset!.Value);
+    }
   }
-  private static readonly nint _ViewNameOffset = Schema.GetOffset(0x2CD48EEEBA5BBDBB);
+  private static nint? _ViewNameOffset;
 
   public string ViewName {
     get {
-      var ptr = _Handle.Read<nint>(_ViewNameOffset);
+      if (_ViewNameOffset == null) {
+        _ViewNameOffset = Schema.GetOffset(0x2CD48EEEBA5BBDBB);
+      }
+      var ptr = _Handle.Read<nint>(_ViewNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ViewNameOffset, value);
+    set {
+      if (_ViewNameOffset == null) {
+        _ViewNameOffset = Schema.GetOffset(0x2CD48EEEBA5BBDBB);
+      }
+      Schema.SetString(_Handle, _ViewNameOffset!.Value, value);
+    }
   } 
 
 

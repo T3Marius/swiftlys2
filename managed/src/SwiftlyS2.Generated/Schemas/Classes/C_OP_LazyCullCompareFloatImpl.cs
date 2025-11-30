@@ -17,20 +17,35 @@ internal partial class C_OP_LazyCullCompareFloatImpl : CParticleFunctionOperator
   public C_OP_LazyCullCompareFloatImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _Comparsion1Offset = Schema.GetOffset(0x9D0DCAD079865299);
+  private static nint? _Comparsion1Offset;
 
   public CPerParticleFloatInput Comparsion1 {
-    get => new CPerParticleFloatInputImpl(_Handle + _Comparsion1Offset);
+    get {
+      if (_Comparsion1Offset == null) {
+        _Comparsion1Offset = Schema.GetOffset(0x9D0DCAD079865299);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _Comparsion1Offset!.Value);
+    }
   }
-  private static readonly nint _Comparsion2Offset = Schema.GetOffset(0x9D0DCAD076864DE0);
+  private static nint? _Comparsion2Offset;
 
   public CPerParticleFloatInput Comparsion2 {
-    get => new CPerParticleFloatInputImpl(_Handle + _Comparsion2Offset);
+    get {
+      if (_Comparsion2Offset == null) {
+        _Comparsion2Offset = Schema.GetOffset(0x9D0DCAD076864DE0);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _Comparsion2Offset!.Value);
+    }
   }
-  private static readonly nint _CullTimeOffset = Schema.GetOffset(0x9D0DCAD0AE2A76FA);
+  private static nint? _CullTimeOffset;
 
   public CPerParticleFloatInput CullTime {
-    get => new CPerParticleFloatInputImpl(_Handle + _CullTimeOffset);
+    get {
+      if (_CullTimeOffset == null) {
+        _CullTimeOffset = Schema.GetOffset(0x9D0DCAD0AE2A76FA);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _CullTimeOffset!.Value);
+    }
   }
 
 

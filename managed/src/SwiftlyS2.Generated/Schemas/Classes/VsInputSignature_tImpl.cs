@@ -17,15 +17,25 @@ internal partial class VsInputSignature_tImpl : SchemaClass, VsInputSignature_t 
   public VsInputSignature_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ElemsOffset = Schema.GetOffset(0xA7BF24E33F2FC92B);
+  private static nint? _ElemsOffset;
 
   public ref CUtlVector<VsInputSignatureElement_t> Elems {
-    get => ref _Handle.AsRef<CUtlVector<VsInputSignatureElement_t>>(_ElemsOffset);
+    get {
+      if (_ElemsOffset == null) {
+        _ElemsOffset = Schema.GetOffset(0xA7BF24E33F2FC92B);
+      }
+      return ref _Handle.AsRef<CUtlVector<VsInputSignatureElement_t>>(_ElemsOffset!.Value);
+    }
   }
-  private static readonly nint _Depth_elemsOffset = Schema.GetOffset(0xA7BF24E3C1AC112D);
+  private static nint? _Depth_elemsOffset;
 
   public ref CUtlVector<VsInputSignatureElement_t> Depth_elems {
-    get => ref _Handle.AsRef<CUtlVector<VsInputSignatureElement_t>>(_Depth_elemsOffset);
+    get {
+      if (_Depth_elemsOffset == null) {
+        _Depth_elemsOffset = Schema.GetOffset(0xA7BF24E3C1AC112D);
+      }
+      return ref _Handle.AsRef<CUtlVector<VsInputSignatureElement_t>>(_Depth_elemsOffset!.Value);
+    }
   }
 
 

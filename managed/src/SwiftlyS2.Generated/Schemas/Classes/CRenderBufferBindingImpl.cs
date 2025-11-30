@@ -17,15 +17,25 @@ internal partial class CRenderBufferBindingImpl : SchemaClass, CRenderBufferBind
   public CRenderBufferBindingImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BufferOffset = Schema.GetOffset(0xFC8416C144D3898D);
+  private static nint? _BufferOffset;
 
   public ref ulong Buffer {
-    get => ref _Handle.AsRef<ulong>(_BufferOffset);
+    get {
+      if (_BufferOffset == null) {
+        _BufferOffset = Schema.GetOffset(0xFC8416C144D3898D);
+      }
+      return ref _Handle.AsRef<ulong>(_BufferOffset!.Value);
+    }
   }
-  private static readonly nint _BindOffsetBytesOffset = Schema.GetOffset(0xFC8416C1AD9A201C);
+  private static nint? _BindOffsetBytesOffset;
 
   public ref uint BindOffsetBytes {
-    get => ref _Handle.AsRef<uint>(_BindOffsetBytesOffset);
+    get {
+      if (_BindOffsetBytesOffset == null) {
+        _BindOffsetBytesOffset = Schema.GetOffset(0xFC8416C1AD9A201C);
+      }
+      return ref _Handle.AsRef<uint>(_BindOffsetBytesOffset!.Value);
+    }
   }
 
 

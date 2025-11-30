@@ -17,30 +17,55 @@ internal partial class FollowTargetOpFixedSettings_tImpl : SchemaClass, FollowTa
   public FollowTargetOpFixedSettings_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneIndexOffset = Schema.GetOffset(0xF6423DF66AFA4155);
+  private static nint? _BoneIndexOffset;
 
   public ref int BoneIndex {
-    get => ref _Handle.AsRef<int>(_BoneIndexOffset);
+    get {
+      if (_BoneIndexOffset == null) {
+        _BoneIndexOffset = Schema.GetOffset(0xF6423DF66AFA4155);
+      }
+      return ref _Handle.AsRef<int>(_BoneIndexOffset!.Value);
+    }
   }
-  private static readonly nint _BoneTargetOffset = Schema.GetOffset(0xF6423DF60E626FD2);
+  private static nint? _BoneTargetOffset;
 
   public ref bool BoneTarget {
-    get => ref _Handle.AsRef<bool>(_BoneTargetOffset);
+    get {
+      if (_BoneTargetOffset == null) {
+        _BoneTargetOffset = Schema.GetOffset(0xF6423DF60E626FD2);
+      }
+      return ref _Handle.AsRef<bool>(_BoneTargetOffset!.Value);
+    }
   }
-  private static readonly nint _BoneTargetIndexOffset = Schema.GetOffset(0xF6423DF62218DF46);
+  private static nint? _BoneTargetIndexOffset;
 
   public ref int BoneTargetIndex {
-    get => ref _Handle.AsRef<int>(_BoneTargetIndexOffset);
+    get {
+      if (_BoneTargetIndexOffset == null) {
+        _BoneTargetIndexOffset = Schema.GetOffset(0xF6423DF62218DF46);
+      }
+      return ref _Handle.AsRef<int>(_BoneTargetIndexOffset!.Value);
+    }
   }
-  private static readonly nint _WorldCoodinateTargetOffset = Schema.GetOffset(0xF6423DF60B5B2B16);
+  private static nint? _WorldCoodinateTargetOffset;
 
   public ref bool WorldCoodinateTarget {
-    get => ref _Handle.AsRef<bool>(_WorldCoodinateTargetOffset);
+    get {
+      if (_WorldCoodinateTargetOffset == null) {
+        _WorldCoodinateTargetOffset = Schema.GetOffset(0xF6423DF60B5B2B16);
+      }
+      return ref _Handle.AsRef<bool>(_WorldCoodinateTargetOffset!.Value);
+    }
   }
-  private static readonly nint _MatchTargetOrientationOffset = Schema.GetOffset(0xF6423DF642E0C3DB);
+  private static nint? _MatchTargetOrientationOffset;
 
   public ref bool MatchTargetOrientation {
-    get => ref _Handle.AsRef<bool>(_MatchTargetOrientationOffset);
+    get {
+      if (_MatchTargetOrientationOffset == null) {
+        _MatchTargetOrientationOffset = Schema.GetOffset(0xF6423DF642E0C3DB);
+      }
+      return ref _Handle.AsRef<bool>(_MatchTargetOrientationOffset!.Value);
+    }
   }
 
 

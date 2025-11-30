@@ -17,30 +17,55 @@ internal partial class RagdollCreationParams_tImpl : SchemaClass, RagdollCreatio
   public RagdollCreationParams_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ForceOffset = Schema.GetOffset(0xAF0FCC44E530B0A8);
+  private static nint? _ForceOffset;
 
   public ref Vector Force {
-    get => ref _Handle.AsRef<Vector>(_ForceOffset);
+    get {
+      if (_ForceOffset == null) {
+        _ForceOffset = Schema.GetOffset(0xAF0FCC44E530B0A8);
+      }
+      return ref _Handle.AsRef<Vector>(_ForceOffset!.Value);
+    }
   }
-  private static readonly nint _ForceBoneOffset = Schema.GetOffset(0xAF0FCC44DDAC019E);
+  private static nint? _ForceBoneOffset;
 
   public ref int ForceBone {
-    get => ref _Handle.AsRef<int>(_ForceBoneOffset);
+    get {
+      if (_ForceBoneOffset == null) {
+        _ForceBoneOffset = Schema.GetOffset(0xAF0FCC44DDAC019E);
+      }
+      return ref _Handle.AsRef<int>(_ForceBoneOffset!.Value);
+    }
   }
-  private static readonly nint _ForceCurrentWorldTransformOffset = Schema.GetOffset(0xAF0FCC443FC20379);
+  private static nint? _ForceCurrentWorldTransformOffset;
 
   public ref bool ForceCurrentWorldTransform {
-    get => ref _Handle.AsRef<bool>(_ForceCurrentWorldTransformOffset);
+    get {
+      if (_ForceCurrentWorldTransformOffset == null) {
+        _ForceCurrentWorldTransformOffset = Schema.GetOffset(0xAF0FCC443FC20379);
+      }
+      return ref _Handle.AsRef<bool>(_ForceCurrentWorldTransformOffset!.Value);
+    }
   }
-  private static readonly nint _UseLRURetirementOffset = Schema.GetOffset(0xAF0FCC444DCF62FA);
+  private static nint? _UseLRURetirementOffset;
 
   public ref bool UseLRURetirement {
-    get => ref _Handle.AsRef<bool>(_UseLRURetirementOffset);
+    get {
+      if (_UseLRURetirementOffset == null) {
+        _UseLRURetirementOffset = Schema.GetOffset(0xAF0FCC444DCF62FA);
+      }
+      return ref _Handle.AsRef<bool>(_UseLRURetirementOffset!.Value);
+    }
   }
-  private static readonly nint _HealthToGrantOffset = Schema.GetOffset(0xAF0FCC4414E28C5C);
+  private static nint? _HealthToGrantOffset;
 
   public ref int HealthToGrant {
-    get => ref _Handle.AsRef<int>(_HealthToGrantOffset);
+    get {
+      if (_HealthToGrantOffset == null) {
+        _HealthToGrantOffset = Schema.GetOffset(0xAF0FCC4414E28C5C);
+      }
+      return ref _Handle.AsRef<int>(_HealthToGrantOffset!.Value);
+    }
   }
 
 

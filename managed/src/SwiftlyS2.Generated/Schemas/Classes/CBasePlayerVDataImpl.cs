@@ -17,75 +17,145 @@ internal partial class CBasePlayerVDataImpl : CEntitySubclassVDataBaseImpl, CBas
   public CBasePlayerVDataImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ModelNameOffset = Schema.GetOffset(0x89A654F0002A227C);
+  private static nint? _ModelNameOffset;
 
   public SchemaUntypedField ModelName {
-    get => new SchemaUntypedField(_Handle + _ModelNameOffset);
+    get {
+      if (_ModelNameOffset == null) {
+        _ModelNameOffset = Schema.GetOffset(0x89A654F0002A227C);
+      }
+      return new SchemaUntypedField(_Handle + _ModelNameOffset!.Value);
+    }
   }
-  private static readonly nint _HeadDamageMultiplierOffset = Schema.GetOffset(0x89A654F0306CEA07);
+  private static nint? _HeadDamageMultiplierOffset;
 
   public CSkillFloat HeadDamageMultiplier {
-    get => new CSkillFloatImpl(_Handle + _HeadDamageMultiplierOffset);
+    get {
+      if (_HeadDamageMultiplierOffset == null) {
+        _HeadDamageMultiplierOffset = Schema.GetOffset(0x89A654F0306CEA07);
+      }
+      return new CSkillFloatImpl(_Handle + _HeadDamageMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _ChestDamageMultiplierOffset = Schema.GetOffset(0x89A654F0C82E808E);
+  private static nint? _ChestDamageMultiplierOffset;
 
   public CSkillFloat ChestDamageMultiplier {
-    get => new CSkillFloatImpl(_Handle + _ChestDamageMultiplierOffset);
+    get {
+      if (_ChestDamageMultiplierOffset == null) {
+        _ChestDamageMultiplierOffset = Schema.GetOffset(0x89A654F0C82E808E);
+      }
+      return new CSkillFloatImpl(_Handle + _ChestDamageMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _StomachDamageMultiplierOffset = Schema.GetOffset(0x89A654F0F84BFAFA);
+  private static nint? _StomachDamageMultiplierOffset;
 
   public CSkillFloat StomachDamageMultiplier {
-    get => new CSkillFloatImpl(_Handle + _StomachDamageMultiplierOffset);
+    get {
+      if (_StomachDamageMultiplierOffset == null) {
+        _StomachDamageMultiplierOffset = Schema.GetOffset(0x89A654F0F84BFAFA);
+      }
+      return new CSkillFloatImpl(_Handle + _StomachDamageMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _ArmDamageMultiplierOffset = Schema.GetOffset(0x89A654F071454291);
+  private static nint? _ArmDamageMultiplierOffset;
 
   public CSkillFloat ArmDamageMultiplier {
-    get => new CSkillFloatImpl(_Handle + _ArmDamageMultiplierOffset);
+    get {
+      if (_ArmDamageMultiplierOffset == null) {
+        _ArmDamageMultiplierOffset = Schema.GetOffset(0x89A654F071454291);
+      }
+      return new CSkillFloatImpl(_Handle + _ArmDamageMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _LegDamageMultiplierOffset = Schema.GetOffset(0x89A654F0F2F8B1BB);
+  private static nint? _LegDamageMultiplierOffset;
 
   public CSkillFloat LegDamageMultiplier {
-    get => new CSkillFloatImpl(_Handle + _LegDamageMultiplierOffset);
+    get {
+      if (_LegDamageMultiplierOffset == null) {
+        _LegDamageMultiplierOffset = Schema.GetOffset(0x89A654F0F2F8B1BB);
+      }
+      return new CSkillFloatImpl(_Handle + _LegDamageMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _HoldBreathTimeOffset = Schema.GetOffset(0x89A654F093F22051);
+  private static nint? _HoldBreathTimeOffset;
 
   public ref float HoldBreathTime {
-    get => ref _Handle.AsRef<float>(_HoldBreathTimeOffset);
+    get {
+      if (_HoldBreathTimeOffset == null) {
+        _HoldBreathTimeOffset = Schema.GetOffset(0x89A654F093F22051);
+      }
+      return ref _Handle.AsRef<float>(_HoldBreathTimeOffset!.Value);
+    }
   }
-  private static readonly nint _DrowningDamageIntervalOffset = Schema.GetOffset(0x89A654F05ECD13F9);
+  private static nint? _DrowningDamageIntervalOffset;
 
   public ref float DrowningDamageInterval {
-    get => ref _Handle.AsRef<float>(_DrowningDamageIntervalOffset);
+    get {
+      if (_DrowningDamageIntervalOffset == null) {
+        _DrowningDamageIntervalOffset = Schema.GetOffset(0x89A654F05ECD13F9);
+      }
+      return ref _Handle.AsRef<float>(_DrowningDamageIntervalOffset!.Value);
+    }
   }
-  private static readonly nint _DrowningDamageInitialOffset = Schema.GetOffset(0x89A654F0155618A2);
+  private static nint? _DrowningDamageInitialOffset;
 
   public ref int DrowningDamageInitial {
-    get => ref _Handle.AsRef<int>(_DrowningDamageInitialOffset);
+    get {
+      if (_DrowningDamageInitialOffset == null) {
+        _DrowningDamageInitialOffset = Schema.GetOffset(0x89A654F0155618A2);
+      }
+      return ref _Handle.AsRef<int>(_DrowningDamageInitialOffset!.Value);
+    }
   }
-  private static readonly nint _DrowningDamageMaxOffset = Schema.GetOffset(0x89A654F0E3FA4428);
+  private static nint? _DrowningDamageMaxOffset;
 
   public ref int DrowningDamageMax {
-    get => ref _Handle.AsRef<int>(_DrowningDamageMaxOffset);
+    get {
+      if (_DrowningDamageMaxOffset == null) {
+        _DrowningDamageMaxOffset = Schema.GetOffset(0x89A654F0E3FA4428);
+      }
+      return ref _Handle.AsRef<int>(_DrowningDamageMaxOffset!.Value);
+    }
   }
-  private static readonly nint _WaterSpeedOffset = Schema.GetOffset(0x89A654F0CED804D7);
+  private static nint? _WaterSpeedOffset;
 
   public ref int WaterSpeed {
-    get => ref _Handle.AsRef<int>(_WaterSpeedOffset);
+    get {
+      if (_WaterSpeedOffset == null) {
+        _WaterSpeedOffset = Schema.GetOffset(0x89A654F0CED804D7);
+      }
+      return ref _Handle.AsRef<int>(_WaterSpeedOffset!.Value);
+    }
   }
-  private static readonly nint _UseRangeOffset = Schema.GetOffset(0x89A654F03B375BF3);
+  private static nint? _UseRangeOffset;
 
   public ref float UseRange {
-    get => ref _Handle.AsRef<float>(_UseRangeOffset);
+    get {
+      if (_UseRangeOffset == null) {
+        _UseRangeOffset = Schema.GetOffset(0x89A654F03B375BF3);
+      }
+      return ref _Handle.AsRef<float>(_UseRangeOffset!.Value);
+    }
   }
-  private static readonly nint _UseAngleToleranceOffset = Schema.GetOffset(0x89A654F01A464300);
+  private static nint? _UseAngleToleranceOffset;
 
   public ref float UseAngleTolerance {
-    get => ref _Handle.AsRef<float>(_UseAngleToleranceOffset);
+    get {
+      if (_UseAngleToleranceOffset == null) {
+        _UseAngleToleranceOffset = Schema.GetOffset(0x89A654F01A464300);
+      }
+      return ref _Handle.AsRef<float>(_UseAngleToleranceOffset!.Value);
+    }
   }
-  private static readonly nint _CrouchTimeOffset = Schema.GetOffset(0x89A654F01E805FB4);
+  private static nint? _CrouchTimeOffset;
 
   public ref float CrouchTime {
-    get => ref _Handle.AsRef<float>(_CrouchTimeOffset);
+    get {
+      if (_CrouchTimeOffset == null) {
+        _CrouchTimeOffset = Schema.GetOffset(0x89A654F01E805FB4);
+      }
+      return ref _Handle.AsRef<float>(_CrouchTimeOffset!.Value);
+    }
   }
 
 

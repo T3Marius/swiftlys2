@@ -17,20 +17,35 @@ internal partial class C_OP_ColorAdjustHSLImpl : CParticleFunctionOperatorImpl, 
   public C_OP_ColorAdjustHSLImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _HueAdjustOffset = Schema.GetOffset(0x34348E726B20DB80);
+  private static nint? _HueAdjustOffset;
 
   public CPerParticleFloatInput HueAdjust {
-    get => new CPerParticleFloatInputImpl(_Handle + _HueAdjustOffset);
+    get {
+      if (_HueAdjustOffset == null) {
+        _HueAdjustOffset = Schema.GetOffset(0x34348E726B20DB80);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _HueAdjustOffset!.Value);
+    }
   }
-  private static readonly nint _SaturationAdjustOffset = Schema.GetOffset(0x34348E72D0C582F4);
+  private static nint? _SaturationAdjustOffset;
 
   public CPerParticleFloatInput SaturationAdjust {
-    get => new CPerParticleFloatInputImpl(_Handle + _SaturationAdjustOffset);
+    get {
+      if (_SaturationAdjustOffset == null) {
+        _SaturationAdjustOffset = Schema.GetOffset(0x34348E72D0C582F4);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _SaturationAdjustOffset!.Value);
+    }
   }
-  private static readonly nint _LightnessAdjustOffset = Schema.GetOffset(0x34348E72DC0100D5);
+  private static nint? _LightnessAdjustOffset;
 
   public CPerParticleFloatInput LightnessAdjust {
-    get => new CPerParticleFloatInputImpl(_Handle + _LightnessAdjustOffset);
+    get {
+      if (_LightnessAdjustOffset == null) {
+        _LightnessAdjustOffset = Schema.GetOffset(0x34348E72DC0100D5);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _LightnessAdjustOffset!.Value);
+    }
   }
 
 

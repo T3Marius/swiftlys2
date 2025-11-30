@@ -17,30 +17,55 @@ internal partial class PostProcessingLocalContrastParameters_tImpl : SchemaClass
   public PostProcessingLocalContrastParameters_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LocalContrastStrengthOffset = Schema.GetOffset(0x43910BD66A89DF05);
+  private static nint? _LocalContrastStrengthOffset;
 
   public ref float LocalContrastStrength {
-    get => ref _Handle.AsRef<float>(_LocalContrastStrengthOffset);
+    get {
+      if (_LocalContrastStrengthOffset == null) {
+        _LocalContrastStrengthOffset = Schema.GetOffset(0x43910BD66A89DF05);
+      }
+      return ref _Handle.AsRef<float>(_LocalContrastStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _LocalContrastEdgeStrengthOffset = Schema.GetOffset(0x43910BD6CC517324);
+  private static nint? _LocalContrastEdgeStrengthOffset;
 
   public ref float LocalContrastEdgeStrength {
-    get => ref _Handle.AsRef<float>(_LocalContrastEdgeStrengthOffset);
+    get {
+      if (_LocalContrastEdgeStrengthOffset == null) {
+        _LocalContrastEdgeStrengthOffset = Schema.GetOffset(0x43910BD6CC517324);
+      }
+      return ref _Handle.AsRef<float>(_LocalContrastEdgeStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _LocalContrastVignetteStartOffset = Schema.GetOffset(0x43910BD633264BD6);
+  private static nint? _LocalContrastVignetteStartOffset;
 
   public ref float LocalContrastVignetteStart {
-    get => ref _Handle.AsRef<float>(_LocalContrastVignetteStartOffset);
+    get {
+      if (_LocalContrastVignetteStartOffset == null) {
+        _LocalContrastVignetteStartOffset = Schema.GetOffset(0x43910BD633264BD6);
+      }
+      return ref _Handle.AsRef<float>(_LocalContrastVignetteStartOffset!.Value);
+    }
   }
-  private static readonly nint _LocalContrastVignetteEndOffset = Schema.GetOffset(0x43910BD689634873);
+  private static nint? _LocalContrastVignetteEndOffset;
 
   public ref float LocalContrastVignetteEnd {
-    get => ref _Handle.AsRef<float>(_LocalContrastVignetteEndOffset);
+    get {
+      if (_LocalContrastVignetteEndOffset == null) {
+        _LocalContrastVignetteEndOffset = Schema.GetOffset(0x43910BD689634873);
+      }
+      return ref _Handle.AsRef<float>(_LocalContrastVignetteEndOffset!.Value);
+    }
   }
-  private static readonly nint _LocalContrastVignetteBlurOffset = Schema.GetOffset(0x43910BD6D8C40957);
+  private static nint? _LocalContrastVignetteBlurOffset;
 
   public ref float LocalContrastVignetteBlur {
-    get => ref _Handle.AsRef<float>(_LocalContrastVignetteBlurOffset);
+    get {
+      if (_LocalContrastVignetteBlurOffset == null) {
+        _LocalContrastVignetteBlurOffset = Schema.GetOffset(0x43910BD6D8C40957);
+      }
+      return ref _Handle.AsRef<float>(_LocalContrastVignetteBlurOffset!.Value);
+    }
   }
 
 

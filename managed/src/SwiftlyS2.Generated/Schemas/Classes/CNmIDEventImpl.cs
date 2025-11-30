@@ -17,15 +17,25 @@ internal partial class CNmIDEventImpl : CNmEventImpl, CNmIDEvent {
   public CNmIDEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _IDOffset = Schema.GetOffset(0x31E463E295066900);
+  private static nint? _IDOffset;
 
   public ref CGlobalSymbol ID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_IDOffset);
+    get {
+      if (_IDOffset == null) {
+        _IDOffset = Schema.GetOffset(0x31E463E295066900);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_IDOffset!.Value);
+    }
   }
-  private static readonly nint _SecondaryIDOffset = Schema.GetOffset(0x31E463E29B39DB84);
+  private static nint? _SecondaryIDOffset;
 
   public ref CGlobalSymbol SecondaryID {
-    get => ref _Handle.AsRef<CGlobalSymbol>(_SecondaryIDOffset);
+    get {
+      if (_SecondaryIDOffset == null) {
+        _SecondaryIDOffset = Schema.GetOffset(0x31E463E29B39DB84);
+      }
+      return ref _Handle.AsRef<CGlobalSymbol>(_SecondaryIDOffset!.Value);
+    }
   }
 
 

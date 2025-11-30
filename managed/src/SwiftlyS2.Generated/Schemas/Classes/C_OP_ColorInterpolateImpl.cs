@@ -17,30 +17,55 @@ internal partial class C_OP_ColorInterpolateImpl : CParticleFunctionOperatorImpl
   public C_OP_ColorInterpolateImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ColorFadeOffset = Schema.GetOffset(0x2F5E97470841572E);
+  private static nint? _ColorFadeOffset;
 
   public ref Color ColorFade {
-    get => ref _Handle.AsRef<Color>(_ColorFadeOffset);
+    get {
+      if (_ColorFadeOffset == null) {
+        _ColorFadeOffset = Schema.GetOffset(0x2F5E97470841572E);
+      }
+      return ref _Handle.AsRef<Color>(_ColorFadeOffset!.Value);
+    }
   }
-  private static readonly nint _FadeStartTimeOffset = Schema.GetOffset(0x2F5E974786B28BFA);
+  private static nint? _FadeStartTimeOffset;
 
   public ref float FadeStartTime {
-    get => ref _Handle.AsRef<float>(_FadeStartTimeOffset);
+    get {
+      if (_FadeStartTimeOffset == null) {
+        _FadeStartTimeOffset = Schema.GetOffset(0x2F5E974786B28BFA);
+      }
+      return ref _Handle.AsRef<float>(_FadeStartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _FadeEndTimeOffset = Schema.GetOffset(0x2F5E974700D5CA4F);
+  private static nint? _FadeEndTimeOffset;
 
   public ref float FadeEndTime {
-    get => ref _Handle.AsRef<float>(_FadeEndTimeOffset);
+    get {
+      if (_FadeEndTimeOffset == null) {
+        _FadeEndTimeOffset = Schema.GetOffset(0x2F5E974700D5CA4F);
+      }
+      return ref _Handle.AsRef<float>(_FadeEndTimeOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x2F5E9747E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x2F5E9747E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _EaseInOutOffset = Schema.GetOffset(0x2F5E97475172CF48);
+  private static nint? _EaseInOutOffset;
 
   public ref bool EaseInOut {
-    get => ref _Handle.AsRef<bool>(_EaseInOutOffset);
+    get {
+      if (_EaseInOutOffset == null) {
+        _EaseInOutOffset = Schema.GetOffset(0x2F5E97475172CF48);
+      }
+      return ref _Handle.AsRef<bool>(_EaseInOutOffset!.Value);
+    }
   }
 
 

@@ -32,6 +32,7 @@
 #include <api/interfaces/manager.h>
 #include <s2binlib/s2binlib.h>
 
+
 typedef void (*CBaseEntity_DispatchSpawn)(void*, void*);
 typedef void (*UTIL_Remove)(void*);
 typedef void* (*UTIL_CreateEntityByName)(const char*, int);
@@ -44,6 +45,7 @@ void* g_pGameRules = nullptr;
 
 extern void* g_pOnEntityTakeDamageCallback;
 extern void* g_pTraceManager;
+extern void* g_pOnStartupServerCallback;
 
 IFunctionHook* g_pOnEntityTakeDamageHook = nullptr;
 IFunctionHook* g_pTraceShapeHook = nullptr;
@@ -123,6 +125,11 @@ void StartupServerHook(void* _this, const GameSessionConfiguration_t& config, IS
 {
     reinterpret_cast<decltype(&StartupServerHook)>(g_pStartupServerHook->GetOriginal())(_this, config, a, b);
 
+    if (g_pOnStartupServerCallback)
+    {
+        reinterpret_cast<void(*)()>(g_pOnStartupServerCallback)();
+    }
+    
     if (g_bDone) return;
 
     auto pGameResService = g_ifaceService.FetchInterface<IGameResourceService>(GAMERESOURCESERVICESERVER_INTERFACE_VERSION);

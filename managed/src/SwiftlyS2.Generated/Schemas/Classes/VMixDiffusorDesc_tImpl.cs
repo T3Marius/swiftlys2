@@ -17,25 +17,45 @@ internal partial class VMixDiffusorDesc_tImpl : SchemaClass, VMixDiffusorDesc_t 
   public VMixDiffusorDesc_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SizeOffset = Schema.GetOffset(0xC24C1D694CF0EBC6);
+  private static nint? _SizeOffset;
 
   public ref float Size {
-    get => ref _Handle.AsRef<float>(_SizeOffset);
+    get {
+      if (_SizeOffset == null) {
+        _SizeOffset = Schema.GetOffset(0xC24C1D694CF0EBC6);
+      }
+      return ref _Handle.AsRef<float>(_SizeOffset!.Value);
+    }
   }
-  private static readonly nint _ComplexityOffset = Schema.GetOffset(0xC24C1D69F222266B);
+  private static nint? _ComplexityOffset;
 
   public ref float Complexity {
-    get => ref _Handle.AsRef<float>(_ComplexityOffset);
+    get {
+      if (_ComplexityOffset == null) {
+        _ComplexityOffset = Schema.GetOffset(0xC24C1D69F222266B);
+      }
+      return ref _Handle.AsRef<float>(_ComplexityOffset!.Value);
+    }
   }
-  private static readonly nint _FeedbackOffset = Schema.GetOffset(0xC24C1D69CD5446D4);
+  private static nint? _FeedbackOffset;
 
   public ref float Feedback {
-    get => ref _Handle.AsRef<float>(_FeedbackOffset);
+    get {
+      if (_FeedbackOffset == null) {
+        _FeedbackOffset = Schema.GetOffset(0xC24C1D69CD5446D4);
+      }
+      return ref _Handle.AsRef<float>(_FeedbackOffset!.Value);
+    }
   }
-  private static readonly nint _OutputGainOffset = Schema.GetOffset(0xC24C1D6973DB9445);
+  private static nint? _OutputGainOffset;
 
   public ref float OutputGain {
-    get => ref _Handle.AsRef<float>(_OutputGainOffset);
+    get {
+      if (_OutputGainOffset == null) {
+        _OutputGainOffset = Schema.GetOffset(0xC24C1D6973DB9445);
+      }
+      return ref _Handle.AsRef<float>(_OutputGainOffset!.Value);
+    }
   }
 
 

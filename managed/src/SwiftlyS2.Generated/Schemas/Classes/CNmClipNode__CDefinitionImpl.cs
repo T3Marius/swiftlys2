@@ -17,40 +17,75 @@ internal partial class CNmClipNode__CDefinitionImpl : CNmClipReferenceNode__CDef
   public CNmClipNode__CDefinitionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PlayInReverseValueNodeIdxOffset = Schema.GetOffset(0x9BA44A131BE16D82);
+  private static nint? _PlayInReverseValueNodeIdxOffset;
 
   public ref short PlayInReverseValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_PlayInReverseValueNodeIdxOffset);
+    get {
+      if (_PlayInReverseValueNodeIdxOffset == null) {
+        _PlayInReverseValueNodeIdxOffset = Schema.GetOffset(0x9BA44A131BE16D82);
+      }
+      return ref _Handle.AsRef<short>(_PlayInReverseValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _ResetTimeValueNodeIdxOffset = Schema.GetOffset(0x9BA44A13698930E1);
+  private static nint? _ResetTimeValueNodeIdxOffset;
 
   public ref short ResetTimeValueNodeIdx {
-    get => ref _Handle.AsRef<short>(_ResetTimeValueNodeIdxOffset);
+    get {
+      if (_ResetTimeValueNodeIdxOffset == null) {
+        _ResetTimeValueNodeIdxOffset = Schema.GetOffset(0x9BA44A13698930E1);
+      }
+      return ref _Handle.AsRef<short>(_ResetTimeValueNodeIdxOffset!.Value);
+    }
   }
-  private static readonly nint _SpeedMultiplierOffset = Schema.GetOffset(0x9BA44A135D5B304D);
+  private static nint? _SpeedMultiplierOffset;
 
   public ref float SpeedMultiplier {
-    get => ref _Handle.AsRef<float>(_SpeedMultiplierOffset);
+    get {
+      if (_SpeedMultiplierOffset == null) {
+        _SpeedMultiplierOffset = Schema.GetOffset(0x9BA44A135D5B304D);
+      }
+      return ref _Handle.AsRef<float>(_SpeedMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _StartSyncEventOffsetOffset = Schema.GetOffset(0x9BA44A138A6F2A97);
+  private static nint? _StartSyncEventOffsetOffset;
 
   public ref int StartSyncEventOffset {
-    get => ref _Handle.AsRef<int>(_StartSyncEventOffsetOffset);
+    get {
+      if (_StartSyncEventOffsetOffset == null) {
+        _StartSyncEventOffsetOffset = Schema.GetOffset(0x9BA44A138A6F2A97);
+      }
+      return ref _Handle.AsRef<int>(_StartSyncEventOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _SampleRootMotionOffset = Schema.GetOffset(0x9BA44A139443A5E9);
+  private static nint? _SampleRootMotionOffset;
 
   public ref bool SampleRootMotion {
-    get => ref _Handle.AsRef<bool>(_SampleRootMotionOffset);
+    get {
+      if (_SampleRootMotionOffset == null) {
+        _SampleRootMotionOffset = Schema.GetOffset(0x9BA44A139443A5E9);
+      }
+      return ref _Handle.AsRef<bool>(_SampleRootMotionOffset!.Value);
+    }
   }
-  private static readonly nint _AllowLoopingOffset = Schema.GetOffset(0x9BA44A13FEB26D98);
+  private static nint? _AllowLoopingOffset;
 
   public ref bool AllowLooping {
-    get => ref _Handle.AsRef<bool>(_AllowLoopingOffset);
+    get {
+      if (_AllowLoopingOffset == null) {
+        _AllowLoopingOffset = Schema.GetOffset(0x9BA44A13FEB26D98);
+      }
+      return ref _Handle.AsRef<bool>(_AllowLoopingOffset!.Value);
+    }
   }
-  private static readonly nint _DataSlotIdxOffset = Schema.GetOffset(0x9BA44A13B1C15B68);
+  private static nint? _DataSlotIdxOffset;
 
   public ref short DataSlotIdx {
-    get => ref _Handle.AsRef<short>(_DataSlotIdxOffset);
+    get {
+      if (_DataSlotIdxOffset == null) {
+        _DataSlotIdxOffset = Schema.GetOffset(0x9BA44A13B1C15B68);
+      }
+      return ref _Handle.AsRef<short>(_DataSlotIdxOffset!.Value);
+    }
   }
 
 

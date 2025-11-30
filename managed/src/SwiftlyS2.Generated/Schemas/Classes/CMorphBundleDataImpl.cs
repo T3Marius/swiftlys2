@@ -17,25 +17,45 @@ internal partial class CMorphBundleDataImpl : SchemaClass, CMorphBundleData {
   public CMorphBundleDataImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ULeftSrcOffset = Schema.GetOffset(0x8F3A47DCADC9D147);
+  private static nint? _ULeftSrcOffset;
 
   public ref float ULeftSrc {
-    get => ref _Handle.AsRef<float>(_ULeftSrcOffset);
+    get {
+      if (_ULeftSrcOffset == null) {
+        _ULeftSrcOffset = Schema.GetOffset(0x8F3A47DCADC9D147);
+      }
+      return ref _Handle.AsRef<float>(_ULeftSrcOffset!.Value);
+    }
   }
-  private static readonly nint _VTopSrcOffset = Schema.GetOffset(0x8F3A47DCEF710ED0);
+  private static nint? _VTopSrcOffset;
 
   public ref float VTopSrc {
-    get => ref _Handle.AsRef<float>(_VTopSrcOffset);
+    get {
+      if (_VTopSrcOffset == null) {
+        _VTopSrcOffset = Schema.GetOffset(0x8F3A47DCEF710ED0);
+      }
+      return ref _Handle.AsRef<float>(_VTopSrcOffset!.Value);
+    }
   }
-  private static readonly nint _OffsetsOffset = Schema.GetOffset(0x8F3A47DCD6CBA75B);
+  private static nint? _OffsetsOffset;
 
   public ref CUtlVector<float> Offsets {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_OffsetsOffset);
+    get {
+      if (_OffsetsOffset == null) {
+        _OffsetsOffset = Schema.GetOffset(0x8F3A47DCD6CBA75B);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_OffsetsOffset!.Value);
+    }
   }
-  private static readonly nint _RangesOffset = Schema.GetOffset(0x8F3A47DC24CF5F13);
+  private static nint? _RangesOffset;
 
   public ref CUtlVector<float> Ranges {
-    get => ref _Handle.AsRef<CUtlVector<float>>(_RangesOffset);
+    get {
+      if (_RangesOffset == null) {
+        _RangesOffset = Schema.GetOffset(0x8F3A47DC24CF5F13);
+      }
+      return ref _Handle.AsRef<CUtlVector<float>>(_RangesOffset!.Value);
+    }
   }
 
 

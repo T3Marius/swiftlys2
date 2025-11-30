@@ -17,25 +17,45 @@ internal partial class CStanceOverrideUpdateNodeImpl : CUnaryUpdateNodeImpl, CSt
   public CStanceOverrideUpdateNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FootStanceInfoOffset = Schema.GetOffset(0x322EE1B7D5687289);
+  private static nint? _FootStanceInfoOffset;
 
   public ref CUtlVector<StanceInfo_t> FootStanceInfo {
-    get => ref _Handle.AsRef<CUtlVector<StanceInfo_t>>(_FootStanceInfoOffset);
+    get {
+      if (_FootStanceInfoOffset == null) {
+        _FootStanceInfoOffset = Schema.GetOffset(0x322EE1B7D5687289);
+      }
+      return ref _Handle.AsRef<CUtlVector<StanceInfo_t>>(_FootStanceInfoOffset!.Value);
+    }
   }
-  private static readonly nint _StanceSourceNodeOffset = Schema.GetOffset(0x322EE1B7D25DA07A);
+  private static nint? _StanceSourceNodeOffset;
 
   public CAnimUpdateNodeRef StanceSourceNode {
-    get => new CAnimUpdateNodeRefImpl(_Handle + _StanceSourceNodeOffset);
+    get {
+      if (_StanceSourceNodeOffset == null) {
+        _StanceSourceNodeOffset = Schema.GetOffset(0x322EE1B7D25DA07A);
+      }
+      return new CAnimUpdateNodeRefImpl(_Handle + _StanceSourceNodeOffset!.Value);
+    }
   }
-  private static readonly nint _ParameterOffset = Schema.GetOffset(0x322EE1B70C7008F6);
+  private static nint? _ParameterOffset;
 
   public CAnimParamHandle Parameter {
-    get => new CAnimParamHandleImpl(_Handle + _ParameterOffset);
+    get {
+      if (_ParameterOffset == null) {
+        _ParameterOffset = Schema.GetOffset(0x322EE1B70C7008F6);
+      }
+      return new CAnimParamHandleImpl(_Handle + _ParameterOffset!.Value);
+    }
   }
-  private static readonly nint _ModeOffset = Schema.GetOffset(0x322EE1B71050A633);
+  private static nint? _ModeOffset;
 
   public ref StanceOverrideMode Mode {
-    get => ref _Handle.AsRef<StanceOverrideMode>(_ModeOffset);
+    get {
+      if (_ModeOffset == null) {
+        _ModeOffset = Schema.GetOffset(0x322EE1B71050A633);
+      }
+      return ref _Handle.AsRef<StanceOverrideMode>(_ModeOffset!.Value);
+    }
   }
 
 

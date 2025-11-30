@@ -17,30 +17,55 @@ internal partial class C_OP_DragRelativeToPlaneImpl : CParticleFunctionOperatorI
   public C_OP_DragRelativeToPlaneImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DragAtPlaneOffset = Schema.GetOffset(0x9D049848176259A2);
+  private static nint? _DragAtPlaneOffset;
 
   public CParticleCollectionFloatInput DragAtPlane {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _DragAtPlaneOffset);
+    get {
+      if (_DragAtPlaneOffset == null) {
+        _DragAtPlaneOffset = Schema.GetOffset(0x9D049848176259A2);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _DragAtPlaneOffset!.Value);
+    }
   }
-  private static readonly nint _FalloffOffset = Schema.GetOffset(0x9D049848FA143DCB);
+  private static nint? _FalloffOffset;
 
   public CParticleCollectionFloatInput Falloff {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _FalloffOffset);
+    get {
+      if (_FalloffOffset == null) {
+        _FalloffOffset = Schema.GetOffset(0x9D049848FA143DCB);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _FalloffOffset!.Value);
+    }
   }
-  private static readonly nint _DirectionalOffset = Schema.GetOffset(0x9D0498484C2A43E7);
+  private static nint? _DirectionalOffset;
 
   public ref bool Directional {
-    get => ref _Handle.AsRef<bool>(_DirectionalOffset);
+    get {
+      if (_DirectionalOffset == null) {
+        _DirectionalOffset = Schema.GetOffset(0x9D0498484C2A43E7);
+      }
+      return ref _Handle.AsRef<bool>(_DirectionalOffset!.Value);
+    }
   }
-  private static readonly nint _PlaneNormalOffset = Schema.GetOffset(0x9D04984821103682);
+  private static nint? _PlaneNormalOffset;
 
   public CParticleCollectionVecInput PlaneNormal {
-    get => new CParticleCollectionVecInputImpl(_Handle + _PlaneNormalOffset);
+    get {
+      if (_PlaneNormalOffset == null) {
+        _PlaneNormalOffset = Schema.GetOffset(0x9D04984821103682);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _PlaneNormalOffset!.Value);
+    }
   }
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x9D0498483F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x9D0498483F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
 
 

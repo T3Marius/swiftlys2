@@ -17,25 +17,45 @@ internal partial class CFloatAnimParameterImpl : CConcreteAnimParameterImpl, CFl
   public CFloatAnimParameterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DefaultValueOffset = Schema.GetOffset(0x6CE7934089D370B3);
+  private static nint? _DefaultValueOffset;
 
   public ref float DefaultValue {
-    get => ref _Handle.AsRef<float>(_DefaultValueOffset);
+    get {
+      if (_DefaultValueOffset == null) {
+        _DefaultValueOffset = Schema.GetOffset(0x6CE7934089D370B3);
+      }
+      return ref _Handle.AsRef<float>(_DefaultValueOffset!.Value);
+    }
   }
-  private static readonly nint _MinValueOffset = Schema.GetOffset(0x6CE79340AD86BD50);
+  private static nint? _MinValueOffset;
 
   public ref float MinValue {
-    get => ref _Handle.AsRef<float>(_MinValueOffset);
+    get {
+      if (_MinValueOffset == null) {
+        _MinValueOffset = Schema.GetOffset(0x6CE79340AD86BD50);
+      }
+      return ref _Handle.AsRef<float>(_MinValueOffset!.Value);
+    }
   }
-  private static readonly nint _MaxValueOffset = Schema.GetOffset(0x6CE79340DB7358B2);
+  private static nint? _MaxValueOffset;
 
   public ref float MaxValue {
-    get => ref _Handle.AsRef<float>(_MaxValueOffset);
+    get {
+      if (_MaxValueOffset == null) {
+        _MaxValueOffset = Schema.GetOffset(0x6CE79340DB7358B2);
+      }
+      return ref _Handle.AsRef<float>(_MaxValueOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolateOffset = Schema.GetOffset(0x6CE79340F6607650);
+  private static nint? _InterpolateOffset;
 
   public ref bool Interpolate {
-    get => ref _Handle.AsRef<bool>(_InterpolateOffset);
+    get {
+      if (_InterpolateOffset == null) {
+        _InterpolateOffset = Schema.GetOffset(0x6CE79340F6607650);
+      }
+      return ref _Handle.AsRef<bool>(_InterpolateOffset!.Value);
+    }
   }
 
 

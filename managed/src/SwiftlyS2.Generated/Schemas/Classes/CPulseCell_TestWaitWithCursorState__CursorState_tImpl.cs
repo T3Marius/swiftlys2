@@ -17,15 +17,25 @@ internal partial class CPulseCell_TestWaitWithCursorState__CursorState_tImpl : S
   public CPulseCell_TestWaitWithCursorState__CursorState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WaitValueOffset = Schema.GetOffset(0x9C2318A48BB02277);
+  private static nint? _WaitValueOffset;
 
   public ref float WaitValue {
-    get => ref _Handle.AsRef<float>(_WaitValueOffset);
+    get {
+      if (_WaitValueOffset == null) {
+        _WaitValueOffset = Schema.GetOffset(0x9C2318A48BB02277);
+      }
+      return ref _Handle.AsRef<float>(_WaitValueOffset!.Value);
+    }
   }
-  private static readonly nint _FailOnCancelOffset = Schema.GetOffset(0x9C2318A4BEE5ED52);
+  private static nint? _FailOnCancelOffset;
 
   public ref bool FailOnCancel {
-    get => ref _Handle.AsRef<bool>(_FailOnCancelOffset);
+    get {
+      if (_FailOnCancelOffset == null) {
+        _FailOnCancelOffset = Schema.GetOffset(0x9C2318A4BEE5ED52);
+      }
+      return ref _Handle.AsRef<bool>(_FailOnCancelOffset!.Value);
+    }
   }
 
 

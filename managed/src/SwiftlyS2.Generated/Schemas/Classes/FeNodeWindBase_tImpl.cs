@@ -17,25 +17,45 @@ internal partial class FeNodeWindBase_tImpl : SchemaClass, FeNodeWindBase_t {
   public FeNodeWindBase_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NodeX0Offset = Schema.GetOffset(0x3892EC5081C7FEB9);
+  private static nint? _NodeX0Offset;
 
   public ref ushort NodeX0 {
-    get => ref _Handle.AsRef<ushort>(_NodeX0Offset);
+    get {
+      if (_NodeX0Offset == null) {
+        _NodeX0Offset = Schema.GetOffset(0x3892EC5081C7FEB9);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeX0Offset!.Value);
+    }
   }
-  private static readonly nint _NodeX1Offset = Schema.GetOffset(0x3892EC5080C7FD26);
+  private static nint? _NodeX1Offset;
 
   public ref ushort NodeX1 {
-    get => ref _Handle.AsRef<ushort>(_NodeX1Offset);
+    get {
+      if (_NodeX1Offset == null) {
+        _NodeX1Offset = Schema.GetOffset(0x3892EC5080C7FD26);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeX1Offset!.Value);
+    }
   }
-  private static readonly nint _NodeY0Offset = Schema.GetOffset(0x3892EC507BC5B6B0);
+  private static nint? _NodeY0Offset;
 
   public ref ushort NodeY0 {
-    get => ref _Handle.AsRef<ushort>(_NodeY0Offset);
+    get {
+      if (_NodeY0Offset == null) {
+        _NodeY0Offset = Schema.GetOffset(0x3892EC507BC5B6B0);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeY0Offset!.Value);
+    }
   }
-  private static readonly nint _NodeY1Offset = Schema.GetOffset(0x3892EC507CC5B843);
+  private static nint? _NodeY1Offset;
 
   public ref ushort NodeY1 {
-    get => ref _Handle.AsRef<ushort>(_NodeY1Offset);
+    get {
+      if (_NodeY1Offset == null) {
+        _NodeY1Offset = Schema.GetOffset(0x3892EC507CC5B843);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeY1Offset!.Value);
+    }
   }
 
 

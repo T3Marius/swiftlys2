@@ -17,30 +17,55 @@ internal partial class CInfoDynamicShadowHintImpl : CPointEntityImpl, CInfoDynam
   public CInfoDynamicShadowHintImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x46DDE8EE3A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x46DDE8EE3A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
-  private static readonly nint _RangeOffset = Schema.GetOffset(0x46DDE8EE3FC92844);
+  private static nint? _RangeOffset;
 
   public ref float Range {
-    get => ref _Handle.AsRef<float>(_RangeOffset);
+    get {
+      if (_RangeOffset == null) {
+        _RangeOffset = Schema.GetOffset(0x46DDE8EE3FC92844);
+      }
+      return ref _Handle.AsRef<float>(_RangeOffset!.Value);
+    }
   }
-  private static readonly nint _ImportanceOffset = Schema.GetOffset(0x46DDE8EE85D7F083);
+  private static nint? _ImportanceOffset;
 
   public ref int Importance {
-    get => ref _Handle.AsRef<int>(_ImportanceOffset);
+    get {
+      if (_ImportanceOffset == null) {
+        _ImportanceOffset = Schema.GetOffset(0x46DDE8EE85D7F083);
+      }
+      return ref _Handle.AsRef<int>(_ImportanceOffset!.Value);
+    }
   }
-  private static readonly nint _LightChoiceOffset = Schema.GetOffset(0x46DDE8EED82DFBD8);
+  private static nint? _LightChoiceOffset;
 
   public ref int LightChoice {
-    get => ref _Handle.AsRef<int>(_LightChoiceOffset);
+    get {
+      if (_LightChoiceOffset == null) {
+        _LightChoiceOffset = Schema.GetOffset(0x46DDE8EED82DFBD8);
+      }
+      return ref _Handle.AsRef<int>(_LightChoiceOffset!.Value);
+    }
   }
-  private static readonly nint _LightOffset = Schema.GetOffset(0x46DDE8EEF68359B1);
+  private static nint? _LightOffset;
 
   public ref CHandle<CBaseEntity> Light {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_LightOffset);
+    get {
+      if (_LightOffset == null) {
+        _LightOffset = Schema.GetOffset(0x46DDE8EEF68359B1);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_LightOffset!.Value);
+    }
   }
 
 

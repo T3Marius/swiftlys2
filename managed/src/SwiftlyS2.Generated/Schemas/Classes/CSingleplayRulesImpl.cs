@@ -17,10 +17,15 @@ internal partial class CSingleplayRulesImpl : CGameRulesImpl, CSingleplayRules {
   public CSingleplayRulesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SinglePlayerGameEndingOffset = Schema.GetOffset(0x633D071BAD9EAF1D);
+  private static nint? _SinglePlayerGameEndingOffset;
 
   public ref bool SinglePlayerGameEnding {
-    get => ref _Handle.AsRef<bool>(_SinglePlayerGameEndingOffset);
+    get {
+      if (_SinglePlayerGameEndingOffset == null) {
+        _SinglePlayerGameEndingOffset = Schema.GetOffset(0x633D071BAD9EAF1D);
+      }
+      return ref _Handle.AsRef<bool>(_SinglePlayerGameEndingOffset!.Value);
+    }
   }
 
 

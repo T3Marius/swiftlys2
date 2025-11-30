@@ -17,50 +17,95 @@ internal partial class CSoundOpvarSetAABBEntityImpl : CSoundOpvarSetPointEntityI
   public CSoundOpvarSetAABBEntityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DistanceInnerMinsOffset = Schema.GetOffset(0x9C9CB73CC7540883);
+  private static nint? _DistanceInnerMinsOffset;
 
   public ref Vector DistanceInnerMins {
-    get => ref _Handle.AsRef<Vector>(_DistanceInnerMinsOffset);
+    get {
+      if (_DistanceInnerMinsOffset == null) {
+        _DistanceInnerMinsOffset = Schema.GetOffset(0x9C9CB73CC7540883);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceInnerMinsOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceInnerMaxsOffset = Schema.GetOffset(0x9C9CB73C705E7E61);
+  private static nint? _DistanceInnerMaxsOffset;
 
   public ref Vector DistanceInnerMaxs {
-    get => ref _Handle.AsRef<Vector>(_DistanceInnerMaxsOffset);
+    get {
+      if (_DistanceInnerMaxsOffset == null) {
+        _DistanceInnerMaxsOffset = Schema.GetOffset(0x9C9CB73C705E7E61);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceInnerMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceOuterMinsOffset = Schema.GetOffset(0x9C9CB73C185EC6F4);
+  private static nint? _DistanceOuterMinsOffset;
 
   public ref Vector DistanceOuterMins {
-    get => ref _Handle.AsRef<Vector>(_DistanceOuterMinsOffset);
+    get {
+      if (_DistanceOuterMinsOffset == null) {
+        _DistanceOuterMinsOffset = Schema.GetOffset(0x9C9CB73C185EC6F4);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceOuterMinsOffset!.Value);
+    }
   }
-  private static readonly nint _DistanceOuterMaxsOffset = Schema.GetOffset(0x9C9CB73C99738B36);
+  private static nint? _DistanceOuterMaxsOffset;
 
   public ref Vector DistanceOuterMaxs {
-    get => ref _Handle.AsRef<Vector>(_DistanceOuterMaxsOffset);
+    get {
+      if (_DistanceOuterMaxsOffset == null) {
+        _DistanceOuterMaxsOffset = Schema.GetOffset(0x9C9CB73C99738B36);
+      }
+      return ref _Handle.AsRef<Vector>(_DistanceOuterMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _AABBDirectionOffset = Schema.GetOffset(0x9C9CB73CE8CF552C);
+  private static nint? _AABBDirectionOffset;
 
   public ref int AABBDirection {
-    get => ref _Handle.AsRef<int>(_AABBDirectionOffset);
+    get {
+      if (_AABBDirectionOffset == null) {
+        _AABBDirectionOffset = Schema.GetOffset(0x9C9CB73CE8CF552C);
+      }
+      return ref _Handle.AsRef<int>(_AABBDirectionOffset!.Value);
+    }
   }
-  private static readonly nint _InnerMinsOffset = Schema.GetOffset(0x9C9CB73C4C5EAC7A);
+  private static nint? _InnerMinsOffset;
 
   public ref Vector InnerMins {
-    get => ref _Handle.AsRef<Vector>(_InnerMinsOffset);
+    get {
+      if (_InnerMinsOffset == null) {
+        _InnerMinsOffset = Schema.GetOffset(0x9C9CB73C4C5EAC7A);
+      }
+      return ref _Handle.AsRef<Vector>(_InnerMinsOffset!.Value);
+    }
   }
-  private static readonly nint _InnerMaxsOffset = Schema.GetOffset(0x9C9CB73CCD68E360);
+  private static nint? _InnerMaxsOffset;
 
   public ref Vector InnerMaxs {
-    get => ref _Handle.AsRef<Vector>(_InnerMaxsOffset);
+    get {
+      if (_InnerMaxsOffset == null) {
+        _InnerMaxsOffset = Schema.GetOffset(0x9C9CB73CCD68E360);
+      }
+      return ref _Handle.AsRef<Vector>(_InnerMaxsOffset!.Value);
+    }
   }
-  private static readonly nint _OuterMinsOffset = Schema.GetOffset(0x9C9CB73C30928F3D);
+  private static nint? _OuterMinsOffset;
 
   public ref Vector OuterMins {
-    get => ref _Handle.AsRef<Vector>(_OuterMinsOffset);
+    get {
+      if (_OuterMinsOffset == null) {
+        _OuterMinsOffset = Schema.GetOffset(0x9C9CB73C30928F3D);
+      }
+      return ref _Handle.AsRef<Vector>(_OuterMinsOffset!.Value);
+    }
   }
-  private static readonly nint _OuterMaxsOffset = Schema.GetOffset(0x9C9CB73CC9A77947);
+  private static nint? _OuterMaxsOffset;
 
   public ref Vector OuterMaxs {
-    get => ref _Handle.AsRef<Vector>(_OuterMaxsOffset);
+    get {
+      if (_OuterMaxsOffset == null) {
+        _OuterMaxsOffset = Schema.GetOffset(0x9C9CB73CC9A77947);
+      }
+      return ref _Handle.AsRef<Vector>(_OuterMaxsOffset!.Value);
+    }
   }
 
 

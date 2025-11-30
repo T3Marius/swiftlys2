@@ -17,25 +17,45 @@ internal partial class FeCollisionPlane_tImpl : SchemaClass, FeCollisionPlane_t 
   public FeCollisionPlane_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CtrlParentOffset = Schema.GetOffset(0xF8EBA99555049230);
+  private static nint? _CtrlParentOffset;
 
   public ref ushort CtrlParent {
-    get => ref _Handle.AsRef<ushort>(_CtrlParentOffset);
+    get {
+      if (_CtrlParentOffset == null) {
+        _CtrlParentOffset = Schema.GetOffset(0xF8EBA99555049230);
+      }
+      return ref _Handle.AsRef<ushort>(_CtrlParentOffset!.Value);
+    }
   }
-  private static readonly nint _ChildNodeOffset = Schema.GetOffset(0xF8EBA99592A8E0E9);
+  private static nint? _ChildNodeOffset;
 
   public ref ushort ChildNode {
-    get => ref _Handle.AsRef<ushort>(_ChildNodeOffset);
+    get {
+      if (_ChildNodeOffset == null) {
+        _ChildNodeOffset = Schema.GetOffset(0xF8EBA99592A8E0E9);
+      }
+      return ref _Handle.AsRef<ushort>(_ChildNodeOffset!.Value);
+    }
   }
-  private static readonly nint _PlaneOffset = Schema.GetOffset(0xF8EBA995671CB5D5);
+  private static nint? _PlaneOffset;
 
   public RnPlane_t Plane {
-    get => new RnPlane_tImpl(_Handle + _PlaneOffset);
+    get {
+      if (_PlaneOffset == null) {
+        _PlaneOffset = Schema.GetOffset(0xF8EBA995671CB5D5);
+      }
+      return new RnPlane_tImpl(_Handle + _PlaneOffset!.Value);
+    }
   }
-  private static readonly nint _StrengthOffset = Schema.GetOffset(0xF8EBA995AFA3323A);
+  private static nint? _StrengthOffset;
 
   public ref float Strength {
-    get => ref _Handle.AsRef<float>(_StrengthOffset);
+    get {
+      if (_StrengthOffset == null) {
+        _StrengthOffset = Schema.GetOffset(0xF8EBA995AFA3323A);
+      }
+      return ref _Handle.AsRef<float>(_StrengthOffset!.Value);
+    }
   }
 
 

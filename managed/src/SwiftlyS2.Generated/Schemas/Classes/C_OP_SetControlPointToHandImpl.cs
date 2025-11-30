@@ -17,25 +17,45 @@ internal partial class C_OP_SetControlPointToHandImpl : CParticleFunctionPreEmis
   public C_OP_SetControlPointToHandImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CP1Offset = Schema.GetOffset(0x5D527B26D4B1E579);
+  private static nint? _CP1Offset;
 
   public ref int CP1 {
-    get => ref _Handle.AsRef<int>(_CP1Offset);
+    get {
+      if (_CP1Offset == null) {
+        _CP1Offset = Schema.GetOffset(0x5D527B26D4B1E579);
+      }
+      return ref _Handle.AsRef<int>(_CP1Offset!.Value);
+    }
   }
-  private static readonly nint _HandOffset = Schema.GetOffset(0x5D527B26D49ECB4C);
+  private static nint? _HandOffset;
 
   public ref int Hand {
-    get => ref _Handle.AsRef<int>(_HandOffset);
+    get {
+      if (_HandOffset == null) {
+        _HandOffset = Schema.GetOffset(0x5D527B26D49ECB4C);
+      }
+      return ref _Handle.AsRef<int>(_HandOffset!.Value);
+    }
   }
-  private static readonly nint _CP1PosOffset = Schema.GetOffset(0x5D527B26408288D9);
+  private static nint? _CP1PosOffset;
 
   public ref Vector CP1Pos {
-    get => ref _Handle.AsRef<Vector>(_CP1PosOffset);
+    get {
+      if (_CP1PosOffset == null) {
+        _CP1PosOffset = Schema.GetOffset(0x5D527B26408288D9);
+      }
+      return ref _Handle.AsRef<Vector>(_CP1PosOffset!.Value);
+    }
   }
-  private static readonly nint _OrientToHandOffset = Schema.GetOffset(0x5D527B26372CF7D8);
+  private static nint? _OrientToHandOffset;
 
   public ref bool OrientToHand {
-    get => ref _Handle.AsRef<bool>(_OrientToHandOffset);
+    get {
+      if (_OrientToHandOffset == null) {
+        _OrientToHandOffset = Schema.GetOffset(0x5D527B26372CF7D8);
+      }
+      return ref _Handle.AsRef<bool>(_OrientToHandOffset!.Value);
+    }
   }
 
 

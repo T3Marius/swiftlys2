@@ -17,30 +17,55 @@ internal partial class DynamicMeshDeformParams_tImpl : SchemaClass, DynamicMeshD
   public DynamicMeshDeformParams_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TensionCompressScaleOffset = Schema.GetOffset(0xBC2B1F5B5DC0072F);
+  private static nint? _TensionCompressScaleOffset;
 
   public ref float TensionCompressScale {
-    get => ref _Handle.AsRef<float>(_TensionCompressScaleOffset);
+    get {
+      if (_TensionCompressScaleOffset == null) {
+        _TensionCompressScaleOffset = Schema.GetOffset(0xBC2B1F5B5DC0072F);
+      }
+      return ref _Handle.AsRef<float>(_TensionCompressScaleOffset!.Value);
+    }
   }
-  private static readonly nint _TensionStretchScaleOffset = Schema.GetOffset(0xBC2B1F5B0EC210AA);
+  private static nint? _TensionStretchScaleOffset;
 
   public ref float TensionStretchScale {
-    get => ref _Handle.AsRef<float>(_TensionStretchScaleOffset);
+    get {
+      if (_TensionStretchScaleOffset == null) {
+        _TensionStretchScaleOffset = Schema.GetOffset(0xBC2B1F5B0EC210AA);
+      }
+      return ref _Handle.AsRef<float>(_TensionStretchScaleOffset!.Value);
+    }
   }
-  private static readonly nint _RecomputeSmoothNormalsAfterAnimationOffset = Schema.GetOffset(0xBC2B1F5BAAFD0999);
+  private static nint? _RecomputeSmoothNormalsAfterAnimationOffset;
 
   public ref bool RecomputeSmoothNormalsAfterAnimation {
-    get => ref _Handle.AsRef<bool>(_RecomputeSmoothNormalsAfterAnimationOffset);
+    get {
+      if (_RecomputeSmoothNormalsAfterAnimationOffset == null) {
+        _RecomputeSmoothNormalsAfterAnimationOffset = Schema.GetOffset(0xBC2B1F5BAAFD0999);
+      }
+      return ref _Handle.AsRef<bool>(_RecomputeSmoothNormalsAfterAnimationOffset!.Value);
+    }
   }
-  private static readonly nint _ComputeDynamicMeshTensionAfterAnimationOffset = Schema.GetOffset(0xBC2B1F5BDC02C4E8);
+  private static nint? _ComputeDynamicMeshTensionAfterAnimationOffset;
 
   public ref bool ComputeDynamicMeshTensionAfterAnimation {
-    get => ref _Handle.AsRef<bool>(_ComputeDynamicMeshTensionAfterAnimationOffset);
+    get {
+      if (_ComputeDynamicMeshTensionAfterAnimationOffset == null) {
+        _ComputeDynamicMeshTensionAfterAnimationOffset = Schema.GetOffset(0xBC2B1F5BDC02C4E8);
+      }
+      return ref _Handle.AsRef<bool>(_ComputeDynamicMeshTensionAfterAnimationOffset!.Value);
+    }
   }
-  private static readonly nint _SmoothNormalsAcrossUvSeamsOffset = Schema.GetOffset(0xBC2B1F5B6719D8D2);
+  private static nint? _SmoothNormalsAcrossUvSeamsOffset;
 
   public ref bool SmoothNormalsAcrossUvSeams {
-    get => ref _Handle.AsRef<bool>(_SmoothNormalsAcrossUvSeamsOffset);
+    get {
+      if (_SmoothNormalsAcrossUvSeamsOffset == null) {
+        _SmoothNormalsAcrossUvSeamsOffset = Schema.GetOffset(0xBC2B1F5B6719D8D2);
+      }
+      return ref _Handle.AsRef<bool>(_SmoothNormalsAcrossUvSeamsOffset!.Value);
+    }
   }
 
 

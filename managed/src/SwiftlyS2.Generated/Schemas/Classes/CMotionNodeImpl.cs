@@ -17,19 +17,32 @@ internal partial class CMotionNodeImpl : SchemaClass, CMotionNode {
   public CMotionNodeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xB29D04644D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xB29D04644D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xB29D04644D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _IdOffset = Schema.GetOffset(0xB29D0464B4B6E980);
+  private static nint? _IdOffset;
 
   public AnimNodeID Id {
-    get => new AnimNodeIDImpl(_Handle + _IdOffset);
+    get {
+      if (_IdOffset == null) {
+        _IdOffset = Schema.GetOffset(0xB29D0464B4B6E980);
+      }
+      return new AnimNodeIDImpl(_Handle + _IdOffset!.Value);
+    }
   }
 
 

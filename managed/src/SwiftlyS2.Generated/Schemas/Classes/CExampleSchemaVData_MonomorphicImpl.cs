@@ -17,15 +17,25 @@ internal partial class CExampleSchemaVData_MonomorphicImpl : SchemaClass, CExamp
   public CExampleSchemaVData_MonomorphicImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _Example1Offset = Schema.GetOffset(0x43DB481BF8CF69BC);
+  private static nint? _Example1Offset;
 
   public ref int Example1 {
-    get => ref _Handle.AsRef<int>(_Example1Offset);
+    get {
+      if (_Example1Offset == null) {
+        _Example1Offset = Schema.GetOffset(0x43DB481BF8CF69BC);
+      }
+      return ref _Handle.AsRef<int>(_Example1Offset!.Value);
+    }
   }
-  private static readonly nint _Example2Offset = Schema.GetOffset(0x43DB481BFBCF6E75);
+  private static nint? _Example2Offset;
 
   public ref int Example2 {
-    get => ref _Handle.AsRef<int>(_Example2Offset);
+    get {
+      if (_Example2Offset == null) {
+        _Example2Offset = Schema.GetOffset(0x43DB481BFBCF6E75);
+      }
+      return ref _Handle.AsRef<int>(_Example2Offset!.Value);
+    }
   }
 
 

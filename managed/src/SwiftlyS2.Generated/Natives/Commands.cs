@@ -53,6 +53,21 @@ internal static class NativeCommands {
     _UnregisterCommand(callbackID);
   }
 
+  private unsafe static delegate* unmanaged<byte*, byte> _IsCommandRegistered;
+
+  public unsafe static bool IsCommandRegistered(string commandName) {
+    var pool = ArrayPool<byte>.Shared;
+    var commandNameLength = Encoding.UTF8.GetByteCount(commandName);
+    var commandNameBuffer = pool.Rent(commandNameLength + 1);
+    Encoding.UTF8.GetBytes(commandName, commandNameBuffer);
+    commandNameBuffer[commandNameLength] = 0;
+    fixed (byte* commandNameBufferPtr = commandNameBuffer) {
+      var ret = _IsCommandRegistered(commandNameBufferPtr);
+      pool.Return(commandNameBuffer);
+      return ret == 1;
+    }
+  }
+
   private unsafe static delegate* unmanaged<byte*, byte*, byte, ulong> _RegisterAlias;
 
   /// <summary>

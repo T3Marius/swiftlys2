@@ -17,25 +17,45 @@ internal partial class CCSPlayer_ActionTrackingServicesImpl : CPlayerPawnCompone
   public CCSPlayer_ActionTrackingServicesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LastWeaponBeforeC4AutoSwitchOffset = Schema.GetOffset(0xC890019D6687BAC0);
+  private static nint? _LastWeaponBeforeC4AutoSwitchOffset;
 
   public ref CHandle<CBasePlayerWeapon> LastWeaponBeforeC4AutoSwitch {
-    get => ref _Handle.AsRef<CHandle<CBasePlayerWeapon>>(_LastWeaponBeforeC4AutoSwitchOffset);
+    get {
+      if (_LastWeaponBeforeC4AutoSwitchOffset == null) {
+        _LastWeaponBeforeC4AutoSwitchOffset = Schema.GetOffset(0xC890019D6687BAC0);
+      }
+      return ref _Handle.AsRef<CHandle<CBasePlayerWeapon>>(_LastWeaponBeforeC4AutoSwitchOffset!.Value);
+    }
   }
-  private static readonly nint _IsRescuingOffset = Schema.GetOffset(0xC890019D225BDB2F);
+  private static nint? _IsRescuingOffset;
 
   public ref bool IsRescuing {
-    get => ref _Handle.AsRef<bool>(_IsRescuingOffset);
+    get {
+      if (_IsRescuingOffset == null) {
+        _IsRescuingOffset = Schema.GetOffset(0xC890019D225BDB2F);
+      }
+      return ref _Handle.AsRef<bool>(_IsRescuingOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponPurchasesThisMatchOffset = Schema.GetOffset(0xC890019D43F68EE0);
+  private static nint? _WeaponPurchasesThisMatchOffset;
 
   public WeaponPurchaseTracker_t WeaponPurchasesThisMatch {
-    get => new WeaponPurchaseTracker_tImpl(_Handle + _WeaponPurchasesThisMatchOffset);
+    get {
+      if (_WeaponPurchasesThisMatchOffset == null) {
+        _WeaponPurchasesThisMatchOffset = Schema.GetOffset(0xC890019D43F68EE0);
+      }
+      return new WeaponPurchaseTracker_tImpl(_Handle + _WeaponPurchasesThisMatchOffset!.Value);
+    }
   }
-  private static readonly nint _WeaponPurchasesThisRoundOffset = Schema.GetOffset(0xC890019D7C64F835);
+  private static nint? _WeaponPurchasesThisRoundOffset;
 
   public WeaponPurchaseTracker_t WeaponPurchasesThisRound {
-    get => new WeaponPurchaseTracker_tImpl(_Handle + _WeaponPurchasesThisRoundOffset);
+    get {
+      if (_WeaponPurchasesThisRoundOffset == null) {
+        _WeaponPurchasesThisRoundOffset = Schema.GetOffset(0xC890019D7C64F835);
+      }
+      return new WeaponPurchaseTracker_tImpl(_Handle + _WeaponPurchasesThisRoundOffset!.Value);
+    }
   }
 
   public void IsRescuingUpdated() {

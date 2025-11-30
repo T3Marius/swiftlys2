@@ -17,10 +17,15 @@ internal partial class CPulseCell_Outflow_ListenForEntityOutput__CursorState_tIm
   public CPulseCell_Outflow_ListenForEntityOutput__CursorState_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _EntityOffset = Schema.GetOffset(0xC31517AD2F3BEB7A);
+  private static nint? _EntityOffset;
 
   public ref CHandle<CBaseEntity> Entity {
-    get => ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset);
+    get {
+      if (_EntityOffset == null) {
+        _EntityOffset = Schema.GetOffset(0xC31517AD2F3BEB7A);
+      }
+      return ref _Handle.AsRef<CHandle<CBaseEntity>>(_EntityOffset!.Value);
+    }
   }
 
 

@@ -26,15 +26,25 @@ internal partial class CCSPlayerResourceImpl : CBaseEntityImpl, CCSPlayerResourc
   public ISchemaFixedArray<uint> HostageEntityIDs {
     get => new SchemaFixedArray<uint>(_Handle, 0xBEE9B9150EEFA350, 12, 4, 4);
   }
-  private static readonly nint _BombsiteCenterAOffset = Schema.GetOffset(0xBEE9B915A11A73BA);
+  private static nint? _BombsiteCenterAOffset;
 
   public ref Vector BombsiteCenterA {
-    get => ref _Handle.AsRef<Vector>(_BombsiteCenterAOffset);
+    get {
+      if (_BombsiteCenterAOffset == null) {
+        _BombsiteCenterAOffset = Schema.GetOffset(0xBEE9B915A11A73BA);
+      }
+      return ref _Handle.AsRef<Vector>(_BombsiteCenterAOffset!.Value);
+    }
   }
-  private static readonly nint _BombsiteCenterBOffset = Schema.GetOffset(0xBEE9B915A01A7227);
+  private static nint? _BombsiteCenterBOffset;
 
   public ref Vector BombsiteCenterB {
-    get => ref _Handle.AsRef<Vector>(_BombsiteCenterBOffset);
+    get {
+      if (_BombsiteCenterBOffset == null) {
+        _BombsiteCenterBOffset = Schema.GetOffset(0xBEE9B915A01A7227);
+      }
+      return ref _Handle.AsRef<Vector>(_BombsiteCenterBOffset!.Value);
+    }
   }
   public ISchemaFixedArray<int> HostageRescueX {
     get => new SchemaFixedArray<int>(_Handle, 0xBEE9B91584FE2109, 4, 4, 4);
@@ -45,15 +55,25 @@ internal partial class CCSPlayerResourceImpl : CBaseEntityImpl, CCSPlayerResourc
   public ISchemaFixedArray<int> HostageRescueZ {
     get => new SchemaFixedArray<int>(_Handle, 0xBEE9B91582FE1DE3, 4, 4, 4);
   }
-  private static readonly nint _EndMatchNextMapAllVotedOffset = Schema.GetOffset(0xBEE9B915E1946791);
+  private static nint? _EndMatchNextMapAllVotedOffset;
 
   public ref bool EndMatchNextMapAllVoted {
-    get => ref _Handle.AsRef<bool>(_EndMatchNextMapAllVotedOffset);
+    get {
+      if (_EndMatchNextMapAllVotedOffset == null) {
+        _EndMatchNextMapAllVotedOffset = Schema.GetOffset(0xBEE9B915E1946791);
+      }
+      return ref _Handle.AsRef<bool>(_EndMatchNextMapAllVotedOffset!.Value);
+    }
   }
-  private static readonly nint _FoundGoalPositionsOffset = Schema.GetOffset(0xBEE9B915A90F0670);
+  private static nint? _FoundGoalPositionsOffset;
 
   public ref bool FoundGoalPositions {
-    get => ref _Handle.AsRef<bool>(_FoundGoalPositionsOffset);
+    get {
+      if (_FoundGoalPositionsOffset == null) {
+        _FoundGoalPositionsOffset = Schema.GetOffset(0xBEE9B915A90F0670);
+      }
+      return ref _Handle.AsRef<bool>(_FoundGoalPositionsOffset!.Value);
+    }
   }
 
   public void HostageAliveUpdated() {

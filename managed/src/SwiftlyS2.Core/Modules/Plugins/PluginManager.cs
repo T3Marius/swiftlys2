@@ -3,6 +3,7 @@ using System.Runtime.Loader;
 using System.Collections.Concurrent;
 using McMaster.NETCore.Plugins;
 using Microsoft.Extensions.Logging;
+using Spectre.Console;
 using SwiftlyS2.Shared;
 using SwiftlyS2.Core.Natives;
 using SwiftlyS2.Core.Services;
@@ -11,7 +12,7 @@ using SwiftlyS2.Core.Modules.Plugins;
 
 namespace SwiftlyS2.Core.Plugins;
 
-internal class PluginManager
+internal class PluginManager : IPluginManager
 {
     private readonly IServiceProvider rootProvider;
     private readonly RootDirService rootDirService;
@@ -122,8 +123,12 @@ internal class PluginManager
                             }
                             Console.WriteLine("\n");
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
+                            if (GlobalExceptionHandler.Handle(ex))
+                            {
+                                AnsiConsole.WriteException(ex);
+                            }
                         }
                     }, cts.Token);
                 }
@@ -416,7 +421,7 @@ internal class PluginManager
 
             try
             {
-                var context = LoadPlugin(pluginDir, true);
+                var context = LoadPlugin(pluginDir, true, silent: false);
                 if (context?.Status == PluginStatus.Loaded)
                 {
                     logger.LogInformation(
@@ -536,7 +541,13 @@ internal class PluginManager
                 loader?.Dispose();
                 core?.Dispose();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                if (GlobalExceptionHandler.Handle(ex))
+                {
+                    AnsiConsole.WriteException(ex);
+                }
+            }
 
             logger.LogError(e, "Exception occurred while loading plugin: {PluginPath}", Path.Combine(dir, Path.GetFileName(dir)) + ".dll");
 
@@ -572,7 +583,7 @@ internal class PluginManager
                 continue;
             }
 
-            if (dirName.Trim().Equals("disable", StringComparison.OrdinalIgnoreCase) || dirName.Trim().Equals("_", StringComparison.OrdinalIgnoreCase))
+            if (dirName.Trim().Equals("disable", StringComparison.OrdinalIgnoreCase) || dirName.Trim().Equals("disabled", StringComparison.OrdinalIgnoreCase) || dirName.Trim().Equals("_", StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
@@ -583,6 +594,107 @@ internal class PluginManager
             }
 
             action(pluginDir);
+        }
+    }
+
+    public bool LoadPlugin( string pluginId, bool silent = false )
+    {
+        return LoadPluginById(pluginId, silent);
+    }
+
+    public bool UnloadPlugin( string pluginId, bool silent = false )
+    {
+        return UnloadPluginById(pluginId, silent);
+    }
+
+    public bool ReloadPlugin( string pluginId, bool silent = false )
+    {
+        return ReloadPluginById(pluginId, silent);
+    }
+
+    public PluginStatus? GetPluginStatus( string pluginId )
+    {
+        foreach (var plugin in plugins)
+        {
+            if (plugin.Metadata != null && plugin.Metadata.Id == pluginId)
+            {
+                return plugin.Status;
+            }
+        }
+        return null;
+    }
+
+    public PluginMetadata? GetPluginMetadata( string pluginId )
+    {
+        foreach (var plugin in plugins)
+        {
+            if (plugin.Metadata != null && plugin.Metadata.Id == pluginId)
+            {
+                return plugin.Metadata;
+            }
+        }
+        return null;
+    }
+
+    public string? GetPluginPath( string pluginId )
+    {
+        foreach (var plugin in plugins)
+        {
+            if (plugin.Metadata != null && plugin.Metadata.Id == pluginId)
+            {
+                return plugin.PluginDirectory;
+            }
+        }
+        return null;
+    }
+
+    public Dictionary<string, string> GetPluginPaths()
+    {
+        var paths = new Dictionary<string, string>();
+        foreach (var plugin in plugins)
+        {
+            if (plugin.Metadata != null && plugin.PluginDirectory != null)
+            {
+                paths[plugin.Metadata.Id] = plugin.PluginDirectory;
+            }
+        }
+        return paths;
+    }
+
+    public Dictionary<string, PluginStatus> GetAllPluginStatuses()
+    {
+        var statuses = new Dictionary<string, PluginStatus>();
+        foreach (var plugin in plugins)
+        {
+            if (plugin.Metadata != null)
+            {
+                statuses[plugin.Metadata.Id] = plugin.Status ?? PluginStatus.Indeterminate;
+            }
+        }
+        return statuses;
+    }
+
+    public Dictionary<string, PluginMetadata> GetAllPluginMetadata()
+    {
+        var metadatas = new Dictionary<string, PluginMetadata>();
+        foreach (var plugin in plugins)
+        {
+            if (plugin.Metadata != null)
+            {
+                metadatas[plugin.Metadata.Id] = plugin.Metadata;
+            }
+        }
+        return metadatas;
+    }
+
+    public IEnumerable<string> GetAllPlugins()
+    {
+        foreach (var plugin in plugins)
+        {
+            if (plugin.Metadata != null)
+            {
+                yield return plugin.Metadata.Id;
+            }
         }
     }
 }

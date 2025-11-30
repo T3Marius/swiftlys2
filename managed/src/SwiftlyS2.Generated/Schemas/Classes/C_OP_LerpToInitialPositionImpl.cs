@@ -17,30 +17,55 @@ internal partial class C_OP_LerpToInitialPositionImpl : CParticleFunctionOperato
   public C_OP_LerpToInitialPositionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ControlPointNumberOffset = Schema.GetOffset(0x56175BC3F31A6BD);
+  private static nint? _ControlPointNumberOffset;
 
   public ref int ControlPointNumber {
-    get => ref _Handle.AsRef<int>(_ControlPointNumberOffset);
+    get {
+      if (_ControlPointNumberOffset == null) {
+        _ControlPointNumberOffset = Schema.GetOffset(0x56175BC3F31A6BD);
+      }
+      return ref _Handle.AsRef<int>(_ControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _InterpolationOffset = Schema.GetOffset(0x56175BCCF55B987);
+  private static nint? _InterpolationOffset;
 
   public CPerParticleFloatInput Interpolation {
-    get => new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset);
+    get {
+      if (_InterpolationOffset == null) {
+        _InterpolationOffset = Schema.GetOffset(0x56175BCCF55B987);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InterpolationOffset!.Value);
+    }
   }
-  private static readonly nint _CacheFieldOffset = Schema.GetOffset(0x56175BCB3696EEB);
+  private static nint? _CacheFieldOffset;
 
   public ParticleAttributeIndex_t CacheField {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _CacheFieldOffset);
+    get {
+      if (_CacheFieldOffset == null) {
+        _CacheFieldOffset = Schema.GetOffset(0x56175BCB3696EEB);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _CacheFieldOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleOffset = Schema.GetOffset(0x56175BCB731A42F);
+  private static nint? _ScaleOffset;
 
   public CParticleCollectionFloatInput Scale {
-    get => new CParticleCollectionFloatInputImpl(_Handle + _ScaleOffset);
+    get {
+      if (_ScaleOffset == null) {
+        _ScaleOffset = Schema.GetOffset(0x56175BCB731A42F);
+      }
+      return new CParticleCollectionFloatInputImpl(_Handle + _ScaleOffset!.Value);
+    }
   }
-  private static readonly nint _Scale1Offset = Schema.GetOffset(0x56175BC5F596B51);
+  private static nint? _Scale1Offset;
 
   public CParticleCollectionVecInput Scale1 {
-    get => new CParticleCollectionVecInputImpl(_Handle + _Scale1Offset);
+    get {
+      if (_Scale1Offset == null) {
+        _Scale1Offset = Schema.GetOffset(0x56175BC5F596B51);
+      }
+      return new CParticleCollectionVecInputImpl(_Handle + _Scale1Offset!.Value);
+    }
   }
 
 

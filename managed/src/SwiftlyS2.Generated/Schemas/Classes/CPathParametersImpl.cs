@@ -17,45 +17,85 @@ internal partial class CPathParametersImpl : SchemaClass, CPathParameters {
   public CPathParametersImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _StartControlPointNumberOffset = Schema.GetOffset(0xE2D8E825CA0E0087);
+  private static nint? _StartControlPointNumberOffset;
 
   public ref int StartControlPointNumber {
-    get => ref _Handle.AsRef<int>(_StartControlPointNumberOffset);
+    get {
+      if (_StartControlPointNumberOffset == null) {
+        _StartControlPointNumberOffset = Schema.GetOffset(0xE2D8E825CA0E0087);
+      }
+      return ref _Handle.AsRef<int>(_StartControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _EndControlPointNumberOffset = Schema.GetOffset(0xE2D8E825A9FAEC22);
+  private static nint? _EndControlPointNumberOffset;
 
   public ref int EndControlPointNumber {
-    get => ref _Handle.AsRef<int>(_EndControlPointNumberOffset);
+    get {
+      if (_EndControlPointNumberOffset == null) {
+        _EndControlPointNumberOffset = Schema.GetOffset(0xE2D8E825A9FAEC22);
+      }
+      return ref _Handle.AsRef<int>(_EndControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _BulgeControlOffset = Schema.GetOffset(0xE2D8E8257C6B6E5D);
+  private static nint? _BulgeControlOffset;
 
   public ref int BulgeControl {
-    get => ref _Handle.AsRef<int>(_BulgeControlOffset);
+    get {
+      if (_BulgeControlOffset == null) {
+        _BulgeControlOffset = Schema.GetOffset(0xE2D8E8257C6B6E5D);
+      }
+      return ref _Handle.AsRef<int>(_BulgeControlOffset!.Value);
+    }
   }
-  private static readonly nint _BulgeOffset = Schema.GetOffset(0xE2D8E825E9AF7E9A);
+  private static nint? _BulgeOffset;
 
   public ref float Bulge {
-    get => ref _Handle.AsRef<float>(_BulgeOffset);
+    get {
+      if (_BulgeOffset == null) {
+        _BulgeOffset = Schema.GetOffset(0xE2D8E825E9AF7E9A);
+      }
+      return ref _Handle.AsRef<float>(_BulgeOffset!.Value);
+    }
   }
-  private static readonly nint _MidPointOffset = Schema.GetOffset(0xE2D8E825427785A3);
+  private static nint? _MidPointOffset;
 
   public ref float MidPoint {
-    get => ref _Handle.AsRef<float>(_MidPointOffset);
+    get {
+      if (_MidPointOffset == null) {
+        _MidPointOffset = Schema.GetOffset(0xE2D8E825427785A3);
+      }
+      return ref _Handle.AsRef<float>(_MidPointOffset!.Value);
+    }
   }
-  private static readonly nint _StartPointOffsetOffset = Schema.GetOffset(0xE2D8E82516897120);
+  private static nint? _StartPointOffsetOffset;
 
   public ref Vector StartPointOffset {
-    get => ref _Handle.AsRef<Vector>(_StartPointOffsetOffset);
+    get {
+      if (_StartPointOffsetOffset == null) {
+        _StartPointOffsetOffset = Schema.GetOffset(0xE2D8E82516897120);
+      }
+      return ref _Handle.AsRef<Vector>(_StartPointOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _MidPointOffsetOffset = Schema.GetOffset(0xE2D8E8252888EB92);
+  private static nint? _MidPointOffsetOffset;
 
   public ref Vector MidPointOffset {
-    get => ref _Handle.AsRef<Vector>(_MidPointOffsetOffset);
+    get {
+      if (_MidPointOffsetOffset == null) {
+        _MidPointOffsetOffset = Schema.GetOffset(0xE2D8E8252888EB92);
+      }
+      return ref _Handle.AsRef<Vector>(_MidPointOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _EndOffsetOffset = Schema.GetOffset(0xE2D8E8255BBD1959);
+  private static nint? _EndOffsetOffset;
 
   public ref Vector EndOffset {
-    get => ref _Handle.AsRef<Vector>(_EndOffsetOffset);
+    get {
+      if (_EndOffsetOffset == null) {
+        _EndOffsetOffset = Schema.GetOffset(0xE2D8E8255BBD1959);
+      }
+      return ref _Handle.AsRef<Vector>(_EndOffsetOffset!.Value);
+    }
   }
 
 

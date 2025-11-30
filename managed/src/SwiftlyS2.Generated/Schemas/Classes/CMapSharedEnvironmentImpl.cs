@@ -17,14 +17,22 @@ internal partial class CMapSharedEnvironmentImpl : CLogicalEntityImpl, CMapShare
   public CMapSharedEnvironmentImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _TargetMapNameOffset = Schema.GetOffset(0xDA50C2DE129742FD);
+  private static nint? _TargetMapNameOffset;
 
   public string TargetMapName {
     get {
-      var ptr = _Handle.Read<nint>(_TargetMapNameOffset);
+      if (_TargetMapNameOffset == null) {
+        _TargetMapNameOffset = Schema.GetOffset(0xDA50C2DE129742FD);
+      }
+      var ptr = _Handle.Read<nint>(_TargetMapNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _TargetMapNameOffset, value);
+    set {
+      if (_TargetMapNameOffset == null) {
+        _TargetMapNameOffset = Schema.GetOffset(0xDA50C2DE129742FD);
+      }
+      Schema.SetString(_Handle, _TargetMapNameOffset!.Value, value);
+    }
   } 
 
 

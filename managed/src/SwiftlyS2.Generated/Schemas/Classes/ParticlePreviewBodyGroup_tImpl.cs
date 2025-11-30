@@ -17,19 +17,32 @@ internal partial class ParticlePreviewBodyGroup_tImpl : SchemaClass, ParticlePre
   public ParticlePreviewBodyGroup_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BodyGroupNameOffset = Schema.GetOffset(0xB53436EB1E953217);
+  private static nint? _BodyGroupNameOffset;
 
   public string BodyGroupName {
     get {
-      var ptr = _Handle.Read<nint>(_BodyGroupNameOffset);
+      if (_BodyGroupNameOffset == null) {
+        _BodyGroupNameOffset = Schema.GetOffset(0xB53436EB1E953217);
+      }
+      var ptr = _Handle.Read<nint>(_BodyGroupNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _BodyGroupNameOffset, value);
+    set {
+      if (_BodyGroupNameOffset == null) {
+        _BodyGroupNameOffset = Schema.GetOffset(0xB53436EB1E953217);
+      }
+      Schema.SetString(_Handle, _BodyGroupNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ValueOffset = Schema.GetOffset(0xB53436EB077D337E);
+  private static nint? _ValueOffset;
 
   public ref int Value {
-    get => ref _Handle.AsRef<int>(_ValueOffset);
+    get {
+      if (_ValueOffset == null) {
+        _ValueOffset = Schema.GetOffset(0xB53436EB077D337E);
+      }
+      return ref _Handle.AsRef<int>(_ValueOffset!.Value);
+    }
   }
 
 

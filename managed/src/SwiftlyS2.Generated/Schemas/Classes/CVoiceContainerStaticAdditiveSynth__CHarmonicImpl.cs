@@ -17,40 +17,75 @@ internal partial class CVoiceContainerStaticAdditiveSynth__CHarmonicImpl : Schem
   public CVoiceContainerStaticAdditiveSynth__CHarmonicImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WaveformOffset = Schema.GetOffset(0xC47956E906E0A8DE);
+  private static nint? _WaveformOffset;
 
   public ref EWaveform Waveform {
-    get => ref _Handle.AsRef<EWaveform>(_WaveformOffset);
+    get {
+      if (_WaveformOffset == null) {
+        _WaveformOffset = Schema.GetOffset(0xC47956E906E0A8DE);
+      }
+      return ref _Handle.AsRef<EWaveform>(_WaveformOffset!.Value);
+    }
   }
-  private static readonly nint _FundamentalOffset = Schema.GetOffset(0xC47956E9C45D876C);
+  private static nint? _FundamentalOffset;
 
   public ref EMidiNote Fundamental {
-    get => ref _Handle.AsRef<EMidiNote>(_FundamentalOffset);
+    get {
+      if (_FundamentalOffset == null) {
+        _FundamentalOffset = Schema.GetOffset(0xC47956E9C45D876C);
+      }
+      return ref _Handle.AsRef<EMidiNote>(_FundamentalOffset!.Value);
+    }
   }
-  private static readonly nint _OctaveOffset = Schema.GetOffset(0xC47956E937F03859);
+  private static nint? _OctaveOffset;
 
   public ref int Octave {
-    get => ref _Handle.AsRef<int>(_OctaveOffset);
+    get {
+      if (_OctaveOffset == null) {
+        _OctaveOffset = Schema.GetOffset(0xC47956E937F03859);
+      }
+      return ref _Handle.AsRef<int>(_OctaveOffset!.Value);
+    }
   }
-  private static readonly nint _CentsOffset = Schema.GetOffset(0xC47956E98E027DCE);
+  private static nint? _CentsOffset;
 
   public ref float Cents {
-    get => ref _Handle.AsRef<float>(_CentsOffset);
+    get {
+      if (_CentsOffset == null) {
+        _CentsOffset = Schema.GetOffset(0xC47956E98E027DCE);
+      }
+      return ref _Handle.AsRef<float>(_CentsOffset!.Value);
+    }
   }
-  private static readonly nint _PhaseOffset = Schema.GetOffset(0xC47956E93C22A9CA);
+  private static nint? _PhaseOffset;
 
   public ref float Phase {
-    get => ref _Handle.AsRef<float>(_PhaseOffset);
+    get {
+      if (_PhaseOffset == null) {
+        _PhaseOffset = Schema.GetOffset(0xC47956E93C22A9CA);
+      }
+      return ref _Handle.AsRef<float>(_PhaseOffset!.Value);
+    }
   }
-  private static readonly nint _CurveOffset = Schema.GetOffset(0xC47956E9BFFA0B34);
+  private static nint? _CurveOffset;
 
   public SchemaUntypedField Curve {
-    get => new SchemaUntypedField(_Handle + _CurveOffset);
+    get {
+      if (_CurveOffset == null) {
+        _CurveOffset = Schema.GetOffset(0xC47956E9BFFA0B34);
+      }
+      return new SchemaUntypedField(_Handle + _CurveOffset!.Value);
+    }
   }
-  private static readonly nint _VolumeScalingOffset = Schema.GetOffset(0xC47956E9820320D8);
+  private static nint? _VolumeScalingOffset;
 
   public CVoiceContainerStaticAdditiveSynth__CGainScalePerInstance VolumeScaling {
-    get => new CVoiceContainerStaticAdditiveSynth__CGainScalePerInstanceImpl(_Handle + _VolumeScalingOffset);
+    get {
+      if (_VolumeScalingOffset == null) {
+        _VolumeScalingOffset = Schema.GetOffset(0xC47956E9820320D8);
+      }
+      return new CVoiceContainerStaticAdditiveSynth__CGainScalePerInstanceImpl(_Handle + _VolumeScalingOffset!.Value);
+    }
   }
 
 

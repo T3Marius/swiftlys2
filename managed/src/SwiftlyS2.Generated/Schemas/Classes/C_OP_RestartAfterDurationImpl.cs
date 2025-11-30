@@ -17,35 +17,65 @@ internal partial class C_OP_RestartAfterDurationImpl : CParticleFunctionOperator
   public C_OP_RestartAfterDurationImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DurationMinOffset = Schema.GetOffset(0x3F8C903A5D25DBDD);
+  private static nint? _DurationMinOffset;
 
   public ref float DurationMin {
-    get => ref _Handle.AsRef<float>(_DurationMinOffset);
+    get {
+      if (_DurationMinOffset == null) {
+        _DurationMinOffset = Schema.GetOffset(0x3F8C903A5D25DBDD);
+      }
+      return ref _Handle.AsRef<float>(_DurationMinOffset!.Value);
+    }
   }
-  private static readonly nint _DurationMaxOffset = Schema.GetOffset(0x3F8C903A671263E3);
+  private static nint? _DurationMaxOffset;
 
   public ref float DurationMax {
-    get => ref _Handle.AsRef<float>(_DurationMaxOffset);
+    get {
+      if (_DurationMaxOffset == null) {
+        _DurationMaxOffset = Schema.GetOffset(0x3F8C903A671263E3);
+      }
+      return ref _Handle.AsRef<float>(_DurationMaxOffset!.Value);
+    }
   }
-  private static readonly nint _CPOffset = Schema.GetOffset(0x3F8C903AEB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x3F8C903AEB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
-  private static readonly nint _CPFieldOffset = Schema.GetOffset(0x3F8C903A50B79876);
+  private static nint? _CPFieldOffset;
 
   public ref int CPField {
-    get => ref _Handle.AsRef<int>(_CPFieldOffset);
+    get {
+      if (_CPFieldOffset == null) {
+        _CPFieldOffset = Schema.GetOffset(0x3F8C903A50B79876);
+      }
+      return ref _Handle.AsRef<int>(_CPFieldOffset!.Value);
+    }
   }
-  private static readonly nint _ChildGroupIDOffset = Schema.GetOffset(0x3F8C903AE3F3C965);
+  private static nint? _ChildGroupIDOffset;
 
   public ref int ChildGroupID {
-    get => ref _Handle.AsRef<int>(_ChildGroupIDOffset);
+    get {
+      if (_ChildGroupIDOffset == null) {
+        _ChildGroupIDOffset = Schema.GetOffset(0x3F8C903AE3F3C965);
+      }
+      return ref _Handle.AsRef<int>(_ChildGroupIDOffset!.Value);
+    }
   }
-  private static readonly nint _OnlyChildrenOffset = Schema.GetOffset(0x3F8C903AD53575B0);
+  private static nint? _OnlyChildrenOffset;
 
   public ref bool OnlyChildren {
-    get => ref _Handle.AsRef<bool>(_OnlyChildrenOffset);
+    get {
+      if (_OnlyChildrenOffset == null) {
+        _OnlyChildrenOffset = Schema.GetOffset(0x3F8C903AD53575B0);
+      }
+      return ref _Handle.AsRef<bool>(_OnlyChildrenOffset!.Value);
+    }
   }
 
 

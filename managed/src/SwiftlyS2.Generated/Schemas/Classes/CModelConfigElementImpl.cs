@@ -17,19 +17,32 @@ internal partial class CModelConfigElementImpl : SchemaClass, CModelConfigElemen
   public CModelConfigElementImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ElementNameOffset = Schema.GetOffset(0x240CE3EFEBDAB614);
+  private static nint? _ElementNameOffset;
 
   public string ElementName {
     get {
-      var ptr = _Handle.Read<nint>(_ElementNameOffset);
+      if (_ElementNameOffset == null) {
+        _ElementNameOffset = Schema.GetOffset(0x240CE3EFEBDAB614);
+      }
+      var ptr = _Handle.Read<nint>(_ElementNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ElementNameOffset, value);
+    set {
+      if (_ElementNameOffset == null) {
+        _ElementNameOffset = Schema.GetOffset(0x240CE3EFEBDAB614);
+      }
+      Schema.SetString(_Handle, _ElementNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _NestedElementsOffset = Schema.GetOffset(0x240CE3EFA31BDBC3);
+  private static nint? _NestedElementsOffset;
 
   public ref CUtlVector<PointerTo<CModelConfigElement>> NestedElements {
-    get => ref _Handle.AsRef<CUtlVector<PointerTo<CModelConfigElement>>>(_NestedElementsOffset);
+    get {
+      if (_NestedElementsOffset == null) {
+        _NestedElementsOffset = Schema.GetOffset(0x240CE3EFA31BDBC3);
+      }
+      return ref _Handle.AsRef<CUtlVector<PointerTo<CModelConfigElement>>>(_NestedElementsOffset!.Value);
+    }
   }
 
 

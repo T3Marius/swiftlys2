@@ -17,10 +17,15 @@ internal partial class CBoneConstraintPoseSpaceBoneImpl : CBaseConstraintImpl, C
   public CBoneConstraintPoseSpaceBoneImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputListOffset = Schema.GetOffset(0x496EBC215EB8D83);
+  private static nint? _InputListOffset;
 
   public ref CUtlVector<CBoneConstraintPoseSpaceBone__Input_t> InputList {
-    get => ref _Handle.AsRef<CUtlVector<CBoneConstraintPoseSpaceBone__Input_t>>(_InputListOffset);
+    get {
+      if (_InputListOffset == null) {
+        _InputListOffset = Schema.GetOffset(0x496EBC215EB8D83);
+      }
+      return ref _Handle.AsRef<CUtlVector<CBoneConstraintPoseSpaceBone__Input_t>>(_InputListOffset!.Value);
+    }
   }
 
 

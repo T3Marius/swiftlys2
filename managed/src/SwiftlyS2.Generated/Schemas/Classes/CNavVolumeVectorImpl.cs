@@ -17,10 +17,15 @@ internal partial class CNavVolumeVectorImpl : CNavVolumeImpl, CNavVolumeVector {
   public CNavVolumeVectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _HasBeenPreFilteredOffset = Schema.GetOffset(0x29D8C0A2454B59CD);
+  private static nint? _HasBeenPreFilteredOffset;
 
   public ref bool HasBeenPreFiltered {
-    get => ref _Handle.AsRef<bool>(_HasBeenPreFilteredOffset);
+    get {
+      if (_HasBeenPreFilteredOffset == null) {
+        _HasBeenPreFilteredOffset = Schema.GetOffset(0x29D8C0A2454B59CD);
+      }
+      return ref _Handle.AsRef<bool>(_HasBeenPreFilteredOffset!.Value);
+    }
   }
 
 

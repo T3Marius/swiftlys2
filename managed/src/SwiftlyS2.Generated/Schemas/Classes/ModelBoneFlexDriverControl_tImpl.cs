@@ -17,34 +17,62 @@ internal partial class ModelBoneFlexDriverControl_tImpl : SchemaClass, ModelBone
   public ModelBoneFlexDriverControl_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _BoneComponentOffset = Schema.GetOffset(0x7DDCB3413C2E9E9E);
+  private static nint? _BoneComponentOffset;
 
   public ref ModelBoneFlexComponent_t BoneComponent {
-    get => ref _Handle.AsRef<ModelBoneFlexComponent_t>(_BoneComponentOffset);
+    get {
+      if (_BoneComponentOffset == null) {
+        _BoneComponentOffset = Schema.GetOffset(0x7DDCB3413C2E9E9E);
+      }
+      return ref _Handle.AsRef<ModelBoneFlexComponent_t>(_BoneComponentOffset!.Value);
+    }
   }
-  private static readonly nint _FlexControllerOffset = Schema.GetOffset(0x7DDCB341EDF88AAA);
+  private static nint? _FlexControllerOffset;
 
   public string FlexController {
     get {
-      var ptr = _Handle.Read<nint>(_FlexControllerOffset);
+      if (_FlexControllerOffset == null) {
+        _FlexControllerOffset = Schema.GetOffset(0x7DDCB341EDF88AAA);
+      }
+      var ptr = _Handle.Read<nint>(_FlexControllerOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FlexControllerOffset, value);
+    set {
+      if (_FlexControllerOffset == null) {
+        _FlexControllerOffset = Schema.GetOffset(0x7DDCB341EDF88AAA);
+      }
+      Schema.SetString(_Handle, _FlexControllerOffset!.Value, value);
+    }
   } 
-  private static readonly nint _FlexControllerTokenOffset = Schema.GetOffset(0x7DDCB341996814FF);
+  private static nint? _FlexControllerTokenOffset;
 
   public ref uint FlexControllerToken {
-    get => ref _Handle.AsRef<uint>(_FlexControllerTokenOffset);
+    get {
+      if (_FlexControllerTokenOffset == null) {
+        _FlexControllerTokenOffset = Schema.GetOffset(0x7DDCB341996814FF);
+      }
+      return ref _Handle.AsRef<uint>(_FlexControllerTokenOffset!.Value);
+    }
   }
-  private static readonly nint _MinOffset = Schema.GetOffset(0x7DDCB3413B1A5649);
+  private static nint? _MinOffset;
 
   public ref float Min {
-    get => ref _Handle.AsRef<float>(_MinOffset);
+    get {
+      if (_MinOffset == null) {
+        _MinOffset = Schema.GetOffset(0x7DDCB3413B1A5649);
+      }
+      return ref _Handle.AsRef<float>(_MinOffset!.Value);
+    }
   }
-  private static readonly nint _MaxOffset = Schema.GetOffset(0x7DDCB3412D06B887);
+  private static nint? _MaxOffset;
 
   public ref float Max {
-    get => ref _Handle.AsRef<float>(_MaxOffset);
+    get {
+      if (_MaxOffset == null) {
+        _MaxOffset = Schema.GetOffset(0x7DDCB3412D06B887);
+      }
+      return ref _Handle.AsRef<float>(_MaxOffset!.Value);
+    }
   }
 
 

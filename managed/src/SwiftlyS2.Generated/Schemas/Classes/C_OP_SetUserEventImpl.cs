@@ -17,30 +17,55 @@ internal partial class C_OP_SetUserEventImpl : CParticleFunctionOperatorImpl, C_
   public C_OP_SetUserEventImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InputOffset = Schema.GetOffset(0x9A6F6FB81D4B7FFD);
+  private static nint? _InputOffset;
 
   public CPerParticleFloatInput Input {
-    get => new CPerParticleFloatInputImpl(_Handle + _InputOffset);
+    get {
+      if (_InputOffset == null) {
+        _InputOffset = Schema.GetOffset(0x9A6F6FB81D4B7FFD);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _InputOffset!.Value);
+    }
   }
-  private static readonly nint _RisingEdgeOffset = Schema.GetOffset(0x9A6F6FB8DCFBDCF4);
+  private static nint? _RisingEdgeOffset;
 
   public CPerParticleFloatInput RisingEdge {
-    get => new CPerParticleFloatInputImpl(_Handle + _RisingEdgeOffset);
+    get {
+      if (_RisingEdgeOffset == null) {
+        _RisingEdgeOffset = Schema.GetOffset(0x9A6F6FB8DCFBDCF4);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _RisingEdgeOffset!.Value);
+    }
   }
-  private static readonly nint _RisingEventTypeOffset = Schema.GetOffset(0x9A6F6FB83790928D);
+  private static nint? _RisingEventTypeOffset;
 
   public ref EventTypeSelection_t RisingEventType {
-    get => ref _Handle.AsRef<EventTypeSelection_t>(_RisingEventTypeOffset);
+    get {
+      if (_RisingEventTypeOffset == null) {
+        _RisingEventTypeOffset = Schema.GetOffset(0x9A6F6FB83790928D);
+      }
+      return ref _Handle.AsRef<EventTypeSelection_t>(_RisingEventTypeOffset!.Value);
+    }
   }
-  private static readonly nint _FallingEdgeOffset = Schema.GetOffset(0x9A6F6FB8CBE5115B);
+  private static nint? _FallingEdgeOffset;
 
   public CPerParticleFloatInput FallingEdge {
-    get => new CPerParticleFloatInputImpl(_Handle + _FallingEdgeOffset);
+    get {
+      if (_FallingEdgeOffset == null) {
+        _FallingEdgeOffset = Schema.GetOffset(0x9A6F6FB8CBE5115B);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _FallingEdgeOffset!.Value);
+    }
   }
-  private static readonly nint _FallingEventTypeOffset = Schema.GetOffset(0x9A6F6FB8C79ED114);
+  private static nint? _FallingEventTypeOffset;
 
   public ref EventTypeSelection_t FallingEventType {
-    get => ref _Handle.AsRef<EventTypeSelection_t>(_FallingEventTypeOffset);
+    get {
+      if (_FallingEventTypeOffset == null) {
+        _FallingEventTypeOffset = Schema.GetOffset(0x9A6F6FB8C79ED114);
+      }
+      return ref _Handle.AsRef<EventTypeSelection_t>(_FallingEventTypeOffset!.Value);
+    }
   }
 
 

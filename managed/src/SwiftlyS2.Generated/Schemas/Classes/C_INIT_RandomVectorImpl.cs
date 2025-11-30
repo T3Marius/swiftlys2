@@ -17,25 +17,45 @@ internal partial class C_INIT_RandomVectorImpl : CParticleFunctionInitializerImp
   public C_INIT_RandomVectorImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinOffset = Schema.GetOffset(0x9B672752B0765F37);
+  private static nint? _MinOffset;
 
   public ref Vector Min {
-    get => ref _Handle.AsRef<Vector>(_MinOffset);
+    get {
+      if (_MinOffset == null) {
+        _MinOffset = Schema.GetOffset(0x9B672752B0765F37);
+      }
+      return ref _Handle.AsRef<Vector>(_MinOffset!.Value);
+    }
   }
-  private static readonly nint _MaxOffset = Schema.GetOffset(0x9B672752BE89FCF9);
+  private static nint? _MaxOffset;
 
   public ref Vector Max {
-    get => ref _Handle.AsRef<Vector>(_MaxOffset);
+    get {
+      if (_MaxOffset == null) {
+        _MaxOffset = Schema.GetOffset(0x9B672752BE89FCF9);
+      }
+      return ref _Handle.AsRef<Vector>(_MaxOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x9B672752E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x9B672752E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _RandomnessParametersOffset = Schema.GetOffset(0x9B6727527EDF50AD);
+  private static nint? _RandomnessParametersOffset;
 
   public CRandomNumberGeneratorParameters RandomnessParameters {
-    get => new CRandomNumberGeneratorParametersImpl(_Handle + _RandomnessParametersOffset);
+    get {
+      if (_RandomnessParametersOffset == null) {
+        _RandomnessParametersOffset = Schema.GetOffset(0x9B6727527EDF50AD);
+      }
+      return new CRandomNumberGeneratorParametersImpl(_Handle + _RandomnessParametersOffset!.Value);
+    }
   }
 
 

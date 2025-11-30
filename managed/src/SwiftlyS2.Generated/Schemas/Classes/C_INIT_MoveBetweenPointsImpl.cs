@@ -17,40 +17,75 @@ internal partial class C_INIT_MoveBetweenPointsImpl : CParticleFunctionInitializ
   public C_INIT_MoveBetweenPointsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _SpeedMinOffset = Schema.GetOffset(0xE2F19642B52776BE);
+  private static nint? _SpeedMinOffset;
 
   public CPerParticleFloatInput SpeedMin {
-    get => new CPerParticleFloatInputImpl(_Handle + _SpeedMinOffset);
+    get {
+      if (_SpeedMinOffset == null) {
+        _SpeedMinOffset = Schema.GetOffset(0xE2F19642B52776BE);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _SpeedMinOffset!.Value);
+    }
   }
-  private static readonly nint _SpeedMaxOffset = Schema.GetOffset(0xE2F19642C7140B5C);
+  private static nint? _SpeedMaxOffset;
 
   public CPerParticleFloatInput SpeedMax {
-    get => new CPerParticleFloatInputImpl(_Handle + _SpeedMaxOffset);
+    get {
+      if (_SpeedMaxOffset == null) {
+        _SpeedMaxOffset = Schema.GetOffset(0xE2F19642C7140B5C);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _SpeedMaxOffset!.Value);
+    }
   }
-  private static readonly nint _EndSpreadOffset = Schema.GetOffset(0xE2F196423D9143DB);
+  private static nint? _EndSpreadOffset;
 
   public CPerParticleFloatInput EndSpread {
-    get => new CPerParticleFloatInputImpl(_Handle + _EndSpreadOffset);
+    get {
+      if (_EndSpreadOffset == null) {
+        _EndSpreadOffset = Schema.GetOffset(0xE2F196423D9143DB);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _EndSpreadOffset!.Value);
+    }
   }
-  private static readonly nint _StartOffsetOffset = Schema.GetOffset(0xE2F1964269A449AA);
+  private static nint? _StartOffsetOffset;
 
   public CPerParticleFloatInput StartOffset {
-    get => new CPerParticleFloatInputImpl(_Handle + _StartOffsetOffset);
+    get {
+      if (_StartOffsetOffset == null) {
+        _StartOffsetOffset = Schema.GetOffset(0xE2F1964269A449AA);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _StartOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _EndOffsetOffset = Schema.GetOffset(0xE2F19642C863E027);
+  private static nint? _EndOffsetOffset;
 
   public CPerParticleFloatInput EndOffset {
-    get => new CPerParticleFloatInputImpl(_Handle + _EndOffsetOffset);
+    get {
+      if (_EndOffsetOffset == null) {
+        _EndOffsetOffset = Schema.GetOffset(0xE2F19642C863E027);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _EndOffsetOffset!.Value);
+    }
   }
-  private static readonly nint _EndControlPointNumberOffset = Schema.GetOffset(0xE2F19642A9FAEC22);
+  private static nint? _EndControlPointNumberOffset;
 
   public ref int EndControlPointNumber {
-    get => ref _Handle.AsRef<int>(_EndControlPointNumberOffset);
+    get {
+      if (_EndControlPointNumberOffset == null) {
+        _EndControlPointNumberOffset = Schema.GetOffset(0xE2F19642A9FAEC22);
+      }
+      return ref _Handle.AsRef<int>(_EndControlPointNumberOffset!.Value);
+    }
   }
-  private static readonly nint _TrailBiasOffset = Schema.GetOffset(0xE2F1964294C9A26A);
+  private static nint? _TrailBiasOffset;
 
   public ref bool TrailBias {
-    get => ref _Handle.AsRef<bool>(_TrailBiasOffset);
+    get {
+      if (_TrailBiasOffset == null) {
+        _TrailBiasOffset = Schema.GetOffset(0xE2F1964294C9A26A);
+      }
+      return ref _Handle.AsRef<bool>(_TrailBiasOffset!.Value);
+    }
   }
 
 

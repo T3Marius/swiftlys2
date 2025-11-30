@@ -17,40 +17,75 @@ internal partial class CDampedPathAnimMotorUpdaterImpl : CPathAnimMotorUpdaterBa
   public CDampedPathAnimMotorUpdaterImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _AnticipationTimeOffset = Schema.GetOffset(0x1519DE4D43C5CA9B);
+  private static nint? _AnticipationTimeOffset;
 
   public ref float AnticipationTime {
-    get => ref _Handle.AsRef<float>(_AnticipationTimeOffset);
+    get {
+      if (_AnticipationTimeOffset == null) {
+        _AnticipationTimeOffset = Schema.GetOffset(0x1519DE4D43C5CA9B);
+      }
+      return ref _Handle.AsRef<float>(_AnticipationTimeOffset!.Value);
+    }
   }
-  private static readonly nint _MinSpeedScaleOffset = Schema.GetOffset(0x1519DE4DED3B5DEE);
+  private static nint? _MinSpeedScaleOffset;
 
   public ref float MinSpeedScale {
-    get => ref _Handle.AsRef<float>(_MinSpeedScaleOffset);
+    get {
+      if (_MinSpeedScaleOffset == null) {
+        _MinSpeedScaleOffset = Schema.GetOffset(0x1519DE4DED3B5DEE);
+      }
+      return ref _Handle.AsRef<float>(_MinSpeedScaleOffset!.Value);
+    }
   }
-  private static readonly nint _AnticipationPosParamOffset = Schema.GetOffset(0x1519DE4D86389829);
+  private static nint? _AnticipationPosParamOffset;
 
   public CAnimParamHandle AnticipationPosParam {
-    get => new CAnimParamHandleImpl(_Handle + _AnticipationPosParamOffset);
+    get {
+      if (_AnticipationPosParamOffset == null) {
+        _AnticipationPosParamOffset = Schema.GetOffset(0x1519DE4D86389829);
+      }
+      return new CAnimParamHandleImpl(_Handle + _AnticipationPosParamOffset!.Value);
+    }
   }
-  private static readonly nint _AnticipationHeadingParamOffset = Schema.GetOffset(0x1519DE4D095DAB6D);
+  private static nint? _AnticipationHeadingParamOffset;
 
   public CAnimParamHandle AnticipationHeadingParam {
-    get => new CAnimParamHandleImpl(_Handle + _AnticipationHeadingParamOffset);
+    get {
+      if (_AnticipationHeadingParamOffset == null) {
+        _AnticipationHeadingParamOffset = Schema.GetOffset(0x1519DE4D095DAB6D);
+      }
+      return new CAnimParamHandleImpl(_Handle + _AnticipationHeadingParamOffset!.Value);
+    }
   }
-  private static readonly nint _SpringConstantOffset = Schema.GetOffset(0x1519DE4DCE2260BE);
+  private static nint? _SpringConstantOffset;
 
   public ref float SpringConstant {
-    get => ref _Handle.AsRef<float>(_SpringConstantOffset);
+    get {
+      if (_SpringConstantOffset == null) {
+        _SpringConstantOffset = Schema.GetOffset(0x1519DE4DCE2260BE);
+      }
+      return ref _Handle.AsRef<float>(_SpringConstantOffset!.Value);
+    }
   }
-  private static readonly nint _MinSpringTensionOffset = Schema.GetOffset(0x1519DE4DEEE56032);
+  private static nint? _MinSpringTensionOffset;
 
   public ref float MinSpringTension {
-    get => ref _Handle.AsRef<float>(_MinSpringTensionOffset);
+    get {
+      if (_MinSpringTensionOffset == null) {
+        _MinSpringTensionOffset = Schema.GetOffset(0x1519DE4DEEE56032);
+      }
+      return ref _Handle.AsRef<float>(_MinSpringTensionOffset!.Value);
+    }
   }
-  private static readonly nint _MaxSpringTensionOffset = Schema.GetOffset(0x1519DE4DD4910BE4);
+  private static nint? _MaxSpringTensionOffset;
 
   public ref float MaxSpringTension {
-    get => ref _Handle.AsRef<float>(_MaxSpringTensionOffset);
+    get {
+      if (_MaxSpringTensionOffset == null) {
+        _MaxSpringTensionOffset = Schema.GetOffset(0x1519DE4DD4910BE4);
+      }
+      return ref _Handle.AsRef<float>(_MaxSpringTensionOffset!.Value);
+    }
   }
 
 

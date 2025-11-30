@@ -17,10 +17,15 @@ internal partial class CAnimUpdateNodeRefImpl : SchemaClass, CAnimUpdateNodeRef 
   public CAnimUpdateNodeRefImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NodeIndexOffset = Schema.GetOffset(0x71F7CF87E37313D3);
+  private static nint? _NodeIndexOffset;
 
   public ref int NodeIndex {
-    get => ref _Handle.AsRef<int>(_NodeIndexOffset);
+    get {
+      if (_NodeIndexOffset == null) {
+        _NodeIndexOffset = Schema.GetOffset(0x71F7CF87E37313D3);
+      }
+      return ref _Handle.AsRef<int>(_NodeIndexOffset!.Value);
+    }
   }
 
 

@@ -17,42 +17,76 @@ internal partial class CFogVolumeImpl : CServerOnlyModelEntityImpl, CFogVolume {
   public CFogVolumeImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FogNameOffset = Schema.GetOffset(0x670FE9BC72E45F7C);
+  private static nint? _FogNameOffset;
 
   public string FogName {
     get {
-      var ptr = _Handle.Read<nint>(_FogNameOffset);
+      if (_FogNameOffset == null) {
+        _FogNameOffset = Schema.GetOffset(0x670FE9BC72E45F7C);
+      }
+      var ptr = _Handle.Read<nint>(_FogNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _FogNameOffset, value);
+    set {
+      if (_FogNameOffset == null) {
+        _FogNameOffset = Schema.GetOffset(0x670FE9BC72E45F7C);
+      }
+      Schema.SetString(_Handle, _FogNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PostProcessNameOffset = Schema.GetOffset(0x670FE9BCAA94630F);
+  private static nint? _PostProcessNameOffset;
 
   public string PostProcessName {
     get {
-      var ptr = _Handle.Read<nint>(_PostProcessNameOffset);
+      if (_PostProcessNameOffset == null) {
+        _PostProcessNameOffset = Schema.GetOffset(0x670FE9BCAA94630F);
+      }
+      var ptr = _Handle.Read<nint>(_PostProcessNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PostProcessNameOffset, value);
+    set {
+      if (_PostProcessNameOffset == null) {
+        _PostProcessNameOffset = Schema.GetOffset(0x670FE9BCAA94630F);
+      }
+      Schema.SetString(_Handle, _PostProcessNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ColorCorrectionNameOffset = Schema.GetOffset(0x670FE9BC0E26708B);
+  private static nint? _ColorCorrectionNameOffset;
 
   public string ColorCorrectionName {
     get {
-      var ptr = _Handle.Read<nint>(_ColorCorrectionNameOffset);
+      if (_ColorCorrectionNameOffset == null) {
+        _ColorCorrectionNameOffset = Schema.GetOffset(0x670FE9BC0E26708B);
+      }
+      var ptr = _Handle.Read<nint>(_ColorCorrectionNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _ColorCorrectionNameOffset, value);
+    set {
+      if (_ColorCorrectionNameOffset == null) {
+        _ColorCorrectionNameOffset = Schema.GetOffset(0x670FE9BC0E26708B);
+      }
+      Schema.SetString(_Handle, _ColorCorrectionNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _DisabledOffset = Schema.GetOffset(0x670FE9BC3A7C5965);
+  private static nint? _DisabledOffset;
 
   public ref bool Disabled {
-    get => ref _Handle.AsRef<bool>(_DisabledOffset);
+    get {
+      if (_DisabledOffset == null) {
+        _DisabledOffset = Schema.GetOffset(0x670FE9BC3A7C5965);
+      }
+      return ref _Handle.AsRef<bool>(_DisabledOffset!.Value);
+    }
   }
-  private static readonly nint _InFogVolumesListOffset = Schema.GetOffset(0x670FE9BC8D7209DD);
+  private static nint? _InFogVolumesListOffset;
 
   public ref bool InFogVolumesList {
-    get => ref _Handle.AsRef<bool>(_InFogVolumesListOffset);
+    get {
+      if (_InFogVolumesListOffset == null) {
+        _InFogVolumesListOffset = Schema.GetOffset(0x670FE9BC8D7209DD);
+      }
+      return ref _Handle.AsRef<bool>(_InFogVolumesListOffset!.Value);
+    }
   }
 
 

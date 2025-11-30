@@ -35,10 +35,15 @@ internal partial class FeSimdNodeBase_tImpl : SchemaClass, FeSimdNodeBase_t {
   public ISchemaFixedArray<ushort> Dummy {
     get => new SchemaFixedArray<ushort>(_Handle, 0x8B863723CD8BAE5F, 4, 2, 2);
   }
-  private static readonly nint _AdjustOffset = Schema.GetOffset(0x8B8637230F6C0983);
+  private static nint? _AdjustOffset;
 
   public FourQuaternions Adjust {
-    get => new FourQuaternionsImpl(_Handle + _AdjustOffset);
+    get {
+      if (_AdjustOffset == null) {
+        _AdjustOffset = Schema.GetOffset(0x8B8637230F6C0983);
+      }
+      return new FourQuaternionsImpl(_Handle + _AdjustOffset!.Value);
+    }
   }
 
 

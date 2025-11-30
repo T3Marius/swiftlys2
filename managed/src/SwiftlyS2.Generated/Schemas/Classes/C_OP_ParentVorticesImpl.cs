@@ -17,20 +17,35 @@ internal partial class C_OP_ParentVorticesImpl : CParticleFunctionForceImpl, C_O
   public C_OP_ParentVorticesImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ForceScaleOffset = Schema.GetOffset(0xBB2B6F884817F390);
+  private static nint? _ForceScaleOffset;
 
   public ref float ForceScale {
-    get => ref _Handle.AsRef<float>(_ForceScaleOffset);
+    get {
+      if (_ForceScaleOffset == null) {
+        _ForceScaleOffset = Schema.GetOffset(0xBB2B6F884817F390);
+      }
+      return ref _Handle.AsRef<float>(_ForceScaleOffset!.Value);
+    }
   }
-  private static readonly nint _TwistAxisOffset = Schema.GetOffset(0xBB2B6F8808970741);
+  private static nint? _TwistAxisOffset;
 
   public ref Vector TwistAxis {
-    get => ref _Handle.AsRef<Vector>(_TwistAxisOffset);
+    get {
+      if (_TwistAxisOffset == null) {
+        _TwistAxisOffset = Schema.GetOffset(0xBB2B6F8808970741);
+      }
+      return ref _Handle.AsRef<Vector>(_TwistAxisOffset!.Value);
+    }
   }
-  private static readonly nint _FlipBasedOnYawOffset = Schema.GetOffset(0xBB2B6F88BCFD5843);
+  private static nint? _FlipBasedOnYawOffset;
 
   public ref bool FlipBasedOnYaw {
-    get => ref _Handle.AsRef<bool>(_FlipBasedOnYawOffset);
+    get {
+      if (_FlipBasedOnYawOffset == null) {
+        _FlipBasedOnYawOffset = Schema.GetOffset(0xBB2B6F88BCFD5843);
+      }
+      return ref _Handle.AsRef<bool>(_FlipBasedOnYawOffset!.Value);
+    }
   }
 
 

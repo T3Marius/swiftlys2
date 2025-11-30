@@ -17,60 +17,115 @@ internal partial class CNmChainLookatTaskImpl : CNmPoseTaskImpl, CNmChainLookatT
   public CNmChainLookatTaskImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ChainEndBoneIdxOffset = Schema.GetOffset(0x4021FFEBC513D7B8);
+  private static nint? _ChainEndBoneIdxOffset;
 
   public ref int ChainEndBoneIdx {
-    get => ref _Handle.AsRef<int>(_ChainEndBoneIdxOffset);
+    get {
+      if (_ChainEndBoneIdxOffset == null) {
+        _ChainEndBoneIdxOffset = Schema.GetOffset(0x4021FFEBC513D7B8);
+      }
+      return ref _Handle.AsRef<int>(_ChainEndBoneIdxOffset!.Value);
+    }
   }
-  private static readonly nint _NumBonesInChainOffset = Schema.GetOffset(0x4021FFEBCAD2EB3E);
+  private static nint? _NumBonesInChainOffset;
 
   public ref int NumBonesInChain {
-    get => ref _Handle.AsRef<int>(_NumBonesInChainOffset);
+    get {
+      if (_NumBonesInChainOffset == null) {
+        _NumBonesInChainOffset = Schema.GetOffset(0x4021FFEBCAD2EB3E);
+      }
+      return ref _Handle.AsRef<int>(_NumBonesInChainOffset!.Value);
+    }
   }
-  private static readonly nint _ChainForwardDirOffset = Schema.GetOffset(0x4021FFEB98A5355A);
+  private static nint? _ChainForwardDirOffset;
 
   public ref Vector ChainForwardDir {
-    get => ref _Handle.AsRef<Vector>(_ChainForwardDirOffset);
+    get {
+      if (_ChainForwardDirOffset == null) {
+        _ChainForwardDirOffset = Schema.GetOffset(0x4021FFEB98A5355A);
+      }
+      return ref _Handle.AsRef<Vector>(_ChainForwardDirOffset!.Value);
+    }
   }
-  private static readonly nint _BlendWeightOffset = Schema.GetOffset(0x4021FFEBE5D6B9CE);
+  private static nint? _BlendWeightOffset;
 
   public ref float BlendWeight {
-    get => ref _Handle.AsRef<float>(_BlendWeightOffset);
+    get {
+      if (_BlendWeightOffset == null) {
+        _BlendWeightOffset = Schema.GetOffset(0x4021FFEBE5D6B9CE);
+      }
+      return ref _Handle.AsRef<float>(_BlendWeightOffset!.Value);
+    }
   }
-  private static readonly nint _HorizontalAngleLimitDegreesOffset = Schema.GetOffset(0x4021FFEB0D028F1E);
+  private static nint? _HorizontalAngleLimitDegreesOffset;
 
   public ref float HorizontalAngleLimitDegrees {
-    get => ref _Handle.AsRef<float>(_HorizontalAngleLimitDegreesOffset);
+    get {
+      if (_HorizontalAngleLimitDegreesOffset == null) {
+        _HorizontalAngleLimitDegreesOffset = Schema.GetOffset(0x4021FFEB0D028F1E);
+      }
+      return ref _Handle.AsRef<float>(_HorizontalAngleLimitDegreesOffset!.Value);
+    }
   }
-  private static readonly nint _VerticalAngleLimitDegreesOffset = Schema.GetOffset(0x4021FFEBC3214250);
+  private static nint? _VerticalAngleLimitDegreesOffset;
 
   public ref float VerticalAngleLimitDegrees {
-    get => ref _Handle.AsRef<float>(_VerticalAngleLimitDegreesOffset);
+    get {
+      if (_VerticalAngleLimitDegreesOffset == null) {
+        _VerticalAngleLimitDegreesOffset = Schema.GetOffset(0x4021FFEBC3214250);
+      }
+      return ref _Handle.AsRef<float>(_VerticalAngleLimitDegreesOffset!.Value);
+    }
   }
-  private static readonly nint _LookatTargetOffset = Schema.GetOffset(0x4021FFEBBD59D4D6);
+  private static nint? _LookatTargetOffset;
 
   public ref Vector LookatTarget {
-    get => ref _Handle.AsRef<Vector>(_LookatTargetOffset);
+    get {
+      if (_LookatTargetOffset == null) {
+        _LookatTargetOffset = Schema.GetOffset(0x4021FFEBBD59D4D6);
+      }
+      return ref _Handle.AsRef<Vector>(_LookatTargetOffset!.Value);
+    }
   }
-  private static readonly nint _IsTargetInWorldSpaceOffset = Schema.GetOffset(0x4021FFEB5F56E0C5);
+  private static nint? _IsTargetInWorldSpaceOffset;
 
   public ref bool IsTargetInWorldSpace {
-    get => ref _Handle.AsRef<bool>(_IsTargetInWorldSpaceOffset);
+    get {
+      if (_IsTargetInWorldSpaceOffset == null) {
+        _IsTargetInWorldSpaceOffset = Schema.GetOffset(0x4021FFEB5F56E0C5);
+      }
+      return ref _Handle.AsRef<bool>(_IsTargetInWorldSpaceOffset!.Value);
+    }
   }
-  private static readonly nint _IsRunningFromDeserializedDataOffset = Schema.GetOffset(0x4021FFEB4791111D);
+  private static nint? _IsRunningFromDeserializedDataOffset;
 
   public ref bool IsRunningFromDeserializedData {
-    get => ref _Handle.AsRef<bool>(_IsRunningFromDeserializedDataOffset);
+    get {
+      if (_IsRunningFromDeserializedDataOffset == null) {
+        _IsRunningFromDeserializedDataOffset = Schema.GetOffset(0x4021FFEB4791111D);
+      }
+      return ref _Handle.AsRef<bool>(_IsRunningFromDeserializedDataOffset!.Value);
+    }
   }
-  private static readonly nint _HorizontalAngleDegreesOffset = Schema.GetOffset(0x4021FFEB25C3867F);
+  private static nint? _HorizontalAngleDegreesOffset;
 
   public ref float HorizontalAngleDegrees {
-    get => ref _Handle.AsRef<float>(_HorizontalAngleDegreesOffset);
+    get {
+      if (_HorizontalAngleDegreesOffset == null) {
+        _HorizontalAngleDegreesOffset = Schema.GetOffset(0x4021FFEB25C3867F);
+      }
+      return ref _Handle.AsRef<float>(_HorizontalAngleDegreesOffset!.Value);
+    }
   }
-  private static readonly nint _VerticalAngleDegreesOffset = Schema.GetOffset(0x4021FFEBF1DC7205);
+  private static nint? _VerticalAngleDegreesOffset;
 
   public ref float VerticalAngleDegrees {
-    get => ref _Handle.AsRef<float>(_VerticalAngleDegreesOffset);
+    get {
+      if (_VerticalAngleDegreesOffset == null) {
+        _VerticalAngleDegreesOffset = Schema.GetOffset(0x4021FFEBF1DC7205);
+      }
+      return ref _Handle.AsRef<float>(_VerticalAngleDegreesOffset!.Value);
+    }
   }
 
 

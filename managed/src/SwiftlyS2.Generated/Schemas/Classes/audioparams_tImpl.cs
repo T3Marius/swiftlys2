@@ -20,25 +20,45 @@ internal partial class audioparams_tImpl : SchemaClass, audioparams_t {
   public ISchemaFixedArray<Vector> LocalSound {
     get => new SchemaFixedArray<Vector>(_Handle, 0x6D349E3CCE184A47, 8, 12, 4);
   }
-  private static readonly nint _SoundscapeIndexOffset = Schema.GetOffset(0x6D349E3C046FCFEE);
+  private static nint? _SoundscapeIndexOffset;
 
   public ref int SoundscapeIndex {
-    get => ref _Handle.AsRef<int>(_SoundscapeIndexOffset);
+    get {
+      if (_SoundscapeIndexOffset == null) {
+        _SoundscapeIndexOffset = Schema.GetOffset(0x6D349E3C046FCFEE);
+      }
+      return ref _Handle.AsRef<int>(_SoundscapeIndexOffset!.Value);
+    }
   }
-  private static readonly nint _LocalBitsOffset = Schema.GetOffset(0x6D349E3C1DE85B60);
+  private static nint? _LocalBitsOffset;
 
   public ref byte LocalBits {
-    get => ref _Handle.AsRef<byte>(_LocalBitsOffset);
+    get {
+      if (_LocalBitsOffset == null) {
+        _LocalBitsOffset = Schema.GetOffset(0x6D349E3C1DE85B60);
+      }
+      return ref _Handle.AsRef<byte>(_LocalBitsOffset!.Value);
+    }
   }
-  private static readonly nint _SoundscapeEntityListIndexOffset = Schema.GetOffset(0x6D349E3CA4E4FB9B);
+  private static nint? _SoundscapeEntityListIndexOffset;
 
   public ref int SoundscapeEntityListIndex {
-    get => ref _Handle.AsRef<int>(_SoundscapeEntityListIndexOffset);
+    get {
+      if (_SoundscapeEntityListIndexOffset == null) {
+        _SoundscapeEntityListIndexOffset = Schema.GetOffset(0x6D349E3CA4E4FB9B);
+      }
+      return ref _Handle.AsRef<int>(_SoundscapeEntityListIndexOffset!.Value);
+    }
   }
-  private static readonly nint _SoundEventHashOffset = Schema.GetOffset(0x6D349E3C335E17CC);
+  private static nint? _SoundEventHashOffset;
 
   public ref uint SoundEventHash {
-    get => ref _Handle.AsRef<uint>(_SoundEventHashOffset);
+    get {
+      if (_SoundEventHashOffset == null) {
+        _SoundEventHashOffset = Schema.GetOffset(0x6D349E3C335E17CC);
+      }
+      return ref _Handle.AsRef<uint>(_SoundEventHashOffset!.Value);
+    }
   }
 
   public void LocalSoundUpdated() {

@@ -17,25 +17,45 @@ internal partial class C_OP_LerpScalarImpl : CParticleFunctionOperatorImpl, C_OP
   public C_OP_LerpScalarImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0xB2C648D4E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0xB2C648D4E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _OutputOffset = Schema.GetOffset(0xB2C648D4368F96A2);
+  private static nint? _OutputOffset;
 
   public CPerParticleFloatInput Output {
-    get => new CPerParticleFloatInputImpl(_Handle + _OutputOffset);
+    get {
+      if (_OutputOffset == null) {
+        _OutputOffset = Schema.GetOffset(0xB2C648D4368F96A2);
+      }
+      return new CPerParticleFloatInputImpl(_Handle + _OutputOffset!.Value);
+    }
   }
-  private static readonly nint _StartTimeOffset = Schema.GetOffset(0xB2C648D467FE9DC4);
+  private static nint? _StartTimeOffset;
 
   public ref float StartTime {
-    get => ref _Handle.AsRef<float>(_StartTimeOffset);
+    get {
+      if (_StartTimeOffset == null) {
+        _StartTimeOffset = Schema.GetOffset(0xB2C648D467FE9DC4);
+      }
+      return ref _Handle.AsRef<float>(_StartTimeOffset!.Value);
+    }
   }
-  private static readonly nint _EndTimeOffset = Schema.GetOffset(0xB2C648D42041DF9D);
+  private static nint? _EndTimeOffset;
 
   public ref float EndTime {
-    get => ref _Handle.AsRef<float>(_EndTimeOffset);
+    get {
+      if (_EndTimeOffset == null) {
+        _EndTimeOffset = Schema.GetOffset(0xB2C648D42041DF9D);
+      }
+      return ref _Handle.AsRef<float>(_EndTimeOffset!.Value);
+    }
   }
 
 

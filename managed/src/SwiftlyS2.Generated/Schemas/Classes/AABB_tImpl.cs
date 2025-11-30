@@ -17,15 +17,25 @@ internal partial class AABB_tImpl : SchemaClass, AABB_t {
   public AABB_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _MinBoundsOffset = Schema.GetOffset(0xC0D32A84114799FE);
+  private static nint? _MinBoundsOffset;
 
   public ref Vector MinBounds {
-    get => ref _Handle.AsRef<Vector>(_MinBoundsOffset);
+    get {
+      if (_MinBoundsOffset == null) {
+        _MinBoundsOffset = Schema.GetOffset(0xC0D32A84114799FE);
+      }
+      return ref _Handle.AsRef<Vector>(_MinBoundsOffset!.Value);
+    }
   }
-  private static readonly nint _MaxBoundsOffset = Schema.GetOffset(0xC0D32A84C0B4CE60);
+  private static nint? _MaxBoundsOffset;
 
   public ref Vector MaxBounds {
-    get => ref _Handle.AsRef<Vector>(_MaxBoundsOffset);
+    get {
+      if (_MaxBoundsOffset == null) {
+        _MaxBoundsOffset = Schema.GetOffset(0xC0D32A84C0B4CE60);
+      }
+      return ref _Handle.AsRef<Vector>(_MaxBoundsOffset!.Value);
+    }
   }
 
   public void MinBoundsUpdated() {

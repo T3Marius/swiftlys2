@@ -17,45 +17,85 @@ internal partial class C_OP_RenderBlobsImpl : CParticleFunctionRendererImpl, C_O
   public C_OP_RenderBlobsImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CubeWidthOffset = Schema.GetOffset(0xB25239A3E172FDCC);
+  private static nint? _CubeWidthOffset;
 
   public CParticleCollectionRendererFloatInput CubeWidth {
-    get => new CParticleCollectionRendererFloatInputImpl(_Handle + _CubeWidthOffset);
+    get {
+      if (_CubeWidthOffset == null) {
+        _CubeWidthOffset = Schema.GetOffset(0xB25239A3E172FDCC);
+      }
+      return new CParticleCollectionRendererFloatInputImpl(_Handle + _CubeWidthOffset!.Value);
+    }
   }
-  private static readonly nint _CutoffRadiusOffset = Schema.GetOffset(0xB25239A33B9D5B46);
+  private static nint? _CutoffRadiusOffset;
 
   public CParticleCollectionRendererFloatInput CutoffRadius {
-    get => new CParticleCollectionRendererFloatInputImpl(_Handle + _CutoffRadiusOffset);
+    get {
+      if (_CutoffRadiusOffset == null) {
+        _CutoffRadiusOffset = Schema.GetOffset(0xB25239A33B9D5B46);
+      }
+      return new CParticleCollectionRendererFloatInputImpl(_Handle + _CutoffRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _RenderRadiusOffset = Schema.GetOffset(0xB25239A35157484B);
+  private static nint? _RenderRadiusOffset;
 
   public CParticleCollectionRendererFloatInput RenderRadius {
-    get => new CParticleCollectionRendererFloatInputImpl(_Handle + _RenderRadiusOffset);
+    get {
+      if (_RenderRadiusOffset == null) {
+        _RenderRadiusOffset = Schema.GetOffset(0xB25239A35157484B);
+      }
+      return new CParticleCollectionRendererFloatInputImpl(_Handle + _RenderRadiusOffset!.Value);
+    }
   }
-  private static readonly nint _VertexCountKbOffset = Schema.GetOffset(0xB25239A36064907B);
+  private static nint? _VertexCountKbOffset;
 
   public ref uint VertexCountKb {
-    get => ref _Handle.AsRef<uint>(_VertexCountKbOffset);
+    get {
+      if (_VertexCountKbOffset == null) {
+        _VertexCountKbOffset = Schema.GetOffset(0xB25239A36064907B);
+      }
+      return ref _Handle.AsRef<uint>(_VertexCountKbOffset!.Value);
+    }
   }
-  private static readonly nint _IndexCountKbOffset = Schema.GetOffset(0xB25239A36CDECFF7);
+  private static nint? _IndexCountKbOffset;
 
   public ref uint IndexCountKb {
-    get => ref _Handle.AsRef<uint>(_IndexCountKbOffset);
+    get {
+      if (_IndexCountKbOffset == null) {
+        _IndexCountKbOffset = Schema.GetOffset(0xB25239A36CDECFF7);
+      }
+      return ref _Handle.AsRef<uint>(_IndexCountKbOffset!.Value);
+    }
   }
-  private static readonly nint _ScaleCPOffset = Schema.GetOffset(0xB25239A3DE3CC5E6);
+  private static nint? _ScaleCPOffset;
 
   public ref int ScaleCP {
-    get => ref _Handle.AsRef<int>(_ScaleCPOffset);
+    get {
+      if (_ScaleCPOffset == null) {
+        _ScaleCPOffset = Schema.GetOffset(0xB25239A3DE3CC5E6);
+      }
+      return ref _Handle.AsRef<int>(_ScaleCPOffset!.Value);
+    }
   }
-  private static readonly nint _MaterialVarsOffset = Schema.GetOffset(0xB25239A3FA861D66);
+  private static nint? _MaterialVarsOffset;
 
   public ref CUtlVector<MaterialVariable_t> MaterialVars {
-    get => ref _Handle.AsRef<CUtlVector<MaterialVariable_t>>(_MaterialVarsOffset);
+    get {
+      if (_MaterialVarsOffset == null) {
+        _MaterialVarsOffset = Schema.GetOffset(0xB25239A3FA861D66);
+      }
+      return ref _Handle.AsRef<CUtlVector<MaterialVariable_t>>(_MaterialVarsOffset!.Value);
+    }
   }
-  private static readonly nint _MaterialOffset = Schema.GetOffset(0xB25239A3888CE42E);
+  private static nint? _MaterialOffset;
 
   public ref CStrongHandle<InfoForResourceTypeIMaterial2> Material {
-    get => ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_MaterialOffset);
+    get {
+      if (_MaterialOffset == null) {
+        _MaterialOffset = Schema.GetOffset(0xB25239A3888CE42E);
+      }
+      return ref _Handle.AsRef<CStrongHandle<InfoForResourceTypeIMaterial2>>(_MaterialOffset!.Value);
+    }
   }
 
 

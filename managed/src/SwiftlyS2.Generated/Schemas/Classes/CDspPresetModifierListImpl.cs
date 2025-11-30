@@ -17,19 +17,32 @@ internal partial class CDspPresetModifierListImpl : SchemaClass, CDspPresetModif
   public CDspPresetModifierListImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DspNameOffset = Schema.GetOffset(0x68EE16FD7E9A0D3);
+  private static nint? _DspNameOffset;
 
   public string DspName {
     get {
-      var ptr = _Handle.Read<nint>(_DspNameOffset);
+      if (_DspNameOffset == null) {
+        _DspNameOffset = Schema.GetOffset(0x68EE16FD7E9A0D3);
+      }
+      var ptr = _Handle.Read<nint>(_DspNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _DspNameOffset, value);
+    set {
+      if (_DspNameOffset == null) {
+        _DspNameOffset = Schema.GetOffset(0x68EE16FD7E9A0D3);
+      }
+      Schema.SetString(_Handle, _DspNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _ModifiersOffset = Schema.GetOffset(0x68EE16F541F1439);
+  private static nint? _ModifiersOffset;
 
   public ref CUtlVector<CDSPMixgroupModifier> Modifiers {
-    get => ref _Handle.AsRef<CUtlVector<CDSPMixgroupModifier>>(_ModifiersOffset);
+    get {
+      if (_ModifiersOffset == null) {
+        _ModifiersOffset = Schema.GetOffset(0x68EE16F541F1439);
+      }
+      return ref _Handle.AsRef<CUtlVector<CDSPMixgroupModifier>>(_ModifiersOffset!.Value);
+    }
   }
 
 

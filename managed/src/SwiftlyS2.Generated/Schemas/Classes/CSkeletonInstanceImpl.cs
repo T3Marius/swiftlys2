@@ -17,45 +17,85 @@ internal partial class CSkeletonInstanceImpl : CGameSceneNodeImpl, CSkeletonInst
   public CSkeletonInstanceImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _ModelStateOffset = Schema.GetOffset(0xD6C6252E52AC8C4F);
+  private static nint? _ModelStateOffset;
 
   public CModelState ModelState {
-    get => new CModelStateImpl(_Handle + _ModelStateOffset);
+    get {
+      if (_ModelStateOffset == null) {
+        _ModelStateOffset = Schema.GetOffset(0xD6C6252E52AC8C4F);
+      }
+      return new CModelStateImpl(_Handle + _ModelStateOffset!.Value);
+    }
   }
-  private static readonly nint _IsAnimationEnabledOffset = Schema.GetOffset(0xD6C6252E44F0C816);
+  private static nint? _IsAnimationEnabledOffset;
 
   public ref bool IsAnimationEnabled {
-    get => ref _Handle.AsRef<bool>(_IsAnimationEnabledOffset);
+    get {
+      if (_IsAnimationEnabledOffset == null) {
+        _IsAnimationEnabledOffset = Schema.GetOffset(0xD6C6252E44F0C816);
+      }
+      return ref _Handle.AsRef<bool>(_IsAnimationEnabledOffset!.Value);
+    }
   }
-  private static readonly nint _UseParentRenderBoundsOffset = Schema.GetOffset(0xD6C6252E15B8267D);
+  private static nint? _UseParentRenderBoundsOffset;
 
   public ref bool UseParentRenderBounds {
-    get => ref _Handle.AsRef<bool>(_UseParentRenderBoundsOffset);
+    get {
+      if (_UseParentRenderBoundsOffset == null) {
+        _UseParentRenderBoundsOffset = Schema.GetOffset(0xD6C6252E15B8267D);
+      }
+      return ref _Handle.AsRef<bool>(_UseParentRenderBoundsOffset!.Value);
+    }
   }
-  private static readonly nint _DisableSolidCollisionsForHierarchyOffset = Schema.GetOffset(0xD6C6252E50FCF465);
+  private static nint? _DisableSolidCollisionsForHierarchyOffset;
 
   public ref bool DisableSolidCollisionsForHierarchy {
-    get => ref _Handle.AsRef<bool>(_DisableSolidCollisionsForHierarchyOffset);
+    get {
+      if (_DisableSolidCollisionsForHierarchyOffset == null) {
+        _DisableSolidCollisionsForHierarchyOffset = Schema.GetOffset(0xD6C6252E50FCF465);
+      }
+      return ref _Handle.AsRef<bool>(_DisableSolidCollisionsForHierarchyOffset!.Value);
+    }
   }
-  private static readonly nint _DirtyMotionTypeOffset = Schema.GetOffset(0xD6C6252E6EB99391);
+  private static nint? _DirtyMotionTypeOffset;
 
   public SchemaUntypedField DirtyMotionType {
-    get => new SchemaUntypedField(_Handle + _DirtyMotionTypeOffset);
+    get {
+      if (_DirtyMotionTypeOffset == null) {
+        _DirtyMotionTypeOffset = Schema.GetOffset(0xD6C6252E6EB99391);
+      }
+      return new SchemaUntypedField(_Handle + _DirtyMotionTypeOffset!.Value);
+    }
   }
-  private static readonly nint _IsGeneratingLatchedParentSpaceStateOffset = Schema.GetOffset(0xD6C6252ED0EFEAB7);
+  private static nint? _IsGeneratingLatchedParentSpaceStateOffset;
 
   public SchemaUntypedField IsGeneratingLatchedParentSpaceState {
-    get => new SchemaUntypedField(_Handle + _IsGeneratingLatchedParentSpaceStateOffset);
+    get {
+      if (_IsGeneratingLatchedParentSpaceStateOffset == null) {
+        _IsGeneratingLatchedParentSpaceStateOffset = Schema.GetOffset(0xD6C6252ED0EFEAB7);
+      }
+      return new SchemaUntypedField(_Handle + _IsGeneratingLatchedParentSpaceStateOffset!.Value);
+    }
   }
-  private static readonly nint _MaterialGroupOffset = Schema.GetOffset(0xD6C6252E2B778F03);
+  private static nint? _MaterialGroupOffset;
 
   public ref CUtlStringToken MaterialGroup {
-    get => ref _Handle.AsRef<CUtlStringToken>(_MaterialGroupOffset);
+    get {
+      if (_MaterialGroupOffset == null) {
+        _MaterialGroupOffset = Schema.GetOffset(0xD6C6252E2B778F03);
+      }
+      return ref _Handle.AsRef<CUtlStringToken>(_MaterialGroupOffset!.Value);
+    }
   }
-  private static readonly nint _HitboxSetOffset = Schema.GetOffset(0xD6C6252E80C42271);
+  private static nint? _HitboxSetOffset;
 
   public ref byte HitboxSet {
-    get => ref _Handle.AsRef<byte>(_HitboxSetOffset);
+    get {
+      if (_HitboxSetOffset == null) {
+        _HitboxSetOffset = Schema.GetOffset(0xD6C6252E80C42271);
+      }
+      return ref _Handle.AsRef<byte>(_HitboxSetOffset!.Value);
+    }
   }
 
   public void ModelStateUpdated() {

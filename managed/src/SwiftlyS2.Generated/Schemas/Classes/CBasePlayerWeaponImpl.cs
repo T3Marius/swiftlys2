@@ -17,43 +17,78 @@ internal partial class CBasePlayerWeaponImpl : CEconEntityImpl, CBasePlayerWeapo
   public CBasePlayerWeaponImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NextPrimaryAttackTickOffset = Schema.GetOffset(0x4174B75E11BA24E3);
+  private static nint? _NextPrimaryAttackTickOffset;
 
   public GameTick_t NextPrimaryAttackTick {
-    get => new GameTick_tImpl(_Handle + _NextPrimaryAttackTickOffset);
+    get {
+      if (_NextPrimaryAttackTickOffset == null) {
+        _NextPrimaryAttackTickOffset = Schema.GetOffset(0x4174B75E11BA24E3);
+      }
+      return new GameTick_tImpl(_Handle + _NextPrimaryAttackTickOffset!.Value);
+    }
   }
-  private static readonly nint _NextPrimaryAttackTickRatioOffset = Schema.GetOffset(0x4174B75E0D9A9E18);
+  private static nint? _NextPrimaryAttackTickRatioOffset;
 
   public ref float NextPrimaryAttackTickRatio {
-    get => ref _Handle.AsRef<float>(_NextPrimaryAttackTickRatioOffset);
+    get {
+      if (_NextPrimaryAttackTickRatioOffset == null) {
+        _NextPrimaryAttackTickRatioOffset = Schema.GetOffset(0x4174B75E0D9A9E18);
+      }
+      return ref _Handle.AsRef<float>(_NextPrimaryAttackTickRatioOffset!.Value);
+    }
   }
-  private static readonly nint _NextSecondaryAttackTickOffset = Schema.GetOffset(0x4174B75EDE66C257);
+  private static nint? _NextSecondaryAttackTickOffset;
 
   public GameTick_t NextSecondaryAttackTick {
-    get => new GameTick_tImpl(_Handle + _NextSecondaryAttackTickOffset);
+    get {
+      if (_NextSecondaryAttackTickOffset == null) {
+        _NextSecondaryAttackTickOffset = Schema.GetOffset(0x4174B75EDE66C257);
+      }
+      return new GameTick_tImpl(_Handle + _NextSecondaryAttackTickOffset!.Value);
+    }
   }
-  private static readonly nint _NextSecondaryAttackTickRatioOffset = Schema.GetOffset(0x4174B75EF3E6AF88);
+  private static nint? _NextSecondaryAttackTickRatioOffset;
 
   public ref float NextSecondaryAttackTickRatio {
-    get => ref _Handle.AsRef<float>(_NextSecondaryAttackTickRatioOffset);
+    get {
+      if (_NextSecondaryAttackTickRatioOffset == null) {
+        _NextSecondaryAttackTickRatioOffset = Schema.GetOffset(0x4174B75EF3E6AF88);
+      }
+      return ref _Handle.AsRef<float>(_NextSecondaryAttackTickRatioOffset!.Value);
+    }
   }
-  private static readonly nint _Clip1Offset = Schema.GetOffset(0x4174B75ED0250969);
+  private static nint? _Clip1Offset;
 
   public ref int Clip1 {
-    get => ref _Handle.AsRef<int>(_Clip1Offset);
+    get {
+      if (_Clip1Offset == null) {
+        _Clip1Offset = Schema.GetOffset(0x4174B75ED0250969);
+      }
+      return ref _Handle.AsRef<int>(_Clip1Offset!.Value);
+    }
   }
-  private static readonly nint _Clip2Offset = Schema.GetOffset(0x4174B75ECD2504B0);
+  private static nint? _Clip2Offset;
 
   public ref int Clip2 {
-    get => ref _Handle.AsRef<int>(_Clip2Offset);
+    get {
+      if (_Clip2Offset == null) {
+        _Clip2Offset = Schema.GetOffset(0x4174B75ECD2504B0);
+      }
+      return ref _Handle.AsRef<int>(_Clip2Offset!.Value);
+    }
   }
   public ISchemaFixedArray<int> ReserveAmmo {
     get => new SchemaFixedArray<int>(_Handle, 0x4174B75EB3FEBB0B, 2, 4, 4);
   }
-  private static readonly nint _OnPlayerUseOffset = Schema.GetOffset(0x4174B75E611C9A14);
+  private static nint? _OnPlayerUseOffset;
 
   public CEntityIOOutput OnPlayerUse {
-    get => new CEntityIOOutputImpl(_Handle + _OnPlayerUseOffset);
+    get {
+      if (_OnPlayerUseOffset == null) {
+        _OnPlayerUseOffset = Schema.GetOffset(0x4174B75E611C9A14);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnPlayerUseOffset!.Value);
+    }
   }
 
   public void NextPrimaryAttackTickUpdated() {

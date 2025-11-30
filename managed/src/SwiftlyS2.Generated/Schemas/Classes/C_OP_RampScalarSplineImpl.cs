@@ -17,55 +17,105 @@ internal partial class C_OP_RampScalarSplineImpl : CParticleFunctionOperatorImpl
   public C_OP_RampScalarSplineImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _RateMinOffset = Schema.GetOffset(0x4ADFC178645AF561);
+  private static nint? _RateMinOffset;
 
   public ref float RateMin {
-    get => ref _Handle.AsRef<float>(_RateMinOffset);
+    get {
+      if (_RateMinOffset == null) {
+        _RateMinOffset = Schema.GetOffset(0x4ADFC178645AF561);
+      }
+      return ref _Handle.AsRef<float>(_RateMinOffset!.Value);
+    }
   }
-  private static readonly nint _RateMaxOffset = Schema.GetOffset(0x4ADFC178566E670F);
+  private static nint? _RateMaxOffset;
 
   public ref float RateMax {
-    get => ref _Handle.AsRef<float>(_RateMaxOffset);
+    get {
+      if (_RateMaxOffset == null) {
+        _RateMaxOffset = Schema.GetOffset(0x4ADFC178566E670F);
+      }
+      return ref _Handle.AsRef<float>(_RateMaxOffset!.Value);
+    }
   }
-  private static readonly nint _StartTime_minOffset = Schema.GetOffset(0x4ADFC1785AC75BFB);
+  private static nint? _StartTime_minOffset;
 
   public ref float StartTime_min {
-    get => ref _Handle.AsRef<float>(_StartTime_minOffset);
+    get {
+      if (_StartTime_minOffset == null) {
+        _StartTime_minOffset = Schema.GetOffset(0x4ADFC1785AC75BFB);
+      }
+      return ref _Handle.AsRef<float>(_StartTime_minOffset!.Value);
+    }
   }
-  private static readonly nint _StartTime_maxOffset = Schema.GetOffset(0x4ADFC17850B23185);
+  private static nint? _StartTime_maxOffset;
 
   public ref float StartTime_max {
-    get => ref _Handle.AsRef<float>(_StartTime_maxOffset);
+    get {
+      if (_StartTime_maxOffset == null) {
+        _StartTime_maxOffset = Schema.GetOffset(0x4ADFC17850B23185);
+      }
+      return ref _Handle.AsRef<float>(_StartTime_maxOffset!.Value);
+    }
   }
-  private static readonly nint _EndTime_minOffset = Schema.GetOffset(0x4ADFC1787B891932);
+  private static nint? _EndTime_minOffset;
 
   public ref float EndTime_min {
-    get => ref _Handle.AsRef<float>(_EndTime_minOffset);
+    get {
+      if (_EndTime_minOffset == null) {
+        _EndTime_minOffset = Schema.GetOffset(0x4ADFC1787B891932);
+      }
+      return ref _Handle.AsRef<float>(_EndTime_minOffset!.Value);
+    }
   }
-  private static readonly nint _EndTime_maxOffset = Schema.GetOffset(0x4ADFC1788575A138);
+  private static nint? _EndTime_maxOffset;
 
   public ref float EndTime_max {
-    get => ref _Handle.AsRef<float>(_EndTime_maxOffset);
+    get {
+      if (_EndTime_maxOffset == null) {
+        _EndTime_maxOffset = Schema.GetOffset(0x4ADFC1788575A138);
+      }
+      return ref _Handle.AsRef<float>(_EndTime_maxOffset!.Value);
+    }
   }
-  private static readonly nint _BiasOffset = Schema.GetOffset(0x4ADFC178E7EF43B6);
+  private static nint? _BiasOffset;
 
   public ref float Bias {
-    get => ref _Handle.AsRef<float>(_BiasOffset);
+    get {
+      if (_BiasOffset == null) {
+        _BiasOffset = Schema.GetOffset(0x4ADFC178E7EF43B6);
+      }
+      return ref _Handle.AsRef<float>(_BiasOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOffset = Schema.GetOffset(0x4ADFC178C257B93B);
+  private static nint? _FieldOffset;
 
   public ParticleAttributeIndex_t Field {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset);
+    get {
+      if (_FieldOffset == null) {
+        _FieldOffset = Schema.GetOffset(0x4ADFC178C257B93B);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOffset!.Value);
+    }
   }
-  private static readonly nint _ProportionalOpOffset = Schema.GetOffset(0x4ADFC1780F8832BD);
+  private static nint? _ProportionalOpOffset;
 
   public ref bool ProportionalOp {
-    get => ref _Handle.AsRef<bool>(_ProportionalOpOffset);
+    get {
+      if (_ProportionalOpOffset == null) {
+        _ProportionalOpOffset = Schema.GetOffset(0x4ADFC1780F8832BD);
+      }
+      return ref _Handle.AsRef<bool>(_ProportionalOpOffset!.Value);
+    }
   }
-  private static readonly nint _EaseOutOffset = Schema.GetOffset(0x4ADFC1788E58B9D1);
+  private static nint? _EaseOutOffset;
 
   public ref bool EaseOut {
-    get => ref _Handle.AsRef<bool>(_EaseOutOffset);
+    get {
+      if (_EaseOutOffset == null) {
+        _EaseOutOffset = Schema.GetOffset(0x4ADFC1788E58B9D1);
+      }
+      return ref _Handle.AsRef<bool>(_EaseOutOffset!.Value);
+    }
   }
 
 

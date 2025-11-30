@@ -69,9 +69,13 @@ public:
     virtual void RenderMenuCenterText(const std::string& text) override;
     virtual void ClearRenderMenuCenterText() override;
     virtual bool HasMenuShown() override;
+    virtual bool IsFirstSpawn() override;
+    virtual void SetFirstSpawn(bool state) override;
+
 private:
     int m_iPlayerId;
     bool m_bAuthorized;
+    bool m_bFirstSpawn = true;
 
     ListenOverride m_uListenMap[66] = {};
     VoiceFlagValue m_uVoiceFlags = VoiceFlagValue::Speak_Normal;

@@ -17,20 +17,35 @@ internal partial class FeFitWeight_tImpl : SchemaClass, FeFitWeight_t {
   public FeFitWeight_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _WeightOffset = Schema.GetOffset(0x292AB604CFFC66CB);
+  private static nint? _WeightOffset;
 
   public ref float Weight {
-    get => ref _Handle.AsRef<float>(_WeightOffset);
+    get {
+      if (_WeightOffset == null) {
+        _WeightOffset = Schema.GetOffset(0x292AB604CFFC66CB);
+      }
+      return ref _Handle.AsRef<float>(_WeightOffset!.Value);
+    }
   }
-  private static readonly nint _NodeOffset = Schema.GetOffset(0x292AB604CD6694B9);
+  private static nint? _NodeOffset;
 
   public ref ushort Node {
-    get => ref _Handle.AsRef<ushort>(_NodeOffset);
+    get {
+      if (_NodeOffset == null) {
+        _NodeOffset = Schema.GetOffset(0x292AB604CD6694B9);
+      }
+      return ref _Handle.AsRef<ushort>(_NodeOffset!.Value);
+    }
   }
-  private static readonly nint _DummyOffset = Schema.GetOffset(0x292AB604CD8BAE5F);
+  private static nint? _DummyOffset;
 
   public ref ushort Dummy {
-    get => ref _Handle.AsRef<ushort>(_DummyOffset);
+    get {
+      if (_DummyOffset == null) {
+        _DummyOffset = Schema.GetOffset(0x292AB604CD8BAE5F);
+      }
+      return ref _Handle.AsRef<ushort>(_DummyOffset!.Value);
+    }
   }
 
 

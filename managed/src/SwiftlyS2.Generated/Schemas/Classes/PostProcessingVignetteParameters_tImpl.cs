@@ -17,35 +17,65 @@ internal partial class PostProcessingVignetteParameters_tImpl : SchemaClass, Pos
   public PostProcessingVignetteParameters_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VignetteStrengthOffset = Schema.GetOffset(0xC31FEB45110C062C);
+  private static nint? _VignetteStrengthOffset;
 
   public ref float VignetteStrength {
-    get => ref _Handle.AsRef<float>(_VignetteStrengthOffset);
+    get {
+      if (_VignetteStrengthOffset == null) {
+        _VignetteStrengthOffset = Schema.GetOffset(0xC31FEB45110C062C);
+      }
+      return ref _Handle.AsRef<float>(_VignetteStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _CenterOffset = Schema.GetOffset(0xC31FEB45C82A5908);
+  private static nint? _CenterOffset;
 
   public ref Vector2D Center {
-    get => ref _Handle.AsRef<Vector2D>(_CenterOffset);
+    get {
+      if (_CenterOffset == null) {
+        _CenterOffset = Schema.GetOffset(0xC31FEB45C82A5908);
+      }
+      return ref _Handle.AsRef<Vector2D>(_CenterOffset!.Value);
+    }
   }
-  private static readonly nint _RadiusOffset = Schema.GetOffset(0xC31FEB455ACFC08D);
+  private static nint? _RadiusOffset;
 
   public ref float Radius {
-    get => ref _Handle.AsRef<float>(_RadiusOffset);
+    get {
+      if (_RadiusOffset == null) {
+        _RadiusOffset = Schema.GetOffset(0xC31FEB455ACFC08D);
+      }
+      return ref _Handle.AsRef<float>(_RadiusOffset!.Value);
+    }
   }
-  private static readonly nint _RoundnessOffset = Schema.GetOffset(0xC31FEB453987DB42);
+  private static nint? _RoundnessOffset;
 
   public ref float Roundness {
-    get => ref _Handle.AsRef<float>(_RoundnessOffset);
+    get {
+      if (_RoundnessOffset == null) {
+        _RoundnessOffset = Schema.GetOffset(0xC31FEB453987DB42);
+      }
+      return ref _Handle.AsRef<float>(_RoundnessOffset!.Value);
+    }
   }
-  private static readonly nint _FeatherOffset = Schema.GetOffset(0xC31FEB455070E146);
+  private static nint? _FeatherOffset;
 
   public ref float Feather {
-    get => ref _Handle.AsRef<float>(_FeatherOffset);
+    get {
+      if (_FeatherOffset == null) {
+        _FeatherOffset = Schema.GetOffset(0xC31FEB455070E146);
+      }
+      return ref _Handle.AsRef<float>(_FeatherOffset!.Value);
+    }
   }
-  private static readonly nint _ColorTintOffset = Schema.GetOffset(0xC31FEB45569A6EA9);
+  private static nint? _ColorTintOffset;
 
   public ref Vector ColorTint {
-    get => ref _Handle.AsRef<Vector>(_ColorTintOffset);
+    get {
+      if (_ColorTintOffset == null) {
+        _ColorTintOffset = Schema.GetOffset(0xC31FEB45569A6EA9);
+      }
+      return ref _Handle.AsRef<Vector>(_ColorTintOffset!.Value);
+    }
   }
 
 

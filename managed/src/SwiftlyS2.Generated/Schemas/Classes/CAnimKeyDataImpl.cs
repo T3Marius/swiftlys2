@@ -17,35 +17,65 @@ internal partial class CAnimKeyDataImpl : SchemaClass, CAnimKeyData {
   public CAnimKeyDataImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0x790610E24D8F5786);
+  private static nint? _NameOffset;
 
   public ref CBufferString Name {
-    get => ref _Handle.AsRef<CBufferString>(_NameOffset);
+    get {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0x790610E24D8F5786);
+      }
+      return ref _Handle.AsRef<CBufferString>(_NameOffset!.Value);
+    }
   }
-  private static readonly nint _BoneArrayOffset = Schema.GetOffset(0x790610E280273F0C);
+  private static nint? _BoneArrayOffset;
 
   public ref CUtlVector<CAnimBone> BoneArray {
-    get => ref _Handle.AsRef<CUtlVector<CAnimBone>>(_BoneArrayOffset);
+    get {
+      if (_BoneArrayOffset == null) {
+        _BoneArrayOffset = Schema.GetOffset(0x790610E280273F0C);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimBone>>(_BoneArrayOffset!.Value);
+    }
   }
-  private static readonly nint _UserArrayOffset = Schema.GetOffset(0x790610E2FBDB0C13);
+  private static nint? _UserArrayOffset;
 
   public ref CUtlVector<CAnimUser> UserArray {
-    get => ref _Handle.AsRef<CUtlVector<CAnimUser>>(_UserArrayOffset);
+    get {
+      if (_UserArrayOffset == null) {
+        _UserArrayOffset = Schema.GetOffset(0x790610E2FBDB0C13);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimUser>>(_UserArrayOffset!.Value);
+    }
   }
-  private static readonly nint _MorphArrayOffset = Schema.GetOffset(0x790610E28C6827E6);
+  private static nint? _MorphArrayOffset;
 
   public ref CUtlVector<CBufferString> MorphArray {
-    get => ref _Handle.AsRef<CUtlVector<CBufferString>>(_MorphArrayOffset);
+    get {
+      if (_MorphArrayOffset == null) {
+        _MorphArrayOffset = Schema.GetOffset(0x790610E28C6827E6);
+      }
+      return ref _Handle.AsRef<CUtlVector<CBufferString>>(_MorphArrayOffset!.Value);
+    }
   }
-  private static readonly nint _ChannelElementsOffset = Schema.GetOffset(0x790610E20D1DA989);
+  private static nint? _ChannelElementsOffset;
 
   public ref int ChannelElements {
-    get => ref _Handle.AsRef<int>(_ChannelElementsOffset);
+    get {
+      if (_ChannelElementsOffset == null) {
+        _ChannelElementsOffset = Schema.GetOffset(0x790610E20D1DA989);
+      }
+      return ref _Handle.AsRef<int>(_ChannelElementsOffset!.Value);
+    }
   }
-  private static readonly nint _DataChannelArrayOffset = Schema.GetOffset(0x790610E2D1641EB9);
+  private static nint? _DataChannelArrayOffset;
 
   public ref CUtlVector<CAnimDataChannelDesc> DataChannelArray {
-    get => ref _Handle.AsRef<CUtlVector<CAnimDataChannelDesc>>(_DataChannelArrayOffset);
+    get {
+      if (_DataChannelArrayOffset == null) {
+        _DataChannelArrayOffset = Schema.GetOffset(0x790610E2D1641EB9);
+      }
+      return ref _Handle.AsRef<CUtlVector<CAnimDataChannelDesc>>(_DataChannelArrayOffset!.Value);
+    }
   }
 
 

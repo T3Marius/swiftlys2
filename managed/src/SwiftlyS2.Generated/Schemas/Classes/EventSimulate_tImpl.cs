@@ -17,20 +17,35 @@ internal partial class EventSimulate_tImpl : SchemaClass, EventSimulate_t {
   public EventSimulate_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _LoopStateOffset = Schema.GetOffset(0x39B7BD6EF928A2EC);
+  private static nint? _LoopStateOffset;
 
   public EngineLoopState_t LoopState {
-    get => new EngineLoopState_tImpl(_Handle + _LoopStateOffset);
+    get {
+      if (_LoopStateOffset == null) {
+        _LoopStateOffset = Schema.GetOffset(0x39B7BD6EF928A2EC);
+      }
+      return new EngineLoopState_tImpl(_Handle + _LoopStateOffset!.Value);
+    }
   }
-  private static readonly nint _FirstTickOffset = Schema.GetOffset(0x39B7BD6EC8198F38);
+  private static nint? _FirstTickOffset;
 
   public ref bool FirstTick {
-    get => ref _Handle.AsRef<bool>(_FirstTickOffset);
+    get {
+      if (_FirstTickOffset == null) {
+        _FirstTickOffset = Schema.GetOffset(0x39B7BD6EC8198F38);
+      }
+      return ref _Handle.AsRef<bool>(_FirstTickOffset!.Value);
+    }
   }
-  private static readonly nint _LastTickOffset = Schema.GetOffset(0x39B7BD6E1704CC30);
+  private static nint? _LastTickOffset;
 
   public ref bool LastTick {
-    get => ref _Handle.AsRef<bool>(_LastTickOffset);
+    get {
+      if (_LastTickOffset == null) {
+        _LastTickOffset = Schema.GetOffset(0x39B7BD6E1704CC30);
+      }
+      return ref _Handle.AsRef<bool>(_LastTickOffset!.Value);
+    }
   }
 
 

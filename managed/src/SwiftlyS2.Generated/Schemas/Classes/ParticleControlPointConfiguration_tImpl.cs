@@ -17,24 +17,42 @@ internal partial class ParticleControlPointConfiguration_tImpl : SchemaClass, Pa
   public ParticleControlPointConfiguration_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _NameOffset = Schema.GetOffset(0xC54E49C74D8F5786);
+  private static nint? _NameOffset;
 
   public string Name {
     get {
-      var ptr = _Handle.Read<nint>(_NameOffset);
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xC54E49C74D8F5786);
+      }
+      var ptr = _Handle.Read<nint>(_NameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _NameOffset, value);
+    set {
+      if (_NameOffset == null) {
+        _NameOffset = Schema.GetOffset(0xC54E49C74D8F5786);
+      }
+      Schema.SetString(_Handle, _NameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _DriversOffset = Schema.GetOffset(0xC54E49C7C63563E4);
+  private static nint? _DriversOffset;
 
   public ref CUtlVector<ParticleControlPointDriver_t> Drivers {
-    get => ref _Handle.AsRef<CUtlVector<ParticleControlPointDriver_t>>(_DriversOffset);
+    get {
+      if (_DriversOffset == null) {
+        _DriversOffset = Schema.GetOffset(0xC54E49C7C63563E4);
+      }
+      return ref _Handle.AsRef<CUtlVector<ParticleControlPointDriver_t>>(_DriversOffset!.Value);
+    }
   }
-  private static readonly nint _PreviewStateOffset = Schema.GetOffset(0xC54E49C79E440558);
+  private static nint? _PreviewStateOffset;
 
   public ParticlePreviewState_t PreviewState {
-    get => new ParticlePreviewState_tImpl(_Handle + _PreviewStateOffset);
+    get {
+      if (_PreviewStateOffset == null) {
+        _PreviewStateOffset = Schema.GetOffset(0xC54E49C79E440558);
+      }
+      return new ParticlePreviewState_tImpl(_Handle + _PreviewStateOffset!.Value);
+    }
   }
 
 

@@ -17,47 +17,83 @@ internal partial class CTriggerPushImpl : CBaseTriggerImpl, CTriggerPush {
   public CTriggerPushImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PushEntitySpaceOffset = Schema.GetOffset(0x92E0F2F21952BFD6);
+  private static nint? _PushEntitySpaceOffset;
 
   public ref QAngle PushEntitySpace {
-    get => ref _Handle.AsRef<QAngle>(_PushEntitySpaceOffset);
+    get {
+      if (_PushEntitySpaceOffset == null) {
+        _PushEntitySpaceOffset = Schema.GetOffset(0x92E0F2F21952BFD6);
+      }
+      return ref _Handle.AsRef<QAngle>(_PushEntitySpaceOffset!.Value);
+    }
   }
-  private static readonly nint _PushDirEntitySpaceOffset = Schema.GetOffset(0x92E0F2F2A3C4D4F3);
+  private static nint? _PushDirEntitySpaceOffset;
 
   public ref Vector PushDirEntitySpace {
-    get => ref _Handle.AsRef<Vector>(_PushDirEntitySpaceOffset);
+    get {
+      if (_PushDirEntitySpaceOffset == null) {
+        _PushDirEntitySpaceOffset = Schema.GetOffset(0x92E0F2F2A3C4D4F3);
+      }
+      return ref _Handle.AsRef<Vector>(_PushDirEntitySpaceOffset!.Value);
+    }
   }
-  private static readonly nint _TriggerOnStartTouchOffset = Schema.GetOffset(0x92E0F2F2365C0A51);
+  private static nint? _TriggerOnStartTouchOffset;
 
   public ref bool TriggerOnStartTouch {
-    get => ref _Handle.AsRef<bool>(_TriggerOnStartTouchOffset);
+    get {
+      if (_TriggerOnStartTouchOffset == null) {
+        _TriggerOnStartTouchOffset = Schema.GetOffset(0x92E0F2F2365C0A51);
+      }
+      return ref _Handle.AsRef<bool>(_TriggerOnStartTouchOffset!.Value);
+    }
   }
-  private static readonly nint _UsePathSimpleOffset = Schema.GetOffset(0x92E0F2F21BFD6EF1);
+  private static nint? _UsePathSimpleOffset;
 
   public ref bool UsePathSimple {
-    get => ref _Handle.AsRef<bool>(_UsePathSimpleOffset);
+    get {
+      if (_UsePathSimpleOffset == null) {
+        _UsePathSimpleOffset = Schema.GetOffset(0x92E0F2F21BFD6EF1);
+      }
+      return ref _Handle.AsRef<bool>(_UsePathSimpleOffset!.Value);
+    }
   }
-  private static readonly nint _PathSimpleNameOffset = Schema.GetOffset(0x92E0F2F2AB7E7D7F);
+  private static nint? _PathSimpleNameOffset;
 
   public string PathSimpleName {
     get {
-      var ptr = _Handle.Read<nint>(_PathSimpleNameOffset);
+      if (_PathSimpleNameOffset == null) {
+        _PathSimpleNameOffset = Schema.GetOffset(0x92E0F2F2AB7E7D7F);
+      }
+      var ptr = _Handle.Read<nint>(_PathSimpleNameOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _PathSimpleNameOffset, value);
+    set {
+      if (_PathSimpleNameOffset == null) {
+        _PathSimpleNameOffset = Schema.GetOffset(0x92E0F2F2AB7E7D7F);
+      }
+      Schema.SetString(_Handle, _PathSimpleNameOffset!.Value, value);
+    }
   } 
-  private static readonly nint _PathSimpleOffset = Schema.GetOffset(0x92E0F2F2FA868DCC);
+  private static nint? _PathSimpleOffset;
 
   public CPathSimple? PathSimple {
     get {
-      var ptr = _Handle.Read<nint>(_PathSimpleOffset);
+      if (_PathSimpleOffset == null) {
+        _PathSimpleOffset = Schema.GetOffset(0x92E0F2F2FA868DCC);
+      }
+      var ptr = _Handle.Read<nint>(_PathSimpleOffset!.Value);
       return ptr.IsValidPtr() ? new CPathSimpleImpl(ptr) : null;
     }
   }
-  private static readonly nint _SplinePushTypeOffset = Schema.GetOffset(0x92E0F2F229A29DE0);
+  private static nint? _SplinePushTypeOffset;
 
   public ref uint SplinePushType {
-    get => ref _Handle.AsRef<uint>(_SplinePushTypeOffset);
+    get {
+      if (_SplinePushTypeOffset == null) {
+        _SplinePushTypeOffset = Schema.GetOffset(0x92E0F2F229A29DE0);
+      }
+      return ref _Handle.AsRef<uint>(_SplinePushTypeOffset!.Value);
+    }
   }
 
 

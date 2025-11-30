@@ -17,20 +17,35 @@ internal partial class CStaticPoseCacheImpl : SchemaClass, CStaticPoseCache {
   public CStaticPoseCacheImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _PosesOffset = Schema.GetOffset(0x2223EF1DB851C9F5);
+  private static nint? _PosesOffset;
 
   public ref CUtlVector<CCachedPose> Poses {
-    get => ref _Handle.AsRef<CUtlVector<CCachedPose>>(_PosesOffset);
+    get {
+      if (_PosesOffset == null) {
+        _PosesOffset = Schema.GetOffset(0x2223EF1DB851C9F5);
+      }
+      return ref _Handle.AsRef<CUtlVector<CCachedPose>>(_PosesOffset!.Value);
+    }
   }
-  private static readonly nint _BoneCountOffset = Schema.GetOffset(0x2223EF1D71FE39A2);
+  private static nint? _BoneCountOffset;
 
   public ref int BoneCount {
-    get => ref _Handle.AsRef<int>(_BoneCountOffset);
+    get {
+      if (_BoneCountOffset == null) {
+        _BoneCountOffset = Schema.GetOffset(0x2223EF1D71FE39A2);
+      }
+      return ref _Handle.AsRef<int>(_BoneCountOffset!.Value);
+    }
   }
-  private static readonly nint _MorphCountOffset = Schema.GetOffset(0x2223EF1D32C62DD0);
+  private static nint? _MorphCountOffset;
 
   public ref int MorphCount {
-    get => ref _Handle.AsRef<int>(_MorphCountOffset);
+    get {
+      if (_MorphCountOffset == null) {
+        _MorphCountOffset = Schema.GetOffset(0x2223EF1D32C62DD0);
+      }
+      return ref _Handle.AsRef<int>(_MorphCountOffset!.Value);
+    }
   }
 
 

@@ -17,15 +17,25 @@ internal partial class Relationship_tImpl : SchemaClass, Relationship_t {
   public Relationship_tImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _DispositionOffset = Schema.GetOffset(0xD0FE62280D365234);
+  private static nint? _DispositionOffset;
 
   public ref Disposition_t Disposition {
-    get => ref _Handle.AsRef<Disposition_t>(_DispositionOffset);
+    get {
+      if (_DispositionOffset == null) {
+        _DispositionOffset = Schema.GetOffset(0xD0FE62280D365234);
+      }
+      return ref _Handle.AsRef<Disposition_t>(_DispositionOffset!.Value);
+    }
   }
-  private static readonly nint _PriorityOffset = Schema.GetOffset(0xD0FE622894E4E309);
+  private static nint? _PriorityOffset;
 
   public ref int Priority {
-    get => ref _Handle.AsRef<int>(_PriorityOffset);
+    get {
+      if (_PriorityOffset == null) {
+        _PriorityOffset = Schema.GetOffset(0xD0FE622894E4E309);
+      }
+      return ref _Handle.AsRef<int>(_PriorityOffset!.Value);
+    }
   }
 
 

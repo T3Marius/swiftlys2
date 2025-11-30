@@ -17,25 +17,45 @@ internal partial class CLogicBranchImpl : CLogicalEntityImpl, CLogicBranch {
   public CLogicBranchImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _InValueOffset = Schema.GetOffset(0x5B700E1052400A1F);
+  private static nint? _InValueOffset;
 
   public ref bool InValue {
-    get => ref _Handle.AsRef<bool>(_InValueOffset);
+    get {
+      if (_InValueOffset == null) {
+        _InValueOffset = Schema.GetOffset(0x5B700E1052400A1F);
+      }
+      return ref _Handle.AsRef<bool>(_InValueOffset!.Value);
+    }
   }
-  private static readonly nint _ListenersOffset = Schema.GetOffset(0x5B700E10E4AECE86);
+  private static nint? _ListenersOffset;
 
   public ref CUtlVector<CHandle<CBaseEntity>> Listeners {
-    get => ref _Handle.AsRef<CUtlVector<CHandle<CBaseEntity>>>(_ListenersOffset);
+    get {
+      if (_ListenersOffset == null) {
+        _ListenersOffset = Schema.GetOffset(0x5B700E10E4AECE86);
+      }
+      return ref _Handle.AsRef<CUtlVector<CHandle<CBaseEntity>>>(_ListenersOffset!.Value);
+    }
   }
-  private static readonly nint _OnTrueOffset = Schema.GetOffset(0x5B700E106EAE5D88);
+  private static nint? _OnTrueOffset;
 
   public CEntityIOOutput OnTrue {
-    get => new CEntityIOOutputImpl(_Handle + _OnTrueOffset);
+    get {
+      if (_OnTrueOffset == null) {
+        _OnTrueOffset = Schema.GetOffset(0x5B700E106EAE5D88);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnTrueOffset!.Value);
+    }
   }
-  private static readonly nint _OnFalseOffset = Schema.GetOffset(0x5B700E104973AF03);
+  private static nint? _OnFalseOffset;
 
   public CEntityIOOutput OnFalse {
-    get => new CEntityIOOutputImpl(_Handle + _OnFalseOffset);
+    get {
+      if (_OnFalseOffset == null) {
+        _OnFalseOffset = Schema.GetOffset(0x5B700E104973AF03);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnFalseOffset!.Value);
+    }
   }
 
 

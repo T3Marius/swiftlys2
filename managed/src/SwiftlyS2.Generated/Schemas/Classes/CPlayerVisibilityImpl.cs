@@ -17,35 +17,65 @@ internal partial class CPlayerVisibilityImpl : CBaseEntityImpl, CPlayerVisibilit
   public CPlayerVisibilityImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _VisibilityStrengthOffset = Schema.GetOffset(0x695BAF9B9E8E4E);
+  private static nint? _VisibilityStrengthOffset;
 
   public ref float VisibilityStrength {
-    get => ref _Handle.AsRef<float>(_VisibilityStrengthOffset);
+    get {
+      if (_VisibilityStrengthOffset == null) {
+        _VisibilityStrengthOffset = Schema.GetOffset(0x695BAF9B9E8E4E);
+      }
+      return ref _Handle.AsRef<float>(_VisibilityStrengthOffset!.Value);
+    }
   }
-  private static readonly nint _FogDistanceMultiplierOffset = Schema.GetOffset(0x695BAFDB1CD031);
+  private static nint? _FogDistanceMultiplierOffset;
 
   public ref float FogDistanceMultiplier {
-    get => ref _Handle.AsRef<float>(_FogDistanceMultiplierOffset);
+    get {
+      if (_FogDistanceMultiplierOffset == null) {
+        _FogDistanceMultiplierOffset = Schema.GetOffset(0x695BAFDB1CD031);
+      }
+      return ref _Handle.AsRef<float>(_FogDistanceMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _FogMaxDensityMultiplierOffset = Schema.GetOffset(0x695BAF7F993C70);
+  private static nint? _FogMaxDensityMultiplierOffset;
 
   public ref float FogMaxDensityMultiplier {
-    get => ref _Handle.AsRef<float>(_FogMaxDensityMultiplierOffset);
+    get {
+      if (_FogMaxDensityMultiplierOffset == null) {
+        _FogMaxDensityMultiplierOffset = Schema.GetOffset(0x695BAF7F993C70);
+      }
+      return ref _Handle.AsRef<float>(_FogMaxDensityMultiplierOffset!.Value);
+    }
   }
-  private static readonly nint _FadeTimeOffset = Schema.GetOffset(0x695BAF00BEDB08);
+  private static nint? _FadeTimeOffset;
 
   public ref float FadeTime {
-    get => ref _Handle.AsRef<float>(_FadeTimeOffset);
+    get {
+      if (_FadeTimeOffset == null) {
+        _FadeTimeOffset = Schema.GetOffset(0x695BAF00BEDB08);
+      }
+      return ref _Handle.AsRef<float>(_FadeTimeOffset!.Value);
+    }
   }
-  private static readonly nint _StartDisabledOffset = Schema.GetOffset(0x695BAF61ED0C4F);
+  private static nint? _StartDisabledOffset;
 
   public ref bool StartDisabled {
-    get => ref _Handle.AsRef<bool>(_StartDisabledOffset);
+    get {
+      if (_StartDisabledOffset == null) {
+        _StartDisabledOffset = Schema.GetOffset(0x695BAF61ED0C4F);
+      }
+      return ref _Handle.AsRef<bool>(_StartDisabledOffset!.Value);
+    }
   }
-  private static readonly nint _IsEnabledOffset = Schema.GetOffset(0x695BAF5360D70E);
+  private static nint? _IsEnabledOffset;
 
   public ref bool IsEnabled {
-    get => ref _Handle.AsRef<bool>(_IsEnabledOffset);
+    get {
+      if (_IsEnabledOffset == null) {
+        _IsEnabledOffset = Schema.GetOffset(0x695BAF5360D70E);
+      }
+      return ref _Handle.AsRef<bool>(_IsEnabledOffset!.Value);
+    }
   }
 
   public void VisibilityStrengthUpdated() {

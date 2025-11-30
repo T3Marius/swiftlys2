@@ -112,6 +112,7 @@ void CEventManager::Initialize(std::string game_name)
     g_PreworldUpdateHook->Enable();
 
     RegisterGameEventListener("round_start");
+    RegisterGameEventListener("player_spawn");
     AddGameEventFireListener([](std::string event_name, IGameEvent* event, bool& dont_broadcast) -> int {
         if (event_name == "round_start") {
             static auto vgui = g_ifaceService.FetchInterface<IVGUI>(VGUI_INTERFACE_VERSION);
@@ -125,7 +126,21 @@ void CEventManager::Initialize(std::string game_name)
             processingTimeouts = true;
         }
         return 0;
-    });
+        });
+
+    AddPostGameEventFireListener([](std::string event_name, IGameEvent* event, bool& dont_broadcast) -> int {
+        if (event_name == "player_spawn") {
+            int userid = event->GetInt("userid", -1);
+            if (userid != -1) {
+                static auto playerManager = g_ifaceService.FetchInterface<IPlayerManager>(PLAYERMANAGER_INTERFACE_VERSION);
+                auto player = playerManager->GetPlayer(userid);
+                if (player) {
+                    player->SetFirstSpawn(false);
+                }
+            }
+        }
+        return 0;
+        });
 }
 
 void CEventManager::Shutdown()
@@ -160,7 +175,7 @@ void PreworldUpdateHook(void* _this, bool simulate)
 {
     reinterpret_cast<decltype(&PreworldUpdateHook)>(g_PreworldUpdateHook->GetOriginal())(_this, simulate);
 
-    if(g_pOnPreworldUpdateCallback)
+    if (g_pOnPreworldUpdateCallback)
         reinterpret_cast<void(*)(bool)>(g_pOnPreworldUpdateCallback)(simulate);
 }
 

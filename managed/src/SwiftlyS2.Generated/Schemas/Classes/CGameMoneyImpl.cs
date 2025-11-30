@@ -17,29 +17,52 @@ internal partial class CGameMoneyImpl : CRulePointEntityImpl, CGameMoney {
   public CGameMoneyImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnMoneySpentOffset = Schema.GetOffset(0xED17C684B6CD990C);
+  private static nint? _OnMoneySpentOffset;
 
   public CEntityIOOutput OnMoneySpent {
-    get => new CEntityIOOutputImpl(_Handle + _OnMoneySpentOffset);
+    get {
+      if (_OnMoneySpentOffset == null) {
+        _OnMoneySpentOffset = Schema.GetOffset(0xED17C684B6CD990C);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnMoneySpentOffset!.Value);
+    }
   }
-  private static readonly nint _OnMoneySpentFailOffset = Schema.GetOffset(0xED17C684DB165FC0);
+  private static nint? _OnMoneySpentFailOffset;
 
   public CEntityIOOutput OnMoneySpentFail {
-    get => new CEntityIOOutputImpl(_Handle + _OnMoneySpentFailOffset);
+    get {
+      if (_OnMoneySpentFailOffset == null) {
+        _OnMoneySpentFailOffset = Schema.GetOffset(0xED17C684DB165FC0);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnMoneySpentFailOffset!.Value);
+    }
   }
-  private static readonly nint _MoneyOffset = Schema.GetOffset(0xED17C6845BE25D03);
+  private static nint? _MoneyOffset;
 
   public ref int Money {
-    get => ref _Handle.AsRef<int>(_MoneyOffset);
+    get {
+      if (_MoneyOffset == null) {
+        _MoneyOffset = Schema.GetOffset(0xED17C6845BE25D03);
+      }
+      return ref _Handle.AsRef<int>(_MoneyOffset!.Value);
+    }
   }
-  private static readonly nint _StrAwardTextOffset = Schema.GetOffset(0xED17C684B48AB662);
+  private static nint? _StrAwardTextOffset;
 
   public string StrAwardText {
     get {
-      var ptr = _Handle.Read<nint>(_StrAwardTextOffset);
+      if (_StrAwardTextOffset == null) {
+        _StrAwardTextOffset = Schema.GetOffset(0xED17C684B48AB662);
+      }
+      var ptr = _Handle.Read<nint>(_StrAwardTextOffset!.Value);
       return Schema.GetString(ptr);
     }
-    set => Schema.SetString(_Handle, _StrAwardTextOffset, value);
+    set {
+      if (_StrAwardTextOffset == null) {
+        _StrAwardTextOffset = Schema.GetOffset(0xED17C684B48AB662);
+      }
+      Schema.SetString(_Handle, _StrAwardTextOffset!.Value, value);
+    }
   } 
 
 

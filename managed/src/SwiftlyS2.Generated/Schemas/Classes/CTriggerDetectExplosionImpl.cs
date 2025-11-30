@@ -17,10 +17,15 @@ internal partial class CTriggerDetectExplosionImpl : CBaseTriggerImpl, CTriggerD
   public CTriggerDetectExplosionImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _OnDetectedExplosionOffset = Schema.GetOffset(0xEDC17DD03CDD7F71);
+  private static nint? _OnDetectedExplosionOffset;
 
   public CEntityIOOutput OnDetectedExplosion {
-    get => new CEntityIOOutputImpl(_Handle + _OnDetectedExplosionOffset);
+    get {
+      if (_OnDetectedExplosionOffset == null) {
+        _OnDetectedExplosionOffset = Schema.GetOffset(0xEDC17DD03CDD7F71);
+      }
+      return new CEntityIOOutputImpl(_Handle + _OnDetectedExplosionOffset!.Value);
+    }
   }
 
 

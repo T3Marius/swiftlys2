@@ -17,25 +17,45 @@ internal partial class C_OP_RemapControlPointOrientationToRotationImpl : CPartic
   public C_OP_RemapControlPointOrientationToRotationImpl(nint handle) : base(handle) {
   }
 
-  private static readonly nint _CPOffset = Schema.GetOffset(0x2CE44E90EB661472);
+  private static nint? _CPOffset;
 
   public ref int CP {
-    get => ref _Handle.AsRef<int>(_CPOffset);
+    get {
+      if (_CPOffset == null) {
+        _CPOffset = Schema.GetOffset(0x2CE44E90EB661472);
+      }
+      return ref _Handle.AsRef<int>(_CPOffset!.Value);
+    }
   }
-  private static readonly nint _FieldOutputOffset = Schema.GetOffset(0x2CE44E90E5729606);
+  private static nint? _FieldOutputOffset;
 
   public ParticleAttributeIndex_t FieldOutput {
-    get => new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset);
+    get {
+      if (_FieldOutputOffset == null) {
+        _FieldOutputOffset = Schema.GetOffset(0x2CE44E90E5729606);
+      }
+      return new ParticleAttributeIndex_tImpl(_Handle + _FieldOutputOffset!.Value);
+    }
   }
-  private static readonly nint _OffsetRotOffset = Schema.GetOffset(0x2CE44E90B414F849);
+  private static nint? _OffsetRotOffset;
 
   public ref float OffsetRot {
-    get => ref _Handle.AsRef<float>(_OffsetRotOffset);
+    get {
+      if (_OffsetRotOffset == null) {
+        _OffsetRotOffset = Schema.GetOffset(0x2CE44E90B414F849);
+      }
+      return ref _Handle.AsRef<float>(_OffsetRotOffset!.Value);
+    }
   }
-  private static readonly nint _ComponentOffset = Schema.GetOffset(0x2CE44E90BFD0952C);
+  private static nint? _ComponentOffset;
 
   public ref int Component {
-    get => ref _Handle.AsRef<int>(_ComponentOffset);
+    get {
+      if (_ComponentOffset == null) {
+        _ComponentOffset = Schema.GetOffset(0x2CE44E90BFD0952C);
+      }
+      return ref _Handle.AsRef<int>(_ComponentOffset!.Value);
+    }
   }
 
 

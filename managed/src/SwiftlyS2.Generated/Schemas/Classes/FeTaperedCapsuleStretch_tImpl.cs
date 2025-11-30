@@ -20,15 +20,25 @@ internal partial class FeTaperedCapsuleStretch_tImpl : SchemaClass, FeTaperedCap
   public ISchemaFixedArray<ushort> Node {
     get => new SchemaFixedArray<ushort>(_Handle, 0x627474D0CD6694B9, 2, 2, 2);
   }
-  private static readonly nint _CollisionMaskOffset = Schema.GetOffset(0x627474D00ED3454F);
+  private static nint? _CollisionMaskOffset;
 
   public ref ushort CollisionMask {
-    get => ref _Handle.AsRef<ushort>(_CollisionMaskOffset);
+    get {
+      if (_CollisionMaskOffset == null) {
+        _CollisionMaskOffset = Schema.GetOffset(0x627474D00ED3454F);
+      }
+      return ref _Handle.AsRef<ushort>(_CollisionMaskOffset!.Value);
+    }
   }
-  private static readonly nint _DummyOffset = Schema.GetOffset(0x627474D0CD8BAE5F);
+  private static nint? _DummyOffset;
 
   public ref ushort Dummy {
-    get => ref _Handle.AsRef<ushort>(_DummyOffset);
+    get {
+      if (_DummyOffset == null) {
+        _DummyOffset = Schema.GetOffset(0x627474D0CD8BAE5F);
+      }
+      return ref _Handle.AsRef<ushort>(_DummyOffset!.Value);
+    }
   }
   public ISchemaFixedArray<float> Radius {
     get => new SchemaFixedArray<float>(_Handle, 0x627474D095FBF7AD, 2, 4, 4);
