@@ -1132,7 +1132,7 @@ internal static class NativeNetMessages
         }
     }
 
-    private unsafe static delegate* unmanaged<nint, byte*, byte*, void> _SetBytes;
+    private unsafe static delegate* unmanaged<nint, byte*, byte*, int, void> _SetBytes;
 
     public unsafe static void SetBytes(nint netmsg, string fieldName, byte[] value)
     {
@@ -1146,13 +1146,13 @@ internal static class NativeNetMessages
         {
             fixed (byte* valueBufferPtr = value)
             {
-                _SetBytes(netmsg, fieldNameBufferPtr, valueBufferPtr);
+                _SetBytes(netmsg, fieldNameBufferPtr, valueBufferPtr, valueLength);
                 pool.Return(fieldNameBuffer);
             }
         }
     }
 
-    private unsafe static delegate* unmanaged<nint, byte*, int, byte*, void> _SetRepeatedBytes;
+    private unsafe static delegate* unmanaged<nint, byte*, int, byte*, int, void> _SetRepeatedBytes;
 
     public unsafe static void SetRepeatedBytes(nint netmsg, string fieldName, int index, byte[] value)
     {
@@ -1166,13 +1166,13 @@ internal static class NativeNetMessages
         {
             fixed (byte* valueBufferPtr = value)
             {
-                _SetRepeatedBytes(netmsg, fieldNameBufferPtr, index, valueBufferPtr);
+                _SetRepeatedBytes(netmsg, fieldNameBufferPtr, index, valueBufferPtr, valueLength);
                 pool.Return(fieldNameBuffer);
             }
         }
     }
 
-    private unsafe static delegate* unmanaged<nint, byte*, byte*, void> _AddBytes;
+    private unsafe static delegate* unmanaged<nint, byte*, byte*, int, void> _AddBytes;
 
     public unsafe static void AddBytes(nint netmsg, string fieldName, byte[] value)
     {
@@ -1186,7 +1186,7 @@ internal static class NativeNetMessages
         {
             fixed (byte* valueBufferPtr = value)
             {
-                _AddBytes(netmsg, fieldNameBufferPtr, valueBufferPtr);
+                _AddBytes(netmsg, fieldNameBufferPtr, valueBufferPtr, valueLength);
                 pool.Return(fieldNameBuffer);
             }
         }
