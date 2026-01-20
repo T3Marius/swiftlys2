@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "gameinstructor_nodraw"
 /// </summary>
-public interface EventGameinstructorNodraw : IGameEvent<EventGameinstructorNodraw> {
+public interface EventGameinstructorNodraw : IGameEvent<EventGameinstructorNodraw>
+{
 
-  static EventGameinstructorNodraw IGameEvent<EventGameinstructorNodraw>.Create(nint address) => new EventGameinstructorNodrawImpl(address);
+    static EventGameinstructorNodraw IGameEvent<EventGameinstructorNodraw>.Create(nint address) => new EventGameinstructorNodrawImpl(address);
 
-  static string IGameEvent<EventGameinstructorNodraw>.GetName() => "gameinstructor_nodraw";
+    static string IGameEvent<EventGameinstructorNodraw>.GetName() => "gameinstructor_nodraw";
 
-  static uint IGameEvent<EventGameinstructorNodraw>.GetHash() => 0x067F31A8u;
+    static uint IGameEvent<EventGameinstructorNodraw>.GetHash() => 0x067F31A8u;
 }

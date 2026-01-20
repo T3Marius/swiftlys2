@@ -21,11 +21,11 @@ internal partial class CPhysSurfacePropertiesImpl : SchemaClass, CPhysSurfacePro
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x682A31344D8F5786);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x682A31344D8F5786);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _NameHashOffset;
@@ -57,11 +57,11 @@ internal partial class CPhysSurfacePropertiesImpl : SchemaClass, CPhysSurfacePro
     public string Description {
         get {
             _DescriptionOffset = _DescriptionOffset ?? Schema.GetOffset(0x682A313499F68389);
-            return Schema.GetString(_Handle.Read<nint>(_DescriptionOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DescriptionOffset!.Value));
         }
         set {
             _DescriptionOffset = _DescriptionOffset ?? Schema.GetOffset(0x682A313499F68389);
-            Schema.SetString(_Handle, _DescriptionOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DescriptionOffset!.Value, value);
         }
     } 
     private static nint? _PhysicsOffset;

@@ -62,7 +62,10 @@ void Bridge_PlayerManager_ShouldBlockTransmitEntity(int entityidx, bool shouldBl
         }
         else {
             bv.blockedMask[dword] &= ~(1ULL << (entityidx % 64));
-            if (bv.blockedMask[dword] == 0) bv.activeMasks.erase(std::find(bv.activeMasks.begin(), bv.activeMasks.end(), dword));
+            if (bv.blockedMask[dword] == 0) {
+                auto dwordIt = std::find(bv.activeMasks.begin(), bv.activeMasks.end(), dword);
+                if (dwordIt != bv.activeMasks.end()) bv.activeMasks.erase(dwordIt);
+            }
         }
     }
 }

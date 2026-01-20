@@ -53,11 +53,11 @@ internal partial class VPhysXCollisionAttributes_tImpl : SchemaClass, VPhysXColl
     public string CollisionGroupString {
         get {
             _CollisionGroupStringOffset = _CollisionGroupStringOffset ?? Schema.GetOffset(0xBD3263AFCF0517E7);
-            return Schema.GetString(_Handle.Read<nint>(_CollisionGroupStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_CollisionGroupStringOffset!.Value));
         }
         set {
             _CollisionGroupStringOffset = _CollisionGroupStringOffset ?? Schema.GetOffset(0xBD3263AFCF0517E7);
-            Schema.SetString(_Handle, _CollisionGroupStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _CollisionGroupStringOffset!.Value, value);
         }
     } 
     private static nint? _InteractAsStringsOffset;

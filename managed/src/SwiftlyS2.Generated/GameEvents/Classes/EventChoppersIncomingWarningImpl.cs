@@ -7,16 +7,16 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "choppers_incoming_warning"
 /// </summary>
 internal class EventChoppersIncomingWarningImpl : GameEvent<EventChoppersIncomingWarning>, EventChoppersIncomingWarning
 {
 
-  public EventChoppersIncomingWarningImpl(nint address) : base(address)
-  {
-  }
+    public EventChoppersIncomingWarningImpl(nint address) : base(address)
+    {
+    }
 
-  public bool Global
-  { get => Accessor.GetBool("global"); set => Accessor.SetBool("global", value); }
+    public bool Global
+    { get => Accessor.GetBool("global"); set => Accessor.SetBool("global", value); }
 }

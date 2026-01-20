@@ -21,11 +21,11 @@ internal partial class ParticleNamedValueConfiguration_tImpl : SchemaClass, Part
     public string ConfigName {
         get {
             _ConfigNameOffset = _ConfigNameOffset ?? Schema.GetOffset(0x4C42AD0EA7B74064);
-            return Schema.GetString(_Handle.Read<nint>(_ConfigNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ConfigNameOffset!.Value));
         }
         set {
             _ConfigNameOffset = _ConfigNameOffset ?? Schema.GetOffset(0x4C42AD0EA7B74064);
-            Schema.SetString(_Handle, _ConfigNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ConfigNameOffset!.Value, value);
         }
     } 
     private static nint? _ConfigValueOffset;
@@ -41,11 +41,11 @@ internal partial class ParticleNamedValueConfiguration_tImpl : SchemaClass, Part
     public string BoundValuePath {
         get {
             _BoundValuePathOffset = _BoundValuePathOffset ?? Schema.GetOffset(0x4C42AD0ED4977C9F);
-            return Schema.GetString(_Handle.Read<nint>(_BoundValuePathOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BoundValuePathOffset!.Value));
         }
         set {
             _BoundValuePathOffset = _BoundValuePathOffset ?? Schema.GetOffset(0x4C42AD0ED4977C9F);
-            Schema.SetString(_Handle, _BoundValuePathOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BoundValuePathOffset!.Value, value);
         }
     } 
     private static nint? _AttachTypeOffset;
@@ -61,11 +61,11 @@ internal partial class ParticleNamedValueConfiguration_tImpl : SchemaClass, Part
     public string StrEntityScope {
         get {
             _StrEntityScopeOffset = _StrEntityScopeOffset ?? Schema.GetOffset(0x4C42AD0ECCAF0621);
-            return Schema.GetString(_Handle.Read<nint>(_StrEntityScopeOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrEntityScopeOffset!.Value));
         }
         set {
             _StrEntityScopeOffset = _StrEntityScopeOffset ?? Schema.GetOffset(0x4C42AD0ECCAF0621);
-            Schema.SetString(_Handle, _StrEntityScopeOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrEntityScopeOffset!.Value, value);
         }
     } 
     private static nint? _StrAttachmentNameOffset;
@@ -73,11 +73,11 @@ internal partial class ParticleNamedValueConfiguration_tImpl : SchemaClass, Part
     public string StrAttachmentName {
         get {
             _StrAttachmentNameOffset = _StrAttachmentNameOffset ?? Schema.GetOffset(0x4C42AD0EEB143B4E);
-            return Schema.GetString(_Handle.Read<nint>(_StrAttachmentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrAttachmentNameOffset!.Value));
         }
         set {
             _StrAttachmentNameOffset = _StrAttachmentNameOffset ?? Schema.GetOffset(0x4C42AD0EEB143B4E);
-            Schema.SetString(_Handle, _StrAttachmentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrAttachmentNameOffset!.Value, value);
         }
     } 
 

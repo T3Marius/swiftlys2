@@ -5,53 +5,54 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "player_changename"
 /// </summary>
-public interface EventPlayerChangename : IGameEvent<EventPlayerChangename> {
+public interface EventPlayerChangename : IGameEvent<EventPlayerChangename>
+{
 
-  static EventPlayerChangename IGameEvent<EventPlayerChangename>.Create(nint address) => new EventPlayerChangenameImpl(address);
+    static EventPlayerChangename IGameEvent<EventPlayerChangename>.Create(nint address) => new EventPlayerChangenameImpl(address);
 
-  static string IGameEvent<EventPlayerChangename>.GetName() => "player_changename";
+    static string IGameEvent<EventPlayerChangename>.GetName() => "player_changename";
 
-  static uint IGameEvent<EventPlayerChangename>.GetHash() => 0xD955F966u;
-  /// <summary>
-  /// user ID on server
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventPlayerChangename>.GetHash() => 0xD955F966u;
 
-  /// <summary>
-  /// user ID on server
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// user ID on server
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// user ID on server
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  // user ID on server
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// user ID on server
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int UserId { get; set; }
+    // user ID on server
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// players old (current) name
-  /// <br/>
-  /// type: string
-  /// </summary>
-  string OldName { get; set; }
+    /// <summary>
+    /// user ID on server
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// players new name
-  /// <br/>
-  /// type: string
-  /// </summary>
-  string NewName { get; set; }
+    /// <summary>
+    /// players old (current) name
+    /// <br/>
+    /// type: string
+    /// </summary>
+    string OldName { get; set; }
 
+    /// <summary>
+    /// players new name
+    /// <br/>
+    /// type: string
+    /// </summary>
+    string NewName { get; set; }
 }

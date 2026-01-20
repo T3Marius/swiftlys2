@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "round_announce_match_point"
 /// </summary>
-public interface EventRoundAnnounceMatchPoint : IGameEvent<EventRoundAnnounceMatchPoint> {
+public interface EventRoundAnnounceMatchPoint : IGameEvent<EventRoundAnnounceMatchPoint>
+{
 
-  static EventRoundAnnounceMatchPoint IGameEvent<EventRoundAnnounceMatchPoint>.Create(nint address) => new EventRoundAnnounceMatchPointImpl(address);
+    static EventRoundAnnounceMatchPoint IGameEvent<EventRoundAnnounceMatchPoint>.Create(nint address) => new EventRoundAnnounceMatchPointImpl(address);
 
-  static string IGameEvent<EventRoundAnnounceMatchPoint>.GetName() => "round_announce_match_point";
+    static string IGameEvent<EventRoundAnnounceMatchPoint>.GetName() => "round_announce_match_point";
 
-  static uint IGameEvent<EventRoundAnnounceMatchPoint>.GetHash() => 0xE22B8B5Cu;
+    static uint IGameEvent<EventRoundAnnounceMatchPoint>.GetHash() => 0xE22B8B5Cu;
 }

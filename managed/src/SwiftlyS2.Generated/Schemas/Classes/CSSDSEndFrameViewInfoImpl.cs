@@ -29,11 +29,11 @@ internal partial class CSSDSEndFrameViewInfoImpl : SchemaClass, CSSDSEndFrameVie
     public string ViewName {
         get {
             _ViewNameOffset = _ViewNameOffset ?? Schema.GetOffset(0xE2792496BA5BBDBB);
-            return Schema.GetString(_Handle.Read<nint>(_ViewNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ViewNameOffset!.Value));
         }
         set {
             _ViewNameOffset = _ViewNameOffset ?? Schema.GetOffset(0xE2792496BA5BBDBB);
-            Schema.SetString(_Handle, _ViewNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ViewNameOffset!.Value, value);
         }
     } 
 

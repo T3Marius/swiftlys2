@@ -7,32 +7,32 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "door_open"
 /// </summary>
 internal class EventDoorOpenImpl : GameEvent<EventDoorOpen>, EventDoorOpen
 {
 
-  public EventDoorOpenImpl(nint address) : base(address)
-  {
-  }
+    public EventDoorOpenImpl(nint address) : base(address)
+    {
+    }
 
-  // Who closed the door
-  public CCSPlayerController UserIdController
-  { get => Accessor.GetPlayerController("userid"); }
+    // Who closed the door
+    public CCSPlayerController UserIdController
+    { get => Accessor.GetPlayerController("userid"); }
 
-  // Who closed the door
-  public CCSPlayerPawn UserIdPawn
-  { get => Accessor.GetPlayerPawn("userid"); }
+    // Who closed the door
+    public CCSPlayerPawn UserIdPawn
+    { get => Accessor.GetPlayerPawn("userid"); }
 
-  // Who closed the door
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
+    // Who closed the door
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  // Who closed the door
-  public int UserId
-  { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
+    // Who closed the door
+    public int UserId
+    { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
-  public int EntIndex
-  { get => Accessor.GetInt32("entindex"); set => Accessor.SetInt32("entindex", value); }
+    public int EntIndex
+    { get => Accessor.GetInt32("entindex"); set => Accessor.SetInt32("entindex", value); }
 }

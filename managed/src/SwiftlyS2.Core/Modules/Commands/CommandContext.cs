@@ -24,7 +24,14 @@ internal class CommandContext : ICommandContext
     {
         if (IsSentByPlayer)
         {
-            Sender?.SendMessage(MessageType.Chat, message);
+            if (Prefix == "sw_")
+            {
+                Sender?.SendMessage(MessageType.Console, message);
+            }
+            else
+            {
+                Sender?.SendMessage(MessageType.Chat, message);
+            }
         }
         else
         {
@@ -40,7 +47,7 @@ internal class CommandContext : ICommandContext
     public CommandContext( int playerId, string[] args, string commandName, string prefix, bool slient )
     {
         IsSentByPlayer = playerId != -1;
-        Sender = playerId != -1 ? new Player(playerId) : null;
+        Sender = playerId != -1 ? PlayerManagerService.PlayerObjects[playerId] : null;
         Prefix = prefix;
         IsSlient = slient;
         CommandName = commandName;
@@ -49,7 +56,6 @@ internal class CommandContext : ICommandContext
 
     public override string ToString()
     {
-        return
-            $"CommandContext {{ Sender: {(IsSentByPlayer ? $"Player: {Sender?.Controller.PlayerName ?? "Unknown"}" : "Console")}, Command: {Prefix}{CommandName}, Args: [{(Args.Length > 0 ? string.Join(" ", Args) : "None")}], Mode: {(IsSlient ? "Silent" : "Normal")} }}";
+        return $"CommandContext {{ Sender: {(IsSentByPlayer ? $"Player: {Sender?.Controller.PlayerName ?? "Unknown"}" : "Console")}, Command: {Prefix}{CommandName}, Args: [{(Args.Length > 0 ? string.Join(" ", Args) : "None")}], Mode: {(IsSlient ? "Silent" : "Normal")} }}";
     }
 }

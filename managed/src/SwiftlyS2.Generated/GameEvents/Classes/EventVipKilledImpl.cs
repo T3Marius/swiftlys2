@@ -7,45 +7,45 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "vip_killed"
 /// </summary>
 internal class EventVipKilledImpl : GameEvent<EventVipKilled>, EventVipKilled
 {
 
-  public EventVipKilledImpl(nint address) : base(address)
-  {
-  }
+    public EventVipKilledImpl(nint address) : base(address)
+    {
+    }
 
-  // player who was the VIP
-  public CCSPlayerController UserIdController
-  { get => Accessor.GetPlayerController("userid"); }
+    // player who was the VIP
+    public CCSPlayerController UserIdController
+    { get => Accessor.GetPlayerController("userid"); }
 
-  // player who was the VIP
-  public CCSPlayerPawn UserIdPawn
-  { get => Accessor.GetPlayerPawn("userid"); }
+    // player who was the VIP
+    public CCSPlayerPawn UserIdPawn
+    { get => Accessor.GetPlayerPawn("userid"); }
 
-  // player who was the VIP
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
+    // player who was the VIP
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  // player who was the VIP
-  public int UserId
-  { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
+    // player who was the VIP
+    public int UserId
+    { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
-  // user ID who killed the VIP
-  public CCSPlayerController AttackerController
-  { get => Accessor.GetPlayerController("attacker"); }
+    // user ID who killed the VIP
+    public CCSPlayerController AttackerController
+    { get => Accessor.GetPlayerController("attacker"); }
 
-  // user ID who killed the VIP
-  public CCSPlayerPawn AttackerPawn
-  { get => Accessor.GetPlayerPawn("attacker"); }
+    // user ID who killed the VIP
+    public CCSPlayerPawn AttackerPawn
+    { get => Accessor.GetPlayerPawn("attacker"); }
 
-  // user ID who killed the VIP
-  public IPlayer AttackerPlayer
-  { get => Accessor.GetPlayer("attacker"); }
+    // user ID who killed the VIP
+    public IPlayer? AttackerPlayer
+    { get => Accessor.GetPlayer("attacker"); }
 
-  // user ID who killed the VIP
-  public int Attacker
-  { get => Accessor.GetInt32("attacker"); set => Accessor.SetInt32("attacker", value); }
+    // user ID who killed the VIP
+    public int Attacker
+    { get => Accessor.GetInt32("attacker"); set => Accessor.SetInt32("attacker", value); }
 }

@@ -21,11 +21,11 @@ internal partial class MaterialParamString_tImpl : MaterialParam_tImpl, Material
     public string Value {
         get {
             _ValueOffset = _ValueOffset ?? Schema.GetOffset(0xDB5EB0676B99AEEA);
-            return Schema.GetString(_Handle.Read<nint>(_ValueOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ValueOffset!.Value));
         }
         set {
             _ValueOffset = _ValueOffset ?? Schema.GetOffset(0xDB5EB0676B99AEEA);
-            Schema.SetString(_Handle, _ValueOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ValueOffset!.Value, value);
         }
     } 
 

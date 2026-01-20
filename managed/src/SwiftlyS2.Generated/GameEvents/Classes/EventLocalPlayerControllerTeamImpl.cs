@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "local_player_controller_team"
 /// </summary>
 internal class EventLocalPlayerControllerTeamImpl : GameEvent<EventLocalPlayerControllerTeam>, EventLocalPlayerControllerTeam
 {
 
-  public EventLocalPlayerControllerTeamImpl(nint address) : base(address)
-  {
-  }
+    public EventLocalPlayerControllerTeamImpl(nint address) : base(address)
+    {
+    }
 }

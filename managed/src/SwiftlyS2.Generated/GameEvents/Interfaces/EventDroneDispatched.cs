@@ -5,45 +5,46 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "drone_dispatched"
 /// </summary>
-public interface EventDroneDispatched : IGameEvent<EventDroneDispatched> {
+public interface EventDroneDispatched : IGameEvent<EventDroneDispatched>
+{
 
-  static EventDroneDispatched IGameEvent<EventDroneDispatched>.Create(nint address) => new EventDroneDispatchedImpl(address);
+    static EventDroneDispatched IGameEvent<EventDroneDispatched>.Create(nint address) => new EventDroneDispatchedImpl(address);
 
-  static string IGameEvent<EventDroneDispatched>.GetName() => "drone_dispatched";
+    static string IGameEvent<EventDroneDispatched>.GetName() => "drone_dispatched";
 
-  static uint IGameEvent<EventDroneDispatched>.GetHash() => 0x4491A405u;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventDroneDispatched>.GetHash() => 0x4491A405u;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// type: short
-  /// </summary>
-  short Priority { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// type: short
-  /// </summary>
-  short DroneDispatched { get; set; }
+    /// <summary>
+    /// type: short
+    /// </summary>
+    short Priority { get; set; }
 
+    /// <summary>
+    /// type: short
+    /// </summary>
+    short DroneDispatched { get; set; }
 }

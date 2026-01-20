@@ -19,6 +19,11 @@ public partial interface CEntityInstance : IEquatable<CEntityInstance>
   public string DesignerName { get; }
 
   /// <summary>
+  /// Whether the entity instance is valid and exists on server. This MUST be used just on entities, otherwise it will return false.
+  /// </summary>
+  public bool IsValidEntity { get; }
+
+  /// <summary>
   /// Fire an input to the entity.
   /// 
   /// Thread unsafe, use async variant instead for non-main thread context.
@@ -67,7 +72,7 @@ public partial interface CEntityInstance : IEquatable<CEntityInstance>
   /// <param name="caller">Caller entity. Nullable.</param>
   /// <param name="delay">Delay in seconds.</param>
   public Task AddEntityIOEventAsync<T>( string input, T? value, CEntityInstance? activator = null, CEntityInstance? caller = null, float delay = 0f );
-  
+
   /// <summary>
   /// Dispatch a spawn event to the entity.
   /// 

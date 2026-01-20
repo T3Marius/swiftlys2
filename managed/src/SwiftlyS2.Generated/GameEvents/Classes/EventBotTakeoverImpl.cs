@@ -7,46 +7,46 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "bot_takeover"
 /// </summary>
 internal class EventBotTakeoverImpl : GameEvent<EventBotTakeover>, EventBotTakeover
 {
 
-  public EventBotTakeoverImpl(nint address) : base(address)
-  {
-  }
+    public EventBotTakeoverImpl(nint address) : base(address)
+    {
+    }
 
-  public CCSPlayerController UserIdController
-  { get => Accessor.GetPlayerController("userid"); }
+    public CCSPlayerController UserIdController
+    { get => Accessor.GetPlayerController("userid"); }
 
-  public CCSPlayerPawn UserIdPawn
-  { get => Accessor.GetPlayerPawn("userid"); }
+    public CCSPlayerPawn UserIdPawn
+    { get => Accessor.GetPlayerPawn("userid"); }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  public int UserId
-  { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
+    public int UserId
+    { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
-  public CCSPlayerController BotIDController
-  { get => Accessor.GetPlayerController("botid"); }
+    public CCSPlayerController BotIDController
+    { get => Accessor.GetPlayerController("botid"); }
 
-  public CCSPlayerPawn BotIDPawn
-  { get => Accessor.GetPlayerPawn("botid"); }
+    public CCSPlayerPawn BotIDPawn
+    { get => Accessor.GetPlayerPawn("botid"); }
 
-  public IPlayer BotIDPlayer
-  { get => Accessor.GetPlayer("botid"); }
+    public IPlayer? BotIDPlayer
+    { get => Accessor.GetPlayer("botid"); }
 
-  public int BotID
-  { get => Accessor.GetInt32("botid"); set => Accessor.SetInt32("botid", value); }
+    public int BotID
+    { get => Accessor.GetInt32("botid"); set => Accessor.SetInt32("botid", value); }
 
-  public float P
-  { get => Accessor.GetFloat("p"); set => Accessor.SetFloat("p", value); }
+    public float P
+    { get => Accessor.GetFloat("p"); set => Accessor.SetFloat("p", value); }
 
-  public float Y
-  { get => Accessor.GetFloat("y"); set => Accessor.SetFloat("y", value); }
+    public float Y
+    { get => Accessor.GetFloat("y"); set => Accessor.SetFloat("y", value); }
 
-  public float R
-  { get => Accessor.GetFloat("r"); set => Accessor.SetFloat("r", value); }
+    public float R
+    { get => Accessor.GetFloat("r"); set => Accessor.SetFloat("r", value); }
 }

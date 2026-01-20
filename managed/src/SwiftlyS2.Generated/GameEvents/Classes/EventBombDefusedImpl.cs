@@ -7,33 +7,33 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "bomb_defused"
 /// </summary>
 internal class EventBombDefusedImpl : GameEvent<EventBombDefused>, EventBombDefused
 {
 
-  public EventBombDefusedImpl(nint address) : base(address)
-  {
-  }
+    public EventBombDefusedImpl(nint address) : base(address)
+    {
+    }
 
-  // player who defused the bomb
-  public CCSPlayerController UserIdController
-  { get => Accessor.GetPlayerController("userid"); }
+    // player who defused the bomb
+    public CCSPlayerController UserIdController
+    { get => Accessor.GetPlayerController("userid"); }
 
-  // player who defused the bomb
-  public CCSPlayerPawn UserIdPawn
-  { get => Accessor.GetPlayerPawn("userid"); }
+    // player who defused the bomb
+    public CCSPlayerPawn UserIdPawn
+    { get => Accessor.GetPlayerPawn("userid"); }
 
-  // player who defused the bomb
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
+    // player who defused the bomb
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  // player who defused the bomb
-  public int UserId
-  { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
+    // player who defused the bomb
+    public int UserId
+    { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
-  // bombsite index
-  public short Site
-  { get => (short)Accessor.GetInt32("site"); set => Accessor.SetInt32("site", value); }
+    // bombsite index
+    public short Site
+    { get => (short)Accessor.GetInt32("site"); set => Accessor.SetInt32("site", value); }
 }

@@ -21,11 +21,11 @@ internal partial class CWorldCompositionChunkReferenceElement_tImpl : SchemaClas
     public string StrMapToLoad {
         get {
             _StrMapToLoadOffset = _StrMapToLoadOffset ?? Schema.GetOffset(0x9B80004DE87F0C1B);
-            return Schema.GetString(_Handle.Read<nint>(_StrMapToLoadOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrMapToLoadOffset!.Value));
         }
         set {
             _StrMapToLoadOffset = _StrMapToLoadOffset ?? Schema.GetOffset(0x9B80004DE87F0C1B);
-            Schema.SetString(_Handle, _StrMapToLoadOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrMapToLoadOffset!.Value, value);
         }
     } 
     private static nint? _StrLandmarkNameOffset;
@@ -33,11 +33,11 @@ internal partial class CWorldCompositionChunkReferenceElement_tImpl : SchemaClas
     public string StrLandmarkName {
         get {
             _StrLandmarkNameOffset = _StrLandmarkNameOffset ?? Schema.GetOffset(0x9B80004DE0BB30D3);
-            return Schema.GetString(_Handle.Read<nint>(_StrLandmarkNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrLandmarkNameOffset!.Value));
         }
         set {
             _StrLandmarkNameOffset = _StrLandmarkNameOffset ?? Schema.GetOffset(0x9B80004DE0BB30D3);
-            Schema.SetString(_Handle, _StrLandmarkNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrLandmarkNameOffset!.Value, value);
         }
     } 
 

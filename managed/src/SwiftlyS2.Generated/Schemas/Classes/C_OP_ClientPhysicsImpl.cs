@@ -21,11 +21,11 @@ internal partial class C_OP_ClientPhysicsImpl : CParticleFunctionRendererImpl, C
     public string StrPhysicsType {
         get {
             _StrPhysicsTypeOffset = _StrPhysicsTypeOffset ?? Schema.GetOffset(0xD58F5C47820348D9);
-            return Schema.GetString(_Handle.Read<nint>(_StrPhysicsTypeOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrPhysicsTypeOffset!.Value));
         }
         set {
             _StrPhysicsTypeOffset = _StrPhysicsTypeOffset ?? Schema.GetOffset(0xD58F5C47820348D9);
-            Schema.SetString(_Handle, _StrPhysicsTypeOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrPhysicsTypeOffset!.Value, value);
         }
     } 
     private static nint? _StartAsleepOffset;

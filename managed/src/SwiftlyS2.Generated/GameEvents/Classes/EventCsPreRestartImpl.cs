@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_pre_restart"
 /// </summary>
 internal class EventCsPreRestartImpl : GameEvent<EventCsPreRestart>, EventCsPreRestart
 {
 
-  public EventCsPreRestartImpl(nint address) : base(address)
-  {
-  }
+    public EventCsPreRestartImpl(nint address) : base(address)
+    {
+    }
 }

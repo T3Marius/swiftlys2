@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "gc_connected"
 /// </summary>
 internal class EventGcConnectedImpl : GameEvent<EventGcConnected>, EventGcConnected
 {
 
-  public EventGcConnectedImpl(nint address) : base(address)
-  {
-  }
+    public EventGcConnectedImpl(nint address) : base(address)
+    {
+    }
 }

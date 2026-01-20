@@ -21,11 +21,11 @@ internal partial class CVirtualAnimParameterImpl : CAnimParameterBaseImpl, CVirt
     public string ExpressionString {
         get {
             _ExpressionStringOffset = _ExpressionStringOffset ?? Schema.GetOffset(0x3D45915B3039426E);
-            return Schema.GetString(_Handle.Read<nint>(_ExpressionStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ExpressionStringOffset!.Value));
         }
         set {
             _ExpressionStringOffset = _ExpressionStringOffset ?? Schema.GetOffset(0x3D45915B3039426E);
-            Schema.SetString(_Handle, _ExpressionStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ExpressionStringOffset!.Value, value);
         }
     } 
     private static nint? _ParamTypeOffset;

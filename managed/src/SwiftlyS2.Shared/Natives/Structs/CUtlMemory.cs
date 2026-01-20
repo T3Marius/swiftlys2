@@ -24,9 +24,9 @@ public struct CUtlMemory<T>
 
     /// <summary>
     /// Please use <see cref="ManagedCUtlMemory{T}"/> instead to construct it.
-    /// If you really want to use this, you should call <see cref="Purge"/> after you are done with it.
+    /// If you really want to use this, you should call <see cref="Purge()"/> after you are done with it.
     /// </summary>
-    public CUtlMemory(int growSize, int initSize)
+    public CUtlMemory( int growSize, int initSize )
     {
         _memory = 0;
         _allocationCount = 0;
@@ -36,9 +36,9 @@ public struct CUtlMemory<T>
 
     /// <summary>
     /// Please use <see cref="ManagedCUtlMemory{T}"/> instead to construct it.
-    /// If you really want to use this, you should call <see cref="Purge"/> after you are done with it.
+    /// If you really want to use this, you should call <see cref="Purge()"/> after you are done with it.
     /// </summary>
-    public CUtlMemory(nint memory, int numelements, bool readOnly)
+    public CUtlMemory( nint memory, int numelements, bool readOnly )
     {
         _memory = 0;
         _allocationCount = 0;
@@ -46,7 +46,7 @@ public struct CUtlMemory<T>
         SetExternalBuffer(memory, numelements, readOnly);
     }
 
-    public void Init(int growSize, int initSize)
+    public void Init( int growSize, int initSize )
     {
         Purge();
 
@@ -67,7 +67,7 @@ public struct CUtlMemory<T>
         _growSize = 0;
     }
 
-    public void Purge(int numElements)
+    public void Purge( int numElements )
     {
         if (numElements < 0 || numElements > _allocationCount) return;
         if (numElements == 0)
@@ -88,7 +88,7 @@ public struct CUtlMemory<T>
         _allocationCount = (uint)numElements;
     }
 
-    public void ConvertToGrowableMemory(int growSize)
+    public void ConvertToGrowableMemory( int growSize )
     {
         if (!ExternallyAllocated) return;
         if (_memory == 0) return;
@@ -107,7 +107,7 @@ public struct CUtlMemory<T>
         }
     }
 
-    public void SetExternalBuffer(nint memory, int numelements, bool readOnly)
+    public void SetExternalBuffer( nint memory, int numelements, bool readOnly )
     {
         Purge();
 
@@ -116,7 +116,7 @@ public struct CUtlMemory<T>
         _growSize = (uint)(readOnly ? (int)BufferMarkers.ExternalConstBufferMarker : (int)BufferMarkers.ExternalBufferMarker);
     }
 
-    public void AssumeMemory(nint memory, int numelements)
+    public void AssumeMemory( nint memory, int numelements )
     {
         Purge();
 
@@ -136,7 +136,7 @@ public struct CUtlMemory<T>
         return mem;
     }
 
-    public void Grow(int num)
+    public void Grow( int num )
     {
         if (IsReadOnly) return;
         if (_allocationCount + num > int.MaxValue)
@@ -169,7 +169,7 @@ public struct CUtlMemory<T>
         _allocationCount = (uint)newAllocationCount;
     }
 
-    public void EnsureCapacity(int num)
+    public void EnsureCapacity( int num )
     {
         if (_allocationCount >= num) return;
         if (IsReadOnly) return;
@@ -180,17 +180,15 @@ public struct CUtlMemory<T>
             _growSize &= ~(int)(BufferMarkers.ExternalBufferMarker | BufferMarkers.ExternalConstBufferMarker);
     }
 
-    public void SetGrowSize(int size)
+    public void SetGrowSize( int size )
     {
         _growSize |= (uint)(size & ~(int)(BufferMarkers.ExternalBufferMarker | BufferMarkers.ExternalConstBufferMarker));
     }
 
-    public bool IsValidIndex(int index) => (uint)index < _allocationCount && index >= 0;
+    public bool IsValidIndex( int index ) => (uint)index < _allocationCount && index >= 0;
 
-    public ref T this[int index]
-    {
-        get
-        {
+    public ref T this[int index] {
+        get {
             unsafe
             {
                 return ref Unsafe.AsRef<T>((byte*)_memory + int.CreateChecked(index * ElementSize));

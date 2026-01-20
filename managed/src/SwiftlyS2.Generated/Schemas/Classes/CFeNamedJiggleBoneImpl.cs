@@ -21,11 +21,11 @@ internal partial class CFeNamedJiggleBoneImpl : SchemaClass, CFeNamedJiggleBone
     public string StrParentBone {
         get {
             _StrParentBoneOffset = _StrParentBoneOffset ?? Schema.GetOffset(0x51055B3A22DD827E);
-            return Schema.GetString(_Handle.Read<nint>(_StrParentBoneOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrParentBoneOffset!.Value));
         }
         set {
             _StrParentBoneOffset = _StrParentBoneOffset ?? Schema.GetOffset(0x51055B3A22DD827E);
-            Schema.SetString(_Handle, _StrParentBoneOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrParentBoneOffset!.Value, value);
         }
     } 
     private static nint? _TransformOffset;

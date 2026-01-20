@@ -29,11 +29,11 @@ internal partial class CAnimParameterBaseImpl : SchemaClass, CAnimParameterBase
     public string Comment {
         get {
             _CommentOffset = _CommentOffset ?? Schema.GetOffset(0x9E097C8F88A0B4DF);
-            return Schema.GetString(_Handle.Read<nint>(_CommentOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_CommentOffset!.Value));
         }
         set {
             _CommentOffset = _CommentOffset ?? Schema.GetOffset(0x9E097C8F88A0B4DF);
-            Schema.SetString(_Handle, _CommentOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _CommentOffset!.Value, value);
         }
     } 
     private static nint? _GroupOffset;
@@ -41,11 +41,11 @@ internal partial class CAnimParameterBaseImpl : SchemaClass, CAnimParameterBase
     public string Group {
         get {
             _GroupOffset = _GroupOffset ?? Schema.GetOffset(0x9E097C8F9FC645AC);
-            return Schema.GetString(_Handle.Read<nint>(_GroupOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_GroupOffset!.Value));
         }
         set {
             _GroupOffset = _GroupOffset ?? Schema.GetOffset(0x9E097C8F9FC645AC);
-            Schema.SetString(_Handle, _GroupOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _GroupOffset!.Value, value);
         }
     } 
     private static nint? _IdOffset;
@@ -61,11 +61,11 @@ internal partial class CAnimParameterBaseImpl : SchemaClass, CAnimParameterBase
     public string ComponentName {
         get {
             _ComponentNameOffset = _ComponentNameOffset ?? Schema.GetOffset(0x9E097C8F7CAC3EA3);
-            return Schema.GetString(_Handle.Read<nint>(_ComponentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ComponentNameOffset!.Value));
         }
         set {
             _ComponentNameOffset = _ComponentNameOffset ?? Schema.GetOffset(0x9E097C8F7CAC3EA3);
-            Schema.SetString(_Handle, _ComponentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ComponentNameOffset!.Value, value);
         }
     } 
     private static nint? _NetworkingRequestedOffset;

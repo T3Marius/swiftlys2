@@ -21,11 +21,11 @@ internal partial class CModelConfigImpl : SchemaClass, CModelConfig
     public string ConfigName {
         get {
             _ConfigNameOffset = _ConfigNameOffset ?? Schema.GetOffset(0xF6401D5DA7B74064);
-            return Schema.GetString(_Handle.Read<nint>(_ConfigNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ConfigNameOffset!.Value));
         }
         set {
             _ConfigNameOffset = _ConfigNameOffset ?? Schema.GetOffset(0xF6401D5DA7B74064);
-            Schema.SetString(_Handle, _ConfigNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ConfigNameOffset!.Value, value);
         }
     } 
     private static nint? _ElementsOffset;

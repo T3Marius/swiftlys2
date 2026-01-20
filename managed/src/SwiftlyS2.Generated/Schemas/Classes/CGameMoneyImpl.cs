@@ -45,11 +45,11 @@ internal partial class CGameMoneyImpl : CRulePointEntityImpl, CGameMoney
     public string StrAwardText {
         get {
             _StrAwardTextOffset = _StrAwardTextOffset ?? Schema.GetOffset(0xED17C684B48AB662);
-            return Schema.GetString(_Handle.Read<nint>(_StrAwardTextOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrAwardTextOffset!.Value));
         }
         set {
             _StrAwardTextOffset = _StrAwardTextOffset ?? Schema.GetOffset(0xED17C684B48AB662);
-            Schema.SetString(_Handle, _StrAwardTextOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrAwardTextOffset!.Value, value);
         }
     } 
 

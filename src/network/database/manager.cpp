@@ -20,6 +20,7 @@
 
 #include <api/shared/files.h>
 #include <api/shared/jsonc.h>
+#include <string>
 
 #include <api/interfaces/manager.h>
 
@@ -32,6 +33,8 @@
 #include <public/tier1/strtools.h>
 
 using json = nlohmann::json;
+
+std::string GetRelativePath(std::string path);
 
 DatabaseConnection CDatabaseManager::ParseUri(const std::string& uri)
 {
@@ -66,7 +69,22 @@ DatabaseConnection CDatabaseManager::ParseUri(const std::string& uri)
     // Handle SQLite specially (no host/user/pass)
     if (conn.driver == "sqlite")
     {
-        conn.database = rest;
+        // not an absolute path
+        if (rest.find('/') == std::string::npos)
+        {
+            conn.database = Files::GeneratePath("addons/swiftlys2/data/" + rest);
+        }
+        // relative path from `game/{GAME_NAME}`
+        else if (GetRelativePath(rest) == rest)
+        {
+            conn.database = Files::GeneratePath(rest);
+        }
+        // absolute path
+        else
+        {
+            conn.database = rest;
+        }
+
         return conn;
     }
 

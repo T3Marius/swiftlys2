@@ -29,11 +29,11 @@ internal partial class SosEditItemInfo_tImpl : SchemaClass, SosEditItemInfo_t
     public string ItemName {
         get {
             _ItemNameOffset = _ItemNameOffset ?? Schema.GetOffset(0x8E29E1C0575A2B25);
-            return Schema.GetString(_Handle.Read<nint>(_ItemNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ItemNameOffset!.Value));
         }
         set {
             _ItemNameOffset = _ItemNameOffset ?? Schema.GetOffset(0x8E29E1C0575A2B25);
-            Schema.SetString(_Handle, _ItemNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ItemNameOffset!.Value, value);
         }
     } 
     private static nint? _ItemTypeNameOffset;
@@ -41,11 +41,11 @@ internal partial class SosEditItemInfo_tImpl : SchemaClass, SosEditItemInfo_t
     public string ItemTypeName {
         get {
             _ItemTypeNameOffset = _ItemTypeNameOffset ?? Schema.GetOffset(0x8E29E1C0B2F8CB75);
-            return Schema.GetString(_Handle.Read<nint>(_ItemTypeNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ItemTypeNameOffset!.Value));
         }
         set {
             _ItemTypeNameOffset = _ItemTypeNameOffset ?? Schema.GetOffset(0x8E29E1C0B2F8CB75);
-            Schema.SetString(_Handle, _ItemTypeNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ItemTypeNameOffset!.Value, value);
         }
     } 
     private static nint? _ItemKVStringOffset;
@@ -53,11 +53,11 @@ internal partial class SosEditItemInfo_tImpl : SchemaClass, SosEditItemInfo_t
     public string ItemKVString {
         get {
             _ItemKVStringOffset = _ItemKVStringOffset ?? Schema.GetOffset(0x8E29E1C0A0151DD6);
-            return Schema.GetString(_Handle.Read<nint>(_ItemKVStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ItemKVStringOffset!.Value));
         }
         set {
             _ItemKVStringOffset = _ItemKVStringOffset ?? Schema.GetOffset(0x8E29E1C0A0151DD6);
-            Schema.SetString(_Handle, _ItemKVStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ItemKVStringOffset!.Value, value);
         }
     } 
     private static nint? _ItemPosOffset;

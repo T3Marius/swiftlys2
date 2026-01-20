@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "map_transition"
 /// </summary>
 internal class EventMapTransitionImpl : GameEvent<EventMapTransition>, EventMapTransition
 {
 
-  public EventMapTransitionImpl(nint address) : base(address)
-  {
-  }
+    public EventMapTransitionImpl(nint address) : base(address)
+    {
+    }
 }

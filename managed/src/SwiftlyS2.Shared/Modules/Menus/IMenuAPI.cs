@@ -11,12 +11,6 @@ namespace SwiftlyS2.Shared.Menus;
 /// </summary>
 public record class MenuConfiguration
 {
-    private int maxVisibleItems = -1;
-    private string? navigationMarkerColor = null;
-    private string? footerColor = null;
-    private string? visualGuideLineColor = null;
-    private string? disabledColor = null;
-
     /// <summary>
     /// The title of the menu.
     /// </summary>
@@ -28,16 +22,24 @@ public record class MenuConfiguration
     public bool HideTitle { get; set; } = false;
 
     /// <summary>
+    /// Whether to hide the item count in the menu title.
+    /// </summary>
+    public bool HideTitleItemCount { get; set; } = false;
+
+    /// <summary>
     /// Whether to hide the menu footer.
     /// </summary>
     public bool HideFooter { get; set; } = false;
 
     /// <summary>
+    /// Whether to hide comments for menu options.
+    /// </summary>
+    public bool HideComment { get; set; } = false;
+
+    /// <summary>
     /// Whether to play sounds when players interact with the menu.
     /// </summary>
     public bool PlaySound { get; set; } = true;
-
-    public bool HideTitleItemCount { get; set; } = false;
 
     /// <summary>
     /// Maximum number of menu options displayed on screen at once.
@@ -49,19 +51,19 @@ public record class MenuConfiguration
     /// </para>
     /// </remarks>
     public int MaxVisibleItems {
-        get => maxVisibleItems;
+        get;
         set {
             if (value < 1 || value > 5)
             {
                 Spectre.Console.AnsiConsole.WriteException(new ArgumentOutOfRangeException(nameof(value), $"MaxVisibleItems: value {value} is out of range [1, 5]."));
-                maxVisibleItems = -1;
+                field = -1;
             }
             else
             {
-                maxVisibleItems = value;
+                field = value;
             }
         }
-    }
+    } = -1;
 
     /// <summary>
     /// Whether to automatically increase <see cref="MaxVisibleItems"/> when <see cref="HideTitle"/> or <see cref="HideFooter"/> is enabled.
@@ -95,19 +97,19 @@ public record class MenuConfiguration
     /// Supports "#RGB", "#RGBA", "#RRGGBB", and "#RRGGBBAA" formats.
     /// </remarks>
     public string? NavigationMarkerColor {
-        get => navigationMarkerColor;
+        get;
         set {
             if (string.IsNullOrWhiteSpace(value) || Helper.ParseHexColor(value) is not (not null, not null, not null, _))
             {
                 Spectre.Console.AnsiConsole.WriteException(new ArgumentException($"NavigationMarkerColor: '{value}' is not a valid hex color format. Expected '#RRGGBB'.", nameof(value)));
-                navigationMarkerColor = null;
+                field = null;
             }
             else
             {
-                navigationMarkerColor = value;
+                field = value;
             }
         }
-    }
+    } = null;
 
     /// <summary>
     /// The color of the menu footer in hex format.
@@ -116,19 +118,19 @@ public record class MenuConfiguration
     /// Supports "#RGB", "#RGBA", "#RRGGBB", and "#RRGGBBAA" formats.
     /// </remarks>
     public string? FooterColor {
-        get => footerColor;
+        get;
         set {
             if (string.IsNullOrWhiteSpace(value) || Helper.ParseHexColor(value) is not (not null, not null, not null, _))
             {
                 Spectre.Console.AnsiConsole.WriteException(new ArgumentException($"FooterColor: '{value}' is not a valid hex color format. Expected '#RRGGBB'.", nameof(value)));
-                footerColor = null;
+                field = null;
             }
             else
             {
-                footerColor = value;
+                field = value;
             }
         }
-    }
+    } = null;
 
     /// <summary>
     /// The color of visual guide lines in hex format.
@@ -137,19 +139,19 @@ public record class MenuConfiguration
     /// Supports "#RGB", "#RGBA", "#RRGGBB", and "#RRGGBBAA" formats.
     /// </remarks>
     public string? VisualGuideLineColor {
-        get => visualGuideLineColor;
+        get;
         set {
             if (string.IsNullOrWhiteSpace(value) || Helper.ParseHexColor(value) is not (not null, not null, not null, _))
             {
                 Spectre.Console.AnsiConsole.WriteException(new ArgumentException($"VisualGuideLineColor: '{value}' is not a valid hex color format. Expected '#RRGGBB'.", nameof(value)));
-                visualGuideLineColor = null;
+                field = null;
             }
             else
             {
-                visualGuideLineColor = value;
+                field = value;
             }
         }
-    }
+    } = null;
 
     /// <summary>
     /// The color of disabled menu options in hex format.
@@ -158,19 +160,51 @@ public record class MenuConfiguration
     /// Supports "#RGB", "#RGBA", "#RRGGBB", and "#RRGGBBAA" formats.
     /// </remarks>
     public string? DisabledColor {
-        get => disabledColor;
+        get;
         set {
             if (string.IsNullOrWhiteSpace(value) || Helper.ParseHexColor(value) is not (not null, not null, not null, _))
             {
                 Spectre.Console.AnsiConsole.WriteException(new ArgumentException($"DisabledColor: '{value}' is not a valid hex color format. Expected '#RRGGBB'.", nameof(value)));
-                disabledColor = null;
+                field = null;
             }
             else
             {
-                disabledColor = value;
+                field = value;
             }
         }
-    }
+    } = null;
+
+    /// <summary>
+    /// The default comment text to use when a menu option's Comment is not set.
+    /// </summary>
+    public string DefaultComment { get; set; } = $"Powered by <font color='#ff3c00'>❤️</font> {HtmlGradient.GenerateGradientText("SwiftlyS2", "#ffffff", "#96d5ff")}";
+
+    /// <summary>
+    /// Extra buttons that can be bound to custom actions in the menu.
+    /// These buttons are displayed in the footer and execute custom actions when pressed.
+    /// </summary>
+    public List<MenuExtraButton> ExtraButtons { get; set; } = new();
+}
+
+/// <summary>
+/// Represents an extra button in the menu that executes a custom action when pressed.
+/// </summary>
+public sealed class MenuExtraButton
+{
+    /// <summary>
+    /// The key binding for this extra button.
+    /// </summary>
+    public required KeyBind KeyBind { get; init; }
+
+    /// <summary>
+    /// The label to display for this button in the menu footer.
+    /// </summary>
+    public required string Label { get; init; }
+
+    /// <summary>
+    /// The action to execute when this button is pressed.
+    /// </summary>
+    public required Action<IPlayer, IMenuAPI> Action { get; init; }
 }
 
 /// <summary>
@@ -257,6 +291,7 @@ public interface IMenuAPI : IDisposable
     /// <summary>
     /// Gets or sets the default comment text to use when a menu option's <see cref="IMenuOption.Comment"/> is not set.
     /// </summary>
+    [Obsolete("Use Configuration.DefaultComment instead.")]
     public string DefaultComment { get; set; }
 
     /// <summary>
@@ -325,7 +360,7 @@ public interface IMenuAPI : IDisposable
     /// <param name="player">The player who will see the menu.</param>
     /// <remarks>
     /// This method only displays the menu visually. To properly open a menu (which handles state management, 
-    /// closing other menus, and triggering events), use <see cref="IMenuManagerAPI.OpenMenuForPlayer"/> instead.
+    /// closing other menus, and triggering events), use <see cref="IMenuManagerAPI.OpenMenuForPlayer(IPlayer, IMenuAPI)"/> instead.
     /// </remarks>
     public void ShowForPlayer( IPlayer player );
 

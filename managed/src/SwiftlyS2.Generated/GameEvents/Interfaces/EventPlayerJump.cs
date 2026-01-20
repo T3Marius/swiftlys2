@@ -5,35 +5,36 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "player_jump"
 /// </summary>
-public interface EventPlayerJump : IGameEvent<EventPlayerJump> {
+public interface EventPlayerJump : IGameEvent<EventPlayerJump>
+{
 
-  static EventPlayerJump IGameEvent<EventPlayerJump>.Create(nint address) => new EventPlayerJumpImpl(address);
+    static EventPlayerJump IGameEvent<EventPlayerJump>.Create(nint address) => new EventPlayerJumpImpl(address);
 
-  static string IGameEvent<EventPlayerJump>.GetName() => "player_jump";
+    static string IGameEvent<EventPlayerJump>.GetName() => "player_jump";
 
-  static uint IGameEvent<EventPlayerJump>.GetHash() => 0xA8C90F75u;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventPlayerJump>.GetHash() => 0xA8C90F75u;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int UserId { get; set; }
 }

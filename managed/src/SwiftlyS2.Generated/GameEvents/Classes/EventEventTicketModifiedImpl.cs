@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "event_ticket_modified"
 /// </summary>
 internal class EventEventTicketModifiedImpl : GameEvent<EventEventTicketModified>, EventEventTicketModified
 {
 
-  public EventEventTicketModifiedImpl(nint address) : base(address)
-  {
-  }
+    public EventEventTicketModifiedImpl(nint address) : base(address)
+    {
+    }
 }

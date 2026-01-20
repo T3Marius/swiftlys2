@@ -69,11 +69,11 @@ internal partial class CBasePlayerWeaponVDataImpl : CEntitySubclassVDataBaseImpl
     public string MuzzleFlashParticleConfig {
         get {
             _MuzzleFlashParticleConfigOffset = _MuzzleFlashParticleConfigOffset ?? Schema.GetOffset(0x64E418A029D7C081);
-            return Schema.GetString(_Handle.Read<nint>(_MuzzleFlashParticleConfigOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MuzzleFlashParticleConfigOffset!.Value));
         }
         set {
             _MuzzleFlashParticleConfigOffset = _MuzzleFlashParticleConfigOffset ?? Schema.GetOffset(0x64E418A029D7C081);
-            Schema.SetString(_Handle, _MuzzleFlashParticleConfigOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MuzzleFlashParticleConfigOffset!.Value, value);
         }
     } 
     private static nint? _BarrelSmokeParticleOffset;

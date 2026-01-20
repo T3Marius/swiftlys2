@@ -21,11 +21,11 @@ internal partial class CBtActionAimImpl : CBtNodeImpl, CBtActionAim
     public string SensorInputKey {
         get {
             _SensorInputKeyOffset = _SensorInputKeyOffset ?? Schema.GetOffset(0x43587513D2B0D4C1);
-            return Schema.GetString(_Handle.Read<nint>(_SensorInputKeyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SensorInputKeyOffset!.Value));
         }
         set {
             _SensorInputKeyOffset = _SensorInputKeyOffset ?? Schema.GetOffset(0x43587513D2B0D4C1);
-            Schema.SetString(_Handle, _SensorInputKeyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SensorInputKeyOffset!.Value, value);
         }
     } 
     private static nint? _AimReadyKeyOffset;
@@ -33,11 +33,11 @@ internal partial class CBtActionAimImpl : CBtNodeImpl, CBtActionAim
     public string AimReadyKey {
         get {
             _AimReadyKeyOffset = _AimReadyKeyOffset ?? Schema.GetOffset(0x435875136718A4C7);
-            return Schema.GetString(_Handle.Read<nint>(_AimReadyKeyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AimReadyKeyOffset!.Value));
         }
         set {
             _AimReadyKeyOffset = _AimReadyKeyOffset ?? Schema.GetOffset(0x435875136718A4C7);
-            Schema.SetString(_Handle, _AimReadyKeyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AimReadyKeyOffset!.Value, value);
         }
     } 
     private static nint? _ZoomCooldownTimestampOffset;

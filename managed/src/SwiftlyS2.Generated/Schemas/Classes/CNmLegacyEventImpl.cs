@@ -21,11 +21,11 @@ internal partial class CNmLegacyEventImpl : CNmEventImpl, CNmLegacyEvent
     public string AnimEventClassName {
         get {
             _AnimEventClassNameOffset = _AnimEventClassNameOffset ?? Schema.GetOffset(0x78C36574C276DA33);
-            return Schema.GetString(_Handle.Read<nint>(_AnimEventClassNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AnimEventClassNameOffset!.Value));
         }
         set {
             _AnimEventClassNameOffset = _AnimEventClassNameOffset ?? Schema.GetOffset(0x78C36574C276DA33);
-            Schema.SetString(_Handle, _AnimEventClassNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AnimEventClassNameOffset!.Value, value);
         }
     } 
     private static nint? _KVOffset;

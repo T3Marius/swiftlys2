@@ -31,7 +31,7 @@
 
 #include <api/interfaces/manager.h>
 #include <s2binlib/s2binlib.h>
-
+#include <unordered_dense/include/ankerl/unordered_dense.h>
 
 typedef void (*CBaseEntity_DispatchSpawn)(void*, void*);
 typedef void (*UTIL_Remove)(void*);
@@ -42,6 +42,7 @@ typedef void (*CEntitySystem_AddEntityIOEvent)(void*, void*, const char*, void*,
 CGameEntitySystem* g_pGameEntitySystem = nullptr;
 
 void* g_pGameRules = nullptr;
+ankerl::unordered_dense::set<CEntityInstance*> g_entitySet;
 
 extern void* g_pOnEntityTakeDamageCallback;
 extern void* g_pTraceManager;
@@ -226,7 +227,7 @@ void CEntSystem::AddEntityIOEvent(void* pEntity, const char* input, void* activa
 
 bool CEntSystem::IsValidEntity(void* pEntity)
 {
-    return pEntity != nullptr;
+    return pEntity != nullptr && g_entitySet.contains((CEntityInstance*)pEntity);
 }
 
 void CEntSystem::AddEntityListener(IEntityListener* listener)

@@ -29,11 +29,11 @@ internal partial class CParticleAnimTagImpl : CAnimTagBaseImpl, CParticleAnimTag
     public string ParticleSystemName {
         get {
             _ParticleSystemNameOffset = _ParticleSystemNameOffset ?? Schema.GetOffset(0x80C76F775B35985D);
-            return Schema.GetString(_Handle.Read<nint>(_ParticleSystemNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ParticleSystemNameOffset!.Value));
         }
         set {
             _ParticleSystemNameOffset = _ParticleSystemNameOffset ?? Schema.GetOffset(0x80C76F775B35985D);
-            Schema.SetString(_Handle, _ParticleSystemNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ParticleSystemNameOffset!.Value, value);
         }
     } 
     private static nint? _ConfigNameOffset;
@@ -41,11 +41,11 @@ internal partial class CParticleAnimTagImpl : CAnimTagBaseImpl, CParticleAnimTag
     public string ConfigName {
         get {
             _ConfigNameOffset = _ConfigNameOffset ?? Schema.GetOffset(0x80C76F7791DC0E44);
-            return Schema.GetString(_Handle.Read<nint>(_ConfigNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ConfigNameOffset!.Value));
         }
         set {
             _ConfigNameOffset = _ConfigNameOffset ?? Schema.GetOffset(0x80C76F7791DC0E44);
-            Schema.SetString(_Handle, _ConfigNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ConfigNameOffset!.Value, value);
         }
     } 
     private static nint? _DetachFromOwnerOffset;
@@ -85,11 +85,11 @@ internal partial class CParticleAnimTagImpl : CAnimTagBaseImpl, CParticleAnimTag
     public string AttachmentName {
         get {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x80C76F77295DA9CB);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
         }
         set {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x80C76F77295DA9CB);
-            Schema.SetString(_Handle, _AttachmentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentNameOffset!.Value, value);
         }
     } 
     private static nint? _AttachmentTypeOffset;
@@ -105,11 +105,11 @@ internal partial class CParticleAnimTagImpl : CAnimTagBaseImpl, CParticleAnimTag
     public string AttachmentCP1Name {
         get {
             _AttachmentCP1NameOffset = _AttachmentCP1NameOffset ?? Schema.GetOffset(0x80C76F77420E59C5);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentCP1NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentCP1NameOffset!.Value));
         }
         set {
             _AttachmentCP1NameOffset = _AttachmentCP1NameOffset ?? Schema.GetOffset(0x80C76F77420E59C5);
-            Schema.SetString(_Handle, _AttachmentCP1NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentCP1NameOffset!.Value, value);
         }
     } 
     private static nint? _AttachmentCP1TypeOffset;

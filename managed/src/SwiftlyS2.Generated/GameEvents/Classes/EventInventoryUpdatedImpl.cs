@@ -7,19 +7,19 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "inventory_updated"
 /// </summary>
 internal class EventInventoryUpdatedImpl : GameEvent<EventInventoryUpdated>, EventInventoryUpdated
 {
 
-  public EventInventoryUpdatedImpl(nint address) : base(address)
-  {
-  }
+    public EventInventoryUpdatedImpl(nint address) : base(address)
+    {
+    }
 
-  public short ItemDef
-  { get => (short)Accessor.GetInt32("itemdef"); set => Accessor.SetInt32("itemdef", value); }
+    public short ItemDef
+    { get => (short)Accessor.GetInt32("itemdef"); set => Accessor.SetInt32("itemdef", value); }
 
-  public int Itemid
-  { get => Accessor.GetInt32("itemid"); set => Accessor.SetInt32("itemid", value); }
+    public int Itemid
+    { get => Accessor.GetInt32("itemid"); set => Accessor.SetInt32("itemid", value); }
 }

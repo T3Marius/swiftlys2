@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "cs_game_disconnected"
 /// </summary>
-public interface EventCsGameDisconnected : IGameEvent<EventCsGameDisconnected> {
+public interface EventCsGameDisconnected : IGameEvent<EventCsGameDisconnected>
+{
 
-  static EventCsGameDisconnected IGameEvent<EventCsGameDisconnected>.Create(nint address) => new EventCsGameDisconnectedImpl(address);
+    static EventCsGameDisconnected IGameEvent<EventCsGameDisconnected>.Create(nint address) => new EventCsGameDisconnectedImpl(address);
 
-  static string IGameEvent<EventCsGameDisconnected>.GetName() => "cs_game_disconnected";
+    static string IGameEvent<EventCsGameDisconnected>.GetName() => "cs_game_disconnected";
 
-  static uint IGameEvent<EventCsGameDisconnected>.GetHash() => 0xC1557D00u;
+    static uint IGameEvent<EventCsGameDisconnected>.GetHash() => 0xC1557D00u;
 }

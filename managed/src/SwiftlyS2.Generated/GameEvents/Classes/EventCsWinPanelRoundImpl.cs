@@ -7,50 +7,50 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_win_panel_round"
 /// </summary>
 internal class EventCsWinPanelRoundImpl : GameEvent<EventCsWinPanelRound>, EventCsWinPanelRound
 {
 
-  public EventCsWinPanelRoundImpl(nint address) : base(address)
-  {
-  }
+    public EventCsWinPanelRoundImpl(nint address) : base(address)
+    {
+    }
 
-  public bool ShowTimerDefend
-  { get => Accessor.GetBool("show_timer_defend"); set => Accessor.SetBool("show_timer_defend", value); }
+    public bool ShowTimerDefend
+    { get => Accessor.GetBool("show_timer_defend"); set => Accessor.SetBool("show_timer_defend", value); }
 
-  public bool ShowTimerAttack
-  { get => Accessor.GetBool("show_timer_attack"); set => Accessor.SetBool("show_timer_attack", value); }
+    public bool ShowTimerAttack
+    { get => Accessor.GetBool("show_timer_attack"); set => Accessor.SetBool("show_timer_attack", value); }
 
-  public short TimerTime
-  { get => (short)Accessor.GetInt32("timer_time"); set => Accessor.SetInt32("timer_time", value); }
+    public short TimerTime
+    { get => (short)Accessor.GetInt32("timer_time"); set => Accessor.SetInt32("timer_time", value); }
 
-  // define in cs_gamerules.h
-  public byte FinalEvent
-  { get => (byte)Accessor.GetInt32("final_event"); set => Accessor.SetInt32("final_event", value); }
+    // define in cs_gamerules.h
+    public byte FinalEvent
+    { get => (byte)Accessor.GetInt32("final_event"); set => Accessor.SetInt32("final_event", value); }
 
-  public string FunfactToken
-  { get => Accessor.GetString("funfact_token"); set => Accessor.SetString("funfact_token", value); }
+    public string FunfactToken
+    { get => Accessor.GetString("funfact_token"); set => Accessor.SetString("funfact_token", value); }
 
-  public CCSPlayerController FunfactPlayerController
-  { get => Accessor.GetPlayerController("funfact_player"); }
+    public CCSPlayerController FunfactPlayerController
+    { get => Accessor.GetPlayerController("funfact_player"); }
 
-  public CCSPlayerPawn FunfactPlayerPawn
-  { get => Accessor.GetPlayerPawn("funfact_player"); }
+    public CCSPlayerPawn FunfactPlayerPawn
+    { get => Accessor.GetPlayerPawn("funfact_player"); }
 
-  public IPlayer FunfactPlayerPlayer
-  { get => Accessor.GetPlayer("funfact_player"); }
+    public IPlayer? FunfactPlayerPlayer
+    { get => Accessor.GetPlayer("funfact_player"); }
 
-  public int FunfactPlayer
-  { get => Accessor.GetInt32("funfact_player"); set => Accessor.SetInt32("funfact_player", value); }
+    public int FunfactPlayer
+    { get => Accessor.GetInt32("funfact_player"); set => Accessor.SetInt32("funfact_player", value); }
 
-  public int FunfactData1
-  { get => Accessor.GetInt32("funfact_data1"); set => Accessor.SetInt32("funfact_data1", value); }
+    public int FunfactData1
+    { get => Accessor.GetInt32("funfact_data1"); set => Accessor.SetInt32("funfact_data1", value); }
 
-  public int FunfactData2
-  { get => Accessor.GetInt32("funfact_data2"); set => Accessor.SetInt32("funfact_data2", value); }
+    public int FunfactData2
+    { get => Accessor.GetInt32("funfact_data2"); set => Accessor.SetInt32("funfact_data2", value); }
 
-  public int FunfactData3
-  { get => Accessor.GetInt32("funfact_data3"); set => Accessor.SetInt32("funfact_data3", value); }
+    public int FunfactData3
+    { get => Accessor.GetInt32("funfact_data3"); set => Accessor.SetInt32("funfact_data3", value); }
 }

@@ -10,8 +10,6 @@ internal class SchedulerService : ISchedulerService, IDisposable
     private readonly CancellationTokenSource _lifecycleCts = new();
     private CancellationTokenSource _mapChangeCts = new();
 
-    private static int tickPerSecond = 64;
-
     public SchedulerService( IEventSubscriber eventSubscriber )
     {
         eventSubscriber.OnMapUnload += ( @event ) =>
@@ -170,7 +168,7 @@ internal class SchedulerService : ISchedulerService, IDisposable
         }, _lifecycleCts.Token);
     }
 
-    public CancellationTokenSource AddTimer( Func<ITimerContext, TimerStep> task)
+    public CancellationTokenSource AddTimer( Func<ITimerContext, TimerStep> task )
     {
         return SchedulerManager.AddTimer(task, _lifecycleCts.Token);
     }

@@ -5,35 +5,36 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "player_decal"
 /// </summary>
-public interface EventPlayerDecal : IGameEvent<EventPlayerDecal> {
+public interface EventPlayerDecal : IGameEvent<EventPlayerDecal>
+{
 
-  static EventPlayerDecal IGameEvent<EventPlayerDecal>.Create(nint address) => new EventPlayerDecalImpl(address);
+    static EventPlayerDecal IGameEvent<EventPlayerDecal>.Create(nint address) => new EventPlayerDecalImpl(address);
 
-  static string IGameEvent<EventPlayerDecal>.GetName() => "player_decal";
+    static string IGameEvent<EventPlayerDecal>.GetName() => "player_decal";
 
-  static uint IGameEvent<EventPlayerDecal>.GetHash() => 0xC7978ED6u;
-  /// <summary>
-  /// <br/>
-  /// type: player_pawn
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventPlayerDecal>.GetHash() => 0xC7978ED6u;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_pawn
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_pawn
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_pawn
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_pawn
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_pawn
+    /// </summary>
+    int UserId { get; set; }
 }

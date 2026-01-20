@@ -109,11 +109,11 @@ internal partial class WorldNode_tImpl : SchemaClass, WorldNode_t
     public string GrassFileName {
         get {
             _GrassFileNameOffset = _GrassFileNameOffset ?? Schema.GetOffset(0xFC310480FDDFCFE0);
-            return Schema.GetString(_Handle.Read<nint>(_GrassFileNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_GrassFileNameOffset!.Value));
         }
         set {
             _GrassFileNameOffset = _GrassFileNameOffset ?? Schema.GetOffset(0xFC310480FDDFCFE0);
-            Schema.SetString(_Handle, _GrassFileNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _GrassFileNameOffset!.Value, value);
         }
     } 
     private static nint? _NodeLightingInfoOffset;

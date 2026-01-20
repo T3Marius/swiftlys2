@@ -59,6 +59,8 @@
 #define FREE_CVAR(data_type) \
     delete (CConVar<data_type>*)cvarptr;
 
+#define CONVAR_FLAGS_TO_REMOVE (FCVAR_HIDDEN | FCVAR_DEVELOPMENTONLY | FCVAR_CLIENTDLL)
+
 std::map<std::string, void*> g_mCvars;
 uint64_t g_uQueryCallbacks = 0;
 std::map<uint64_t, std::function<void(int, std::string, std::string)>> g_mQueryCallbacks;
@@ -130,6 +132,46 @@ void CConvarManager::Initialize()
     auto cvars = g_ifaceService.FetchInterface<ICvar>(CVAR_INTERFACE_VERSION);
     cvars->InstallGlobalChangeCallback(ChangedConvarCallback);
     cvars->RegisterCreationListeners(&g_CvarListener);
+
+    static auto configuration = g_ifaceService.FetchInterface<IConfiguration>(CONFIGURATION_INTERFACE_VERSION);
+    static auto logger = g_ifaceService.FetchInterface<ILogger>(LOGGER_INTERFACE_VERSION);
+
+    if (bool* unlockedCvars = std::get_if<bool>(&configuration->GetValue("core.Unlocker.Convars")))
+    {
+        if (*unlockedCvars == true)
+        {
+            int unlockedConvars = 0;
+
+            for (ConVarRefAbstract ref(ConVarRef((uint16)0)); ref.IsValidRef(); ref = ConVarRefAbstract(ConVarRef(ref.GetAccessIndex() + 1)))
+            {
+                if (!ref.IsFlagSet(CONVAR_FLAGS_TO_REMOVE)) continue;
+
+                ref.RemoveFlags(CONVAR_FLAGS_TO_REMOVE);
+                unlockedConvars++;
+            }
+
+            logger->Info("Unlocker", fmt::format("Unlocked {} convars.\n", unlockedConvars));
+        }
+    }
+
+    if (bool* unlockedConCommands = std::get_if<bool>(&configuration->GetValue("core.Unlocker.ConCommands")))
+    {
+        if (*unlockedConCommands == true)
+        {
+            int unlockedCommands = 0;
+
+            ConCommandData* data = cvars->GetConCommandData(ConCommandRef());
+            for (ConCommandRef ref = ConCommandRef((uint16)0); ref.GetRawData() != data; ref = ConCommandRef(ref.GetAccessIndex() + 1))
+            {
+                if (!ref.IsFlagSet(CONVAR_FLAGS_TO_REMOVE)) continue;
+
+                ref.RemoveFlags(CONVAR_FLAGS_TO_REMOVE);
+                unlockedCommands++;
+            }
+
+            logger->Info("Unlocker", fmt::format("Unlocked {} concommands.\n", unlockedCommands));
+        }
+    }
 }
 
 void CConvarManager::Shutdown()

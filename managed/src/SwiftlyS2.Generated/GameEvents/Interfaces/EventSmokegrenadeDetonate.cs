@@ -5,55 +5,56 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "smokegrenade_detonate"
 /// </summary>
-public interface EventSmokegrenadeDetonate : IGameEvent<EventSmokegrenadeDetonate> {
+public interface EventSmokegrenadeDetonate : IGameEvent<EventSmokegrenadeDetonate>
+{
 
-  static EventSmokegrenadeDetonate IGameEvent<EventSmokegrenadeDetonate>.Create(nint address) => new EventSmokegrenadeDetonateImpl(address);
+    static EventSmokegrenadeDetonate IGameEvent<EventSmokegrenadeDetonate>.Create(nint address) => new EventSmokegrenadeDetonateImpl(address);
 
-  static string IGameEvent<EventSmokegrenadeDetonate>.GetName() => "smokegrenade_detonate";
+    static string IGameEvent<EventSmokegrenadeDetonate>.GetName() => "smokegrenade_detonate";
 
-  static uint IGameEvent<EventSmokegrenadeDetonate>.GetHash() => 0xA786E81Du;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventSmokegrenadeDetonate>.GetHash() => 0xA786E81Du;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// type: short
-  /// </summary>
-  short EntityID { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float X { get; set; }
+    /// <summary>
+    /// type: short
+    /// </summary>
+    short EntityID { get; set; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float Y { get; set; }
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float X { get; set; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float Z { get; set; }
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float Y { get; set; }
 
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float Z { get; set; }
 }

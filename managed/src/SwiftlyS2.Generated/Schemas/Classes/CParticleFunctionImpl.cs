@@ -141,11 +141,11 @@ internal partial class CParticleFunctionImpl : SchemaClass, CParticleFunction
     public string Notes {
         get {
             _NotesOffset = _NotesOffset ?? Schema.GetOffset(0x4E0CACB41DD3144A);
-            return Schema.GetString(_Handle.Read<nint>(_NotesOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NotesOffset!.Value));
         }
         set {
             _NotesOffset = _NotesOffset ?? Schema.GetOffset(0x4E0CACB41DD3144A);
-            Schema.SetString(_Handle, _NotesOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NotesOffset!.Value, value);
         }
     } 
 

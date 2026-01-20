@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "material_default_complete"
 /// </summary>
 internal class EventMaterialDefaultCompleteImpl : GameEvent<EventMaterialDefaultComplete>, EventMaterialDefaultComplete
 {
 
-  public EventMaterialDefaultCompleteImpl(nint address) : base(address)
-  {
-  }
+    public EventMaterialDefaultCompleteImpl(nint address) : base(address)
+    {
+    }
 }

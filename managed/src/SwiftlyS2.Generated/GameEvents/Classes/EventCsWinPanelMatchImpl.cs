@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_win_panel_match"
 /// </summary>
 internal class EventCsWinPanelMatchImpl : GameEvent<EventCsWinPanelMatch>, EventCsWinPanelMatch
 {
 
-  public EventCsWinPanelMatchImpl(nint address) : base(address)
-  {
-  }
+    public EventCsWinPanelMatchImpl(nint address) : base(address)
+    {
+    }
 }

@@ -7,6 +7,12 @@ using SwiftlyS2.Shared.Natives;
 using SwiftlyS2.Core.Extensions;
 using SwiftlyS2.Shared.EntitySystem;
 using SwiftlyS2.Shared.SchemaDefinitions;
+using SwiftlyS2.Shared.GameEventDefinitions;
+using SwiftlyS2.Core.Datamaps;
+using SwiftlyS2.Shared.Datamaps;
+using SwiftlyS2.Shared.Misc;
+using SwiftlyS2.Shared.StringTable;
+using SwiftlyS2.Shared.ProtobufDefinitions;
 
 namespace SwiftlyS2.Core.Services;
 
@@ -73,12 +79,29 @@ internal class TestService
 
     public void Test2()
     {
-        var variant = new CVariant<CVariantDefaultAllocator>(100);
-        Console.WriteLine(variant.ToString());
-        variant.SetString("LOL");
-        Console.WriteLine(variant.ToString());
-        variant.SetVector(new(1, 1, 1));
-        Console.WriteLine(variant.ToString());
+        core.Event.OnStartupServer += () =>
+        {
+            var table = core.StringTable.FindTable("InfoPanel")!;
+            _ = table.GetOrAddString("motd");
+            _ = table.SetStringUserData("motd", StringTableUserData.FromString("https://swiftlys2.net"));
+        };
+        core.Event.OnClientPutInServer += (@event) =>
+        {
+            var table = core.StringTable.FindTable("InfoPanel")!;
+            CRecipientFilter filter = new();
+            filter.AddAllPlayers();
+            table.ReplicateUserData("motd", StringTableUserData.FromString("https://google.com"), filter);
+
+        };
+
+        
+    }
+
+    [DatamapHook(HookMode.Pre)]
+    public void Test2( IDHookCCSPlayerControllerInventoryUpdateThink ctx )
+    {
+        Console.WriteLine($"IDHookCCSPlayerControllerInventoryUpdateThink -> ctx: {ctx.SchemaObject.DesignerName}");
+
     }
 
     // [EntityOutputHandler("*", "*")]

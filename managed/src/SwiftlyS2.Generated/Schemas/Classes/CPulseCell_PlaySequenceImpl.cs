@@ -21,11 +21,11 @@ internal partial class CPulseCell_PlaySequenceImpl : CPulseCell_BaseYieldingInfl
     public string SequenceName {
         get {
             _SequenceNameOffset = _SequenceNameOffset ?? Schema.GetOffset(0xE313765BA270F66B);
-            return Schema.GetString(_Handle.Read<nint>(_SequenceNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SequenceNameOffset!.Value));
         }
         set {
             _SequenceNameOffset = _SequenceNameOffset ?? Schema.GetOffset(0xE313765BA270F66B);
-            Schema.SetString(_Handle, _SequenceNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SequenceNameOffset!.Value, value);
         }
     } 
     private static nint? _PulseAnimEventsOffset;

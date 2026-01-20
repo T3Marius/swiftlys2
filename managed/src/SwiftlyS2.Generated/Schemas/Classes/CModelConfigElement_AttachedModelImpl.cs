@@ -21,11 +21,11 @@ internal partial class CModelConfigElement_AttachedModelImpl : CModelConfigEleme
     public string InstanceName {
         get {
             _InstanceNameOffset = _InstanceNameOffset ?? Schema.GetOffset(0x82D04A99643AE8F9);
-            return Schema.GetString(_Handle.Read<nint>(_InstanceNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_InstanceNameOffset!.Value));
         }
         set {
             _InstanceNameOffset = _InstanceNameOffset ?? Schema.GetOffset(0x82D04A99643AE8F9);
-            Schema.SetString(_Handle, _InstanceNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _InstanceNameOffset!.Value, value);
         }
     } 
     private static nint? _EntityClassOffset;
@@ -33,11 +33,11 @@ internal partial class CModelConfigElement_AttachedModelImpl : CModelConfigEleme
     public string EntityClass {
         get {
             _EntityClassOffset = _EntityClassOffset ?? Schema.GetOffset(0x82D04A995BEE014A);
-            return Schema.GetString(_Handle.Read<nint>(_EntityClassOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_EntityClassOffset!.Value));
         }
         set {
             _EntityClassOffset = _EntityClassOffset ?? Schema.GetOffset(0x82D04A995BEE014A);
-            Schema.SetString(_Handle, _EntityClassOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _EntityClassOffset!.Value, value);
         }
     } 
     private static nint? _ModelOffset;
@@ -69,11 +69,11 @@ internal partial class CModelConfigElement_AttachedModelImpl : CModelConfigEleme
     public string AttachmentName {
         get {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x82D04A999CFCA76B);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
         }
         set {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x82D04A999CFCA76B);
-            Schema.SetString(_Handle, _AttachmentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentNameOffset!.Value, value);
         }
     } 
     private static nint? _LocalAttachmentOffsetNameOffset;
@@ -81,11 +81,11 @@ internal partial class CModelConfigElement_AttachedModelImpl : CModelConfigEleme
     public string LocalAttachmentOffsetName {
         get {
             _LocalAttachmentOffsetNameOffset = _LocalAttachmentOffsetNameOffset ?? Schema.GetOffset(0x82D04A9934391DC1);
-            return Schema.GetString(_Handle.Read<nint>(_LocalAttachmentOffsetNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_LocalAttachmentOffsetNameOffset!.Value));
         }
         set {
             _LocalAttachmentOffsetNameOffset = _LocalAttachmentOffsetNameOffset ?? Schema.GetOffset(0x82D04A9934391DC1);
-            Schema.SetString(_Handle, _LocalAttachmentOffsetNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _LocalAttachmentOffsetNameOffset!.Value, value);
         }
     } 
     private static nint? _AttachmentTypeOffset;
@@ -133,11 +133,11 @@ internal partial class CModelConfigElement_AttachedModelImpl : CModelConfigEleme
     public string BodygroupOnOtherModels {
         get {
             _BodygroupOnOtherModelsOffset = _BodygroupOnOtherModelsOffset ?? Schema.GetOffset(0x82D04A994536DE3B);
-            return Schema.GetString(_Handle.Read<nint>(_BodygroupOnOtherModelsOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BodygroupOnOtherModelsOffset!.Value));
         }
         set {
             _BodygroupOnOtherModelsOffset = _BodygroupOnOtherModelsOffset ?? Schema.GetOffset(0x82D04A994536DE3B);
-            Schema.SetString(_Handle, _BodygroupOnOtherModelsOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BodygroupOnOtherModelsOffset!.Value, value);
         }
     } 
     private static nint? _MaterialGroupOnOtherModelsOffset;
@@ -145,11 +145,11 @@ internal partial class CModelConfigElement_AttachedModelImpl : CModelConfigEleme
     public string MaterialGroupOnOtherModels {
         get {
             _MaterialGroupOnOtherModelsOffset = _MaterialGroupOnOtherModelsOffset ?? Schema.GetOffset(0x82D04A9959E9920E);
-            return Schema.GetString(_Handle.Read<nint>(_MaterialGroupOnOtherModelsOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MaterialGroupOnOtherModelsOffset!.Value));
         }
         set {
             _MaterialGroupOnOtherModelsOffset = _MaterialGroupOnOtherModelsOffset ?? Schema.GetOffset(0x82D04A9959E9920E);
-            Schema.SetString(_Handle, _MaterialGroupOnOtherModelsOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MaterialGroupOnOtherModelsOffset!.Value, value);
         }
     } 
 

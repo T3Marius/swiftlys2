@@ -219,6 +219,11 @@ public interface IPlayer : IEquatable<IPlayer>
     public ulong UnauthorizedSteamID { get; }
 
     /// <summary>
+    /// Gets a value indicating whether the player is currently alive.
+    /// </summary>
+    public bool IsAlive { get; }
+
+    /// <summary>
     /// Gets the player controller associated with the player.
     /// </summary>
     public CCSPlayerController Controller { get; }
@@ -358,16 +363,23 @@ public interface IPlayer : IEquatable<IPlayer>
     /// </summary>
     /// <param name="damage">The amount of damage to apply.</param>
     /// <param name="damageType">The type of damage to apply.</param>
+    ///     /// <param name="inflictor">The entity that is inflicting the damage. Can be null.</param>
+    /// <param name="attacker">The entity that is attacking. Can be null.</param>
+    /// <param name="ability">The ability that caused the damage. Can be null.</param>
     [ThreadUnsafe]
     public void TakeDamage( float damage, DamageTypes_t damageType, CBaseEntity? inflictor = null, CBaseEntity? attacker = null, CBaseEntity? ability = null );
-    
+
     /// <summary>
     /// Applies damage to the entity based on the specified damage information asynchronously.
     /// </summary>
     /// <param name="damage">The amount of damage to apply.</param>
     /// <param name="damageType">The type of damage to apply.</param>
+    /// <param name="inflictor">The entity that is inflicting the damage. Can be null.</param>
+    /// <param name="attacker">The entity that is attacking. Can be null.</param>
+    /// <param name="ability">The ability that caused the damage. Can be null.</param>
     public Task TakeDamageAsync( float damage, DamageTypes_t damageType, CBaseEntity? inflictor = null, CBaseEntity? attacker = null, CBaseEntity? ability = null );
 
+    /// <summary>
     /// Teleports the entity to the specified position, orientation, and velocity.
     /// 
     /// Thread unsafe, use async variant instead for non-main thread context.
@@ -378,6 +390,7 @@ public interface IPlayer : IEquatable<IPlayer>
     [ThreadUnsafe]
     public void Teleport( Vector pos, QAngle angle, Vector velocity );
 
+    /// <summary>
     /// Teleports the entity to the specified position, orientation, and velocity.
     /// 
     /// Thread unsafe, use async variant instead for non-main thread context.
@@ -422,6 +435,7 @@ public interface IPlayer : IEquatable<IPlayer>
 
     /// <summary>
     /// Changes the player's team.
+    /// This will also kill the player.
     /// 
     /// Thread unsafe, use async variant instead for non-main thread context.
     /// </summary>
@@ -431,6 +445,7 @@ public interface IPlayer : IEquatable<IPlayer>
 
     /// <summary>
     /// Changes the player's team asynchronously.
+    /// This will also kill the player.
     /// </summary>
     /// <param name="team">The team to assign. Cannot be null.</param>
     public Task ChangeTeamAsync( Team team );

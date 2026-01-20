@@ -45,11 +45,11 @@ internal partial class CSosGroupActionSetSoundeventParameterSchemaImpl : CSosGro
     public string OpvarName {
         get {
             _OpvarNameOffset = _OpvarNameOffset ?? Schema.GetOffset(0x40D29D894ECBF7E4);
-            return Schema.GetString(_Handle.Read<nint>(_OpvarNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OpvarNameOffset!.Value));
         }
         set {
             _OpvarNameOffset = _OpvarNameOffset ?? Schema.GetOffset(0x40D29D894ECBF7E4);
-            Schema.SetString(_Handle, _OpvarNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OpvarNameOffset!.Value, value);
         }
     } 
     private static nint? _SortTypeOffset;

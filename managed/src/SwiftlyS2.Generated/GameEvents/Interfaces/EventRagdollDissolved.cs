@@ -5,19 +5,20 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "ragdoll_dissolved"
 /// </summary>
-public interface EventRagdollDissolved : IGameEvent<EventRagdollDissolved> {
+public interface EventRagdollDissolved : IGameEvent<EventRagdollDissolved>
+{
 
-  static EventRagdollDissolved IGameEvent<EventRagdollDissolved>.Create(nint address) => new EventRagdollDissolvedImpl(address);
+    static EventRagdollDissolved IGameEvent<EventRagdollDissolved>.Create(nint address) => new EventRagdollDissolvedImpl(address);
 
-  static string IGameEvent<EventRagdollDissolved>.GetName() => "ragdoll_dissolved";
+    static string IGameEvent<EventRagdollDissolved>.GetName() => "ragdoll_dissolved";
 
-  static uint IGameEvent<EventRagdollDissolved>.GetHash() => 0x633046FAu;
-  /// <summary>
-  /// type: long
-  /// </summary>
-  int EntIndex { get; set; }
+    static uint IGameEvent<EventRagdollDissolved>.GetHash() => 0x633046FAu;
 
+    /// <summary>
+    /// type: long
+    /// </summary>
+    int EntIndex { get; set; }
 }

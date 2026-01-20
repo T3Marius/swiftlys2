@@ -1040,6 +1040,38 @@ public class TestPlugin : BasePlugin
         boundText = Guid.NewGuid().ToString();
     }
 
+    [Command("abutt")]
+    public void AddButtonTestMenu( ICommandContext context )
+    {
+        var player = context.Sender!;
+        var menu = Core.MenusAPI
+            .CreateBuilder()
+            .EnableExit()
+            .SetPlayerFrozen(false)
+            .Design.SetMenuTitle("Add Button Test Menu")
+            .AddOption(new ButtonMenuOption("Button 1") { CloseAfterClick = true })
+            .AddOption(new ButtonMenuOption("Button 2") { CloseAfterClick = true })
+            .AddOption(new ButtonMenuOption("Button 3") { CloseAfterClick = true })
+            .AddExtraButton(KeyBind.Ctrl, "Ctrl Button", ( p, m ) =>
+            {
+                p.SendChat("Ctrl Button Clicked");
+            })
+            .Build();
+
+        Core.MenusAPI.OpenMenuForPlayer(player, menu, ( p, m ) =>
+        {
+            Console.WriteLine($"{m.Configuration.Title} closed for player: {p.Controller.PlayerName}");
+        });
+    }
+
+    [GameEventHandler(HookMode.Pre)]
+    public HookResult PlayerHurtEventHandler( EventBreakProp @event )
+    {
+        var player = @event.UserIdPlayer;
+        Console.WriteLine($"{player.Controller!.PlayerName} broke a prop!");
+        return HookResult.Continue;
+    }
+
     [Command("rmt")]
     public void RefactoredMenuTestCommand( ICommandContext context )
     {
@@ -1080,6 +1112,10 @@ public class TestPlugin : BasePlugin
             .CreateBuilder()
             .EnableExit()
             .SetPlayerFrozen(false)
+            // .Design.SetCommentVisible(true)
+            // .Design.SetDefaultComment(string.Empty)
+            .Design.SetCommentVisible(false)
+            .Design.SetDefaultComment("string.Empty")
             .Design.SetMaxVisibleItems(5)
             .Design.SetMenuTitle($"{HtmlGradient.GenerateGradientText("SwiftlyS2", "#00FA9A", "#F5FFFA")}")
             .Design.SetMenuTitleVisible(true)
@@ -1329,9 +1365,7 @@ public class TestPlugin : BasePlugin
         Core.PlayerManager.GetAlive()
             .Where(p => p.PlayerID != player.PlayerID)
             .ToList()
-            .ForEach(targetPlayer =>
-                context.Reply(
-                    $"Line of sight to {targetPlayer.Controller!.PlayerName}: {player.PlayerPawn!.HasLineOfSight(targetPlayer.PlayerPawn!)}"));
+            .ForEach(targetPlayer => context.Reply($"Line of sight to {targetPlayer.Controller!.PlayerName}: {player.PlayerPawn!.HasLineOfSight(targetPlayer.PlayerPawn!)}"));
     }
 
     [Command("cmt")]
@@ -1339,6 +1373,13 @@ public class TestPlugin : BasePlugin
     public void CommandTestCommand( ICommandContext context )
     {
         Console.WriteLine(context);
+    }
+
+    [Command("ecwb")]
+    public void ECWBCommand( ICommandContext _ )
+    {
+        Core.Engine.ExecuteCommandWithBuffer("cs2f_use_old_push 1", ( buffer ) => Core.Logger.LogWarning($"cs2f_use_old_push:\n{buffer}"));
+        Core.Scheduler.NextTick(() => Core.Engine.ExecuteCommandWithBuffer("map_showbombradius", ( buffer ) => Core.Logger.LogWarning($"map_showbombradius:\n{buffer}")));
     }
 
     [Command("ex1")]

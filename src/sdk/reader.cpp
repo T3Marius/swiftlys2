@@ -17,6 +17,7 @@
  ************************************************************************************************/
 
 #include "schema.h"
+#include "datamap.h"
 
 #include <fmt/format.h>
 
@@ -154,9 +155,174 @@ void FindChainer(bool& has_chainer, int& chainer_offset, CSchemaClassInfo* class
     }
 }
 
+std::string GetDatamapFieldTypeName(fieldtype_t type)
+{
+    switch (type)
+    {
+    case FIELD_VOID: return "FIELD_VOID";
+    case FIELD_FLOAT32: return "FIELD_FLOAT32";
+    case FIELD_STRING: return "FIELD_STRING";
+    case FIELD_VECTOR: return "FIELD_VECTOR";
+    case FIELD_QUATERNION: return "FIELD_QUATERNION";
+    case FIELD_INT32: return "FIELD_INT32";
+    case FIELD_BOOLEAN: return "FIELD_BOOLEAN";
+    case FIELD_INT16: return "FIELD_INT16";
+    case FIELD_CHARACTER: return "FIELD_CHARACTER";
+    case FIELD_COLOR32: return "FIELD_COLOR32";
+    case FIELD_EMBEDDED: return "FIELD_EMBEDDED";
+    case FIELD_CUSTOM: return "FIELD_CUSTOM";
+    case FIELD_CLASSPTR: return "FIELD_CLASSPTR";
+    case FIELD_EHANDLE: return "FIELD_EHANDLE";
+    case FIELD_POSITION_VECTOR: return "FIELD_POSITION_VECTOR";
+    case FIELD_TIME: return "FIELD_TIME";
+    case FIELD_TICK: return "FIELD_TICK";
+    case FIELD_SOUNDNAME: return "FIELD_SOUNDNAME";
+    case FIELD_INPUT: return "FIELD_INPUT";
+    case FIELD_FUNCTION: return "FIELD_FUNCTION";
+    case FIELD_VMATRIX: return "FIELD_VMATRIX";
+    case FIELD_VMATRIX_WORLDSPACE: return "FIELD_VMATRIX_WORLDSPACE";
+    case FIELD_MATRIX3X4_WORLDSPACE: return "FIELD_MATRIX3X4_WORLDSPACE";
+    case FIELD_INTERVAL: return "FIELD_INTERVAL";
+    case FIELD_UNUSED: return "FIELD_UNUSED";
+    case FIELD_VECTOR2D: return "FIELD_VECTOR2D";
+    case FIELD_INT64: return "FIELD_INT64";
+    case FIELD_VECTOR4D: return "FIELD_VECTOR4D";
+    case FIELD_RESOURCE: return "FIELD_RESOURCE";
+    case FIELD_TYPEUNKNOWN: return "FIELD_TYPEUNKNOWN";
+    case FIELD_CSTRING: return "FIELD_CSTRING";
+    case FIELD_HSCRIPT: return "FIELD_HSCRIPT";
+    case FIELD_VARIANT: return "FIELD_VARIANT";
+    case FIELD_UINT64: return "FIELD_UINT64";
+    case FIELD_FLOAT64: return "FIELD_FLOAT64";
+    case FIELD_POSITIVEINTEGER_OR_NULL: return "FIELD_POSITIVEINTEGER_OR_NULL";
+    case FIELD_HSCRIPT_NEW_INSTANCE: return "FIELD_HSCRIPT_NEW_INSTANCE";
+    case FIELD_UINT32: return "FIELD_UINT32";
+    case FIELD_UTLSTRINGTOKEN: return "FIELD_UTLSTRINGTOKEN";
+    case FIELD_QANGLE: return "FIELD_QANGLE";
+    case FIELD_NETWORK_ORIGIN_CELL_QUANTIZED_VECTOR: return "FIELD_NETWORK_ORIGIN_CELL_QUANTIZED_VECTOR";
+    case FIELD_HMATERIAL: return "FIELD_HMATERIAL";
+    case FIELD_HMODEL: return "FIELD_HMODEL";
+    case FIELD_NETWORK_QUANTIZED_VECTOR: return "FIELD_NETWORK_QUANTIZED_VECTOR";
+    case FIELD_NETWORK_QUANTIZED_FLOAT: return "FIELD_NETWORK_QUANTIZED_FLOAT";
+    case FIELD_DIRECTION_VECTOR_WORLDSPACE: return "FIELD_DIRECTION_VECTOR_WORLDSPACE";
+    case FIELD_QANGLE_WORLDSPACE: return "FIELD_QANGLE_WORLDSPACE";
+    case FIELD_QUATERNION_WORLDSPACE: return "FIELD_QUATERNION_WORLDSPACE";
+    case FIELD_HSCRIPT_LIGHTBINDING: return "FIELD_HSCRIPT_LIGHTBINDING";
+    case FIELD_V8_VALUE: return "FIELD_V8_VALUE";
+    case FIELD_V8_OBJECT: return "FIELD_V8_OBJECT";
+    case FIELD_V8_ARRAY: return "FIELD_V8_ARRAY";
+    case FIELD_V8_CALLBACK_INFO: return "FIELD_V8_CALLBACK_INFO";
+    case FIELD_UTLSTRING: return "FIELD_UTLSTRING";
+    case FIELD_NETWORK_ORIGIN_CELL_QUANTIZED_POSITION_VECTOR: return "FIELD_NETWORK_ORIGIN_CELL_QUANTIZED_POSITION_VECTOR";
+    case FIELD_HRENDERTEXTURE: return "FIELD_HRENDERTEXTURE";
+    case FIELD_HPARTICLESYSTEMDEFINITION: return "FIELD_HPARTICLESYSTEMDEFINITION";
+    case FIELD_UINT8: return "FIELD_UINT8";
+    case FIELD_UINT16: return "FIELD_UINT16";
+    case FIELD_CTRANSFORM: return "FIELD_CTRANSFORM";
+    case FIELD_CTRANSFORM_WORLDSPACE: return "FIELD_CTRANSFORM_WORLDSPACE";
+    case FIELD_HPOSTPROCESSING: return "FIELD_HPOSTPROCESSING";
+    case FIELD_MATRIX3X4: return "FIELD_MATRIX3X4";
+    case FIELD_SHIM: return "FIELD_SHIM";
+    case FIELD_CMOTIONTRANSFORM: return "FIELD_CMOTIONTRANSFORM";
+    case FIELD_CMOTIONTRANSFORM_WORLDSPACE: return "FIELD_CMOTIONTRANSFORM_WORLDSPACE";
+    case FIELD_ATTACHMENT_HANDLE: return "FIELD_ATTACHMENT_HANDLE";
+    case FIELD_AMMO_INDEX: return "FIELD_AMMO_INDEX";
+    case FIELD_CONDITION_ID: return "FIELD_CONDITION_ID";
+    case FIELD_AI_SCHEDULE_BITS: return "FIELD_AI_SCHEDULE_BITS";
+    case FIELD_MODIFIER_HANDLE: return "FIELD_MODIFIER_HANDLE";
+    case FIELD_ROTATION_VECTOR: return "FIELD_ROTATION_VECTOR";
+    case FIELD_ROTATION_VECTOR_WORLDSPACE: return "FIELD_ROTATION_VECTOR_WORLDSPACE";
+    case FIELD_HVDATA: return "FIELD_HVDATA";
+    case FIELD_SCALE32: return "FIELD_SCALE32";
+    case FIELD_STRING_AND_TOKEN: return "FIELD_STRING_AND_TOKEN";
+    case FIELD_ENGINE_TIME: return "FIELD_ENGINE_TIME";
+    case FIELD_ENGINE_TICK: return "FIELD_ENGINE_TICK";
+    case FIELD_WORLD_GROUP_ID: return "FIELD_WORLD_GROUP_ID";
+    case FIELD_GLOBALSYMBOL: return "FIELD_GLOBALSYMBOL";
+    case FIELD_HNMGRAPHDEFINITION: return "FIELD_HNMGRAPHDEFINITION";
+    case FIELD_TYPECOUNT: return "FIELD_TYPECOUNT";
+    }
+
+    return "FIELD_TYPEUNKNOWN";
+}
+
+void CollectDatamapFields(datamap_t* map, json& fields)
+{
+    if (!map) return;
+
+    // CollectDatamapFields(map->baseMap, fields);
+
+    if (!map->dataDesc || map->dataNumFields <= 0) return;
+
+    for (int i = 0; i < map->dataNumFields; i++)
+    {
+        auto& desc = map->dataDesc[i];
+
+        std::string fieldName = desc.fieldName ? desc.fieldName : "";
+        std::string externalName = (desc.externalName && desc.externalName[0]) ? desc.externalName : "";
+
+        bool isFunction = (desc.flags & FTYPEDESC_FUNCTIONTABLE) != 0;
+        bool isInput = (desc.flags & FTYPEDESC_WAS_INPUT) != 0;
+        bool isOutput = (desc.flags & FTYPEDESC_WAS_OUTPUT) != 0;
+
+        uint32_t function_hash = 0;
+
+        if (isFunction && fieldName != "") {
+            function_hash = hash_32_fnv1a_const(fieldName.c_str());
+            datamapFunctions.insert({ function_hash , &desc.inputFunc });
+        }
+
+        if (
+            !isFunction && !isInput && !isOutput
+            && (fieldName == "" || externalName == "")
+        ) {
+            continue;
+        }
+
+        fields.push_back({
+            {"fieldType", GetDatamapFieldTypeName(desc.fieldType)},
+            {"fieldName", fieldName},
+            {"externalName", externalName},
+            {"isFunction", isFunction},
+            {"isInput", isInput},
+            {"isOutput", isOutput},
+            {"functionHash", function_hash},
+        });
+    }
+}
+
+void ReadClassDatamap(CSchemaType_DeclaredClass* declClass, json& outJson)
+{
+    auto classInfo = declClass->m_pClassInfo;
+    if (!classInfo) return;
+
+    auto map = classInfo->m_pDataDescMap;
+    if (!map) return;
+
+    std::string baseMapName = "";
+    if (map->baseMap) {
+        baseMapName = map->baseMap->dataClassName ? map->baseMap->dataClassName : "";
+    }
+
+    if (!outJson.contains("datamaps"))
+        outJson["datamaps"] = json::array();
+
+    outJson["datamaps"].push_back({
+        {"class_name", classInfo->m_pszName},
+        {"data_class_name", map->dataClassName ? map->dataClassName : classInfo->m_pszName},
+        {"base_data_class_name", baseMapName},
+        });
+
+    auto& datamap = outJson["datamaps"].back();
+    datamap["fields"] = json::array();
+
+    CollectDatamapFields(map, datamap["fields"]);
+}
+
 void ReadClasses(CSchemaType_DeclaredClass* declClass, json& outJson)
 {
     auto classInfo = declClass->m_pClassInfo;
+
     if (!classInfo)
     {
         return;

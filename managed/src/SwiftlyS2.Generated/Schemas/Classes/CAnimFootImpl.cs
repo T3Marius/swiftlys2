@@ -21,11 +21,11 @@ internal partial class CAnimFootImpl : SchemaClass, CAnimFoot
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x583A05E34D8F5786);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x583A05E34D8F5786);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _BallOffsetOffset;

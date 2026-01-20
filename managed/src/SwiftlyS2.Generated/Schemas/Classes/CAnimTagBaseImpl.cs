@@ -29,11 +29,11 @@ internal partial class CAnimTagBaseImpl : SchemaClass, CAnimTagBase
     public string Comment {
         get {
             _CommentOffset = _CommentOffset ?? Schema.GetOffset(0x8F7709C488A0B4DF);
-            return Schema.GetString(_Handle.Read<nint>(_CommentOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_CommentOffset!.Value));
         }
         set {
             _CommentOffset = _CommentOffset ?? Schema.GetOffset(0x8F7709C488A0B4DF);
-            Schema.SetString(_Handle, _CommentOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _CommentOffset!.Value, value);
         }
     } 
     private static nint? _GroupOffset;

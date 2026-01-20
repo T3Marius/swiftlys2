@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cart_updated"
 /// </summary>
 internal class EventCartUpdatedImpl : GameEvent<EventCartUpdated>, EventCartUpdated
 {
 
-  public EventCartUpdatedImpl(nint address) : base(address)
-  {
-  }
+    public EventCartUpdatedImpl(nint address) : base(address)
+    {
+    }
 }

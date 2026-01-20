@@ -21,11 +21,11 @@ internal partial class CPulseCell_Outflow_ScriptedSequenceImpl : CPulseCell_Base
     public string SyncGroup {
         get {
             _SyncGroupOffset = _SyncGroupOffset ?? Schema.GetOffset(0x462EA7DEF9E8183A);
-            return Schema.GetString(_Handle.Read<nint>(_SyncGroupOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SyncGroupOffset!.Value));
         }
         set {
             _SyncGroupOffset = _SyncGroupOffset ?? Schema.GetOffset(0x462EA7DEF9E8183A);
-            Schema.SetString(_Handle, _SyncGroupOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SyncGroupOffset!.Value, value);
         }
     } 
     private static nint? _ExpectedNumSequencesInSyncGroupOffset;

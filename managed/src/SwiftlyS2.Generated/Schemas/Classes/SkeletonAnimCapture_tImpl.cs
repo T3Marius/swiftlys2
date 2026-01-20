@@ -45,11 +45,11 @@ internal partial class SkeletonAnimCapture_tImpl : SchemaClass, SkeletonAnimCapt
     public string ModelName {
         get {
             _ModelNameOffset = _ModelNameOffset ?? Schema.GetOffset(0x79FB6D7CD7A1D881);
-            return Schema.GetString(_Handle.Read<nint>(_ModelNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ModelNameOffset!.Value));
         }
         set {
             _ModelNameOffset = _ModelNameOffset ?? Schema.GetOffset(0x79FB6D7CD7A1D881);
-            Schema.SetString(_Handle, _ModelNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ModelNameOffset!.Value, value);
         }
     } 
     private static nint? _CaptureNameOffset;
@@ -57,11 +57,11 @@ internal partial class SkeletonAnimCapture_tImpl : SchemaClass, SkeletonAnimCapt
     public string CaptureName {
         get {
             _CaptureNameOffset = _CaptureNameOffset ?? Schema.GetOffset(0x79FB6D7CB508C2DA);
-            return Schema.GetString(_Handle.Read<nint>(_CaptureNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_CaptureNameOffset!.Value));
         }
         set {
             _CaptureNameOffset = _CaptureNameOffset ?? Schema.GetOffset(0x79FB6D7CB508C2DA);
-            Schema.SetString(_Handle, _CaptureNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _CaptureNameOffset!.Value, value);
         }
     } 
     private static nint? _ModelBindPoseOffset;

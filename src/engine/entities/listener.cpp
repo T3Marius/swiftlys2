@@ -21,6 +21,7 @@
 
 #include <api/interfaces/manager.h>
 #include <api/shared/plat.h>
+#include <unordered_dense/include/ankerl/unordered_dense.h>
 
 #define CCSGameRulesProxy_m_pGameRules 0x242D3ADB925C1F40
 
@@ -30,6 +31,7 @@ extern void* g_pOnEntityCreatedCallback;
 extern void* g_pOnEntityDeletedCallback;
 extern void* g_pOnEntityParentChangedCallback;
 extern void* g_pOnEntitySpawnedCallback;
+extern ankerl::unordered_dense::set<CEntityInstance*> g_entitySet;
 
 void CEntityListener::OnEntitySpawned(CEntityInstance* pEntity)
 {
@@ -57,6 +59,8 @@ void CEntityListener::OnEntityCreated(CEntityInstance* pEntity)
         bDone = true;
         EntityAllowHammerID(pEntity);
     }
+
+    g_entitySet.insert(pEntity);
 
     if (g_pOnEntityCreatedCallback)
         reinterpret_cast<void(*)(void*)>(g_pOnEntityCreatedCallback)(pEntity);
@@ -91,4 +95,6 @@ void CEntityListener::OnEntityDeleted(CEntityInstance* pEntity)
 
     if (g_pOnEntityDeletedCallback)
         reinterpret_cast<void(*)(void*)>(g_pOnEntityDeletedCallback)(pEntity);
+
+    g_entitySet.erase(pEntity);
 }

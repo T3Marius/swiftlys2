@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "gameinstructor_nodraw"
 /// </summary>
 internal class EventGameinstructorNodrawImpl : GameEvent<EventGameinstructorNodraw>, EventGameinstructorNodraw
 {
 
-  public EventGameinstructorNodrawImpl(nint address) : base(address)
-  {
-  }
+    public EventGameinstructorNodrawImpl(nint address) : base(address)
+    {
+    }
 }

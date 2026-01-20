@@ -21,11 +21,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string ImpactSoft {
         get {
             _ImpactSoftOffset = _ImpactSoftOffset ?? Schema.GetOffset(0xF2658A3949E7237B);
-            return Schema.GetString(_Handle.Read<nint>(_ImpactSoftOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ImpactSoftOffset!.Value));
         }
         set {
             _ImpactSoftOffset = _ImpactSoftOffset ?? Schema.GetOffset(0xF2658A3949E7237B);
-            Schema.SetString(_Handle, _ImpactSoftOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ImpactSoftOffset!.Value, value);
         }
     } 
     private static nint? _ImpactHardOffset;
@@ -33,11 +33,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string ImpactHard {
         get {
             _ImpactHardOffset = _ImpactHardOffset ?? Schema.GetOffset(0xF2658A3934A77BB2);
-            return Schema.GetString(_Handle.Read<nint>(_ImpactHardOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ImpactHardOffset!.Value));
         }
         set {
             _ImpactHardOffset = _ImpactHardOffset ?? Schema.GetOffset(0xF2658A3934A77BB2);
-            Schema.SetString(_Handle, _ImpactHardOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ImpactHardOffset!.Value, value);
         }
     } 
     private static nint? _ScrapeSmoothOffset;
@@ -45,11 +45,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string ScrapeSmooth {
         get {
             _ScrapeSmoothOffset = _ScrapeSmoothOffset ?? Schema.GetOffset(0xF2658A3902EA935F);
-            return Schema.GetString(_Handle.Read<nint>(_ScrapeSmoothOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ScrapeSmoothOffset!.Value));
         }
         set {
             _ScrapeSmoothOffset = _ScrapeSmoothOffset ?? Schema.GetOffset(0xF2658A3902EA935F);
-            Schema.SetString(_Handle, _ScrapeSmoothOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ScrapeSmoothOffset!.Value, value);
         }
     } 
     private static nint? _ScrapeRoughOffset;
@@ -57,11 +57,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string ScrapeRough {
         get {
             _ScrapeRoughOffset = _ScrapeRoughOffset ?? Schema.GetOffset(0xF2658A39CE764A7E);
-            return Schema.GetString(_Handle.Read<nint>(_ScrapeRoughOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ScrapeRoughOffset!.Value));
         }
         set {
             _ScrapeRoughOffset = _ScrapeRoughOffset ?? Schema.GetOffset(0xF2658A39CE764A7E);
-            Schema.SetString(_Handle, _ScrapeRoughOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ScrapeRoughOffset!.Value, value);
         }
     } 
     private static nint? _BulletImpactOffset;
@@ -69,11 +69,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string BulletImpact {
         get {
             _BulletImpactOffset = _BulletImpactOffset ?? Schema.GetOffset(0xF2658A3943E056BB);
-            return Schema.GetString(_Handle.Read<nint>(_BulletImpactOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BulletImpactOffset!.Value));
         }
         set {
             _BulletImpactOffset = _BulletImpactOffset ?? Schema.GetOffset(0xF2658A3943E056BB);
-            Schema.SetString(_Handle, _BulletImpactOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BulletImpactOffset!.Value, value);
         }
     } 
     private static nint? _RollingOffset;
@@ -81,11 +81,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string Rolling {
         get {
             _RollingOffset = _RollingOffset ?? Schema.GetOffset(0xF2658A39E0171912);
-            return Schema.GetString(_Handle.Read<nint>(_RollingOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_RollingOffset!.Value));
         }
         set {
             _RollingOffset = _RollingOffset ?? Schema.GetOffset(0xF2658A39E0171912);
-            Schema.SetString(_Handle, _RollingOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _RollingOffset!.Value, value);
         }
     } 
     private static nint? _BreakOffset;
@@ -93,11 +93,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string Break {
         get {
             _BreakOffset = _BreakOffset ?? Schema.GetOffset(0xF2658A39382B2298);
-            return Schema.GetString(_Handle.Read<nint>(_BreakOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BreakOffset!.Value));
         }
         set {
             _BreakOffset = _BreakOffset ?? Schema.GetOffset(0xF2658A39382B2298);
-            Schema.SetString(_Handle, _BreakOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BreakOffset!.Value, value);
         }
     } 
     private static nint? _StrainOffset;
@@ -105,11 +105,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string Strain {
         get {
             _StrainOffset = _StrainOffset ?? Schema.GetOffset(0xF2658A397EDA2E10);
-            return Schema.GetString(_Handle.Read<nint>(_StrainOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrainOffset!.Value));
         }
         set {
             _StrainOffset = _StrainOffset ?? Schema.GetOffset(0xF2658A397EDA2E10);
-            Schema.SetString(_Handle, _StrainOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrainOffset!.Value, value);
         }
     } 
     private static nint? _MeleeImpactOffset;
@@ -117,11 +117,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string MeleeImpact {
         get {
             _MeleeImpactOffset = _MeleeImpactOffset ?? Schema.GetOffset(0xF2658A3976A52491);
-            return Schema.GetString(_Handle.Read<nint>(_MeleeImpactOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MeleeImpactOffset!.Value));
         }
         set {
             _MeleeImpactOffset = _MeleeImpactOffset ?? Schema.GetOffset(0xF2658A3976A52491);
-            Schema.SetString(_Handle, _MeleeImpactOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MeleeImpactOffset!.Value, value);
         }
     } 
     private static nint? _PushOffOffset;
@@ -129,11 +129,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string PushOff {
         get {
             _PushOffOffset = _PushOffOffset ?? Schema.GetOffset(0xF2658A39C825B1A2);
-            return Schema.GetString(_Handle.Read<nint>(_PushOffOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PushOffOffset!.Value));
         }
         set {
             _PushOffOffset = _PushOffOffset ?? Schema.GetOffset(0xF2658A39C825B1A2);
-            Schema.SetString(_Handle, _PushOffOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PushOffOffset!.Value, value);
         }
     } 
     private static nint? _SkidStopOffset;
@@ -141,11 +141,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string SkidStop {
         get {
             _SkidStopOffset = _SkidStopOffset ?? Schema.GetOffset(0xF2658A3976C778AE);
-            return Schema.GetString(_Handle.Read<nint>(_SkidStopOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SkidStopOffset!.Value));
         }
         set {
             _SkidStopOffset = _SkidStopOffset ?? Schema.GetOffset(0xF2658A3976C778AE);
-            Schema.SetString(_Handle, _SkidStopOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SkidStopOffset!.Value, value);
         }
     } 
     private static nint? _ResonantOffset;
@@ -153,11 +153,11 @@ internal partial class CPhysSurfacePropertiesSoundNamesImpl : SchemaClass, CPhys
     public string Resonant {
         get {
             _ResonantOffset = _ResonantOffset ?? Schema.GetOffset(0xF2658A396BA8FAF5);
-            return Schema.GetString(_Handle.Read<nint>(_ResonantOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ResonantOffset!.Value));
         }
         set {
             _ResonantOffset = _ResonantOffset ?? Schema.GetOffset(0xF2658A396BA8FAF5);
-            Schema.SetString(_Handle, _ResonantOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ResonantOffset!.Value, value);
         }
     } 
 

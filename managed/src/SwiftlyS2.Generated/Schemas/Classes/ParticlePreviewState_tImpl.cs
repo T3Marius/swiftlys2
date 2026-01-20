@@ -21,11 +21,11 @@ internal partial class ParticlePreviewState_tImpl : SchemaClass, ParticlePreview
     public string PreviewModel {
         get {
             _PreviewModelOffset = _PreviewModelOffset ?? Schema.GetOffset(0x31FB1901BC4FDC14);
-            return Schema.GetString(_Handle.Read<nint>(_PreviewModelOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PreviewModelOffset!.Value));
         }
         set {
             _PreviewModelOffset = _PreviewModelOffset ?? Schema.GetOffset(0x31FB1901BC4FDC14);
-            Schema.SetString(_Handle, _PreviewModelOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PreviewModelOffset!.Value, value);
         }
     } 
     private static nint? _ModSpecificDataOffset;
@@ -49,11 +49,11 @@ internal partial class ParticlePreviewState_tImpl : SchemaClass, ParticlePreview
     public string SequenceName {
         get {
             _SequenceNameOffset = _SequenceNameOffset ?? Schema.GetOffset(0x31FB19012B4A24CB);
-            return Schema.GetString(_Handle.Read<nint>(_SequenceNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SequenceNameOffset!.Value));
         }
         set {
             _SequenceNameOffset = _SequenceNameOffset ?? Schema.GetOffset(0x31FB19012B4A24CB);
-            Schema.SetString(_Handle, _SequenceNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SequenceNameOffset!.Value, value);
         }
     } 
     private static nint? _FireParticleOnSequenceFrameOffset;
@@ -69,11 +69,11 @@ internal partial class ParticlePreviewState_tImpl : SchemaClass, ParticlePreview
     public string HitboxSetName {
         get {
             _HitboxSetNameOffset = _HitboxSetNameOffset ?? Schema.GetOffset(0x31FB19011ACA1CAE);
-            return Schema.GetString(_Handle.Read<nint>(_HitboxSetNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_HitboxSetNameOffset!.Value));
         }
         set {
             _HitboxSetNameOffset = _HitboxSetNameOffset ?? Schema.GetOffset(0x31FB19011ACA1CAE);
-            Schema.SetString(_Handle, _HitboxSetNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _HitboxSetNameOffset!.Value, value);
         }
     } 
     private static nint? _MaterialGroupNameOffset;
@@ -81,11 +81,11 @@ internal partial class ParticlePreviewState_tImpl : SchemaClass, ParticlePreview
     public string MaterialGroupName {
         get {
             _MaterialGroupNameOffset = _MaterialGroupNameOffset ?? Schema.GetOffset(0x31FB1901A6930C68);
-            return Schema.GetString(_Handle.Read<nint>(_MaterialGroupNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MaterialGroupNameOffset!.Value));
         }
         set {
             _MaterialGroupNameOffset = _MaterialGroupNameOffset ?? Schema.GetOffset(0x31FB1901A6930C68);
-            Schema.SetString(_Handle, _MaterialGroupNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MaterialGroupNameOffset!.Value, value);
         }
     } 
     private static nint? _BodyGroupsOffset;

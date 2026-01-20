@@ -7,14 +7,14 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "game_init"
 /// sent when a new game is started
 /// </summary>
 internal class EventGameInitImpl : GameEvent<EventGameInit>, EventGameInit
 {
 
-  public EventGameInitImpl(nint address) : base(address)
-  {
-  }
+    public EventGameInitImpl(nint address) : base(address)
+    {
+    }
 }

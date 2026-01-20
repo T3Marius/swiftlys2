@@ -437,11 +437,11 @@ internal partial class CCSWeaponBaseVDataImpl : CBasePlayerWeaponVDataImpl, CCSW
     public string UseRadioSubtitle {
         get {
             _UseRadioSubtitleOffset = _UseRadioSubtitleOffset ?? Schema.GetOffset(0x62FB77052060E88A);
-            return Schema.GetString(_Handle.Read<nint>(_UseRadioSubtitleOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_UseRadioSubtitleOffset!.Value));
         }
         set {
             _UseRadioSubtitleOffset = _UseRadioSubtitleOffset ?? Schema.GetOffset(0x62FB77052060E88A);
-            Schema.SetString(_Handle, _UseRadioSubtitleOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _UseRadioSubtitleOffset!.Value, value);
         }
     } 
     private static nint? _UnzoomsAfterShotOffset;

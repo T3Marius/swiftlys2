@@ -21,11 +21,11 @@ internal partial class ModelBoneFlexDriver_tImpl : SchemaClass, ModelBoneFlexDri
     public string BoneName {
         get {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0xBCBDE5AAFDEE0E0C);
-            return Schema.GetString(_Handle.Read<nint>(_BoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BoneNameOffset!.Value));
         }
         set {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0xBCBDE5AAFDEE0E0C);
-            Schema.SetString(_Handle, _BoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BoneNameOffset!.Value, value);
         }
     } 
     private static nint? _BoneNameTokenOffset;

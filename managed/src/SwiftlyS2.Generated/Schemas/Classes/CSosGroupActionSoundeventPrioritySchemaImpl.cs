@@ -21,11 +21,11 @@ internal partial class CSosGroupActionSoundeventPrioritySchemaImpl : CSosGroupAc
     public string PriorityValue {
         get {
             _PriorityValueOffset = _PriorityValueOffset ?? Schema.GetOffset(0x1E84D860257F7BF6);
-            return Schema.GetString(_Handle.Read<nint>(_PriorityValueOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PriorityValueOffset!.Value));
         }
         set {
             _PriorityValueOffset = _PriorityValueOffset ?? Schema.GetOffset(0x1E84D860257F7BF6);
-            Schema.SetString(_Handle, _PriorityValueOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PriorityValueOffset!.Value, value);
         }
     } 
     private static nint? _PriorityVolumeScalarOffset;
@@ -33,11 +33,11 @@ internal partial class CSosGroupActionSoundeventPrioritySchemaImpl : CSosGroupAc
     public string PriorityVolumeScalar {
         get {
             _PriorityVolumeScalarOffset = _PriorityVolumeScalarOffset ?? Schema.GetOffset(0x1E84D860F21824AF);
-            return Schema.GetString(_Handle.Read<nint>(_PriorityVolumeScalarOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PriorityVolumeScalarOffset!.Value));
         }
         set {
             _PriorityVolumeScalarOffset = _PriorityVolumeScalarOffset ?? Schema.GetOffset(0x1E84D860F21824AF);
-            Schema.SetString(_Handle, _PriorityVolumeScalarOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PriorityVolumeScalarOffset!.Value, value);
         }
     } 
     private static nint? _PriorityContributeButDontReadOffset;
@@ -45,11 +45,11 @@ internal partial class CSosGroupActionSoundeventPrioritySchemaImpl : CSosGroupAc
     public string PriorityContributeButDontRead {
         get {
             _PriorityContributeButDontReadOffset = _PriorityContributeButDontReadOffset ?? Schema.GetOffset(0x1E84D8608078C7B6);
-            return Schema.GetString(_Handle.Read<nint>(_PriorityContributeButDontReadOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PriorityContributeButDontReadOffset!.Value));
         }
         set {
             _PriorityContributeButDontReadOffset = _PriorityContributeButDontReadOffset ?? Schema.GetOffset(0x1E84D8608078C7B6);
-            Schema.SetString(_Handle, _PriorityContributeButDontReadOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PriorityContributeButDontReadOffset!.Value, value);
         }
     } 
     private static nint? _PriorityReadButDontContributeOffset;
@@ -57,11 +57,11 @@ internal partial class CSosGroupActionSoundeventPrioritySchemaImpl : CSosGroupAc
     public string PriorityReadButDontContribute {
         get {
             _PriorityReadButDontContributeOffset = _PriorityReadButDontContributeOffset ?? Schema.GetOffset(0x1E84D860112DDB84);
-            return Schema.GetString(_Handle.Read<nint>(_PriorityReadButDontContributeOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PriorityReadButDontContributeOffset!.Value));
         }
         set {
             _PriorityReadButDontContributeOffset = _PriorityReadButDontContributeOffset ?? Schema.GetOffset(0x1E84D860112DDB84);
-            Schema.SetString(_Handle, _PriorityReadButDontContributeOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PriorityReadButDontContributeOffset!.Value, value);
         }
     } 
 

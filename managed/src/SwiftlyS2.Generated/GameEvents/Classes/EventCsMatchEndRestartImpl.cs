@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_match_end_restart"
 /// </summary>
 internal class EventCsMatchEndRestartImpl : GameEvent<EventCsMatchEndRestart>, EventCsMatchEndRestart
 {
 
-  public EventCsMatchEndRestartImpl(nint address) : base(address)
-  {
-  }
+    public EventCsMatchEndRestartImpl(nint address) : base(address)
+    {
+    }
 }

@@ -21,11 +21,11 @@ internal partial class FeVertexMapDesc_tImpl : SchemaClass, FeVertexMapDesc_t
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xD8EDB44626980769);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xD8EDB44626980769);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _NameHashOffset;

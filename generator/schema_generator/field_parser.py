@@ -18,7 +18,8 @@ def parse_field(field_def, all_class_names, all_enum_names):
   # Detect special string cases
   is_char_ptr_string = (kind == "ptr" and type == "char")
   is_fixed_char_string = (kind == "fixed_array" and impl_type == "SchemaFixedString")
-  is_string_handle = (type == "CUtlString" or type == "CUtlSymbolLarge")
+  is_string_handle = type == "CUtlSymbolLarge"
+  is_utl_string_handle = type == "CUtlString"
 
   data = {
     "HASH": '0x{:02X}'.format(hash),
@@ -30,7 +31,8 @@ def parse_field(field_def, all_class_names, all_enum_names):
     "KIND": kind,
     "IS_CHAR_PTR_STRING": is_char_ptr_string,
     "IS_FIXED_CHAR_STRING": is_fixed_char_string,
-    "IS_STRING_HANDLE": is_string_handle
+    "IS_STRING_HANDLE": is_string_handle,
+    "IS_UTL_STRING_HANDLE": is_utl_string_handle
   }
 
   if kind == "fixed_array":

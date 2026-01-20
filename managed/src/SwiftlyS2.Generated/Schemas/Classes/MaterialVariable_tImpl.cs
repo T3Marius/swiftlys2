@@ -21,11 +21,11 @@ internal partial class MaterialVariable_tImpl : SchemaClass, MaterialVariable_t
     public string StrVariable {
         get {
             _StrVariableOffset = _StrVariableOffset ?? Schema.GetOffset(0xCACB71DBA52C3390);
-            return Schema.GetString(_Handle.Read<nint>(_StrVariableOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrVariableOffset!.Value));
         }
         set {
             _StrVariableOffset = _StrVariableOffset ?? Schema.GetOffset(0xCACB71DBA52C3390);
-            Schema.SetString(_Handle, _StrVariableOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrVariableOffset!.Value, value);
         }
     } 
     private static nint? _VariableFieldOffset;

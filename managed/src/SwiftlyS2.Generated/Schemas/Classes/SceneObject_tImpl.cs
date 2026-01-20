@@ -56,11 +56,11 @@ internal partial class SceneObject_tImpl : SchemaClass, SceneObject_t
     public string Skin {
         get {
             _SkinOffset = _SkinOffset ?? Schema.GetOffset(0xD71D9993F1469658);
-            return Schema.GetString(_Handle.Read<nint>(_SkinOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SkinOffset!.Value));
         }
         set {
             _SkinOffset = _SkinOffset ?? Schema.GetOffset(0xD71D9993F1469658);
-            Schema.SetString(_Handle, _SkinOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SkinOffset!.Value, value);
         }
     } 
     private static nint? _ObjectTypeFlagsOffset;

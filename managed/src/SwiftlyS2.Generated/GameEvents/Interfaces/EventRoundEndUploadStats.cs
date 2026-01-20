@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "round_end_upload_stats"
 /// </summary>
-public interface EventRoundEndUploadStats : IGameEvent<EventRoundEndUploadStats> {
+public interface EventRoundEndUploadStats : IGameEvent<EventRoundEndUploadStats>
+{
 
-  static EventRoundEndUploadStats IGameEvent<EventRoundEndUploadStats>.Create(nint address) => new EventRoundEndUploadStatsImpl(address);
+    static EventRoundEndUploadStats IGameEvent<EventRoundEndUploadStats>.Create(nint address) => new EventRoundEndUploadStatsImpl(address);
 
-  static string IGameEvent<EventRoundEndUploadStats>.GetName() => "round_end_upload_stats";
+    static string IGameEvent<EventRoundEndUploadStats>.GetName() => "round_end_upload_stats";
 
-  static uint IGameEvent<EventRoundEndUploadStats>.GetHash() => 0xD0FB36E3u;
+    static uint IGameEvent<EventRoundEndUploadStats>.GetHash() => 0xD0FB36E3u;
 }

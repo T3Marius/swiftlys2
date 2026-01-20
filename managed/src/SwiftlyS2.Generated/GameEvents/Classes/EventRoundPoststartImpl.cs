@@ -7,14 +7,14 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "round_poststart"
 /// sent after all other round restart actions
 /// </summary>
 internal class EventRoundPoststartImpl : GameEvent<EventRoundPoststart>, EventRoundPoststart
 {
 
-  public EventRoundPoststartImpl(nint address) : base(address)
-  {
-  }
+    public EventRoundPoststartImpl(nint address) : base(address)
+    {
+    }
 }

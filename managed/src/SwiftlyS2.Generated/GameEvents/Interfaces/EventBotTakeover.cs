@@ -5,55 +5,72 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "bot_takeover"
 /// </summary>
-public interface EventBotTakeover : IGameEvent<EventBotTakeover> {
+public interface EventBotTakeover : IGameEvent<EventBotTakeover>
+{
 
-  static EventBotTakeover IGameEvent<EventBotTakeover>.Create(nint address) => new EventBotTakeoverImpl(address);
+    static EventBotTakeover IGameEvent<EventBotTakeover>.Create(nint address) => new EventBotTakeoverImpl(address);
 
-  static string IGameEvent<EventBotTakeover>.GetName() => "bot_takeover";
+    static string IGameEvent<EventBotTakeover>.GetName() => "bot_takeover";
 
-  static uint IGameEvent<EventBotTakeover>.GetHash() => 0x6F5C9FCAu;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventBotTakeover>.GetHash() => 0x6F5C9FCAu;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// type: player_controller
-  /// </summary>
-  int BotID { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float P { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController BotIDController { get; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float Y { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn BotIDPawn { get; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float R { get; set; }
+    public IPlayer? BotIDPlayer
+    { get => Accessor.GetPlayer("botid"); }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int BotID { get; set; }
+
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float P { get; set; }
+
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float Y { get; set; }
+
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float R { get; set; }
 }

@@ -173,11 +173,11 @@ internal partial class CParticleSystemDefinitionImpl : IParticleSystemDefinition
     public string NamedValueDomain {
         get {
             _NamedValueDomainOffset = _NamedValueDomainOffset ?? Schema.GetOffset(0xDA4320E0D00B8FCB);
-            return Schema.GetString(_Handle.Read<nint>(_NamedValueDomainOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NamedValueDomainOffset!.Value));
         }
         set {
             _NamedValueDomainOffset = _NamedValueDomainOffset ?? Schema.GetOffset(0xDA4320E0D00B8FCB);
-            Schema.SetString(_Handle, _NamedValueDomainOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NamedValueDomainOffset!.Value, value);
         }
     } 
     private static nint? _NamedValueLocalsOffset;

@@ -7,14 +7,14 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "round_prestart"
 /// sent before all other round restart actions
 /// </summary>
 internal class EventRoundPrestartImpl : GameEvent<EventRoundPrestart>, EventRoundPrestart
 {
 
-  public EventRoundPrestartImpl(nint address) : base(address)
-  {
-  }
+    public EventRoundPrestartImpl(nint address) : base(address)
+    {
+    }
 }

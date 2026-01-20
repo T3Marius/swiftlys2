@@ -29,11 +29,11 @@ internal partial class C_OP_RenderTextImpl : CParticleFunctionRendererImpl, C_OP
     public string DefaultText {
         get {
             _DefaultTextOffset = _DefaultTextOffset ?? Schema.GetOffset(0x376BB2E67556AF5D);
-            return Schema.GetString(_Handle.Read<nint>(_DefaultTextOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DefaultTextOffset!.Value));
         }
         set {
             _DefaultTextOffset = _DefaultTextOffset ?? Schema.GetOffset(0x376BB2E67556AF5D);
-            Schema.SetString(_Handle, _DefaultTextOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DefaultTextOffset!.Value, value);
         }
     } 
 

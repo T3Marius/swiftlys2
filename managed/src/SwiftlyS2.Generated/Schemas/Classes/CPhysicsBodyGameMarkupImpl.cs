@@ -21,11 +21,11 @@ internal partial class CPhysicsBodyGameMarkupImpl : SchemaClass, CPhysicsBodyGam
     public string TargetBody {
         get {
             _TargetBodyOffset = _TargetBodyOffset ?? Schema.GetOffset(0xA5257571F2C6B554);
-            return Schema.GetString(_Handle.Read<nint>(_TargetBodyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TargetBodyOffset!.Value));
         }
         set {
             _TargetBodyOffset = _TargetBodyOffset ?? Schema.GetOffset(0xA5257571F2C6B554);
-            Schema.SetString(_Handle, _TargetBodyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TargetBodyOffset!.Value, value);
         }
     } 
     private static nint? _TagOffset;

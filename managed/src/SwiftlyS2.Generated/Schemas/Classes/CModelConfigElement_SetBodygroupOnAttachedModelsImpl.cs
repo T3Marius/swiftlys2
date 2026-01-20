@@ -21,11 +21,11 @@ internal partial class CModelConfigElement_SetBodygroupOnAttachedModelsImpl : CM
     public string GroupName {
         get {
             _GroupNameOffset = _GroupNameOffset ?? Schema.GetOffset(0xCC9BDB84E0A55E67);
-            return Schema.GetString(_Handle.Read<nint>(_GroupNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_GroupNameOffset!.Value));
         }
         set {
             _GroupNameOffset = _GroupNameOffset ?? Schema.GetOffset(0xCC9BDB84E0A55E67);
-            Schema.SetString(_Handle, _GroupNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _GroupNameOffset!.Value, value);
         }
     } 
     private static nint? _ChoiceOffset;

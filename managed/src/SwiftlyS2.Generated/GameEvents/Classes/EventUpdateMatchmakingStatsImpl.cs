@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "update_matchmaking_stats"
 /// </summary>
 internal class EventUpdateMatchmakingStatsImpl : GameEvent<EventUpdateMatchmakingStats>, EventUpdateMatchmakingStats
 {
 
-  public EventUpdateMatchmakingStatsImpl(nint address) : base(address)
-  {
-  }
+    public EventUpdateMatchmakingStatsImpl(nint address) : base(address)
+    {
+    }
 }

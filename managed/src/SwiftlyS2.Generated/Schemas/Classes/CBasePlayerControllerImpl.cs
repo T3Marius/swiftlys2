@@ -105,11 +105,11 @@ internal partial class CBasePlayerControllerImpl : CBaseEntityImpl, CBasePlayerC
     public string NetworkIDString {
         get {
             _NetworkIDStringOffset = _NetworkIDStringOffset ?? Schema.GetOffset(0x3979FF6E0EA4B3D6);
-            return Schema.GetString(_Handle.Read<nint>(_NetworkIDStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NetworkIDStringOffset!.Value));
         }
         set {
             _NetworkIDStringOffset = _NetworkIDStringOffset ?? Schema.GetOffset(0x3979FF6E0EA4B3D6);
-            Schema.SetString(_Handle, _NetworkIDStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NetworkIDStringOffset!.Value, value);
         }
     } 
     private static nint? _LerpTimeOffset;

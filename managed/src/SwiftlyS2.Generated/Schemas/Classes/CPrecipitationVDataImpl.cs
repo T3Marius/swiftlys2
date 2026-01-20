@@ -69,11 +69,11 @@ internal partial class CPrecipitationVDataImpl : CEntitySubclassVDataBaseImpl, C
     public string Modifier {
         get {
             _ModifierOffset = _ModifierOffset ?? Schema.GetOffset(0x4F75C25D2742E611);
-            return Schema.GetString(_Handle.Read<nint>(_ModifierOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ModifierOffset!.Value));
         }
         set {
             _ModifierOffset = _ModifierOffset ?? Schema.GetOffset(0x4F75C25D2742E611);
-            Schema.SetString(_Handle, _ModifierOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ModifierOffset!.Value, value);
         }
     } 
 

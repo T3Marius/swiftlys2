@@ -8,13 +8,18 @@ namespace SwiftlyS2.Shared.Events;
 /// </summary>
 public interface IOnCommandExecuteHookEvent
 {
-  /// <summary>
-  /// The command.
-  /// </summary>
-  public ref CCommand Command { get; }
+    /// <summary>
+    /// The command.
+    /// </summary>
+    public ref CCommand Command { get; }
 
-  /// <summary>
-  /// The hook mode.
-  /// </summary>
-  public HookMode HookMode { get; }
+    /// <summary>
+    /// The hook mode.
+    /// </summary>
+    public HookMode HookMode { get; }
+
+    /// <summary>
+    /// The hook result. You can change it only in Pre event.  
+    /// </summary>
+    public HookResult Result { get; set; } 
 }

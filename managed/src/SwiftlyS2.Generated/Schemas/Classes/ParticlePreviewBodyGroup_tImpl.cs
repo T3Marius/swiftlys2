@@ -21,11 +21,11 @@ internal partial class ParticlePreviewBodyGroup_tImpl : SchemaClass, ParticlePre
     public string BodyGroupName {
         get {
             _BodyGroupNameOffset = _BodyGroupNameOffset ?? Schema.GetOffset(0xB53436EB1E953217);
-            return Schema.GetString(_Handle.Read<nint>(_BodyGroupNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BodyGroupNameOffset!.Value));
         }
         set {
             _BodyGroupNameOffset = _BodyGroupNameOffset ?? Schema.GetOffset(0xB53436EB1E953217);
-            Schema.SetString(_Handle, _BodyGroupNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BodyGroupNameOffset!.Value, value);
         }
     } 
     private static nint? _ValueOffset;

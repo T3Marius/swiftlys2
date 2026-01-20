@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "round_announce_warmup"
 /// </summary>
 internal class EventRoundAnnounceWarmupImpl : GameEvent<EventRoundAnnounceWarmup>, EventRoundAnnounceWarmup
 {
 
-  public EventRoundAnnounceWarmupImpl(nint address) : base(address)
-  {
-  }
+    public EventRoundAnnounceWarmupImpl(nint address) : base(address)
+    {
+    }
 }

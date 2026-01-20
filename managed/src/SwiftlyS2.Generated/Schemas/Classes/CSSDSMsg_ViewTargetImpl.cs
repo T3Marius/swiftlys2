@@ -21,11 +21,11 @@ internal partial class CSSDSMsg_ViewTargetImpl : SchemaClass, CSSDSMsg_ViewTarge
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x4F31099BCAE8A266);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x4F31099BCAE8A266);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _TextureIdOffset;

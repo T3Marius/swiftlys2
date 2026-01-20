@@ -45,11 +45,11 @@ internal partial class CCSGO_TeamPreviewCharacterPositionImpl : CBaseEntityImpl,
     public string WeaponName {
         get {
             _WeaponNameOffset = _WeaponNameOffset ?? Schema.GetOffset(0x58B5CA3652FE8889);
-            return Schema.GetString(_Handle.Read<nint>(_WeaponNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_WeaponNameOffset!.Value));
         }
         set {
             _WeaponNameOffset = _WeaponNameOffset ?? Schema.GetOffset(0x58B5CA3652FE8889);
-            Schema.SetString(_Handle, _WeaponNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _WeaponNameOffset!.Value, value);
         }
     } 
     private static nint? _XuidOffset;

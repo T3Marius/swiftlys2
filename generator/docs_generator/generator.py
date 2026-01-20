@@ -2,6 +2,7 @@ import os
 import re
 import yaml
 import shutil
+import datamap_generator
 
 
 SOURCE_DIR = "../../api"
@@ -390,6 +391,9 @@ if __name__ == "__main__":
                 new_base = transform_filename(raw_base)
                 dest_file = os.path.join(DEST_DIR, "/".join(new_base.split(".")).lower() + ".mdx")
                 convert_yaml_file(os.path.join(root, file), dest_file)
+
+    datamap_count = datamap_generator.generate_datamap_docs(DEST_DIR)
+    print(f"Generated {datamap_count} datamap docs.")
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     index_source = os.path.join(script_dir, "index.mdx")

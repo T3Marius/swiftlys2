@@ -69,11 +69,11 @@ internal partial class CSosSoundEventGroupSchemaImpl : SchemaClass, CSosSoundEve
     public string MatchSoundEventName {
         get {
             _MatchSoundEventNameOffset = _MatchSoundEventNameOffset ?? Schema.GetOffset(0x25BA87005E75165C);
-            return Schema.GetString(_Handle.Read<nint>(_MatchSoundEventNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MatchSoundEventNameOffset!.Value));
         }
         set {
             _MatchSoundEventNameOffset = _MatchSoundEventNameOffset ?? Schema.GetOffset(0x25BA87005E75165C);
-            Schema.SetString(_Handle, _MatchSoundEventNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MatchSoundEventNameOffset!.Value, value);
         }
     } 
     private static nint? _MatchEventSubStringOffset;
@@ -89,11 +89,11 @@ internal partial class CSosSoundEventGroupSchemaImpl : SchemaClass, CSosSoundEve
     public string MatchSoundEventSubString {
         get {
             _MatchSoundEventSubStringOffset = _MatchSoundEventSubStringOffset ?? Schema.GetOffset(0x25BA87002FBB6296);
-            return Schema.GetString(_Handle.Read<nint>(_MatchSoundEventSubStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MatchSoundEventSubStringOffset!.Value));
         }
         set {
             _MatchSoundEventSubStringOffset = _MatchSoundEventSubStringOffset ?? Schema.GetOffset(0x25BA87002FBB6296);
-            Schema.SetString(_Handle, _MatchSoundEventSubStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MatchSoundEventSubStringOffset!.Value, value);
         }
     } 
     private static nint? _Behavior_EntIndexOffset;
@@ -141,11 +141,11 @@ internal partial class CSosSoundEventGroupSchemaImpl : SchemaClass, CSosSoundEve
     public string OpvarString {
         get {
             _OpvarStringOffset = _OpvarStringOffset ?? Schema.GetOffset(0x25BA8700528828B2);
-            return Schema.GetString(_Handle.Read<nint>(_OpvarStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OpvarStringOffset!.Value));
         }
         set {
             _OpvarStringOffset = _OpvarStringOffset ?? Schema.GetOffset(0x25BA8700528828B2);
-            Schema.SetString(_Handle, _OpvarStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OpvarStringOffset!.Value, value);
         }
     } 
     private static nint? _ActionsOffset;

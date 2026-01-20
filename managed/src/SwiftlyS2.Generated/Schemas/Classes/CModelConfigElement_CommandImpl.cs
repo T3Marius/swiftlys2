@@ -21,11 +21,11 @@ internal partial class CModelConfigElement_CommandImpl : CModelConfigElementImpl
     public string Command {
         get {
             _CommandOffset = _CommandOffset ?? Schema.GetOffset(0x89334ED93A5BBC32);
-            return Schema.GetString(_Handle.Read<nint>(_CommandOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_CommandOffset!.Value));
         }
         set {
             _CommandOffset = _CommandOffset ?? Schema.GetOffset(0x89334ED93A5BBC32);
-            Schema.SetString(_Handle, _CommandOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _CommandOffset!.Value, value);
         }
     } 
     private static nint? _ArgsOffset;

@@ -5,19 +5,20 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "clientside_reload_custom_econ"
 /// </summary>
-public interface EventClientsideReloadCustomEcon : IGameEvent<EventClientsideReloadCustomEcon> {
+public interface EventClientsideReloadCustomEcon : IGameEvent<EventClientsideReloadCustomEcon>
+{
 
-  static EventClientsideReloadCustomEcon IGameEvent<EventClientsideReloadCustomEcon>.Create(nint address) => new EventClientsideReloadCustomEconImpl(address);
+    static EventClientsideReloadCustomEcon IGameEvent<EventClientsideReloadCustomEcon>.Create(nint address) => new EventClientsideReloadCustomEconImpl(address);
 
-  static string IGameEvent<EventClientsideReloadCustomEcon>.GetName() => "clientside_reload_custom_econ";
+    static string IGameEvent<EventClientsideReloadCustomEcon>.GetName() => "clientside_reload_custom_econ";
 
-  static uint IGameEvent<EventClientsideReloadCustomEcon>.GetHash() => 0x22B74A75u;
-  /// <summary>
-  /// type: string
-  /// </summary>
-  string SteamID { get; set; }
+    static uint IGameEvent<EventClientsideReloadCustomEcon>.GetHash() => 0x22B74A75u;
 
+    /// <summary>
+    /// type: string
+    /// </summary>
+    string SteamID { get; set; }
 }

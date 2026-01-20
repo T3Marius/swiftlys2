@@ -112,6 +112,7 @@ void CPlayer::Initialize(int playerid)
     m_bAuthorized = false;
 
     m_uConnectedTimeStart = std::chrono::high_resolution_clock::now();
+    m_bvBlockedTransmittingEntities.activeMasks.reserve(256);
 }
 
 void CPlayer::Shutdown()
@@ -153,43 +154,71 @@ void CPlayer::SendMsg(MessageType type, const std::string& message, int duration
             msg = ClearColors(msg);
             msg += "\n";
         }
-        if (msg.size() > 0)
+
+        if (type == MessageType::Chat || type == MessageType::ChatEOT)
         {
-            if (msg.ends_with("\n"))
-                msg.pop_back();
+            if (msg.size() > 0)
+            {
+                msg += "\x01";
 
-            msg += "\x01";
+                bool startsWithColor = (msg.at(0) == '[');
+                auto schema = g_ifaceService.FetchInterface<ISDKSchema>(SDKSCHEMA_INTERFACE_VERSION);
+                if (!schema)
+                    return;
 
-            bool startsWithColor = (msg.at(0) == '[');
-            auto schema = g_ifaceService.FetchInterface<ISDKSchema>(SDKSCHEMA_INTERFACE_VERSION);
-            if (!schema)
+                msg = ProcessColor(message, *(int*)(schema->GetPropPtr(GetController(), CBaseEntity_m_iTeamNum)));
+
+                if (startsWithColor)
+                    msg = " " + msg;
+            }
+
+            auto splitMessage = explode(msg, "[newline]");
+
+            auto gameEventSystem = g_ifaceService.FetchInterface<IGameEventSystem>(GAMEEVENTSYSTEM_INTERFACE_VERSION);
+            if (!gameEventSystem)
                 return;
 
-            msg = ProcessColor(message, *(int*)(schema->GetPropPtr(GetController(), CBaseEntity_m_iTeamNum)));
+            auto netmsg = networkMessages->FindNetworkMessagePartial("TextMsg");
 
-            if (startsWithColor)
-                msg = " " + msg;
+            for (auto& part : splitMessage)
+            {
+                auto pmsg = netmsg->AllocateMessage()->ToPB<CUserMessageTextMsg>();
+
+                pmsg->set_dest((int)type);
+                pmsg->add_param(part);
+
+                bypassPostEventAbstractHook = true;
+
+                CSingleRecipientFilter filter(m_iPlayerId);
+                gameEventSystem->PostEventAbstract(-1, false, &filter, netmsg, pmsg, 0);
+
+                bypassPostEventAbstractHook = false;
+
+                // see in src/engine/convars/convars.cpp at the end of the file why i "love" this now
+                delete pmsg;
+            }
         }
+        else {
+            auto gameEventSystem = g_ifaceService.FetchInterface<IGameEventSystem>(GAMEEVENTSYSTEM_INTERFACE_VERSION);
+            if (!gameEventSystem)
+                return;
 
-        auto gameEventSystem = g_ifaceService.FetchInterface<IGameEventSystem>(GAMEEVENTSYSTEM_INTERFACE_VERSION);
-        if (!gameEventSystem)
-            return;
+            auto netmsg = networkMessages->FindNetworkMessagePartial("TextMsg");
+            auto pmsg = netmsg->AllocateMessage()->ToPB<CUserMessageTextMsg>();
 
-        auto netmsg = networkMessages->FindNetworkMessagePartial("TextMsg");
-        auto pmsg = netmsg->AllocateMessage()->ToPB<CUserMessageTextMsg>();
+            pmsg->set_dest((int)type);
+            pmsg->add_param(msg);
 
-        pmsg->set_dest((int)type);
-        pmsg->add_param(msg);
+            bypassPostEventAbstractHook = true;
 
-        bypassPostEventAbstractHook = true;
+            CSingleRecipientFilter filter(m_iPlayerId);
+            gameEventSystem->PostEventAbstract(-1, false, &filter, netmsg, pmsg, 0);
 
-        CSingleRecipientFilter filter(m_iPlayerId);
-        gameEventSystem->PostEventAbstract(-1, false, &filter, netmsg, pmsg, 0);
+            bypassPostEventAbstractHook = false;
 
-        bypassPostEventAbstractHook = false;
-
-        // see in src/engine/convars/convars.cpp at the end of the file why i "love" this now
-        delete pmsg;
+            // see in src/engine/convars/convars.cpp at the end of the file why i "love" this now
+            delete pmsg;
+        }
     }
 }
 
@@ -382,7 +411,7 @@ void CPlayer::Kick(const std::string& sReason, int uReason)
     auto engine = g_ifaceService.FetchInterface<IVEngineServer2>(INTERFACEVERSION_VENGINESERVER);
     if (!engine)
         return;
-    engine->DisconnectClient(m_iPlayerId, uReason, sReason.c_str());
+    engine->KickClient(m_iPlayerId, sReason.c_str(), uReason);
 }
 
 BlockedTransmitInfo& CPlayer::GetBlockedTransmittingBits()

@@ -133,11 +133,11 @@ internal partial class CParticleFloatInputImpl : CParticleInputImpl, CParticleFl
     public string StrSnapshotSubset {
         get {
             _StrSnapshotSubsetOffset = _StrSnapshotSubsetOffset ?? Schema.GetOffset(0x4330CD32BD8A8E5E);
-            return Schema.GetString(_Handle.Read<nint>(_StrSnapshotSubsetOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrSnapshotSubsetOffset!.Value));
         }
         set {
             _StrSnapshotSubsetOffset = _StrSnapshotSubsetOffset ?? Schema.GetOffset(0x4330CD32BD8A8E5E);
-            Schema.SetString(_Handle, _StrSnapshotSubsetOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrSnapshotSubsetOffset!.Value, value);
         }
     } 
     private static nint? _LOD0Offset;

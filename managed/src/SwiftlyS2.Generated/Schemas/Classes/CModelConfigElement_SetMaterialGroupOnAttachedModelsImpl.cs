@@ -21,11 +21,11 @@ internal partial class CModelConfigElement_SetMaterialGroupOnAttachedModelsImpl 
     public string MaterialGroupName {
         get {
             _MaterialGroupNameOffset = _MaterialGroupNameOffset ?? Schema.GetOffset(0xAD67B617C2DD3048);
-            return Schema.GetString(_Handle.Read<nint>(_MaterialGroupNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MaterialGroupNameOffset!.Value));
         }
         set {
             _MaterialGroupNameOffset = _MaterialGroupNameOffset ?? Schema.GetOffset(0xAD67B617C2DD3048);
-            Schema.SetString(_Handle, _MaterialGroupNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MaterialGroupNameOffset!.Value, value);
         }
     } 
 

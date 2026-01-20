@@ -85,11 +85,11 @@ internal partial class PermModelInfo_tImpl : SchemaClass, PermModelInfo_t
     public string SurfaceProperty {
         get {
             _SurfacePropertyOffset = _SurfacePropertyOffset ?? Schema.GetOffset(0x1B48585F1A25534C);
-            return Schema.GetString(_Handle.Read<nint>(_SurfacePropertyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SurfacePropertyOffset!.Value));
         }
         set {
             _SurfacePropertyOffset = _SurfacePropertyOffset ?? Schema.GetOffset(0x1B48585F1A25534C);
-            Schema.SetString(_Handle, _SurfacePropertyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SurfacePropertyOffset!.Value, value);
         }
     } 
     private static nint? _KeyValueTextOffset;
@@ -97,11 +97,11 @@ internal partial class PermModelInfo_tImpl : SchemaClass, PermModelInfo_t
     public string KeyValueText {
         get {
             _KeyValueTextOffset = _KeyValueTextOffset ?? Schema.GetOffset(0x1B48585F2156929E);
-            return Schema.GetString(_Handle.Read<nint>(_KeyValueTextOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_KeyValueTextOffset!.Value));
         }
         set {
             _KeyValueTextOffset = _KeyValueTextOffset ?? Schema.GetOffset(0x1B48585F2156929E);
-            Schema.SetString(_Handle, _KeyValueTextOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _KeyValueTextOffset!.Value, value);
         }
     } 
 

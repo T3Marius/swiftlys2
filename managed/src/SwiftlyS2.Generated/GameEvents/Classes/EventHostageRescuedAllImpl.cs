@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "hostage_rescued_all"
 /// </summary>
 internal class EventHostageRescuedAllImpl : GameEvent<EventHostageRescuedAll>, EventHostageRescuedAll
 {
 
-  public EventHostageRescuedAllImpl(nint address) : base(address)
-  {
-  }
+    public EventHostageRescuedAllImpl(nint address) : base(address)
+    {
+    }
 }

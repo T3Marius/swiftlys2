@@ -21,11 +21,11 @@ internal partial class CFlexDescImpl : SchemaClass, CFlexDesc
     public string Facs {
         get {
             _FacsOffset = _FacsOffset ?? Schema.GetOffset(0xF8B9C4900514A8FF);
-            return Schema.GetString(_Handle.Read<nint>(_FacsOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_FacsOffset!.Value));
         }
         set {
             _FacsOffset = _FacsOffset ?? Schema.GetOffset(0xF8B9C4900514A8FF);
-            Schema.SetString(_Handle, _FacsOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _FacsOffset!.Value, value);
         }
     } 
 

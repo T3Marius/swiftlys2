@@ -21,11 +21,11 @@ internal partial class CAnimGraphModelBindingImpl : SchemaClass, CAnimGraphModel
     public string ModelName {
         get {
             _ModelNameOffset = _ModelNameOffset ?? Schema.GetOffset(0xC0F296335D35B6E1);
-            return Schema.GetString(_Handle.Read<nint>(_ModelNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ModelNameOffset!.Value));
         }
         set {
             _ModelNameOffset = _ModelNameOffset ?? Schema.GetOffset(0xC0F296335D35B6E1);
-            Schema.SetString(_Handle, _ModelNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ModelNameOffset!.Value, value);
         }
     } 
     private static nint? _SharedDataOffset;

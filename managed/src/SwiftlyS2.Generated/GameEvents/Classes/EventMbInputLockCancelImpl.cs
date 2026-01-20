@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "mb_input_lock_cancel"
 /// </summary>
 internal class EventMbInputLockCancelImpl : GameEvent<EventMbInputLockCancel>, EventMbInputLockCancel
 {
 
-  public EventMbInputLockCancelImpl(nint address) : base(address)
-  {
-  }
+    public EventMbInputLockCancelImpl(nint address) : base(address)
+    {
+    }
 }

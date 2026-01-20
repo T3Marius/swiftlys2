@@ -21,11 +21,11 @@ internal partial class CSosGroupActionSoundeventMinMaxValuesSchemaImpl : CSosGro
     public string StrQueryPublicFieldName {
         get {
             _StrQueryPublicFieldNameOffset = _StrQueryPublicFieldNameOffset ?? Schema.GetOffset(0xDC3C5E1C40839714);
-            return Schema.GetString(_Handle.Read<nint>(_StrQueryPublicFieldNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrQueryPublicFieldNameOffset!.Value));
         }
         set {
             _StrQueryPublicFieldNameOffset = _StrQueryPublicFieldNameOffset ?? Schema.GetOffset(0xDC3C5E1C40839714);
-            Schema.SetString(_Handle, _StrQueryPublicFieldNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrQueryPublicFieldNameOffset!.Value, value);
         }
     } 
     private static nint? _StrDelayPublicFieldNameOffset;
@@ -33,11 +33,11 @@ internal partial class CSosGroupActionSoundeventMinMaxValuesSchemaImpl : CSosGro
     public string StrDelayPublicFieldName {
         get {
             _StrDelayPublicFieldNameOffset = _StrDelayPublicFieldNameOffset ?? Schema.GetOffset(0xDC3C5E1CC2E1170D);
-            return Schema.GetString(_Handle.Read<nint>(_StrDelayPublicFieldNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrDelayPublicFieldNameOffset!.Value));
         }
         set {
             _StrDelayPublicFieldNameOffset = _StrDelayPublicFieldNameOffset ?? Schema.GetOffset(0xDC3C5E1CC2E1170D);
-            Schema.SetString(_Handle, _StrDelayPublicFieldNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrDelayPublicFieldNameOffset!.Value, value);
         }
     } 
     private static nint? _ExcludeStoppedSoundsOffset;
@@ -93,11 +93,11 @@ internal partial class CSosGroupActionSoundeventMinMaxValuesSchemaImpl : CSosGro
     public string StrMinValueName {
         get {
             _StrMinValueNameOffset = _StrMinValueNameOffset ?? Schema.GetOffset(0xDC3C5E1CCF654B06);
-            return Schema.GetString(_Handle.Read<nint>(_StrMinValueNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrMinValueNameOffset!.Value));
         }
         set {
             _StrMinValueNameOffset = _StrMinValueNameOffset ?? Schema.GetOffset(0xDC3C5E1CCF654B06);
-            Schema.SetString(_Handle, _StrMinValueNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrMinValueNameOffset!.Value, value);
         }
     } 
     private static nint? _StrMaxValueNameOffset;
@@ -105,11 +105,11 @@ internal partial class CSosGroupActionSoundeventMinMaxValuesSchemaImpl : CSosGro
     public string StrMaxValueName {
         get {
             _StrMaxValueNameOffset = _StrMaxValueNameOffset ?? Schema.GetOffset(0xDC3C5E1CEF3A2D5C);
-            return Schema.GetString(_Handle.Read<nint>(_StrMaxValueNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrMaxValueNameOffset!.Value));
         }
         set {
             _StrMaxValueNameOffset = _StrMaxValueNameOffset ?? Schema.GetOffset(0xDC3C5E1CEF3A2D5C);
-            Schema.SetString(_Handle, _StrMaxValueNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrMaxValueNameOffset!.Value, value);
         }
     } 
 

@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "item_schema_initialized"
 /// </summary>
-public interface EventItemSchemaInitialized : IGameEvent<EventItemSchemaInitialized> {
+public interface EventItemSchemaInitialized : IGameEvent<EventItemSchemaInitialized>
+{
 
-  static EventItemSchemaInitialized IGameEvent<EventItemSchemaInitialized>.Create(nint address) => new EventItemSchemaInitializedImpl(address);
+    static EventItemSchemaInitialized IGameEvent<EventItemSchemaInitialized>.Create(nint address) => new EventItemSchemaInitializedImpl(address);
 
-  static string IGameEvent<EventItemSchemaInitialized>.GetName() => "item_schema_initialized";
+    static string IGameEvent<EventItemSchemaInitialized>.GetName() => "item_schema_initialized";
 
-  static uint IGameEvent<EventItemSchemaInitialized>.GetHash() => 0x8046CAA1u;
+    static uint IGameEvent<EventItemSchemaInitialized>.GetHash() => 0x8046CAA1u;
 }

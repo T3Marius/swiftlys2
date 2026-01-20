@@ -21,11 +21,11 @@ internal partial class FeVertexMapBuild_tImpl : SchemaClass, FeVertexMapBuild_t
     public string VertexMapName {
         get {
             _VertexMapNameOffset = _VertexMapNameOffset ?? Schema.GetOffset(0x35530D470AA2D2C4);
-            return Schema.GetString(_Handle.Read<nint>(_VertexMapNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_VertexMapNameOffset!.Value));
         }
         set {
             _VertexMapNameOffset = _VertexMapNameOffset ?? Schema.GetOffset(0x35530D470AA2D2C4);
-            Schema.SetString(_Handle, _VertexMapNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _VertexMapNameOffset!.Value, value);
         }
     } 
     private static nint? _NameHashOffset;

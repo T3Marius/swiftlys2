@@ -12,6 +12,7 @@ namespace SwiftlyS2.Core.Players;
 internal class PlayerManagerService : IPlayerManagerService
 {
     private ITranslationService _translationService;
+    public static List<IPlayer> PlayerObjects = Enumerable.Range(0, NativePlayerManager.GetPlayerCap()).Select(i => new Player(i) as IPlayer).ToList();
 
     public PlayerManagerService( ITranslationService translationService )
     {
@@ -29,8 +30,7 @@ internal class PlayerManagerService : IPlayerManagerService
 
     public IPlayer? GetPlayer( int playerid )
     {
-        if (!IsPlayerOnline(playerid)) return null;
-        return new Player(playerid);
+        return !IsPlayerOnline(playerid) ? null : PlayerObjects[playerid];
     }
 
     public IPlayer? GetPlayerFromController( CBasePlayerController controller )
@@ -65,9 +65,13 @@ internal class PlayerManagerService : IPlayerManagerService
 
     public IEnumerable<IPlayer> GetAllPlayers()
     {
-        return Enumerable.Range(0, PlayerCap)
-            .Where(IsPlayerOnline)
-            .Select(( pid ) => GetPlayer(pid)!);
+        return PlayerObjects
+            .Where(( p ) => IsPlayerOnline(p.PlayerID));
+    }
+
+    public IEnumerable<IPlayer> GetAllValidPlayers()
+    {
+        return GetAllPlayers().Where(p => p.IsValid);
     }
 
     public IEnumerable<IPlayer> FindTargettedPlayers( IPlayer player, string target, TargetSearchMode searchMode,
@@ -176,44 +180,44 @@ internal class PlayerManagerService : IPlayerManagerService
 
     public IEnumerable<IPlayer> GetBots()
     {
-        return GetAllPlayers().Where(p => p.IsFakeClient);
+        return GetAllPlayers().Where(p => p.IsValid && p.IsFakeClient);
     }
 
     public IEnumerable<IPlayer> GetAlive()
     {
-        return GetAllPlayers().Where(p => p.Pawn?.LifeState == (byte)LifeState_t.LIFE_ALIVE);
+        return GetAllPlayers().Where(p => p.IsValid && p.Pawn?.LifeState == (byte)LifeState_t.LIFE_ALIVE);
     }
 
     public IEnumerable<IPlayer> GetCT()
     {
-        return GetAllPlayers().Where(p => p.Pawn?.TeamNum == (int)Team.CT);
+        return GetAllPlayers().Where(p => p.IsValid && p.Pawn?.TeamNum == (int)Team.CT);
     }
 
     public IEnumerable<IPlayer> GetT()
     {
-        return GetAllPlayers().Where(p => p.Pawn?.TeamNum == (int)Team.T);
+        return GetAllPlayers().Where(p => p.IsValid && p.Pawn?.TeamNum == (int)Team.T);
     }
 
     public IEnumerable<IPlayer> GetSpectators()
     {
-        return GetAllPlayers().Where(p => p.Pawn?.TeamNum == (int)Team.Spectator);
+        return GetAllPlayers().Where(p => p.IsValid && p.Pawn?.TeamNum == (int)Team.Spectator);
     }
 
     public IEnumerable<IPlayer> GetInTeam( Team team )
     {
-        return GetAllPlayers().Where(p => p.Pawn?.TeamNum == (int)team);
+        return GetAllPlayers().Where(p => p.IsValid && p.Pawn?.TeamNum == (int)team);
     }
 
     public IEnumerable<IPlayer> GetTAlive()
     {
         return GetAllPlayers().Where(p =>
-            p.Pawn?.TeamNum == (int)Team.T && p.Pawn?.LifeState == (byte)LifeState_t.LIFE_ALIVE);
+            p.IsValid && p.Pawn?.TeamNum == (int)Team.T && p.Pawn?.LifeState == (byte)LifeState_t.LIFE_ALIVE);
     }
 
     public IEnumerable<IPlayer> GetCTAlive()
     {
         return GetAllPlayers().Where(p =>
-            p.Pawn?.TeamNum == (int)Team.CT && p.Pawn?.LifeState == (byte)LifeState_t.LIFE_ALIVE);
+            p.IsValid && p.Pawn?.TeamNum == (int)Team.CT && p.Pawn?.LifeState == (byte)LifeState_t.LIFE_ALIVE);
     }
 
     public void SendMessage( MessageType kind, string message, int htmlDuration = 5000 )

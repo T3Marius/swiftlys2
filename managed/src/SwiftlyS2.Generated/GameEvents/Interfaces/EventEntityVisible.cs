@@ -5,60 +5,61 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "entity_visible"
 /// </summary>
-public interface EventEntityVisible : IGameEvent<EventEntityVisible> {
+public interface EventEntityVisible : IGameEvent<EventEntityVisible>
+{
 
-  static EventEntityVisible IGameEvent<EventEntityVisible>.Create(nint address) => new EventEntityVisibleImpl(address);
+    static EventEntityVisible IGameEvent<EventEntityVisible>.Create(nint address) => new EventEntityVisibleImpl(address);
 
-  static string IGameEvent<EventEntityVisible>.GetName() => "entity_visible";
+    static string IGameEvent<EventEntityVisible>.GetName() => "entity_visible";
 
-  static uint IGameEvent<EventEntityVisible>.GetHash() => 0xC4D03823u;
-  /// <summary>
-  /// The player who sees the entity
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventEntityVisible>.GetHash() => 0xC4D03823u;
 
-  /// <summary>
-  /// The player who sees the entity
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// The player who sees the entity
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// The player who sees the entity
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  // The player who sees the entity
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// The player who sees the entity
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int UserId { get; set; }
+    // The player who sees the entity
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// Entindex of the entity they see
-  /// <br/>
-  /// type: long
-  /// </summary>
-  int Subject { get; set; }
+    /// <summary>
+    /// The player who sees the entity
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// Classname of the entity they see
-  /// <br/>
-  /// type: string
-  /// </summary>
-  string ClassName { get; set; }
+    /// <summary>
+    /// Entindex of the entity they see
+    /// <br/>
+    /// type: long
+    /// </summary>
+    int Subject { get; set; }
 
-  /// <summary>
-  /// name of the entity they see
-  /// <br/>
-  /// type: string
-  /// </summary>
-  string EntityName { get; set; }
+    /// <summary>
+    /// Classname of the entity they see
+    /// <br/>
+    /// type: string
+    /// </summary>
+    string ClassName { get; set; }
 
+    /// <summary>
+    /// name of the entity they see
+    /// <br/>
+    /// type: string
+    /// </summary>
+    string EntityName { get; set; }
 }

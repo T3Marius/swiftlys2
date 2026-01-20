@@ -21,11 +21,11 @@ internal partial class BoneDemoCaptureSettings_tImpl : SchemaClass, BoneDemoCapt
     public string BoneName {
         get {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x17A5730FDEE0E0C);
-            return Schema.GetString(_Handle.Read<nint>(_BoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BoneNameOffset!.Value));
         }
         set {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x17A5730FDEE0E0C);
-            Schema.SetString(_Handle, _BoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BoneNameOffset!.Value, value);
         }
     } 
     private static nint? _ErrorSplineRotationMaxOffset;

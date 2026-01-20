@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "nav_generate"
 /// </summary>
 internal class EventNavGenerateImpl : GameEvent<EventNavGenerate>, EventNavGenerate
 {
 
-  public EventNavGenerateImpl(nint address) : base(address)
-  {
-  }
+    public EventNavGenerateImpl(nint address) : base(address)
+    {
+    }
 }

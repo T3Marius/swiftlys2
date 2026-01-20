@@ -69,11 +69,11 @@ internal partial class NodeData_tImpl : SchemaClass, NodeData_t
     public string WorldNodePrefix {
         get {
             _WorldNodePrefixOffset = _WorldNodePrefixOffset ?? Schema.GetOffset(0xB09FAAA662126457);
-            return Schema.GetString(_Handle.Read<nint>(_WorldNodePrefixOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_WorldNodePrefixOffset!.Value));
         }
         set {
             _WorldNodePrefixOffset = _WorldNodePrefixOffset ?? Schema.GetOffset(0xB09FAAA662126457);
-            Schema.SetString(_Handle, _WorldNodePrefixOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _WorldNodePrefixOffset!.Value, value);
         }
     } 
 

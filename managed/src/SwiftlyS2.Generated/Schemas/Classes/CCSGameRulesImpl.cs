@@ -1390,11 +1390,11 @@ internal partial class CCSGameRulesImpl : CTeamplayRulesImpl, CCSGameRules
     public string RoundEndFunFactToken {
         get {
             _RoundEndFunFactTokenOffset = _RoundEndFunFactTokenOffset ?? Schema.GetOffset(0x6295CF653C86499F);
-            return Schema.GetString(_Handle.Read<nint>(_RoundEndFunFactTokenOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_RoundEndFunFactTokenOffset!.Value));
         }
         set {
             _RoundEndFunFactTokenOffset = _RoundEndFunFactTokenOffset ?? Schema.GetOffset(0x6295CF653C86499F);
-            Schema.SetString(_Handle, _RoundEndFunFactTokenOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _RoundEndFunFactTokenOffset!.Value, value);
         }
     } 
     private static nint? _RoundEndFunFactPlayerSlotOffset;
@@ -1434,11 +1434,11 @@ internal partial class CCSGameRulesImpl : CTeamplayRulesImpl, CCSGameRules
     public string RoundEndMessage {
         get {
             _RoundEndMessageOffset = _RoundEndMessageOffset ?? Schema.GetOffset(0x6295CF65CE64850E);
-            return Schema.GetString(_Handle.Read<nint>(_RoundEndMessageOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_RoundEndMessageOffset!.Value));
         }
         set {
             _RoundEndMessageOffset = _RoundEndMessageOffset ?? Schema.GetOffset(0x6295CF65CE64850E);
-            Schema.SetString(_Handle, _RoundEndMessageOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _RoundEndMessageOffset!.Value, value);
         }
     } 
     private static nint? _RoundEndPlayerCountOffset;

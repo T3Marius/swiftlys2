@@ -5,35 +5,36 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "inspect_weapon"
 /// </summary>
-public interface EventInspectWeapon : IGameEvent<EventInspectWeapon> {
+public interface EventInspectWeapon : IGameEvent<EventInspectWeapon>
+{
 
-  static EventInspectWeapon IGameEvent<EventInspectWeapon>.Create(nint address) => new EventInspectWeaponImpl(address);
+    static EventInspectWeapon IGameEvent<EventInspectWeapon>.Create(nint address) => new EventInspectWeaponImpl(address);
 
-  static string IGameEvent<EventInspectWeapon>.GetName() => "inspect_weapon";
+    static string IGameEvent<EventInspectWeapon>.GetName() => "inspect_weapon";
 
-  static uint IGameEvent<EventInspectWeapon>.GetHash() => 0x211A0C2Cu;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventInspectWeapon>.GetHash() => 0x211A0C2Cu;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    int UserId { get; set; }
 }

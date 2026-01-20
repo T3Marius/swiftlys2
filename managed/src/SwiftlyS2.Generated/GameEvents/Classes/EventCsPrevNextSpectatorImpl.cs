@@ -7,16 +7,16 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_prev_next_spectator"
 /// </summary>
 internal class EventCsPrevNextSpectatorImpl : GameEvent<EventCsPrevNextSpectator>, EventCsPrevNextSpectator
 {
 
-  public EventCsPrevNextSpectatorImpl(nint address) : base(address)
-  {
-  }
+    public EventCsPrevNextSpectatorImpl(nint address) : base(address)
+    {
+    }
 
-  public bool Next
-  { get => Accessor.GetBool("next"); set => Accessor.SetBool("next", value); }
+    public bool Next
+    { get => Accessor.GetBool("next"); set => Accessor.SetBool("next", value); }
 }

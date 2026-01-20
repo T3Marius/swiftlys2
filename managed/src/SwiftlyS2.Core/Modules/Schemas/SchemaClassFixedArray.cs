@@ -19,5 +19,5 @@ internal class SchemaClassFixedArray<T> : SchemaField, ISchemaClassFixedArray<T>
         ElementSize = elementSize;
     }
 
-    public T this[ int index ] => T.From(_Handle + FieldOffset + index * ElementSize);
+    public T this[int index] => T.From(_Handle + index * ElementSize);
 }

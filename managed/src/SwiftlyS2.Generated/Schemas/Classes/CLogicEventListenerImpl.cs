@@ -21,11 +21,11 @@ internal partial class CLogicEventListenerImpl : CLogicalEntityImpl, CLogicEvent
     public string StrEventName {
         get {
             _StrEventNameOffset = _StrEventNameOffset ?? Schema.GetOffset(0xD797C990BC41C13B);
-            return Schema.GetString(_Handle.Read<nint>(_StrEventNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrEventNameOffset!.Value));
         }
         set {
             _StrEventNameOffset = _StrEventNameOffset ?? Schema.GetOffset(0xD797C990BC41C13B);
-            Schema.SetString(_Handle, _StrEventNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrEventNameOffset!.Value, value);
         }
     } 
     private static nint? _IsEnabledOffset;

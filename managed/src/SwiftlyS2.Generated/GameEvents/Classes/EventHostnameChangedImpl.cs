@@ -7,16 +7,16 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "hostname_changed"
 /// </summary>
 internal class EventHostnameChangedImpl : GameEvent<EventHostnameChanged>, EventHostnameChanged
 {
 
-  public EventHostnameChangedImpl(nint address) : base(address)
-  {
-  }
+    public EventHostnameChangedImpl(nint address) : base(address)
+    {
+    }
 
-  public string Hostname
-  { get => Accessor.GetString("hostname"); set => Accessor.SetString("hostname", value); }
+    public string Hostname
+    { get => Accessor.GetString("hostname"); set => Accessor.SetString("hostname", value); }
 }

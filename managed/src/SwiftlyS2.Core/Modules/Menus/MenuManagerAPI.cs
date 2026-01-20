@@ -217,6 +217,33 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
                     }
                 }
             }
+
+            // Handle extra buttons
+            foreach (var extraButton in menu.Configuration.ExtraButtons)
+            {
+                if (extraButton.KeyBind.HasFlag(@event.Key.ToKeyBind()))
+                {
+                    try
+                    {
+                        extraButton.Action(player, menu);
+
+                        if (menu.Configuration.PlaySound)
+                        {
+                            useSound.Recipients.AddRecipient(@event.PlayerId);
+                            _ = useSound.Emit();
+                            useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (GlobalExceptionHandler.Handle(ex))
+                        {
+                            Spectre.Console.AnsiConsole.WriteException(ex);
+                        }
+                    }
+                    break;
+                }
+            }
         }
         else if (Configuration.InputMode.Trim().Equals("wasd", StringComparison.CurrentCultureIgnoreCase))
         {
@@ -248,7 +275,18 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
                 var optionBase = option as MenuOptionBase;
                 var claimInfo = optionBase?.InputClaimInfo ?? MenuInputClaimInfo.Empty;
 
-                if (claimInfo.ClaimsExit && optionBase != null)
+                if (optionBase is SliderMenuOption sliderOption && menu.Options.Count(a => a is not SliderMenuOption) > 0)
+                {
+                    _ = sliderOption.DecrementValue(player);
+
+                    if (menu.Configuration.PlaySound && option!.PlaySound)
+                    {
+                        useSound.Recipients.AddRecipient(@event.PlayerId);
+                        _ = useSound.Emit();
+                        useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                    }
+                }
+                else if (claimInfo.ClaimsExit && optionBase != null)
                 {
                     optionBase.OnClaimedExit(player);
 
@@ -277,7 +315,18 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
                 var optionBase = option as MenuOptionBase;
                 var claimInfo = optionBase?.InputClaimInfo ?? MenuInputClaimInfo.Empty;
 
-                if (claimInfo.ClaimsUse && optionBase != null)
+                if (optionBase is SliderMenuOption sliderOption)
+                {
+                    _ = sliderOption.IncrementValue(player);
+
+                    if (menu.Configuration.PlaySound && option!.PlaySound)
+                    {
+                        useSound.Recipients.AddRecipient(@event.PlayerId);
+                        _ = useSound.Emit();
+                        useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                    }
+                }
+                else if (claimInfo.ClaimsUse && optionBase != null)
                 {
                     optionBase.OnClaimedUse(player);
 
@@ -303,6 +352,33 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
                         _ = useSound.Emit();
                         useSound.Recipients.RemoveRecipient(@event.PlayerId);
                     }
+                }
+            }
+
+            // Handle extra buttons
+            foreach (var extraButton in menu.Configuration.ExtraButtons)
+            {
+                if (extraButton.KeyBind.HasFlag(@event.Key.ToKeyBind()))
+                {
+                    try
+                    {
+                        extraButton.Action(player, menu);
+
+                        if (menu.Configuration.PlaySound)
+                        {
+                            useSound.Recipients.AddRecipient(@event.PlayerId);
+                            _ = useSound.Emit();
+                            useSound.Recipients.RemoveRecipient(@event.PlayerId);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (GlobalExceptionHandler.Handle(ex))
+                        {
+                            Spectre.Console.AnsiConsole.WriteException(ex);
+                        }
+                    }
+                    break;
                 }
             }
         }
@@ -439,6 +515,15 @@ internal sealed class MenuManagerAPI : IMenuManagerAPI
     public void CloseMenuForPlayer( IPlayer player, IMenuAPI menu )
     {
         CloseMenuForPlayerInternal(player, menu, true);
+    }
+
+    public void CloseActiveMenu( IPlayer player )
+    {
+        var menu = GetCurrentMenu(player);
+        if (menu != null)
+        {
+            CloseMenuForPlayer(player, menu);
+        }
     }
 
     public void CloseAllMenus()

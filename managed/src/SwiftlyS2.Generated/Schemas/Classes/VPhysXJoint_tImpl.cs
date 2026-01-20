@@ -253,11 +253,11 @@ internal partial class VPhysXJoint_tImpl : SchemaClass, VPhysXJoint_t
     public string Tag {
         get {
             _TagOffset = _TagOffset ?? Schema.GetOffset(0x336EF6EE218D8313);
-            return Schema.GetString(_Handle.Read<nint>(_TagOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TagOffset!.Value));
         }
         set {
             _TagOffset = _TagOffset ?? Schema.GetOffset(0x336EF6EE218D8313);
-            Schema.SetString(_Handle, _TagOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TagOffset!.Value, value);
         }
     } 
 

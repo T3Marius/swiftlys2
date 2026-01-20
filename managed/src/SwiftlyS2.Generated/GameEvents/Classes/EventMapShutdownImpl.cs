@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "map_shutdown"
 /// </summary>
 internal class EventMapShutdownImpl : GameEvent<EventMapShutdown>, EventMapShutdown
 {
 
-  public EventMapShutdownImpl(nint address) : base(address)
-  {
-  }
+    public EventMapShutdownImpl(nint address) : base(address)
+    {
+    }
 }

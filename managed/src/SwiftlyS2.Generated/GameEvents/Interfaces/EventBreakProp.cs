@@ -5,55 +5,56 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "break_prop"
 /// </summary>
-public interface EventBreakProp : IGameEvent<EventBreakProp> {
+public interface EventBreakProp : IGameEvent<EventBreakProp>
+{
 
-  static EventBreakProp IGameEvent<EventBreakProp>.Create(nint address) => new EventBreakPropImpl(address);
+    static EventBreakProp IGameEvent<EventBreakProp>.Create(nint address) => new EventBreakPropImpl(address);
 
-  static string IGameEvent<EventBreakProp>.GetName() => "break_prop";
+    static string IGameEvent<EventBreakProp>.GetName() => "break_prop";
 
-  static uint IGameEvent<EventBreakProp>.GetHash() => 0x20D10398u;
-  /// <summary>
-  /// type: long
-  /// </summary>
-  int EntIndex { get; set; }
+    static uint IGameEvent<EventBreakProp>.GetHash() => 0x20D10398u;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_pawn
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    /// <summary>
+    /// type: long
+    /// </summary>
+    int EntIndex { get; set; }
 
-  /// <summary>
-  /// <br/>
-  /// type: player_pawn
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_pawn
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_pawn
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_pawn
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// type: bool
-  /// </summary>
-  bool PlayerHeld { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_pawn
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// type: bool
-  /// </summary>
-  bool PlayerThrown { get; set; }
+    /// <summary>
+    /// type: bool
+    /// </summary>
+    bool PlayerHeld { get; set; }
 
-  /// <summary>
-  /// type: bool
-  /// </summary>
-  bool PlayerDropped { get; set; }
+    /// <summary>
+    /// type: bool
+    /// </summary>
+    bool PlayerThrown { get; set; }
 
+    /// <summary>
+    /// type: bool
+    /// </summary>
+    bool PlayerDropped { get; set; }
 }

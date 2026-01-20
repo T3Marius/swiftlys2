@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_intermission"
 /// </summary>
 internal class EventCsIntermissionImpl : GameEvent<EventCsIntermission>, EventCsIntermission
 {
 
-  public EventCsIntermissionImpl(nint address) : base(address)
-  {
-  }
+    public EventCsIntermissionImpl(nint address) : base(address)
+    {
+    }
 }

@@ -21,11 +21,11 @@ internal partial class RnBodyDesc_tImpl : SchemaClass, RnBodyDesc_t
     public string DebugName {
         get {
             _DebugNameOffset = _DebugNameOffset ?? Schema.GetOffset(0xB8BC96379D265F86);
-            return Schema.GetString(_Handle.Read<nint>(_DebugNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DebugNameOffset!.Value));
         }
         set {
             _DebugNameOffset = _DebugNameOffset ?? Schema.GetOffset(0xB8BC96379D265F86);
-            Schema.SetString(_Handle, _DebugNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DebugNameOffset!.Value, value);
         }
     } 
     private static nint? _PositionOffset;

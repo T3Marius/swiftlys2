@@ -5,55 +5,56 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "smokegrenade_expired"
 /// </summary>
-public interface EventSmokegrenadeExpired : IGameEvent<EventSmokegrenadeExpired> {
+public interface EventSmokegrenadeExpired : IGameEvent<EventSmokegrenadeExpired>
+{
 
-  static EventSmokegrenadeExpired IGameEvent<EventSmokegrenadeExpired>.Create(nint address) => new EventSmokegrenadeExpiredImpl(address);
+    static EventSmokegrenadeExpired IGameEvent<EventSmokegrenadeExpired>.Create(nint address) => new EventSmokegrenadeExpiredImpl(address);
 
-  static string IGameEvent<EventSmokegrenadeExpired>.GetName() => "smokegrenade_expired";
+    static string IGameEvent<EventSmokegrenadeExpired>.GetName() => "smokegrenade_expired";
 
-  static uint IGameEvent<EventSmokegrenadeExpired>.GetHash() => 0x45406DF6u;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventSmokegrenadeExpired>.GetHash() => 0x45406DF6u;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// type: short
-  /// </summary>
-  short EntityID { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float X { get; set; }
+    /// <summary>
+    /// type: short
+    /// </summary>
+    short EntityID { get; set; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float Y { get; set; }
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float X { get; set; }
 
-  /// <summary>
-  /// type: float
-  /// </summary>
-  float Z { get; set; }
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float Y { get; set; }
 
+    /// <summary>
+    /// type: float
+    /// </summary>
+    float Z { get; set; }
 }

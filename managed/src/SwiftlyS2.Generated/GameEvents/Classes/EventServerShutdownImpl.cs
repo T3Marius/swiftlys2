@@ -7,18 +7,18 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "server_shutdown"
 /// server shut down
 /// </summary>
 internal class EventServerShutdownImpl : GameEvent<EventServerShutdown>, EventServerShutdown
 {
 
-  public EventServerShutdownImpl(nint address) : base(address)
-  {
-  }
+    public EventServerShutdownImpl(nint address) : base(address)
+    {
+    }
 
-  // reason why server was shut down
-  public string Reason
-  { get => Accessor.GetString("reason"); set => Accessor.SetString("reason", value); }
+    // reason why server was shut down
+    public string Reason
+    { get => Accessor.GetString("reason"); set => Accessor.SetString("reason", value); }
 }

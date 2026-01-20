@@ -21,11 +21,11 @@ internal partial class CNmBodyGroupEventImpl : CNmEventImpl, CNmBodyGroupEvent
     public string GroupName {
         get {
             _GroupNameOffset = _GroupNameOffset ?? Schema.GetOffset(0xBC3A0016025FB2C7);
-            return Schema.GetString(_Handle.Read<nint>(_GroupNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_GroupNameOffset!.Value));
         }
         set {
             _GroupNameOffset = _GroupNameOffset ?? Schema.GetOffset(0xBC3A0016025FB2C7);
-            Schema.SetString(_Handle, _GroupNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _GroupNameOffset!.Value, value);
         }
     } 
 

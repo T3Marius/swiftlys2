@@ -21,11 +21,11 @@ internal partial class RenderSkeletonBone_tImpl : SchemaClass, RenderSkeletonBon
     public string BoneName {
         get {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x6A3BCC9BFDEE0E0C);
-            return Schema.GetString(_Handle.Read<nint>(_BoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BoneNameOffset!.Value));
         }
         set {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x6A3BCC9BFDEE0E0C);
-            Schema.SetString(_Handle, _BoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BoneNameOffset!.Value, value);
         }
     } 
     private static nint? _ParentNameOffset;
@@ -33,11 +33,11 @@ internal partial class RenderSkeletonBone_tImpl : SchemaClass, RenderSkeletonBon
     public string ParentName {
         get {
             _ParentNameOffset = _ParentNameOffset ?? Schema.GetOffset(0x6A3BCC9BC45C5BBE);
-            return Schema.GetString(_Handle.Read<nint>(_ParentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ParentNameOffset!.Value));
         }
         set {
             _ParentNameOffset = _ParentNameOffset ?? Schema.GetOffset(0x6A3BCC9BC45C5BBE);
-            Schema.SetString(_Handle, _ParentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ParentNameOffset!.Value, value);
         }
     } 
     private static nint? _InvBindPoseOffset;

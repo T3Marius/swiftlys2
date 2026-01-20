@@ -7,25 +7,25 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "inferno_expire"
 /// </summary>
 internal class EventInfernoExpireImpl : GameEvent<EventInfernoExpire>, EventInfernoExpire
 {
 
-  public EventInfernoExpireImpl(nint address) : base(address)
-  {
-  }
+    public EventInfernoExpireImpl(nint address) : base(address)
+    {
+    }
 
-  public short EntityID
-  { get => (short)Accessor.GetInt32("entityid"); set => Accessor.SetInt32("entityid", value); }
+    public short EntityID
+    { get => (short)Accessor.GetInt32("entityid"); set => Accessor.SetInt32("entityid", value); }
 
-  public float X
-  { get => Accessor.GetFloat("x"); set => Accessor.SetFloat("x", value); }
+    public float X
+    { get => Accessor.GetFloat("x"); set => Accessor.SetFloat("x", value); }
 
-  public float Y
-  { get => Accessor.GetFloat("y"); set => Accessor.SetFloat("y", value); }
+    public float Y
+    { get => Accessor.GetFloat("y"); set => Accessor.SetFloat("y", value); }
 
-  public float Z
-  { get => Accessor.GetFloat("z"); set => Accessor.SetFloat("z", value); }
+    public float Z
+    { get => Accessor.GetFloat("z"); set => Accessor.SetFloat("z", value); }
 }

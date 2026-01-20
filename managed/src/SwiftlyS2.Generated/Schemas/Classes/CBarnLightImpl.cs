@@ -125,11 +125,11 @@ internal partial class CBarnLightImpl : CBaseModelEntityImpl, CBarnLight
     public string LightStyleString {
         get {
             _LightStyleStringOffset = _LightStyleStringOffset ?? Schema.GetOffset(0xB5E331D135505939);
-            return Schema.GetString(_Handle.Read<nint>(_LightStyleStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_LightStyleStringOffset!.Value));
         }
         set {
             _LightStyleStringOffset = _LightStyleStringOffset ?? Schema.GetOffset(0xB5E331D135505939);
-            Schema.SetString(_Handle, _LightStyleStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _LightStyleStringOffset!.Value, value);
         }
     } 
     private static nint? _LightStyleStartTimeOffset;

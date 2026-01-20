@@ -30,4 +30,11 @@ public partial interface CCSGameRules
     /// <param name="teamId">The team id to end the round for</param>
     /// <param name="unk01">Unknown parameter</param>
     public void TerminateRound( RoundEndReason reason, float delay, uint teamId, uint unk01 = 0 );
+
+    /// <summary>
+    /// 
+    /// Get the global view vectors.
+    /// </summary>
+    /// <returns>The view vectors.</returns>
+    public ref CViewVectors GetViewVectors();
 }

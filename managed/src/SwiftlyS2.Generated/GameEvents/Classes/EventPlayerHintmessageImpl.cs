@@ -7,17 +7,17 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "player_hintmessage"
 /// </summary>
 internal class EventPlayerHintmessageImpl : GameEvent<EventPlayerHintmessage>, EventPlayerHintmessage
 {
 
-  public EventPlayerHintmessageImpl(nint address) : base(address)
-  {
-  }
+    public EventPlayerHintmessageImpl(nint address) : base(address)
+    {
+    }
 
-  // localizable string of a hint
-  public string HintMessage
-  { get => Accessor.GetString("hintmessage"); set => Accessor.SetString("hintmessage", value); }
+    // localizable string of a hint
+    public string HintMessage
+    { get => Accessor.GetString("hintmessage"); set => Accessor.SetString("hintmessage", value); }
 }

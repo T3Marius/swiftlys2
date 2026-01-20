@@ -7,17 +7,17 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "defuser_dropped"
 /// </summary>
 internal class EventDefuserDroppedImpl : GameEvent<EventDefuserDropped>, EventDefuserDropped
 {
 
-  public EventDefuserDroppedImpl(nint address) : base(address)
-  {
-  }
+    public EventDefuserDroppedImpl(nint address) : base(address)
+    {
+    }
 
-  // defuser's entity ID
-  public int EntityID
-  { get => Accessor.GetInt32("entityid"); set => Accessor.SetInt32("entityid", value); }
+    // defuser's entity ID
+    public int EntityID
+    { get => Accessor.GetInt32("entityid"); set => Accessor.SetInt32("entityid", value); }
 }

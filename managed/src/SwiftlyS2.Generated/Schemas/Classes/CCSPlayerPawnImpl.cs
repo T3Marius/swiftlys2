@@ -91,11 +91,11 @@ internal partial class CCSPlayerPawnImpl : CCSPlayerPawnBaseImpl, CCSPlayerPawn
     public string StrVOPrefix {
         get {
             _StrVOPrefixOffset = _StrVOPrefixOffset ?? Schema.GetOffset(0xC7614AAB86FA355B);
-            return Schema.GetString(_Handle.Read<nint>(_StrVOPrefixOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrVOPrefixOffset!.Value));
         }
         set {
             _StrVOPrefixOffset = _StrVOPrefixOffset ?? Schema.GetOffset(0xC7614AAB86FA355B);
-            Schema.SetString(_Handle, _StrVOPrefixOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrVOPrefixOffset!.Value, value);
         }
     } 
     private static nint? _LastPlaceNameOffset;

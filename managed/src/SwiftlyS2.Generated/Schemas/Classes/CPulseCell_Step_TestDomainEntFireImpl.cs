@@ -21,11 +21,11 @@ internal partial class CPulseCell_Step_TestDomainEntFireImpl : CPulseCell_BaseFl
     public string Input {
         get {
             _InputOffset = _InputOffset ?? Schema.GetOffset(0x22A0E258942A24FB);
-            return Schema.GetString(_Handle.Read<nint>(_InputOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_InputOffset!.Value));
         }
         set {
             _InputOffset = _InputOffset ?? Schema.GetOffset(0x22A0E258942A24FB);
-            Schema.SetString(_Handle, _InputOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _InputOffset!.Value, value);
         }
     } 
 

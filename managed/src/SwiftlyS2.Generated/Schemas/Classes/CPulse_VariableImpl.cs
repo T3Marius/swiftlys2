@@ -29,11 +29,11 @@ internal partial class CPulse_VariableImpl : SchemaClass, CPulse_Variable
     public string Description {
         get {
             _DescriptionOffset = _DescriptionOffset ?? Schema.GetOffset(0x598DEA5C678744E9);
-            return Schema.GetString(_Handle.Read<nint>(_DescriptionOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DescriptionOffset!.Value));
         }
         set {
             _DescriptionOffset = _DescriptionOffset ?? Schema.GetOffset(0x598DEA5C678744E9);
-            Schema.SetString(_Handle, _DescriptionOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DescriptionOffset!.Value, value);
         }
     } 
     private static nint? _TypeOffset;

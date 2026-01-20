@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_round_final_beep"
 /// </summary>
 internal class EventCsRoundFinalBeepImpl : GameEvent<EventCsRoundFinalBeep>, EventCsRoundFinalBeep
 {
 
-  public EventCsRoundFinalBeepImpl(nint address) : base(address)
-  {
-  }
+    public EventCsRoundFinalBeepImpl(nint address) : base(address)
+    {
+    }
 }

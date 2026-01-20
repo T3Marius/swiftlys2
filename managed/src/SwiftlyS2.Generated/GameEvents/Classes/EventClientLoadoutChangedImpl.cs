@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "client_loadout_changed"
 /// </summary>
 internal class EventClientLoadoutChangedImpl : GameEvent<EventClientLoadoutChanged>, EventClientLoadoutChanged
 {
 
-  public EventClientLoadoutChangedImpl(nint address) : base(address)
-  {
-  }
+    public EventClientLoadoutChangedImpl(nint address) : base(address)
+    {
+    }
 }

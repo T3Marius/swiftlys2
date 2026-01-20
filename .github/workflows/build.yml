@@ -220,7 +220,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: swiftlys2_windows_pdb
-        path: ./swiftlys2.pdb
+        path: ./pdb-temp/swiftlys2
     - name: Download artifacts
       uses: actions/download-artifact@v4
       with:
@@ -230,7 +230,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: swiftlys2_loader_windows_pdb
-        path: ./server.pdb
+        path: ./pdb-temp/server
     - name: Download artifacts
       uses: actions/download-artifact@v4
       with:
@@ -269,9 +269,6 @@ jobs:
         cp -r ${{ env.LINUX_FOLDER }}-loader/* ${{ env.LINUX_FOLDER }}/
         cp -r ${{ env.WINDOWS_FOLDER }}-loader/* ${{ env.WINDOWS_FOLDER }}/
 
-        cp -r ./swiftlys2.pdb/swiftlys2.pdb ${{ env.WINDOWS_FOLDER }}/swiftlys2/bin/win64/
-        cp -r ./server.pdb/server.pdb ${{ env.WINDOWS_FOLDER }}/swiftlys2/bin/win64/
-
         cp -r ./libsw2tracer.so/libsw2tracer.so ${{ env.LINUX_FOLDER }}/swiftlys2/bin/linuxsteamrt64/libsw2tracer.so
         cp -r ./sw2tracer.dll/sw2tracer.dll ${{ env.WINDOWS_FOLDER }}/swiftlys2/bin/win64/sw2tracer.dll
 
@@ -304,6 +301,11 @@ jobs:
         zip -r ${{ env.LINUX_FOLDER }}.zip ${{ env.LINUX_FOLDER }}
         zip -r ${{ env.WINDOWS_FOLDER }}.zip ${{ env.WINDOWS_FOLDER }}
 
+        mkdir -p ${{ env.WINDOWS_FOLDER }}-pdb/addons/swiftlys2/bin/win64
+        cp -r ./pdb-temp/swiftlys2/swiftlys2.pdb ${{ env.WINDOWS_FOLDER }}-pdb/addons/swiftlys2/bin/win64/
+        cp -r ./pdb-temp/server/server.pdb ${{ env.WINDOWS_FOLDER }}-pdb/addons/swiftlys2/bin/win64/
+        zip -r ${{ env.WINDOWS_FOLDER }}-pdb.zip ${{ env.WINDOWS_FOLDER }}-pdb
+
     - name: Upload package
       uses: actions/upload-artifact@v4
       with:
@@ -313,6 +315,7 @@ jobs:
           ${{ env.WINDOWS_FOLDER }}.zip
           ${{ env.LINUX_FOLDER }}-with-runtimes.zip
           ${{ env.WINDOWS_FOLDER }}-with-runtimes.zip
+          ${{ env.WINDOWS_FOLDER }}-pdb.zip
   
   releasing:
     if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/beta') }}
@@ -354,6 +357,7 @@ jobs:
           release/swiftlys2-windows-v${{ needs.versioning.outputs.semVer }}.zip
           release/swiftlys2-linux-v${{ needs.versioning.outputs.semVer }}-with-runtimes.zip
           release/swiftlys2-windows-v${{ needs.versioning.outputs.semVer }}-with-runtimes.zip
+          release/swiftlys2-windows-v${{ needs.versioning.outputs.semVer }}-pdb.zip
         prerelease: ${{ needs.versioning.outputs.preReleaseLabel != '' }}
         tag_name: ${{ env.TAG_NAME }}
         name: Release v${{ needs.versioning.outputs.semVer }}
@@ -368,9 +372,9 @@ jobs:
 
         # Get commits since previous tag, or last 10 if no previous tag
         if [ -n "$PREV_TAG" ]; then
-          COMMITS=$(git log ${PREV_TAG}..HEAD --pretty=format:"• %s (\`%h\`)" | head -c 900)
+          COMMITS=$(git log ${PREV_TAG}..HEAD --pretty=format:"• %s ([\`%h\`](https://github.com/swiftly-solution/swiftlys2/commit/%h))" | head -c 900)
         else
-          COMMITS=$(git log -10 --pretty=format:"• %s (\`%h\`)" | head -c 900)
+          COMMITS=$(git log -10 --pretty=format:"• %s ([\`%h\`](https://github.com/swiftly-solution/swiftlys2/commit/%h))" | head -c 900)
         fi
 
         # If commits are empty, set a default message
@@ -412,9 +416,9 @@ jobs:
 
         # Get commits since previous tag, or last 15 if no previous tag
         if [ -n "$PREV_TAG" ]; then
-          COMMITS=$(git log ${PREV_TAG}..HEAD --pretty=format:"• %s (\`%h\`)" | head -c 900)
+          COMMITS=$(git log ${PREV_TAG}..HEAD --pretty=format:"• %s ([\`%h\`](https://github.com/swiftly-solution/swiftlys2/commit/%h))" | head -c 900)
         else
-          COMMITS=$(git log -15 --pretty=format:"• %s (\`%h\`)" | head -c 900)
+          COMMITS=$(git log -15 --pretty=format:"• %s ([\`%h\`](https://github.com/swiftly-solution/swiftlys2/commit/%h))" | head -c 900)
         fi
 
         # If commits are empty, set a default message

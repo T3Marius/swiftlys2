@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "demo_stop"
 /// </summary>
 internal class EventDemoStopImpl : GameEvent<EventDemoStop>, EventDemoStop
 {
 
-  public EventDemoStopImpl(nint address) : base(address)
-  {
-  }
+    public EventDemoStopImpl(nint address) : base(address)
+    {
+    }
 }

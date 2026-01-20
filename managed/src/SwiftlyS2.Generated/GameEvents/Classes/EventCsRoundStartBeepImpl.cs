@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "cs_round_start_beep"
 /// </summary>
 internal class EventCsRoundStartBeepImpl : GameEvent<EventCsRoundStartBeep>, EventCsRoundStartBeep
 {
 
-  public EventCsRoundStartBeepImpl(nint address) : base(address)
-  {
-  }
+    public EventCsRoundStartBeepImpl(nint address) : base(address)
+    {
+    }
 }

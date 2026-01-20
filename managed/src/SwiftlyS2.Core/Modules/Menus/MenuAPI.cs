@@ -2,8 +2,8 @@ using System.Collections.Concurrent;
 using SwiftlyS2.Shared;
 using SwiftlyS2.Shared.Menus;
 using SwiftlyS2.Core.Natives;
-using SwiftlyS2.Core.Menus.OptionsBase;
 using SwiftlyS2.Shared.Players;
+using SwiftlyS2.Core.Menus.OptionsBase;
 using SwiftlyS2.Shared.SchemaDefinitions;
 
 namespace SwiftlyS2.Core.Menus;
@@ -12,7 +12,7 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
 {
     private (IMenuAPI? ParentMenu, IMenuOption? TriggerOption) parent;
 
-    internal static readonly IMenuOption noOptionsOption = new TextMenuOption("No options");
+    internal static readonly IMenuOption defaultOption = new TextMenuOption("No options");
 
     /// <summary>
     /// The menu manager that this menu belongs to.
@@ -47,7 +47,8 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
     /// <summary>
     /// Gets or sets the default comment text to use when a menu option's Comment is not set.
     /// </summary>
-    public string DefaultComment { get; set; } = $"Powered by <font color='#ff3c00'>❤️</font> {HtmlGradient.GenerateGradientText("SwiftlyS2", "#ffffff", "#96d5ff")}";
+    [Obsolete("Use Configuration.DefaultComment instead.")]
+    public string DefaultComment { get; set; } = string.Empty;
 
     /// <summary>
     /// Gets or sets an object that contains data about this menu.
@@ -450,16 +451,26 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
                 "<br>",
                 guideLine,
                 "<br>",
-                $"<font class='fontSize-s'>{optionBase.Comment}</font><br>"
+                Configuration.HideComment
+                    ? string.Empty
+                    : $"<font class='fontSize-s'>{optionBase.Comment}</font><br>"
             )
             : string.Concat(
                 "<br>",
                 guideLine,
                 "<br>",
-                $"<font class='fontSize-s'>{DefaultComment}</font><br>"
+                Configuration.HideComment
+                    ? string.Empty
+                    : string.IsNullOrWhiteSpace(Configuration.DefaultComment) ? $"<font class='fontSize-s'>\u00A0\u00A0\u00A0 </font><br>" : $"<font class='fontSize-s'>{Configuration.DefaultComment}</font><br>"
             );
 
         var claimInfo = optionBase?.InputClaimInfo ?? MenuInputClaimInfo.Empty;
+
+        var extraButtonsHtml = Configuration.ExtraButtons.Count > 0
+            ? string.Concat(" | ", string.Join(" | ", Configuration.ExtraButtons.Select(btn =>
+                $"<font color='{footerColor}'>{btn.Label}:</font> {btn.KeyBind.ToString().ToUpper()}"
+            )))
+            : string.Empty;
 
         var footerSection = Configuration.HideFooter ? string.Empty :
             core.MenusAPI.Configuration.InputMode switch {
@@ -472,6 +483,7 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
                     claimInfo.ClaimsExit
                         ? $" | <font color='{footerColor}'>{claimInfo.ExitLabel ?? "Exit"}:</font> A"
                         : (Configuration.DisableExit ? string.Empty : $" | <font color='{footerColor}'>Exit:</font> A"),
+                    extraButtonsHtml,
                     "</font>"
                 ),
                 _ => string.Concat(
@@ -483,6 +495,7 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
                     claimInfo.ClaimsExit
                         ? $" | <font color='{footerColor}'>{claimInfo.ExitLabel ?? "Exit"}:</font> {KeybindOverrides.Exit?.ToString() ?? core.MenusAPI.Configuration.ButtonsExit.ToUpper()}"
                         : (Configuration.DisableExit ? string.Empty : $" | <font color='{footerColor}'>Exit:</font> {KeybindOverrides.Exit?.ToString() ?? core.MenusAPI.Configuration.ButtonsExit.ToUpper()}"),
+                    extraButtonsHtml,
                     "</font>"
                 )
             };
@@ -644,7 +657,10 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
             {
                 baseOption.Menu = this;
             }
-            if (option != noOptionsOption && maxOptions == 1) _ = RemoveOption(noOptionsOption);
+            if (option != defaultOption && maxOptions == 1)
+            {
+                _ = RemoveOption(defaultOption);
+            }
             options.Add(option);
             maxOptions = options.Count;
             // maxDisplayLines = options.Sum(option => option.LineCount);
@@ -661,7 +677,10 @@ internal sealed class MenuAPI : IMenuAPI, IDisposable
             // {
             //     submenuOption.SubmenuRequested -= OnSubmenuRequested;
             // }
-            if (option != noOptionsOption && maxOptions == 1) AddOption(noOptionsOption);
+            if (option != defaultOption && maxOptions == 1)
+            {
+                AddOption(defaultOption);
+            }
             var result = options.Remove(option);
             maxOptions = options.Count;
             // maxDisplayLines = options.Sum(option => option.LineCount);

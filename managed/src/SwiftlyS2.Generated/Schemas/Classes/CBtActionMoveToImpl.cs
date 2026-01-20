@@ -21,11 +21,11 @@ internal partial class CBtActionMoveToImpl : CBtNodeImpl, CBtActionMoveTo
     public string DestinationInputKey {
         get {
             _DestinationInputKeyOffset = _DestinationInputKeyOffset ?? Schema.GetOffset(0xD3E75386EA98FEAB);
-            return Schema.GetString(_Handle.Read<nint>(_DestinationInputKeyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DestinationInputKeyOffset!.Value));
         }
         set {
             _DestinationInputKeyOffset = _DestinationInputKeyOffset ?? Schema.GetOffset(0xD3E75386EA98FEAB);
-            Schema.SetString(_Handle, _DestinationInputKeyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DestinationInputKeyOffset!.Value, value);
         }
     } 
     private static nint? _HidingSpotInputKeyOffset;
@@ -33,11 +33,11 @@ internal partial class CBtActionMoveToImpl : CBtNodeImpl, CBtActionMoveTo
     public string HidingSpotInputKey {
         get {
             _HidingSpotInputKeyOffset = _HidingSpotInputKeyOffset ?? Schema.GetOffset(0xD3E75386B3449D70);
-            return Schema.GetString(_Handle.Read<nint>(_HidingSpotInputKeyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_HidingSpotInputKeyOffset!.Value));
         }
         set {
             _HidingSpotInputKeyOffset = _HidingSpotInputKeyOffset ?? Schema.GetOffset(0xD3E75386B3449D70);
-            Schema.SetString(_Handle, _HidingSpotInputKeyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _HidingSpotInputKeyOffset!.Value, value);
         }
     } 
     private static nint? _ThreatInputKeyOffset;
@@ -45,11 +45,11 @@ internal partial class CBtActionMoveToImpl : CBtNodeImpl, CBtActionMoveTo
     public string ThreatInputKey {
         get {
             _ThreatInputKeyOffset = _ThreatInputKeyOffset ?? Schema.GetOffset(0xD3E75386E8FD875B);
-            return Schema.GetString(_Handle.Read<nint>(_ThreatInputKeyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ThreatInputKeyOffset!.Value));
         }
         set {
             _ThreatInputKeyOffset = _ThreatInputKeyOffset ?? Schema.GetOffset(0xD3E75386E8FD875B);
-            Schema.SetString(_Handle, _ThreatInputKeyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ThreatInputKeyOffset!.Value, value);
         }
     } 
     private static nint? _DestinationOffset;

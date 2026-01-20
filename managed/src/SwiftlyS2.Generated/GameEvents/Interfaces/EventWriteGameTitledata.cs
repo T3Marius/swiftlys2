@@ -5,22 +5,23 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "write_game_titledata"
 /// write user titledata in profile
 /// </summary>
-public interface EventWriteGameTitledata : IGameEvent<EventWriteGameTitledata> {
+public interface EventWriteGameTitledata : IGameEvent<EventWriteGameTitledata>
+{
 
-  static EventWriteGameTitledata IGameEvent<EventWriteGameTitledata>.Create(nint address) => new EventWriteGameTitledataImpl(address);
+    static EventWriteGameTitledata IGameEvent<EventWriteGameTitledata>.Create(nint address) => new EventWriteGameTitledataImpl(address);
 
-  static string IGameEvent<EventWriteGameTitledata>.GetName() => "write_game_titledata";
+    static string IGameEvent<EventWriteGameTitledata>.GetName() => "write_game_titledata";
 
-  static uint IGameEvent<EventWriteGameTitledata>.GetHash() => 0x6ECEB462u;
-  /// <summary>
-  /// Controller id of user
-  /// <br/>
-  /// type: short
-  /// </summary>
-  short ControllerId { get; set; }
+    static uint IGameEvent<EventWriteGameTitledata>.GetHash() => 0x6ECEB462u;
 
+    /// <summary>
+    /// Controller id of user
+    /// <br/>
+    /// type: short
+    /// </summary>
+    short ControllerId { get; set; }
 }

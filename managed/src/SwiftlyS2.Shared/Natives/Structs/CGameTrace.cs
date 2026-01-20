@@ -133,7 +133,7 @@ public unsafe struct CGameTrace
             return false;
         }
 
-        player = new Player((int)(controller.Value!.Index - 1));
+        player = controller.Value!.ToPlayer();
         return true;
     }
 

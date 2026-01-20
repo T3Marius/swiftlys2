@@ -5,36 +5,55 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "hltv_rank_camera"
 /// a camera ranking
 /// </summary>
-public interface EventHltvRankCamera : IGameEvent<EventHltvRankCamera> {
+public interface EventHltvRankCamera : IGameEvent<EventHltvRankCamera>
+{
 
-  static EventHltvRankCamera IGameEvent<EventHltvRankCamera>.Create(nint address) => new EventHltvRankCameraImpl(address);
+    static EventHltvRankCamera IGameEvent<EventHltvRankCamera>.Create(nint address) => new EventHltvRankCameraImpl(address);
 
-  static string IGameEvent<EventHltvRankCamera>.GetName() => "hltv_rank_camera";
+    static string IGameEvent<EventHltvRankCamera>.GetName() => "hltv_rank_camera";
 
-  static uint IGameEvent<EventHltvRankCamera>.GetHash() => 0x493E49E8u;
-  /// <summary>
-  /// fixed camera index
-  /// <br/>
-  /// type: byte
-  /// </summary>
-  byte Index { get; set; }
+    static uint IGameEvent<EventHltvRankCamera>.GetHash() => 0x493E49E8u;
 
-  /// <summary>
-  /// ranking, how interesting is this camera view
-  /// <br/>
-  /// type: float
-  /// </summary>
-  float Rank { get; set; }
+    /// <summary>
+    /// fixed camera index
+    /// <br/>
+    /// type: byte
+    /// </summary>
+    byte Index { get; set; }
 
-  /// <summary>
-  /// best/closest target entity
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int Target { get; set; }
+    /// <summary>
+    /// ranking, how interesting is this camera view
+    /// <br/>
+    /// type: float
+    /// </summary>
+    float Rank { get; set; }
 
+    /// <summary>
+    /// best/closest target entity
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController TargetController { get; }
+
+    /// <summary>
+    /// best/closest target entity
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn TargetPawn { get; }
+
+    // best/closest target entity
+    public IPlayer? TargetPlayer
+    { get => Accessor.GetPlayer("target"); }
+
+    /// <summary>
+    /// best/closest target entity
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int Target { get; set; }
 }

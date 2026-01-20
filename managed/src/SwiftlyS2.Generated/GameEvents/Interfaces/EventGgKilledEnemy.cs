@@ -5,49 +5,86 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "gg_killed_enemy"
 /// </summary>
-public interface EventGgKilledEnemy : IGameEvent<EventGgKilledEnemy> {
+public interface EventGgKilledEnemy : IGameEvent<EventGgKilledEnemy>
+{
 
-  static EventGgKilledEnemy IGameEvent<EventGgKilledEnemy>.Create(nint address) => new EventGgKilledEnemyImpl(address);
+    static EventGgKilledEnemy IGameEvent<EventGgKilledEnemy>.Create(nint address) => new EventGgKilledEnemyImpl(address);
 
-  static string IGameEvent<EventGgKilledEnemy>.GetName() => "gg_killed_enemy";
+    static string IGameEvent<EventGgKilledEnemy>.GetName() => "gg_killed_enemy";
 
-  static uint IGameEvent<EventGgKilledEnemy>.GetHash() => 0x85DB35E2u;
-  /// <summary>
-  /// user ID who died
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int VictimID { get; set; }
+    static uint IGameEvent<EventGgKilledEnemy>.GetHash() => 0x85DB35E2u;
 
-  /// <summary>
-  /// user ID who killed
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int AttackerID { get; set; }
+    /// <summary>
+    /// user ID who died
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController VictimIDController { get; }
 
-  /// <summary>
-  /// did killer dominate victim with this kill
-  /// <br/>
-  /// type: short
-  /// </summary>
-  short Dominated { get; set; }
+    /// <summary>
+    /// user ID who died
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn VictimIDPawn { get; }
 
-  /// <summary>
-  /// did killer get revenge on victim with this kill
-  /// <br/>
-  /// type: short
-  /// </summary>
-  short Revenge { get; set; }
+    // user ID who died
+    public IPlayer? VictimIDPlayer
+    { get => Accessor.GetPlayer("victimid"); }
 
-  /// <summary>
-  /// did killer kill with a bonus weapon?
-  /// <br/>
-  /// type: bool
-  /// </summary>
-  bool Bonus { get; set; }
+    /// <summary>
+    /// user ID who died
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int VictimID { get; set; }
 
+    /// <summary>
+    /// user ID who killed
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController AttackerIDController { get; }
+
+    /// <summary>
+    /// user ID who killed
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn AttackerIDPawn { get; }
+
+    // user ID who killed
+    public IPlayer? AttackerIDPlayer
+    { get => Accessor.GetPlayer("attackerid"); }
+
+    /// <summary>
+    /// user ID who killed
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int AttackerID { get; set; }
+
+    /// <summary>
+    /// did killer dominate victim with this kill
+    /// <br/>
+    /// type: short
+    /// </summary>
+    short Dominated { get; set; }
+
+    /// <summary>
+    /// did killer get revenge on victim with this kill
+    /// <br/>
+    /// type: short
+    /// </summary>
+    short Revenge { get; set; }
+
+    /// <summary>
+    /// did killer kill with a bonus weapon?
+    /// <br/>
+    /// type: bool
+    /// </summary>
+    bool Bonus { get; set; }
 }

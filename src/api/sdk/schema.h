@@ -22,6 +22,8 @@
 #include <string>
 #include <cstdint>
 
+#include <public/datamap.h>
+
 class ISDKSchema
 {
 public:
@@ -43,6 +45,8 @@ public:
     virtual void WritePropPtr(void* pEntity, uint64_t uHash, void* pValue, uint32_t size) = 0;
 
     virtual void* GetVData(void* pEntity) = 0;
+
+    virtual inputfunc_t* GetDatamapFunction(uint32_t uHash) = 0;
 
     virtual void Load() = 0;
 };

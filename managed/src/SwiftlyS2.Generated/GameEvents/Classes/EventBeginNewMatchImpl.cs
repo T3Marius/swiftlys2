@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "begin_new_match"
 /// </summary>
 internal class EventBeginNewMatchImpl : GameEvent<EventBeginNewMatch>, EventBeginNewMatch
 {
 
-  public EventBeginNewMatchImpl(nint address) : base(address)
-  {
-  }
+    public EventBeginNewMatchImpl(nint address) : base(address)
+    {
+    }
 }

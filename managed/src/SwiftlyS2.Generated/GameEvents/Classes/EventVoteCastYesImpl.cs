@@ -7,20 +7,20 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "vote_cast_yes"
 /// </summary>
 internal class EventVoteCastYesImpl : GameEvent<EventVoteCastYes>, EventVoteCastYes
 {
 
-  public EventVoteCastYesImpl(nint address) : base(address)
-  {
-  }
+    public EventVoteCastYesImpl(nint address) : base(address)
+    {
+    }
 
-  public byte Team
-  { get => (byte)Accessor.GetInt32("team"); set => Accessor.SetInt32("team", value); }
+    public byte Team
+    { get => (byte)Accessor.GetInt32("team"); set => Accessor.SetInt32("team", value); }
 
-  // entity id of the voter
-  public int EntityID
-  { get => Accessor.GetInt32("entityid"); set => Accessor.SetInt32("entityid", value); }
+    // entity id of the voter
+    public int EntityID
+    { get => Accessor.GetInt32("entityid"); set => Accessor.SetInt32("entityid", value); }
 }

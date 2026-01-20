@@ -21,11 +21,11 @@ internal partial class CModelConfigElementImpl : SchemaClass, CModelConfigElemen
     public string ElementName {
         get {
             _ElementNameOffset = _ElementNameOffset ?? Schema.GetOffset(0x240CE3EFEBDAB614);
-            return Schema.GetString(_Handle.Read<nint>(_ElementNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ElementNameOffset!.Value));
         }
         set {
             _ElementNameOffset = _ElementNameOffset ?? Schema.GetOffset(0x240CE3EFEBDAB614);
-            Schema.SetString(_Handle, _ElementNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ElementNameOffset!.Value, value);
         }
     } 
     private static nint? _NestedElementsOffset;

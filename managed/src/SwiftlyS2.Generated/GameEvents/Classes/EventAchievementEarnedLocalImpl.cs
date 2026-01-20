@@ -7,21 +7,21 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "achievement_earned_local"
 /// </summary>
 internal class EventAchievementEarnedLocalImpl : GameEvent<EventAchievementEarnedLocal>, EventAchievementEarnedLocal
 {
 
-  public EventAchievementEarnedLocalImpl(nint address) : base(address)
-  {
-  }
+    public EventAchievementEarnedLocalImpl(nint address) : base(address)
+    {
+    }
 
-  // achievement ID
-  public short Achievement
-  { get => (short)Accessor.GetInt32("achievement"); set => Accessor.SetInt32("achievement", value); }
+    // achievement ID
+    public short Achievement
+    { get => (short)Accessor.GetInt32("achievement"); set => Accessor.SetInt32("achievement", value); }
 
-  // splitscreen ID
-  public short SplitScreenPlayer
-  { get => (short)Accessor.GetInt32("splitscreenplayer"); set => Accessor.SetInt32("splitscreenplayer", value); }
+    // splitscreen ID
+    public short SplitScreenPlayer
+    { get => (short)Accessor.GetInt32("splitscreenplayer"); set => Accessor.SetInt32("splitscreenplayer", value); }
 }

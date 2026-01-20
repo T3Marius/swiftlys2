@@ -150,11 +150,11 @@ internal partial class VPhysXAggregateData_tImpl : SchemaClass, VPhysXAggregateD
     public string EmbeddedKeyvalues {
         get {
             _EmbeddedKeyvaluesOffset = _EmbeddedKeyvaluesOffset ?? Schema.GetOffset(0xB689D5A1C004AF5C);
-            return Schema.GetString(_Handle.Read<nint>(_EmbeddedKeyvaluesOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_EmbeddedKeyvaluesOffset!.Value));
         }
         set {
             _EmbeddedKeyvaluesOffset = _EmbeddedKeyvaluesOffset ?? Schema.GetOffset(0xB689D5A1C004AF5C);
-            Schema.SetString(_Handle, _EmbeddedKeyvaluesOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _EmbeddedKeyvaluesOffset!.Value, value);
         }
     } 
 

@@ -29,11 +29,11 @@ internal partial class AnimationDecodeDebugDumpElement_tImpl : SchemaClass, Anim
     public string ModelName {
         get {
             _ModelNameOffset = _ModelNameOffset ?? Schema.GetOffset(0x4CAFE8F75D35B6E1);
-            return Schema.GetString(_Handle.Read<nint>(_ModelNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ModelNameOffset!.Value));
         }
         set {
             _ModelNameOffset = _ModelNameOffset ?? Schema.GetOffset(0x4CAFE8F75D35B6E1);
-            Schema.SetString(_Handle, _ModelNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ModelNameOffset!.Value, value);
         }
     } 
     private static nint? _PoseParamsOffset;

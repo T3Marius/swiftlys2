@@ -21,11 +21,11 @@ internal partial class CBoneConstraintPoseSpaceMorphImpl : CBoneConstraintBaseIm
     public string BoneName {
         get {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x6ECAD65A7559AC1F);
-            return Schema.GetString(_Handle.Read<nint>(_BoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BoneNameOffset!.Value));
         }
         set {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x6ECAD65A7559AC1F);
-            Schema.SetString(_Handle, _BoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BoneNameOffset!.Value, value);
         }
     } 
     private static nint? _AttachmentNameOffset;
@@ -33,11 +33,11 @@ internal partial class CBoneConstraintPoseSpaceMorphImpl : CBoneConstraintBaseIm
     public string AttachmentName {
         get {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x6ECAD65A7B86DB7C);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
         }
         set {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x6ECAD65A7B86DB7C);
-            Schema.SetString(_Handle, _AttachmentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentNameOffset!.Value, value);
         }
     } 
     private static nint? _OutputMorphOffset;

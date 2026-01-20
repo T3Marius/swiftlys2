@@ -180,6 +180,12 @@ public interface IMenuManagerAPI
     public void CloseMenuForPlayer( IPlayer player, IMenuAPI menu );
 
     /// <summary>
+    /// Closes the active menu for a player. If the player has no menu open, this has no effect.
+    /// </summary>
+    /// <param name="player">The player whose active menu will be closed.</param>
+    public void CloseActiveMenu( IPlayer player );
+
+    /// <summary>
     /// Closes every open menu for every player.
     /// </summary>
     public void CloseAllMenus();

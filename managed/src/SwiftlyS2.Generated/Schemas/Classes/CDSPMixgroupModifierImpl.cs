@@ -21,11 +21,11 @@ internal partial class CDSPMixgroupModifierImpl : SchemaClass, CDSPMixgroupModif
     public string Mixgroup {
         get {
             _MixgroupOffset = _MixgroupOffset ?? Schema.GetOffset(0xDF83C91D89577218);
-            return Schema.GetString(_Handle.Read<nint>(_MixgroupOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MixgroupOffset!.Value));
         }
         set {
             _MixgroupOffset = _MixgroupOffset ?? Schema.GetOffset(0xDF83C91D89577218);
-            Schema.SetString(_Handle, _MixgroupOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MixgroupOffset!.Value, value);
         }
     } 
     private static nint? _ModifierOffset;

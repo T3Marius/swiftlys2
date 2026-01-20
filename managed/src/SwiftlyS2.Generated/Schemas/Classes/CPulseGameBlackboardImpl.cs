@@ -21,11 +21,11 @@ internal partial class CPulseGameBlackboardImpl : CBaseEntityImpl, CPulseGameBla
     public string StrGraphName {
         get {
             _StrGraphNameOffset = _StrGraphNameOffset ?? Schema.GetOffset(0xF9A17A20C99E48AF);
-            return Schema.GetString(_Handle.Read<nint>(_StrGraphNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrGraphNameOffset!.Value));
         }
         set {
             _StrGraphNameOffset = _StrGraphNameOffset ?? Schema.GetOffset(0xF9A17A20C99E48AF);
-            Schema.SetString(_Handle, _StrGraphNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrGraphNameOffset!.Value, value);
         }
     } 
     private static nint? _StrStateBlobOffset;
@@ -33,11 +33,11 @@ internal partial class CPulseGameBlackboardImpl : CBaseEntityImpl, CPulseGameBla
     public string StrStateBlob {
         get {
             _StrStateBlobOffset = _StrStateBlobOffset ?? Schema.GetOffset(0xF9A17A2046708C2A);
-            return Schema.GetString(_Handle.Read<nint>(_StrStateBlobOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrStateBlobOffset!.Value));
         }
         set {
             _StrStateBlobOffset = _StrStateBlobOffset ?? Schema.GetOffset(0xF9A17A2046708C2A);
-            Schema.SetString(_Handle, _StrStateBlobOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrStateBlobOffset!.Value, value);
         }
     } 
 

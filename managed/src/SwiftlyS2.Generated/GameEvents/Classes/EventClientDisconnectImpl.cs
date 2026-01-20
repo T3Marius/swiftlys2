@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "client_disconnect"
 /// </summary>
 internal class EventClientDisconnectImpl : GameEvent<EventClientDisconnect>, EventClientDisconnect
 {
 
-  public EventClientDisconnectImpl(nint address) : base(address)
-  {
-  }
+    public EventClientDisconnectImpl(nint address) : base(address)
+    {
+    }
 }

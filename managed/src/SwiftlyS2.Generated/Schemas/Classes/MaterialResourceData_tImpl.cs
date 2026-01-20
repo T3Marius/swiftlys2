@@ -21,11 +21,11 @@ internal partial class MaterialResourceData_tImpl : SchemaClass, MaterialResourc
     public string MaterialName {
         get {
             _MaterialNameOffset = _MaterialNameOffset ?? Schema.GetOffset(0xA8F70097AF8795A3);
-            return Schema.GetString(_Handle.Read<nint>(_MaterialNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MaterialNameOffset!.Value));
         }
         set {
             _MaterialNameOffset = _MaterialNameOffset ?? Schema.GetOffset(0xA8F70097AF8795A3);
-            Schema.SetString(_Handle, _MaterialNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MaterialNameOffset!.Value, value);
         }
     } 
     private static nint? _ShaderNameOffset;
@@ -33,11 +33,11 @@ internal partial class MaterialResourceData_tImpl : SchemaClass, MaterialResourc
     public string ShaderName {
         get {
             _ShaderNameOffset = _ShaderNameOffset ?? Schema.GetOffset(0xA8F70097F8B3D7CB);
-            return Schema.GetString(_Handle.Read<nint>(_ShaderNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ShaderNameOffset!.Value));
         }
         set {
             _ShaderNameOffset = _ShaderNameOffset ?? Schema.GetOffset(0xA8F70097F8B3D7CB);
-            Schema.SetString(_Handle, _ShaderNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ShaderNameOffset!.Value, value);
         }
     } 
     private static nint? _IntParamsOffset;

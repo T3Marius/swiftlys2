@@ -29,11 +29,11 @@ internal partial class CFootstepLandedAnimTagImpl : CAnimTagBaseImpl, CFootstepL
     public string OverrideSoundName {
         get {
             _OverrideSoundNameOffset = _OverrideSoundNameOffset ?? Schema.GetOffset(0xD5058C67FEE552B7);
-            return Schema.GetString(_Handle.Read<nint>(_OverrideSoundNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OverrideSoundNameOffset!.Value));
         }
         set {
             _OverrideSoundNameOffset = _OverrideSoundNameOffset ?? Schema.GetOffset(0xD5058C67FEE552B7);
-            Schema.SetString(_Handle, _OverrideSoundNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OverrideSoundNameOffset!.Value, value);
         }
     } 
     private static nint? _DebugAnimSourceStringOffset;
@@ -41,11 +41,11 @@ internal partial class CFootstepLandedAnimTagImpl : CAnimTagBaseImpl, CFootstepL
     public string DebugAnimSourceString {
         get {
             _DebugAnimSourceStringOffset = _DebugAnimSourceStringOffset ?? Schema.GetOffset(0xD5058C676912A1B9);
-            return Schema.GetString(_Handle.Read<nint>(_DebugAnimSourceStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DebugAnimSourceStringOffset!.Value));
         }
         set {
             _DebugAnimSourceStringOffset = _DebugAnimSourceStringOffset ?? Schema.GetOffset(0xD5058C676912A1B9);
-            Schema.SetString(_Handle, _DebugAnimSourceStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DebugAnimSourceStringOffset!.Value, value);
         }
     } 
     private static nint? _BoneNameOffset;
@@ -53,11 +53,11 @@ internal partial class CFootstepLandedAnimTagImpl : CAnimTagBaseImpl, CFootstepL
     public string BoneName {
         get {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0xD5058C6707D0902C);
-            return Schema.GetString(_Handle.Read<nint>(_BoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BoneNameOffset!.Value));
         }
         set {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0xD5058C6707D0902C);
-            Schema.SetString(_Handle, _BoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BoneNameOffset!.Value, value);
         }
     } 
 

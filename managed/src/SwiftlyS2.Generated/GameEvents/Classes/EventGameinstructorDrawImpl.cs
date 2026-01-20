@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "gameinstructor_draw"
 /// </summary>
 internal class EventGameinstructorDrawImpl : GameEvent<EventGameinstructorDraw>, EventGameinstructorDraw
 {
 
-  public EventGameinstructorDrawImpl(nint address) : base(address)
-  {
-  }
+    public EventGameinstructorDrawImpl(nint address) : base(address)
+    {
+    }
 }

@@ -7,22 +7,22 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "tournament_reward"
 /// </summary>
 internal class EventTournamentRewardImpl : GameEvent<EventTournamentReward>, EventTournamentReward
 {
 
-  public EventTournamentRewardImpl(nint address) : base(address)
-  {
-  }
+    public EventTournamentRewardImpl(nint address) : base(address)
+    {
+    }
 
-  public int DefIndex
-  { get => Accessor.GetInt32("defindex"); set => Accessor.SetInt32("defindex", value); }
+    public int DefIndex
+    { get => Accessor.GetInt32("defindex"); set => Accessor.SetInt32("defindex", value); }
 
-  public int TotalRewards
-  { get => Accessor.GetInt32("totalrewards"); set => Accessor.SetInt32("totalrewards", value); }
+    public int TotalRewards
+    { get => Accessor.GetInt32("totalrewards"); set => Accessor.SetInt32("totalrewards", value); }
 
-  public int AccountID
-  { get => Accessor.GetInt32("accountid"); set => Accessor.SetInt32("accountid", value); }
+    public int AccountID
+    { get => Accessor.GetInt32("accountid"); set => Accessor.SetInt32("accountid", value); }
 }

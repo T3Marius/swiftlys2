@@ -23,16 +23,19 @@ public struct CUtlLeanVector<T, I>
     {
         public I Index;
 
-        public Iterator_t(I i) => Index = i;
+        public Iterator_t( I i ) => Index = i;
 
-        public static bool operator ==(Iterator_t a, Iterator_t b) => a.Index == b.Index;
-        public static bool operator !=(Iterator_t a, Iterator_t b) => a.Index != b.Index;
+        public static bool operator ==( Iterator_t a, Iterator_t b ) => a.Index == b.Index;
+        public static bool operator !=( Iterator_t a, Iterator_t b ) => a.Index != b.Index;
 
-        public override bool Equals(object? obj)
+        public override bool Equals( object? obj )
         {
-            if (obj is Iterator_t other)
-                return this == other;
-            return false;
+            return obj is Iterator_t other && this == other;
+        }
+
+        public override int GetHashCode()
+        {
+            return Index.GetHashCode();
         }
     }
 
@@ -44,7 +47,7 @@ public struct CUtlLeanVector<T, I>
     /// Please use <see cref="ManagedCUtlLeanVector{T, I}"/> instead to construct it.
     /// If you really want to use this, you should call <see cref="Purge"/> after you are done with it.
     /// </summary>
-    public CUtlLeanVector(I growSize, I initSize)
+    public CUtlLeanVector( I growSize, I initSize )
     {
         Count = (I)(object)0;
         Allocated = (I)(object)0;
@@ -55,14 +58,14 @@ public struct CUtlLeanVector<T, I>
     /// Please use <see cref="ManagedCUtlLeanVector{T, I}"/> instead to construct it.
     /// If you really want to use this, you should call <see cref="Purge"/> after you are done with it.
     /// </summary>
-    public CUtlLeanVector(nint memory, I allocationCount, I numElements)
+    public CUtlLeanVector( nint memory, I allocationCount, I numElements )
     {
         Count = numElements;
         Allocated = allocationCount | ExternalBufferMarker;
         Elements = memory;
     }
 
-    public void EnsureCapacity(int num, bool force)
+    public void EnsureCapacity( int num, bool force )
     {
         if (num <= NumAllocated)
             return;
@@ -91,7 +94,7 @@ public struct CUtlLeanVector<T, I>
         Allocated = newAllocated;
     }
 
-    public void SetExternalBuffer(nint memory, I allocationCount, I numElements)
+    public void SetExternalBuffer( nint memory, I allocationCount, I numElements )
     {
         Purge();
 
@@ -100,7 +103,7 @@ public struct CUtlLeanVector<T, I>
         Count = numElements;
     }
 
-    public void AssumeMemory(nint memory, I allocationCount, I numElements)
+    public void AssumeMemory( nint memory, I allocationCount, I numElements )
     {
         Purge();
 
@@ -125,8 +128,8 @@ public struct CUtlLeanVector<T, I>
         if (Count == I.CreateChecked(0))
             return;
 
-        for (I i = I.CreateChecked(0); i < Count; i++)
-            this[i] = default;
+        for (var i = I.CreateChecked(0); i < Count; i++)
+            this[i] = default!;
 
         Count = I.CreateChecked(0);
     }
@@ -143,8 +146,8 @@ public struct CUtlLeanVector<T, I>
         }
     }
 
-    public bool IsIdxValid(I idx) => idx >= I.CreateChecked(0) && idx < Count;
-    public ref T Element(I idx)
+    public bool IsIdxValid( I idx ) => idx >= I.CreateChecked(0) && idx < Count;
+    public ref T Element( I idx )
     {
         if (!IsIdxValid(idx))
             throw new IndexOutOfRangeException($"Index {idx} is out of range (0 - {Count - I.One})");
@@ -154,7 +157,7 @@ public struct CUtlLeanVector<T, I>
 
     public ref T Head() => ref Element(I.CreateChecked(0));
     public ref T Tail() => ref Element(Count - I.One);
-    public bool IsValidIndex(I idx) => IsIdxValid(idx);
+    public bool IsValidIndex( I idx ) => IsIdxValid(idx);
 
     public I AddToTail()
     {
@@ -162,14 +165,14 @@ public struct CUtlLeanVector<T, I>
         return Count++;
     }
 
-    public I AddToTail(T element)
+    public I AddToTail( T element )
     {
         I idx = AddToTail();
         this[idx] = element;
         return idx;
     }
 
-    public void SetCount(I count)
+    public void SetCount( I count )
     {
         if (count < I.CreateChecked(0))
             throw new ArgumentOutOfRangeException(nameof(count), "count must be >= 0");
@@ -178,30 +181,30 @@ public struct CUtlLeanVector<T, I>
 
         if (Count > count)
         {
-            for (I i = count; i < Count; i++)
-                this[i] = default;
+            for (var i = count; i < Count; i++)
+                this[i] = default!;
         }
 
         Count = count;
     }
 
-    public I Find(T element)
+    public I Find( T element )
     {
-        for (I i = I.CreateChecked(0); i < Count; i++)
+        for (var i = I.CreateChecked(0); i < Count; i++)
         {
-            if (this[i].Equals(element))
+            if (this[i]!.Equals(element))
                 return i;
         }
 
         return -I.One;
     }
 
-    public void FastRemove(I elem)
+    public void FastRemove( I elem )
     {
         if (!IsValidIndex(elem))
             return;
 
-        this[elem] = default;
+        this[elem] = default!;
         if (Count > I.Zero)
         {
             if (elem != Count - I.One)
@@ -210,45 +213,45 @@ public struct CUtlLeanVector<T, I>
         }
     }
 
-    public void Remove(I elem)
+    public void Remove( I elem )
     {
         if (!IsValidIndex(elem))
             return;
 
-        this[elem] = default;
+        this[elem] = default!;
         MemoryHelpers.ShiftElementsLeft(Elements, int.CreateChecked(elem), 1, int.CreateChecked(Count), ElementSize);
         --Count;
     }
 
-    public void RemoveMultiple(I idx, I count)
+    public void RemoveMultiple( I idx, I count )
     {
         if (count <= I.Zero || !IsValidIndex(idx) || idx + count > Count)
             return;
 
         for (I i = idx; i < idx + count; i++)
-            this[i] = default;
+            this[i] = default!;
 
         MemoryHelpers.ShiftElementsLeft(Elements, int.CreateChecked(idx), int.CreateChecked(count), int.CreateChecked(Count), ElementSize);
         Count -= count;
     }
 
-    public void RemoveMultipleFromHead(I count)
+    public void RemoveMultipleFromHead( I count )
     {
         RemoveMultiple(I.Zero, count);
     }
 
-    public void RemoveMultipleFromTail(I count)
+    public void RemoveMultipleFromTail( I count )
     {
         if (count <= I.Zero || count > Count)
             return;
 
         for (I i = Count - count; i < Count; i++)
-            this[i] = default;
+            this[i] = default!;
 
         Count -= count;
     }
 
-    public bool FindAndRemove(T value)
+    public bool FindAndRemove( T value )
     {
         I idx = Find(value);
         if (idx != -I.One)
@@ -259,7 +262,7 @@ public struct CUtlLeanVector<T, I>
         return false;
     }
 
-    public bool FindAndFastRemove(T value)
+    public bool FindAndFastRemove( T value )
     {
         I idx = Find(value);
         if (idx != -I.One)
@@ -270,7 +273,7 @@ public struct CUtlLeanVector<T, I>
         return false;
     }
 
-    public void SetSize(I size) => SetCount(size);
+    public void SetSize( I size ) => SetCount(size);
 
     public void Dispose()
     {
@@ -290,10 +293,8 @@ public struct CUtlLeanVector<T, I>
     public int NumAllocated => (int)((ulong)(object)Allocated & ~(ulong)(object)ExternalBufferMarker);
     public bool ExternallyAllocated => ((ulong)(object)Allocated & (ulong)(object)ExternalBufferMarker) != 0;
     public nint Base => Elements;
-    public ref T this[I index]
-    {
-        get
-        {
+    public ref T this[I index] {
+        get {
             unsafe
             {
                 return ref Unsafe.AsRef<T>((byte*)Elements + int.CreateChecked(index * I.CreateChecked(ElementSize)));

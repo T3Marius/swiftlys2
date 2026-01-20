@@ -7,18 +7,18 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "server_message"
 /// a generic server message
 /// </summary>
 internal class EventServerMessageImpl : GameEvent<EventServerMessage>, EventServerMessage
 {
 
-  public EventServerMessageImpl(nint address) : base(address)
-  {
-  }
+    public EventServerMessageImpl(nint address) : base(address)
+    {
+    }
 
-  // the message text
-  public string Text
-  { get => Accessor.GetString("text"); set => Accessor.SetString("text", value); }
+    // the message text
+    public string Text
+    { get => Accessor.GetString("text"); set => Accessor.SetString("text", value); }
 }

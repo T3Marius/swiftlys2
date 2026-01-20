@@ -29,11 +29,11 @@ internal partial class CSosGroupActionSoundeventCountSchemaImpl : CSosGroupActio
     public string StrCountKeyName {
         get {
             _StrCountKeyNameOffset = _StrCountKeyNameOffset ?? Schema.GetOffset(0x6A0D8269463A7AA5);
-            return Schema.GetString(_Handle.Read<nint>(_StrCountKeyNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrCountKeyNameOffset!.Value));
         }
         set {
             _StrCountKeyNameOffset = _StrCountKeyNameOffset ?? Schema.GetOffset(0x6A0D8269463A7AA5);
-            Schema.SetString(_Handle, _StrCountKeyNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrCountKeyNameOffset!.Value, value);
         }
     } 
 

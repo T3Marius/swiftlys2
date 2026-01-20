@@ -342,11 +342,11 @@ internal partial class CBaseEntityImpl : CEntityInstanceImpl, CBaseEntity
     public string UniqueHammerID {
         get {
             _UniqueHammerIDOffset = _UniqueHammerIDOffset ?? Schema.GetOffset(0x9DC483B84A371EB2);
-            return Schema.GetString(_Handle.Read<nint>(_UniqueHammerIDOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_UniqueHammerIDOffset!.Value));
         }
         set {
             _UniqueHammerIDOffset = _UniqueHammerIDOffset ?? Schema.GetOffset(0x9DC483B84A371EB2);
-            Schema.SetString(_Handle, _UniqueHammerIDOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _UniqueHammerIDOffset!.Value, value);
         }
     } 
     private static nint? _SpawnflagsOffset;

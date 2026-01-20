@@ -29,11 +29,11 @@ internal partial class CPathSimpleImpl : CBaseEntityImpl, CPathSimple
     public string PathString {
         get {
             _PathStringOffset = _PathStringOffset ?? Schema.GetOffset(0x10936CB36EC51AA7);
-            return Schema.GetString(_Handle.Read<nint>(_PathStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PathStringOffset!.Value));
         }
         set {
             _PathStringOffset = _PathStringOffset ?? Schema.GetOffset(0x10936CB36EC51AA7);
-            Schema.SetString(_Handle, _PathStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PathStringOffset!.Value, value);
         }
     } 
     private static nint? _ClosedLoopOffset;

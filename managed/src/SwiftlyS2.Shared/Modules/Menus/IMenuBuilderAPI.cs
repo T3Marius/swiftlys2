@@ -1,3 +1,5 @@
+using SwiftlyS2.Shared.Players;
+
 namespace SwiftlyS2.Shared.Menus;
 
 /// <summary>
@@ -110,6 +112,19 @@ public interface IMenuBuilderAPI
     /// Example: <c>KeyBind.Esc | KeyBind.A</c> allows either Esc or A to close the menu.
     /// </remarks>
     public IMenuBuilderAPI SetExitButton( KeyBind keyBind );
+
+    /// <summary>
+    /// Adds an extra button to the menu that executes a custom action when pressed.
+    /// </summary>
+    /// <param name="keyBind">The key binding for this button.</param>
+    /// <param name="label">The label to display for this button in the menu footer.</param>
+    /// <param name="action">The action to execute when the button is pressed.</param>
+    /// <returns>This builder for method chaining.</returns>
+    /// <remarks>
+    /// Extra buttons are displayed in the menu footer and allow custom actions beyond standard menu navigation.
+    /// The keybind should not conflict with existing menu navigation keys.
+    /// </remarks>
+    public IMenuBuilderAPI AddExtraButton( KeyBind keyBind, string label, Action<IPlayer, IMenuAPI> action );
 
     /// <summary>
     /// Builds the menu and returns the final menu instance.

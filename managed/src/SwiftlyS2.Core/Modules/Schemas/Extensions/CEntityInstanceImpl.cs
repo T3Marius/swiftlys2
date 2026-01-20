@@ -11,11 +11,13 @@ internal partial class CEntityInstanceImpl : CEntityInstance, IEquatable<CEntity
     public uint Index => Entity?.EntityHandle.EntityIndex ?? uint.MaxValue;
     public string DesignerName => Entity?.DesignerName ?? string.Empty;
 
+    public bool IsValidEntity => NativeEntitySystem.IsValidEntity(Address);
+
     public unsafe void AcceptInput<T>( string input, T? value, CEntityInstance? activator = null, CEntityInstance? caller = null, int outputID = 0 )
     {
         NativeBinding.ThrowIfNonMainThread();
 
-        var variant = new CVariant<CVariantDefaultAllocator>(value);
+        using var variant = new CVariant<CVariantDefaultAllocator>(value);
 
         NativeEntitySystem.AcceptInput(Address, input, activator?.Address ?? nint.Zero, caller?.Address ?? nint.Zero, new nint(&variant), outputID);
     }
@@ -29,7 +31,7 @@ internal partial class CEntityInstanceImpl : CEntityInstance, IEquatable<CEntity
     {
         NativeBinding.ThrowIfNonMainThread();
 
-        var variant = new CVariant<CVariantDefaultAllocator>(value);
+        using var variant = new CVariant<CVariantDefaultAllocator>(value);
 
         NativeEntitySystem.AddEntityIOEvent(Address, input, activator?.Address ?? nint.Zero, caller?.Address ?? nint.Zero, (nint)(&variant), delay);
     }

@@ -53,11 +53,11 @@ internal partial class CDamageRecordImpl : SchemaClass, CDamageRecord
     public string PlayerDamagerName {
         get {
             _PlayerDamagerNameOffset = _PlayerDamagerNameOffset ?? Schema.GetOffset(0x149283165AB278AD);
-            return Schema.GetString(_Handle.Read<nint>(_PlayerDamagerNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PlayerDamagerNameOffset!.Value));
         }
         set {
             _PlayerDamagerNameOffset = _PlayerDamagerNameOffset ?? Schema.GetOffset(0x149283165AB278AD);
-            Schema.SetString(_Handle, _PlayerDamagerNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PlayerDamagerNameOffset!.Value, value);
         }
     } 
     private static nint? _PlayerRecipientNameOffset;
@@ -65,11 +65,11 @@ internal partial class CDamageRecordImpl : SchemaClass, CDamageRecord
     public string PlayerRecipientName {
         get {
             _PlayerRecipientNameOffset = _PlayerRecipientNameOffset ?? Schema.GetOffset(0x14928316E6015313);
-            return Schema.GetString(_Handle.Read<nint>(_PlayerRecipientNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PlayerRecipientNameOffset!.Value));
         }
         set {
             _PlayerRecipientNameOffset = _PlayerRecipientNameOffset ?? Schema.GetOffset(0x14928316E6015313);
-            Schema.SetString(_Handle, _PlayerRecipientNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PlayerRecipientNameOffset!.Value, value);
         }
     } 
     private static nint? _DamagerXuidOffset;

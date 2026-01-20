@@ -69,11 +69,11 @@ internal partial class CSosGroupActionMemberCountEnvelopeSchemaImpl : CSosGroupA
     public string ResultVarName {
         get {
             _ResultVarNameOffset = _ResultVarNameOffset ?? Schema.GetOffset(0x5C85206CF566E926);
-            return Schema.GetString(_Handle.Read<nint>(_ResultVarNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ResultVarNameOffset!.Value));
         }
         set {
             _ResultVarNameOffset = _ResultVarNameOffset ?? Schema.GetOffset(0x5C85206CF566E926);
-            Schema.SetString(_Handle, _ResultVarNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ResultVarNameOffset!.Value, value);
         }
     } 
     private static nint? _SaveToGroupOffset;

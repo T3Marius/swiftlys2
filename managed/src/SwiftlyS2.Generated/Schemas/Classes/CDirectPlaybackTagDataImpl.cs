@@ -21,11 +21,11 @@ internal partial class CDirectPlaybackTagDataImpl : SchemaClass, CDirectPlayback
     public string SequenceName {
         get {
             _SequenceNameOffset = _SequenceNameOffset ?? Schema.GetOffset(0xAADCE162B4A24CB);
-            return Schema.GetString(_Handle.Read<nint>(_SequenceNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SequenceNameOffset!.Value));
         }
         set {
             _SequenceNameOffset = _SequenceNameOffset ?? Schema.GetOffset(0xAADCE162B4A24CB);
-            Schema.SetString(_Handle, _SequenceNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SequenceNameOffset!.Value, value);
         }
     } 
     private static nint? _TagsOffset;

@@ -45,11 +45,11 @@ internal partial class CNmParticleEventImpl : CNmEventImpl, CNmParticleEvent
     public string Tags {
         get {
             _TagsOffset = _TagsOffset ?? Schema.GetOffset(0x441D270FB46C8540);
-            return Schema.GetString(_Handle.Read<nint>(_TagsOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TagsOffset!.Value));
         }
         set {
             _TagsOffset = _TagsOffset ?? Schema.GetOffset(0x441D270FB46C8540);
-            Schema.SetString(_Handle, _TagsOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TagsOffset!.Value, value);
         }
     } 
     private static nint? _StopImmediatelyOffset;
@@ -81,11 +81,11 @@ internal partial class CNmParticleEventImpl : CNmEventImpl, CNmParticleEvent
     public string AttachmentPoint0 {
         get {
             _AttachmentPoint0Offset = _AttachmentPoint0Offset ?? Schema.GetOffset(0x441D270FBFDCDF8A);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentPoint0Offset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentPoint0Offset!.Value));
         }
         set {
             _AttachmentPoint0Offset = _AttachmentPoint0Offset ?? Schema.GetOffset(0x441D270FBFDCDF8A);
-            Schema.SetString(_Handle, _AttachmentPoint0Offset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentPoint0Offset!.Value, value);
         }
     } 
     private static nint? _AttachmentType0Offset;
@@ -101,11 +101,11 @@ internal partial class CNmParticleEventImpl : CNmEventImpl, CNmParticleEvent
     public string AttachmentPoint1 {
         get {
             _AttachmentPoint1Offset = _AttachmentPoint1Offset ?? Schema.GetOffset(0x441D270FC0DCE11D);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentPoint1Offset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentPoint1Offset!.Value));
         }
         set {
             _AttachmentPoint1Offset = _AttachmentPoint1Offset ?? Schema.GetOffset(0x441D270FC0DCE11D);
-            Schema.SetString(_Handle, _AttachmentPoint1Offset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentPoint1Offset!.Value, value);
         }
     } 
     private static nint? _AttachmentType1Offset;
@@ -121,11 +121,11 @@ internal partial class CNmParticleEventImpl : CNmEventImpl, CNmParticleEvent
     public string Config {
         get {
             _ConfigOffset = _ConfigOffset ?? Schema.GetOffset(0x441D270FD8B39967);
-            return Schema.GetString(_Handle.Read<nint>(_ConfigOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ConfigOffset!.Value));
         }
         set {
             _ConfigOffset = _ConfigOffset ?? Schema.GetOffset(0x441D270FD8B39967);
-            Schema.SetString(_Handle, _ConfigOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ConfigOffset!.Value, value);
         }
     } 
     private static nint? _EffectForConfigOffset;
@@ -133,11 +133,11 @@ internal partial class CNmParticleEventImpl : CNmEventImpl, CNmParticleEvent
     public string EffectForConfig {
         get {
             _EffectForConfigOffset = _EffectForConfigOffset ?? Schema.GetOffset(0x441D270FA68959D9);
-            return Schema.GetString(_Handle.Read<nint>(_EffectForConfigOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_EffectForConfigOffset!.Value));
         }
         set {
             _EffectForConfigOffset = _EffectForConfigOffset ?? Schema.GetOffset(0x441D270FA68959D9);
-            Schema.SetString(_Handle, _EffectForConfigOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _EffectForConfigOffset!.Value, value);
         }
     } 
 

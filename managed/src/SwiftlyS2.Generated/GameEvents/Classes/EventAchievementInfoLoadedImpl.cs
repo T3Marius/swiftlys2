@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "achievement_info_loaded"
 /// </summary>
 internal class EventAchievementInfoLoadedImpl : GameEvent<EventAchievementInfoLoaded>, EventAchievementInfoLoaded
 {
 
-  public EventAchievementInfoLoadedImpl(nint address) : base(address)
-  {
-  }
+    public EventAchievementInfoLoadedImpl(nint address) : base(address)
+    {
+    }
 }

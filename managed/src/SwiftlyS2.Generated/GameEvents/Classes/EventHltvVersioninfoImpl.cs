@@ -7,16 +7,16 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "hltv_versioninfo"
 /// </summary>
 internal class EventHltvVersioninfoImpl : GameEvent<EventHltvVersioninfo>, EventHltvVersioninfo
 {
 
-  public EventHltvVersioninfoImpl(nint address) : base(address)
-  {
-  }
+    public EventHltvVersioninfoImpl(nint address) : base(address)
+    {
+    }
 
-  public int Version
-  { get => Accessor.GetInt32("version"); set => Accessor.SetInt32("version", value); }
+    public int Version
+    { get => Accessor.GetInt32("version"); set => Accessor.SetInt32("version", value); }
 }

@@ -21,11 +21,11 @@ internal partial class CPulseCell_Step_EntFireImpl : CPulseCell_BaseFlowImpl, CP
     public string Input {
         get {
             _InputOffset = _InputOffset ?? Schema.GetOffset(0xF0F9E958942A24FB);
-            return Schema.GetString(_Handle.Read<nint>(_InputOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_InputOffset!.Value));
         }
         set {
             _InputOffset = _InputOffset ?? Schema.GetOffset(0xF0F9E958942A24FB);
-            Schema.SetString(_Handle, _InputOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _InputOffset!.Value, value);
         }
     } 
 

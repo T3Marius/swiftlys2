@@ -45,11 +45,11 @@ internal partial class CPulseCell_Outflow_ListenForEntityOutputImpl : CPulseCell
     public string StrEntityOutputParam {
         get {
             _StrEntityOutputParamOffset = _StrEntityOutputParamOffset ?? Schema.GetOffset(0xCB351637BB356637);
-            return Schema.GetString(_Handle.Read<nint>(_StrEntityOutputParamOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrEntityOutputParamOffset!.Value));
         }
         set {
             _StrEntityOutputParamOffset = _StrEntityOutputParamOffset ?? Schema.GetOffset(0xCB351637BB356637);
-            Schema.SetString(_Handle, _StrEntityOutputParamOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrEntityOutputParamOffset!.Value, value);
         }
     } 
     private static nint? _ListenUntilCanceledOffset;

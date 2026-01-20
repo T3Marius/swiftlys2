@@ -473,6 +473,9 @@ bool Configuration::Load()
         RegisterConfiguration(wasEdited, config_json, "core", "core", "Language", "en");
         RegisterConfiguration(wasEdited, config_json, "core", "core", "UsePlayerLanguage", true);
 
+        RegisterConfiguration(wasEdited, config_json, "core", "core", "Unlocker.Convars", false);
+        RegisterConfiguration(wasEdited, config_json, "core", "core", "Unlocker.ConCommands", false);
+
         RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.NavigationPrefix", "➤");
 
         RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.Sound.Use.Name", "Vote.Cast.Yes");
@@ -495,23 +498,7 @@ bool Configuration::Load()
         RegisterConfigurationVector<std::string>(wasEdited, config_json, "core", "core", "Menu.AvailableInputModes", { "button", "wasd" }, true, " ");
         RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.InputMode", "button");
 
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Center.ItemsPerPage", 4);
         RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.ItemsPerPage", 5);
-
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Mode", "compatibility");
-
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Compatibility.X", 0.14);
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Compatibility.Y", 0.68);
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Compatibility.FontSize", 35);
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Compatibility.Font", "Sans Serif");
-
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Normal.X", 0.0);
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Normal.Y", 0.68);
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Normal.FontSize", 35);
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.Modes.Normal.Font", "Sans Serif");
-
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.DrawBackground", true);
-        // RegisterConfiguration(wasEdited, config_json, "core", "core", "Menu.KindSettings.Screen.ItemsPerPage", 9);
 
         RegisterConfiguration(wasEdited, config_json, "core", "core", "VGUI.TextBackground.PaddingX", 0.1);
         RegisterConfiguration(wasEdited, config_json, "core", "core", "VGUI.TextBackground.PaddingY", 0.1);

@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "endmatch_cmm_start_reveal_items"
 /// </summary>
 internal class EventEndmatchCmmStartRevealItemsImpl : GameEvent<EventEndmatchCmmStartRevealItems>, EventEndmatchCmmStartRevealItems
 {
 
-  public EventEndmatchCmmStartRevealItemsImpl(nint address) : base(address)
-  {
-  }
+    public EventEndmatchCmmStartRevealItemsImpl(nint address) : base(address)
+    {
+    }
 }

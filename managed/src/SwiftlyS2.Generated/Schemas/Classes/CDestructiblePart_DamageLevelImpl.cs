@@ -21,11 +21,11 @@ internal partial class CDestructiblePart_DamageLevelImpl : SchemaClass, CDestruc
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xF69D69CB63D22D49);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xF69D69CB63D22D49);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _BreakablePieceNameOffset;

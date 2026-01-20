@@ -7,37 +7,37 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "hostage_rescued"
 /// </summary>
 internal class EventHostageRescuedImpl : GameEvent<EventHostageRescued>, EventHostageRescued
 {
 
-  public EventHostageRescuedImpl(nint address) : base(address)
-  {
-  }
+    public EventHostageRescuedImpl(nint address) : base(address)
+    {
+    }
 
-  // player who rescued the hostage
-  public CCSPlayerController UserIdController
-  { get => Accessor.GetPlayerController("userid"); }
+    // player who rescued the hostage
+    public CCSPlayerController UserIdController
+    { get => Accessor.GetPlayerController("userid"); }
 
-  // player who rescued the hostage
-  public CCSPlayerPawn UserIdPawn
-  { get => Accessor.GetPlayerPawn("userid"); }
+    // player who rescued the hostage
+    public CCSPlayerPawn UserIdPawn
+    { get => Accessor.GetPlayerPawn("userid"); }
 
-  // player who rescued the hostage
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
+    // player who rescued the hostage
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  // player who rescued the hostage
-  public int UserId
-  { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
+    // player who rescued the hostage
+    public int UserId
+    { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
-  // hostage entity index
-  public short Hostage
-  { get => (short)Accessor.GetInt32("hostage"); set => Accessor.SetInt32("hostage", value); }
+    // hostage entity index
+    public short Hostage
+    { get => (short)Accessor.GetInt32("hostage"); set => Accessor.SetInt32("hostage", value); }
 
-  // rescue site index
-  public short Site
-  { get => (short)Accessor.GetInt32("site"); set => Accessor.SetInt32("site", value); }
+    // rescue site index
+    public short Site
+    { get => (short)Accessor.GetInt32("site"); set => Accessor.SetInt32("site", value); }
 }

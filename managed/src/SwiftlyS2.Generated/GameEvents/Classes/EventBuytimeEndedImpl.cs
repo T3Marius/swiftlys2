@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "buytime_ended"
 /// </summary>
 internal class EventBuytimeEndedImpl : GameEvent<EventBuytimeEnded>, EventBuytimeEnded
 {
 
-  public EventBuytimeEndedImpl(nint address) : base(address)
-  {
-  }
+    public EventBuytimeEndedImpl(nint address) : base(address)
+    {
+    }
 }

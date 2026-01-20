@@ -21,11 +21,11 @@ internal partial class CTriggerGameEventImpl : CBaseTriggerImpl, CTriggerGameEve
     public string StrStartTouchEventName {
         get {
             _StrStartTouchEventNameOffset = _StrStartTouchEventNameOffset ?? Schema.GetOffset(0xF8B194884B1EB67A);
-            return Schema.GetString(_Handle.Read<nint>(_StrStartTouchEventNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrStartTouchEventNameOffset!.Value));
         }
         set {
             _StrStartTouchEventNameOffset = _StrStartTouchEventNameOffset ?? Schema.GetOffset(0xF8B194884B1EB67A);
-            Schema.SetString(_Handle, _StrStartTouchEventNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrStartTouchEventNameOffset!.Value, value);
         }
     } 
     private static nint? _StrEndTouchEventNameOffset;
@@ -33,11 +33,11 @@ internal partial class CTriggerGameEventImpl : CBaseTriggerImpl, CTriggerGameEve
     public string StrEndTouchEventName {
         get {
             _StrEndTouchEventNameOffset = _StrEndTouchEventNameOffset ?? Schema.GetOffset(0xF8B194886EDE6893);
-            return Schema.GetString(_Handle.Read<nint>(_StrEndTouchEventNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrEndTouchEventNameOffset!.Value));
         }
         set {
             _StrEndTouchEventNameOffset = _StrEndTouchEventNameOffset ?? Schema.GetOffset(0xF8B194886EDE6893);
-            Schema.SetString(_Handle, _StrEndTouchEventNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrEndTouchEventNameOffset!.Value, value);
         }
     } 
     private static nint? _StrTriggerIDOffset;
@@ -45,11 +45,11 @@ internal partial class CTriggerGameEventImpl : CBaseTriggerImpl, CTriggerGameEve
     public string StrTriggerID {
         get {
             _StrTriggerIDOffset = _StrTriggerIDOffset ?? Schema.GetOffset(0xF8B19488EA731D41);
-            return Schema.GetString(_Handle.Read<nint>(_StrTriggerIDOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrTriggerIDOffset!.Value));
         }
         set {
             _StrTriggerIDOffset = _StrTriggerIDOffset ?? Schema.GetOffset(0xF8B19488EA731D41);
-            Schema.SetString(_Handle, _StrTriggerIDOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrTriggerIDOffset!.Value, value);
         }
     } 
 

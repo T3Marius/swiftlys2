@@ -21,11 +21,11 @@ internal partial class CMorphConstraintImpl : CBaseConstraintImpl, CMorphConstra
     public string TargetMorph {
         get {
             _TargetMorphOffset = _TargetMorphOffset ?? Schema.GetOffset(0xC24859C39FF7D337);
-            return Schema.GetString(_Handle.Read<nint>(_TargetMorphOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TargetMorphOffset!.Value));
         }
         set {
             _TargetMorphOffset = _TargetMorphOffset ?? Schema.GetOffset(0xC24859C39FF7D337);
-            Schema.SetString(_Handle, _TargetMorphOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TargetMorphOffset!.Value, value);
         }
     } 
     private static nint? _SlaveChannelOffset;

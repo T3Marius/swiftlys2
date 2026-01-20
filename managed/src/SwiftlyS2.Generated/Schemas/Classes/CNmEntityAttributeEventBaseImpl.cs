@@ -21,11 +21,11 @@ internal partial class CNmEntityAttributeEventBaseImpl : CNmEventImpl, CNmEntity
     public string AttributeName {
         get {
             _AttributeNameOffset = _AttributeNameOffset ?? Schema.GetOffset(0x92D29AE99168F02C);
-            return Schema.GetString(_Handle.Read<nint>(_AttributeNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttributeNameOffset!.Value));
         }
         set {
             _AttributeNameOffset = _AttributeNameOffset ?? Schema.GetOffset(0x92D29AE99168F02C);
-            Schema.SetString(_Handle, _AttributeNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttributeNameOffset!.Value, value);
         }
     } 
 

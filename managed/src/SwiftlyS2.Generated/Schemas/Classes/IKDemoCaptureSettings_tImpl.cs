@@ -21,11 +21,11 @@ internal partial class IKDemoCaptureSettings_tImpl : SchemaClass, IKDemoCaptureS
     public string ParentBoneName {
         get {
             _ParentBoneNameOffset = _ParentBoneNameOffset ?? Schema.GetOffset(0x6D63001A95A4F804);
-            return Schema.GetString(_Handle.Read<nint>(_ParentBoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ParentBoneNameOffset!.Value));
         }
         set {
             _ParentBoneNameOffset = _ParentBoneNameOffset ?? Schema.GetOffset(0x6D63001A95A4F804);
-            Schema.SetString(_Handle, _ParentBoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ParentBoneNameOffset!.Value, value);
         }
     } 
     private static nint? _ModeOffset;
@@ -41,11 +41,11 @@ internal partial class IKDemoCaptureSettings_tImpl : SchemaClass, IKDemoCaptureS
     public string IkChainName {
         get {
             _IkChainNameOffset = _IkChainNameOffset ?? Schema.GetOffset(0x6D63001A50E152ED);
-            return Schema.GetString(_Handle.Read<nint>(_IkChainNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_IkChainNameOffset!.Value));
         }
         set {
             _IkChainNameOffset = _IkChainNameOffset ?? Schema.GetOffset(0x6D63001A50E152ED);
-            Schema.SetString(_Handle, _IkChainNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _IkChainNameOffset!.Value, value);
         }
     } 
     private static nint? _OneBoneStartOffset;
@@ -53,11 +53,11 @@ internal partial class IKDemoCaptureSettings_tImpl : SchemaClass, IKDemoCaptureS
     public string OneBoneStart {
         get {
             _OneBoneStartOffset = _OneBoneStartOffset ?? Schema.GetOffset(0x6D63001A95ADD82F);
-            return Schema.GetString(_Handle.Read<nint>(_OneBoneStartOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OneBoneStartOffset!.Value));
         }
         set {
             _OneBoneStartOffset = _OneBoneStartOffset ?? Schema.GetOffset(0x6D63001A95ADD82F);
-            Schema.SetString(_Handle, _OneBoneStartOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OneBoneStartOffset!.Value, value);
         }
     } 
     private static nint? _OneBoneEndOffset;
@@ -65,11 +65,11 @@ internal partial class IKDemoCaptureSettings_tImpl : SchemaClass, IKDemoCaptureS
     public string OneBoneEnd {
         get {
             _OneBoneEndOffset = _OneBoneEndOffset ?? Schema.GetOffset(0x6D63001AE57D0DBA);
-            return Schema.GetString(_Handle.Read<nint>(_OneBoneEndOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OneBoneEndOffset!.Value));
         }
         set {
             _OneBoneEndOffset = _OneBoneEndOffset ?? Schema.GetOffset(0x6D63001AE57D0DBA);
-            Schema.SetString(_Handle, _OneBoneEndOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OneBoneEndOffset!.Value, value);
         }
     } 
 

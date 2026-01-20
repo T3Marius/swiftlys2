@@ -29,11 +29,11 @@ internal partial class CPulseCell_Inflow_MethodImpl : CPulseCell_Inflow_BaseEntr
     public string Description {
         get {
             _DescriptionOffset = _DescriptionOffset ?? Schema.GetOffset(0xFB592655678744E9);
-            return Schema.GetString(_Handle.Read<nint>(_DescriptionOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DescriptionOffset!.Value));
         }
         set {
             _DescriptionOffset = _DescriptionOffset ?? Schema.GetOffset(0xFB592655678744E9);
-            Schema.SetString(_Handle, _DescriptionOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DescriptionOffset!.Value, value);
         }
     } 
     private static nint? _IsPublicOffset;

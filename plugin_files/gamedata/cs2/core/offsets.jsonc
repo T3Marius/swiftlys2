@@ -179,5 +179,12 @@
     "CBaseEntity::EndTouch": {
         "windows": 155,
         "linux": 154
+    },
+    /*
+    By tracing the calls in cstrike15_src
+    */
+    "CGameRules::GetViewVectors": {
+        "windows": 32,
+        "linux": 33
     }
 }

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -168,4 +169,80 @@ public struct Vector
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool operator !=( Vector a, Vector b ) => a.X != b.X || a.Y != b.Y || a.Z != b.Z;
+
+    /// <summary>
+    /// Serializes the vector to a string.
+    /// Example return: "100 200 300"
+    /// </summary>
+    /// <param name="formatProvider">Format provider to use for the string. Null for default provider.</param>
+    /// <returns>Serialized vector in string.</returns>
+    public readonly string Serialize( IFormatProvider? formatProvider = null )
+    {
+        return $"{X.ToString(formatProvider)} {Y.ToString(formatProvider)} {Z.ToString(formatProvider)}";
+    }
+
+    /// <summary>
+    /// Deserializes the vector from a string.
+    /// Example input: "100 200 300"
+    /// </summary>
+    /// <exception cref="FormatException">Thrown when the input string is not in the correct format.</exception>
+    /// <param name="input">Serialized vector in string.</param>
+    /// <param name="formatProvider">Format provider to use for the string. Null for default provider.</param>
+    /// <returns>Deserialized vector.</returns>
+    public static Vector Deserialize( string input, IFormatProvider? formatProvider = null )
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            throw new FormatException("Input string is null or whitespace.");
+
+        var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length != 3)
+        {
+            throw new FormatException("Invalid vector string format. Expected format: 'x y z'");
+        }
+        return new Vector(float.Parse(parts[0], formatProvider), float.Parse(parts[1], formatProvider), float.Parse(parts[2], formatProvider));
+    }
+
+    /// <summary>
+    /// Tries to deserialize the vector from a string.
+    /// Example input: "100 200 300"
+    /// </summary>
+    /// <param name="input">Serialized vector in string.</param>
+    /// <param name="vector">Deserialized vector.</param>
+    /// <returns>True if the deserialization was successful, false otherwise.</returns>
+    public static bool TryDeserialize( [NotNullWhen(true)] string? input, out Vector vector )
+    {
+        return TryDeserialize(input, null, out vector);
+    }
+
+    /// <summary>
+    /// Tries to deserialize the vector from a string.
+    /// Example input: "100 200 300"
+    /// </summary>
+    /// <param name="input">Serialized vector in string.</param>
+    /// <param name="formatProvider">Format provider to use for the string. Null for default provider.</param>
+    /// <param name="vector">Deserialized vector.</param>
+    /// <returns>True if the deserialization was successful, false otherwise.</returns>
+    public static bool TryDeserialize( [NotNullWhen(true)] string? input, IFormatProvider? formatProvider, out Vector vector )
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            vector = Zero;
+            return false;
+        }
+        var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length != 3)
+        {
+            vector = Zero;
+            return false;
+        }
+        if (float.TryParse(parts[0], formatProvider, out var x) && float.TryParse(parts[1], formatProvider, out var y) && float.TryParse(parts[2], formatProvider, out var z))
+        {
+            vector = new Vector(x, y, z);
+            return true;
+        }
+        vector = Zero;
+        return false;
+    }
+
+
 }

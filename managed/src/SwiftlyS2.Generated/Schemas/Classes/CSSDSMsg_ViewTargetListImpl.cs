@@ -29,11 +29,11 @@ internal partial class CSSDSMsg_ViewTargetListImpl : SchemaClass, CSSDSMsg_ViewT
     public string ViewName {
         get {
             _ViewNameOffset = _ViewNameOffset ?? Schema.GetOffset(0xD53B3083BA5BBDBB);
-            return Schema.GetString(_Handle.Read<nint>(_ViewNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ViewNameOffset!.Value));
         }
         set {
             _ViewNameOffset = _ViewNameOffset ?? Schema.GetOffset(0xD53B3083BA5BBDBB);
-            Schema.SetString(_Handle, _ViewNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ViewNameOffset!.Value, value);
         }
     } 
     private static nint? _TargetsOffset;

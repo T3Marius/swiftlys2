@@ -21,11 +21,11 @@ internal partial class CBtActionCombatPositioningImpl : CBtNodeImpl, CBtActionCo
     public string SensorInputKey {
         get {
             _SensorInputKeyOffset = _SensorInputKeyOffset ?? Schema.GetOffset(0x3FB29123D2B0D4C1);
-            return Schema.GetString(_Handle.Read<nint>(_SensorInputKeyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SensorInputKeyOffset!.Value));
         }
         set {
             _SensorInputKeyOffset = _SensorInputKeyOffset ?? Schema.GetOffset(0x3FB29123D2B0D4C1);
-            Schema.SetString(_Handle, _SensorInputKeyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SensorInputKeyOffset!.Value, value);
         }
     } 
     private static nint? _IsAttackingKeyOffset;
@@ -33,11 +33,11 @@ internal partial class CBtActionCombatPositioningImpl : CBtNodeImpl, CBtActionCo
     public string IsAttackingKey {
         get {
             _IsAttackingKeyOffset = _IsAttackingKeyOffset ?? Schema.GetOffset(0x3FB29123BFC6462B);
-            return Schema.GetString(_Handle.Read<nint>(_IsAttackingKeyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_IsAttackingKeyOffset!.Value));
         }
         set {
             _IsAttackingKeyOffset = _IsAttackingKeyOffset ?? Schema.GetOffset(0x3FB29123BFC6462B);
-            Schema.SetString(_Handle, _IsAttackingKeyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _IsAttackingKeyOffset!.Value, value);
         }
     } 
     private static nint? _ActionTimerOffset;

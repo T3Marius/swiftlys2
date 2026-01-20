@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "start_halftime"
 /// </summary>
-public interface EventStartHalftime : IGameEvent<EventStartHalftime> {
+public interface EventStartHalftime : IGameEvent<EventStartHalftime>
+{
 
-  static EventStartHalftime IGameEvent<EventStartHalftime>.Create(nint address) => new EventStartHalftimeImpl(address);
+    static EventStartHalftime IGameEvent<EventStartHalftime>.Create(nint address) => new EventStartHalftimeImpl(address);
 
-  static string IGameEvent<EventStartHalftime>.GetName() => "start_halftime";
+    static string IGameEvent<EventStartHalftime>.GetName() => "start_halftime";
 
-  static uint IGameEvent<EventStartHalftime>.GetHash() => 0xC0794EE0u;
+    static uint IGameEvent<EventStartHalftime>.GetHash() => 0xC0794EE0u;
 }

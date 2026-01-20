@@ -105,11 +105,11 @@ internal partial class CBaseGrenadeImpl : CBaseFlexImpl, CBaseGrenade
     public string ExplosionSound {
         get {
             _ExplosionSoundOffset = _ExplosionSoundOffset ?? Schema.GetOffset(0xB6ACD98FEA1C20EF);
-            return Schema.GetString(_Handle.Read<nint>(_ExplosionSoundOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ExplosionSoundOffset!.Value));
         }
         set {
             _ExplosionSoundOffset = _ExplosionSoundOffset ?? Schema.GetOffset(0xB6ACD98FEA1C20EF);
-            Schema.SetString(_Handle, _ExplosionSoundOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ExplosionSoundOffset!.Value, value);
         }
     } 
     private static nint? _ThrowerOffset;

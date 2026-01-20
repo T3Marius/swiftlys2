@@ -57,6 +57,8 @@ internal class Player : IPlayer
         Controller is { IsValid: true, IsHLTV: false, Connected: PlayerConnectedState.PlayerConnected } &&
         Pawn is { IsValid: true };
 
+    public bool IsAlive => IsValid && Pawn!.LifeState == (byte)LifeState_t.LIFE_ALIVE;
+
     public bool IsFirstSpawn => NativePlayer.IsFirstSpawn(Slot);
 
     Language IPlayer.PlayerLanguage => PlayerLanguage;

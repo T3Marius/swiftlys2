@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "achievement_write_failed"
 /// </summary>
-public interface EventAchievementWriteFailed : IGameEvent<EventAchievementWriteFailed> {
+public interface EventAchievementWriteFailed : IGameEvent<EventAchievementWriteFailed>
+{
 
-  static EventAchievementWriteFailed IGameEvent<EventAchievementWriteFailed>.Create(nint address) => new EventAchievementWriteFailedImpl(address);
+    static EventAchievementWriteFailed IGameEvent<EventAchievementWriteFailed>.Create(nint address) => new EventAchievementWriteFailedImpl(address);
 
-  static string IGameEvent<EventAchievementWriteFailed>.GetName() => "achievement_write_failed";
+    static string IGameEvent<EventAchievementWriteFailed>.GetName() => "achievement_write_failed";
 
-  static uint IGameEvent<EventAchievementWriteFailed>.GetHash() => 0x271251F8u;
+    static uint IGameEvent<EventAchievementWriteFailed>.GetHash() => 0x271251F8u;
 }

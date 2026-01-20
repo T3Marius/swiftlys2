@@ -21,11 +21,11 @@ internal partial class CFootDefinitionImpl : SchemaClass, CFootDefinition
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xAA3BA2A34D8F5786);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xAA3BA2A34D8F5786);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _AnkleBoneNameOffset;
@@ -33,11 +33,11 @@ internal partial class CFootDefinitionImpl : SchemaClass, CFootDefinition
     public string AnkleBoneName {
         get {
             _AnkleBoneNameOffset = _AnkleBoneNameOffset ?? Schema.GetOffset(0xAA3BA2A3A8A2DEF9);
-            return Schema.GetString(_Handle.Read<nint>(_AnkleBoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AnkleBoneNameOffset!.Value));
         }
         set {
             _AnkleBoneNameOffset = _AnkleBoneNameOffset ?? Schema.GetOffset(0xAA3BA2A3A8A2DEF9);
-            Schema.SetString(_Handle, _AnkleBoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AnkleBoneNameOffset!.Value, value);
         }
     } 
     private static nint? _ToeBoneNameOffset;
@@ -45,11 +45,11 @@ internal partial class CFootDefinitionImpl : SchemaClass, CFootDefinition
     public string ToeBoneName {
         get {
             _ToeBoneNameOffset = _ToeBoneNameOffset ?? Schema.GetOffset(0xAA3BA2A39C96209A);
-            return Schema.GetString(_Handle.Read<nint>(_ToeBoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ToeBoneNameOffset!.Value));
         }
         set {
             _ToeBoneNameOffset = _ToeBoneNameOffset ?? Schema.GetOffset(0xAA3BA2A39C96209A);
-            Schema.SetString(_Handle, _ToeBoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ToeBoneNameOffset!.Value, value);
         }
     } 
     private static nint? _BallOffsetOffset;

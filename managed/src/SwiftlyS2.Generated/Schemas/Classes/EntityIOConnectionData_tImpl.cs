@@ -21,11 +21,11 @@ internal partial class EntityIOConnectionData_tImpl : SchemaClass, EntityIOConne
     public string OutputName {
         get {
             _OutputNameOffset = _OutputNameOffset ?? Schema.GetOffset(0xDEBEBB4D5BFC85BF);
-            return Schema.GetString(_Handle.Read<nint>(_OutputNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OutputNameOffset!.Value));
         }
         set {
             _OutputNameOffset = _OutputNameOffset ?? Schema.GetOffset(0xDEBEBB4D5BFC85BF);
-            Schema.SetString(_Handle, _OutputNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OutputNameOffset!.Value, value);
         }
     } 
     private static nint? _TargetTypeOffset;
@@ -41,11 +41,11 @@ internal partial class EntityIOConnectionData_tImpl : SchemaClass, EntityIOConne
     public string TargetName {
         get {
             _TargetNameOffset = _TargetNameOffset ?? Schema.GetOffset(0xDEBEBB4DC58FE46B);
-            return Schema.GetString(_Handle.Read<nint>(_TargetNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TargetNameOffset!.Value));
         }
         set {
             _TargetNameOffset = _TargetNameOffset ?? Schema.GetOffset(0xDEBEBB4DC58FE46B);
-            Schema.SetString(_Handle, _TargetNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TargetNameOffset!.Value, value);
         }
     } 
     private static nint? _InputNameOffset;
@@ -53,11 +53,11 @@ internal partial class EntityIOConnectionData_tImpl : SchemaClass, EntityIOConne
     public string InputName {
         get {
             _InputNameOffset = _InputNameOffset ?? Schema.GetOffset(0xDEBEBB4D61478B20);
-            return Schema.GetString(_Handle.Read<nint>(_InputNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_InputNameOffset!.Value));
         }
         set {
             _InputNameOffset = _InputNameOffset ?? Schema.GetOffset(0xDEBEBB4D61478B20);
-            Schema.SetString(_Handle, _InputNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _InputNameOffset!.Value, value);
         }
     } 
     private static nint? _OverrideParamOffset;
@@ -65,11 +65,11 @@ internal partial class EntityIOConnectionData_tImpl : SchemaClass, EntityIOConne
     public string OverrideParam {
         get {
             _OverrideParamOffset = _OverrideParamOffset ?? Schema.GetOffset(0xDEBEBB4DB454EE6A);
-            return Schema.GetString(_Handle.Read<nint>(_OverrideParamOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OverrideParamOffset!.Value));
         }
         set {
             _OverrideParamOffset = _OverrideParamOffset ?? Schema.GetOffset(0xDEBEBB4DB454EE6A);
-            Schema.SetString(_Handle, _OverrideParamOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OverrideParamOffset!.Value, value);
         }
     } 
     private static nint? _DelayOffset;

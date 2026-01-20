@@ -21,11 +21,11 @@ internal partial class CFuncMonitorImpl : CFuncBrushImpl, CFuncMonitor
     public string TargetCamera {
         get {
             _TargetCameraOffset = _TargetCameraOffset ?? Schema.GetOffset(0x17F9564ADE5A6027);
-            return Schema.GetString(_Handle.Read<nint>(_TargetCameraOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TargetCameraOffset!.Value));
         }
         set {
             _TargetCameraOffset = _TargetCameraOffset ?? Schema.GetOffset(0x17F9564ADE5A6027);
-            Schema.SetString(_Handle, _TargetCameraOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TargetCameraOffset!.Value, value);
         }
     } 
     private static nint? _ResolutionEnumOffset;
@@ -57,11 +57,11 @@ internal partial class CFuncMonitorImpl : CFuncBrushImpl, CFuncMonitor
     public string BrushModelName {
         get {
             _BrushModelNameOffset = _BrushModelNameOffset ?? Schema.GetOffset(0x17F9564A85323213);
-            return Schema.GetString(_Handle.Read<nint>(_BrushModelNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BrushModelNameOffset!.Value));
         }
         set {
             _BrushModelNameOffset = _BrushModelNameOffset ?? Schema.GetOffset(0x17F9564A85323213);
-            Schema.SetString(_Handle, _BrushModelNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BrushModelNameOffset!.Value, value);
         }
     } 
     private static nint? _TargetCamera1Offset;

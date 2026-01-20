@@ -21,11 +21,11 @@ internal partial class CMaterialAttributeAnimTagImpl : CAnimTagBaseImpl, CMateri
     public string AttributeName {
         get {
             _AttributeNameOffset = _AttributeNameOffset ?? Schema.GetOffset(0x509D90A81408864C);
-            return Schema.GetString(_Handle.Read<nint>(_AttributeNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttributeNameOffset!.Value));
         }
         set {
             _AttributeNameOffset = _AttributeNameOffset ?? Schema.GetOffset(0x509D90A81408864C);
-            Schema.SetString(_Handle, _AttributeNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttributeNameOffset!.Value, value);
         }
     } 
     private static nint? _AttributeTypeOffset;

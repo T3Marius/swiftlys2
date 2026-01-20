@@ -56,13 +56,8 @@ internal class PluginManager : IPluginManager
         };
         this.fileWatcher.Changed += ( sender, e ) =>
         {
-            static async Task WaitForFileAccess( CancellationToken token, string filePath, int maxRetries = 10, int initialDelayMs = 50, ILogger<PluginManager> logger = null )
+            static async Task WaitForFileAccess( CancellationToken token, string filePath, int maxRetries = 10, int initialDelayMs = 50, ILogger<PluginManager>? logger = null )
             {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                {
-                    logger.LogWarning("Detected Linux OS, a 5 second delay for reload.");
-                    await Task.Delay(5000, token);
-                }
                 for (var i = 1; i <= maxRetries && !token.IsCancellationRequested; i++)
                 {
                     try
@@ -139,8 +134,21 @@ internal class PluginManager : IPluginManager
                     {
                         try
                         {
+                            var wait = 300;
+                            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                            {
+                                wait = 5000;
+                                logger.LogWarning("Detected Linux OS, a 5 second delay for reload.");
+                            }
+                            await Task.Delay(wait, cts.Token);
+
                             await WaitForFileAccess(cts.Token, e.FullPath, logger: logger);
-                            Console.WriteLine("\n");
+                            var pdbFile = Path.ChangeExtension(e.FullPath, ".pdb");
+                            if (File.Exists(pdbFile))
+                            {
+                                await WaitForFileAccess(cts.Token, pdbFile, logger: logger);
+                            }
+
                             if (ReloadPluginByDllName(directoryName, true))
                             {
                                 logger.LogInformation("Reloaded plugin: {Format}", directoryName);
@@ -149,7 +157,6 @@ internal class PluginManager : IPluginManager
                             {
                                 logger.LogWarning("Failed to reload plugin: {Format}", directoryName);
                             }
-                            Console.WriteLine("\n");
                         }
                         catch (Exception ex)
                         {
@@ -168,6 +175,127 @@ internal class PluginManager : IPluginManager
                     return;
                 }
                 logger.LogError(ex, "Failed to handle plugin change");
+            }
+        };
+
+        this.fileWatcher.Created += ( sender, e ) =>
+        {
+            static async Task WaitForFileAccess( CancellationToken token, string filePath, int maxRetries = 10, int initialDelayMs = 50 )
+            {
+                for (var i = 1; i <= maxRetries && !token.IsCancellationRequested; i++)
+                {
+                    try
+                    {
+                        using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                        break;
+                    }
+                    catch (IOException)
+                    {
+                        if (i < maxRetries)
+                        {
+                            await Task.Delay(initialDelayMs * (1 << (i - 1)), token);
+                        }
+                        continue;
+                    }
+                    catch (Exception)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            try
+            {
+                if (!NativeServerHelpers.UseAutoHotReload() || e.ChangeType != WatcherChangeTypes.Created)
+                {
+                    return;
+                }
+
+                var pluginDirectory = Path.GetDirectoryName(e.FullPath) ?? string.Empty;
+                var directoryName = Path.GetFileName(pluginDirectory) ?? string.Empty;
+                var fileName = Path.GetFileNameWithoutExtension(e.FullPath);
+
+                if (string.IsNullOrWhiteSpace(directoryName) || !fileName.Equals(directoryName))
+                {
+                    return;
+                }
+
+                // Check if this plugin already exists
+                var existingContext = plugins.Find(x => pluginDirectory.Equals(x.PluginDirectory, StringComparison.CurrentCultureIgnoreCase));
+                if (existingContext != null)
+                {
+                    logger.LogInformation("Plugin already loaded, skipping: {name}", directoryName);
+                    return;
+                }
+
+                var cts = new CancellationTokenSource();
+
+                // Wait for file to be accessible, then load the new plugin
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        var wait = 300;
+                        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                        {
+                            wait = 5000;
+                            logger.LogWarning("Detected Linux OS, a 5 second delay for loading new plugin.");
+                        }
+                        await Task.Delay(wait, cts.Token);
+
+                        await WaitForFileAccess(cts.Token, e.FullPath);
+                        var pdbFile = Path.ChangeExtension(e.FullPath, ".pdb");
+                        if (File.Exists(pdbFile))
+                        {
+                            await WaitForFileAccess(cts.Token, pdbFile);
+                        }
+
+                        // Load the new plugin
+                        var context = LoadPlugin(pluginDirectory, false, silent: false);
+                        if (context?.Status == PluginStatus.Loaded)
+                        {
+                            var relativePath = Path.GetRelativePath(rootDirService.GetRoot(), pluginDirectory);
+                            var displayPath = Path.Join("(swRoot)", relativePath);
+
+                            logger.LogInformation(
+                                string.Join("\n", [
+                                    "Hot-loaded New Plugin",
+                                    "├─  {Id} {Version}",
+                                    "├─  Author: {Author}",
+                                    "└─  Path: {RelativePath}"
+                                ]),
+                                context.Metadata!.Id,
+                                context.Metadata!.Version,
+                                context.Metadata!.Author,
+                                displayPath
+                            );
+                        }
+                        else
+                        {
+                            logger.LogWarning("Failed to hot-load new plugin: {Format}", directoryName);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        if (GlobalExceptionHandler.Handle(ex))
+                        {
+                            AnsiConsole.WriteException(ex);
+                        }
+                        logger.LogError(ex, "Failed to hot-load new plugin: {Format}", directoryName);
+                    }
+                    finally
+                    {
+                        cts.Dispose();
+                    }
+                }, cts.Token);
+            }
+            catch (Exception ex)
+            {
+                if (!GlobalExceptionHandler.Handle(ex))
+                {
+                    return;
+                }
+                logger.LogError(ex, "Failed to handle new plugin creation");
             }
         };
 
@@ -245,7 +373,7 @@ internal class PluginManager : IPluginManager
         return foundDir;
     }
 
-    public bool UnloadPluginById( string id, bool silent = false )
+    public bool UnloadPluginById( string id, bool silent = false, bool rebuild = true )
     {
         var context = plugins
             .Where(p => p.Status != PluginStatus.Unloaded)
@@ -262,19 +390,19 @@ internal class PluginManager : IPluginManager
         catch
         {
             logger.LogWarning("Failed to unload plugin by id: {Id}", id);
-            if (context != null)
-            {
-                context.Status = PluginStatus.Indeterminate;
-            }
+            context!.Status = PluginStatus.Indeterminate;
             return false;
         }
         finally
         {
-            RebuildSharedServices();
+            if (rebuild)
+            {
+                RebuildSharedServices();
+            }
         }
     }
 
-    public bool UnloadPluginByDllName( string dllName, bool silent = false )
+    public bool UnloadPluginByDllName( string dllName, bool silent = false, bool rebuild = true )
     {
         var pluginDir = FindPluginDirectoryByDllName(dllName);
         if (string.IsNullOrWhiteSpace(pluginDir))
@@ -293,7 +421,7 @@ internal class PluginManager : IPluginManager
             return false;
         }
 
-        return UnloadPluginById(context.Metadata.Id, silent);
+        return UnloadPluginById(context.Metadata.Id, silent, rebuild);
     }
 
     public bool LoadPluginById( string id, bool silent = false )
@@ -327,6 +455,7 @@ internal class PluginManager : IPluginManager
         PluginContext? newContext = null;
         try
         {
+            // If plugin exists and is not loaded, reload it
             if (oldContext != null && plugins.Remove(oldContext))
             {
                 newContext = LoadPlugin(pluginDir, true, silent);
@@ -335,6 +464,19 @@ internal class PluginManager : IPluginManager
                     if (!silent)
                     {
                         logger.LogInformation("Loaded plugin: {Id}", newContext.Metadata!.Id);
+                    }
+                    return true;
+                }
+            }
+            // If plugin doesn't exist in the list, it's a new plugin - load it
+            else if (oldContext == null)
+            {
+                newContext = LoadPlugin(pluginDir, false, silent);
+                if (newContext?.Status == PluginStatus.Loaded)
+                {
+                    if (!silent)
+                    {
+                        logger.LogInformation("Loaded new plugin: {Id}", newContext.Metadata!.Id);
                     }
                     return true;
                 }
@@ -348,10 +490,6 @@ internal class PluginManager : IPluginManager
                 return false;
             }
             logger.LogWarning(e, "Failed to load plugin by name: {Path}", pluginDir);
-            if (newContext != null)
-            {
-                newContext.Status = PluginStatus.Indeterminate;
-            }
             return false;
         }
         finally
@@ -362,13 +500,13 @@ internal class PluginManager : IPluginManager
 
     public bool ReloadPluginById( string id, bool silent = false )
     {
-        _ = UnloadPluginById(id, silent);
+        _ = UnloadPluginById(id, silent, false);
         return LoadPluginById(id, silent);
     }
 
     public bool ReloadPluginByDllName( string dllName, bool silent = false )
     {
-        _ = UnloadPluginByDllName(dllName, silent);
+        _ = UnloadPluginByDllName(dllName, silent: true, rebuild: false);
         return LoadPluginByDllName(dllName, silent);
     }
 
@@ -457,7 +595,6 @@ internal class PluginManager : IPluginManager
             var dllName = Path.GetFileName(pluginDir);
             var fullDisplayPath = string.IsNullOrWhiteSpace(displayPath) ? string.Empty : $"{Path.Join(displayPath, dllName)}.dll";
 
-            Console.WriteLine(string.Empty);
             logger.LogInformation("Loading plugin: {Path}", fullDisplayPath);
 
             try
@@ -491,8 +628,6 @@ internal class PluginManager : IPluginManager
                 }
                 logger.LogWarning(e, "Failed to load plugin: {Path}", fullDisplayPath);
             }
-
-            Console.WriteLine(string.Empty);
         });
 
         RebuildSharedServices();

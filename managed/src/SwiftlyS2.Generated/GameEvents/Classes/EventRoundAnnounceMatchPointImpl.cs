@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "round_announce_match_point"
 /// </summary>
 internal class EventRoundAnnounceMatchPointImpl : GameEvent<EventRoundAnnounceMatchPoint>, EventRoundAnnounceMatchPoint
 {
 
-  public EventRoundAnnounceMatchPointImpl(nint address) : base(address)
-  {
-  }
+    public EventRoundAnnounceMatchPointImpl(nint address) : base(address)
+    {
+    }
 }

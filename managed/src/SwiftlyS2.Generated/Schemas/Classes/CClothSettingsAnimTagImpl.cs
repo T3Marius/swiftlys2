@@ -45,11 +45,11 @@ internal partial class CClothSettingsAnimTagImpl : CAnimTagBaseImpl, CClothSetti
     public string VertexSet {
         get {
             _VertexSetOffset = _VertexSetOffset ?? Schema.GetOffset(0xF6B586863EE1A571);
-            return Schema.GetString(_Handle.Read<nint>(_VertexSetOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_VertexSetOffset!.Value));
         }
         set {
             _VertexSetOffset = _VertexSetOffset ?? Schema.GetOffset(0xF6B586863EE1A571);
-            Schema.SetString(_Handle, _VertexSetOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _VertexSetOffset!.Value, value);
         }
     } 
 

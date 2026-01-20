@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "round_start_post_nav"
 /// </summary>
 internal class EventRoundStartPostNavImpl : GameEvent<EventRoundStartPostNav>, EventRoundStartPostNav
 {
 
-  public EventRoundStartPostNavImpl(nint address) : base(address)
-  {
-  }
+    public EventRoundStartPostNavImpl(nint address) : base(address)
+    {
+    }
 }

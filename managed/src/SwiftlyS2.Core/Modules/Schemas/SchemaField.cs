@@ -5,13 +5,12 @@ namespace SwiftlyS2.Core.Schemas;
 
 internal abstract class SchemaField : NativeHandle, ISchemaField
 {
-    public nint FieldOffset { get; set; }
 
     private ulong _hash { get; set; } = 0;
 
-    public SchemaField( nint handle, ulong hash ) : base(handle)
+    public SchemaField( nint handle, ulong hash ) : base(handle + Schema.GetOffset(hash))
     {
-        FieldOffset = Schema.GetOffset(hash);
         _hash = hash;
     }
+
 }

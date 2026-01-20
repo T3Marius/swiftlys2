@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "write_profile_data"
 /// </summary>
-public interface EventWriteProfileData : IGameEvent<EventWriteProfileData> {
+public interface EventWriteProfileData : IGameEvent<EventWriteProfileData>
+{
 
-  static EventWriteProfileData IGameEvent<EventWriteProfileData>.Create(nint address) => new EventWriteProfileDataImpl(address);
+    static EventWriteProfileData IGameEvent<EventWriteProfileData>.Create(nint address) => new EventWriteProfileDataImpl(address);
 
-  static string IGameEvent<EventWriteProfileData>.GetName() => "write_profile_data";
+    static string IGameEvent<EventWriteProfileData>.GetName() => "write_profile_data";
 
-  static uint IGameEvent<EventWriteProfileData>.GetHash() => 0x56158E97u;
+    static uint IGameEvent<EventWriteProfileData>.GetHash() => 0x56158E97u;
 }

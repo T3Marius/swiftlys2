@@ -5,46 +5,65 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "vip_killed"
 /// </summary>
-public interface EventVipKilled : IGameEvent<EventVipKilled> {
+public interface EventVipKilled : IGameEvent<EventVipKilled>
+{
 
-  static EventVipKilled IGameEvent<EventVipKilled>.Create(nint address) => new EventVipKilledImpl(address);
+    static EventVipKilled IGameEvent<EventVipKilled>.Create(nint address) => new EventVipKilledImpl(address);
 
-  static string IGameEvent<EventVipKilled>.GetName() => "vip_killed";
+    static string IGameEvent<EventVipKilled>.GetName() => "vip_killed";
 
-  static uint IGameEvent<EventVipKilled>.GetHash() => 0x21FB59C8u;
-  /// <summary>
-  /// player who was the VIP
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventVipKilled>.GetHash() => 0x21FB59C8u;
 
-  /// <summary>
-  /// player who was the VIP
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// player who was the VIP
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// player who was the VIP
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  // player who was the VIP
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// player who was the VIP
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int UserId { get; set; }
+    // player who was the VIP
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// user ID who killed the VIP
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int Attacker { get; set; }
+    /// <summary>
+    /// player who was the VIP
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int UserId { get; set; }
 
+    /// <summary>
+    /// user ID who killed the VIP
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController AttackerController { get; }
+
+    /// <summary>
+    /// user ID who killed the VIP
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn AttackerPawn { get; }
+
+    // user ID who killed the VIP
+    public IPlayer? AttackerPlayer
+    { get => Accessor.GetPlayer("attacker"); }
+
+    /// <summary>
+    /// user ID who killed the VIP
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int Attacker { get; set; }
 }

@@ -41,6 +41,12 @@ internal sealed class MenuDesignAPI : IMenuDesignAPI
         return builder;
     }
 
+    public IMenuBuilderAPI SetCommentVisible( bool visible = true )
+    {
+        configuration.HideComment = !visible;
+        return builder;
+    }
+
     public IMenuBuilderAPI SetMaxVisibleItems( int count = 5 )
     {
         configuration.MaxVisibleItems = count;
@@ -134,6 +140,12 @@ internal sealed class MenuDesignAPI : IMenuDesignAPI
     public IMenuBuilderAPI SetDisabledColor( System.Drawing.Color color )
     {
         configuration.DisabledColor = $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+        return builder;
+    }
+
+    public IMenuBuilderAPI SetDefaultComment( string comment )
+    {
+        configuration.DefaultComment = comment;
         return builder;
     }
 

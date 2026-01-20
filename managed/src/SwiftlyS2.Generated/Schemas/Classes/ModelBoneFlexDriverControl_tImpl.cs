@@ -29,11 +29,11 @@ internal partial class ModelBoneFlexDriverControl_tImpl : SchemaClass, ModelBone
     public string FlexController {
         get {
             _FlexControllerOffset = _FlexControllerOffset ?? Schema.GetOffset(0x7DDCB341EDF88AAA);
-            return Schema.GetString(_Handle.Read<nint>(_FlexControllerOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_FlexControllerOffset!.Value));
         }
         set {
             _FlexControllerOffset = _FlexControllerOffset ?? Schema.GetOffset(0x7DDCB341EDF88AAA);
-            Schema.SetString(_Handle, _FlexControllerOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _FlexControllerOffset!.Value, value);
         }
     } 
     private static nint? _FlexControllerTokenOffset;

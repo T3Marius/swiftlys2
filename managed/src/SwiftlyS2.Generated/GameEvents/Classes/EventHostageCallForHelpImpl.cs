@@ -7,17 +7,17 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "hostage_call_for_help"
 /// </summary>
 internal class EventHostageCallForHelpImpl : GameEvent<EventHostageCallForHelp>, EventHostageCallForHelp
 {
 
-  public EventHostageCallForHelpImpl(nint address) : base(address)
-  {
-  }
+    public EventHostageCallForHelpImpl(nint address) : base(address)
+    {
+    }
 
-  // hostage entity index
-  public short Hostage
-  { get => (short)Accessor.GetInt32("hostage"); set => Accessor.SetInt32("hostage", value); }
+    // hostage entity index
+    public short Hostage
+    { get => (short)Accessor.GetInt32("hostage"); set => Accessor.SetInt32("hostage", value); }
 }

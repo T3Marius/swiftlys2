@@ -141,11 +141,11 @@ internal partial class CBreakablePropImpl : CBasePropImpl, CBreakableProp
     public string StrBreakableContentsPropGroupOverride {
         get {
             _StrBreakableContentsPropGroupOverrideOffset = _StrBreakableContentsPropGroupOverrideOffset ?? Schema.GetOffset(0xD9F5AF34FEDC11AB);
-            return Schema.GetString(_Handle.Read<nint>(_StrBreakableContentsPropGroupOverrideOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrBreakableContentsPropGroupOverrideOffset!.Value));
         }
         set {
             _StrBreakableContentsPropGroupOverrideOffset = _StrBreakableContentsPropGroupOverrideOffset ?? Schema.GetOffset(0xD9F5AF34FEDC11AB);
-            Schema.SetString(_Handle, _StrBreakableContentsPropGroupOverrideOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrBreakableContentsPropGroupOverrideOffset!.Value, value);
         }
     } 
     private static nint? _StrBreakableContentsParticleOverrideOffset;
@@ -153,11 +153,11 @@ internal partial class CBreakablePropImpl : CBasePropImpl, CBreakableProp
     public string StrBreakableContentsParticleOverride {
         get {
             _StrBreakableContentsParticleOverrideOffset = _StrBreakableContentsParticleOverrideOffset ?? Schema.GetOffset(0xD9F5AF3461C07367);
-            return Schema.GetString(_Handle.Read<nint>(_StrBreakableContentsParticleOverrideOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrBreakableContentsParticleOverrideOffset!.Value));
         }
         set {
             _StrBreakableContentsParticleOverrideOffset = _StrBreakableContentsParticleOverrideOffset ?? Schema.GetOffset(0xD9F5AF3461C07367);
-            Schema.SetString(_Handle, _StrBreakableContentsParticleOverrideOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrBreakableContentsParticleOverrideOffset!.Value, value);
         }
     } 
     private static nint? _HasBreakPiecesOrCommandsOffset;

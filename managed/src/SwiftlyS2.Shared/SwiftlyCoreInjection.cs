@@ -19,14 +19,14 @@ public class SwiftlyOptionsFactory<T> : IOptionsFactory<T> where T : class, new(
     public SwiftlyOptionsFactory(
         IEnumerable<IConfigureOptions<T>> setups,
         IEnumerable<IPostConfigureOptions<T>> postConfigures,
-        IEnumerable<IValidateOptions<T>> validations)
+        IEnumerable<IValidateOptions<T>> validations )
     {
         _setups = setups;
         _postConfigures = postConfigures;
         _validations = validations;
     }
 
-    public T Create(string name)
+    public T Create( string name )
     {
         var options = new T();
         var boundConfig = TryGetBoundConfiguration();
@@ -85,7 +85,7 @@ public class SwiftlyOptionsFactory<T> : IOptionsFactory<T> where T : class, new(
         return null;
     }
 
-    private static string? ExtractSectionPath(object closure)
+    private static string? ExtractSectionPath( object closure )
     {
         foreach (var field in closure.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
         {
@@ -101,12 +101,12 @@ public class SwiftlyOptionsFactory<T> : IOptionsFactory<T> where T : class, new(
     /// <summary>
     /// Clears all collections before Bind() to prevent merge behavior.
     /// </summary>
-    private static void ClearCollectionDefaults(object instance, IConfiguration config)
+    private static void ClearCollectionDefaults( object instance, IConfiguration config )
     {
         ClearCollectionsRecursive(instance, config);
     }
 
-    private static void ClearCollectionsRecursive(object current, IConfiguration config)
+    private static void ClearCollectionsRecursive( object current, IConfiguration config )
     {
         foreach (var prop in current.GetType().GetProperties())
         {
@@ -120,17 +120,13 @@ public class SwiftlyOptionsFactory<T> : IOptionsFactory<T> where T : class, new(
 
             if (currentValue is System.Collections.IDictionary dict)
             {
-                // If config specifies this dictionary, clear it completely
-                if (hasConfigValue)
-                    dict.Clear();
+                dict.Clear();
             }
-            else if (currentValue is System.Collections.IList list)
+            else if (currentValue is System.Collections.IList list && !prop.PropertyType.IsArray)
             {
-                // If config specifies this list, clear it completely
-                if (hasConfigValue)
-                    list.Clear();
+                list.Clear();
             }
-            else if (!IsSimpleType(prop.PropertyType) && prop.PropertyType.IsClass)
+            else if (!IsSimpleType(prop.PropertyType) && prop.PropertyType.IsClass && !prop.PropertyType.IsArray)
             {
                 // Recurse into nested objects
                 ClearCollectionsRecursive(currentValue, section);
@@ -138,7 +134,7 @@ public class SwiftlyOptionsFactory<T> : IOptionsFactory<T> where T : class, new(
         }
     }
 
-    private static bool IsSimpleType(Type type) =>
+    private static bool IsSimpleType( Type type ) =>
         type.IsPrimitive || type.IsEnum || type == typeof(string) || type == typeof(decimal) ||
         type == typeof(DateTime) || type == typeof(DateTimeOffset) || type == typeof(TimeSpan) ||
         type == typeof(Guid) || Nullable.GetUnderlyingType(type) != null;
@@ -146,7 +142,7 @@ public class SwiftlyOptionsFactory<T> : IOptionsFactory<T> where T : class, new(
 
 public static class SwiftlyCoreInjection
 {
-    public static IServiceCollection AddSwiftly(this IServiceCollection self, ISwiftlyCore core, bool addLogger = true, bool addConfiguration = true)
+    public static IServiceCollection AddSwiftly( this IServiceCollection self, ISwiftlyCore core, bool addLogger = true, bool addConfiguration = true )
     {
         _ = self
             .AddSingleton(core)

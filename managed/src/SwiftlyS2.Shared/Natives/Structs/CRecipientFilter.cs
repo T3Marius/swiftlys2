@@ -21,6 +21,11 @@ public struct CRecipientFilter
     public bool InitMessage;
     public bool DisabledPrediction;
 
+
+    public CRecipientFilter( ) : this(NetChannelBufType_t.BUF_RELIABLE, false) {
+
+    }
+
     public CRecipientFilter( NetChannelBufType_t BufType = NetChannelBufType_t.BUF_RELIABLE, bool bInitMessage = false )
     {
         _pVTable = CRecipientFilterVtable.pCRecipientFilterVTable;

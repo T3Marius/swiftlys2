@@ -37,11 +37,11 @@ internal partial class CAnimationGraphVisualizerTextImpl : CAnimationGraphVisual
     public string Text {
         get {
             _TextOffset = _TextOffset ?? Schema.GetOffset(0x123E08CFFB9532BE);
-            return Schema.GetString(_Handle.Read<nint>(_TextOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TextOffset!.Value));
         }
         set {
             _TextOffset = _TextOffset ?? Schema.GetOffset(0x123E08CFFB9532BE);
-            Schema.SetString(_Handle, _TextOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TextOffset!.Value, value);
         }
     } 
 

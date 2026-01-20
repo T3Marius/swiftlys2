@@ -21,11 +21,11 @@ internal partial class CDspPresetModifierListImpl : SchemaClass, CDspPresetModif
     public string DspName {
         get {
             _DspNameOffset = _DspNameOffset ?? Schema.GetOffset(0x68EE16FD7E9A0D3);
-            return Schema.GetString(_Handle.Read<nint>(_DspNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DspNameOffset!.Value));
         }
         set {
             _DspNameOffset = _DspNameOffset ?? Schema.GetOffset(0x68EE16FD7E9A0D3);
-            Schema.SetString(_Handle, _DspNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DspNameOffset!.Value, value);
         }
     } 
     private static nint? _ModifiersOffset;

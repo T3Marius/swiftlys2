@@ -5,45 +5,46 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "enter_bombzone"
 /// </summary>
-public interface EventEnterBombzone : IGameEvent<EventEnterBombzone> {
+public interface EventEnterBombzone : IGameEvent<EventEnterBombzone>
+{
 
-  static EventEnterBombzone IGameEvent<EventEnterBombzone>.Create(nint address) => new EventEnterBombzoneImpl(address);
+    static EventEnterBombzone IGameEvent<EventEnterBombzone>.Create(nint address) => new EventEnterBombzoneImpl(address);
 
-  static string IGameEvent<EventEnterBombzone>.GetName() => "enter_bombzone";
+    static string IGameEvent<EventEnterBombzone>.GetName() => "enter_bombzone";
 
-  static uint IGameEvent<EventEnterBombzone>.GetHash() => 0x9175DF94u;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventEnterBombzone>.GetHash() => 0x9175DF94u;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// type: bool
-  /// </summary>
-  bool HasBomb { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int UserId { get; set; }
 
-  /// <summary>
-  /// type: bool
-  /// </summary>
-  bool IsPlanted { get; set; }
+    /// <summary>
+    /// type: bool
+    /// </summary>
+    bool HasBomb { get; set; }
 
+    /// <summary>
+    /// type: bool
+    /// </summary>
+    bool IsPlanted { get; set; }
 }

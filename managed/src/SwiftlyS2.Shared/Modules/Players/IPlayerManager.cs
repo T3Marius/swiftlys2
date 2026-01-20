@@ -231,12 +231,12 @@ public interface IPlayerManagerService
     /// player exists.</returns>
     public IPlayer? GetPlayerFromController( CBasePlayerController controller );
 
-/// <summary>
-/// Retrieves the player associated with the specified pawn.
-/// </summary>
-/// <param name="pawn">The pawn to retrieve the player from.</param>
-/// <returns>An <see cref="IPlayer"/> instance representing the player with the specified pawn, or <c>null</c> if no such
-/// player exists.</returns>
+    /// <summary>
+    /// Retrieves the player associated with the specified pawn.
+    /// </summary>
+    /// <param name="pawn">The pawn to retrieve the player from.</param>
+    /// <returns>An <see cref="IPlayer"/> instance representing the player with the specified pawn, or <c>null</c> if no such
+    /// player exists.</returns>
     public IPlayer? GetPlayerFromPawn( CBasePlayerPawn pawn );
 
     /// <summary>
@@ -244,6 +244,12 @@ public interface IPlayerManagerService
     /// </summary>
     /// <returns>An enumerable collection of <see cref="IPlayer"/> instances representing all online players.</returns>
     public IEnumerable<IPlayer> GetAllPlayers();
+
+    /// <summary>
+    /// Retrieves all valid players currently online.
+    /// </summary>
+    /// <returns>An enumerable collection of <see cref="IPlayer"/> instances representing all online players.</returns>
+    public IEnumerable<IPlayer> GetAllValidPlayers();
 
     /// <summary>
     /// Retrieves all bot players currently online.

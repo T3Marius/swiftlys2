@@ -89,11 +89,11 @@ internal partial class CInfoSpawnGroupLoadUnloadImpl : CLogicalEntityImpl, CInfo
     public string FixedSpawnGroupName {
         get {
             _FixedSpawnGroupNameOffset = _FixedSpawnGroupNameOffset ?? Schema.GetOffset(0x2537640FB094CD41);
-            return Schema.GetString(_Handle.Read<nint>(_FixedSpawnGroupNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_FixedSpawnGroupNameOffset!.Value));
         }
         set {
             _FixedSpawnGroupNameOffset = _FixedSpawnGroupNameOffset ?? Schema.GetOffset(0x2537640FB094CD41);
-            Schema.SetString(_Handle, _FixedSpawnGroupNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _FixedSpawnGroupNameOffset!.Value, value);
         }
     } 
     private static nint? _TimeoutIntervalOffset;

@@ -129,9 +129,9 @@ public struct CUtlVector<T> : IEnumerable<T>
 
     public int Find( T value )
     {
-        for (int i = 0; i < _size; i++)
+        for (var i = 0; i < _size; i++)
         {
-            if (this[i].Equals(value))
+            if (this[i]!.Equals(value))
                 return i;
         }
 
@@ -140,7 +140,7 @@ public struct CUtlVector<T> : IEnumerable<T>
 
     public void FillWithValue( T value )
     {
-        for (int i = 0; i < _size; i++)
+        for (var i = 0; i < _size; i++)
             this[i] = value;
     }
 
@@ -154,7 +154,7 @@ public struct CUtlVector<T> : IEnumerable<T>
         if (!IsValidIndex(elem))
             return;
 
-        this[elem] = default;
+        this[elem] = default!;
         if (_size > 0)
         {
             if (elem != _size - 1)
@@ -190,8 +190,8 @@ public struct CUtlVector<T> : IEnumerable<T>
         if (count <= 0 || !IsValidIndex(idx) || idx + count > _size)
             return;
 
-        for (int i = idx; i < idx + count; i++)
-            this[i] = default;
+        for (var i = idx; i < idx + count; i++)
+            this[i] = default!;
 
         MemoryHelpers.ShiftElementsLeft(_memory.Base, idx, count, _size, ElementSize);
         _size -= count;
@@ -207,8 +207,8 @@ public struct CUtlVector<T> : IEnumerable<T>
         if (count <= 0 || count > _size)
             return;
 
-        for (int i = _size - count; i < _size; i++)
-            this[i] = default;
+        for (var i = _size - count; i < _size; i++)
+            this[i] = default!;
 
         _size -= count;
     }
@@ -218,7 +218,7 @@ public struct CUtlVector<T> : IEnumerable<T>
         if (!IsValidIndex(elem))
             return;
 
-        this[elem] = default;
+        this[elem] = default!;
         MemoryHelpers.ShiftElementsLeft(_memory.Base, elem, 1, _size, ElementSize);
         --_size;
     }
@@ -228,8 +228,8 @@ public struct CUtlVector<T> : IEnumerable<T>
         if (_size == 0)
             return;
 
-        for (int i = 0; i < _size; i++)
-            this[i] = default;
+        for (var i = 0; i < _size; i++)
+            this[i] = default!;
 
         _size = 0;
     }

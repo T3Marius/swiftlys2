@@ -213,11 +213,11 @@ internal partial class CLightComponentImpl : CEntityComponentImpl, CLightCompone
     public string Pattern {
         get {
             _PatternOffset = _PatternOffset ?? Schema.GetOffset(0x15B1C6A52E3F72A9);
-            return Schema.GetString(_Handle.Read<nint>(_PatternOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PatternOffset!.Value));
         }
         set {
             _PatternOffset = _PatternOffset ?? Schema.GetOffset(0x15B1C6A52E3F72A9);
-            Schema.SetString(_Handle, _PatternOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PatternOffset!.Value, value);
         }
     } 
     private static nint? _CascadeRenderStaticObjectsOffset;

@@ -7,29 +7,29 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "grenade_thrown"
 /// </summary>
 internal class EventGrenadeThrownImpl : GameEvent<EventGrenadeThrown>, EventGrenadeThrown
 {
 
-  public EventGrenadeThrownImpl(nint address) : base(address)
-  {
-  }
+    public EventGrenadeThrownImpl(nint address) : base(address)
+    {
+    }
 
-  public CCSPlayerController UserIdController
-  { get => Accessor.GetPlayerController("userid"); }
+    public CCSPlayerController UserIdController
+    { get => Accessor.GetPlayerController("userid"); }
 
-  public CCSPlayerPawn UserIdPawn
-  { get => Accessor.GetPlayerPawn("userid"); }
+    public CCSPlayerPawn UserIdPawn
+    { get => Accessor.GetPlayerPawn("userid"); }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  public int UserId
-  { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
+    public int UserId
+    { get => Accessor.GetInt32("userid"); set => Accessor.SetInt32("userid", value); }
 
-  // weapon name used
-  public string Weapon
-  { get => Accessor.GetString("weapon"); set => Accessor.SetString("weapon", value); }
+    // weapon name used
+    public string Weapon
+    { get => Accessor.GetString("weapon"); set => Accessor.SetString("weapon", value); }
 }

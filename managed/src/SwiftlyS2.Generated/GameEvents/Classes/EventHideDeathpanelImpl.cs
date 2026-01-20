@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "hide_deathpanel"
 /// </summary>
 internal class EventHideDeathpanelImpl : GameEvent<EventHideDeathpanel>, EventHideDeathpanel
 {
 
-  public EventHideDeathpanelImpl(nint address) : base(address)
-  {
-  }
+    public EventHideDeathpanelImpl(nint address) : base(address)
+    {
+    }
 }

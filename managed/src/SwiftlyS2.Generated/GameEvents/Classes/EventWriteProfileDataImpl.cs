@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "write_profile_data"
 /// </summary>
 internal class EventWriteProfileDataImpl : GameEvent<EventWriteProfileData>, EventWriteProfileData
 {
 
-  public EventWriteProfileDataImpl(nint address) : base(address)
-  {
-  }
+    public EventWriteProfileDataImpl(nint address) : base(address)
+    {
+    }
 }

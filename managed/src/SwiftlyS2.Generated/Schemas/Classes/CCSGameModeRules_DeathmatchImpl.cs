@@ -37,11 +37,11 @@ internal partial class CCSGameModeRules_DeathmatchImpl : CCSGameModeRulesImpl, C
     public string DMBonusWeapon {
         get {
             _DMBonusWeaponOffset = _DMBonusWeaponOffset ?? Schema.GetOffset(0x77BC0D42A33FC260);
-            return Schema.GetString(_Handle.Read<nint>(_DMBonusWeaponOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_DMBonusWeaponOffset!.Value));
         }
         set {
             _DMBonusWeaponOffset = _DMBonusWeaponOffset ?? Schema.GetOffset(0x77BC0D42A33FC260);
-            Schema.SetString(_Handle, _DMBonusWeaponOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _DMBonusWeaponOffset!.Value, value);
         }
     } 
 

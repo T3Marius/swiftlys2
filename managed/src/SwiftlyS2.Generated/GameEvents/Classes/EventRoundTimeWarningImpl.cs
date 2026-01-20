@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "round_time_warning"
 /// </summary>
 internal class EventRoundTimeWarningImpl : GameEvent<EventRoundTimeWarning>, EventRoundTimeWarning
 {
 
-  public EventRoundTimeWarningImpl(nint address) : base(address)
-  {
-  }
+    public EventRoundTimeWarningImpl(nint address) : base(address)
+    {
+    }
 }

@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "helicopter_grenade_punt_miss"
 /// </summary>
 internal class EventHelicopterGrenadePuntMissImpl : GameEvent<EventHelicopterGrenadePuntMiss>, EventHelicopterGrenadePuntMiss
 {
 
-  public EventHelicopterGrenadePuntMissImpl(nint address) : base(address)
-  {
-  }
+    public EventHelicopterGrenadePuntMissImpl(nint address) : base(address)
+    {
+    }
 }

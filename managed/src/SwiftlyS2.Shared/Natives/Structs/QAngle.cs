@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SwiftlyS2.Shared.Natives;
 
@@ -129,5 +130,79 @@ public struct QAngle
         forward = new Vector(cp * cy, cp * sy, -sp);
         right = new Vector((-sr * sp * cy) + (cr * sy), (-sr * sp * sy) - (cr * cy), -sr * cp);
         up = new Vector((cr * sp * cy) + (sr * sy), (cr * sp * sy) - (sr * cy), cr * cp);
+    }
+
+    /// <summary>
+    /// Serializes the qangle to a string.
+    /// Example return: "100 200 300"
+    /// </summary>
+    /// <param name="formatProvider">Format provider to use for the string. Null for default provider.</param>
+    /// <returns>Serialized qangle in string.</returns>
+    public readonly string Serialize( IFormatProvider? formatProvider = null )
+    {
+        return $"{X.ToString(formatProvider)} {Y.ToString(formatProvider)} {Z.ToString(formatProvider)}";
+    }
+
+    /// <summary>
+    /// Deserializes the qangle from a string.
+    /// Example input: "100 200 300"
+    /// </summary>
+    /// <exception cref="FormatException">Thrown when the input string is not in the correct format.</exception>
+    /// <param name="input">Serialized qangle in string.</param>
+    /// <param name="formatProvider">Format provider to use for the string. Null for default provider.</param>
+    /// <returns>Deserialized qangle.</returns>
+    public static QAngle Deserialize( string input, IFormatProvider? formatProvider = null )
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            throw new FormatException("Input string is null or whitespace.");
+
+        var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length != 3)
+        {
+            throw new FormatException("Invalid qangle string format. Expected format: 'x y z'");
+        }
+        return new QAngle(float.Parse(parts[0], formatProvider), float.Parse(parts[1], formatProvider), float.Parse(parts[2], formatProvider));
+    }
+
+    /// <summary>
+    /// Tries to deserialize the qangle from a string.
+    /// Example input: "100 200 300"
+    /// </summary>
+    /// <param name="input">Serialized qangle in string.</param>
+    /// <param name="qangle">Deserialized qangle.</param>
+    /// <returns>True if the deserialization was successful, false otherwise.</returns>
+    public static bool TryDeserialize( [NotNullWhen(true)] string? input, out QAngle qangle )
+    {
+        return TryDeserialize(input, null, out qangle);
+    }
+
+    /// <summary>
+    /// Tries to deserialize the qangle from a string.
+    /// Example input: "100 200 300"
+    /// </summary>
+    /// <param name="input">Serialized qangle in string.</param>
+    /// <param name="provider">Format provider to use for the string. Null for default provider.</param>
+    /// <param name="qangle">Deserialized qangle.</param>
+    /// <returns>True if the deserialization was successful, false otherwise.</returns>
+    public static bool TryDeserialize( [NotNullWhen(true)] string? input, IFormatProvider? provider, out QAngle qangle )
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            qangle = Zero;
+            return false;
+        }
+        var parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length != 3)
+        {
+            qangle = Zero;
+            return false;
+        }
+        if (float.TryParse(parts[0], provider, out var x) && float.TryParse(parts[1], provider, out var y) && float.TryParse(parts[2], provider, out var z))
+        {
+            qangle = new QAngle(x, y, z);
+            return true;
+        }
+        qangle = Zero;
+        return false;
     }
 }

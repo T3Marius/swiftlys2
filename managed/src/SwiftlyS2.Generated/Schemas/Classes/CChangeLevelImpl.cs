@@ -21,11 +21,11 @@ internal partial class CChangeLevelImpl : CBaseTriggerImpl, CChangeLevel
     public string MapName {
         get {
             _MapNameOffset = _MapNameOffset ?? Schema.GetOffset(0x52008134CE11EF47);
-            return Schema.GetString(_Handle.Read<nint>(_MapNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_MapNameOffset!.Value));
         }
         set {
             _MapNameOffset = _MapNameOffset ?? Schema.GetOffset(0x52008134CE11EF47);
-            Schema.SetString(_Handle, _MapNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _MapNameOffset!.Value, value);
         }
     } 
     private static nint? _LandmarkNameOffset;
@@ -33,11 +33,11 @@ internal partial class CChangeLevelImpl : CBaseTriggerImpl, CChangeLevel
     public string LandmarkName {
         get {
             _LandmarkNameOffset = _LandmarkNameOffset ?? Schema.GetOffset(0x520081342DEE941D);
-            return Schema.GetString(_Handle.Read<nint>(_LandmarkNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_LandmarkNameOffset!.Value));
         }
         set {
             _LandmarkNameOffset = _LandmarkNameOffset ?? Schema.GetOffset(0x520081342DEE941D);
-            Schema.SetString(_Handle, _LandmarkNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _LandmarkNameOffset!.Value, value);
         }
     } 
     private static nint? _OnChangeLevelOffset;

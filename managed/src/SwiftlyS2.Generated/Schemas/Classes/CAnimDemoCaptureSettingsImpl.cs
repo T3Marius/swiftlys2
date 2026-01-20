@@ -101,11 +101,11 @@ internal partial class CAnimDemoCaptureSettingsImpl : SchemaClass, CAnimDemoCapt
     public string BaseSequence {
         get {
             _BaseSequenceOffset = _BaseSequenceOffset ?? Schema.GetOffset(0xD4FC719704AABA45);
-            return Schema.GetString(_Handle.Read<nint>(_BaseSequenceOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BaseSequenceOffset!.Value));
         }
         set {
             _BaseSequenceOffset = _BaseSequenceOffset ?? Schema.GetOffset(0xD4FC719704AABA45);
-            Schema.SetString(_Handle, _BaseSequenceOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BaseSequenceOffset!.Value, value);
         }
     } 
     private static nint? _BaseSequenceFrameOffset;

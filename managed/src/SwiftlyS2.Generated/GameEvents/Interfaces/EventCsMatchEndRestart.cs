@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "cs_match_end_restart"
 /// </summary>
-public interface EventCsMatchEndRestart : IGameEvent<EventCsMatchEndRestart> {
+public interface EventCsMatchEndRestart : IGameEvent<EventCsMatchEndRestart>
+{
 
-  static EventCsMatchEndRestart IGameEvent<EventCsMatchEndRestart>.Create(nint address) => new EventCsMatchEndRestartImpl(address);
+    static EventCsMatchEndRestart IGameEvent<EventCsMatchEndRestart>.Create(nint address) => new EventCsMatchEndRestartImpl(address);
 
-  static string IGameEvent<EventCsMatchEndRestart>.GetName() => "cs_match_end_restart";
+    static string IGameEvent<EventCsMatchEndRestart>.GetName() => "cs_match_end_restart";
 
-  static uint IGameEvent<EventCsMatchEndRestart>.GetHash() => 0xFB2BFA6Fu;
+    static uint IGameEvent<EventCsMatchEndRestart>.GetHash() => 0xFB2BFA6Fu;
 }

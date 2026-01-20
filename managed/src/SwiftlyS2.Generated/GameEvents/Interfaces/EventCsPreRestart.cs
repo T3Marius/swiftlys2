@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "cs_pre_restart"
 /// </summary>
-public interface EventCsPreRestart : IGameEvent<EventCsPreRestart> {
+public interface EventCsPreRestart : IGameEvent<EventCsPreRestart>
+{
 
-  static EventCsPreRestart IGameEvent<EventCsPreRestart>.Create(nint address) => new EventCsPreRestartImpl(address);
+    static EventCsPreRestart IGameEvent<EventCsPreRestart>.Create(nint address) => new EventCsPreRestartImpl(address);
 
-  static string IGameEvent<EventCsPreRestart>.GetName() => "cs_pre_restart";
+    static string IGameEvent<EventCsPreRestart>.GetName() => "cs_pre_restart";
 
-  static uint IGameEvent<EventCsPreRestart>.GetHash() => 0xE870A219u;
+    static uint IGameEvent<EventCsPreRestart>.GetHash() => 0xE870A219u;
 }

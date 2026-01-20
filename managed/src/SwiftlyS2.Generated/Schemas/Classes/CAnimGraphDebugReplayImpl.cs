@@ -21,11 +21,11 @@ internal partial class CAnimGraphDebugReplayImpl : SchemaClass, CAnimGraphDebugR
     public string AnimGraphFileName {
         get {
             _AnimGraphFileNameOffset = _AnimGraphFileNameOffset ?? Schema.GetOffset(0x31D5349314D2CC69);
-            return Schema.GetString(_Handle.Read<nint>(_AnimGraphFileNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AnimGraphFileNameOffset!.Value));
         }
         set {
             _AnimGraphFileNameOffset = _AnimGraphFileNameOffset ?? Schema.GetOffset(0x31D5349314D2CC69);
-            Schema.SetString(_Handle, _AnimGraphFileNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AnimGraphFileNameOffset!.Value, value);
         }
     } 
     private static nint? _FrameListOffset;

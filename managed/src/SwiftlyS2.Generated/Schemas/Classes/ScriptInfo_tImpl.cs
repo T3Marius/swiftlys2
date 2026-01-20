@@ -21,11 +21,11 @@ internal partial class ScriptInfo_tImpl : SchemaClass, ScriptInfo_t
     public string Code {
         get {
             _CodeOffset = _CodeOffset ?? Schema.GetOffset(0xDB402399B70C9D94);
-            return Schema.GetString(_Handle.Read<nint>(_CodeOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_CodeOffset!.Value));
         }
         set {
             _CodeOffset = _CodeOffset ?? Schema.GetOffset(0xDB402399B70C9D94);
-            Schema.SetString(_Handle, _CodeOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _CodeOffset!.Value, value);
         }
     } 
     private static nint? _ParamsModifiedOffset;

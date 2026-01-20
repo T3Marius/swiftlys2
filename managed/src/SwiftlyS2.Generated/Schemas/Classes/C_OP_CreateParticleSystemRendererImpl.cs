@@ -45,11 +45,11 @@ internal partial class C_OP_CreateParticleSystemRendererImpl : CParticleFunction
     public string ParticleConfig {
         get {
             _ParticleConfigOffset = _ParticleConfigOffset ?? Schema.GetOffset(0xB86C827D467A5C4C);
-            return Schema.GetString(_Handle.Read<nint>(_ParticleConfigOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ParticleConfigOffset!.Value));
         }
         set {
             _ParticleConfigOffset = _ParticleConfigOffset ?? Schema.GetOffset(0xB86C827D467A5C4C);
-            Schema.SetString(_Handle, _ParticleConfigOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ParticleConfigOffset!.Value, value);
         }
     } 
     private static nint? _AggregationPosOffset;

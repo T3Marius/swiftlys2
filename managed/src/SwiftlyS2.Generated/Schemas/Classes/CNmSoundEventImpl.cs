@@ -29,11 +29,11 @@ internal partial class CNmSoundEventImpl : CNmEventImpl, CNmSoundEvent
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xDC15E5264D8F5786);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xDC15E5264D8F5786);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _PositionOffset;
@@ -49,11 +49,11 @@ internal partial class CNmSoundEventImpl : CNmEventImpl, CNmSoundEvent
     public string AttachmentName {
         get {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0xDC15E526295DA9CB);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
         }
         set {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0xDC15E526295DA9CB);
-            Schema.SetString(_Handle, _AttachmentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentNameOffset!.Value, value);
         }
     } 
     private static nint? _TagsOffset;
@@ -61,11 +61,11 @@ internal partial class CNmSoundEventImpl : CNmEventImpl, CNmSoundEvent
     public string Tags {
         get {
             _TagsOffset = _TagsOffset ?? Schema.GetOffset(0xDC15E526B46C8540);
-            return Schema.GetString(_Handle.Read<nint>(_TagsOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TagsOffset!.Value));
         }
         set {
             _TagsOffset = _TagsOffset ?? Schema.GetOffset(0xDC15E526B46C8540);
-            Schema.SetString(_Handle, _TagsOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TagsOffset!.Value, value);
         }
     } 
     private static nint? _ContinuePlayingSoundAtDurationEndOffset;

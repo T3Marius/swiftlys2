@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "hostage_rescued_all"
 /// </summary>
-public interface EventHostageRescuedAll : IGameEvent<EventHostageRescuedAll> {
+public interface EventHostageRescuedAll : IGameEvent<EventHostageRescuedAll>
+{
 
-  static EventHostageRescuedAll IGameEvent<EventHostageRescuedAll>.Create(nint address) => new EventHostageRescuedAllImpl(address);
+    static EventHostageRescuedAll IGameEvent<EventHostageRescuedAll>.Create(nint address) => new EventHostageRescuedAllImpl(address);
 
-  static string IGameEvent<EventHostageRescuedAll>.GetName() => "hostage_rescued_all";
+    static string IGameEvent<EventHostageRescuedAll>.GetName() => "hostage_rescued_all";
 
-  static uint IGameEvent<EventHostageRescuedAll>.GetHash() => 0x9A8C08CEu;
+    static uint IGameEvent<EventHostageRescuedAll>.GetHash() => 0x9A8C08CEu;
 }

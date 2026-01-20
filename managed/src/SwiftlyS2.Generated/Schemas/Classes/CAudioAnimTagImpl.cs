@@ -21,11 +21,11 @@ internal partial class CAudioAnimTagImpl : CAnimTagBaseImpl, CAudioAnimTag
     public string ClipName {
         get {
             _ClipNameOffset = _ClipNameOffset ?? Schema.GetOffset(0x785914777D84420);
-            return Schema.GetString(_Handle.Read<nint>(_ClipNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ClipNameOffset!.Value));
         }
         set {
             _ClipNameOffset = _ClipNameOffset ?? Schema.GetOffset(0x785914777D84420);
-            Schema.SetString(_Handle, _ClipNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ClipNameOffset!.Value, value);
         }
     } 
     private static nint? _AttachmentNameOffset;
@@ -33,11 +33,11 @@ internal partial class CAudioAnimTagImpl : CAnimTagBaseImpl, CAudioAnimTag
     public string AttachmentName {
         get {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x7859147295DA9CB);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
         }
         set {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0x7859147295DA9CB);
-            Schema.SetString(_Handle, _AttachmentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentNameOffset!.Value, value);
         }
     } 
     private static nint? _VolumeOffset;

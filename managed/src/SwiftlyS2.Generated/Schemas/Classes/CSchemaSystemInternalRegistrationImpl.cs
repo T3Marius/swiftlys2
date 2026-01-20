@@ -158,11 +158,11 @@ internal partial class CSchemaSystemInternalRegistrationImpl : SchemaClass, CSch
     public string CUtlString {
         get {
             _CUtlStringOffset = _CUtlStringOffset ?? Schema.GetOffset(0xDDD6CA3041577950);
-            return Schema.GetString(_Handle.Read<nint>(_CUtlStringOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_CUtlStringOffset!.Value));
         }
         set {
             _CUtlStringOffset = _CUtlStringOffset ?? Schema.GetOffset(0xDDD6CA3041577950);
-            Schema.SetString(_Handle, _CUtlStringOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _CUtlStringOffset!.Value, value);
         }
     } 
     private static nint? _CUtlSymbolOffset;

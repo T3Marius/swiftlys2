@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "start_halftime"
 /// </summary>
 internal class EventStartHalftimeImpl : GameEvent<EventStartHalftime>, EventStartHalftime
 {
 
-  public EventStartHalftimeImpl(nint address) : base(address)
-  {
-  }
+    public EventStartHalftimeImpl(nint address) : base(address)
+    {
+    }
 }

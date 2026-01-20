@@ -1,5 +1,6 @@
 using SwiftlyS2.Shared.Misc;
 using SwiftlyS2.Core.Natives;
+using SwiftlyS2.Shared.Natives;
 using SwiftlyS2.Shared.Schemas;
 using SwiftlyS2.Shared.SchemaDefinitions;
 using EndReason = SwiftlyS2.Shared.Natives.RoundEndReason;
@@ -26,5 +27,13 @@ internal partial class CCSGameRulesImpl : CCSGameRules
     public void TerminateRound( EndReason reason, float delay, uint teamId, uint unk01 )
     {
         GameFunctions.TerminateRound(Address, (uint)reason, delay, teamId, unk01);
+    }
+
+    public ref CViewVectors GetViewVectors()
+    {
+        unsafe
+        {
+            return ref *GameFunctions.CGameRules_GetViewVectors(Address);
+        }
     }
 }

@@ -223,7 +223,7 @@ void Bridge_Player_ClearTransmitEntityBlocked(int playerid)
         return;
 
     auto& bv = player->GetBlockedTransmittingBits();
-    for (int i = 0; i < 512; i++)
+    for (int i = 0; i < 256; i++)
         bv.blockedMask[i] = 0;
     bv.activeMasks.clear();
 }

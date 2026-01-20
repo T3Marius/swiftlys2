@@ -5,46 +5,47 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "defuser_pickup"
 /// </summary>
-public interface EventDefuserPickup : IGameEvent<EventDefuserPickup> {
+public interface EventDefuserPickup : IGameEvent<EventDefuserPickup>
+{
 
-  static EventDefuserPickup IGameEvent<EventDefuserPickup>.Create(nint address) => new EventDefuserPickupImpl(address);
+    static EventDefuserPickup IGameEvent<EventDefuserPickup>.Create(nint address) => new EventDefuserPickupImpl(address);
 
-  static string IGameEvent<EventDefuserPickup>.GetName() => "defuser_pickup";
+    static string IGameEvent<EventDefuserPickup>.GetName() => "defuser_pickup";
 
-  static uint IGameEvent<EventDefuserPickup>.GetHash() => 0xA9099A0Cu;
-  /// <summary>
-  /// defuser's entity ID
-  /// <br/>
-  /// type: long
-  /// </summary>
-  int EntityID { get; set; }
+    static uint IGameEvent<EventDefuserPickup>.GetHash() => 0xA9099A0Cu;
 
-  /// <summary>
-  /// player who picked up the defuser
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    /// <summary>
+    /// defuser's entity ID
+    /// <br/>
+    /// type: long
+    /// </summary>
+    int EntityID { get; set; }
 
-  /// <summary>
-  /// player who picked up the defuser
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// player who picked up the defuser
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// player who picked up the defuser
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  // player who picked up the defuser
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// player who picked up the defuser
-  /// <br/>
-  /// type: player_controller_and_pawn
-  /// </summary>
-  int UserId { get; set; }
+    // player who picked up the defuser
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
+    /// <summary>
+    /// player who picked up the defuser
+    /// <br/>
+    /// type: player_controller_and_pawn
+    /// </summary>
+    int UserId { get; set; }
 }

@@ -5,40 +5,41 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "teamchange_pending"
 /// </summary>
-public interface EventTeamchangePending : IGameEvent<EventTeamchangePending> {
+public interface EventTeamchangePending : IGameEvent<EventTeamchangePending>
+{
 
-  static EventTeamchangePending IGameEvent<EventTeamchangePending>.Create(nint address) => new EventTeamchangePendingImpl(address);
+    static EventTeamchangePending IGameEvent<EventTeamchangePending>.Create(nint address) => new EventTeamchangePendingImpl(address);
 
-  static string IGameEvent<EventTeamchangePending>.GetName() => "teamchange_pending";
+    static string IGameEvent<EventTeamchangePending>.GetName() => "teamchange_pending";
 
-  static uint IGameEvent<EventTeamchangePending>.GetHash() => 0x53F97450u;
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerController UserIdController { get; }
+    static uint IGameEvent<EventTeamchangePending>.GetHash() => 0x53F97450u;
 
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  CCSPlayerPawn UserIdPawn { get; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerController UserIdController { get; }
 
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    CCSPlayerPawn UserIdPawn { get; }
 
-  public IPlayer UserIdPlayer
-  { get => Accessor.GetPlayer("userid"); }
-  /// <summary>
-  /// <br/>
-  /// type: player_controller
-  /// </summary>
-  int UserId { get; set; }
+    public IPlayer? UserIdPlayer
+    { get => Accessor.GetPlayer("userid"); }
 
-  /// <summary>
-  /// type: byte
-  /// </summary>
-  byte ToTeam { get; set; }
+    /// <summary>
+    /// <br/>
+    /// type: player_controller
+    /// </summary>
+    int UserId { get; set; }
 
+    /// <summary>
+    /// type: byte
+    /// </summary>
+    byte ToTeam { get; set; }
 }

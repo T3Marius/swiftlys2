@@ -5,29 +5,30 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "game_message"
 /// a message send by game logic to everyone
 /// </summary>
-public interface EventGameMessage : IGameEvent<EventGameMessage> {
+public interface EventGameMessage : IGameEvent<EventGameMessage>
+{
 
-  static EventGameMessage IGameEvent<EventGameMessage>.Create(nint address) => new EventGameMessageImpl(address);
+    static EventGameMessage IGameEvent<EventGameMessage>.Create(nint address) => new EventGameMessageImpl(address);
 
-  static string IGameEvent<EventGameMessage>.GetName() => "game_message";
+    static string IGameEvent<EventGameMessage>.GetName() => "game_message";
 
-  static uint IGameEvent<EventGameMessage>.GetHash() => 0xEA7638FFu;
-  /// <summary>
-  /// 0 = console, 1 = HUD
-  /// <br/>
-  /// type: byte
-  /// </summary>
-  byte Target { get; set; }
+    static uint IGameEvent<EventGameMessage>.GetHash() => 0xEA7638FFu;
 
-  /// <summary>
-  /// the message text
-  /// <br/>
-  /// type: string
-  /// </summary>
-  string Text { get; set; }
+    /// <summary>
+    /// 0 = console, 1 = HUD
+    /// <br/>
+    /// type: byte
+    /// </summary>
+    byte Target { get; set; }
 
+    /// <summary>
+    /// the message text
+    /// <br/>
+    /// type: string
+    /// </summary>
+    string Text { get; set; }
 }

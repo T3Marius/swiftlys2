@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "vote_ended"
 /// </summary>
-public interface EventVoteEnded : IGameEvent<EventVoteEnded> {
+public interface EventVoteEnded : IGameEvent<EventVoteEnded>
+{
 
-  static EventVoteEnded IGameEvent<EventVoteEnded>.Create(nint address) => new EventVoteEndedImpl(address);
+    static EventVoteEnded IGameEvent<EventVoteEnded>.Create(nint address) => new EventVoteEndedImpl(address);
 
-  static string IGameEvent<EventVoteEnded>.GetName() => "vote_ended";
+    static string IGameEvent<EventVoteEnded>.GetName() => "vote_ended";
 
-  static uint IGameEvent<EventVoteEnded>.GetHash() => 0xBE602B9Au;
+    static uint IGameEvent<EventVoteEnded>.GetHash() => 0xBE602B9Au;
 }

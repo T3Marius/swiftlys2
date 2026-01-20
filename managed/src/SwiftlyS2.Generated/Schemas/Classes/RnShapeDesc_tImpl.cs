@@ -37,11 +37,11 @@ internal partial class RnShapeDesc_tImpl : SchemaClass, RnShapeDesc_t
     public string UserFriendlyName {
         get {
             _UserFriendlyNameOffset = _UserFriendlyNameOffset ?? Schema.GetOffset(0xA24D7D1000D4523E);
-            return Schema.GetString(_Handle.Read<nint>(_UserFriendlyNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_UserFriendlyNameOffset!.Value));
         }
         set {
             _UserFriendlyNameOffset = _UserFriendlyNameOffset ?? Schema.GetOffset(0xA24D7D1000D4523E);
-            Schema.SetString(_Handle, _UserFriendlyNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _UserFriendlyNameOffset!.Value, value);
         }
     } 
     private static nint? _UserFriendlyNameSealedOffset;

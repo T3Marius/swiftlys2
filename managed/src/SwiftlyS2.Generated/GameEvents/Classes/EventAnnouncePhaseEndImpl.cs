@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "announce_phase_end"
 /// </summary>
 internal class EventAnnouncePhaseEndImpl : GameEvent<EventAnnouncePhaseEnd>, EventAnnouncePhaseEnd
 {
 
-  public EventAnnouncePhaseEndImpl(nint address) : base(address)
-  {
-  }
+    public EventAnnouncePhaseEndImpl(nint address) : base(address)
+    {
+    }
 }

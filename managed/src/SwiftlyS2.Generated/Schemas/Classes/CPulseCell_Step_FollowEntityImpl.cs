@@ -21,11 +21,11 @@ internal partial class CPulseCell_Step_FollowEntityImpl : CPulseCell_BaseFlowImp
     public string ParamBoneOrAttachName {
         get {
             _ParamBoneOrAttachNameOffset = _ParamBoneOrAttachNameOffset ?? Schema.GetOffset(0x75FAF4A9B89867BB);
-            return Schema.GetString(_Handle.Read<nint>(_ParamBoneOrAttachNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ParamBoneOrAttachNameOffset!.Value));
         }
         set {
             _ParamBoneOrAttachNameOffset = _ParamBoneOrAttachNameOffset ?? Schema.GetOffset(0x75FAF4A9B89867BB);
-            Schema.SetString(_Handle, _ParamBoneOrAttachNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ParamBoneOrAttachNameOffset!.Value, value);
         }
     } 
     private static nint? _ParamBoneOrAttachNameChildOffset;
@@ -33,11 +33,11 @@ internal partial class CPulseCell_Step_FollowEntityImpl : CPulseCell_BaseFlowImp
     public string ParamBoneOrAttachNameChild {
         get {
             _ParamBoneOrAttachNameChildOffset = _ParamBoneOrAttachNameChildOffset ?? Schema.GetOffset(0x75FAF4A902011093);
-            return Schema.GetString(_Handle.Read<nint>(_ParamBoneOrAttachNameChildOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ParamBoneOrAttachNameChildOffset!.Value));
         }
         set {
             _ParamBoneOrAttachNameChildOffset = _ParamBoneOrAttachNameChildOffset ?? Schema.GetOffset(0x75FAF4A902011093);
-            Schema.SetString(_Handle, _ParamBoneOrAttachNameChildOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ParamBoneOrAttachNameChildOffset!.Value, value);
         }
     } 
 

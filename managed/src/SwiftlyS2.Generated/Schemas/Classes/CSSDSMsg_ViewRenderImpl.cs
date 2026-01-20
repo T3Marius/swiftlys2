@@ -29,11 +29,11 @@ internal partial class CSSDSMsg_ViewRenderImpl : SchemaClass, CSSDSMsg_ViewRende
     public string ViewName {
         get {
             _ViewNameOffset = _ViewNameOffset ?? Schema.GetOffset(0x2CD48EEEBA5BBDBB);
-            return Schema.GetString(_Handle.Read<nint>(_ViewNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ViewNameOffset!.Value));
         }
         set {
             _ViewNameOffset = _ViewNameOffset ?? Schema.GetOffset(0x2CD48EEEBA5BBDBB);
-            Schema.SetString(_Handle, _ViewNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ViewNameOffset!.Value, value);
         }
     } 
 

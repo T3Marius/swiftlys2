@@ -21,11 +21,11 @@ internal partial class CFlexControllerImpl : SchemaClass, CFlexController
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x5265FDF16750BACB);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x5265FDF16750BACB);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _TypeOffset;
@@ -33,11 +33,11 @@ internal partial class CFlexControllerImpl : SchemaClass, CFlexController
     public string Type {
         get {
             _TypeOffset = _TypeOffset ?? Schema.GetOffset(0x5265FDF1B580AB00);
-            return Schema.GetString(_Handle.Read<nint>(_TypeOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_TypeOffset!.Value));
         }
         set {
             _TypeOffset = _TypeOffset ?? Schema.GetOffset(0x5265FDF1B580AB00);
-            Schema.SetString(_Handle, _TypeOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _TypeOffset!.Value, value);
         }
     } 
     private static nint? _MinOffset;

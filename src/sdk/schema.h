@@ -33,6 +33,7 @@ using json = nlohmann::json;
 
 void ReadClasses(CSchemaType_DeclaredClass* declClass, json& outJson);
 void ReadEnums(CSchemaType_DeclaredEnum* declClass, json& outJson);
+void ReadClassDatamap(CSchemaType_DeclaredClass* declClass, json& outJson);
 
 class CSDKSchema : public ISDKSchema
 {
@@ -56,6 +57,8 @@ public:
 
     virtual void* GetVData(void* pEntity) override;
 
+    virtual inputfunc_t* GetDatamapFunction(uint32_t uHash) override;
+
     virtual void Load() override;
 };
 
@@ -76,8 +79,22 @@ struct SchemaClass
     uint32_t m_uHash;
 };
 
-extern std::unordered_map<uint64_t, SchemaField> offsets;
-extern std::unordered_map<uint32_t, SchemaClass> classes;
+
+struct FNV1aHasher32 {
+    std::size_t operator()(const uint32_t key) const {
+        return key;
+    }
+};
+
+struct FNV1aHasher64 {
+    std::size_t operator()(const uint64_t key) const {
+        return key;
+    }
+};
+
+extern std::unordered_map<uint64_t, SchemaField, FNV1aHasher64> offsets;
+extern std::unordered_map<uint32_t, SchemaClass, FNV1aHasher32> classes;
+extern std::unordered_map<uint32_t, inputfunc_t*, FNV1aHasher32> datamapFunctions;
 
 class NetworkVar {
 public:

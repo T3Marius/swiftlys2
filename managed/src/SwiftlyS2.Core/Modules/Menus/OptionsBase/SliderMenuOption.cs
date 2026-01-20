@@ -146,17 +146,22 @@ public sealed class SliderMenuOption : MenuOptionBase
         _ = values.AddOrUpdate(player.PlayerID, clampedValue, ( _, _ ) => clampedValue);
     }
 
-    private ValueTask OnSliderClick( object? sender, MenuOptionClickEventArgs args )
+    /// <summary>
+    /// Decrements the slider value by the step amount for the specified player.
+    /// Wraps to Max if the value goes below Min.
+    /// </summary>
+    /// <param name="player">The player whose value to decrement.</param>
+    public ValueTask DecrementValue( IPlayer player )
     {
-        var oldValue = values.GetOrAdd(args.Player.PlayerID, defaultValue);
-        var newValue = Math.Clamp(oldValue + Step > Max ? Min : oldValue + Step, Min, Max);
+        var oldValue = values.GetOrAdd(player.PlayerID, defaultValue);
+        var newValue = Math.Clamp(oldValue - Step < Min ? Max : oldValue - Step, Min, Max);
 
-        _ = values.AddOrUpdate(args.Player.PlayerID, newValue, ( _, _ ) => newValue);
+        _ = values.AddOrUpdate(player.PlayerID, newValue, ( _, _ ) => newValue);
 
         try
         {
             ValueChanged?.Invoke(this, new MenuOptionValueChangedEventArgs<float> {
-                Player = args.Player,
+                Player = player,
                 Option = this,
                 OldValue = oldValue,
                 NewValue = newValue
@@ -169,5 +174,40 @@ public sealed class SliderMenuOption : MenuOptionBase
         }
 
         return ValueTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// Increments the slider value by the step amount for the specified player.
+    /// Wraps to Min if the value goes above Max.
+    /// </summary>
+    /// <param name="player">The player whose value to increment.</param>
+    public ValueTask IncrementValue( IPlayer player )
+    {
+        var oldValue = values.GetOrAdd(player.PlayerID, defaultValue);
+        var newValue = Math.Clamp(oldValue + Step > Max ? Min : oldValue + Step, Min, Max);
+
+        _ = values.AddOrUpdate(player.PlayerID, newValue, ( _, _ ) => newValue);
+
+        try
+        {
+            ValueChanged?.Invoke(this, new MenuOptionValueChangedEventArgs<float> {
+                Player = player,
+                Option = this,
+                OldValue = oldValue,
+                NewValue = newValue
+            });
+        }
+        catch (Exception e)
+        {
+            if (!GlobalExceptionHandler.Handle(e)) return ValueTask.CompletedTask;
+            AnsiConsole.WriteException(e);
+        }
+
+        return ValueTask.CompletedTask;
+    }
+
+    private ValueTask OnSliderClick( object? sender, MenuOptionClickEventArgs args )
+    {
+        return IncrementValue(args.Player);
     }
 }

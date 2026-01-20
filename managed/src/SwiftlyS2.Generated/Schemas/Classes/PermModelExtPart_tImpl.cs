@@ -29,11 +29,11 @@ internal partial class PermModelExtPart_tImpl : SchemaClass, PermModelExtPart_t
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xCA30851DCAE8A266);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0xCA30851DCAE8A266);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _ParentOffset;

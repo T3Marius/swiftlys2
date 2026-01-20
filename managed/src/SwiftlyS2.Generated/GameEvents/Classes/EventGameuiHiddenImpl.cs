@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "gameui_hidden"
 /// </summary>
 internal class EventGameuiHiddenImpl : GameEvent<EventGameuiHidden>, EventGameuiHidden
 {
 
-  public EventGameuiHiddenImpl(nint address) : base(address)
-  {
-  }
+    public EventGameuiHiddenImpl(nint address) : base(address)
+    {
+    }
 }

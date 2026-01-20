@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "drop_rate_modified"
 /// </summary>
 internal class EventDropRateModifiedImpl : GameEvent<EventDropRateModified>, EventDropRateModified
 {
 
-  public EventDropRateModifiedImpl(nint address) : base(address)
-  {
-  }
+    public EventDropRateModifiedImpl(nint address) : base(address)
+    {
+    }
 }

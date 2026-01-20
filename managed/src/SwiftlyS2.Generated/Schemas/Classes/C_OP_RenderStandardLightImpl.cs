@@ -133,11 +133,11 @@ internal partial class C_OP_RenderStandardLightImpl : CParticleFunctionRendererI
     public string LightCookie {
         get {
             _LightCookieOffset = _LightCookieOffset ?? Schema.GetOffset(0x40395A84E1B0CA41);
-            return Schema.GetString(_Handle.Read<nint>(_LightCookieOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_LightCookieOffset!.Value));
         }
         set {
             _LightCookieOffset = _LightCookieOffset ?? Schema.GetOffset(0x40395A84E1B0CA41);
-            Schema.SetString(_Handle, _LightCookieOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _LightCookieOffset!.Value, value);
         }
     } 
     private static nint? _PriorityOffset;

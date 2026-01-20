@@ -5,21 +5,22 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "hltv_replay_status"
 /// </summary>
-public interface EventHltvReplayStatus : IGameEvent<EventHltvReplayStatus> {
+public interface EventHltvReplayStatus : IGameEvent<EventHltvReplayStatus>
+{
 
-  static EventHltvReplayStatus IGameEvent<EventHltvReplayStatus>.Create(nint address) => new EventHltvReplayStatusImpl(address);
+    static EventHltvReplayStatus IGameEvent<EventHltvReplayStatus>.Create(nint address) => new EventHltvReplayStatusImpl(address);
 
-  static string IGameEvent<EventHltvReplayStatus>.GetName() => "hltv_replay_status";
+    static string IGameEvent<EventHltvReplayStatus>.GetName() => "hltv_replay_status";
 
-  static uint IGameEvent<EventHltvReplayStatus>.GetHash() => 0x262D2D46u;
-  /// <summary>
-  /// reason for hltv replay status change ()
-  /// <br/>
-  /// type: long
-  /// </summary>
-  int Reason { get; set; }
+    static uint IGameEvent<EventHltvReplayStatus>.GetHash() => 0x262D2D46u;
 
+    /// <summary>
+    /// reason for hltv replay status change ()
+    /// <br/>
+    /// type: long
+    /// </summary>
+    int Reason { get; set; }
 }

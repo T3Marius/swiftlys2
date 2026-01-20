@@ -16,7 +16,7 @@ internal partial class CBasePlayerControllerImpl : CBasePlayerController
     public IPlayer? ToPlayer()
     {
         if (!IsValid) return null;
-        var player = new Player((int)(Index - 1));
+        var player = PlayerManagerService.PlayerObjects[(int)(Index - 1)];
         if (player is not { IsValid: true } || !NativePlayerManager.IsPlayerOnline(player.PlayerID)) return null;
         return player;
     }

@@ -29,11 +29,11 @@ internal partial class C_INIT_RemapParticleCountToNamedModelElementScalarImpl : 
     public string OutputMinName {
         get {
             _OutputMinNameOffset = _OutputMinNameOffset ?? Schema.GetOffset(0xB011C761CF5C20FB);
-            return Schema.GetString(_Handle.Read<nint>(_OutputMinNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OutputMinNameOffset!.Value));
         }
         set {
             _OutputMinNameOffset = _OutputMinNameOffset ?? Schema.GetOffset(0xB011C761CF5C20FB);
-            Schema.SetString(_Handle, _OutputMinNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OutputMinNameOffset!.Value, value);
         }
     } 
     private static nint? _OutputMaxNameOffset;
@@ -41,11 +41,11 @@ internal partial class C_INIT_RemapParticleCountToNamedModelElementScalarImpl : 
     public string OutputMaxName {
         get {
             _OutputMaxNameOffset = _OutputMaxNameOffset ?? Schema.GetOffset(0xB011C761553184F9);
-            return Schema.GetString(_Handle.Read<nint>(_OutputMaxNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OutputMaxNameOffset!.Value));
         }
         set {
             _OutputMaxNameOffset = _OutputMaxNameOffset ?? Schema.GetOffset(0xB011C761553184F9);
-            Schema.SetString(_Handle, _OutputMaxNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OutputMaxNameOffset!.Value, value);
         }
     } 
     private static nint? _ModelFromRendererOffset;

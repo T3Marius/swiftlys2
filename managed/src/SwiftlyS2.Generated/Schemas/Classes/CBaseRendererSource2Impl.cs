@@ -77,11 +77,11 @@ internal partial class CBaseRendererSource2Impl : CParticleFunctionRendererImpl,
     public string StrShaderOverride {
         get {
             _StrShaderOverrideOffset = _StrShaderOverrideOffset ?? Schema.GetOffset(0xA732A575DB9D2E61);
-            return Schema.GetString(_Handle.Read<nint>(_StrShaderOverrideOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrShaderOverrideOffset!.Value));
         }
         set {
             _StrShaderOverrideOffset = _StrShaderOverrideOffset ?? Schema.GetOffset(0xA732A575DB9D2E61);
-            Schema.SetString(_Handle, _StrShaderOverrideOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrShaderOverrideOffset!.Value, value);
         }
     } 
     private static nint? _CenterXOffsetOffset;

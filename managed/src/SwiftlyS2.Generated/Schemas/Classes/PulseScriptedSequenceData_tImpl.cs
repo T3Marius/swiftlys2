@@ -29,11 +29,11 @@ internal partial class PulseScriptedSequenceData_tImpl : SchemaClass, PulseScrip
     public string PreIdleSequence {
         get {
             _PreIdleSequenceOffset = _PreIdleSequenceOffset ?? Schema.GetOffset(0x7C781472672B317E);
-            return Schema.GetString(_Handle.Read<nint>(_PreIdleSequenceOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_PreIdleSequenceOffset!.Value));
         }
         set {
             _PreIdleSequenceOffset = _PreIdleSequenceOffset ?? Schema.GetOffset(0x7C781472672B317E);
-            Schema.SetString(_Handle, _PreIdleSequenceOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _PreIdleSequenceOffset!.Value, value);
         }
     } 
     private static nint? _EntrySequenceOffset;
@@ -41,11 +41,11 @@ internal partial class PulseScriptedSequenceData_tImpl : SchemaClass, PulseScrip
     public string EntrySequence {
         get {
             _EntrySequenceOffset = _EntrySequenceOffset ?? Schema.GetOffset(0x7C7814722635E511);
-            return Schema.GetString(_Handle.Read<nint>(_EntrySequenceOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_EntrySequenceOffset!.Value));
         }
         set {
             _EntrySequenceOffset = _EntrySequenceOffset ?? Schema.GetOffset(0x7C7814722635E511);
-            Schema.SetString(_Handle, _EntrySequenceOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _EntrySequenceOffset!.Value, value);
         }
     } 
     private static nint? _SequenceOffset;
@@ -53,11 +53,11 @@ internal partial class PulseScriptedSequenceData_tImpl : SchemaClass, PulseScrip
     public string Sequence {
         get {
             _SequenceOffset = _SequenceOffset ?? Schema.GetOffset(0x7C78147209FFA3B5);
-            return Schema.GetString(_Handle.Read<nint>(_SequenceOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SequenceOffset!.Value));
         }
         set {
             _SequenceOffset = _SequenceOffset ?? Schema.GetOffset(0x7C78147209FFA3B5);
-            Schema.SetString(_Handle, _SequenceOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SequenceOffset!.Value, value);
         }
     } 
     private static nint? _ExitSequenceOffset;
@@ -65,11 +65,11 @@ internal partial class PulseScriptedSequenceData_tImpl : SchemaClass, PulseScrip
     public string ExitSequence {
         get {
             _ExitSequenceOffset = _ExitSequenceOffset ?? Schema.GetOffset(0x7C7814725F482845);
-            return Schema.GetString(_Handle.Read<nint>(_ExitSequenceOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ExitSequenceOffset!.Value));
         }
         set {
             _ExitSequenceOffset = _ExitSequenceOffset ?? Schema.GetOffset(0x7C7814725F482845);
-            Schema.SetString(_Handle, _ExitSequenceOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ExitSequenceOffset!.Value, value);
         }
     } 
     private static nint? _MoveToOffset;

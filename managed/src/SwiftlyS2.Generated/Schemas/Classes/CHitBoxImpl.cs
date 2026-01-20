@@ -21,11 +21,11 @@ internal partial class CHitBoxImpl : SchemaClass, CHitBox
     public string Name {
         get {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x97E3DD244D8F5786);
-            return Schema.GetString(_Handle.Read<nint>(_NameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_NameOffset!.Value));
         }
         set {
             _NameOffset = _NameOffset ?? Schema.GetOffset(0x97E3DD244D8F5786);
-            Schema.SetString(_Handle, _NameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _NameOffset!.Value, value);
         }
     } 
     private static nint? _SurfacePropertyOffset;
@@ -33,11 +33,11 @@ internal partial class CHitBoxImpl : SchemaClass, CHitBox
     public string SurfaceProperty {
         get {
             _SurfacePropertyOffset = _SurfacePropertyOffset ?? Schema.GetOffset(0x97E3DD241A25534C);
-            return Schema.GetString(_Handle.Read<nint>(_SurfacePropertyOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_SurfacePropertyOffset!.Value));
         }
         set {
             _SurfacePropertyOffset = _SurfacePropertyOffset ?? Schema.GetOffset(0x97E3DD241A25534C);
-            Schema.SetString(_Handle, _SurfacePropertyOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _SurfacePropertyOffset!.Value, value);
         }
     } 
     private static nint? _BoneNameOffset;
@@ -45,11 +45,11 @@ internal partial class CHitBoxImpl : SchemaClass, CHitBox
     public string BoneName {
         get {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x97E3DD247559AC1F);
-            return Schema.GetString(_Handle.Read<nint>(_BoneNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_BoneNameOffset!.Value));
         }
         set {
             _BoneNameOffset = _BoneNameOffset ?? Schema.GetOffset(0x97E3DD247559AC1F);
-            Schema.SetString(_Handle, _BoneNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _BoneNameOffset!.Value, value);
         }
     } 
     private static nint? _MinBoundsOffset;

@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "achievement_info_loaded"
 /// </summary>
-public interface EventAchievementInfoLoaded : IGameEvent<EventAchievementInfoLoaded> {
+public interface EventAchievementInfoLoaded : IGameEvent<EventAchievementInfoLoaded>
+{
 
-  static EventAchievementInfoLoaded IGameEvent<EventAchievementInfoLoaded>.Create(nint address) => new EventAchievementInfoLoadedImpl(address);
+    static EventAchievementInfoLoaded IGameEvent<EventAchievementInfoLoaded>.Create(nint address) => new EventAchievementInfoLoadedImpl(address);
 
-  static string IGameEvent<EventAchievementInfoLoaded>.GetName() => "achievement_info_loaded";
+    static string IGameEvent<EventAchievementInfoLoaded>.GetName() => "achievement_info_loaded";
 
-  static uint IGameEvent<EventAchievementInfoLoaded>.GetHash() => 0x724EE32Fu;
+    static uint IGameEvent<EventAchievementInfoLoaded>.GetHash() => 0x724EE32Fu;
 }

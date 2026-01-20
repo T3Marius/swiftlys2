@@ -69,11 +69,11 @@ internal partial class C_OP_DriveCPFromGlobalSoundFloatImpl : CParticleFunctionP
     public string StackName {
         get {
             _StackNameOffset = _StackNameOffset ?? Schema.GetOffset(0x1E3FE6308C81C05C);
-            return Schema.GetString(_Handle.Read<nint>(_StackNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StackNameOffset!.Value));
         }
         set {
             _StackNameOffset = _StackNameOffset ?? Schema.GetOffset(0x1E3FE6308C81C05C);
-            Schema.SetString(_Handle, _StackNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StackNameOffset!.Value, value);
         }
     } 
     private static nint? _OperatorNameOffset;
@@ -81,11 +81,11 @@ internal partial class C_OP_DriveCPFromGlobalSoundFloatImpl : CParticleFunctionP
     public string OperatorName {
         get {
             _OperatorNameOffset = _OperatorNameOffset ?? Schema.GetOffset(0x1E3FE63091CAF75E);
-            return Schema.GetString(_Handle.Read<nint>(_OperatorNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_OperatorNameOffset!.Value));
         }
         set {
             _OperatorNameOffset = _OperatorNameOffset ?? Schema.GetOffset(0x1E3FE63091CAF75E);
-            Schema.SetString(_Handle, _OperatorNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _OperatorNameOffset!.Value, value);
         }
     } 
     private static nint? _FieldNameOffset;
@@ -93,11 +93,11 @@ internal partial class C_OP_DriveCPFromGlobalSoundFloatImpl : CParticleFunctionP
     public string FieldName {
         get {
             _FieldNameOffset = _FieldNameOffset ?? Schema.GetOffset(0x1E3FE6300A25F4C4);
-            return Schema.GetString(_Handle.Read<nint>(_FieldNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_FieldNameOffset!.Value));
         }
         set {
             _FieldNameOffset = _FieldNameOffset ?? Schema.GetOffset(0x1E3FE6300A25F4C4);
-            Schema.SetString(_Handle, _FieldNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _FieldNameOffset!.Value, value);
         }
     } 
 

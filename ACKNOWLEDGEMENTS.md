@@ -187,3 +187,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
+## About StringTable
+
+Credits to @ipsvn for the `bf_write` fix and StringTable serialization method for replication.
+Related links:
+- https://github.com/alliedmodders/hl2sdk/pull/364
+- https://github.com/ipsvn/ReplicateStringTableValue

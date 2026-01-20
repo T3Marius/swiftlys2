@@ -21,7 +21,7 @@ internal class SchemaFixedArray<T> : SchemaField, ISchemaFixedArray<T> where T :
 
   public ref T this[int index] {
     get {
-      return ref _Handle.AsRef<T>(FieldOffset + index * ElementSize);
+      return ref _Handle.AsRef<T>(index * ElementSize);
     }
   }
 

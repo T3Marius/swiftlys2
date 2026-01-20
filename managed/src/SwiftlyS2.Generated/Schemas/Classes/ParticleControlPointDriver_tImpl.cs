@@ -37,11 +37,11 @@ internal partial class ParticleControlPointDriver_tImpl : SchemaClass, ParticleC
     public string AttachmentName {
         get {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0xB7C66843295DA9CB);
-            return Schema.GetString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_AttachmentNameOffset!.Value));
         }
         set {
             _AttachmentNameOffset = _AttachmentNameOffset ?? Schema.GetOffset(0xB7C66843295DA9CB);
-            Schema.SetString(_Handle, _AttachmentNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _AttachmentNameOffset!.Value, value);
         }
     } 
     private static nint? _OffsetOffset;
@@ -65,11 +65,11 @@ internal partial class ParticleControlPointDriver_tImpl : SchemaClass, ParticleC
     public string EntityName {
         get {
             _EntityNameOffset = _EntityNameOffset ?? Schema.GetOffset(0xB7C6684380D1D3E1);
-            return Schema.GetString(_Handle.Read<nint>(_EntityNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_EntityNameOffset!.Value));
         }
         set {
             _EntityNameOffset = _EntityNameOffset ?? Schema.GetOffset(0xB7C6684380D1D3E1);
-            Schema.SetString(_Handle, _EntityNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _EntityNameOffset!.Value, value);
         }
     } 
 

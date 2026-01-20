@@ -7,17 +7,17 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "flare_ignite_npc"
 /// </summary>
 internal class EventFlareIgniteNpcImpl : GameEvent<EventFlareIgniteNpc>, EventFlareIgniteNpc
 {
 
-  public EventFlareIgniteNpcImpl(nint address) : base(address)
-  {
-  }
+    public EventFlareIgniteNpcImpl(nint address) : base(address)
+    {
+    }
 
-  // entity ignited
-  public int EntIndex
-  { get => Accessor.GetInt32("entindex"); set => Accessor.SetInt32("entindex", value); }
+    // entity ignited
+    public int EntIndex
+    { get => Accessor.GetInt32("entindex"); set => Accessor.SetInt32("entindex", value); }
 }

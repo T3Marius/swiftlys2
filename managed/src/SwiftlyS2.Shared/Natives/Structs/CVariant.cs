@@ -98,7 +98,7 @@ public enum VariantFieldType : byte
 }
 
 [Flags]
-public enum CVFlags
+public enum CVFlags : ushort
 {
     FREE = 0x01,
 }
@@ -136,7 +136,8 @@ internal unsafe struct CVariantData
 }
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
-public struct CVariant<TAllocator> where TAllocator : IVariantAllocator
+public struct CVariant<TAllocator> : IDisposable
+    where TAllocator : IVariantAllocator
 {
     private CVariantData Data;          // 8 bytes (union)
     public VariantFieldType DataType;   // 1 byte (uint8 enum)
@@ -252,7 +253,7 @@ public struct CVariant<TAllocator> where TAllocator : IVariantAllocator
         var len = Encoding.UTF8.GetByteCount(value);
         var buffer = TAllocator.Alloc((ulong)(len + 1));
         buffer.CopyFrom(Encoding.UTF8.GetBytes(value));
-        buffer.Write(len, 0);
+        buffer.Write(len, (byte)0);
         Data.ThisPointer.Write(buffer);
         SetAllocated();
     }
@@ -586,7 +587,7 @@ public struct CVariant<TAllocator> where TAllocator : IVariantAllocator
         return $"CVariant(Type={DataType}, Flags={Flags}, UnknownValue)";
     }
 
-    private void Free()
+    public void Free()
     {
         if (Flags.HasFlag(CVFlags.FREE))
         {
@@ -660,5 +661,10 @@ public struct CVariant<TAllocator> where TAllocator : IVariantAllocator
             value = default;
             return false;
         }
+    }
+
+    public void Dispose()
+    {
+        Free();
     }
 }

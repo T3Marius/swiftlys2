@@ -5,14 +5,15 @@ using SwiftlyS2.Shared.Players;
 
 namespace SwiftlyS2.Shared.GameEventDefinitions;
 
-/// <summary> 
+/// <summary>
 /// Event "round_start_post_nav"
 /// </summary>
-public interface EventRoundStartPostNav : IGameEvent<EventRoundStartPostNav> {
+public interface EventRoundStartPostNav : IGameEvent<EventRoundStartPostNav>
+{
 
-  static EventRoundStartPostNav IGameEvent<EventRoundStartPostNav>.Create(nint address) => new EventRoundStartPostNavImpl(address);
+    static EventRoundStartPostNav IGameEvent<EventRoundStartPostNav>.Create(nint address) => new EventRoundStartPostNavImpl(address);
 
-  static string IGameEvent<EventRoundStartPostNav>.GetName() => "round_start_post_nav";
+    static string IGameEvent<EventRoundStartPostNav>.GetName() => "round_start_post_nav";
 
-  static uint IGameEvent<EventRoundStartPostNav>.GetHash() => 0x0F2F9F25u;
+    static uint IGameEvent<EventRoundStartPostNav>.GetHash() => 0x0F2F9F25u;
 }

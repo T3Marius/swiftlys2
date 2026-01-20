@@ -7,13 +7,13 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "vote_ended"
 /// </summary>
 internal class EventVoteEndedImpl : GameEvent<EventVoteEnded>, EventVoteEnded
 {
 
-  public EventVoteEndedImpl(nint address) : base(address)
-  {
-  }
+    public EventVoteEndedImpl(nint address) : base(address)
+    {
+    }
 }

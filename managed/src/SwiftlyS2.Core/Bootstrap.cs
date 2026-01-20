@@ -102,6 +102,7 @@ internal static class Bootstrap
                     .AddCommandTrackerService()
                     .AddMenuManagerAPI()
                     .AddMenuManagerAPIService()
+                    .AddDatamapFunctionManager()
                     .AddSwiftlyCore(basePath);
             })
             .Build();

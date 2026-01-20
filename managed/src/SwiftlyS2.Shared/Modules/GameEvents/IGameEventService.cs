@@ -148,4 +148,18 @@ public interface IGameEventService
     /// <typeparam name="T">The event type.</typeparam>
     /// <param name="configureEvent">The action to configure the event.</param>
     Task FireToServerAsync<T>( Action<T> configureEvent ) where T : IGameEvent<T>;
+
+    /// <summary>
+    /// Check if the player is Listening this event.
+    /// </summary>
+    /// <param name="slot">The player slot.</param>
+    /// <param name="eventName">The event name.</param>
+    bool IsListeningToEvent( int slot, string eventName );
+
+    /// <summary>
+    /// Check if the player is Listening this event.
+    /// </summary>
+    /// <typeparam name="T">The event type.</typeparam>
+    /// <param name="slot">The player slot.</param>
+    bool IsListeningToEvent<T>( int slot ) where T : IGameEvent<T>;
 }

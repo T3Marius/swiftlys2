@@ -7,14 +7,14 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "user_data_downloaded"
 /// fired when achievements/stats are downloaded from Steam or XBox Live
 /// </summary>
 internal class EventUserDataDownloadedImpl : GameEvent<EventUserDataDownloaded>, EventUserDataDownloaded
 {
 
-  public EventUserDataDownloadedImpl(nint address) : base(address)
-  {
-  }
+    public EventUserDataDownloadedImpl(nint address) : base(address)
+    {
+    }
 }

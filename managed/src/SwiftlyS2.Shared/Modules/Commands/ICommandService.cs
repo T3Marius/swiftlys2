@@ -32,7 +32,7 @@ public interface ICommandService
     /// </summary>
     /// <param name="commandName">The command name.</param>
     /// <param name="handler">The handler callback for the command.</param>
-    /// <param name="registerRaw">If set to false, the command will not starts with a `sw_` prefix.</param>
+    /// <param name="registerRaw">If set to true, the command will not starts with a `sw_` prefix.</param>
     /// <param name="permission">The permission required to use the command.</param>
     /// <returns>The guid of the command.</returns>
     public Guid RegisterCommand( string commandName, CommandListener handler, bool registerRaw = false, string permission = "" );
@@ -42,7 +42,7 @@ public interface ICommandService
     /// </summary>
     /// <param name="commandName">The command name.</param>
     /// <param name="alias">The alias.</param>
-    /// <param name="registerRaw">If set to false, the alias will not starts with a `sw_` prefix.</param>
+    /// <param name="registerRaw">If set to true, the alias will not starts with a `sw_` prefix.</param>
     public void RegisterCommandAlias( string commandName, string alias, bool registerRaw = false );
 
     /// <summary>

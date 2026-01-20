@@ -7,53 +7,53 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "hltv_fixed"
 /// show from fixed view
 /// </summary>
 internal class EventHltvFixedImpl : GameEvent<EventHltvFixed>, EventHltvFixed
 {
 
-  public EventHltvFixedImpl(nint address) : base(address)
-  {
-  }
+    public EventHltvFixedImpl(nint address) : base(address)
+    {
+    }
 
-  // camera position in world
-  public int PosX
-  { get => Accessor.GetInt32("posx"); set => Accessor.SetInt32("posx", value); }
+    // camera position in world
+    public int PosX
+    { get => Accessor.GetInt32("posx"); set => Accessor.SetInt32("posx", value); }
 
-  public int Posy
-  { get => Accessor.GetInt32("posy"); set => Accessor.SetInt32("posy", value); }
+    public int Posy
+    { get => Accessor.GetInt32("posy"); set => Accessor.SetInt32("posy", value); }
 
-  public int PosZ
-  { get => Accessor.GetInt32("posz"); set => Accessor.SetInt32("posz", value); }
+    public int PosZ
+    { get => Accessor.GetInt32("posz"); set => Accessor.SetInt32("posz", value); }
 
-  // camera angles
-  public short Theta
-  { get => (short)Accessor.GetInt32("theta"); set => Accessor.SetInt32("theta", value); }
+    // camera angles
+    public short Theta
+    { get => (short)Accessor.GetInt32("theta"); set => Accessor.SetInt32("theta", value); }
 
-  public short Phi
-  { get => (short)Accessor.GetInt32("phi"); set => Accessor.SetInt32("phi", value); }
+    public short Phi
+    { get => (short)Accessor.GetInt32("phi"); set => Accessor.SetInt32("phi", value); }
 
-  public short Offset
-  { get => (short)Accessor.GetInt32("offset"); set => Accessor.SetInt32("offset", value); }
+    public short Offset
+    { get => (short)Accessor.GetInt32("offset"); set => Accessor.SetInt32("offset", value); }
 
-  public float FOv
-  { get => Accessor.GetFloat("fov"); set => Accessor.SetFloat("fov", value); }
+    public float FOv
+    { get => Accessor.GetFloat("fov"); set => Accessor.SetFloat("fov", value); }
 
-  // follow this player
-  public CCSPlayerController TargetController
-  { get => Accessor.GetPlayerController("target"); }
+    // follow this player
+    public CCSPlayerController TargetController
+    { get => Accessor.GetPlayerController("target"); }
 
-  // follow this player
-  public CCSPlayerPawn TargetPawn
-  { get => Accessor.GetPlayerPawn("target"); }
+    // follow this player
+    public CCSPlayerPawn TargetPawn
+    { get => Accessor.GetPlayerPawn("target"); }
 
-  // follow this player
-  public IPlayer TargetPlayer
-  { get => Accessor.GetPlayer("target"); }
+    // follow this player
+    public IPlayer? TargetPlayer
+    { get => Accessor.GetPlayer("target"); }
 
-  // follow this player
-  public int Target
-  { get => Accessor.GetInt32("target"); set => Accessor.SetInt32("target", value); }
+    // follow this player
+    public int Target
+    { get => Accessor.GetInt32("target"); set => Accessor.SetInt32("target", value); }
 }

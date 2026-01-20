@@ -21,11 +21,11 @@ internal partial class CPulseCell_Step_SetAnimGraphParamImpl : CPulseCell_BaseFl
     public string ParamName {
         get {
             _ParamNameOffset = _ParamNameOffset ?? Schema.GetOffset(0x7727698D230FDA59);
-            return Schema.GetString(_Handle.Read<nint>(_ParamNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_ParamNameOffset!.Value));
         }
         set {
             _ParamNameOffset = _ParamNameOffset ?? Schema.GetOffset(0x7727698D230FDA59);
-            Schema.SetString(_Handle, _ParamNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _ParamNameOffset!.Value, value);
         }
     } 
 

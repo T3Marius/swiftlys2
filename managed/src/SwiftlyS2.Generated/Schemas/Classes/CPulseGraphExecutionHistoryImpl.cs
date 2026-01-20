@@ -29,11 +29,11 @@ internal partial class CPulseGraphExecutionHistoryImpl : SchemaClass, CPulseGrap
     public string StrFileName {
         get {
             _StrFileNameOffset = _StrFileNameOffset ?? Schema.GetOffset(0x2DC54ABB51B717E5);
-            return Schema.GetString(_Handle.Read<nint>(_StrFileNameOffset!.Value));
+            return Schema.GetCUtlString(_Handle.Read<nint>(_StrFileNameOffset!.Value));
         }
         set {
             _StrFileNameOffset = _StrFileNameOffset ?? Schema.GetOffset(0x2DC54ABB51B717E5);
-            Schema.SetString(_Handle, _StrFileNameOffset!.Value, value);
+            Schema.SetCUtlString(_Handle, _StrFileNameOffset!.Value, value);
         }
     } 
     private static nint? _HistoryOffset;

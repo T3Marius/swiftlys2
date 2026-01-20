@@ -7,21 +7,21 @@ using SwiftlyS2.Shared.Players;
 namespace SwiftlyS2.Core.GameEventDefinitions;
 
 // generated
-/// <summary> 
+/// <summary>
 /// Event "ugc_file_download_start"
 /// </summary>
 internal class EventUgcFileDownloadStartImpl : GameEvent<EventUgcFileDownloadStart>, EventUgcFileDownloadStart
 {
 
-  public EventUgcFileDownloadStartImpl(nint address) : base(address)
-  {
-  }
+    public EventUgcFileDownloadStartImpl(nint address) : base(address)
+    {
+    }
 
-  // id of this specific content (may be image or map)
-  public ulong HContent
-  { get => Accessor.GetUInt64("hcontent"); set => Accessor.SetUInt64("hcontent", value); }
+    // id of this specific content (may be image or map)
+    public ulong HContent
+    { get => Accessor.GetUInt64("hcontent"); set => Accessor.SetUInt64("hcontent", value); }
 
-  // id of the associated content package
-  public ulong PublishedFileId
-  { get => Accessor.GetUInt64("published_file_id"); set => Accessor.SetUInt64("published_file_id", value); }
+    // id of the associated content package
+    public ulong PublishedFileId
+    { get => Accessor.GetUInt64("published_file_id"); set => Accessor.SetUInt64("published_file_id", value); }
 }
