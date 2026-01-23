@@ -8,9 +8,9 @@ namespace SwiftlyS2.Shared.Natives;
 [StructLayout(LayoutKind.Sequential)]
 public struct AttackerInfo_t
 {
-    public bool NeedInit;
-    public bool IsPawn;
-    public bool IsWorld;
+    public byte NeedInit;
+    public byte IsPawn;
+    public byte IsWorld;
     public CHandle<CCSPlayerPawn> AttackerPawn;
     public int AttackerPlayerSlot;
     public int TeamChecked;
@@ -38,27 +38,24 @@ public unsafe struct CTakeDamageInfo
     private fixed byte _padding1[0xb];
 
     public float OriginalDamage;
-    public bool ShouldBleed;
-    public bool ShouldSpark;
+    public byte ShouldBleed;
+    public byte ShouldSpark;
 
     private short _padding2;
 
     public CGameTrace* Trace;
     public TakeDamageFlags_t DamageFlags;
-    public CString DamageSourceName;
-
     /// <see cref="ActualHitGroup"/>
     [Obsolete("This field somehow holds garbage value in game. Use ActualHitGroup instead.")]
     public HitGroup_t HitGroupId;
     public int NumObjectsPenetrated;
     public float FriendlyFireDamageReductionRatio;
-
-    private fixed byte _padding3[0x5C];
-
+    public byte StoppedBullet;
+    public ShootingInfo ShootingInfo;
     public void* ScriptInstance;
     public AttackerInfo_t AttackerInfo;
-    private fixed byte _padding4[0x1C];
-    public bool InTakeDamageFlow;
+    public CUtlVector<DestructibleHitGroupToDestroy_t> DestructibleHitGroupsToForceDestroy;
+    public byte InTakeDamageFlow;
 
     private int Unknown;
 
@@ -95,7 +92,7 @@ public unsafe struct CTakeDamageInfo
     public HitGroup_t ActualHitGroup => Trace->HitBox->m_nGroupId;
 }
 
-[StructLayout(LayoutKind.Sequential, Pack = 8, Size = 40)]
+[StructLayout(LayoutKind.Sequential, Pack = 8, Size = 48)]
 public unsafe struct CTakeDamageResult
 {
     public CTakeDamageInfo* OriginatingInfo;
@@ -105,5 +102,8 @@ public unsafe struct CTakeDamageResult
     public float PreModifiedDamage;
     public int TotalledHealthLost;
     public int TotalledDamageDealt;
-    public bool WasDamageSuppressed;
+    public float TotalledPreModifiedDamage;
+    public byte WasDamageSuppressed;
+    public byte SuppressFlinch;
+    public HitGroup_t OverrideFlinchHitGroup;
 }

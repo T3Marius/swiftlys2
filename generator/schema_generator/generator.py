@@ -157,6 +157,7 @@ classname_dict = {
   "CSoundOpvarSetEntity": "snd_opvar_set",
   "CSoundOpvarSetAutoRoomEntity": "snd_opvar_set_auto_room",
   "CSoundOpvarSetAABBEntity": "snd_opvar_set_aabb",
+  "CSoundEventConeEntity": "snd_event_cone",
   "CSoundEventSphereEntity": "snd_event_sphere",
   "CSoundEventPathCornerEntity": "snd_event_path_corner",
   "CSoundEventParameter": "snd_event_param",

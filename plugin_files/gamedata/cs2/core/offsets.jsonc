@@ -4,32 +4,35 @@
         "linux": 80
     },
     "CBasePlayerPawn::CommitSuicide": {
-        "windows": 408,
-        "linux": 408
+        "windows": 400,
+        "linux": 400
     },
     "CCSPlayerController::ChangeTeam": {
-        "windows": 109,
-        "linux": 108
+        "windows": 102,
+        "linux": 101
     },
+    /*
+    Called in CBaseEntityAPI::TeleportToPoint
+    */
     "CBaseEntity::Teleport": {
-        "windows": 168,
-        "linux": 167
+        "windows": 162,
+        "linux": 161
     },
     "CCSPlayerController::Respawn": {
-        "windows": 277,
-        "linux": 279
+        "windows": 272,
+        "linux": 274
     },
     "CBaseEntity::CollisionRulesChanged": {
-        "windows": 191,
-        "linux": 190
+        "windows": 185,
+        "linux": 184
     },
     "CGameSceneNode::GetSkeletonInstance": {
         "windows": 8,
-        "linux": 8
+        "linux": 9
     },
     "GetHammerUniqueID": {
-        "windows": 118,
-        "linux": 117
+        "windows": 111,
+        "linux": 110
     },
     "CEntityResourceManifest::AddResource": {
         "windows": 2,
@@ -51,40 +54,40 @@
     inside it there should be a virtual call on CSoundSystem.
     */
     "CSoundSystem::TakeGuid": {
-        "windows": 77,
-        "linux": 76
+        "windows": 76,
+        "linux": 75
     },
     "CGameRules::FindPickerEntity": {
         "windows": 25,
         "linux": 26
     },
     "CCSPlayer_ItemServices::DropActiveItem": {
-        "windows": 21,
-        "linux": 22
+        "windows": 22,
+        "linux": 23
     },
     "CCSPlayer_ItemServices::RemoveWeapons": {
-        "windows": 22,
-        "linux": 23
-    },
-    "CCSPlayer_ItemServices::GiveNamedItem": {
-        "windows": 18,
-        "linux": 19
-    },
-    "CCSPlayer_WeaponServices::CanUse": {
-        "windows": 22,
-        "linux": 23
-    },
-    "CCSPlayer_WeaponServices::DropWeapon": {
         "windows": 23,
         "linux": 24
     },
+    "CCSPlayer_ItemServices::GiveNamedItem": {
+        "windows": 19,
+        "linux": 20
+    },
+    "CCSPlayer_WeaponServices::CanUse": {
+        "windows": 23,
+        "linux": 24
+    },
+    "CCSPlayer_WeaponServices::DropWeapon": {
+        "windows": 24,
+        "linux": 25
+    },
     "CCSPlayer_WeaponServices::SelectWeapon": {
-        "windows": 25,
-        "linux": 26
+        "windows": 26,
+        "linux": 27
     },
     "CPlayer_MovementServices::RunCommand": {
-        "windows": 20,
-        "linux": 21
+        "windows": 21,
+        "linux": 22
     },
     /* From sdk */
     "ICvar::FindConCommand": {
@@ -169,16 +172,16 @@
         "linux": 40
     },
     "CBaseEntity::StartTouch": {
-        "windows": 153,
-        "linux": 152
+        "windows": 147,
+        "linux": 146
     },
     "CBaseEntity::Touch": {
-        "windows": 154,
-        "linux": 153
+        "windows": 148,
+        "linux": 147
     },
     "CBaseEntity::EndTouch": {
-        "windows": 155,
-        "linux": 154
+        "windows": 149,
+        "linux": 148
     },
     /*
     By tracing the calls in cstrike15_src

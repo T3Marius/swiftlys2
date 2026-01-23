@@ -7,7 +7,7 @@ namespace SwiftlyS2;
 internal class Entrypoint
 {
     [UnmanagedCallersOnly]
-    public static unsafe void Start( IntPtr nativeTable, int nativeTableSize, IntPtr basePath, IntPtr logsPath)
+    public static void Start( IntPtr nativeTable, int nativeTableSize, IntPtr basePath, IntPtr logsPath )
     {
         try
         {

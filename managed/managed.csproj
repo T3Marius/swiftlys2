@@ -64,6 +64,7 @@
     <Compile Remove="src\TestPlugin\**\*.cs" />
     <Compile Remove="SwiftlyS2.Benchmarks\**\*.cs" />
     <Compile Remove="SwiftlyS2.PluginTemplate\**\*.cs" />
+    <Compile Remove="SwiftlyS2.Runner\**\*.cs" />
     <Compile Remove="**\obj\**\*.cs" />
     <Compile Remove="**\bin\**\*.cs" />
   </ItemGroup>

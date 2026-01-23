@@ -43,8 +43,8 @@ jobs:
           done
       - name: Run Protobuf Generator
         run: cd swiftlys2/generator/protobuf_generator && python generate.py
-      - name: Run Game Events Generator
-        run: cd swiftlys2/generator/gameevent_generator && python generate.py
+      # - name: Run Game Events Generator
+        # run: cd swiftlys2/generator/gameevent_generator && python generate.py
       - name: Check for changes
         id: git-check
         working-directory: swiftlys2

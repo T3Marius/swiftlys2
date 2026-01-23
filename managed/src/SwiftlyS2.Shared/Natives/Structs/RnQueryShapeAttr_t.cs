@@ -201,7 +201,7 @@ public enum RnQueryObjectSet : byte
     All = Static | AllGameEntities,
 };
 
-[StructLayout(LayoutKind.Explicit, Pack = 8, Size = 0x30)]
+[StructLayout(LayoutKind.Explicit, Pack = 8, Size = 0x32)]
 public unsafe struct RnQueryShapeAttr_t
 {
     [FieldOffset(0x0)] public MaskTrace InteractsWith;
@@ -210,9 +210,9 @@ public unsafe struct RnQueryShapeAttr_t
     [FieldOffset(0x18)] public fixed uint EntityIdsToIgnore[2];
     [FieldOffset(0x20)] public fixed uint OwnerIdsToIgnore[2];
     [FieldOffset(0x28)] public fixed ushort HierarchyIds[2];
-    [FieldOffset(0x2C)] public RnQueryObjectSet ObjectSetMask;
-    [FieldOffset(0x2D)] public CollisionGroup CollisionGroup;
-    [FieldOffset(0x2E)] private byte data;
+    [FieldOffset(0x2F)] public RnQueryObjectSet ObjectSetMask;
+    [FieldOffset(0x30)] public CollisionGroup CollisionGroup;
+    [FieldOffset(0x31)] private byte data;
 
     public bool HitSolid {
         get => BitFieldHelper.GetBit(ref data, 0);

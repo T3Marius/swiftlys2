@@ -23,9 +23,7 @@ public struct CNetworkStatTrace
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct CServerSideClientBase
 {
-    public nint _pVTableServerSideClient;
-    public nint _pVTableSlot;
-    public CUtlSlot Slot;
+    private fixed byte IdkPadding[0x48];
     public CUtlString UserIDString;
     public CUtlString Name;
     public int PlayerSlot;
@@ -38,18 +36,21 @@ public unsafe struct CServerSideClientBase
     public byte SplitScreenUser;
     public byte SplitAllowFastDisconnect;
     public int SplitScreenPlayerSlot;
-    public CServerSideClientBase** SplitScreenUsers;
+    public CServerSideClientBase* FirstSplitScreenUser;
+    public CServerSideClientBase* SecondSplitScreenUser;
+    public CServerSideClientBase* ThirdSplitScreenUser;
+    public CServerSideClientBase* FourthSplitScreenUser;
     public CServerSideClientBase* AttachedTo;
     public byte SplitPlayerDisconnecting;
     public int UnkVar;
     public byte FakeClient;
     public byte SendingSnapshot;
-    public fixed byte Padding[0x5];
+    public fixed byte Padding[0x6];
     public ushort UserID;
     public byte ReceivedPacket;
     public CSteamID SteamID;
-    public CSteamID UnknownSteamID;
-    public CSteamID UnknownSteamID2;
+    public CSteamID DisconnectedSteamID;
+    public CSteamID AuthTicketSteamID;
     public CSteamID FriendsID;
     public NSAddress Address;
     public NSAddress Address2;
@@ -58,7 +59,7 @@ public unsafe struct CServerSideClientBase
     public fixed byte Padding2[0x28];
     public byte ConVarsChanged;
     public byte IsHLTV;
-    public fixed byte Padding3[0xB];
+    public fixed byte Padding3[0xD];
     public uint SendtableCRC;
     public uint ChallengeNumber;
     public int SignonTick;
@@ -67,7 +68,7 @@ public unsafe struct CServerSideClientBase
     public int StringTableAckTick;
     public int UnkVar4;
     public nint LastSnapshot;
-    public CUtlVector<uint> LoadedSpawnGroups;
+    public CUtlVector<nint> LoadedSpawnGroups;
     public fixed byte PlayerInfo[0x38];
     public nint BaselineSnapshot;
     public int BaselineUpdateTick;
@@ -84,7 +85,8 @@ public unsafe struct CServerSideClientBase
     public float NextMessageTime;
     public float AuthenticatedTime;
     public float SnapshotInterval;
-    public fixed byte PaddingPacketEntitiesMsg[0x138];
+    public fixed byte SomeOtherPadding[0x8];
+    public fixed byte PaddingPacketEntitiesMsg[0x15C];
     public CNetworkStatTrace Trace;
     public int SpamCommandsCount;
     public int Unknown;
@@ -163,14 +165,13 @@ public unsafe struct CServerSideClient
     public float HLTVLastReplayRequestTime;
     public CUtlVector<nint> HLTVQueuedMessages;
     public HltvReplayStats_t hltvReplayStats;
-    public nint LastJob;
-    public fixed byte Padding2[0x8];
 }
 
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct CHLTVClient
 {
     public CServerSideClientBase Base;
+    public nint HLTVServer;
     public CUtlString Password;
     public CUtlString ChatGroup;
     public double LastSendTime;
@@ -183,5 +184,5 @@ public unsafe struct CHLTVClient
     public byte UnkBool;
     public byte UnkBool2;
     public byte UnkBool3;
-    public fixed byte Padding[0x24];
+    public fixed byte Padding[0x34];
 }

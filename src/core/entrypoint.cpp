@@ -178,13 +178,13 @@ bool SwiftlyCore::Load(BridgeKind_t kind)
         }
     }
 
-    auto sdkclass = g_ifaceService.FetchInterface<ISDKSchema>(SDKSCHEMA_INTERFACE_VERSION);
-    sdkclass->Load();
-
     auto gamedata = g_ifaceService.FetchInterface<IGameDataManager>(GAMEDATA_INTERFACE_VERSION);
     gamedata->GetOffsets()->Load(GetCurrentGame());
     gamedata->GetSignatures()->Load(GetCurrentGame());
     gamedata->GetPatches()->Load(GetCurrentGame());
+
+    auto sdkclass = g_ifaceService.FetchInterface<ISDKSchema>(SDKSCHEMA_INTERFACE_VERSION);
+    sdkclass->Load();
 
     if (std::string* s = std::get_if<std::string>(&configuration->GetValue("core.PatchesToPerform")))
     {
@@ -341,7 +341,7 @@ void __fastcall PreloadDLLHook(HMODULE hModule)
 
     if (hModule)
     {
-        char modulePath[MAX_PATH] = {0};
+        char modulePath[MAX_PATH] = { 0 };
         DWORD len = GetModuleFileNameA(hModule, modulePath, MAX_PATH);
         if (len > 0 && len < MAX_PATH)
         {
@@ -492,7 +492,7 @@ void* SwiftlyCore::GetInterface(const std::string& interface_name)
 
     if (ifaceptr != nullptr)
     {
-        g_mInterfacesCache.insert({interface_name, ifaceptr});
+        g_mInterfacesCache.insert({ interface_name, ifaceptr });
     }
 
     return ifaceptr;

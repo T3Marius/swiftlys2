@@ -18,6 +18,7 @@
 
 #include "allocator.h"
 #include <cstring>
+#include <algorithm>
 
 #include "tier0/memdbgon.h"
 

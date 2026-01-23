@@ -165,7 +165,9 @@ internal static class GameFunctions
                 keyBuffer[keyLength] = 0;
                 fixed (byte* pKey = keyBuffer)
                 {
-                    return pGetWeaponCSDataFromKey(unknown, (nint)pKey);
+                    var weaponCSData = pGetWeaponCSDataFromKey(unknown, (nint)pKey);
+                    pool.Return(keyBuffer);
+                    return weaponCSData;
                 }
             }
         }
@@ -443,7 +445,9 @@ internal static class GameFunctions
                 nameBuffer[nameLength] = 0;
                 fixed (byte* pName = nameBuffer)
                 {
-                    return pGiveNamedItem(pThis, (IntPtr)pName);
+                    var ptr = pGiveNamedItem(pThis, (IntPtr)pName);
+                    pool.Return(nameBuffer);
+                    return ptr;
                 }
             }
         }

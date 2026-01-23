@@ -116,19 +116,21 @@ public class SwiftlyOptionsFactory<T> : IOptionsFactory<T> where T : class, new(
             if (currentValue == null) continue;
 
             var section = config.GetSection(prop.Name);
-            var hasConfigValue = section.GetChildren().Any() || section.Value != null;
+
+            var hasConfigValue = section.Exists() && (section.GetChildren().Any() || section.Value != null);
 
             if (currentValue is System.Collections.IDictionary dict)
             {
-                dict.Clear();
+                if (hasConfigValue)
+                    dict.Clear();
             }
-            else if (currentValue is System.Collections.IList list && !prop.PropertyType.IsArray)
+            else if (currentValue is System.Collections.IList list)
             {
-                list.Clear();
+                if (hasConfigValue)
+                    list.Clear();
             }
-            else if (!IsSimpleType(prop.PropertyType) && prop.PropertyType.IsClass && !prop.PropertyType.IsArray)
+            else if (!IsSimpleType(prop.PropertyType) && prop.PropertyType.IsClass)
             {
-                // Recurse into nested objects
                 ClearCollectionsRecursive(currentValue, section);
             }
         }
