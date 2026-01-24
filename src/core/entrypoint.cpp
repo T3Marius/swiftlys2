@@ -240,6 +240,9 @@ bool SwiftlyCore::Load(BridgeKind_t kind)
     auto netmessages = g_ifaceService.FetchInterface<INetMessages>(NETMESSAGES_INTERFACE_VERSION);
     netmessages->Initialize();
 
+    auto voicemanager = g_ifaceService.FetchInterface<IVoiceManager>(VOICEMANAGER_INTERFACE_VERSION);
+    voicemanager->Initialize();
+
     auto servercommands = g_ifaceService.FetchInterface<IServerCommands>(SERVERCOMMANDS_INTERFACE_VERSION);
     servercommands->Initialize();
 
@@ -306,6 +309,9 @@ bool SwiftlyCore::Unload()
 
     auto servercommands = g_ifaceService.FetchInterface<IServerCommands>(SERVERCOMMANDS_INTERFACE_VERSION);
     servercommands->Shutdown();
+
+    auto voicemanager = g_ifaceService.FetchInterface<IVoiceManager>(VOICEMANAGER_INTERFACE_VERSION);
+    voicemanager->Shutdown();
 
     if (g_pGameServerSteamAPIActivated != nullptr)
     {

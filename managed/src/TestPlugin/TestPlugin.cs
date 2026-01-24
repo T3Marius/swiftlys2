@@ -151,6 +151,13 @@ public class TestPlugin : BasePlugin
         };
     }
 
+    [Command("selfmute")]
+    public void SelfMuteCommand( ICommandContext context )
+    {
+        var player = context.Sender!;
+        player.VoiceFlags = VoiceFlagValue.Muted;
+    }
+
     [Command("be")]
     public void Test2Command( ICommandContext context )
     {

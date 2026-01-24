@@ -9,8 +9,9 @@ public class Program
     {
         Console.WriteLine("=================================================");
 
-        Console.WriteLine("CTakeDamageInfo Struct Layout:");
-        PrintStructInfo<CTakeDamageInfo>();
+        Console.WriteLine("CTraceFilter Struct Layout:");
+        PrintStructInfo<RnQueryShapeAttr_t>();
+        PrintStructInfo<CTraceFilter>();
     }
 
     private static void PrintStructInfo<T>() where T : struct

@@ -71,7 +71,7 @@ internal class CoreHookService : IDisposable
     private delegate nint ExecuteCommand( nint a1, int a2, uint a3, nint a4, nint a5 );
     private delegate nint ICvarFindConCommandWindows( nint pICvar, nint pRet, nint pConCommandName, int unk1 );
     private delegate nint ICvarFindConCommandLinux( nint pICvar, nint pConCommandName, int unk1 );
-    private delegate int CCSPlayerItemServicesCanAcquire( nint pItemServices, nint pEconItemView, nint acquireMethod, nint unk1 );
+    private delegate nint CCSPlayerItemServicesCanAcquire( nint pItemServices, nint pEconItemView, int acquireMethod, nint unk1 );
     private delegate byte CCSPlayerWeaponServicesCanUse( nint pWeaponServices, nint pBasePlayerWeapon );
     private delegate nint CBaseEntityTouchTemplate( nint pBaseEntity, nint pOtherEntity );
     private delegate void SteamServerAPIActivated( nint pServer );

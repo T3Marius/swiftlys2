@@ -35,7 +35,7 @@ internal class TraceManager : ITraceManager
     {
         var filter = new CTraceFilter(true) {
             IterateEntities = true,
-            QueryShapeAttributes = new RnQueryShapeAttr_t {
+            QueryShapeAttributes = new RnQueryShapeAttr_t() {
                 ObjectSetMask = objectQuery,
                 InteractsWith = interactWith,
                 InteractsExclude = interactExclude,

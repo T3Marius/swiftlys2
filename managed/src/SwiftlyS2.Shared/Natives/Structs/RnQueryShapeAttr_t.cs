@@ -201,18 +201,20 @@ public enum RnQueryObjectSet : byte
     All = Static | AllGameEntities,
 };
 
-[StructLayout(LayoutKind.Explicit, Pack = 8, Size = 0x32)]
+[StructLayout(LayoutKind.Sequential, Pack = 8)]
 public unsafe struct RnQueryShapeAttr_t
 {
-    [FieldOffset(0x0)] public MaskTrace InteractsWith;
-    [FieldOffset(0x8)] public MaskTrace InteractsExclude;
-    [FieldOffset(0x10)] public MaskTrace InteractsAs;
-    [FieldOffset(0x18)] public fixed uint EntityIdsToIgnore[2];
-    [FieldOffset(0x20)] public fixed uint OwnerIdsToIgnore[2];
-    [FieldOffset(0x28)] public fixed ushort HierarchyIds[2];
-    [FieldOffset(0x2F)] public RnQueryObjectSet ObjectSetMask;
-    [FieldOffset(0x30)] public CollisionGroup CollisionGroup;
-    [FieldOffset(0x31)] private byte data;
+    public MaskTrace InteractsWith;
+    public MaskTrace InteractsExclude;
+    public MaskTrace InteractsAs;
+    public fixed uint EntityIdsToIgnore[2];
+    public fixed uint OwnerIdsToIgnore[2];
+    public fixed ushort HierarchyIds[2];
+    public ushort IncludedDetailLayers;
+    public byte TargetDetailLayer;
+    public RnQueryObjectSet ObjectSetMask;
+    public CollisionGroup CollisionGroup;
+    private byte data;
 
     public bool HitSolid {
         get => BitFieldHelper.GetBit(ref data, 0);
@@ -247,5 +249,33 @@ public unsafe struct RnQueryShapeAttr_t
     public bool Unknown {
         get => BitFieldHelper.GetBit(ref data, 6);
         set => BitFieldHelper.SetBit(ref data, 6, value);
+    }
+
+    public RnQueryShapeAttr_t()
+    {
+        InteractsWith = 0;
+        InteractsExclude = 0;
+        InteractsAs = 0;
+
+        EntityIdsToIgnore[0] = uint.MaxValue;
+        EntityIdsToIgnore[1] = uint.MaxValue;
+
+        OwnerIdsToIgnore[0] = uint.MaxValue;
+        OwnerIdsToIgnore[1] = uint.MaxValue;
+
+        HierarchyIds[0] = 0;
+        HierarchyIds[1] = 0;
+        IncludedDetailLayers = ushort.MaxValue;
+        TargetDetailLayer = 0;
+        ObjectSetMask = RnQueryObjectSet.All;
+        CollisionGroup = CollisionGroup.Always;
+
+        HitSolid = true;
+        HitSolidRequiresGenerateContacts = false;
+        HitTrigger = false;
+        ShouldIgnoreDisabledPairs = true;
+        IgnoreIfBothInteractWithHitboxes = false;
+        ForceHitEverything = false;
+        Unknown = true;
     }
 }

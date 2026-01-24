@@ -79,30 +79,20 @@ internal class TestService
 
     public void Test2()
     {
-        core.Event.OnStartupServer += () =>
-        {
-            var table = core.StringTable.FindTable("InfoPanel")!;
-            _ = table.GetOrAddString("motd");
-            _ = table.SetStringUserData("motd", StringTableUserData.FromString("https://swiftlys2.net"));
-        };
-        core.Event.OnClientPutInServer += (@event) =>
-        {
-            var table = core.StringTable.FindTable("InfoPanel")!;
-            CRecipientFilter filter = new();
-            filter.AddAllPlayers();
-            table.ReplicateUserData("motd", StringTableUserData.FromString("https://google.com"), filter);
+        _ = core.Command.RegisterCommand("abc", (ctx) => {
+            var coords = ctx.Sender!.Pawn!.AbsOrigin;
+            var ps = core.PlayerManager.GetAllPlayers().Where(p => p.PlayerID != ctx.Sender!.PlayerID).ToList();
+            var randomPlayer = ps.OrderBy(p => Guid.NewGuid()).FirstOrDefault();
+            var trace = new CGameTrace();
+            core.Trace.SimpleTrace(coords!.Value, randomPlayer!.PlayerPawn.EyePosition!.Value, RayType_t.RAY_TYPE_LINE, RnQueryObjectSet.AllGameEntities, MaskTrace.Player | MaskTrace.Solid, MaskTrace.Empty, MaskTrace.Player, CollisionGroup.Player, ref trace);
+            Console.WriteLine("Fraction: "+trace.Fraction);
+            Console.WriteLine("Distance: " + trace.Distance);
+        });
 
-        };
-
-        
-    }
-
-    [DatamapHook(HookMode.Pre)]
-    public void Test2( IDHookCCSPlayerControllerInventoryUpdateThink ctx )
-    {
-        Console.WriteLine($"IDHookCCSPlayerControllerInventoryUpdateThink -> ctx: {ctx.SchemaObject.DesignerName}");
 
     }
+
+
 
     // [EntityOutputHandler("*", "*")]
     // public void Test3( IOnEntityFireOutputHookEvent @event )

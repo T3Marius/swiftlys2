@@ -124,8 +124,8 @@
         "linux": 27
     },
     "IVEngineServer2::SetClientListening": {
-        "windows": 84,
-        "linux": 84
+        "windows": 91,
+        "linux": 91
     },
     "IServerGameClients::ClientCommand": {
         "windows": 17,

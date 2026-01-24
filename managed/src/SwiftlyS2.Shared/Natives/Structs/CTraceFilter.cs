@@ -1,19 +1,28 @@
 ﻿using SwiftlyS2.Shared.SchemaDefinitions;
-using SwiftlyS2.Shared.Schemas;
 using System.Runtime.InteropServices;
 
 namespace SwiftlyS2.Shared.Natives;
 
-[StructLayout(LayoutKind.Explicit, Pack = 8, Size = 64)]
+[StructLayout(LayoutKind.Explicit, Pack = 8, Size = 72)]
 public struct CTraceFilter
 {
     [FieldOffset(0x0)] private nint _pVTable;
     [FieldOffset(0x8)] public RnQueryShapeAttr_t QueryShapeAttributes;
-    [FieldOffset(0x38)] public bool IterateEntities;
+    
+    [FieldOffset(0x40)] 
+    [MarshalAs(UnmanagedType.U1)]
+    public bool IterateEntities;
 
+
+    public CTraceFilter()
+    {
+        _pVTable = CTraceFilterVTable.pCTraceFilterShouldHitFunctionCall;
+        QueryShapeAttributes = new RnQueryShapeAttr_t();
+    }
     public CTraceFilter( bool checkIgnoredEntities = true )
     {
         _pVTable = checkIgnoredEntities ? CTraceFilterVTable.pCTraceFilterShouldHitFunctionCall : CTraceFilterVTable.pCTraceFilterVTable;
+        QueryShapeAttributes = new RnQueryShapeAttr_t();
     }
 
     internal void EnsureValid()
