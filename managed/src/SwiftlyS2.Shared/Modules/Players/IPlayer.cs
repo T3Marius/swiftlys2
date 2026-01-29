@@ -51,6 +51,11 @@ public interface IPlayer : IEquatable<IPlayer>
     public int Slot { get; }
 
     /// <summary>
+    /// Gets the player controller name. 
+    /// </summary>
+    public string GetPlayerName();
+
+    /// <summary>
     /// Sends a message of the specified type to the player.
     /// 
     /// Thread unsafe, use async variant instead for non-main thread context.
