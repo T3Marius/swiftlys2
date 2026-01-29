@@ -20,6 +20,7 @@ internal class Player : IPlayer
     public int PlayerID => Slot;
 
     public int Slot { get; }
+    public string GetPlayerName() => Controller.PlayerName;
 
     public int UserID => NativePlayer.GetUserID(Slot);
 
